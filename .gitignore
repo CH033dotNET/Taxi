@@ -46,4 +46,3 @@ Temporary Items
 *.cache
 */bin/*
 */obj/*
-/packages/*
