@@ -52,6 +52,11 @@
     <Compile Include="Interface\IGenericRepository.cs" />
     <Compile Include="Interface\IUnitOfWork.cs" />
     <Compile Include="MainContext.cs" />
+    <Compile Include="Migrations\201509111534165_Second.cs" />
+    <Compile Include="Migrations\201509111534165_Second.Designer.cs">
+      <DependentUpon>201509111534165_Second.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
@@ -63,13 +68,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{2fb3ff29-7421-45db-af46-f2b3851dc500}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201509111534165_Second.resx">
+      <DependentUpon>201509111534165_Second.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
