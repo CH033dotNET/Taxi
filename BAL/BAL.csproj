@@ -42,8 +42,17 @@
     <Compile Include="Manager\BaseManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsersRolesHellpers\RoleHelper.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{2fb3ff29-7421-45db-af46-f2b3851dc500}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
