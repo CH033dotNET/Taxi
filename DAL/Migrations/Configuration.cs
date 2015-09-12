@@ -26,24 +26,6 @@ namespace DAL.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-            context.Roles.Add(
-                new Model.Role { 
-                    Id = 1,
-                    Name = "SuperAdmin",
-                    Description = "SomeTXT"
-            });
-            context.SaveChanges();
-
-            context.Users.Add(
-                new Model.User {
-                    Id = 1,
-                    Password = "pass",
-                    Email = "ema",
-                    RoleId = 1,
-                    UserName = "testt"
-                }
-                );
-            context.SaveChanges();
         }
     }
 }

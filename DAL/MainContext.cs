@@ -14,6 +14,7 @@ namespace DAL
             : base("dbTaxi")
         {
             this.Configuration.LazyLoadingEnabled = true;
+
         }
 
         public MainContext(string connString)

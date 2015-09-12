@@ -1,0 +1,24 @@
+﻿@model Model.User
+
+
+<tr>
+    <td>
+        @Html.HiddenFor(x => Model.Id)
+
+        @Html.DisplayFor(x => Model.Id)
+    </td>
+
+    <td>
+        @Html.EditorFor(x => Model.UserName)
+    </td>
+    <td>
+        @Html.TextBoxFor(x => x.Password)
+    </td>
+    <td>
+        @Html.EditorFor(x => Model.Email)
+    </td>
+    <td>
+        @Html.DropDownListFor(x => Model.Role.Name,
+            new SelectList(Enum.GetValues(typeof(Common.Enum.AvailableRoles))))
+    </td>
+</tr>

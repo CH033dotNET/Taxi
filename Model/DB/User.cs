@@ -12,8 +12,16 @@ namespace Model
     {
         [Key]
         public int Id { get; set; }
+        [Required]
+        [MinLength(4, ErrorMessage="Минимальная длинна - 4 символа")]
         public string UserName { get; set; }
+        [Required]
+        [DataType(DataType.Password)]
+        [MinLength(6,ErrorMessage="Минимальная длинна - 6 символа")]
+        
         public string Password { get; set; }
+        [Required]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 
         [ForeignKey("RoleId")]
