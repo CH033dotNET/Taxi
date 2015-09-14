@@ -52,13 +52,9 @@
     <Compile Include="Interface\IGenericRepository.cs" />
     <Compile Include="Interface\IUnitOfWork.cs" />
     <Compile Include="MainContext.cs" />
-    <Compile Include="Migrations\201509120945147_Second.cs" />
-    <Compile Include="Migrations\201509120945147_Second.Designer.cs">
-      <DependentUpon>201509120945147_Second.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509121112279_AddedAtributes.cs" />
-    <Compile Include="Migrations\201509121112279_AddedAtributes.Designer.cs">
-      <DependentUpon>201509121112279_AddedAtributes.cs</DependentUpon>
+    <Compile Include="Migrations\201509141154505_first.cs" />
+    <Compile Include="Migrations\201509141154505_first.Designer.cs">
+      <DependentUpon>201509141154505_first.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,11 +74,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201509120945147_Second.resx">
-      <DependentUpon>201509120945147_Second.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509121112279_AddedAtributes.resx">
-      <DependentUpon>201509121112279_AddedAtributes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509141154505_first.resx">
+      <DependentUpon>201509141154505_first.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,25 @@
+﻿@model Model.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registration</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Registration"))
+        {
+           @:Login @Html.EditorFor(x=>x.UserName)
+             @:Password @Html.EditorFor(x =>x.Password)  
+               @:Email @Html.EditorFor(x => x.Email)
+        <input type="submit" value="Register" />
+        }
+    </div>
+</body>
+</html>

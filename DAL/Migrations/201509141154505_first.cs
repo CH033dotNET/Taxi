@@ -3,7 +3,7 @@ namespace DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Second : DbMigration
+    public partial class first : DbMigration
     {
         public override void Up()
         {
@@ -22,9 +22,9 @@ namespace DAL.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        UserName = c.String(),
-                        Password = c.String(),
-                        Email = c.String(),
+                        UserName = c.String(nullable: false),
+                        Password = c.String(nullable: false),
+                        Email = c.String(nullable: false),
                         RoleId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)

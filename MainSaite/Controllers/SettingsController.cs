@@ -27,7 +27,7 @@ namespace MainSaite.Controllers
         public ActionResult UsersMenu()
         {
             //role controll, does not working until we have autorizations
-          //  ChekWhithRedirect(AvailableRoles.Administrator.ToString() + AvailableRoles.Operator.ToString());
+          ChekWhithRedirect(AvailableRoles.Administrator.ToString() + AvailableRoles.Operator.ToString());
 
             var users = new MainContext().Users.AsNoTracking().Include("Role").ToList();
 
@@ -37,7 +37,7 @@ namespace MainSaite.Controllers
         public ActionResult ChangeMenu(int id = 0)
         {
             //role controll, does not working until we have autorizations
-        //    ChekWhithRedirect(AvailableRoles.Administrator.ToString() + AvailableRoles.Operator.ToString());
+            ChekWhithRedirect(AvailableRoles.Administrator.ToString() + AvailableRoles.Operator.ToString());
 
             var user = new MainContext().Users.Find(id);
             if (user == null)

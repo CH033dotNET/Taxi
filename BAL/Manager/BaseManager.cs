@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace BAL.Manager
 {
-    class BaseManager
+    public abstract class BaseManager
     {
+      
     }
 }
