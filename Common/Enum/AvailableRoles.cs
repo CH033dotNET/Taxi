@@ -8,7 +8,7 @@ namespace Common.Enum
 {
     public enum AvailableRoles
     {
-        Administrator, Operator,User,Drivr
+        Administrator, Operator,User,Driver
 
     }
 }

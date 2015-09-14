@@ -17,7 +17,10 @@ namespace MainSaite.Controllers
 
         public ActionResult Index()
         {
-            
+            if (Session["User"] != null)
+            {
+                return RedirectToAction("UsersMenu", "Settings");
+            }
             return View();
         }
 

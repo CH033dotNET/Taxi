@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ using Model.DTO;
 
 namespace BAL.Manager
 {
+<<<<<<< HEAD
     public class UserManager : BaseManager
     {
         public UserManager(IUnitOfWork uOW)
@@ -218,5 +220,10 @@ namespace BAL.Manager
             return false;*/
         }
 
+=======
+    public class UserManager
+    {
+       
+>>>>>>> origin/master
     }
 }

@@ -9,11 +9,15 @@ namespace BAL.Manager
 {
     public abstract class BaseManager
     {
+<<<<<<< HEAD
         protected IUnitOfWork uOW;
 
         public BaseManager(IUnitOfWork uOW)
         {
             this.uOW = uOW;
         }
+=======
+      
+>>>>>>> origin/master
     }
 }
