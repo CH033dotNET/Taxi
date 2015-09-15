@@ -7,6 +7,8 @@ using AutoMapper;
 using DAL.Interface;
 using Model;
 using Model.DTO;
+using Common;
+using Common.Enum;
 
 namespace BAL.Manager
 {
@@ -177,6 +179,54 @@ namespace BAL.Manager
 			uOW.Save();
 			return Mapper.Map<UserDTO>(temp);
 		}
+
+		#region OUR TEAM METHODS
+		/// <summary>
+       ///Is db contains already LoginName
+       /// </summary>
+       /// <param name="user"></param>
+		public bool ContainLoginName(User user)
+		{			
+				if (uOW.UserRepo.All.Where(x => x.UserName == user.UserName).FirstOrDefault() == null)
+				{
+					return false;
+				}
+				return true;
+		}
+		/// <summary>
+		/// Add new User in db
+		/// </summary>
+		/// <param name="user"></param>
+		/// <returns></returns>
+		public bool InsertUser(User user)
+		{
+			if (!ContainLoginName(user)) 
+			{
+				var role = uOW.RoleRepo.All.Where(x => x.Name == AvailableRoles.User.ToString()).First();
+				user.Role = role;
+				user.RoleId = role.Id;
+				uOW.UserRepo.Insert(user);
+				uOW.Save();
+				return true;
+			}
+			return false;
+		}
+
+		/// <summary>
+		/// Login and Password fields are checking
+		/// </summary>
+		/// <param name="user"></param>
+		/// <returns></returns>
+		public User UserAuth(User user)
+		{
+			var existingAcount = uOW.UserRepo.All.Where(x => x.UserName == user.UserName && x.Password == user.Password).FirstOrDefault();
+			return existingAcount;
+	
+		}
+
+		#endregion
+
+
 
 		// TODO:
 		/*
