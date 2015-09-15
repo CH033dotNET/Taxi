@@ -69,7 +69,7 @@ namespace MainSaite.Controllers
             return View(user);
         }
 
-        public void ChekWhithRedirect(string validRoles)
+        public ActionResult ChekWhithRedirect(string validRoles)
         {
             
             Role currrent = new Role();
@@ -80,9 +80,10 @@ namespace MainSaite.Controllers
             ///переадрисация на еррор страницу, которой еще нет
             if (!currrent.RoleControll(validRoles))
             {
-                throw new NotImplementedException();
-                //return View("Error");
+                //throw new NotImplementedException();
+                return View("Error");
             }
+			return View("Error");
         }
 
     }
