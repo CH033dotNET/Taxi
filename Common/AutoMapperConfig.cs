@@ -9,11 +9,11 @@ using Model.DTO;
 
 namespace Common
 {
-    class AutoMapperConfig
-    {
-        public static void Configure()
-        {
-            Mapper.CreateMap<User, UserDTO>();
-        }
-    }
+	class AutoMapperConfig
+	{
+		public static void Configure()
+		{
+			Mapper.CreateMap<User, UserDTO>();
+		}
+	}
 }
