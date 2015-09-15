@@ -1,0 +1,40 @@
+﻿@model IList<Model.District>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <table border="1">
+            @{ 
+                foreach(var a in Model)
+                {
+                    <tr>
+                        <td>
+                            @a.Name
+                        </td>
+                        <td>
+                            @Html.ActionLink("Delete", "DeleteDistrict", new { Id = a.Id })
+                        </td>
+                    </tr>
+                }
+            }
+
+            @using (Html.BeginForm())
+            {
+                <tr>
+                    <td>
+                        <input type="text" name="Name" autofocus/>
+                    </td>
+                    <td>
+                        <input type="submit" value="Add" />
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

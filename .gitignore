@@ -45,3 +45,4 @@ Temporary Items
 *.cache
 */bin/*
 */obj/*
+Backup/*

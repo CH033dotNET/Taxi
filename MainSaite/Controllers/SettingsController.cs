@@ -12,78 +12,101 @@ using BAL.UsersRolesHellpers;
 
 namespace MainSaite.Controllers
 {
-    public class SettingsController : Controller
-    {
-        MainContext db = new MainContext();
-        //
-        // GET: /Settings/
+	public class SettingsController : Controller
+	{
+		MainContext db = new MainContext();
+		//
+		// GET: /Settings/
 
-        public ActionResult Index()
-        {
-            return View();
-        }
+		public ActionResult Index()
+		{
+			return View();
+		}
 
 
-        public ActionResult UsersMenu()
-        {
-            //role controll, does not working until we have autorizations
-          ChekWhithRedirect(AvailableRoles.Administrator.ToString() + AvailableRoles.Operator.ToString());
+		public ActionResult UsersMenu()
+		{
+			//role controll, does not working until we have autorizations
+			ChekWhithRedirect(AvailableRoles.Administrator.ToString() + AvailableRoles.Operator.ToString());
 
-            var users = new MainContext().Users.AsNoTracking().Include("Role").ToList();
+			var users = new MainContext().Users.AsNoTracking().Include("Role").ToList();
 
-            return View(users);
-        }
+			return View(users);
+		}
 
-        public ActionResult ChangeMenu(int id = 0)
-        {
-            //role controll, does not working until we have autorizations
-            ChekWhithRedirect(AvailableRoles.Administrator.ToString() + AvailableRoles.Operator.ToString());
+		public ActionResult ChangeMenu(int id = 0)
+		{
+			//role controll, does not working until we have autorizations
+			ChekWhithRedirect(AvailableRoles.Administrator.ToString() + AvailableRoles.Operator.ToString());
 
-            var user = new MainContext().Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
+			var user = new MainContext().Users.Find(id);
+			if (user == null)
+			{
+				return HttpNotFound();
+			}
 
-            return View(user);
-        }
-        [HttpPost]
-        public ActionResult ChangeMenu(User user)
-        {
+			return View(user);
+		}
+		[HttpPost]
+		public ActionResult ChangeMenu(User user)
+		{
 
-            //role controll, does not working until we have autorizations
-        //    ChekWhithRedirect(AvailableRoles.Administrator.ToString() + AvailableRoles.Operator.ToString());
+			//role controll, does not working until we have autorizations
+			//    ChekWhithRedirect(AvailableRoles.Administrator.ToString() + AvailableRoles.Operator.ToString());
 
-            if (ModelState.IsValid)
-            {
-                ///Think about this 3 strings
-                Role role = db.Roles.Where(x => x.Name == user.Role.Name).First();
-                user.Role = role;
-                user.RoleId = role.Id;
+			if (ModelState.IsValid)
+			{
+				///Think about this 3 strings
+				Role role = db.Roles.Where(x => x.Name == user.Role.Name).First();
+				user.Role = role;
+				user.RoleId = role.Id;
 
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("UsersMenu");
-            }
+				db.Entry(user).State = EntityState.Modified;
+				db.SaveChanges();
+				return RedirectToAction("UsersMenu");
+			}
 
-            return View(user);
-        }
+			return View(user);
+		}
 
-        public void ChekWhithRedirect(string validRoles)
-        {
-            
-            Role currrent = new Role();
+		public void ChekWhithRedirect(string validRoles)
+		{
 
-            if (Session["User"]!=null)
-                currrent = new Role(((User)Session["User"]).Role);
+			Role currrent = new Role();
 
-            ///переадрисация на еррор страницу, которой еще нет
-            if (!currrent.RoleControll(validRoles))
-            {
-                throw new NotImplementedException();
-                //return View("Error");
-            }
-        }
+			if (Session["User"] != null)
+				currrent = new Role(((User)Session["User"]).Role);
 
+			///переадрисация на еррор страницу, которой еще нет
+			if (!currrent.RoleControll(validRoles))
+			{
+				throw new NotImplementedException();
+				//return View("Error");
+			}
+		}
+		public ActionResult DistrictEditor()
+		{
+			var distincts = db.Districts.ToList();
+			return View("DistrictEditor", distincts);
+		}
+
+		[HttpPost]
+		public ActionResult DistrictEditor(string Name)
+		{
+			District a = new District();
+			a.Name = Name;
+			db.Districts.Add(a);
+			db.SaveChanges();
+			return RedirectToAction("DistrictEditor");
+		}
+		
+		public ActionResult DeleteDistrict(District a)
+		{
+			db.Districts.Attach(a);
+			db.Districts.Remove(a);
+			db.SaveChanges();
+
+			return RedirectToAction("DistrictEditor");
+		}
     }
 }
