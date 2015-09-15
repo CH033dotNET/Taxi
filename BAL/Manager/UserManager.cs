@@ -116,6 +116,19 @@ namespace BAL.Manager
 			return null;
 		}
 
+		public UserDTO GetById(int id)
+		{
+			var item = uOW.UserRepo.Get().Where(s => s.Id == id)
+				.FirstOrDefault();
+
+			if (item != null)
+			{
+				return Mapper.Map<UserDTO>(item);
+			}
+			return null;
+		}
+
+
 		public bool IfUserNameExists(string userName)
 		{
 			var item = uOW.UserRepo.Get().Where(s => (s.UserName == userName)).FirstOrDefault();
@@ -169,10 +182,10 @@ namespace BAL.Manager
 			{
 				return null;
 			}
-			if (IsAdministratorById(temp.Id))
+			/*if (IsAdministratorById(temp.Id))
 			{
 				return null;
-			}
+			}*/
 			uOW.UserRepo.SetStateModified(temp);
 			temp.RoleId = user.RoleId;
 			temp.Email = user.Email;
@@ -181,6 +194,23 @@ namespace BAL.Manager
 		}
 
 		#region OUR TEAM METHODS
+
+		public Role GerRoleForUser(UserDTO user)
+		{
+			var a = uOW.RoleRepo.All.Where(x => x.Name == user.Role.Name).First();
+
+			return a;
+		}
+
+		public void ChangeUserParameters(UserDTO user)
+		{
+			var role = GerRoleForUser(user);
+			user.Role = role;
+			user.RoleId = role.Id;
+
+			UpdateUser(user);
+		}
+
 		/// <summary>
        ///Is db contains already LoginName
        /// </summary>

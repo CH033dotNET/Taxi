@@ -9,7 +9,7 @@ using Model.DTO;
 
 namespace Common
 {
-	class AutoMapperConfig
+	public class AutoMapperConfig
 	{
 		public static void Configure()
 		{

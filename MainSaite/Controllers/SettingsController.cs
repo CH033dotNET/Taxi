@@ -1,22 +1,31 @@
-﻿using Common.Enum;
+﻿using BAL.Manager;
+using Common.Enum;
 using DAL;
 using Model;
+using Model.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BAL.UsersRolesHellpers;
 
 
 namespace MainSaite.Controllers
 {
-	public class SettingsController : Controller
+	public class SettingsController : BaseController
 	{
+		UserManager userManager;
+
+		//Patraboi varible
 		MainContext db = new MainContext();
-		//
-		// GET: /Settings/
+
+
+		public SettingsController()
+		{
+			userManager = new UserManager(base.uOW);
+		}
+
 
 		public ActionResult Index()
 		{
@@ -26,20 +35,15 @@ namespace MainSaite.Controllers
 
 		public ActionResult UsersMenu()
 		{
-			//role controll, does not working until we have autorizations
-			ChekWhithRedirect(AvailableRoles.Administrator.ToString() + AvailableRoles.Operator.ToString());
-
-			var users = new MainContext().Users.AsNoTracking().Include("Role").ToList();
+			var users = userManager.GetUsers();
 
 			return View(users);
 		}
 
 		public ActionResult ChangeMenu(int id = 0)
 		{
-			//role controll, does not working until we have autorizations
-			ChekWhithRedirect(AvailableRoles.Administrator.ToString() + AvailableRoles.Operator.ToString());
 
-			var user = new MainContext().Users.Find(id);
+			var user = userManager.GetById(id);
 			if (user == null)
 			{
 				return HttpNotFound();
@@ -48,42 +52,18 @@ namespace MainSaite.Controllers
 			return View(user);
 		}
 		[HttpPost]
-		public ActionResult ChangeMenu(User user)
+		public ActionResult ChangeMenu(UserDTO user)
 		{
-
-			//role controll, does not working until we have autorizations
-			//    ChekWhithRedirect(AvailableRoles.Administrator.ToString() + AvailableRoles.Operator.ToString());
-
 			if (ModelState.IsValid)
 			{
 				///Think about this 3 strings
-				Role role = db.Roles.Where(x => x.Name == user.Role.Name).First();
-				user.Role = role;
-				user.RoleId = role.Id;
-
-				db.Entry(user).State = EntityState.Modified;
-				db.SaveChanges();
+				userManager.ChangeUserParameters(user);
 				return RedirectToAction("UsersMenu");
 			}
 
 			return View(user);
 		}
 
-		public void ChekWhithRedirect(string validRoles)
-		{
-
-			Role currrent = new Role();
-
-			if (Session["User"] != null)
-				currrent = new Role(((User)Session["User"]).Role);
-
-			///переадрисация на еррор страницу, которой еще нет
-			if (!currrent.RoleControll(validRoles))
-			{
-				throw new NotImplementedException();
-				//return View("Error");
-			}
-		}
 		public ActionResult DistrictEditor()
 		{
 			var distincts = db.Districts.ToList();

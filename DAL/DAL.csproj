@@ -52,9 +52,17 @@
     <Compile Include="Interface\IGenericRepository.cs" />
     <Compile Include="Interface\IUnitOfWork.cs" />
     <Compile Include="MainContext.cs" />
-    <Compile Include="Migrations\201509151211360_standart table fields.cs" />
-    <Compile Include="Migrations\201509151211360_standart table fields.Designer.cs">
-      <DependentUpon>201509151211360_standart table fields.cs</DependentUpon>
+    <Compile Include="Migrations\201509151702429_addDistrictTable.cs" />
+    <Compile Include="Migrations\201509151702429_addDistrictTable.Designer.cs">
+      <DependentUpon>201509151702429_addDistrictTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509151714271_test.cs" />
+    <Compile Include="Migrations\201509151714271_test.Designer.cs">
+      <DependentUpon>201509151714271_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509151718383_test1.cs" />
+    <Compile Include="Migrations\201509151718383_test1.Designer.cs">
+      <DependentUpon>201509151718383_test1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,8 +82,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201509151211360_standart table fields.resx">
-      <DependentUpon>201509151211360_standart table fields.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509151702429_addDistrictTable.resx">
+      <DependentUpon>201509151702429_addDistrictTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509151714271_test.resx">
+      <DependentUpon>201509151714271_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509151718383_test1.resx">
+      <DependentUpon>201509151718383_test1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
