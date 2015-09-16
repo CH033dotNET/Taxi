@@ -1,7 +1,9 @@
 ﻿using DAL;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -18,10 +20,16 @@ namespace MainSaite.Controllers
 			uOW = new UnitOfWork();
 		}
 
-        public ActionResult Index()
-        {
-            return View();
-        }
+		protected override void OnActionExecuting(ActionExecutingContext filterContext)
+		{
+			if (Session["Culture"] != null)
+			{
+				CultureInfo cultInfo = new CultureInfo((string)Session["Culture"]);
+				Thread.CurrentThread.CurrentUICulture = cultInfo;
+			}
+
+			base.OnActionExecuting(filterContext);
+		}
 
     }
 }

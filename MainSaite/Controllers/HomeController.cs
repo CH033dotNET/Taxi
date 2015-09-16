@@ -3,14 +3,16 @@ using DAL;
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
 
 namespace MainSaite.Controllers
 {
-    public class HomeController : Controller
+	public class HomeController : BaseController
     {
         //
         // GET: /Home/
@@ -21,8 +23,20 @@ namespace MainSaite.Controllers
             {
                 return RedirectToAction("UsersMenu", "Settings");
             }
+			ViewBag.Hello = Resources.Resource.Hello;
             return View();
         }
+
+		[HttpPost]
+		public ActionResult Index(string language)
+		{
+			Session["Culture"] = language;
+			Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+			ViewBag.Hello = Resources.Resource.Hello;
+			return View();
+		}
+
+
 
     }
 }

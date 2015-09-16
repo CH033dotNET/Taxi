@@ -3,17 +3,19 @@
 }
 
 <!DOCTYPE html>
-
 <html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    
-</head>
 <body>
     <h2>START POINT</h2>
     <div>
+        @ViewBag.Hello
+        @using( Html.BeginForm())
+        {
        
+        @Html.DropDownList("Language", new SelectList(
+       new List<Object>{new { value ="uk-UA" , text = "Ukrain"  },new { value = "en-us" , text = "English" },}, "value","text",2))
+                                                                    
+            <input type="submit"   value="OK", name ="OK"/>
+        }
     </div>
 </body>
 </html>
