@@ -151,6 +151,7 @@ namespace BAL.Manager
 
 		public UserDTO InsertUser(UserDTO user)
 		{
+			Mapper.CreateMap<UserDTO, User>();
 			var temp = Mapper.Map<User>(user);
 			temp.UserName.Trim();
 			temp.Password.Trim();
@@ -160,6 +161,7 @@ namespace BAL.Manager
 			// TODO:
 			//uOW.UserInfoRepo.Insert(new UserInfo { UserId = user.Id });
 			uOW.Save();
+			Mapper.CreateMap<User, UserDTO>();
 			return Mapper.Map<UserDTO>(temp);
 		}
 

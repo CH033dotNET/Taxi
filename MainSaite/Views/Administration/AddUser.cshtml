@@ -1,0 +1,32 @@
+﻿@model Model.DTO.UserDTO
+@{
+    ViewBag.Title = "AddUser";
+}
+
+<h2>AddUser</h2>
+<form method="post">
+    <table>
+        <tr>
+            <td>@Html.LabelFor(x => Model.UserName)</td>
+            <td>@Html.LabelFor(x => Model.Password)</td>
+            <td>@Html.LabelFor(x => Model.Email)</td>
+            <td>@Html.LabelFor(x => Model.Role.Name)</td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(x => Model.UserName)
+            </td>
+            <td>
+                @Html.TextBoxFor(x => x.Password)
+            </td>
+            <td>
+                @Html.EditorFor(x => Model.Email)
+            </td>
+            <td>
+                @Html.DropDownListFor(x => Model.Role.Name,
+            new SelectList(Enum.GetValues(typeof(Common.Enum.AvailableRoles))))
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Add new user" />
+</form>
