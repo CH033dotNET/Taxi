@@ -15,6 +15,9 @@ namespace Model
         [Required]
         [MinLength(4, ErrorMessage="Минимальная длинна - 4 символа")]
         public string UserName { get; set; }
+		[Required]
+		[MinLength(4, ErrorMessage = "Минимальная длинна - 4 символа")]
+		public string LastName { get; set; }
         [Required]
         [DataType(DataType.Password)]
         [MinLength(6,ErrorMessage="Минимальная длинна - 6 символа")]
@@ -27,5 +30,7 @@ namespace Model
         [ForeignKey("RoleId")]
         public virtual Role Role { get; set; }
         public int RoleId { get; set; }
+
+
     }
 }
