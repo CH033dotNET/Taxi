@@ -35,7 +35,7 @@ namespace MainSaite.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				if (user != null)
+				if (!userManager.IfUserNameExists(user.UserName))
 				{
 					userManager.InsertUser(user);
 				}
