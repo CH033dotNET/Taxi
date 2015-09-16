@@ -17,13 +17,17 @@ namespace MainSaite.Controllers
 	{
 		UserManager userManager;
 
-		//Patraboi varible
-		MainContext db = new MainContext();
+		//ASIX
+		DistrictManager districtManager;
+		MainContext db = new MainContext();//
 
 
 		public SettingsController()
 		{
 			userManager = new UserManager(base.uOW);
+
+			//ASIX
+			districtManager = new DistrictManager(base.uOW);
 		}
 
 
@@ -66,26 +70,19 @@ namespace MainSaite.Controllers
 
 		public ActionResult DistrictEditor()
 		{
-			var distincts = db.Districts.ToList();
-			return View("DistrictEditor", distincts);
+			return View("DistrictEditor", districtManager.getDistricts());
 		}
 
 		[HttpPost]
 		public ActionResult DistrictEditor(string Name)
 		{
-			District a = new District();
-			a.Name = Name;
-			db.Districts.Add(a);
-			db.SaveChanges();
+			districtManager.addDistrict(Name);
 			return RedirectToAction("DistrictEditor");
 		}
 		
 		public ActionResult DeleteDistrict(District a)
 		{
-			db.Districts.Attach(a);
-			db.Districts.Remove(a);
-			db.SaveChanges();
-
+			districtManager.deleteDistrictById(a.Id);
 			return RedirectToAction("DistrictEditor");
 		}
     }

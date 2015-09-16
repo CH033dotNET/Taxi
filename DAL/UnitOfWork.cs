@@ -17,6 +17,7 @@ namespace DAL
 
         private IGenericRepository<User> userRepo;
         private IGenericRepository<Role> roleRepo;
+		private IGenericRepository<District> districtRepo;
 
         #endregion
 
@@ -26,6 +27,7 @@ namespace DAL
 
             userRepo = new GenericRepository<User>(context);
             roleRepo = new GenericRepository<Role>(context);
+			districtRepo = new GenericRepository<District>(context);
         }
 
         public void Save()
@@ -53,12 +55,21 @@ namespace DAL
             }
         }
 
-        #endregion
+		public IGenericRepository<District> DistrictRepo
+		{
+			get
+			{
+				if (districtRepo == null) districtRepo = new GenericRepository<District>(context);
+				return districtRepo;
+			}
+		}
 
-        #region Dispose
-        // https://msdn.microsoft.com/ru-ru/library/system.idisposable(v=vs.110).aspx
+		#endregion
 
-        private bool disposed = false;
+		#region Dispose
+		// https://msdn.microsoft.com/ru-ru/library/system.idisposable(v=vs.110).aspx
+
+		private bool disposed = false;
 
         protected virtual void Dispose(bool disposing)
         {
