@@ -14,6 +14,7 @@ namespace Common
 		public static void Configure()
 		{
 			Mapper.CreateMap<User, UserDTO>();
+			Mapper.CreateMap<UserDTO, User>();
 		}
 	}
 }
