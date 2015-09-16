@@ -52,9 +52,9 @@
     <Compile Include="Interface\IGenericRepository.cs" />
     <Compile Include="Interface\IUnitOfWork.cs" />
     <Compile Include="MainContext.cs" />
-    <Compile Include="Migrations\201509161232488_dbTables.cs" />
-    <Compile Include="Migrations\201509161232488_dbTables.Designer.cs">
-      <DependentUpon>201509161232488_dbTables.cs</DependentUpon>
+    <Compile Include="Migrations\201509161353488_baseMigration.cs" />
+    <Compile Include="Migrations\201509161353488_baseMigration.Designer.cs">
+      <DependentUpon>201509161353488_baseMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,8 +74,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201509161232488_dbTables.resx">
-      <DependentUpon>201509161232488_dbTables.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509161353488_baseMigration.resx">
+      <DependentUpon>201509161353488_baseMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

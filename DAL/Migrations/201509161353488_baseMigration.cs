@@ -3,7 +3,7 @@ namespace DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class dbTables : DbMigration
+    public partial class baseMigration : DbMigration
     {
         public override void Up()
         {
@@ -13,6 +13,7 @@ namespace DAL.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
+                        Lastname = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
