@@ -37,9 +37,15 @@ namespace MainSaite.Controllers
 			{
 				return View();
 			}
-
-			userManager.InsertUser(user);
-			return RedirectToAction("Index", "Home");
+			else if (!userManager.IfUserNameExists(user.UserName) && !userManager.IfEmailExists(user.Email))
+			{
+				userManager.InsertUser(user);
+				return RedirectToAction("Index", "Home");
+			}
+			else
+			{
+				return View();
+			}
 		}
 
     }
