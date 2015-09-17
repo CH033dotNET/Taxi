@@ -151,19 +151,15 @@ namespace BAL.Manager
 
 		public UserDTO InsertUser(UserDTO user)
 		{
-			//???Mapper.CreateMap<UserDTO, User>();
 			var temp = Mapper.Map<User>(user);
-			temp.UserName.Trim();
-			temp.Password.Trim();
-			temp.Email.Trim();
-
-			temp.Role = uOW.RoleRepo.GetByID(temp.RoleId);
-
+			user.UserName = temp.UserName.Trim();
+			user.Password = temp.Password.Trim();
+	        user.Email = temp.Email.Trim();
 			uOW.UserRepo.Insert(temp);
 			// TODO:
 			//uOW.UserInfoRepo.Insert(new UserInfo { UserId = user.Id });
 			uOW.Save();
-			///???Mapper.CreateMap<User, UserDTO>();
+		
 			return Mapper.Map<UserDTO>(temp);
 		}
 
@@ -214,49 +210,6 @@ namespace BAL.Manager
 
 			UpdateUser(user);
 		}
-
-	   // /// <summary>
-	   /////Is db contains already LoginName
-	   ///// </summary>
-	   ///// <param name="user"></param>
-	   // public bool ContainLoginName(User user)
-	   // {			
-	   //		 if (uOW.UserRepo.All.Where(x => x.UserName == user.UserName).FirstOrDefault() == null)
-	   //		 {
-	   //			 return false;
-	   //		 }
-	   //		 return true;
-	   // }
-	   // /// <summary>
-	   // /// Add new User in db
-	   // /// </summary>
-	   // /// <param name="user"></param>
-	   // /// <returns></returns>
-	   // public bool InsertUser(User user)
-	   // {
-	   //	 if (!ContainLoginName(user)) 
-	   //	 {
-	   //		 var role = uOW.RoleRepo.All.Where(x => x.Name == AvailableRoles.User.ToString()).First();
-	   //		 user.Role = role;
-	   //		 user.RoleId = role.Id;
-	   //		 uOW.UserRepo.Insert(user);
-	   //		 uOW.Save();
-	   //		 return true;
-	   //	 }
-	   //	 return false;
-	   // }
-
-	   // /// <summary>
-	   // /// Login and Password fields are checking
-	   // /// </summary>
-	   // /// <param name="user"></param>
-	   // /// <returns></returns>
-	   // public User UserAuth(User user)
-	   // {
-	   //	 var existingAcount = uOW.UserRepo.All.Where(x => x.UserName == user.UserName && x.Password == user.Password).FirstOrDefault();
-	   //	 return existingAcount;
-	
-	   // }
 
 		#endregion
 

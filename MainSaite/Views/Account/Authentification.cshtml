@@ -1,4 +1,4 @@
-﻿@model Model.User
+﻿@model Model.DTO.LoginModel
 
 @{
     Layout = null;
@@ -16,8 +16,8 @@
         @using (Html.BeginForm("Authentification"))
         {
             @Html.ValidationSummary();
-            @:Login @Html.EditorFor(x => x.UserName);
-            @:Password @Html.EditorFor(x => x.Password);
+            @:Login @Html.EditorFor(x => x.UserName)
+            @:Password @Html.EditorFor(x => x.Password)
             
             <input type="submit" value="Log in" />
         }

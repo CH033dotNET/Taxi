@@ -37,12 +37,16 @@ namespace MainSaite.Controllers
 			{
 				if (!userManager.IfUserNameExists(user.UserName))
 				{
-					userManager.InsertUser(user);
+					if (!userManager.IfEmailExists(user.Email))
+					{
+						userManager.InsertUser(user);
+					}
+					else ModelState.AddModelError("", "Email is already exist");
 				}
-
 				else ModelState.AddModelError("", "User is already exist");
 			}
-			return View();
+			
+			return View(user);
 		}
 
         public ActionResult Authentification()
@@ -51,7 +55,7 @@ namespace MainSaite.Controllers
         }
 
         [HttpPost]
-        public ActionResult Authentification(UserDTO user)
+        public ActionResult Authentification(LoginModel user)
 		{
 			if (ModelState.IsValid)
 			{
@@ -63,7 +67,7 @@ namespace MainSaite.Controllers
 			}
 			else ModelState.AddModelError("", "Wrong password or login");
 
-			return View();
+			return View(user);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model Model.User
+﻿@model Model.DTO.UserDTO
 
 @{
     Layout = null;
@@ -15,11 +15,13 @@
     <div>
         @using (Html.BeginForm("Registration"))
         {
-            @Html.ValidationSummary();
+           @Html.ValidationSummary();
            @:Login @Html.EditorFor(x=>x.UserName)
-             @:Password @Html.EditorFor(x =>x.Password)  
-               @:Email @Html.EditorFor(x => x.Email)
-        <input type="submit" value="Register" />
+           @:Password @Html.EditorFor(x =>x.Password)  
+           @:Confirm Password @Html.EditorFor(x => x.ConfirmPassword)
+           @:Email @Html.EditorFor(x => x.Email)
+       
+             <input type="submit" value="Register" />
         }
     </div>
 </body>
