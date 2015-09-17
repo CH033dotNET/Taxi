@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Model;
 using Model.DTO;
+using Model.DB;
 
 namespace Common
 {
@@ -15,6 +16,8 @@ namespace Common
 		{
 			Mapper.CreateMap<User, UserDTO>();
 			Mapper.CreateMap<UserDTO, User>();
+			Mapper.CreateMap<Car, CarDTO>();
+			Mapper.CreateMap<CarDTO, Car>();
 		}
 	}
 }
