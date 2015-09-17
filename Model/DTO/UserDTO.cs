@@ -23,7 +23,7 @@ namespace Model.DTO
 		[Required]
 		[EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
-		
+
 		[DataType(DataType.Password)]
 		[Compare("Password")]
 		public string ConfirmPassword { get; set; }

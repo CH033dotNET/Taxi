@@ -7,11 +7,11 @@ namespace DAL.Migrations
 	using System.Data.Entity.Migrations;
 	using System.Linq;
 
-    internal sealed class Configuration : DropCreateDatabaseIfModelChanges<DAL.MainContext> 
+	internal sealed class Configuration : DbMigrationsConfiguration<DAL.MainContext> 
     {
         public Configuration()
         {
-            //AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(DAL.MainContext context)
@@ -28,32 +28,6 @@ namespace DAL.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
-			var roles = new List<Role> 
-			{
-				new Role() { Name = "Driver", Description = "Driver" },
-				new Role() { Name = "Operator", Description = "Operator" },
-				new Role() { Name = "Client", Description = "Client" },
-				new Role() { Name = "Report Viewer", Description = "Report Viewer" },
-				new Role() { Name = "Administrator", Description = "Administrator" } 
-			};
-
-			roles.ForEach(s => context.Roles.AddOrUpdate(p => p.Name, s));
-
-			context.SaveChanges();
-
-			context.Users.AddOrUpdate(
-				new User() 
-				{
-					UserName = "MainAdministrator",
-					Password = "password",
-					Email = "admin@gmail.com",
-					RoleId = 6
-				}
-			);
-
-			context.SaveChanges();
-
         }
     }
 }
