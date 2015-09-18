@@ -24,10 +24,6 @@ namespace Model.DTO
 		[EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 
-		[DataType(DataType.Password)]
-		[Compare("Password")]
-		public string ConfirmPassword { get; set; }
-
 		[ForeignKey("RoleId")]
 		public int RoleId { get; set; }
         public Role Role { get; set; }
