@@ -1,6 +1,7 @@
 ﻿using DAL.Interface;
 using DAL.Repositories;
 using Model;
+using Model.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace DAL
         private IGenericRepository<User> userRepo;
         private IGenericRepository<Role> roleRepo;
 		private IGenericRepository<District> districtRepo;
+		private IGenericRepository<Car> carInfo;
 
         #endregion
 
@@ -28,6 +30,7 @@ namespace DAL
             userRepo = new GenericRepository<User>(context);
             roleRepo = new GenericRepository<Role>(context);
 			districtRepo = new GenericRepository<District>(context);
+			carInfo = new GenericRepository<Car>(context);
         }
 
         public void Save()
@@ -61,6 +64,15 @@ namespace DAL
 			{
 				if (districtRepo == null) districtRepo = new GenericRepository<District>(context);
 				return districtRepo;
+			}
+		}
+
+		public IGenericRepository<Car> CarRepo
+		{
+			get
+			{
+				if (carInfo == null) carInfo = new GenericRepository<Car>(context);
+				return carInfo;
 			}
 		}
 

@@ -1,4 +1,5 @@
 ﻿using Model;
+using Model.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace DAL.Interface
         IGenericRepository<User> UserRepo { get; }
         IGenericRepository<Role> RoleRepo { get; }
 		IGenericRepository<District> DistrictRepo { get; }
+		IGenericRepository<Car> CarRepo { get; }
         void Dispose();
         void Save();
     }

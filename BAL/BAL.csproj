@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="AutoMapperConfig.cs" />
     <Compile Include="Manager\BaseManager.cs" />
+    <Compile Include="Manager\CarManager.cs" />
     <Compile Include="Manager\DistrictManager.cs" />
     <Compile Include="Manager\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
