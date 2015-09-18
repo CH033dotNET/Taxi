@@ -1,17 +1,5 @@
 ﻿@model Model.DTO.UserDTO
 
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Registration</title>
-</head>
-<body>
     <div>
         @using (Html.BeginForm("Registration"))
         {
@@ -24,5 +12,3 @@
              <input type="submit" value="Register" />
         }
     </div>
-</body>
-</html>

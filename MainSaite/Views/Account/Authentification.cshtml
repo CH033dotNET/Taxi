@@ -1,17 +1,8 @@
 ﻿@model Model.DTO.LoginModel
 
-@{
-    Layout = null;
-}
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Authentification</title>
-</head>
-<body>
+  
     <div>
         @using (Html.BeginForm("Authentification"))
         {
@@ -22,5 +13,3 @@
             <input type="submit" value="Log in" />
         }
     </div>
-</body>
-</html>

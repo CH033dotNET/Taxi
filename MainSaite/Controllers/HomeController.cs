@@ -27,13 +27,13 @@ namespace MainSaite.Controllers
             return View();
         }
 
-		[HttpPost]
-		public ActionResult Index(string language)
+
+		public ActionResult SetLanguage(string language, string returnUrl)
 		{
 			Session["Culture"] = language;
 			Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
 			ViewBag.Hello = Resources.Resource.Hello;
-			return View();
+			return Redirect(returnUrl);
 		}
 
 
