@@ -42,8 +42,9 @@
   <ItemGroup>
     <Compile Include="DB\Car.cs" />
     <Compile Include="DB\District.cs" />
+    <Compile Include="DB\RegistrationModel.cs" />
     <Compile Include="DTO\CarDTO.cs" />
-    <Compile Include="DTO\LoginModel.cs" />
+    <Compile Include="DB\LoginModel.cs" />
     <Compile Include="DTO\Pager.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

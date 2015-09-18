@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using BAL.Manager;
 using Model.DTO;
+using Model.DB;
 
 namespace MainSaite.Controllers
 {
@@ -31,7 +32,7 @@ namespace MainSaite.Controllers
         }
 
 		[HttpPost]
-		public ActionResult Registration(UserDTO user)
+		public ActionResult Registration(RegistrationModel user)
 		{
 			if (ModelState.IsValid)
 			{
