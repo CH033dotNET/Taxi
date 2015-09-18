@@ -8,12 +8,11 @@ namespace Common.Enum
 {
     public enum AvailableRoles
     {
-		Driver = 1, 
-		Operator, 
-		Client, 
-		PremiumClient, 
-		ReportViewer, 
-		Administrator
+		Driver			= 1, 
+		Operator		= 2, 
+		Client			= 3,
+		ReportViewer	= 4, 
+		Administrator	= 5
 
     }
 }
