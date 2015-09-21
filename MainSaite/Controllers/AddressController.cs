@@ -37,9 +37,7 @@ namespace MainSaite.Controllers
         [HttpPost]
          public ActionResult CreateAdd(AddressDTO address) 
         {
-           // address.UserId = (int)Session["UserID"]; 
-            // POKA NET SESSII 
-            address.UserId = 1;
+          
             addressmanager.AddAddress(address);
             
             return RedirectToAction("Index");

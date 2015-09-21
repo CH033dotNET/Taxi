@@ -55,9 +55,8 @@
             @Html.EditorFor(model => model.PostalCode)
             @Html.ValidationMessageFor(model => model.PostalCode)
         </div>
-
         
-        <input type="hidden" value="UserId" />
+        @Html.Hidden("UserId", (Session["User"] as Model.DTO.UserDTO).Id != null ? (Session["User"] as Model.DTO.UserDTO).Id : -1)
 
         <p>
             <input type="submit" value="Create" />
