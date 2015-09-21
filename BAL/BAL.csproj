@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMapperConfig.cs" />
+    <Compile Include="Manager\AddressManager.cs" />
     <Compile Include="Manager\BaseManager.cs" />
     <Compile Include="Manager\CarManager.cs" />
     <Compile Include="Manager\DistrictManager.cs" />

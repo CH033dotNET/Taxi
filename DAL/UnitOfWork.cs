@@ -20,6 +20,7 @@ namespace DAL
         private IGenericRepository<Role> roleRepo;
 		private IGenericRepository<District> districtRepo;
 		private IGenericRepository<Car> carInfo;
+        private IGenericRepository<UserAddress> addressRepo;
 
         #endregion
 
@@ -31,6 +32,8 @@ namespace DAL
             roleRepo = new GenericRepository<Role>(context);
 			districtRepo = new GenericRepository<District>(context);
 			carInfo = new GenericRepository<Car>(context);
+            addressRepo = new GenericRepository<UserAddress>(context);
+            
         }
 
         public void Save()
@@ -75,6 +78,15 @@ namespace DAL
 				return carInfo;
 			}
 		}
+
+        public IGenericRepository<UserAddress> AddressRepo
+        {
+            get
+            {
+                if (addressRepo == null) addressRepo = new GenericRepository<UserAddress>(context);
+                return addressRepo;
+            }
+        }
 
 		#endregion
 

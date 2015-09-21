@@ -137,6 +137,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -263,6 +264,10 @@
     <Content Include="Views\Settings\CarEditor.cshtml" />
     <Content Include="Views\Settings\CarCreate.cshtml" />
     <Content Include="Views\Settings\CarDetails.cshtml" />
+    <Content Include="Views\Address\CreateAdd.cshtml" />
+    <Content Include="Views\Address\Delete.cshtml" />
+    <Content Include="Views\Address\EditAdd.cshtml" />
+    <Content Include="Views\Address\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
