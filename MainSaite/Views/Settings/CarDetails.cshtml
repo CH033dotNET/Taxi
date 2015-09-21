@@ -1,0 +1,64 @@
+﻿@model Model.DTO.CarDTO
+
+@{
+    ViewBag.Title = "CarDetails";
+}
+
+<h2>CarDetails</h2>
+
+<fieldset>
+    <legend>CarDTO</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CarName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CarName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CarNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CarNumber)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CarOccupation)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CarOccupation)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CarPetrolType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CarPetrolType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CarPetrolConsumption)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CarPetrolConsumption)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CarManufactureDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CarManufactureDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserId)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "CarEditor")
+</p>

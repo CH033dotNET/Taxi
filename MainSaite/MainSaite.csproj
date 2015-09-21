@@ -237,7 +237,9 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -258,6 +260,9 @@
     <Content Include="Views\Settings\DistrictEditor.cshtml" />
     <Content Include="Views\Administration\AddUser.cshtml" />
     <Content Include="Views\Shared\_Language.cshtml" />
+    <Content Include="Views\Settings\CarEditor.cshtml" />
+    <Content Include="Views\Settings\CarCreate.cshtml" />
+    <Content Include="Views\Settings\CarDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

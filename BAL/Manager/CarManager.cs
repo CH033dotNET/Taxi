@@ -31,16 +31,15 @@ namespace BAL.Manager
 		}
 
 		// get all cars in repo
-		public IEnumerable<Car> getCars()
+		public IEnumerable<CarDTO> getCars()
 		{
-			var carList = uOW.CarRepo.Get();
+			var carList = uOW.CarRepo.Get().Select(s => Mapper.Map<CarDTO>(s));
 			return carList;
 		}
 		// must get list of cars for specific user
 		public IEnumerable<CarDTO> getCarsByUserID(int id)
 		{
 			var userCars = uOW.CarRepo.Get().Where(s => s.UserId == id).Select(s => Mapper.Map<CarDTO>(s));
-			//var userCarsDTO = Mapper.Map<CarDTO>(userCar);
 			if (userCars != null)
 			{
 				return userCars;
@@ -48,8 +47,12 @@ namespace BAL.Manager
 			return null;
 		}
 		// get specific car by it`s id
-		public CarDTO GetCarByCarID(int id)
+		public CarDTO GetCarByCarID(int? id)
 		{
+			if (id == 0)
+			{
+				return null;
+			}
 			var userCar = uOW.CarRepo.Get().Where(s => s.Id == id).FirstOrDefault();
 			if (userCar != null)
 			{

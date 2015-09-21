@@ -1,0 +1,41 @@
+﻿@model Model.DTO.CarDTO
+
+@{
+    ViewBag.Title = "CarCreate";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>CarMenu</title>
+</head>
+<body>
+	<div>
+		<h3>Tell us about your car!</h3>
+		@using (Html.BeginForm())
+		{
+			<p>Car model: @Html.EditorFor(x => x.CarName)</p>
+			<p>Car number: @Html.EditorFor(x => x.CarNumber)</p>
+			<p>Car occupation: @Html.EditorFor(x => x.CarOccupation)</p>
+			<p>
+				Car class:
+				@Html.DropDownListFor(State => State.CarClass,
+			new SelectList(Enum.GetValues(typeof(Common.Enum.CarEnums.CarClassEnum))))
+			</p>
+			<p>Petrol`s type: @Html.EditorFor(x => x.CarPetrolType)</p>
+			<p>Petrol consumption: @Html.EditorFor(x => x.CarPetrolConsumption)</p>
+			<p>Manufacture date:@Html.EditorFor(x => x.CarManufactureDate) </p>
+			<p>
+				Car`s current state:
+				@Html.DropDownListFor(State => State.CarState,
+			new SelectList(Enum.GetValues(typeof(Common.Enum.CarEnums.CarStateEnum))))
+			</p>
+			<input type="submit" value="Submit Info" />
+		}
+	</div>
+</body>
+</html>
+
+

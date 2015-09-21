@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -19,6 +20,9 @@ namespace MainSaite.Controllers
 
 		//ASIX
 		DistrictManager districtManager;
+
+		// Nick
+		CarManager carManager;
 		MainContext db = new MainContext();//
 
 
@@ -28,6 +32,9 @@ namespace MainSaite.Controllers
 
 			//ASIX
 			districtManager = new DistrictManager(base.uOW);
+
+			//Nick
+			carManager = new CarManager(base.uOW);
 		}
 
 
@@ -84,6 +91,37 @@ namespace MainSaite.Controllers
 		{
 			districtManager.deleteDistrictById(a.Id);
 			return RedirectToAction("DistrictEditor");
+		}
+
+		public ActionResult CarEditor()
+		{
+			return View(carManager.getCars());
+		}
+
+		public ActionResult CarCreate()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public ActionResult CarCreate(CarDTO car)
+		{
+			if (ModelState.IsValid)
+			{
+				carManager.addCar(car);
+				return RedirectToAction("CarEditor");
+			}
+			return RedirectToAction("CarEditor");
+		}
+
+		public ActionResult CarDetails(int? id)
+		{
+			//if (id == 0)
+			//{
+			//	return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			//}
+			var carID = carManager.GetCarByCarID(id);
+			return View(carID);
 		}
     }
 }
