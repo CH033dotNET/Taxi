@@ -13,19 +13,19 @@ using System.Web.Mvc;
 namespace MainSaite.Controllers
 {
 	public class HomeController : BaseController
-    {
-        //
-        // GET: /Home/
+	{
+		//
+		// GET: /Home/
 
-        public ActionResult Index()
-        {
-            if (Session["User"] != null)
-            {
-                return RedirectToAction("UsersMenu", "Settings");
-            }
+		public ActionResult Index()
+		{
+			if (Session["User"] != null)
+			{
+				return RedirectToAction("UsersMenu", "Settings");
+			}
 			ViewBag.Hello = Resources.Resource.Hello;
-            return View();
-        }
+			return View();
+		}
 
 
 		public ActionResult SetLanguage(string language, string returnUrl)
@@ -38,5 +38,5 @@ namespace MainSaite.Controllers
 
 
 
-    }
+	}
 }
