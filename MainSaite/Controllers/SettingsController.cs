@@ -95,7 +95,12 @@ namespace MainSaite.Controllers
 
 		public ActionResult CarEditor()
 		{
-			return View(carManager.getCars());
+		    int? a = null;
+			if (Session["User"]!=null)
+			{
+				a = ((UserDTO)Session["User"]).Id; 
+			}
+			return View(carManager.getCarsByUserID(a));
 		}
 
 		public ActionResult CarCreate()

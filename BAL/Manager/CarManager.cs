@@ -37,7 +37,7 @@ namespace BAL.Manager
 			return carList;
 		}
 		// must get list of cars for specific user
-		public IEnumerable<CarDTO> getCarsByUserID(int id)
+		public IEnumerable<CarDTO> getCarsByUserID(int? id)
 		{
 			var userCars = uOW.CarRepo.Get().Where(s => s.UserId == id).Select(s => Mapper.Map<CarDTO>(s));
 			if (userCars != null)
