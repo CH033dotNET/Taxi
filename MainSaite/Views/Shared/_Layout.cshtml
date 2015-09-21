@@ -27,27 +27,28 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Home</a>
+                
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>
-                        <a href="#">About</a>
+                        @Html.ActionLink("About", "")
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        @Html.ActionLink("Services", "")
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                        @Html.ActionLink("Contact", "")
                     </li>
                 </ul>
                 <ul class="nav navbar-nav" style="float:right;">
                     <li>
-                    <a href="#">Login</a>
+                        @Html.ActionLink("Log in", "Authentification","Account")
                     </li>
                     <li>
-                    <a href="#">Register</a>
+                        @Html.ActionLink("Registration", "Registration", "Account")
                     </li>
                 </ul>
                 <div class="clearfix"></div>    
@@ -66,11 +67,13 @@
             <div class="col-md-3">
                 <p class="lead">Link list</p>
                 <div class="list-group">
-                    @* Заменить на ActionLink + Логика  *@
-                    <a href="#" class="list-group-item active">link 1</a>
-                    <a href="#" class="list-group-item">link 2</a>
-                    <a href="#" class="list-group-item">link 3</a>
-                    @Html.Partial("_Language")
+                    <ul>
+                        <li>@Html.ActionLink("Districts menu", "DistrictEditor", "Settings")</li>
+                        <li>@Html.ActionLink("UsersMenu", "UsersMenu", "Settings")</li>
+                        <li>@Html.ActionLink("AddUser", "AddUser", "Administration")</li>
+                    </ul>
+                        @Html.Partial("_Language")
+                    
                 </div>
             </div>
 

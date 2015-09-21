@@ -5,11 +5,34 @@
         @using (Html.BeginForm("Registration"))
         {
            @Html.ValidationSummary();
-           @:Login @Html.EditorFor(x=>x.UserName)
-           @:Password @Html.EditorFor(x =>x.Password)  
-           @:Confirm Password @Html.EditorFor(x => x.ConfirmPassword)
-           @:Email @Html.EditorFor(x => x.Email)
-       
+    <table>
+        <tr>
+            <td>
+             Login 
+            </td>
+            <td>  @Html.EditorFor(x=>x.UserName)  </td>
+</tr>    
+        <tr>
+            <td> 
+                Password
+            </td>
+            <td> @Html.EditorFor(x =>x.Password)</td>
+        </tr> 
+
+        <tr>
+            <td>   
+                Confirm Password
+            </td>
+            <td> @Html.EditorFor(x => x.ConfirmPassword)</td> 
+        </tr>
+        <tr>
+            <td> 
+                Email
+            </td>
+            <td>  @Html.EditorFor(x => x.Email)</td>
+        </tr>
+
+    </table>      
              <input type="submit" value="Register" />
         }
     </div>
