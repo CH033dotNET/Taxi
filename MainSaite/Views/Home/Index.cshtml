@@ -6,21 +6,9 @@
 </head>
 <body>
 
-    <div>   
-        @if(!(Session["User"] == null))
-        { 
-            UserDTO us = Session["User"] as UserDTO;
-            if (us.Role.Name == AvailableRoles.Administrator.ToString() || us.Role.Name == AvailableRoles.Driver.ToString() || us.Role.Name == AvailableRoles.Operator.ToString())
-            { 
-                @Html.Partial("_PartialMenuAdmin")
-            }           
-        }
-    </div>
-    GoogleMaps
-    <div>
-        
 
-    </div>
+    
+
     <div id="map-container">
         <div id="map" style=" width: 600px;
         height: 400px;"></div>

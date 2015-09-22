@@ -16,71 +16,60 @@
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>
-                        @Html.ActionLink("About", "")
-                    </li>
-                    <li>
-                        @Html.ActionLink("Services", "")
-                    </li>
-                    <li>
-                        @Html.ActionLink("Contact", "")
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav" style="float:right;">
+     <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+
+            <div class="left-menu">
+            <div class="navbar navbar-default">
+               <div class="container">
+                <div class="navbar-header">
+
+                <ul class="nav navbar-nav" >
+                    @if(Session["User"]==null)
+                    { 
                     <li>
                         @Html.ActionLink("Log in", "Authentification","Account")
                     </li>
                     <li>
                         @Html.ActionLink("Registration", "Registration", "Account")
                     </li>
+                    }
+                    else
+                    {
+                       string q = ((Model.DTO.UserDTO)Session["User"]).UserName;
+
+                        <li>
+                            @Html.ActionLink(q,"","")
+                        </li>
+                    }
+
                 </ul>
-                <div class="clearfix"></div>    
-            </div>
+                   </div>
+               </div>
+           </div>
+      
+              
+                    <div class="list-group">
+                     
+       @if(ViewBag.UserRoleId == (int)Common.Enum.AvailableRoles.Administrator) {
+                @Html.Partial("_PartialMenuAdmin")
+        }
+        
 
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
-    <!-- Page Content -->
-    <div class="container">
-
-        <div class="row">
-
-            <div class="col-md-3">
-                <p class="lead">Link list</p>
-                <div class="list-group">
-                    
-                        @Html.Partial("_Language")
-                    
+                  </div>
+                  </div>
+                <div class="lang">   
+                   <ul class="nav navbar-nav">
+                @Html.Partial("_Language")
+                  </ul>
                 </div>
+    
             </div>
 
             <div class="col-md-9">
-                
-                <div class="thumbnail">
                     @RenderBody()
-                </div>
-
-               
-
             </div>
 
         </div>

@@ -131,6 +131,14 @@
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
+  <data name="addString" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="deleteString" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="editString" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="Hello" xml:space="preserve">
     <value>Hello</value>

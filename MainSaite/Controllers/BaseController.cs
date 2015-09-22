@@ -1,4 +1,5 @@
 ﻿using DAL;
+using Model.DTO;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -26,6 +27,14 @@ namespace MainSaite.Controllers
 			{
 				CultureInfo cultInfo = new CultureInfo((string)Session["Culture"]);
 				Thread.CurrentThread.CurrentUICulture = cultInfo;
+			}
+
+
+			
+			if(!(Session["User"] == null))
+			{ 
+				UserDTO user = Session["User"] as UserDTO;
+				ViewBag.UserRoleId = user.Role.Id;
 			}
 
 			base.OnActionExecuting(filterContext);

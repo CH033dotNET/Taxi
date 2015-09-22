@@ -17,7 +17,7 @@
                             @a.Name
                         </td>
                         <td>
-                            @Html.ActionLink("Delete", "DeleteDistrict", new { Id = a.Id })
+                            @Html.ActionLink(Resources.Resource.deleteString, "DeleteDistrict", new { Id = a.Id })
                         </td>
                     </tr>
                 }
@@ -30,7 +30,7 @@
                         <input type="text" name="Name" autofocus/>
                     </td>
                     <td>
-                        <input type="submit" value="Add" />
+                        <input type="submit" value=@Resources.Resource.addString />
                     </td>
                 </tr>
             }

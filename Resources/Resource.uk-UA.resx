@@ -131,6 +131,14 @@
   </data>
   <data name="Email" xml:space="preserve">
     <value>Електроний адрес</value>
+  <data name="addString" xml:space="preserve">
+    <value>Додати</value>
+  </data>
+  <data name="deleteString" xml:space="preserve">
+    <value>Видалити</value>
+  </data>
+  <data name="editString" xml:space="preserve">
+    <value>Редагувати</value>
   </data>
   <data name="Hello" xml:space="preserve">
     <value>Прівет</value>
