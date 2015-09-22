@@ -28,6 +28,31 @@ namespace DAL.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+			var roles = new List<Role> 
+			{
+				new Role() { Name = "Driver", Description = "Driver" },
+				new Role() { Name = "Operator", Description = "Operator" },
+				new Role() { Name = "Client", Description = "Client" },
+				new Role() { Name = "ReportViewer", Description = "Report Viewer" },
+				new Role() { Name = "Administrator", Description = "Administrator" } 
+			};
+
+			roles.ForEach(s => context.Roles.AddOrUpdate(p => p.Name, s));
+
+			context.SaveChanges();
+
+			context.Users.AddOrUpdate(
+				new User() 
+				{
+					UserName = "admin",
+					Password = "password",
+					Email = "admin@gmail.com",
+					RoleId = 5
+				}
+			);
+
+			context.SaveChanges();
+    
         }
     }
 }

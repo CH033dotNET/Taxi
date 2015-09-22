@@ -2,25 +2,10 @@
 @using Common.Enum
 <html>
 <head>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js">
-
-    </script>
-
-    <script type="text/javascript">
-        function initialize() {
-            var center = new google.maps.LatLng(48.290718, 25.934960);
-
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 12,
-                center: center,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            });
-
-        }
-        google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
+    
 </head>
 <body>
+
     <div>   
         @if(!(Session["User"] == null))
         { 
@@ -40,5 +25,6 @@
         <div id="map" style=" width: 600px;
         height: 400px;"></div>
     </div>
+
 </body>
 </html>
