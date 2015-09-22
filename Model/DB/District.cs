@@ -11,6 +11,8 @@ namespace Model
 	{
 		[Key]
 		public int Id { get; set; }
+		[Required]
+		[MinLength(4, ErrorMessage = "Минимальная длинна - 4 символа")]
 		public string Name { get; set; }
 	}
 }

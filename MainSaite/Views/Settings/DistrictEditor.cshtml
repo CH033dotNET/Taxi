@@ -1,14 +1,7 @@
 ﻿@model IList<Model.District>
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-        <table border="1">
+    <h2>[DistrictEditor]</h2>
+        <table class="table">
             @{ 
                 foreach(var a in Model)
                 {
@@ -27,7 +20,7 @@
             {
                 <tr>
                     <td>
-                        <input type="text" name="Name" autofocus/>
+                        <input type="text" name="Name" autofocus  style="width:99%; border-bottom-width:2; border-top-width:0; border-right-width:0; border-left-width:0;"/>
                     </td>
                     <td>
                         <input type="submit" value=@Resources.Resource.addString />
@@ -35,6 +28,3 @@
                 </tr>
             }
         </table>
-    </div>
-</body>
-</html>
