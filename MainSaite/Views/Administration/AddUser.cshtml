@@ -1,32 +1,30 @@
 ﻿@model Model.DTO.UserDTO
 @{
-    ViewBag.Title = "AddUser";
+    ViewBag.Title = Resources.Resource.AddNewUser;
 }
 
-<h2>AddUser</h2>
+<h2>@Resources.Resource.AddNewUser</h2>
 <form method="post">
-    <table>
-        <tr>
-            <td>@Html.LabelFor(x => Model.UserName)</td>
-            <td>@Html.LabelFor(x => Model.Password)</td>
-            <td>@Html.LabelFor(x => Model.Email)</td>
-            <td>@Html.LabelFor(x => Model.Role.Name)</td>
+    <table class="table">
+        <tr><td>@Resources.Resource.UserName</td>
+            <td><input type="text" class="form-control input-lg" name="UserName" placeholder="@Resources.Resource.UserName"></td>
         </tr>
-        <tr>
+        <tr><td>@Resources.Resource.Password</td>
+            <td><input type="password" class="form-control input-lg" name="Password" placeholder="@Resources.Resource.Password"></td>
+        </tr>
+        <tr><td>@Resources.Resource.Email</td>
+            <td><input type="email" class="form-control input-lg" name="Email" placeholder="@Resources.Resource.Email"></td>
+        </tr>
+        <tr><td>@Resources.Resource.Role</td>
             <td>
-                @Html.EditorFor(x => Model.UserName)
-            </td>
-            <td>
-                @Html.TextBoxFor(x => Model.Password)
-            </td>
-            <td>
-                @Html.EditorFor(x => Model.Email)
-            </td>
-            <td>
-                @Html.DropDownListFor(x => Model.Role.Name,
-            new SelectList(Enum.GetValues(typeof(Common.Enum.AvailableRoles))))
+                 <select class="form-control input-lg" name="RoleId">
+                     @foreach (var pair in EnumHelper.GetRoles())
+                      {
+                          <option value="@pair.Key">@pair.Value</option>
+                      }
+                 </select>
             </td>
         </tr>
     </table>
-    <input type="submit" value="Add new user" />
+    <input class="btn btn-default" type="submit" value="@Resources.Resource.AddNewUser" style="margin: 0 auto; width:200px" />
 </form>

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace MainSaite.Controllers
 {
-    public class AdministrationController : Controller
+    public class AdministrationController : BaseController
     {
         //
         // GET: /Administration/
@@ -33,13 +33,8 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public ActionResult AddUser(UserDTO user)
 		{
-			if (!ModelState.IsValid)
+			if (!userManager.IfUserNameExists(user.UserName) && !userManager.IfEmailExists(user.Email))
 			{
-				return View();
-			}
-			else if (!userManager.IfUserNameExists(user.UserName) && !userManager.IfEmailExists(user.Email))
-			{
-				userManager.SetRoleId(user);
 				userManager.InsertUser(user);
 				return RedirectToAction("Index", "Home");
 			}
