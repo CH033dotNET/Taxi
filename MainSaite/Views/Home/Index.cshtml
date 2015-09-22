@@ -1,4 +1,6 @@
-﻿<html>
+﻿@using Model.DTO
+@using Common.Enum
+<html>
 <head>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js">
 
@@ -19,9 +21,19 @@
     </script>
 </head>
 <body>
+    <div>   
+        @if(!(Session["User"] == null))
+        { 
+            UserDTO us = Session["User"] as UserDTO;
+            if (us.Role.Name == AvailableRoles.Administrator.ToString() || us.Role.Name == AvailableRoles.Driver.ToString() || us.Role.Name == AvailableRoles.Operator.ToString())
+            { 
+                @Html.Partial("_PartialMenuAdmin")
+            }           
+        }
+    </div>
     GoogleMaps
     <div>
-        @ViewBag.Hello
+        
 
     </div>
     <div id="map-container">

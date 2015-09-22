@@ -252,11 +252,14 @@ namespace BAL.Manager
 			return Mapper.Map<IEnumerable<UserInfoDTO>>(result);
 		}
 
-		public IEnumerable<RoleDTO> GetRoles() {
+		public IEnumerable<RoleDTO> GetRoles()
+		{
+
 			return Mapper.Map<IEnumerable<RoleDTO>>(uOW.RoleRepo.Get());
 		}
 		*/
 
+		
 		// TODO:
 		public bool IsAdministratorById(int id)
 		{

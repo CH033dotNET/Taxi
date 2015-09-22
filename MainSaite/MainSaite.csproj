@@ -270,6 +270,7 @@
     <Content Include="Views\Address\Index.cshtml" />
     <Content Include="Views\Settings\CarEdit.cshtml" />
     <Content Include="Views\Settings\CarDelete.cshtml" />
+    <Content Include="Views\Shared\_PartialMenuAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

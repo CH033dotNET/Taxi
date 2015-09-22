@@ -16,14 +16,9 @@ namespace MainSaite.Controllers
 	{
 		//
 		// GET: /Home/
-
+		
 		public ActionResult Index()
 		{
-			if (Session["User"] != null)
-			{
-				return RedirectToAction("UsersMenu", "Settings");
-			}
-			ViewBag.Hello = Resources.Resource.Hello;
 			return View();
 		}
 
