@@ -22,12 +22,31 @@ namespace BAL.Manager
 			uOW.Save();
 		}
 
-		//delete cars by some Id
-		public void deleteCarByID(int id)
+		//delete cars by car Id
+		public void deleteCarByID(int? id)
 		{
 			Car car = uOW.CarRepo.GetByID(id);
 			uOW.CarRepo.Delete(car);
 			uOW.Save();
+		}
+		public CarDTO EditCar(CarDTO car)
+		{
+			var newCar = uOW.CarRepo.Get(s => s.Id == car.Id).First();
+			if (newCar == null)
+			{
+				return null;
+			}
+			uOW.CarRepo.SetStateModified(newCar);
+			newCar.CarName = car.CarName;
+			newCar.CarNumber = car.CarNumber;
+			newCar.CarOccupation = car.CarOccupation;
+			newCar.CarClass = car.CarClass;
+			newCar.CarPetrolType = car.CarPetrolType;
+			newCar.CarPetrolConsumption = car.CarPetrolConsumption;
+			newCar.CarManufactureDate = car.CarManufactureDate;
+			newCar.CarState = car.CarState;
+			uOW.Save();
+			return Mapper.Map<CarDTO>(newCar);
 		}
 
 		// get all cars in repo

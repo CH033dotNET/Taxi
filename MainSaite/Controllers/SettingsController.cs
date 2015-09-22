@@ -5,6 +5,7 @@ using Model;
 using Model.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -93,40 +94,111 @@ namespace MainSaite.Controllers
 			return RedirectToAction("DistrictEditor");
 		}
 
+		// Nick: Car info settings
+
 		public ActionResult CarEditor()
 		{
-		    int? a = null;
+		    int? userId = null;
 			if (Session["User"]!=null)
 			{
-				a = ((UserDTO)Session["User"]).Id; 
+				userId = ((UserDTO)Session["User"]).Id; 
 			}
-			return View(carManager.getCarsByUserID(a));
+			return View(carManager.getCarsByUserID(userId));
 		}
-
+		// GET:
 		public ActionResult CarCreate()
 		{
 			return View();
 		}
 
+		// POST:
 		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public ActionResult CarCreate(CarDTO car)
 		{
-			if (ModelState.IsValid)
+			try
 			{
-				carManager.addCar(car);
-				return RedirectToAction("CarEditor");
+				if (ModelState.IsValid)
+				{
+					carManager.addCar(car);
+					return RedirectToAction("CarEditor");
+				}
+			}
+			catch (DataException)
+			{
+				ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
 			}
 			return RedirectToAction("CarEditor");
 		}
 
 		public ActionResult CarDetails(int? id)
 		{
-			//if (id == 0)
-			//{
-			//	return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-			//}
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
 			var carID = carManager.GetCarByCarID(id);
+			if (carID == null)
+			{
+				return HttpNotFound();
+			}
 			return View(carID);
+		}
+		// GET: 
+		public ActionResult CarDelete(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			var carForDelete = carManager.GetCarByCarID(id);
+			if (carForDelete == null)
+			{
+				return HttpNotFound();
+			}
+			return View(carForDelete);
+		}
+		// POST:
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult CarDelete(CarDTO car)
+		{
+			try
+			{
+				carManager.deleteCarByID(car.Id);
+			}
+			catch (DataException)
+			{
+				return RedirectToAction("CarDelete");
+			}
+			return RedirectToAction("CarEditor");
+		}
+		// GET: 
+		public ActionResult CarEdit(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			var carID = carManager.GetCarByCarID(id);
+			if (carID == null)
+			{
+				return HttpNotFound();
+			}
+			return View(carID);
+		}
+
+		// POST:
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult CarEdit(CarDTO car)
+		{
+			if (ModelState.IsValid)
+			{
+				carManager.EditCar(car);
+				return RedirectToAction("CarEditor");
+			}
+			return RedirectToAction("CarEditor");
 		}
     }
 }

@@ -1,11 +1,12 @@
 ﻿@model Model.DTO.CarDTO
 
 @{
-    ViewBag.Title = "CarDetails";
+    ViewBag.Title = "CarDelete";
 }
 
-<h2>CarDetails</h2>
+<h2>CarDelete</h2>
 
+<h3>Are you sure you want to delete this?</h3>
 <fieldset>
     <legend>CarDTO</legend>
 
@@ -51,7 +52,10 @@
         @Html.DisplayFor(model => model.CarManufactureDate)
     </div>
 </fieldset>
-<p>
-    @Html.ActionLink("Edit", "CarEdit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "CarEditor")
-</p>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "CarEditor")
+    </p>
+}

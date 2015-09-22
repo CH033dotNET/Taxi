@@ -17,6 +17,7 @@
 		<h3>Tell us about your car!</h3>
 		@using (Html.BeginForm())
 		{
+			@Html.AntiForgeryToken()
 			<p>Car model: @Html.EditorFor(x => x.CarName)</p>
 			<p>Car number: @Html.EditorFor(x => x.CarNumber)</p>
 			<p>Car occupation: @Html.EditorFor(x => x.CarOccupation)</p>
@@ -38,8 +39,7 @@
             @Html.Hidden("UserId", ((UserDTO)(Session["User"])).Id.ToString());
             }*@
             @Html.Hidden("UserId", (Session["User"] as Model.DTO.UserDTO).Id != null ? (Session["User"] as Model.DTO.UserDTO).Id : -1)
-            <p><input type ="submit" value="Submit Info" /></p>
-			 
+            <p><input type ="submit" value="Create" /></p>
         }
 	</div>
 </body>
