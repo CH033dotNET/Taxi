@@ -6,10 +6,17 @@
     <div>
         @using (Html.BeginForm("Authentification"))
         {
-            @Html.ValidationSummary();
-            @:Login @Html.EditorFor(x => x.UserName)
-            @:Password @Html.EditorFor(x => x.Password)
-            
+            <table>
+                @Html.ValidationSummary()
+                <tr>
+                    <td>Login</td>
+                    <td>@Html.EditorFor(x => x.UserName)</td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td>@Html.EditorFor(x => x.Password)</td>
+                </tr>
+            </table>
             <input type="submit" value="Log in" />
         }
     </div>
