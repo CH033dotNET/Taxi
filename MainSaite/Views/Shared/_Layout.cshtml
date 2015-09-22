@@ -27,12 +27,24 @@
                 <div class="navbar-header">
 
                 <ul class="nav navbar-nav" >
+                    @if(Session["User"]==null)
+                    { 
                     <li>
                         @Html.ActionLink("Log in", "Authentification","Account")
                     </li>
                     <li>
                         @Html.ActionLink("Registration", "Registration", "Account")
                     </li>
+                    }
+                    else
+                    {
+                       string q = ((Model.DTO.UserDTO)Session["User"]).UserName;
+
+                        <li>
+                            @Html.ActionLink(q,"","")
+                        </li>
+                    }
+
                 </ul>
                    </div>
                </div>

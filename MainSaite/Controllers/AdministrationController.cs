@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace MainSaite.Controllers
 {
-    public class AdministrationController : Controller
+    public class AdministrationController : BaseController
     {
         //
         // GET: /Administration/
