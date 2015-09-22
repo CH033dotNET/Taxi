@@ -12,13 +12,21 @@ namespace BAL.Manager
 	{
 		public DistrictManager(IUnitOfWork uOW) : base(uOW)
 		{
-
+			
 		}
 
 		public void addDistrict(string dName)
 		{
-			uOW.DistrictRepo.Insert(new Model.District { Name = dName });
-			uOW.Save();
+			if (dName.Length > 3)
+			{
+				District newD = new Model.District { Name = dName };
+				if (uOW.DistrictRepo.All.Where(x => x.Name.Equals(newD.Name, StringComparison.InvariantCultureIgnoreCase)).Count() == 0)
+				{
+
+					uOW.DistrictRepo.Insert(newD);
+					uOW.Save();
+				}
+			}
 		}
 		public void deleteDistrictById(int id)
 		{

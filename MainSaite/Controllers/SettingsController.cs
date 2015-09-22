@@ -84,7 +84,7 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public ActionResult DistrictEditor(string Name)
 		{
-			districtManager.addDistrict(Name);
+				districtManager.addDistrict(Name);
 			return RedirectToAction("DistrictEditor");
 		}
 		
