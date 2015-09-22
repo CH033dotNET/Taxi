@@ -128,20 +128,7 @@ namespace BAL.Manager
 			return null;
 		}
 
-		/// <summary>
-		/// Set RoleId from ENUM AvailableRoles where AvailableRoles.Name == Role.Name
-		/// and sets Role to null (Role = null)so that Entity Framework won`t create new Role
-		/// </summary>
-		/// <param name="user"></param>
-		/// <returns></returns>
-		public UserDTO SetRoleId(UserDTO user)
-		{
-			user.RoleId = (int)Enum.Parse(typeof(AvailableRoles), user.Role.Name);
-			user.Role = null;
-			return user;
-		}
 		
-
 		public bool IfUserNameExists(string userName)
 		{
 			var item = uOW.UserRepo.Get().Where(s => (s.UserName == userName)).FirstOrDefault();

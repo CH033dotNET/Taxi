@@ -41,6 +41,7 @@ namespace MainSaite.Controllers
 					if (!userManager.IfEmailExists(user.Email))
 					{
 						userManager.InsertUser(user);
+						return RedirectToAction("Index", "Home");
 					}
 					else ModelState.AddModelError("", "Email is already exist");
 				}

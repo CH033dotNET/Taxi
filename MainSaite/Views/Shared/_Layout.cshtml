@@ -19,25 +19,37 @@
      <!-- Page Content -->
     <div class="container">
         <div class="row">
-            <div class="col-md-3 left-menu">
+            <div class="col-md-3">
 
-
+            <div class="left-menu">
             <div class="navbar navbar-default">
                <div class="container">
                 <div class="navbar-header">
 
                 <ul class="nav navbar-nav" >
+                    @if(Session["User"]==null)
+                    { 
                     <li>
                         @Html.ActionLink("Log in", "Authentification","Account")
                     </li>
                     <li>
                         @Html.ActionLink("Registration", "Registration", "Account")
                     </li>
+                    }
+                    else
+                    {
+                       string q = ((Model.DTO.UserDTO)Session["User"]).UserName;
+
+                        <li>
+                            @Html.ActionLink(q,"","")
+                        </li>
+                    }
+
                 </ul>
                    </div>
                </div>
            </div>
-
+      
               
                     <div class="list-group">
                      
@@ -47,7 +59,7 @@
         
 
                   </div>
-
+                  </div>
                 <div class="lang">   
                    <ul class="nav navbar-nav">
                 @Html.Partial("_Language")

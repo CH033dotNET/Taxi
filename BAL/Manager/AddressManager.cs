@@ -29,6 +29,7 @@ namespace BAL.Manager
                            City = address.City,
                            Street = address.Street,
                            Number = address.Number,
+                           PostalCode = address.PostalCode,
                            UserId = address.UserId
                        };
 

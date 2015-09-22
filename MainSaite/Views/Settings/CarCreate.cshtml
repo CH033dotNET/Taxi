@@ -4,44 +4,68 @@
 @{
     ViewBag.Title = "CarCreate";
 }
-
 <!DOCTYPE html>
-
 <html>
-<head>
-	<meta name="viewport" content="width=device-width" />
-	<title>CarMenu</title>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
-	<div>
-		<h3>Tell us about your car!</h3>
-		@using (Html.BeginForm())
-		{
-			@Html.AntiForgeryToken()
-			<p>Car model: @Html.EditorFor(x => x.CarName)</p>
-			<p>Car number: @Html.EditorFor(x => x.CarNumber)</p>
-			<p>Car occupation: @Html.EditorFor(x => x.CarOccupation)</p>
-			<p>
-				Car class:
-				@Html.DropDownListFor(State => State.CarClass,
-			new SelectList(Enum.GetValues(typeof(Common.Enum.CarEnums.CarClassEnum))))
-			</p>
-			<p>Petrol`s type: @Html.EditorFor(x => x.CarPetrolType)</p>
-			<p>Petrol consumption: @Html.EditorFor(x => x.CarPetrolConsumption)</p>
-			<p>Manufacture date:@Html.EditorFor(x => x.CarManufactureDate) </p>
-			<p>
-				Car`s current state:
-				@Html.DropDownListFor(State => State.CarState,
-			new SelectList(Enum.GetValues(typeof(Common.Enum.CarEnums.CarStateEnum))))
-			</p>
-            @*if (Session["User"] !=null)
-            { 
-            @Html.Hidden("UserId", ((UserDTO)(Session["User"])).Id.ToString());
-            }*@
-            @Html.Hidden("UserId", (Session["User"] as Model.DTO.UserDTO).Id != null ? (Session["User"] as Model.DTO.UserDTO).Id : -1)
-            <p><input type ="submit" value="Create" /></p>
-        }
-	</div>
+    <fieldset>
+        <legend>Car Registration</legend>
+    </fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>Add your car info here!</legend>
+        <div class="editor-label"></div>
+        @Html.Label("Car Model:")
+        <div class="editor_field"></div>
+        @Html.EditorFor(x => x.CarName)
+
+        <div class="editor-label"></div>
+        @Html.Label("Car number:")
+        <div class="editor_field"></div>
+        @Html.EditorFor(x => x.CarNumber)
+
+        <div class="editor-label"></div>
+        @Html.Label("Car ocupation:")
+        <div class="editor_field"></div>
+        @Html.EditorFor(x => x.CarOccupation)
+
+        <div class="editor-label"></div>
+        @Html.Label("Car class:")
+        <div class="editor_field"></div>
+        @Html.DropDownListFor(State => State.CarClass,
+    new SelectList(Enum.GetValues(typeof(Common.Enum.CarEnums.CarClassEnum))))
+
+        <div class="editor-label"></div>
+        @Html.Label("Petrol type:")
+        <div class="editor_field"></div>
+        @Html.EditorFor(x => x.CarPetrolType)
+
+        <div class="editor-label"></div>
+        @Html.Label("Petrol consumption:")
+        <div class="editor_field"></div>
+        @Html.EditorFor(x => x.CarPetrolConsumption)
+
+        <div class="editor-label"></div>
+        @Html.Label("Manufacturing date:")
+        <div class="editor_field"></div>
+        @Html.EditorFor(x => x.CarManufactureDate)
+
+        <div class="editor-label"></div>
+        @Html.Label("Cars current state:")
+        <div class="editor_field"></div>
+        @Html.DropDownListFor(State => State.CarState,
+    new SelectList(Enum.GetValues(typeof(Common.Enum.CarEnums.CarStateEnum))))
+
+        @Html.Hidden("UserId", (Session["User"] as Model.DTO.UserDTO).Id != null ? (Session["User"] as Model.DTO.UserDTO).Id : -1)
+    </fieldset>
+
+    <input type="submit" value="Complete" />
+}
 </body>
 </html>
 
