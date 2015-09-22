@@ -4,7 +4,7 @@
     ViewBag.Title = "CreateAdd";
 }
 
-<h2>CreateAdd</h2>
+<h2>Add new address</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -13,8 +13,7 @@
     <fieldset>
         <legend>AddressDTO</legend>
 
-        <input type="hidden" value="AddressId" />
-       
+       @Html.HiddenFor(model=>model.AddressId)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Country)

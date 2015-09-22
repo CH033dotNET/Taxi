@@ -13,8 +13,8 @@
     <fieldset>
         <legend>AddressDTO</legend>
 
-        <input type="hidden" value=" AddressId" />
        
+       @Html.HiddenFor(model => model.AddressId)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Country)
@@ -57,8 +57,7 @@
         </div>
 
        
-        <input type="hidden" value="UserId" />
-
+        @Html.HiddenFor(model => model.AddressId)
         <p>
             <input type="submit" value="Save" />
         </p>
