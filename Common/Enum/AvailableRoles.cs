@@ -12,7 +12,7 @@ namespace Common.Enum
 		Operator		= 2, 
 		Client			= 3,
 		ReportViewer	= 4, 
-		Administrator	= 6
+		Administrator	= 5
 
     }
 }
