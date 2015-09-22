@@ -1,0 +1,34 @@
+﻿@using DAL.Migrations
+@using Model.DTO
+@model UserDTO
+@{
+    ViewBag.Title = "My Account";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="form-horizontal" style=" margin: 15px 15px 15px 15px">
+
+    <legend>Contact Information</legend>
+
+    <dl class="properties">
+        <dt><img src="..." class="img-polaroid"></dt>
+
+        <dt><label for="userName">User name:</label></dt>
+        <dd><input class="input-xlarge" type="text" id="userName" value="@Model.UserName" /></dd>
+
+        <dt><label for="userName">First name:</label></dt>
+        <dd><input class="input-xlarge" type="text" id="firstName" value="" /></dd>
+
+        <dt><label for="userName">Last name:</label></dt>
+        <dd><input class="input-xlarge" type="text" id="lastName" value="" /></dd>
+
+        <dt><label for="email">Email address:</label></dt>
+        <dd><input class="input-xlarge" type="email" id="email" value="@Model.Email"></dd>
+
+        <dt><label for="email">Mobile phone:</label></dt>
+        <dd><input class="input-xlarge" type="text" id="phone" value="" /></dd>
+    </dl>
+    <a class="btn-link" href="">Change</a>
+</div>
+
