@@ -5,7 +5,7 @@
  */
 
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    padding-top: 20px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
 .thumbnail img {
@@ -29,4 +29,21 @@ body {
 
 footer {
     margin: 50px 0;
+}
+.left-menu {
+min-height: 400px;
+}
+
+.lang {
+ height: auto;
+}
+
+    .lang > ul.nav {
+        width:100px;
+        margin:0 auto;
+        float:none !important;
+    }
+
+.language {
+margin: 0 auto;
 }

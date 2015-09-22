@@ -1,23 +1,48 @@
 ﻿@model Model.DTO.UserDTO
 
 
+
 <tr>
+    <td>
+        @Html.LabelFor(x => Model.Id)
+
+    </td>
     <td>
         @Html.HiddenFor(x => Model.Id)
 
         @Html.DisplayFor(x => Model.Id)
     </td>
+</tr>
+
+<tr>
+    <td>@Html.LabelFor(x => Model.UserName)</td>
+
     <td>
         @Html.EditorFor(x => Model.UserName)
     </td>
+</tr>
+
+<tr>
+<td>@Html.LabelFor(x => Model.Password)</td>
     <td>
         @Html.TextBoxFor(x => x.Password)
     </td>
-    <td>
+</tr>
+
+<tr>
+<td>@Html.LabelFor(x => Model.Email)</td>
+ <td>
         @Html.EditorFor(x => Model.Email)
     </td>
+</tr>
+
+<tr>
+<td>@Html.LabelFor(x => Model.Role.Name)</td>
     <td>
         @Html.DropDownListFor(x => Model.Role.Name,
             new SelectList(Enum.GetValues(typeof(Common.Enum.AvailableRoles))))
     </td>
-</tr>
+    </tr>
+
+
+
