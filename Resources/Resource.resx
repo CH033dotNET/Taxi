@@ -216,4 +216,10 @@
   <data name="SetVIPStatusPage" xml:space="preserve">
     <value>Set VIP status</value>
   </data>
+  <data name="EmptyFields" xml:space="preserve">
+    <value>Some fields is empty</value>
+  </data>
+  <data name="LoginEmailExist" xml:space="preserve">
+    <value>UserName or Email is already exist</value>
+  </data>
 </root>

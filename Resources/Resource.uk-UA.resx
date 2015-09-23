@@ -216,4 +216,10 @@
   <data name="SetVIPStatusPage" xml:space="preserve">
     <value>Встановлення VIP-статусу</value>
   </data>
+  <data name="EmptyFields" xml:space="preserve">
+    <value>Деякі поля не заповнені</value>
+  </data>
+  <data name="LoginEmailExist" xml:space="preserve">
+    <value>Такий логін або Emai вже існує </value>
+  </data>
 </root>

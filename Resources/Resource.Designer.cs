@@ -277,11 +277,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Some fields is empty.
+        /// </summary>
+        public static string EmptyFields {
+            get {
+                return ResourceManager.GetString("EmptyFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hello.
         /// </summary>
         public static string Hello {
             get {
                 return ResourceManager.GetString("Hello", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UserName or Email is already exist.
+        /// </summary>
+        public static string LoginEmailExist {
+            get {
+                return ResourceManager.GetString("LoginEmailExist", resourceCulture);
             }
         }
         
