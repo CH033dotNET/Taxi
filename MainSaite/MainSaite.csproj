@@ -280,6 +280,7 @@
     <Content Include="Views\Shared\_PartialMenuDriver.cshtml" />
     <Content Include="Views\Shared\_PartialMenuClient.cshtml" />
     <Content Include="Views\Shared\_PartialMenuReportViewer.cshtml" />
+    <Content Include="Views\Settings\SetVIPStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
