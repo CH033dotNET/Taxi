@@ -4,69 +4,67 @@
 @{
     ViewBag.Title = "CarCreate";
 }
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-    <fieldset>
-        <legend>Car Registration</legend>
-    </fieldset>
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    <fieldset>
-        <legend>Add your car info here!</legend>
-        <div class="editor-label"></div>
-        @Html.Label("Car Model:")
-        <div class="editor_field"></div>
-        @Html.EditorFor(x => x.CarName)
 
-        <div class="editor-label"></div>
-        @Html.Label("Car number:")
-        <div class="editor_field"></div>
-        @Html.EditorFor(x => x.CarNumber)
+<h2>@Resources.Resource.AddNewCar</h2>
+<form method="post">
+	@Html.AntiForgeryToken()
+	<fieldset class="fieldset">
+		<legend class="legend">@Resources.Resource.CarRegistration</legend>
+	</fieldset>
+	<fieldset class="fieldset">
+		<legend class="legend">@Resources.Resource.AddYourCarInfoHere!</legend>
+		<table class="table">
+			<tr>
+				<td>@Resources.Resource.CarName</td>
+				<td><input type="text" class="form-control input-lg" name="CarName" placeholder="@Resources.Resource.CarName"></td>
+			</tr>
+			<tr>
+				<td>@Resources.Resource.CarNumber</td>
+				<td><input type="text" class="form-control input-lg" name="CarNumber" placeholder="@Resources.Resource.CarNumber"></td>
+			</tr>
+			<tr>
+				<td>@Resources.Resource.CarOccupation</td>
+				<td><input type="text" class="form-control input-lg" name="CarOccupation" placeholder="@Resources.Resource.CarOccupation"></td>
+			</tr>
+			<tr>
+				<td>@Resources.Resource.CarClass</td>
+				<td>
+					<select class="form-control input-lg" name="CarClass">
+						@foreach (var carClass in EnumHelper.GetCarClasses())
+                        {
+						<option value="@carClass.Key">@carClass.Value</option>
+                        }
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>@Resources.Resource.CarPetrolType</td>
+				<td><input type="text" class="form-control input-lg" name="CarPetrolType" placeholder="@Resources.Resource.CarPetrolType"></td>
+			</tr>
+			<tr>
+				<td>@Resources.Resource.CarPetrolConsumption</td>
+				<td><input type="text" class="form-control input-lg" name="CarPetrolConsumption" placeholder="@Resources.Resource.CarPetrolConsumption"></td>
+			</tr>
+			<tr>
+				<td>@Resources.Resource.CarManufactureDate</td>
+				<td><input type="text" class="form-control input-lg" name="CarManufactureDate" placeholder="@Resources.Resource.CarManufactureDate"></td>
+			</tr>
+			<tr>
+				<td>@Resources.Resource.CarState</td>
+				<td>
+					<select class="form-control input-lg" name="CarState">
+						@foreach (var carState in EnumHelper.GetCarStates())
+                        {
+						<option value="@carState.Key">@carState.Value</option>
+                        }
+					</select>
+				</td>
+			</tr>
+		</table>
+		@Html.Hidden("UserId", (Session["User"] as Model.DTO.UserDTO).Id != null ? (Session["User"] as Model.DTO.UserDTO).Id : -1)
+		<input class="btn btn-default" type="submit" value="@Resources.Resource.AddNewCar" style="margin: 0 auto; width:200px" />
+	</fieldset>
+</form>
 
-        <div class="editor-label"></div>
-        @Html.Label("Car ocupation:")
-        <div class="editor_field"></div>
-        @Html.EditorFor(x => x.CarOccupation)
-
-        <div class="editor-label"></div>
-        @Html.Label("Car class:")
-        <div class="editor_field"></div>
-        @Html.DropDownListFor(State => State.CarClass,
-    new SelectList(Enum.GetValues(typeof(Common.Enum.CarEnums.CarClassEnum))))
-
-        <div class="editor-label"></div>
-        @Html.Label("Petrol type:")
-        <div class="editor_field"></div>
-        @Html.EditorFor(x => x.CarPetrolType)
-
-        <div class="editor-label"></div>
-        @Html.Label("Petrol consumption:")
-        <div class="editor_field"></div>
-        @Html.EditorFor(x => x.CarPetrolConsumption)
-
-        <div class="editor-label"></div>
-        @Html.Label("Manufacturing date:")
-        <div class="editor_field"></div>
-        @Html.EditorFor(x => x.CarManufactureDate)
-
-        <div class="editor-label"></div>
-        @Html.Label("Cars current state:")
-        <div class="editor_field"></div>
-        @Html.DropDownListFor(State => State.CarState,
-    new SelectList(Enum.GetValues(typeof(Common.Enum.CarEnums.CarStateEnum))))
-
-        @Html.Hidden("UserId", (Session["User"] as Model.DTO.UserDTO).Id != null ? (Session["User"] as Model.DTO.UserDTO).Id : -1)
-    </fieldset>
-
-    <input type="submit" value="Complete" />
-}
-</body>
-</html>
 
 

@@ -131,7 +131,7 @@
   </data>
   <data name="Email" xml:space="preserve">
     <value>Електроний адрес</value>
-    </data>
+  </data>
   <data name="addString" xml:space="preserve">
     <value>Додати</value>
   </data>
@@ -158,5 +158,53 @@
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Ім’я Користувача</value>
+  </data>
+  <data name="AddNewCar" xml:space="preserve">
+    <value>Додайте нову машину </value>
+  </data>
+  <data name="AddYourCarInfoHere" xml:space="preserve">
+    <value>Введіть свою інформацію тут!</value>
+  </data>
+  <data name="CarClass" xml:space="preserve">
+    <value>Класс машини</value>
+  </data>
+  <data name="CarClassEconom" xml:space="preserve">
+    <value>Економ класс</value>
+  </data>
+  <data name="CarClassGeneral" xml:space="preserve">
+    <value>Звичайний класс</value>
+  </data>
+  <data name="CarClassPremium" xml:space="preserve">
+    <value>Преміум класс</value>
+  </data>
+  <data name="CarManufactureDate" xml:space="preserve">
+    <value>Дата виготовлення машини</value>
+  </data>
+  <data name="CarName" xml:space="preserve">
+    <value>Марка машини</value>
+  </data>
+  <data name="CarNumber" xml:space="preserve">
+    <value>Номер машини</value>
+  </data>
+  <data name="CarOccupation" xml:space="preserve">
+    <value>Вмістимість машини</value>
+  </data>
+  <data name="CarPetrolConsumption" xml:space="preserve">
+    <value>Обсяг споживання палива</value>
+  </data>
+  <data name="CarPetrolType" xml:space="preserve">
+    <value>Тип палива</value>
+  </data>
+  <data name="CarRegistration" xml:space="preserve">
+    <value>Реєстрація машини</value>
+  </data>
+  <data name="CarState" xml:space="preserve">
+    <value>Стан машини</value>
+  </data>
+  <data name="CarStateRepairing" xml:space="preserve">
+    <value>На ремонті</value>
+  </data>
+  <data name="CarStateWorking" xml:space="preserve">
+    <value>Працює</value>
   </data>
 </root>

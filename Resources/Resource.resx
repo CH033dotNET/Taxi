@@ -131,7 +131,7 @@
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
-    </data>
+  </data>
   <data name="addString" xml:space="preserve">
     <value>Add</value>
   </data>
@@ -158,5 +158,53 @@
   </data>
   <data name="UserName" xml:space="preserve">
     <value>User Name</value>
+  </data>
+  <data name="AddNewCar" xml:space="preserve">
+    <value>Add new car</value>
+  </data>
+  <data name="AddYourCarInfoHere" xml:space="preserve">
+    <value>Add your car info here!</value>
+  </data>
+  <data name="CarClass" xml:space="preserve">
+    <value>Car Class</value>
+  </data>
+  <data name="CarClassEconom" xml:space="preserve">
+    <value>Econom class</value>
+  </data>
+  <data name="CarClassGeneral" xml:space="preserve">
+    <value>General class</value>
+  </data>
+  <data name="CarClassPremium" xml:space="preserve">
+    <value>Premium class</value>
+  </data>
+  <data name="CarManufactureDate" xml:space="preserve">
+    <value>Car manufacture Date</value>
+  </data>
+  <data name="CarName" xml:space="preserve">
+    <value>Car Name</value>
+  </data>
+  <data name="CarNumber" xml:space="preserve">
+    <value>Car Number</value>
+  </data>
+  <data name="CarOccupation" xml:space="preserve">
+    <value>Car Occupation</value>
+  </data>
+  <data name="CarPetrolConsumption" xml:space="preserve">
+    <value>Car Petrol Consumption</value>
+  </data>
+  <data name="CarPetrolType" xml:space="preserve">
+    <value>Petrol Type</value>
+  </data>
+  <data name="CarRegistration" xml:space="preserve">
+    <value>Car registration</value>
+  </data>
+  <data name="CarState" xml:space="preserve">
+    <value>Car State</value>
+  </data>
+  <data name="CarStateRepairing" xml:space="preserve">
+    <value>On repair</value>
+  </data>
+  <data name="CarStateWorking" xml:space="preserve">
+    <value>Working</value>
   </data>
 </root>
