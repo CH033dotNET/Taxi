@@ -24,7 +24,7 @@ namespace MainSaite.Controllers
 
 		// Nick
 		CarManager carManager;
-		MainContext db = new MainContext();//
+		
 
 
 		public SettingsController()
