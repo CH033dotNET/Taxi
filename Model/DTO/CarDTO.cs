@@ -14,30 +14,26 @@ namespace Model.DTO
 		[Key]
 		public int Id { get; set; }
 		[Required]
-		[MaxLength(30, ErrorMessage = "Максимальная длинна - 30 символов")]
-		[MinLength(3, ErrorMessage = "Минимальная длинна - 3 символов")]
-		[Display(Name = "Car`s name: ")]
+		[StringLength(50, MinimumLength = 2)]
 		public string CarName { get; set; }
 		[Required]
-		[Display(Name = "Car`s number: ")]
+		[StringLength(12, MinimumLength = 3)]
 		public string CarNumber { get; set; }
 		[Required]
-		[Display(Name = "Car`s occupation: ")]
+		[Range(2, 20)]
 		public int CarOccupation { get; set; }
 		[Required]
-		[Display(Name = "Car`s class: ")]
 		public CarClassEnum CarClass { get; set; }
 		[Required]
-		[Display(Name = "Car`s petrol type: ")]
-		public string CarPetrolType { get; set; }
+		public CarPetrolEnum CarPetrolType { get; set; }
 		[Required]
-		[Display(Name = "Car`s petrol consumption: ")]
-		public string CarPetrolConsumption { get; set; }
+		[Range(1, 100)]
+		public int CarPetrolConsumption { get; set; }
 		[Required]
-		[Display(Name = "Car`s manufaturing date: ")]
-		public string CarManufactureDate { get; set; }
+		[DataType(DataType.Date)]
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+		public DateTime CarManufactureDate { get; set; }
 		[Required]
-		[Display(Name = "Car`s state: ")]
 		public CarStateEnum CarState { get; set; }
 
 		[ForeignKey("UserId")]

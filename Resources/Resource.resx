@@ -190,7 +190,7 @@
     <value>Car Occupation</value>
   </data>
   <data name="CarPetrolConsumption" xml:space="preserve">
-    <value>Car Petrol Consumption</value>
+    <value>Car Petrol Consumption (L/km)</value>
   </data>
   <data name="CarPetrolType" xml:space="preserve">
     <value>Petrol Type</value>
@@ -221,5 +221,23 @@
   </data>
   <data name="LoginEmailExist" xml:space="preserve">
     <value>UserName or Email is already exist</value>
+  </data>
+  <data name="CarPetrolDiesel" xml:space="preserve">
+    <value>Diesel</value>
+  </data>
+  <data name="CarPetrolNormal" xml:space="preserve">
+    <value>80</value>
+  </data>
+  <data name="CarPetrolOther" xml:space="preserve">
+    <value>Other type</value>
+  </data>
+  <data name="CarPetrolPremium" xml:space="preserve">
+    <value>95</value>
+  </data>
+  <data name="CarPetrolRegular" xml:space="preserve">
+    <value>92</value>
+  </data>
+  <data name="CarPetrolSuper" xml:space="preserve">
+    <value>98</value>
   </data>
 </root>

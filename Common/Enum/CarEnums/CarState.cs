@@ -9,9 +9,7 @@ namespace Common.Enum.CarEnums
 {
 	public enum CarStateEnum
 	{
-		[Description("Working state")]
-		Working,
-		[Description("On repair")]
-		Repairing
+		Working = 1,
+		Repairing = 2
 	}
 }
