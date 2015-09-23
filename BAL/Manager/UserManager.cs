@@ -193,6 +193,27 @@ namespace BAL.Manager
 			return Mapper.Map<UserDTO>(temp);
 		}
 
+		public bool UserValidation(UserDTO user)
+		{
+			bool result = true;
+			if (user.UserName == null || user.UserName.Count() < 4)
+			{
+				result = false;
+			}
+
+			if (user.Password == null || user.Password.Count() < 5)
+			{
+				result = false;
+			}
+
+			if (user.Email == null)
+			{
+				result = false;
+			}
+
+			return result;
+		}
+
 		public IEnumerable<VIPClientDTO> GetVIPClients()
 		{
 
