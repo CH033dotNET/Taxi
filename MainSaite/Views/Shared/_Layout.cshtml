@@ -53,10 +53,26 @@
               
                     <div class="list-group">
                      
-       @if(ViewBag.UserRoleId == (int)Common.Enum.AvailableRoles.Administrator) {
-                @Html.Partial("_PartialMenuAdmin")
-        }
-        
+       @if(ViewBag.UserRoleId == (int)Common.Enum.AvailableRoles.Client) 
+       {
+           @Html.Partial("_PartialMenuClient")
+       }
+       else if (ViewBag.UserRoleId == (int)Common.Enum.AvailableRoles.Operator)
+       {
+           @Html.Partial("_PartialMenuOperator") 
+       }
+       else if (ViewBag.UserRoleId == (int)Common.Enum.AvailableRoles.Driver)
+       { 
+           @Html.Partial("_PartialMenuDriver")
+       }
+       else if (ViewBag.UserRoleId == (int)Common.Enum.AvailableRoles.Administrator)
+       {
+            @Html.Partial("_PartialMenuAdmin")
+       }
+       else if (ViewBag.UserRoleId == (int)Common.Enum.AvailableRoles.ReportViewer)
+       { 
+           @Html.Partial("_PartialMenuReportViewer")
+       }
 
                   </div>
                   </div>
