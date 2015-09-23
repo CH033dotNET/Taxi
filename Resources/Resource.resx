@@ -207,4 +207,13 @@
   <data name="CarStateWorking" xml:space="preserve">
     <value>Working</value>
   </data>
+  <data name="Set" xml:space="preserve">
+    <value>Set</value>
+  </data>
+  <data name="Setdate" xml:space="preserve">
+    <value>Set date</value>
+  </data>
+  <data name="SetVIPStatusPage" xml:space="preserve">
+    <value>Set VIP status</value>
+  </data>
 </root>

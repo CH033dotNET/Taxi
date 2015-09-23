@@ -13,11 +13,11 @@
 <body>
     <div>
 
-        <h1> Set VIP Status Page</h1>
+        <h1>@Resources.Resource.SetVIPStatusPage</h1>
 
         <table class="table table-striped">
 
-            <tr><td>UserName</td><td>SetDate</td></tr>
+            <tr><td>@Resources.Resource.UserName</td><td>@Resources.Resource.Setdate</td></tr>
 
             @{
                 List<VIPClientDTO> listlistVIPClients = (List<VIPClientDTO>)Model[0];
@@ -59,7 +59,7 @@
                     </select>
                 </div>
                 <div class="col-md-6">
-                    <input type="submit" value="Add" class="btn btn-default">
+                    <input type="submit" value=@Resources.Resource.Set class="btn btn-default">
                 </div>
             </form>
         </div>
