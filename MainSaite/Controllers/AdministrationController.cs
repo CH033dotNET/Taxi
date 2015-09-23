@@ -36,7 +36,7 @@ namespace MainSaite.Controllers
 			if (!userManager.IfUserNameExists(user.UserName) && !userManager.IfEmailExists(user.Email))
 			{
 				userManager.InsertUser(user);
-				return RedirectToAction("Index", "Home");
+				return RedirectToAction("UsersMenu", "Settings");
 			}
 			else
 			{
