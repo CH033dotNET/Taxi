@@ -71,5 +71,11 @@ namespace MainSaite.Controllers
 
 			return View(user);
         }
+
+		public ActionResult LogOut()
+		{
+			Session["User"] = null;
+			return RedirectToAction("Index", "Home");
+		}
     }
 }
