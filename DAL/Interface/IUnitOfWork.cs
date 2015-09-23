@@ -15,6 +15,7 @@ namespace DAL.Interface
 		IGenericRepository<District> DistrictRepo { get; }
 		IGenericRepository<Car> CarRepo { get; }
         IGenericRepository<UserAddress> AddressRepo { get; }
+		IGenericRepository<VIPClient> VIPClientRepo { get; }
         void Dispose();
         void Save();
     }

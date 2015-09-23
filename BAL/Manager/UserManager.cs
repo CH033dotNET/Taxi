@@ -193,6 +193,68 @@ namespace BAL.Manager
 			return Mapper.Map<UserDTO>(temp);
 		}
 
+		public IEnumerable<VIPClientDTO> GetVIPClients()
+		{
+
+			var listUsers = uOW.UserRepo.Get();
+			var listVIPClientsDTO = new List<VIPClientDTO>();
+
+			var listVIPClients = uOW.VIPClientRepo.Get().ToList();
+			foreach (var Client in listVIPClients)
+			{
+				var CurrentUser = listUsers.Where(x => (x.Id == Client.UserId)).First();
+				listVIPClientsDTO.Add(new VIPClientDTO { Id = Client.Id, SetDate = Client.SetDate, UserId = Client.UserId, UserName = CurrentUser.UserName });
+			}
+
+			return listVIPClientsDTO;
+		}
+
+		///SetVIPStatu methodes
+		public IEnumerable<UserDTO> GetNoVIPClients()
+		{
+			var listVIPClients = uOW.VIPClientRepo.Get().ToList();
+			var listUsers = uOW.UserRepo.Get();
+			var ListUserDTO = new List<UserDTO>();
+
+
+			var RigthJoin =
+					from U in listUsers.Where(x => x.RoleId == 3)
+					join V in listVIPClients
+						on U.Id equals V.UserId into joined
+					from V in joined.DefaultIfEmpty()
+					select new VIPClientDTO
+					{
+						Id = V != null ? V.Id : 0,
+						UserId = U.Id,
+						UserName = U.UserName
+					};
+
+			var dropbox =
+					from Q in RigthJoin.Where(x => x.Id == 0)
+					select new UserDTO
+					{
+						Id = Q.UserId,
+						UserName = Q.UserName
+					};
+
+			foreach (UserDTO U in dropbox)
+			{
+				ListUserDTO.Add(U);
+			}
+
+			return ListUserDTO;
+		}
+
+		public void SetVIPStatus(string UserName)
+		{
+			int CurrentId = uOW.UserRepo.Get(x => x.UserName == UserName).Select(d => d.Id).First();
+			uOW.VIPClientRepo.Insert(new VIPClient { UserId = CurrentId, SetDate = System.DateTime.Today });
+			uOW.Save();
+		}
+
+		//
+		/// end of SetVIPStatu methodes
+
 		#region OUR TEAM METHODS
 
 		public Role GerRoleForUser(UserDTO user)
