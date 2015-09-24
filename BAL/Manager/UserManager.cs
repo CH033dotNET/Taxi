@@ -193,22 +193,39 @@ namespace BAL.Manager
 			return Mapper.Map<UserDTO>(temp);
 		}
 
-		public bool UserValidation(UserDTO user)
+		// Checking validation and return some messages
+		public bool UserValidation(UserDTO user, List<string> msgs)
 		{
+			msgs.Clear();
 			bool result = true;
-			if (user.UserName == null || user.UserName.Count() < 4)
+			if (user.UserName == null)
 			{
 				result = false;
+				msgs.Add("UserName is empty");
+
+			}
+			else if (user.UserName.Count() < 4)
+			{
+				result = false;
+				msgs.Add("UserName is less than 4 characters");
 			}
 
-			if (user.Password == null || user.Password.Count() < 5)
+			if (user.Password == null) 
 			{
 				result = false;
+				msgs.Add("Password is empty");
+			}
+			else if (user.Password.Count() < 5)
+			{
+				result = false;
+				msgs.Add("Password is less than 5 characters");
+
 			}
 
 			if (user.Email == null)
 			{
 				result = false;
+				msgs.Add("Email is empty");
 			}
 
 			return result;

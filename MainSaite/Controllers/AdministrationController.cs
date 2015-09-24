@@ -33,7 +33,8 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public ActionResult AddUser(UserDTO user)
 		{
-			if (userManager.UserValidation(user))
+			List<string> msgs = new List<string>();
+			if (userManager.UserValidation(user,msgs))
 			{
 				if (!userManager.IfUserNameExists(user.UserName) && !userManager.IfEmailExists(user.Email))
 				{
@@ -50,7 +51,11 @@ namespace MainSaite.Controllers
 			else
 			{
 				ModelState.Clear();
-				ModelState.AddModelError("", Resources.Resource.EmptyFields);
+				//ModelState.AddModelError("", Resources.Resource.EmptyFields);
+				foreach(string msg in msgs)
+				{
+					ModelState.AddModelError("", msg);
+				}
 				return View();
 			}
 		}
