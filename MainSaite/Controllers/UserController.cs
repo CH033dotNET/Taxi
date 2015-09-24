@@ -14,7 +14,7 @@ namespace MainSaite.Controllers
 
 	
 		PersonManager personManager;
-		UserDTO currentUser ;
+		UserDTO currentUser;
 	
 		
 		public UserController()
@@ -33,8 +33,8 @@ namespace MainSaite.Controllers
 			
 			var currentPerson = personManager.GetPersonByUserId(currentUser.Id);
 			if (currentPerson == null)
-			currentPerson =	personManager.InsertPerson(new PersonDTO() {User = currentUser, UserId = currentUser.Id });
-
+			currentPerson =	personManager.InsertPerson(new PersonDTO() {UserId = currentUser.Id });
+			currentPerson.User = currentUser;
 			
 			return View(currentPerson);
 
