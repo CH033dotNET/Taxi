@@ -71,6 +71,9 @@
                             @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
                             {
                             <li class="list-group-item">@Html.ActionLink("CarEditor", "CarEditor", "Settings")</li>}
+                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
+                            {
+                            <li class="list-group-item">@Html.ActionLink("[Personal]", "Index", "Driver")</li>}
                             @if (ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
                             {
                             <li class="list-group-item">@Html.ActionLink("UserAddress", "Index", "Address")</li>}

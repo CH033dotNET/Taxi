@@ -276,12 +276,7 @@
     <Content Include="Views\Address\Index.cshtml" />
     <Content Include="Views\Settings\CarEdit.cshtml" />
     <Content Include="Views\Settings\CarDelete.cshtml" />
-    <Content Include="Views\Shared\_PartialMenuAdmin.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\Shared\_PartialMenuOperator.cshtml" />
-    <Content Include="Views\Shared\_PartialMenuDriver.cshtml" />
-    <Content Include="Views\Shared\_PartialMenuClient.cshtml" />
-    <Content Include="Views\Shared\_PartialMenuReportViewer.cshtml" />
     <Content Include="Views\Driver\_Layout.cshtml" />
     <Content Include="Views\Driver\Index.cshtml" />
     <Content Include="Views\Settings\SetVIPStatus.cshtml" />
