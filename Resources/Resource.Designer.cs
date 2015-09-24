@@ -187,6 +187,60 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Diesel.
+        /// </summary>
+        public static string CarPetrolDiesel {
+            get {
+                return ResourceManager.GetString("CarPetrolDiesel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 80.
+        /// </summary>
+        public static string CarPetrolNormal {
+            get {
+                return ResourceManager.GetString("CarPetrolNormal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other.
+        /// </summary>
+        public static string CarPetrolOther {
+            get {
+                return ResourceManager.GetString("CarPetrolOther", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 95.
+        /// </summary>
+        public static string CarPetrolPremium {
+            get {
+                return ResourceManager.GetString("CarPetrolPremium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 92.
+        /// </summary>
+        public static string CarPetrolRegular {
+            get {
+                return ResourceManager.GetString("CarPetrolRegular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 98.
+        /// </summary>
+        public static string CarPetrolSuper {
+            get {
+                return ResourceManager.GetString("CarPetrolSuper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Petrol Type.
         /// </summary>
         public static string CarPetrolType {
@@ -309,6 +363,15 @@ namespace Resources {
         public static string LastName {
             get {
                 return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to oololo.
+        /// </summary>
+        public static string LoginEmailExist {
+            get {
+                return ResourceManager.GetString("LoginEmailExist", resourceCulture);
             }
         }
         

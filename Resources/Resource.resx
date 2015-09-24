@@ -225,4 +225,25 @@
   <data name="ContactInformation" xml:space="preserve">
     <value>Contact Information</value>
   </data>
+  <data name="CarPetrolDiesel" xml:space="preserve">
+    <value>Diesel</value>
+  </data>
+  <data name="CarPetrolNormal" xml:space="preserve">
+    <value>80</value>
+  </data>
+  <data name="CarPetrolOther" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="CarPetrolPremium" xml:space="preserve">
+    <value>95</value>
+  </data>
+  <data name="CarPetrolRegular" xml:space="preserve">
+    <value>92</value>
+  </data>
+  <data name="CarPetrolSuper" xml:space="preserve">
+    <value>98</value>
+  </data>
+  <data name="LoginEmailExist" xml:space="preserve">
+    <value>oololo</value>
+  </data>
 </root>

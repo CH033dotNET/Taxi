@@ -225,4 +225,25 @@
   <data name="ContactInformation" xml:space="preserve">
     <value>Контактна інформація</value>
   </data>
+  <data name="CarPetrolDiesel" xml:space="preserve">
+    <value>Дизель</value>
+  </data>
+  <data name="CarPetrolNormal" xml:space="preserve">
+    <value>80</value>
+  </data>
+  <data name="CarPetrolOther" xml:space="preserve">
+    <value>Інший</value>
+  </data>
+  <data name="CarPetrolPremium" xml:space="preserve">
+    <value>95</value>
+  </data>
+  <data name="CarPetrolRegular" xml:space="preserve">
+    <value>92</value>
+  </data>
+  <data name="CarPetrolSuper" xml:space="preserve">
+    <value>98</value>
+  </data>
+  <data name="LoginEmailExist" xml:space="preserve">
+    <value>ололо</value>
+  </data>
 </root>
