@@ -18,7 +18,7 @@
 #driver-bootstrap-menu.navbar-default .navbar-nav>.active>a,
 #driver-bootstrap-menu.navbar-default .navbar-nav>.active>a:hover,
 #driver-bootstrap-menu.navbar-default .navbar-nav>.active>a:focus {
-    color: rgba(85, 85, 85, 1);
+    color: rgba(242, 242, 242, 1);
     background-color: rgba(97, 97, 97, 1);
 }
 #driver-bootstrap-menu.navbar-default .navbar-toggle {
