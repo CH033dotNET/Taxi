@@ -189,6 +189,7 @@ namespace BAL.Manager
 			uOW.UserRepo.SetStateModified(temp);
 			temp.RoleId = user.RoleId;
 			temp.Email = user.Email;
+			temp.UserName = user.UserName;
 			uOW.Save();
 			return Mapper.Map<UserDTO>(temp);
 		}

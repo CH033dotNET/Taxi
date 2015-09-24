@@ -207,4 +207,22 @@
   <data name="CarStateWorking" xml:space="preserve">
     <value>Працює</value>
   </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Ім'я</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Прізвище</value>
+  </data>
+  <data name="MiddleName" xml:space="preserve">
+    <value>По батьковi</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="UpdateProfile" xml:space="preserve">
+    <value>Оновити профіль</value>
+  </data>
+  <data name="ContactInformation" xml:space="preserve">
+    <value>Контактна інформація</value>
+  </data>
 </root>

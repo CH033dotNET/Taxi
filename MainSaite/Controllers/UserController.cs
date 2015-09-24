@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BAL.Manager;
+using Model.DB;
 using Model.DTO;
 
 namespace MainSaite.Controllers
@@ -11,38 +12,53 @@ namespace MainSaite.Controllers
 	public class UserController : BaseController
 	{
 
-		UserManager userManager = null;
-
+	
+		PersonManager personManager;
+		UserDTO currentUser ;
+	
+		
 		public UserController()
 		{
-			userManager = new UserManager(uOW);
+		
+		    personManager= new PersonManager(uOW);
 		}
 
 		public ActionResult Index()
 		{
 
-			var user = (UserDTO)(Session["User"]);
+			var currentUser = (UserDTO)(Session["User"]);
+			
+			if (currentUser == null)
+				RedirectToAction("Registration", "Account");
+			
+			var currentPerson = personManager.GetPersonByUserId(currentUser.Id);
+			if (currentPerson == null)
+			currentPerson =	personManager.InsertPerson(new PersonDTO() {User = currentUser, UserId = currentUser.Id });
 
-
-			if (user != null)
-				return View(user);
-
-			return RedirectToAction("Authentification", "Account");
+			
+			return View(currentPerson);
 
 		}
 
 		[HttpPost]
-		public ActionResult Index(bool change, string firstName, string lastName, string phone)
+		public ActionResult Index(PersonDTO person)
 		{
+			var currentUser = (UserDTO)(Session["User"]);
 
-			var user = (UserDTO)(Session["User"]);
-			string userFirstName = firstName;
-			string userLastName = firstName;
-			int j;
-			if (Int32.TryParse(phone, out j))
-				j = 0;
+			if (person.User.UserName != currentUser.UserName)
+				currentUser.UserName = person.User.UserName;
+			
+			if (person.User.Email != currentUser.Email)
+				currentUser.Email = person.User.Email;
 
-			return View();
+			person.UserId = currentUser.Id;
+			person.User = currentUser;
+			personManager.EditPerson(person);
+
+			Session["User"] = currentUser;
+				
+			return View(person);
+			
 		}
 	}
 }
