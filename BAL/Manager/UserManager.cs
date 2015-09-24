@@ -194,6 +194,106 @@ namespace BAL.Manager
 			return Mapper.Map<UserDTO>(temp);
 		}
 
+		// Checking validation and return some messages
+		public bool UserValidation(UserDTO user, List<string> msgs)
+		{
+			msgs.Clear();
+			bool result = true;
+			if (user.UserName == null)
+			{
+				result = false;
+				msgs.Add("UserName is empty");
+
+			}
+			else if (user.UserName.Count() < 4)
+			{
+				result = false;
+				msgs.Add("UserName is less than 4 characters");
+			}
+
+			if (user.Password == null) 
+			{
+				result = false;
+				msgs.Add("Password is empty");
+			}
+			else if (user.Password.Count() < 5)
+			{
+				result = false;
+				msgs.Add("Password is less than 5 characters");
+
+			}
+
+			if (user.Email == null)
+			{
+				result = false;
+				msgs.Add("Email is empty");
+			}
+
+			return result;
+		}
+
+		public IEnumerable<VIPClientDTO> GetVIPClients()
+		{
+
+			var listUsers = uOW.UserRepo.Get();
+			var listVIPClientsDTO = new List<VIPClientDTO>();
+
+			var listVIPClients = uOW.VIPClientRepo.Get().ToList();
+			foreach (var Client in listVIPClients)
+			{
+				var CurrentUser = listUsers.Where(x => (x.Id == Client.UserId)).First();
+				listVIPClientsDTO.Add(new VIPClientDTO { Id = Client.Id, SetDate = Client.SetDate, UserId = Client.UserId, UserName = CurrentUser.UserName });
+			}
+
+			return listVIPClientsDTO;
+		}
+
+		///SetVIPStatu methodes
+		public IEnumerable<UserDTO> GetNoVIPClients()
+		{
+			var listVIPClients = uOW.VIPClientRepo.Get().ToList();
+			var listUsers = uOW.UserRepo.Get();
+			var ListUserDTO = new List<UserDTO>();
+
+
+			var RigthJoin =
+					from U in listUsers.Where(x => x.RoleId == 3)
+					join V in listVIPClients
+						on U.Id equals V.UserId into joined
+					from V in joined.DefaultIfEmpty()
+					select new VIPClientDTO
+					{
+						Id = V != null ? V.Id : 0,
+						UserId = U.Id,
+						UserName = U.UserName
+					};
+
+			var dropbox =
+					from Q in RigthJoin.Where(x => x.Id == 0)
+					select new UserDTO
+					{
+						Id = Q.UserId,
+						UserName = Q.UserName
+					};
+
+			foreach (UserDTO U in dropbox)
+			{
+				ListUserDTO.Add(U);
+			}
+
+			return ListUserDTO;
+		}
+
+		public void SetVIPStatus(string UserName)
+		{
+			int CurrentId = uOW.UserRepo.Get(x => x.UserName == UserName).Select(d => d.Id).First();
+			uOW.VIPClientRepo.Insert(new VIPClient { UserId = CurrentId, SetDate = System.DateTime.Today });
+			uOW.Save();
+		}
+
+		//
+		/// end of SetVIPStatu methodes
+
 		#region OUR TEAM METHODS
 
 		public Role GerRoleForUser(UserDTO user)

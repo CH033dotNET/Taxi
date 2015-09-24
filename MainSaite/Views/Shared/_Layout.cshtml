@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Common.Enum
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -43,21 +44,43 @@
                         <li>
                             @Html.ActionLink(q,"","")
                         </li>
+                        <li>
+                            @Html.ActionLink("Log out", "LogOut", "Account")
+                        </li>
                     }
 
                 </ul>
                    </div>
                </div>
            </div>
-      
-              
-                    <div class="list-group">
-                     
-       @if(ViewBag.UserRoleId == (int)Common.Enum.AvailableRoles.Administrator) {
-                @Html.Partial("_PartialMenuAdmin")
-        }
-        
-
+                 @*Links menu by users role*@
+                    <div class="list-group">                     
+                        <ul class="nav">
+                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
+                            {
+                            <li class="list-group-item">@Html.ActionLink("Districts menu", "DistrictEditor", "Settings")</li>}
+                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
+                            {
+                            <li class="list-group-item">@Html.ActionLink("UsersMenu", "UsersMenu", "Settings")</li>}
+                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
+                            {
+                            <li class="list-group-item">@Html.ActionLink("AddUser", "AddUser", "Administration")</li>}
+                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Client || ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
+                            {
+                            <li class="list-group-item">@Html.ActionLink("My Account", "Index", "User")</li>}
+                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
+                            {
+                            <li class="list-group-item">@Html.ActionLink("CarEditor", "CarEditor", "Settings")</li>}
+                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
+                            {
+                            <li class="list-group-item">@Html.ActionLink("[Personal]", "Index", "Driver")</li>}
+                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
+                            {
+                            <li class="list-group-item">@Html.ActionLink("UserAddress", "Index", "Address")</li>}
+                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
+                            {
+                            <li class="list-group-item">@Html.ActionLink("SetVIPStatus", "SetVIPStatus", "Settings")</li>}
+                        </ul>
                   </div>
                   </div>
                 <div class="lang">   

@@ -1,0 +1,72 @@
+﻿@using System.Collections;
+@using Model.DTO;
+@model IList<Object>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SetVIPStatus</title>
+</head>
+
+<body>
+    <div>
+
+        <h1>@Resources.Resource.SetVIPStatusPage</h1>
+
+        <table class="table table-striped">
+
+            <tr><td>@Resources.Resource.UserName</td><td>@Resources.Resource.Setdate</td></tr>
+
+            @{
+                List<VIPClientDTO> listlistVIPClients = (List<VIPClientDTO>)Model[0];
+
+                foreach (VIPClientDTO VIP in listlistVIPClients)
+                {
+                    <tr>
+                        <td>@VIP.UserName</td>
+                        <td>@VIP.SetDate.ToString("dd:MM:yyyy")</td>
+                    </tr>
+                }
+
+            }
+        </table>
+
+        <style>
+            select {
+                width: 157px; /* Ширина списка в пикселах */
+            }
+        </style>
+
+        <br />
+
+
+        <div class="row">
+            <form action="SetVIPStatusC" method="post">
+                <div class="col-md-6">
+
+                    <select name="UserName" class="form-control">
+                        @{
+                            List<UserDTO> listNoVIPClients = (List<UserDTO>)Model[1];
+
+                            foreach (UserDTO U in listNoVIPClients)
+                            {
+                                <option> @U.UserName </option>
+                            }
+                        }
+
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <input type="submit" value=@Resources.Resource.Set class="btn btn-default">
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+</body>
+</html>
+
+

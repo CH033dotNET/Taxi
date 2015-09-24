@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 
 namespace Common.Enum.CarEnums
 {
-	public enum CarClassEnum
+	public enum CarPetrolEnum
 	{
-		Premium = 1,
-		General = 2,
-		Econom = 3
+		Normal80 = 1,
+		Regular92 = 2,
+		Premium95 = 3,
+		Super98 = 4,
+		Diesel = 5,
+		Other = 6
 	}
 }

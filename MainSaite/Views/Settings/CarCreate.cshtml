@@ -2,9 +2,8 @@
 @model Model.DTO.CarDTO
 
 @{
-    ViewBag.Title = "CarCreate";
+	ViewBag.Title = "CarCreate";
 }
-
 <h2>@Resources.Resource.AddNewCar</h2>
 <form method="post">
 	@Html.AntiForgeryToken()
@@ -24,47 +23,60 @@
 			</tr>
 			<tr>
 				<td>@Resources.Resource.CarOccupation</td>
-				<td><input type="text" class="form-control input-lg" name="CarOccupation" placeholder="@Resources.Resource.CarOccupation"></td>
+				<td><input type="number" class="form-control input-lg" name="CarOccupation" min="2" max="20" placeholder="@Resources.Resource.CarOccupation"></td>
 			</tr>
 			<tr>
 				<td>@Resources.Resource.CarClass</td>
 				<td>
 					<select class="form-control input-lg" name="CarClass">
 						@foreach (var carClass in EnumHelper.GetCarClasses())
-                        {
-						<option value="@carClass.Key">@carClass.Value</option>
-                        }
+						{
+							<option value="@carClass.Key">@carClass.Value</option>
+						}
 					</select>
 				</td>
 			</tr>
 			<tr>
 				<td>@Resources.Resource.CarPetrolType</td>
-				<td><input type="text" class="form-control input-lg" name="CarPetrolType" placeholder="@Resources.Resource.CarPetrolType"></td>
+				<td>
+					<select class="form-control input-lg" name="CarPetrolType">
+						@foreach (var carPetrol in EnumHelper.GetCarPetrol())
+						{
+							<option value="@carPetrol.Key">@carPetrol.Value</option>
+						}
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<td>@Resources.Resource.CarPetrolConsumption</td>
-				<td><input type="text" class="form-control input-lg" name="CarPetrolConsumption" placeholder="@Resources.Resource.CarPetrolConsumption"></td>
+				<td><input type="number" class="form-control input-lg" name="CarPetrolConsumption" min="1" max="100" placeholder="@Resources.Resource.CarPetrolConsumption"></td>
 			</tr>
 			<tr>
 				<td>@Resources.Resource.CarManufactureDate</td>
-				<td><input type="text" class="form-control input-lg" name="CarManufactureDate" placeholder="@Resources.Resource.CarManufactureDate"></td>
+				<td><input type="date" class="form-control input-lg" name="CarManufactureDate" placeholder="@Resources.Resource.CarManufactureDate"></td>
 			</tr>
 			<tr>
 				<td>@Resources.Resource.CarState</td>
 				<td>
 					<select class="form-control input-lg" name="CarState">
 						@foreach (var carState in EnumHelper.GetCarStates())
-                        {
-						<option value="@carState.Key">@carState.Value</option>
-                        }
+						{
+							<option value="@carState.Key">@carState.Value</option>
+						}
 					</select>
 				</td>
 			</tr>
 		</table>
 		@Html.Hidden("UserId", (Session["User"] as Model.DTO.UserDTO).Id != null ? (Session["User"] as Model.DTO.UserDTO).Id : -1)
 		<input class="btn btn-default" type="submit" value="@Resources.Resource.AddNewCar" style="margin: 0 auto; width:200px" />
+		<input class="btn btn-default" type="reset" value="@Resources.Resource.ResetCarData" style="margin: 0 auto; width:200px" />
+		<input class="btn btn-default" type="button" value="@Resources.Resource.ToCarMenu" onclick="history.go(-1);return true;" style="margin: 0 auto; width:200px" />
 	</fieldset>
 </form>
+
+
+
+
 
 
 

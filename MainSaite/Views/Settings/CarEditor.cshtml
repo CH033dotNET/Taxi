@@ -1,65 +1,56 @@
 ﻿@model IEnumerable<Model.DTO.CarDTO>
 
 @{
-    ViewBag.Title = "CarEditor";
+	ViewBag.Title = "CarEditor";
 }
-
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
 <body>
-    <fieldset>
-        <legend>Car info modification</legend>
-    </fieldset>
-    <fieldset>
-        @Html.ActionLink("Create new car?", "CarCreate")
-    </fieldset>
-    <fieldset>
-        <legend>Your car list:</legend>
-        <div class="table-list">
-            <table>
-                <tr>
-                    <th>
-                        <div class="editor-label"></div>
-                        @Html.Label("Car Model:")
-                    </th>
-                    <th>
-                        <div class="editor-label"></div>
-                        @Html.Label("Car Number:")
-                    </th>
-                    <th>
-                        <div class="editor-label"></div>
-                        @Html.Label("Car State:")
-                    </th>
-                </tr>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            <div class="editor_field"></div>
-                            @Html.DisplayFor(modelItem => item.CarName)
-                        </td>
-                        <td>
-                            <div class="editor_field"></div>
-                            @Html.DisplayFor(modelItem => item.CarNumber)
-                        </td>
-                        <td>
-                            <div class="editor_field"></div>
-                            @Html.DisplayFor(modelItem => item.CarState)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "CarEdit", new { id = item.Id }) |
-                            @Html.ActionLink("Details", "CarDetails", new { id = item.Id }) |
-                            @Html.ActionLink("Delete", "CarDelete", new { id = item.Id })
-                        </td>
-                    </tr>
-                }
-            </table>
-        </div>
-
-    </fieldset>
+	<fieldset class="fieldset">
+		<legend class="legend">Car info modification</legend>
+	</fieldset>
+	<fieldset class="fieldset">
+		@Html.ActionLink(@Resources.Resource.AddCarToList, "CarCreate")
+	</fieldset>
+	<fieldset class="fieldset">
+		<legend class="legend">@Resources.Resource.YourCarList</legend>
+		<div class="table-list">
+			<table class="table">
+				<tr>
+					<th>
+						@Resources.Resource.CarName
+					</th>
+					<th>
+						@Resources.Resource.CarNumber
+					</th>
+					<th>
+						@Resources.Resource.CarState
+					</th>
+					<th>
+						@Resources.Resource.CarActions
+					</th>
+				</tr>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							<div class="editor_field"></div>
+							@Html.DisplayFor(modelItem => item.CarName)
+						</td>
+						<td>
+							<div class="editor_field"></div>
+							@Html.DisplayFor(modelItem => item.CarNumber)
+						</td>
+						<td>
+							<div class="editor_field"></div>
+							@Html.DisplayFor(modelItem => item.CarState)
+						</td>
+						<td>
+							@Html.ActionLink(@Resources.Resource.editString, "CarEdit", new { id = item.Id }) |
+							@Html.ActionLink(@Resources.Resource.detailString, "CarDetails", new { id = item.Id }) |
+							@Html.ActionLink(@Resources.Resource.deleteString, "CarDelete", new { id = item.Id })
+						</td>
+					</tr>
+				}
+			</table>
+		</div>
+	</fieldset>
 </body>
-</html>

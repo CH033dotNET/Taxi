@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Enum\AvailableRoles.cs" />
     <Compile Include="Enum\CarEnums\CarClass.cs" />
+    <Compile Include="Enum\CarEnums\CarPetrol.cs" />
     <Compile Include="Enum\CarEnums\CarState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

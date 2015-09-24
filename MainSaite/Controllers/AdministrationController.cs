@@ -33,13 +33,29 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public ActionResult AddUser(UserDTO user)
 		{
-			if (!userManager.IfUserNameExists(user.UserName) && !userManager.IfEmailExists(user.Email))
+			List<string> msgs = new List<string>();
+			if (userManager.UserValidation(user,msgs))
 			{
-				userManager.InsertUser(user);
-				return RedirectToAction("Index", "Home");
+				if (!userManager.IfUserNameExists(user.UserName) && !userManager.IfEmailExists(user.Email))
+				{
+					userManager.InsertUser(user);
+					return RedirectToAction("UsersMenu", "Settings");
+				}
+				else
+				{
+					ModelState.Clear();
+					ModelState.AddModelError("", Resources.Resource.LoginEmailExist);
+					return View();
+				}
 			}
 			else
 			{
+				ModelState.Clear();
+				//ModelState.AddModelError("", Resources.Resource.EmptyFields);
+				foreach(string msg in msgs)
+				{
+					ModelState.AddModelError("", msg);
+				}
 				return View();
 			}
 		}

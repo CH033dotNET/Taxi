@@ -24,7 +24,7 @@ namespace MainSaite.Controllers
 
 		// Nick
 		CarManager carManager;
-		MainContext db = new MainContext();//
+		
 
 
 		public SettingsController()
@@ -200,5 +200,22 @@ namespace MainSaite.Controllers
 			}
 			return RedirectToAction("CarEditor");
 		}
+
+		public ActionResult SetVIPStatus()
+		{
+			List<Object> ListForView = new List<object>() { userManager.GetVIPClients(), userManager.GetNoVIPClients() };
+			return View(ListForView);
+		}
+
+		[HttpPost]
+		public ActionResult SetVIPStatusC(string UserName)
+		{
+			if (UserName != null)
+			{
+				userManager.SetVIPStatus(UserName);
+			}
+			return RedirectToAction("SetVIPStatus");
+		}
+
     }
 }

@@ -30,5 +30,6 @@ namespace DAL
 		public DbSet<Car> Cars { get; set; }
         public DbSet<UserAddress> Addresses { get; set; }
 		public DbSet<Person> Persons { get; set; }
+		public DbSet<VIPClient> VIPClients { get; set; }
     }
 }

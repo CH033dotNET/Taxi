@@ -84,5 +84,36 @@ namespace MainSaite.Helpers
 			}
 			return result;
 		}
+		public static Dictionary<int, string> GetCarPetrol()
+		{
+			var result = new Dictionary<int, string>();
+			foreach (var petrolValue in Enum.GetValues(typeof(CarPetrolEnum)))
+			{
+				string petrolName = "";
+				switch ((CarPetrolEnum)petrolValue)
+				{
+					case CarPetrolEnum.Normal80:
+						petrolName = Resources.Resource.CarPetrolNormal;
+						break;
+					case CarPetrolEnum.Regular92:
+						petrolName = Resources.Resource.CarPetrolRegular;
+						break;
+					case CarPetrolEnum.Premium95:
+						petrolName = Resources.Resource.CarPetrolPremium;
+						break;
+					case CarPetrolEnum.Super98:
+						petrolName = Resources.Resource.CarPetrolSuper;
+						break;
+					case CarPetrolEnum.Diesel:
+						petrolName = Resources.Resource.CarPetrolDiesel;
+						break;
+					case CarPetrolEnum.Other:
+						petrolName = Resources.Resource.CarPetrolOther;
+						break;
+				}
+				result.Add((int)petrolValue, petrolName);
+			}
+			return result;
+		}
 	}
 }
