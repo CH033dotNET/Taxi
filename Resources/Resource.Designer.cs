@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add new car?.
+        /// </summary>
+        public static string AddCarToList {
+            get {
+                return ResourceManager.GetString("AddCarToList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add new car.
         /// </summary>
         public static string AddNewCar {
@@ -102,6 +111,15 @@ namespace Resources {
         public static string Administrator {
             get {
                 return ResourceManager.GetString("Administrator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Action.
+        /// </summary>
+        public static string CarActions {
+            get {
+                return ResourceManager.GetString("CarActions", resourceCulture);
             }
         }
         
@@ -304,6 +322,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        public static string detailString {
+            get {
+                return ResourceManager.GetString("detailString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Driver.
         /// </summary>
         public static string Driver {
@@ -385,6 +412,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        public static string ResetCarData {
+            get {
+                return ResourceManager.GetString("ResetCarData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Role.
         /// </summary>
         public static string Role {
@@ -421,11 +457,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Menu.
+        /// </summary>
+        public static string ToCarMenu {
+            get {
+                return ResourceManager.GetString("ToCarMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Name.
         /// </summary>
         public static string UserName {
             get {
                 return ResourceManager.GetString("UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your car list:.
+        /// </summary>
+        public static string YourCarList {
+            get {
+                return ResourceManager.GetString("YourCarList", resourceCulture);
             }
         }
     }

@@ -69,8 +69,8 @@
 		</table>
 		@Html.Hidden("UserId", (Session["User"] as Model.DTO.UserDTO).Id != null ? (Session["User"] as Model.DTO.UserDTO).Id : -1)
 		<input class="btn btn-default" type="submit" value="@Resources.Resource.AddNewCar" style="margin: 0 auto; width:200px" />
-		<input class="btn btn-default" type="reset" value="Reset" style="margin: 0 auto; width:200px" />
-		<input class="btn btn-default" type="button" value="Back" onclick="history.go(-1);return true;" style="margin: 0 auto; width:200px" />
+		<input class="btn btn-default" type="reset" value="@Resources.Resource.ResetCarData" style="margin: 0 auto; width:200px" />
+		<input class="btn btn-default" type="button" value="@Resources.Resource.ToCarMenu" onclick="history.go(-1);return true;" style="margin: 0 auto; width:200px" />
 	</fieldset>
 </form>
 

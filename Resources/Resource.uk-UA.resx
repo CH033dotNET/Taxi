@@ -240,4 +240,22 @@
   <data name="CarPetrolSuper" xml:space="preserve">
     <value>98</value>
   </data>
+  <data name="AddCarToList" xml:space="preserve">
+    <value>Додати нову машину?</value>
+  </data>
+  <data name="CarActions" xml:space="preserve">
+    <value>Дії</value>
+  </data>
+  <data name="detailString" xml:space="preserve">
+    <value>Деталі</value>
+  </data>
+  <data name="ResetCarData" xml:space="preserve">
+    <value>Стерти</value>
+  </data>
+  <data name="ToCarMenu" xml:space="preserve">
+    <value>До меню</value>
+  </data>
+  <data name="YourCarList" xml:space="preserve">
+    <value>Список ваших авто:</value>
+  </data>
 </root>
