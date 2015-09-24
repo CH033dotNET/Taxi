@@ -190,7 +190,7 @@
     <value>Car Occupation</value>
   </data>
   <data name="CarPetrolConsumption" xml:space="preserve">
-    <value>Car Petrol Consumption (L/km)</value>
+    <value>Car Petrol Consumption</value>
   </data>
   <data name="CarPetrolType" xml:space="preserve">
     <value>Petrol Type</value>
@@ -207,55 +207,22 @@
   <data name="CarStateWorking" xml:space="preserve">
     <value>Working</value>
   </data>
-  <data name="Set" xml:space="preserve">
-    <value>Set</value>
+  <data name="FirstName" xml:space="preserve">
+    <value>First name</value>
   </data>
-  <data name="Setdate" xml:space="preserve">
-    <value>Set date</value>
+  <data name="LastName" xml:space="preserve">
+    <value>Last name</value>
   </data>
-  <data name="SetVIPStatusPage" xml:space="preserve">
-    <value>Set VIP status</value>
+  <data name="MiddleName" xml:space="preserve">
+    <value>Middle name</value>
   </data>
-  <data name="EmptyFields" xml:space="preserve">
-    <value>Some fields is empty</value>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
   </data>
-  <data name="LoginEmailExist" xml:space="preserve">
-    <value>UserName or Email is already exist</value>
+  <data name="UpdateProfile" xml:space="preserve">
+    <value>Update profile</value>
   </data>
-  <data name="CarPetrolDiesel" xml:space="preserve">
-    <value>Diesel</value>
-  </data>
-  <data name="CarPetrolNormal" xml:space="preserve">
-    <value>80</value>
-  </data>
-  <data name="CarPetrolOther" xml:space="preserve">
-    <value>Other type</value>
-  </data>
-  <data name="CarPetrolPremium" xml:space="preserve">
-    <value>95</value>
-  </data>
-  <data name="CarPetrolRegular" xml:space="preserve">
-    <value>92</value>
-  </data>
-  <data name="CarPetrolSuper" xml:space="preserve">
-    <value>98</value>
-  </data>
-  <data name="AddCarToList" xml:space="preserve">
-    <value>Add new car?</value>
-  </data>
-  <data name="CarActions" xml:space="preserve">
-    <value>Action</value>
-  </data>
-  <data name="detailString" xml:space="preserve">
-    <value>Details</value>
-  </data>
-  <data name="ResetCarData" xml:space="preserve">
-    <value>Reset</value>
-  </data>
-  <data name="ToCarMenu" xml:space="preserve">
-    <value>Menu</value>
-  </data>
-  <data name="YourCarList" xml:space="preserve">
-    <value>Your car list:</value>
+  <data name="ContactInformation" xml:space="preserve">
+    <value>Contact Information</value>
   </data>
 </root>

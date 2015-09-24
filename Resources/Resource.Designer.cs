@@ -61,15 +61,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add new car?.
-        /// </summary>
-        public static string AddCarToList {
-            get {
-                return ResourceManager.GetString("AddCarToList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Add new car.
         /// </summary>
         public static string AddNewCar {
@@ -111,15 +102,6 @@ namespace Resources {
         public static string Administrator {
             get {
                 return ResourceManager.GetString("Administrator", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Action.
-        /// </summary>
-        public static string CarActions {
-            get {
-                return ResourceManager.GetString("CarActions", resourceCulture);
             }
         }
         
@@ -196,65 +178,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Car Petrol Consumption (L/km).
+        ///   Looks up a localized string similar to Car Petrol Consumption.
         /// </summary>
         public static string CarPetrolConsumption {
             get {
                 return ResourceManager.GetString("CarPetrolConsumption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Diesel.
-        /// </summary>
-        public static string CarPetrolDiesel {
-            get {
-                return ResourceManager.GetString("CarPetrolDiesel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 80.
-        /// </summary>
-        public static string CarPetrolNormal {
-            get {
-                return ResourceManager.GetString("CarPetrolNormal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Other type.
-        /// </summary>
-        public static string CarPetrolOther {
-            get {
-                return ResourceManager.GetString("CarPetrolOther", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 95.
-        /// </summary>
-        public static string CarPetrolPremium {
-            get {
-                return ResourceManager.GetString("CarPetrolPremium", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 92.
-        /// </summary>
-        public static string CarPetrolRegular {
-            get {
-                return ResourceManager.GetString("CarPetrolRegular", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 98.
-        /// </summary>
-        public static string CarPetrolSuper {
-            get {
-                return ResourceManager.GetString("CarPetrolSuper", resourceCulture);
             }
         }
         
@@ -313,20 +241,20 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contact Information.
+        /// </summary>
+        public static string ContactInformation {
+            get {
+                return ResourceManager.GetString("ContactInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string deleteString {
             get {
                 return ResourceManager.GetString("deleteString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Details.
-        /// </summary>
-        public static string detailString {
-            get {
-                return ResourceManager.GetString("detailString", resourceCulture);
             }
         }
         
@@ -358,11 +286,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Some fields is empty.
+        ///   Looks up a localized string similar to First name.
         /// </summary>
-        public static string EmptyFields {
+        public static string FirstName {
             get {
-                return ResourceManager.GetString("EmptyFields", resourceCulture);
+                return ResourceManager.GetString("FirstName", resourceCulture);
             }
         }
         
@@ -376,11 +304,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UserName or Email is already exist.
+        ///   Looks up a localized string similar to Last name.
         /// </summary>
-        public static string LoginEmailExist {
+        public static string LastName {
             get {
-                return ResourceManager.GetString("LoginEmailExist", resourceCulture);
+                return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Middle name.
+        /// </summary>
+        public static string MiddleName {
+            get {
+                return ResourceManager.GetString("MiddleName", resourceCulture);
             }
         }
         
@@ -403,20 +340,20 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        public static string Phone {
+            get {
+                return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ReportViewer.
         /// </summary>
         public static string ReportViewer {
             get {
                 return ResourceManager.GetString("ReportViewer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Reset.
-        /// </summary>
-        public static string ResetCarData {
-            get {
-                return ResourceManager.GetString("ResetCarData", resourceCulture);
             }
         }
         
@@ -430,38 +367,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set.
+        ///   Looks up a localized string similar to Update profile.
         /// </summary>
-        public static string Set {
+        public static string UpdateProfile {
             get {
-                return ResourceManager.GetString("Set", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Set date.
-        /// </summary>
-        public static string Setdate {
-            get {
-                return ResourceManager.GetString("Setdate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Set VIP status.
-        /// </summary>
-        public static string SetVIPStatusPage {
-            get {
-                return ResourceManager.GetString("SetVIPStatusPage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Menu.
-        /// </summary>
-        public static string ToCarMenu {
-            get {
-                return ResourceManager.GetString("ToCarMenu", resourceCulture);
+                return ResourceManager.GetString("UpdateProfile", resourceCulture);
             }
         }
         
@@ -471,15 +381,6 @@ namespace Resources {
         public static string UserName {
             get {
                 return ResourceManager.GetString("UserName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your car list:.
-        /// </summary>
-        public static string YourCarList {
-            get {
-                return ResourceManager.GetString("YourCarList", resourceCulture);
             }
         }
     }

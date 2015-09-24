@@ -1,34 +1,44 @@
-﻿@using DAL.Migrations
-@using Model.DTO
-@model UserDTO
+﻿@using Model.DTO
+@model PersonDTO
 @{
     ViewBag.Title = "My Account";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-<div class="form-horizontal" style=" margin: 15px 15px 15px 15px">
+    <div class="form-horizontal" style="margin: 15px 15px 15px 15px">
+    <div class="row">
+        <div class="col-md-6">
+            <legend>@Resources.Resource.ContactInformation</legend>
 
-    <legend>Contact Information</legend>
+            @using (Html.BeginForm("Index", "User"))
+            {
+                <dl class="properties">
+                    <dt><img src="..." class="img-polaroid"></dt>
 
-    <dl class="properties">
-        <dt><img src="..." class="img-polaroid"></dt>
+                    <dt><label >@Resources.Resource.UserName</label></dt>
+                    <dd><input class="form-control" type="text" id="userName" name="User.UserName" value="@Model.User.UserName" /></dd>
 
-        <dt><label for="userName">User name:</label></dt>
-        <dd><input class="input-xlarge" type="text" id="userName" value="@Model.UserName" /></dd>
+                    <dt><label for="firstName">@Resources.Resource.FirstName </label></dt>
+                    <dd><input class="form-control" type="text" id="firstName" name="FirstName" value="@Model.FirstName" /></dd>
 
-        <dt><label for="userName">First name:</label></dt>
-        <dd><input class="input-xlarge" type="text" id="firstName" value="" /></dd>
+                    <dt><label for="middleName">@Resources.Resource.MiddleName </label></dt>
+                    <dd><input class="form-control" type="text" id="middleName" name="MiddleName" value="@Model.MiddleName" /></dd>
 
-        <dt><label for="userName">Last name:</label></dt>
-        <dd><input class="input-xlarge" type="text" id="lastName" value="" /></dd>
+                    <dt><label for="userName">@Resources.Resource.LastName </label></dt>
+                    <dd><input class="form-control" type="text" id="lastName" name="LastName" value="@Model.LastName" /></dd>
 
-        <dt><label for="email">Email address:</label></dt>
-        <dd><input class="input-xlarge" type="email" id="email" value="@Model.Email"></dd>
+                    <dt><label for="email">@Resources.Resource.Email </label></dt>
+                    <dd><input class="form-control" type="email" id="email" name="User.Email" value="@Model.User.Email"></dd>
 
-        <dt><label for="email">Mobile phone:</label></dt>
-        <dd><input class="input-xlarge" type="text" id="phone" value="" /></dd>
-    </dl>
-    <a class="btn-link" href="">Change</a>
-</div>
+                    <dt><label for="phone">@Resources.Resource.Phone</label></dt>
+                    <dd><input class="form-control" type="text" id="phone" name="Phone" value="@Model.Phone" /></dd>
+                </dl>
+    <input type="submit" class="btn btn-success" value="@Resources.Resource.UpdateProfile" />
+
+
+            }
+        </div>
+    </div>
+        </div>
 

@@ -29,6 +29,7 @@ namespace DAL
 		public DbSet<District> Districts { get; set; }
 		public DbSet<Car> Cars { get; set; }
         public DbSet<UserAddress> Addresses { get; set; }
+		public DbSet<Person> Persons { get; set; }
 		public DbSet<VIPClient> VIPClients { get; set; }
-	}
+    }
 }

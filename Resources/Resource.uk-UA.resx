@@ -190,7 +190,7 @@
     <value>Вмістимість машини</value>
   </data>
   <data name="CarPetrolConsumption" xml:space="preserve">
-    <value>Обсяг споживання палива (л/км)</value>
+    <value>Обсяг споживання палива</value>
   </data>
   <data name="CarPetrolType" xml:space="preserve">
     <value>Тип палива</value>
@@ -207,55 +207,22 @@
   <data name="CarStateWorking" xml:space="preserve">
     <value>Працює</value>
   </data>
-  <data name="Set" xml:space="preserve">
-    <value>Встановити</value>
+  <data name="FirstName" xml:space="preserve">
+    <value>Ім'я</value>
   </data>
-  <data name="Setdate" xml:space="preserve">
-    <value>Дата встановлення</value>
+  <data name="LastName" xml:space="preserve">
+    <value>Прізвище</value>
   </data>
-  <data name="SetVIPStatusPage" xml:space="preserve">
-    <value>Встановлення VIP-статусу</value>
+  <data name="MiddleName" xml:space="preserve">
+    <value>По батьковi</value>
   </data>
-  <data name="EmptyFields" xml:space="preserve">
-    <value>Деякі поля не заповнені</value>
+  <data name="Phone" xml:space="preserve">
+    <value>Телефон</value>
   </data>
-  <data name="LoginEmailExist" xml:space="preserve">
-    <value>Такий логін або Emai вже існує </value>
+  <data name="UpdateProfile" xml:space="preserve">
+    <value>Оновити профіль</value>
   </data>
-  <data name="CarPetrolDiesel" xml:space="preserve">
-    <value>Дизельний тип палива</value>
-  </data>
-  <data name="CarPetrolNormal" xml:space="preserve">
-    <value>80</value>
-  </data>
-  <data name="CarPetrolOther" xml:space="preserve">
-    <value>Інший тип палива</value>
-  </data>
-  <data name="CarPetrolPremium" xml:space="preserve">
-    <value>95</value>
-  </data>
-  <data name="CarPetrolRegular" xml:space="preserve">
-    <value>92</value>
-  </data>
-  <data name="CarPetrolSuper" xml:space="preserve">
-    <value>98</value>
-  </data>
-  <data name="AddCarToList" xml:space="preserve">
-    <value>Додати нову машину?</value>
-  </data>
-  <data name="CarActions" xml:space="preserve">
-    <value>Дії</value>
-  </data>
-  <data name="detailString" xml:space="preserve">
-    <value>Деталі</value>
-  </data>
-  <data name="ResetCarData" xml:space="preserve">
-    <value>Стерти</value>
-  </data>
-  <data name="ToCarMenu" xml:space="preserve">
-    <value>До меню</value>
-  </data>
-  <data name="YourCarList" xml:space="preserve">
-    <value>Список ваших авто:</value>
+  <data name="ContactInformation" xml:space="preserve">
+    <value>Контактна інформація</value>
   </data>
 </root>
