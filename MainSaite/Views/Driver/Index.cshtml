@@ -1,18 +1,97 @@
-﻿@{ 
-    Layout = "_Layout.cshtml";
+﻿@{
+    Layout = null;
 }
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
+    <meta charset="utf-8" />
+    <title>[DriverCabinet]</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
-    <title></title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 </head>
-<body>
-    <div>
-    <h1>
-        PAPATUYA
-    </h1>
+<body style="padding:0">
+    <div id="driver-bootstrap-menu" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Logo</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse navbar-menubuilder">
+                <ul class="nav navbar-nav navbar-left">
+                    <li >
+                        @Html.ActionLink("[Main]", "Index", "Home")
+                    </li>
+                    <!-- Менюшки!!!
+                        Індекс тимчасовий!!!-->
+                    <li class="active">
+                        <a data-toggle="tab" href="#Home">Home</a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#Settings">Settings</a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#Messages">Messages</a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#District">District</a>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
     </div>
+    <div>
+        <div class="tab-content">
+            <div id="Home" class="tab-pane fade in active">
+                <h2>
+                    HOME PAGE
+                </h2>
+                <p>
+                    placeHolder
+                </p>
+            </div>
+            <div id="Settings" class="tab-pane fade">
+                <h2>
+                    Settings
+                </h2>
+                <p>
+                    placeHolder2
+                </p>
+            </div>
+            <div id="Messages" class="tab-pane fade">
+                <h2>
+                    Messages
+                </h2>
+                <p>
+                    placeHolder3
+                </p>
+            </div>
+            <div id="District" class="tab-pane fade">
+                <h2>
+                    District
+                </h2>
+                <p>
+                    placeHolder4
+                </p>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
+
+
