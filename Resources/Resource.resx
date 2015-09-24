@@ -244,6 +244,15 @@
     <value>98</value>
   </data>
   <data name="LoginEmailExist" xml:space="preserve">
-    <value>oololo</value>
+    <value>UserName or Email is already exists</value>
+  </data>
+  <data name="Set" xml:space="preserve">
+    <value>Set</value>
+  </data>
+  <data name="Setdate" xml:space="preserve">
+    <value>Set date</value>
+  </data>
+  <data name="SetVIPStatusPage" xml:space="preserve">
+    <value>Set VIP Status</value>
   </data>
 </root>

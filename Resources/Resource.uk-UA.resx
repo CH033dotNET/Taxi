@@ -246,4 +246,13 @@
   <data name="LoginEmailExist" xml:space="preserve">
     <value>ололо</value>
   </data>
+  <data name="Set" xml:space="preserve">
+    <value>Встановити</value>
+  </data>
+  <data name="Setdate" xml:space="preserve">
+    <value>Дата встановлення</value>
+  </data>
+  <data name="SetVIPStatusPage" xml:space="preserve">
+    <value>Встановити VIP статус</value>
+  </data>
 </root>
