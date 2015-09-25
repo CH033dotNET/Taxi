@@ -39,7 +39,7 @@ min-height: 400px;
 }
 
     .lang > ul.nav {
-        width:100px;
+        width: 40%;
         margin:0 auto;
         float:none !important;
     }
