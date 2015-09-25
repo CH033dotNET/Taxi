@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>[DriverCabinet]</title>
+    <title>@Resources.Resource.PersonalCabinet</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
 
@@ -33,21 +33,21 @@
             <div class="collapse navbar-collapse navbar-menubuilder">
                 <ul class="nav navbar-nav navbar-left">
                     <li >
-                        @Html.ActionLink("[Main]", "Index", "Home")
+                        @Html.ActionLink(Resources.Resource.MainLink, "Index", "Home")
                     </li>
                     <!-- Менюшки!!!
                         Індекс тимчасовий!!!-->
                     <li class="active">
-                        <a data-toggle="tab" href="#Home">Home</a>
+                        <a data-toggle="tab" href="#Home">@Resources.Resource.Home</a>
                     </li>
                     <li>
-                        <a data-toggle="tab" href="#Settings">Settings</a>
+                        <a data-toggle="tab" href="#Settings">@Resources.Resource.Settings</a>
                     </li>
                     <li>
-                        <a data-toggle="tab" href="#Messages">Messages</a>
+                        <a data-toggle="tab" href="#Messages">@Resources.Resource.Messages</a>
                     </li>
                     <li>
-                        <a data-toggle="tab" href="#District">District</a>
+                        <a data-toggle="tab" href="#District">@Resources.Resource.District</a>
                     </li>
                 </ul>
                 
@@ -55,10 +55,10 @@
         </div>
     </div>
     <div>
-        <div class="tab-content">
+        <div id="driver-content" class="tab-content">
             <div id="Home" class="tab-pane fade in active">
                 <h2>
-                    HOME PAGE
+                    @Resources.Resource.Home
                 </h2>
                 <p>
                     placeHolder
@@ -66,7 +66,7 @@
             </div>
             <div id="Settings" class="tab-pane fade">
                 <h2>
-                    Settings
+                    @Resources.Resource.Settings
                 </h2>
                 <p>
                     placeHolder2
@@ -74,7 +74,7 @@
             </div>
             <div id="Messages" class="tab-pane fade">
                 <h2>
-                    Messages
+                    @Resources.Resource.Messages
                 </h2>
                 <p>
                     placeHolder3
@@ -82,7 +82,7 @@
             </div>
             <div id="District" class="tab-pane fade">
                 <h2>
-                    District
+                    @Resources.Resource.District
                 </h2>
                 <p>
                     placeHolder4

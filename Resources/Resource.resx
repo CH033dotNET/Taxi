@@ -270,4 +270,22 @@
   <data name="ShortUserName" xml:space="preserve">
     <value>UserName is less than 4 characters</value>
   </data>
+  <data name="District" xml:space="preserve">
+    <value>District</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="MainLink" xml:space="preserve">
+    <value>To main menu</value>
+  </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Messages</value>
+  </data>
+  <data name="PersonalCabinet" xml:space="preserve">
+    <value>Personal cabinet</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
 </root>

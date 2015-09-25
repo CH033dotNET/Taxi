@@ -270,4 +270,22 @@
   <data name="ShortUserName" xml:space="preserve">
     <value>Ім’я користувача менше 4 символів</value>
   </data>
+  <data name="District" xml:space="preserve">
+    <value>Район</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Домашня</value>
+  </data>
+  <data name="MainLink" xml:space="preserve">
+    <value>На головну сторінку</value>
+  </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Повідомлення</value>
+  </data>
+  <data name="PersonalCabinet" xml:space="preserve">
+    <value>Особистий кабінет</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Налаштування</value>
+  </data>
 </root>

@@ -35,3 +35,7 @@
 #driver-bootstrap-menu.navbar-default .navbar-toggle:focus .icon-bar {
     background-color: #f2f2f2;
 }
+#driver-content>div{
+    padding-left: 2em;
+    padding-right: 1em;
+}
