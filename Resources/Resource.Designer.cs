@@ -196,7 +196,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 80.
+        ///   Looks up a localized string similar to Normal-80.
         /// </summary>
         public static string CarPetrolNormal {
             get {

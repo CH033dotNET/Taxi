@@ -8,49 +8,55 @@
 		<legend class="legend">Car info modification</legend>
 	</fieldset>
 	<fieldset class="fieldset">
-		@Html.ActionLink(@Resources.Resource.AddCarToList, "CarCreate")
+		@Html.ActionLink("[Add new Car?]", "CarCreate")
 	</fieldset>
 	<fieldset class="fieldset">
-		<legend class="legend">@Resources.Resource.YourCarList</legend>
+		<legend class="legend">[Your car list]</legend>
 		<div class="table-list">
-			<table class="table">
-				<tr>
-					<th>
-						@Resources.Resource.CarName
-					</th>
-					<th>
-						@Resources.Resource.CarNumber
-					</th>
-					<th>
-						@Resources.Resource.CarState
-					</th>
-					<th>
-						@Resources.Resource.CarActions
-					</th>
-				</tr>
-				@foreach (var item in Model)
-				{
-					<tr>
-						<td>
-							<div class="editor_field"></div>
-							@Html.DisplayFor(modelItem => item.CarName)
-						</td>
-						<td>
-							<div class="editor_field"></div>
-							@Html.DisplayFor(modelItem => item.CarNumber)
-						</td>
-						<td>
-							<div class="editor_field"></div>
-							@Html.DisplayFor(modelItem => item.CarState)
-						</td>
-						<td>
-							@Html.ActionLink(@Resources.Resource.editString, "CarEdit", new { id = item.Id }) |
-							@Html.ActionLink(@Resources.Resource.detailString, "CarDetails", new { id = item.Id }) |
-							@Html.ActionLink(@Resources.Resource.deleteString, "CarDelete", new { id = item.Id })
-						</td>
-					</tr>
-				}
-			</table>
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>
+								@Resources.Resource.CarName
+							</th>
+							<th>
+								@Resources.Resource.CarNumber
+							</th>
+							<th>
+								@Resources.Resource.CarState
+							</th>
+							<th>
+								[Actions]
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td>
+									<div class="editor_field"></div>
+									@Html.DisplayFor(modelItem => item.CarName)
+								</td>
+								<td>
+									<div class="editor_field"></div>
+									@Html.DisplayFor(modelItem => item.CarNumber)
+								</td>
+								<td>
+									<div class="editor_field"></div>
+									@Html.DisplayFor(modelItem => item.CarState)
+								</td>
+								<td>
+									@Html.ActionLink(@Resources.Resource.editString, "CarEdit", "Settings", new { id = item.Id }, new { @class = "btn btn-default" })
+									@Html.ActionLink("Details", "CarDetails", "Settings", new { id = item.Id }, new { @class = "btn btn-default" })
+									@Html.ActionLink(@Resources.Resource.deleteString, "CarDelete", "Settings", new { id = item.Id }, new { @class = "btn btn-default" })
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</fieldset>
 </body>

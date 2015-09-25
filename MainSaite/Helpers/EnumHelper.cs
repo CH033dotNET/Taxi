@@ -90,30 +90,31 @@ namespace MainSaite.Helpers
 			foreach (var petrolValue in Enum.GetValues(typeof(CarPetrolEnum)))
 			{
 				string petrolName = "";
-				switch ((CarPetrolEnum)petrolValue)
-				{
-					case CarPetrolEnum.Normal80:
-						petrolName = Resources.Resource.CarPetrolNormal;
-						break;
-					case CarPetrolEnum.Regular92:
-						petrolName = Resources.Resource.CarPetrolRegular;
-						break;
-					case CarPetrolEnum.Premium95:
-						petrolName = Resources.Resource.CarPetrolPremium;
-						break;
-					case CarPetrolEnum.Super98:
-						petrolName = Resources.Resource.CarPetrolSuper;
-						break;
-					case CarPetrolEnum.Diesel:
-						petrolName = Resources.Resource.CarPetrolDiesel;
-						break;
-					case CarPetrolEnum.Other:
-						petrolName = Resources.Resource.CarPetrolOther;
-						break;
-				}
+				petrolName = EnumHelper.GetStringifyPetrol((CarPetrolEnum)petrolValue);
 				result.Add((int)petrolValue, petrolName);
 			}
 			return result;
+		}
+
+		public static string GetStringifyPetrol(CarPetrolEnum petrol)
+		{
+			switch (petrol)
+			{
+				case CarPetrolEnum.Normal80:
+					return Resources.Resource.CarPetrolNormal;
+				case CarPetrolEnum.Regular92:
+					return Resources.Resource.CarPetrolRegular;
+				case CarPetrolEnum.Premium95:
+					return Resources.Resource.CarPetrolPremium;
+				case CarPetrolEnum.Super98:
+					return Resources.Resource.CarPetrolSuper;
+				case CarPetrolEnum.Diesel:
+					return Resources.Resource.CarPetrolDiesel;
+				case CarPetrolEnum.Other:
+					return Resources.Resource.CarPetrolOther;
+				default:
+					return "";
+			}
 		}
 	}
 }

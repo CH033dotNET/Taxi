@@ -34,7 +34,7 @@
          @Html.DisplayNameFor(model => model.CarPetrolType)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.CarPetrolType)
+		@EnumHelper.GetStringifyPetrol(Model.CarPetrolType)
     </div>
 
     <div class="display-label">

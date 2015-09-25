@@ -14,7 +14,7 @@ namespace MainSaite.Controllers
 
 	
 		PersonManager personManager;
-		UserDTO currentUser;
+		//UserDTO currentUser;
 	
 		
 		public UserController()
