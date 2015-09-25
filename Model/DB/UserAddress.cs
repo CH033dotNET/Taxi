@@ -13,10 +13,7 @@ namespace Model.DB
         [Key]
         public int AddressId { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string Country { get; set; }
-
+        
         [Required]
         [StringLength(50)]
         public string City { get; set; }
@@ -28,10 +25,9 @@ namespace Model.DB
         [Required]
         [StringLength(10)]
         public string Number { get; set; }
-
-        [Required]
-        [StringLength(20)]
-        public string PostalCode { get; set; }
+        
+        [StringLength(500)]
+        public string Comment { get; set; }
 
         [ForeignKey("UserId")]
         public virtual User User { get; set; }
