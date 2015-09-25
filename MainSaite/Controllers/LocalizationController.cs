@@ -24,8 +24,13 @@ namespace MainSaite.Controllers
         {
             var listDistricts = uOW.DistrictRepo.Get().ToList();
             ViewBag.Districts = listDistricts;
+            
             int id = (Session["User"] as Model.DTO.UserDTO).Id;
-            var disId = uOW.LocalizationRepo.Get().Where(d => d.UserId == id).First().DistrictId;
+            LocalizationDTO localization = localmanager.GetById(id);
+            if (localization == null)
+                return RedirectToAction("CreateLocation");
+            int districtId = localization.DistrictId;
+                        
             var disname = uOW.DistrictRepo.GetByID(disId).Name;
             ViewBag.DistrictName = disname;
             var item = localmanager.GetById(id);
@@ -40,6 +45,7 @@ namespace MainSaite.Controllers
         public ActionResult EditLocation(string Name)
         {
             int districtId = uOW.DistrictRepo.Get().Where(x => x.Name == Name).First().Id;
+
             int localid = uOW.LocalizationRepo.Get().Where(x => x.DistrictId == districtId).First().LocalizationId;
             LocalizationDTO district = new LocalizationDTO()
             {
