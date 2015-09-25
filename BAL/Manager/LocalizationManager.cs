@@ -17,7 +17,7 @@ namespace BAL.Manager
             : base(uOW)
         {
         }
-        public LocalizationDTO GetById(int id)
+        public LocalizationDTO GetByUserId(int id)
         {
             var item = uOW.LocalizationRepo.Get().Where(s => s.UserId == id)
                 .FirstOrDefault();
@@ -51,5 +51,15 @@ namespace BAL.Manager
             uOW.Save();
             return Mapper.Map<LocalizationDTO>(temp);
         }
+        public LocalizationDTO getByDistrictId(int id)
+        {
+            var item = uOW.LocalizationRepo.Get().Where(s => s.DistrictId == id).FirstOrDefault();
+            if (item != null)
+            {
+                return Mapper.Map<LocalizationDTO>(item);
+            }
+            return null;
+        }
     }
+
 }

@@ -7,18 +7,18 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Model.DB
 {
-    public class Localization
-    {
-        [Key]
-        public int LocalizationId { get; set; }
+	public class Localization
+	{
+		[Key]
+		public int LocalizationId { get; set; }
 
-        [ForeignKey("UserId")]
-        public virtual User User { get; set; }
-        public int UserId { get; set; }
-        [ForeignKey("DistrictId")]
-        public virtual District District { get; set; }
-        public int DistrictId { get; set; }
+		[ForeignKey("UserId")]
+		public virtual User User { get; set; }
+		public int UserId { get; set; }
+		[ForeignKey("DistrictId")]
+		public virtual District District { get; set; }
+		public int DistrictId { get; set; }
 
-    }
+	}
 }
 

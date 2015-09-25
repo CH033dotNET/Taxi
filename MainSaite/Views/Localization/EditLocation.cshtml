@@ -13,12 +13,12 @@
     <form action="EditLocation" method="post">
         <div class="col-md-6">
 
-            <select name="Name" class="form-control">
+            <select name="Id" class="form-control">
                 @{
 
                     foreach (District D in ViewBag.Districts)
                     {
-                        <option> @D.Name </option>
+                        <option value="@D.Id"> @D.Name </option>
                     }
                 }
             </select>
