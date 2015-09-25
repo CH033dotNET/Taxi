@@ -28,7 +28,7 @@ namespace BAL.Manager
 				}
 			}
 		}
-		public void deleteDistrictById(int id)
+		public void deleteById(int id)
 		{
 			District a = uOW.DistrictRepo.GetByID(id);
 			uOW.DistrictRepo.Delete(a);
@@ -38,6 +38,10 @@ namespace BAL.Manager
 		{
 			var list = uOW.DistrictRepo.Get();
 			return list;
+		}
+		public District getById(int id)
+		{
+			return uOW.DistrictRepo.GetByID(id);
 		}
 	}
 }

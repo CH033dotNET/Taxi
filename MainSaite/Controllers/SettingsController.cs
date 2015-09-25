@@ -90,7 +90,7 @@ namespace MainSaite.Controllers
 		
 		public ActionResult DeleteDistrict(District a)
 		{
-			districtManager.deleteDistrictById(a.Id);
+			districtManager.deleteById(a.Id);
 			return RedirectToAction("DistrictEditor");
 		}
 
