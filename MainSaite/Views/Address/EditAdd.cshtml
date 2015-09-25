@@ -16,14 +16,7 @@
        
        @Html.HiddenFor(model => model.AddressId)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Country)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Country)
-            @Html.ValidationMessageFor(model => model.Country)
-        </div>
-
+        
         <div class="editor-label">
             @Html.LabelFor(model => model.City)
         </div>
@@ -46,14 +39,6 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.Number)
             @Html.ValidationMessageFor(model => model.Number)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PostalCode)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PostalCode)
-            @Html.ValidationMessageFor(model => model.PostalCode)
         </div>
 
        

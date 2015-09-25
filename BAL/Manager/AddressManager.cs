@@ -25,11 +25,9 @@ namespace BAL.Manager
                        select new AddressDTO
                        {
                            AddressId = address.AddressId,
-                           Country = address.Country,
                            City = address.City,
                            Street = address.Street,
                            Number = address.Number,
-                           PostalCode = address.PostalCode,
                            UserId = address.UserId
                        };
 
@@ -40,12 +38,11 @@ namespace BAL.Manager
         {
 
             var temp = Mapper.Map<UserAddress>(address);
-            temp.Country.Trim();
-            temp.City.Trim();
-            temp.Street.Trim();
-            temp.Number.Trim();
-            temp.PostalCode.Trim();
-
+            temp.City=temp.City.Trim();
+            temp.Street=temp.Street.Trim();
+            temp.Number=temp.Number.Trim();
+            temp.Comment = temp.Comment.Trim();
+            
             uOW.AddressRepo.Insert(temp);
             uOW.Save();
 
@@ -73,11 +70,9 @@ namespace BAL.Manager
 
             uOW.AddressRepo.SetStateModified(temp);
 
-            temp.Country = address.Country;
             temp.City = address.City;
             temp.Street = address.Street;
             temp.Number = address.Number;
-            temp.PostalCode = address.PostalCode;
             uOW.Save();
             return Mapper.Map<AddressDTO>(temp);
         }
