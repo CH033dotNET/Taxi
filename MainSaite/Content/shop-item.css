@@ -47,3 +47,36 @@ min-height: 400px;
 .language {
 margin: 0 auto;
 }
+
+.qwert img{
+    width: auto;
+    height: 300px;
+    max-height: 300px;
+
+}
+
+.largeIcon {
+    font-size:25px;
+    padding-left:30px;
+    padding-right:35px;
+}
+
+a:hover {
+text-decoration:none;
+}
+
+.slider-controls > .well {
+    margin-top:60px;
+}
+
+#socialCont {
+align-content:center;
+}
+
+#socialCont>a {
+padding-left:10px;
+}
+
+.topLogo { 
+margin-bottom: 25px;
+}
