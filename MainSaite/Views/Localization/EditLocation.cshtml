@@ -1,0 +1,38 @@
+﻿@using Model
+@model Model.DTO.LocalizationDTO
+
+@{
+    ViewBag.Title = "EditLocation";
+}
+
+<h2>You are in: @ViewBag.DistrictName</h2> <p></p>
+
+<h6>Please choose district in which You are for updating information about Your current localization</h6>
+
+<div class="row">
+    <form action="EditLocation" method="post">
+        <div class="col-md-6">
+
+            <select name="Name" class="form-control">
+                @{
+
+                    foreach (District D in ViewBag.Districts)
+                    {
+                        <option> @D.Name </option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-md-6">
+            <input type="submit" value="ok" class="btn btn-default">
+        </div>
+    </form>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Home", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

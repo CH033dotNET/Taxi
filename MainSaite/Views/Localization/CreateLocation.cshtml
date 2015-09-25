@@ -1,0 +1,38 @@
+﻿@using Model
+@model Model.DTO.LocalizationDTO
+
+@{
+    ViewBag.Title = "CreateLocation";
+}
+
+<h2>We still don't know where You are. Please choose district of Your localization.</h2>
+
+
+<div class="row">
+    <form action="CreateLocation" method="post">
+        <div class="col-md-6">
+
+            <select name="Name" class="form-control">
+                @{
+
+                    foreach (District D in ViewBag.Districts)
+                    {
+                        <option> @D.Name </option>
+                    }
+                }
+
+            </select>
+        </div>
+        <div class="col-md-6">
+            <input type="submit" value="ok" class="btn btn-default">
+        </div>
+    </form>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Home", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

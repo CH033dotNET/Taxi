@@ -22,6 +22,8 @@ namespace Common
             Mapper.CreateMap<AddressDTO, UserAddress>();
 			Mapper.CreateMap<Person, PersonDTO>();
 			Mapper.CreateMap<PersonDTO, Person>();
+            Mapper.CreateMap<Localization, LocalizationDTO>();
+            Mapper.CreateMap<LocalizationDTO, Localization>();
 		}
 	}
 }

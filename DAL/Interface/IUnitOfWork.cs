@@ -17,6 +17,7 @@ namespace DAL.Interface
        	        IGenericRepository<UserAddress> AddressRepo { get; }
 		IGenericRepository<Person> PersonRepo { get; }
 		IGenericRepository<VIPClient> VIPClientRepo { get; }
+        IGenericRepository<Localization> LocalizationRepo { get; }
 
         void Dispose();
         void Save();

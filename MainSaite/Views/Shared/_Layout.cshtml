@@ -80,6 +80,10 @@
                             @if (ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
                             {
                             <li class="list-group-item">@Html.ActionLink("SetVIPStatus", "SetVIPStatus", "Settings")</li>}
+                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
+                            {
+                            <li class="list-group-item">@Html.ActionLink("Localization", "EditLocation", "Localization")</li>}
+
                         </ul>
                   </div>
                   </div>
