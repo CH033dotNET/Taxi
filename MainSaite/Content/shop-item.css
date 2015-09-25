@@ -30,28 +30,40 @@ body {
 footer {
     margin: 50px 0;
 }
-.left-menu {
-min-height: 400px;
-}
+
 
 .lang {
  height: auto;
+     width: 50%;
+    margin: 0 auto;
 }
 
-    .lang > ul.nav {
-        width: 40%;
+    .lang > ul{
+     margin-left: 35%;       
+    }
+
+    .lang > ul > li {
+     
+        display:inline-block;
+    }
+
+        .lang > ul.nav > a {
+        width: 50%;
         margin:0 auto;
-        float:none !important;
+        
     }
 
 .language {
 margin: 0 auto;
 }
 
+.ActivLang{
+    color:black;
+    font-weight:bold;
+}
+
 .qwert img{
-    width: auto;
-    height: 300px;
-    max-height: 300px;
+width:100%;
 
 }
 
