@@ -255,4 +255,19 @@
   <data name="SetVIPStatusPage" xml:space="preserve">
     <value>Set VIP Status</value>
   </data>
+  <data name="EmptyEmail" xml:space="preserve">
+    <value>Email is empty</value>
+  </data>
+  <data name="EmptyPassword" xml:space="preserve">
+    <value>Password is empty</value>
+  </data>
+  <data name="EmptyUserName" xml:space="preserve">
+    <value>UserName is empty</value>
+  </data>
+  <data name="ShortPassword" xml:space="preserve">
+    <value>Password is less than 5 characters</value>
+  </data>
+  <data name="ShortUserName" xml:space="preserve">
+    <value>UserName is less than 4 characters</value>
+  </data>
 </root>

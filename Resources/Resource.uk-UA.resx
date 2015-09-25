@@ -255,4 +255,19 @@
   <data name="SetVIPStatusPage" xml:space="preserve">
     <value>Встановити VIP статус</value>
   </data>
+  <data name="EmptyEmail" xml:space="preserve">
+    <value>Email порожній</value>
+  </data>
+  <data name="EmptyPassword" xml:space="preserve">
+    <value>Пароль порожній</value>
+  </data>
+  <data name="EmptyUserName" xml:space="preserve">
+    <value>Ім’я користувача порожнє</value>
+  </data>
+  <data name="ShortPassword" xml:space="preserve">
+    <value>Пароль менший 5 символів</value>
+  </data>
+  <data name="ShortUserName" xml:space="preserve">
+    <value>Ім’я користувача менше 4 символів</value>
+  </data>
 </root>

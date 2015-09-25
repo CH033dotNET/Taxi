@@ -202,31 +202,31 @@ namespace BAL.Manager
 			if (user.UserName == null)
 			{
 				result = false;
-				msgs.Add("UserName is empty");
+				msgs.Add(Resources.Resource.EmptyUserName);
 
 			}
 			else if (user.UserName.Count() < 4)
 			{
 				result = false;
-				msgs.Add("UserName is less than 4 characters");
+				msgs.Add(Resources.Resource.ShortUserName);
 			}
 
 			if (user.Password == null) 
 			{
 				result = false;
-				msgs.Add("Password is empty");
+				msgs.Add(Resources.Resource.EmptyPassword);
 			}
 			else if (user.Password.Count() < 5)
 			{
 				result = false;
-				msgs.Add("Password is less than 5 characters");
+				msgs.Add(Resources.Resource.ShortPassword);
 
 			}
 
 			if (user.Email == null)
 			{
 				result = false;
-				msgs.Add("Email is empty");
+				msgs.Add(Resources.Resource.EmptyEmail);
 			}
 
 			return result;

@@ -51,7 +51,6 @@ namespace MainSaite.Controllers
 			else
 			{
 				ModelState.Clear();
-				//ModelState.AddModelError("", Resources.Resource.EmptyFields);
 				foreach(string msg in msgs)
 				{
 					ModelState.AddModelError("", msg);
