@@ -278,9 +278,9 @@
     <Content Include="Views\Settings\CarEditor.cshtml" />
     <Content Include="Views\Settings\CarCreate.cshtml" />
     <Content Include="Views\Settings\CarDetails.cshtml" />
-    <Content Include="Views\Address\CreateAdd.cshtml" />
-    <Content Include="Views\Address\Delete.cshtml" />
-    <Content Include="Views\Address\EditAdd.cshtml" />
+    <Content Include="Views\Address\CreateAddress.cshtml" />
+    <Content Include="Views\Address\DeleteAddress.cshtml" />
+    <Content Include="Views\Address\EditAddress.cshtml" />
     <Content Include="Views\Address\Index.cshtml" />
     <Content Include="Views\Settings\CarEdit.cshtml" />
     <Content Include="Views\Settings\CarDelete.cshtml" />

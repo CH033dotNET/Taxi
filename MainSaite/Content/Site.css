@@ -533,7 +533,9 @@ table {
     margin-top: 0.75em;
     border: 0 none;
 }
-
+.akk {
+    width: 80%;
+}
 th {
     font-size: 1.2em;
     text-align: left;

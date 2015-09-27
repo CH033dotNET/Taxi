@@ -288,4 +288,58 @@
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="ConfirmDeletingAddress" xml:space="preserve">
+    <value>Are you sure you want to delete this address?</value>
+  </data>
+  <data name="CreateLocation" xml:space="preserve">
+    <value>We still don't know where You are. Please choose district of Your location.</value>
+  </data>
+  <data name="CreateNewAddressString" xml:space="preserve">
+    <value>Add new address</value>
+  </data>
+  <data name="EditLocation" xml:space="preserve">
+    <value>Please choose district in which You are for updating information about Your current location</value>
+  </data>
+  <data name="NumberHouse" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Street</value>
+  </data>
+  <data name="TitleCreateAddress" xml:space="preserve">
+    <value>Add new address</value>
+  </data>
+  <data name="TitleCreateLocation" xml:space="preserve">
+    <value>Add Your location</value>
+  </data>
+  <data name="TitleDeleteAddress" xml:space="preserve">
+    <value>Delete current address</value>
+  </data>
+  <data name="TitleEditLocation" xml:space="preserve">
+    <value>Update Your location</value>
+  </data>
+  <data name="TitleMainMenuAddress" xml:space="preserve">
+    <value>Your favourite addresses</value>
+  </data>
+  <data name="TitleMainMenuLocation" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="YourCurrentLocation" xml:space="preserve">
+    <value>You are in:</value>
+  </data>
+  <data name="DefaultValueOfCity" xml:space="preserve">
+    <value>Chernivtsi</value>
+  </data>
+  <data name="TitleEditAddress" xml:space="preserve">
+    <value>Edit current address</value>
+  </data>
+  <data name="TitleLeftMenuUserAddress" xml:space="preserve">
+    <value>Favourite addresses</value>
+  </data>
 </root>

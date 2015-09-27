@@ -11,10 +11,10 @@ namespace Model.DTO
 {
     public class LocalizationDTO
     {
-        [Key]
-        public int LocalizationId { get; set; }
+		[Key]
+		public int LocalizationId { get; set; }
 
-        [ForeignKey("UserId")]
+		[ForeignKey("UserId")]
         public virtual User User { get; set; }
         public int UserId { get; set; }
         [ForeignKey("DistrictId")]
