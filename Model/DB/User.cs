@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Model.DB;
 
 namespace Model
 {
@@ -12,6 +13,7 @@ namespace Model
     {
         [Key]
         public int Id { get; set; }
+		public virtual Location Location { get; set; }
         [Required]
         [MinLength(4, ErrorMessage="Минимальная длинна - 4 символа")]
         public string UserName { get; set; }

@@ -31,6 +31,6 @@ namespace DAL
         public DbSet<UserAddress> Addresses { get; set; }
 		public DbSet<Person> Persons { get; set; }
 		public DbSet<VIPClient> VIPClients { get; set; }
-        public DbSet<Localization> Localizations { get; set; }
+        public DbSet<Location> Locations { get; set; }
     }
 }
