@@ -229,7 +229,7 @@
     <value>Diesel</value>
   </data>
   <data name="CarPetrolNormal" xml:space="preserve">
-    <value>80</value>
+    <value>Normal-80</value>
   </data>
   <data name="CarPetrolOther" xml:space="preserve">
     <value>Other</value>

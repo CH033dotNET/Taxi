@@ -12,21 +12,23 @@
 	</fieldset>
 	<fieldset class="fieldset">
 		<legend class="legend">@Resources.Resource.AddYourCarInfoHere!</legend>
-		<table class="table">
+		<table class="table table-hover">
 			<tr>
-				<td>@Resources.Resource.CarName</td>
-				<td><input type="text" class="form-control input-lg" name="CarName" placeholder="@Resources.Resource.CarName"></td>
+				<td><label for="inputCarName" class="control-label">@Resources.Resource.CarName</label></td>
+				<td>
+					<input type="text" class="form-control input-lg" id="inputCarName" name="CarName" placeholder="@Resources.Resource.CarName">
+				</td>
 			</tr>
 			<tr>
-				<td>@Resources.Resource.CarNumber</td>
-				<td><input type="text" class="form-control input-lg" name="CarNumber" placeholder="@Resources.Resource.CarNumber"></td>
+				<td><label for="inputCarNumber" class="control-label">@Resources.Resource.CarNumber</label></td>
+				<td><input type="text" class="form-control input-lg" id="inputCarNumber" name="CarNumber" placeholder="@Resources.Resource.CarNumber"></td>
 			</tr>
 			<tr>
-				<td>@Resources.Resource.CarOccupation</td>
-				<td><input type="number" class="form-control input-lg" name="CarOccupation" min="2" max="20" placeholder="@Resources.Resource.CarOccupation"></td>
+				<td><label for="inputCarOccupation" class="control-label">@Resources.Resource.CarOccupation</label></td>
+				<td><input type="number" class="form-control input-lg" id="inputCarOccupation" name="CarOccupation" min="2" max="20" placeholder="@Resources.Resource.CarOccupation"></td>
 			</tr>
 			<tr>
-				<td>@Resources.Resource.CarClass</td>
+				<td><label for="inputCarClass" class="control-label">@Resources.Resource.CarClass</label></td>
 				<td>
 					<select class="form-control input-lg" name="CarClass">
 						@foreach (var carClass in EnumHelper.GetCarClasses())
@@ -37,7 +39,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>@Resources.Resource.CarPetrolType</td>
+				<td><label for="inputCarPetrolType" class="control-label">@Resources.Resource.CarPetrolType</label></td>
 				<td>
 					<select class="form-control input-lg" name="CarPetrolType">
 						@foreach (var carPetrol in EnumHelper.GetCarPetrol())
@@ -48,15 +50,15 @@
 				</td>
 			</tr>
 			<tr>
-				<td>@Resources.Resource.CarPetrolConsumption</td>
-				<td><input type="number" class="form-control input-lg" name="CarPetrolConsumption" min="1" max="100" placeholder="@Resources.Resource.CarPetrolConsumption"></td>
+				<td><label for="inputCarPetrolConsumption" class="control-label">@Resources.Resource.CarPetrolConsumption</label></td>
+				<td><input type="number" class="form-control input-lg" id="inputCarPetrolConsumption" name="CarPetrolConsumption" min="1" max="100" placeholder="@Resources.Resource.CarPetrolConsumption"></td>
 			</tr>
 			<tr>
-				<td>@Resources.Resource.CarManufactureDate</td>
+				<td><label for="inputCarManufactureDate" class="control-label">@Resources.Resource.CarManufactureDate</label></td>
 				<td><input type="date" class="form-control input-lg" name="CarManufactureDate" placeholder="@Resources.Resource.CarManufactureDate"></td>
 			</tr>
 			<tr>
-				<td>@Resources.Resource.CarState</td>
+				<td><label for="inputCarState" class="control-label">@Resources.Resource.CarState</label></td>
 				<td>
 					<select class="form-control input-lg" name="CarState">
 						@foreach (var carState in EnumHelper.GetCarStates())
@@ -68,9 +70,11 @@
 			</tr>
 		</table>
 		@Html.Hidden("UserId", (Session["User"] as Model.DTO.UserDTO).Id != null ? (Session["User"] as Model.DTO.UserDTO).Id : -1)
-		<input class="btn btn-default" type="submit" value="@Resources.Resource.AddNewCar" style="margin: 0 auto; width:200px" />
-		<input class="btn btn-default" type="reset" value="@Resources.Resource.ResetCarData" style="margin: 0 auto; width:200px" />
-		<input class="btn btn-default" type="button" value="@Resources.Resource.ToCarMenu" onclick="history.go(-1);return true;" style="margin: 0 auto; width:200px" />
+		<div class="btn-group" role="group" aria-label="...">
+			<input class="btn btn-success" type="submit" value="@Resources.Resource.AddNewCar" style="margin: 0 auto; width:200px" />
+			<input class="btn btn-warning" type="reset" value="[Reset]" style="margin: 0 auto; width:200px" />
+			<input class="btn btn-primary" type="button" value="To menu" onclick="history.go(-1);return true;" style="margin: 0 auto; width:200px" />
+		</div>
 	</fieldset>
 </form>
 

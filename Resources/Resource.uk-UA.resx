@@ -229,7 +229,7 @@
     <value>Дизель</value>
   </data>
   <data name="CarPetrolNormal" xml:space="preserve">
-    <value>80</value>
+    <value>Нормаль-80</value>
   </data>
   <data name="CarPetrolOther" xml:space="preserve">
     <value>Інший</value>
