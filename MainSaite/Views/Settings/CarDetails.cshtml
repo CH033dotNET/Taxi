@@ -1,57 +1,78 @@
 ﻿@model Model.DTO.CarDTO
 
 @{
-    ViewBag.Title = "CarDetails";
+	ViewBag.Title = "CarDetails";
 }
-
-<h2>CarDetails</h2>
-
-<fieldset>
-    <legend>CarDTO</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.CarName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CarName)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.CarNumber)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CarNumber)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.CarOccupation)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CarOccupation)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.CarPetrolType)
-    </div>
-    <div class="display-field">
-		@EnumHelper.GetStringifyPetrol(Model.CarPetrolType)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.CarPetrolConsumption)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CarPetrolConsumption)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.CarManufactureDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CarManufactureDate)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "CarEdit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "CarEditor")
-</p>
+@Styles.Render("~/Content/BootstrapCallout.css")
+<div>
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			<h3 class="panel-title">[Details]</h3>
+		</div>
+		<div class="bs-callout bs-callout-primary">
+			<h4>Here is car details page</h4>
+			You can view all your car info here.
+		</div>
+		<div class="panel-footer">
+			@Html.ActionLink("[Add new Car?]", "CarCreate", "Settings", null, new { @class = "btn btn-success" })
+		</div>
+		<div>
+			<table class="table table-hover">
+				<tr>
+					<td><label class="control-label">@Resources.Resource.CarName</label></td>
+					<td>
+						@Html.DisplayFor(model => model.CarName)
+					</td>
+				</tr>
+				<tr>
+					<td><label class="control-label">@Resources.Resource.CarNumber</label></td>
+					<td>
+						@Html.DisplayFor(model => model.CarNumber)
+					</td>
+				</tr>
+				<tr>
+					<td><label class="control-label">@Resources.Resource.CarOccupation</label></td>
+					<td>
+						@Html.DisplayFor(model => model.CarOccupation)
+					</td>
+				</tr>
+				<tr>
+					<td><label class="control-label">@Resources.Resource.CarClass</label></td>
+					<td>
+						@EnumHelper.GetStringifyClass(Model.CarClass)
+					</td>
+				</tr>
+				<tr>
+					<td><label class="control-label">@Resources.Resource.CarPetrolType</label></td>
+					<td>
+						@EnumHelper.GetStringifyPetrol(Model.CarPetrolType)
+					</td>
+				</tr>
+				<tr>
+					<td><label class="control-label">@Resources.Resource.CarPetrolConsumption</label></td>
+					<td>
+						@Html.DisplayFor(model => model.CarPetrolConsumption)
+					</td>
+				</tr>
+				<tr>
+					<td><label class="control-label">@Resources.Resource.CarManufactureDate</label></td>
+					<td>
+						@Html.DisplayFor(model => model.CarManufactureDate)
+					</td>
+				</tr>
+				<tr>
+					<td><label class="control-label">@Resources.Resource.CarState</label></td>
+					<td>
+						@EnumHelper.GetStringifyState(Model.CarState)
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="panel-footer">
+			<div class="btn-group" role="group" aria-label="...">
+				@Html.ActionLink("Edit", "CarEdit", "Settings", new { id = Model.Id }, new { @class="btn btn-warning"})
+				@Html.ActionLink("Back to List", "CarEditor", "Settings", null, new { @class = "btn btn-info" })
+			</div>
+		</div>
+	</div>
+</div>

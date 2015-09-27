@@ -22,8 +22,10 @@ namespace Common
             Mapper.CreateMap<AddressDTO, UserAddress>();
 			Mapper.CreateMap<Person, PersonDTO>();
 			Mapper.CreateMap<PersonDTO, Person>();
-            Mapper.CreateMap<Location, LocationDTO>();
-            Mapper.CreateMap<LocationDTO, Location>();
+            Mapper.CreateMap<Localization, LocalizationDTO>();
+            Mapper.CreateMap<LocalizationDTO, Localization>();
+			Mapper.CreateMap<WorkshiftHistory, WorkshiftHistoryDTO>();
+			Mapper.CreateMap<WorkshiftHistoryDTO, WorkshiftHistory>();
 		}
 	}
 }

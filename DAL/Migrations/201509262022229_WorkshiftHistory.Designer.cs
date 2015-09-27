@@ -7,13 +7,13 @@ namespace DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ChangeLocationTable : IMigrationMetadata
+    public sealed partial class WorkshiftHistory : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeLocationTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(WorkshiftHistory));
         
         string IMigrationMetadata.Id
         {
-            get { return "201509271042411_ChangeLocationTable"; }
+            get { return "201509262022229_WorkshiftHistory"; }
         }
         
         string IMigrationMetadata.Source

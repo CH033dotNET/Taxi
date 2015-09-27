@@ -42,19 +42,21 @@
   <ItemGroup>
     <Compile Include="DB\Car.cs" />
     <Compile Include="DB\District.cs" />
-    <Compile Include="DB\Location.cs" />
+    <Compile Include="DB\Localization.cs" />
     <Compile Include="DB\Person.cs" />
     <Compile Include="DB\RegistrationModel.cs" />
     <Compile Include="DB\UserAddress.cs" />
     <Compile Include="DB\VIPClient.cs" />
+    <Compile Include="DB\WorkshiftHistory.cs" />
     <Compile Include="DTO\AddressDTO.cs" />
     <Compile Include="DTO\CarDTO.cs" />
     <Compile Include="DB\LoginModel.cs" />
-    <Compile Include="DTO\LocationDTO.cs" />
+    <Compile Include="DTO\LocalizationDTO.cs" />
     <Compile Include="DTO\Pager.cs" />
     <Compile Include="DTO\PersonDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="DTO\VIPClientDTO.cs" />
+    <Compile Include="DTO\WrokShiftHistoryDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DB\Role.cs" />
     <Compile Include="DB\User.cs" />

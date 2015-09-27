@@ -116,5 +116,32 @@ namespace MainSaite.Helpers
 					return "";
 			}
 		}
+		public static string GetStringifyClass(CarClassEnum carClass)
+		{
+			switch (carClass)
+			{
+				case CarClassEnum.Econom:
+					return Resources.Resource.CarClassEconom;
+				case CarClassEnum.General:
+					return Resources.Resource.CarClassGeneral;
+				case CarClassEnum.Premium:
+					return Resources.Resource.CarClassPremium;
+				default:
+					return "";
+			}
+		}
+
+		public static string GetStringifyState(CarStateEnum carState)
+		{
+			switch (carState)
+			{
+				case CarStateEnum.Repairing:
+					return Resources.Resource.CarStateRepairing;
+				case CarStateEnum.Working:
+					return Resources.Resource.CarStateWorking;
+				default:
+					return "";
+			}
+		}
 	}
 }

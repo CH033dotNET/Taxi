@@ -3,20 +3,33 @@
 @{
 	ViewBag.Title = "CarEditor";
 }
-<body>
-	<fieldset class="fieldset">
-		<legend class="legend">Car info modification</legend>
-	</fieldset>
-	<fieldset class="fieldset">
-		@Html.ActionLink("[Add new Car?]", "CarCreate")
-	</fieldset>
-	<fieldset class="fieldset">
-		<legend class="legend">[Your car list]</legend>
+@Styles.Render("~/Content/BootstrapCallout.css")
+<div>
+	<div class="page-header">
+		<h1>Welcome home,<small>[UserName]</small></h1>
+	</div>
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">[Garage]</h3>
+		</div>
+		<div class="panel-body">
+			<div class="bs-callout bs-callout-primary">
+				<h4>This is your garage</h4>
+				All information about your car or cars will be displayed here. You can always view, add, edit or delete each car you want.
+			</div>
+			<div class="bs-callout bs-callout-warning">
+				<h4>Keep in mind</h4>
+				Always keep in check your information. Do not forget to update information you submited.
+			</div>
+		</div>
+		<div class="panel-footer">
+			@Html.ActionLink("[Add new Car?]", "CarCreate", "Settings", null, new { @class = "btn btn-success" })
+		</div>
 		<div class="table-list">
 			<div class="table-responsive">
 				<table class="table table-striped">
 					<thead>
-						<tr>
+						<tr class="info">
 							<th>
 								@Resources.Resource.CarName
 							</th>
@@ -58,5 +71,5 @@
 				</table>
 			</div>
 		</div>
-	</fieldset>
-</body>
+	</div>
+</div>

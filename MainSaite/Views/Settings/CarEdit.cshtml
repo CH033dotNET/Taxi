@@ -1,86 +1,92 @@
 ﻿@model Model.DTO.CarDTO
 
 @{
-    ViewBag.Title = "CarEdit";
+	ViewBag.Title = "CarEdit";
 }
-
-<h2>CarEdit</h2>
-
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>CarDTO</legend>
-
-        @Html.HiddenFor(model => model.Id)
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CarName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CarName)
-            @Html.ValidationMessageFor(model => model.CarName)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CarNumber)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CarNumber)
-            @Html.ValidationMessageFor(model => model.CarNumber)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CarOccupation)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CarOccupation)
-            @Html.ValidationMessageFor(model => model.CarOccupation)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CarPetrolType)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CarPetrolType)
-            @Html.ValidationMessageFor(model => model.CarPetrolType)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CarPetrolConsumption)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CarPetrolConsumption)
-            @Html.ValidationMessageFor(model => model.CarPetrolConsumption)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CarManufactureDate)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CarManufactureDate)
-            @Html.ValidationMessageFor(model => model.CarManufactureDate)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.UserId)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.UserId)
-            @Html.ValidationMessageFor(model => model.UserId)
-        </div>
-
-        <div >
-            <input type="submit" value="Save Changes" />
-        </div>
-    </fieldset>
-}
-
+@Styles.Render("~/Content/BootstrapCallout.css")
 <div>
-    @Html.ActionLink("Back to List", "CarEditor")
+	<form method="post">
+		<div class="panel panel-warning">
+			<div class="panel-heading">
+				<h3 class="panel-title">[Edit car info]</h3>
+			</div>
+			<div class="bs-callout bs-callout-primary">
+				<h4>Here is car registration page</h4>
+				Enter all required information into the form below.
+			</div>
+			<div class="bs-callout bs-callout-danger">
+				<h4>Be carefull</h4>
+				Edit or delete your information wisely!
+			</div>
+			<div class="panel-footer">
+				<input class="btn btn-warning" type="reset" value="[Reset changes]" style="margin: 0 auto; width:200px" />
+			</div>
+			<div>
+				@Html.AntiForgeryToken()
+				<table class="table table-hover">
+					<tr>
+						<td><label class="control-label">@Resources.Resource.CarName</label></td>
+						<td>
+							@Html.TextBoxFor(model => model.CarName, new { @class = "form-control input-lg" })
+							@Html.ValidationMessageFor(model => model.CarName)
+						</td>
+					</tr>
+					<tr>
+						<td><label class="control-label">@Resources.Resource.CarNumber</label></td>
+						<td>
+							@Html.TextBoxFor(model => model.CarNumber, new { @class = "form-control input-lg" })
+							@Html.ValidationMessageFor(model => model.CarNumber)
+						</td>
+					</tr>
+					<tr>
+						<td><label class="control-label">@Resources.Resource.CarOccupation</label></td>
+						<td>
+							@Html.TextBoxFor(model => model.CarOccupation, new { @class = "form-control input-lg", @type = "number" })
+							@Html.ValidationMessageFor(model => model.CarOccupation)
+						</td>
+					</tr>
+					<tr>
+						<td><label class="control-label">@Resources.Resource.CarClass</label></td>
+						<td>
+							@Html.DropDownListFor(model => model.CarClass, new SelectList(Enum.GetValues(typeof(Common.Enum.CarEnums.CarClassEnum))), new { @class = "form-control input-lg" })
+						</td>
+					</tr>
+					<tr>
+						<td><label class="control-label">@Resources.Resource.CarPetrolType</label></td>
+						<td>
+							@Html.DropDownListFor(model => model.CarPetrolType, new SelectList(Enum.GetValues(typeof(Common.Enum.CarEnums.CarPetrolEnum))), new { @class = "form-control input-lg" })
+						</td>
+					</tr>
+					<tr>
+						<td><label class="control-label">@Resources.Resource.CarPetrolConsumption</label></td>
+						<td>
+							@Html.TextBoxFor(model => model.CarPetrolConsumption, new { @class = "form-control input-lg", @type = "number" })
+						</td>
+					</tr>
+					<tr>
+						<td><label class="control-label">@Resources.Resource.CarManufactureDate</label></td>
+						<td>
+							@Html.TextBoxFor(model => model.CarManufactureDate, new { @class = "form-control input-lg", @type = "date" })
+							@Html.ValidationMessageFor(model => model.CarManufactureDate)
+						</td>
+					</tr>
+					<tr>
+						<td><label class="control-label">@Resources.Resource.CarState</label></td>
+						<td>
+							@Html.DropDownListFor(model => model.CarState, new SelectList(Enum.GetValues(typeof(Common.Enum.CarEnums.CarStateEnum))), new { @class = "form-control input-lg" })
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="panel-footer">
+				<div class="btn-group" role="group" aria-label="...">
+					<input class="btn btn-success" type="submit" value="[Save changes]" style="margin: 0 auto; width:200px" />
+					<input class="btn btn-primary" type="button" value="To menu" onclick="history.go(-1);return true;" style="margin: 0 auto; width:200px" />
+				</div>
+			</div>
+		</div>
+	</form>
 </div>
-
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/jqueryval")
 }

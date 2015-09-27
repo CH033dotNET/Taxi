@@ -1,10 +1,10 @@
 ﻿@model Model.DTO.AddressDTO
 
 @{
-    ViewBag.Title = "CreateAddress";
+    ViewBag.Title = "CreateAdd";
 }
 
-<legend>@Resources.Resource.TitleCreateAddress</legend>
+<h2>Add new address</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -16,14 +16,16 @@
        @Html.HiddenFor(model=>model.AddressId)
 
          <div class="editor-label">
-            @Html.Label(@Resources.Resource.City)
+            @Html.LabelFor(model => model.City)
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.City, new { id = "txtPlace", Value = @Resources.Resource.DefaultValueOfCity })
+            <input type="text" name="City" placeholder="Chernivtsi"/>
+            @*@Html.EditorFor(m => m.City, new {@class="form-class", @value="Chernivtsi"})*@
+            
         </div>
 
         <div class="editor-label">
-            @Html.Label(@Resources.Resource.Street)
+            @Html.LabelFor(model => model.Street)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Street)
@@ -31,14 +33,14 @@
         </div>
 
         <div class="editor-label">
-            @Html.Label(@Resources.Resource.NumberHouse)
+            @Html.LabelFor(model => model.Number)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Number)
             @Html.ValidationMessageFor(model => model.Number)
         </div>
         <div class="editor-label">
-            @Html.Label(@Resources.Resource.Comment)
+            @Html.LabelFor(model => model.Comment)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Comment)
@@ -47,14 +49,14 @@
 
         @Html.Hidden("UserId", (Session["User"] as Model.DTO.UserDTO).Id != null ? (Session["User"] as Model.DTO.UserDTO).Id : -1)
          <p>
-            <input type="submit" value=@Resources.Resource.addString />
+            <input type="submit" value="Create" />
          </p>
         
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink(@Resources.Resource.MainLink, "Index")
+    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {

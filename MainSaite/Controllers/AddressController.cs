@@ -30,12 +30,12 @@ namespace MainSaite.Controllers
         }
 
         [HttpGet]
-        public ActionResult CreateAddress()
+        public ActionResult CreateAdd()
         {
             return View();
         }
         [HttpPost]
-         public ActionResult CreateAddress(AddressDTO address) 
+         public ActionResult CreateAdd(AddressDTO address) 
         {
           
             addressmanager.AddAddress(address);
@@ -44,14 +44,14 @@ namespace MainSaite.Controllers
         }
 
         [HttpGet]
-        public ActionResult DeleteAddress(int id)
+        public ActionResult Delete(int id)
         {
 
             AddressDTO address = addressmanager.GetById(id);
 
             return View(address);
         }
-        [HttpPost, ActionName("DeleteAddress")]
+        [HttpPost, ActionName("Delete")]
         public ActionResult DeleteAdd(int id)
         { 
             
@@ -66,7 +66,7 @@ namespace MainSaite.Controllers
         }*/
 
         [HttpGet]
-        public ActionResult EditAddress(int id)
+        public ActionResult EditAdd(int id)
         {
            
             AddressDTO address = addressmanager.GetById(id);
@@ -74,7 +74,7 @@ namespace MainSaite.Controllers
             return View(address);
         }
         [HttpPost]
-        public ActionResult EditAddress(AddressDTO address)
+        public ActionResult EditAdd(AddressDTO address)
         {
             addressmanager.UpdateAddress(address);
             return RedirectToAction("Index");

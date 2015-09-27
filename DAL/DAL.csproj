@@ -96,9 +96,9 @@
     <Compile Include="Migrations\201509251332245_UpdateAddress_Kate.Designer.cs">
       <DependentUpon>201509251332245_UpdateAddress_Kate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201509271042411_ChangeLocationTable.cs" />
-    <Compile Include="Migrations\201509271042411_ChangeLocationTable.Designer.cs">
-      <DependentUpon>201509271042411_ChangeLocationTable.cs</DependentUpon>
+    <Compile Include="Migrations\201509262022229_WorkshiftHistory.cs" />
+    <Compile Include="Migrations\201509262022229_WorkshiftHistory.Designer.cs">
+      <DependentUpon>201509262022229_WorkshiftHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -151,8 +151,8 @@
     <EmbeddedResource Include="Migrations\201509251332245_UpdateAddress_Kate.resx">
       <DependentUpon>201509251332245_UpdateAddress_Kate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509271042411_ChangeLocationTable.resx">
-      <DependentUpon>201509271042411_ChangeLocationTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509262022229_WorkshiftHistory.resx">
+      <DependentUpon>201509262022229_WorkshiftHistory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

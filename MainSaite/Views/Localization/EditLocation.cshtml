@@ -2,12 +2,12 @@
 @model Model.DTO.LocalizationDTO
 
 @{
-    ViewBag.Title ="EditLocation" ;
+    ViewBag.Title = "EditLocation";
 }
-<legend>@Resources.Resource.TitleEditLocation</legend>
-<h2>@Resources.Resource.YourCurrentLocation @ViewBag.DistrictName</h2> <p></p>
 
-<h6>@Resources.Resource.EditLocation</h6>
+<h2>You are in: @ViewBag.DistrictName</h2> <p></p>
+
+<h6>Please choose district in which You are for updating information about Your current localization</h6>
 
 <div class="row">
     <form action="EditLocation" method="post">
@@ -16,9 +16,9 @@
             <select name="Id" class="form-control">
                 @{
 
-                    foreach (District District in ViewBag.Districts)
+                    foreach (District D in ViewBag.Districts)
                     {
-                        <option value="@District.Id"> @District.Name </option>
+                        <option value="@D.Id"> @D.Name </option>
                     }
                 }
             </select>
@@ -29,7 +29,9 @@
     </form>
 </div>
 
-
+<div>
+    @Html.ActionLink("Back to List", "Home", "Index")
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -10,15 +10,15 @@ using System.Web.WebPages.Html;
 
 namespace MainSaite.Controllers
 {
-	public class LocationController : BaseController
+	public class LocalizationController : BaseController
 	{
 		//
 		// GET: /Localization/
-		LocationManager locationmanager;
+		LocalizationManager localmanager;
 		DistrictManager districtmanager;
-		public LocationController()
+		public LocalizationController()
 		{
-			locationmanager = new LocationManager(base.uOW);
+			localmanager = new LocalizationManager(base.uOW);
 			districtmanager = new DistrictManager(base.uOW);
 		}
 
@@ -38,7 +38,7 @@ namespace MainSaite.Controllers
 			var listDistricts = uOW.DistrictRepo.Get().ToList();
 			ViewBag.Districts = listDistricts;
 
-			LocationDTO localization = locationmanager.GetByUserId(user.Id);
+			LocalizationDTO localization = localmanager.GetByUserId(user.Id);
 			if (localization == null)
 				return RedirectToAction("CreateLocation");
 			else
@@ -65,9 +65,9 @@ namespace MainSaite.Controllers
 				});
 			}
 
-			LocationDTO local = locationmanager.GetByUserId(user.Id);
+			LocalizationDTO local = localmanager.GetByUserId(user.Id);
 			local.DistrictId = Id;
-			locationmanager.UpdateLocalization(local);
+			localmanager.UpdateLocalization(local);
 			return RedirectToAction("Index", "Home"); ;
 		}
 
@@ -82,12 +82,12 @@ namespace MainSaite.Controllers
 		public ActionResult CreateLocation(string Name)
 		{
 			int districtId = uOW.DistrictRepo.Get().Where(x => x.Name == Name).First().Id;
-			LocationDTO district = new LocationDTO()
+			LocalizationDTO district = new LocalizationDTO()
 			{
 				UserId = (Session["User"] as Model.DTO.UserDTO).Id,
 				DistrictId = districtId
 			};
-			locationmanager.AddLoc(district);
+			localmanager.AddLoc(district);
 			return RedirectToAction("Index", "Home");
 		}
 	}

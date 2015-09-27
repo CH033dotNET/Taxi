@@ -14,10 +14,10 @@ namespace DAL.Interface
         IGenericRepository<Role> RoleRepo { get; }
 		IGenericRepository<District> DistrictRepo { get; }
 		IGenericRepository<Car> CarRepo { get; }
-       	IGenericRepository<UserAddress> AddressRepo { get; }
+       	        IGenericRepository<UserAddress> AddressRepo { get; }
 		IGenericRepository<Person> PersonRepo { get; }
 		IGenericRepository<VIPClient> VIPClientRepo { get; }
-        IGenericRepository<Location> LocationRepo { get; }
+        IGenericRepository<Localization> LocalizationRepo { get; }
 
         void Dispose();
         void Save();

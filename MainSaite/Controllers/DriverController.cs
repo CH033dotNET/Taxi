@@ -24,5 +24,18 @@ namespace MainSaite.Controllers
 		{
 			return View();
 		}
+
+		public ActionResult DistrictPart(string userAction)
+		{
+			if (userAction == "WorkStart")
+			{
+				ViewBag.SubmitValue = "WorkStart";
+			}
+			if (userAction == "WorkEnd")
+			{
+				ViewBag.SubmitValue = "WorkEnd";
+			}
+			return PartialView();
+		}
     }
 }

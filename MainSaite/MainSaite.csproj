@@ -138,11 +138,11 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
-    <Compile Include="bin\AdministrationController.cs" />
+    <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\DriverController.cs" />
-    <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\LocalizationController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -156,6 +156,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\BootstrapCallout.css" />
     <Content Include="Content\DriverMenu.css" />
     <Content Include="Content\Picture\0-well-traveled-passport-taxi-cab-global-british-american-vietnamese-engagement-wedding-photos-photographer.jpg" />
     <Content Include="Content\Picture\2.jpg" />
@@ -278,9 +279,9 @@
     <Content Include="Views\Settings\CarEditor.cshtml" />
     <Content Include="Views\Settings\CarCreate.cshtml" />
     <Content Include="Views\Settings\CarDetails.cshtml" />
-    <Content Include="Views\Address\CreateAddress.cshtml" />
-    <Content Include="Views\Address\DeleteAddress.cshtml" />
-    <Content Include="Views\Address\EditAddress.cshtml" />
+    <Content Include="Views\Address\CreateAdd.cshtml" />
+    <Content Include="Views\Address\Delete.cshtml" />
+    <Content Include="Views\Address\EditAdd.cshtml" />
     <Content Include="Views\Address\Index.cshtml" />
     <Content Include="Views\Settings\CarEdit.cshtml" />
     <Content Include="Views\Settings\CarDelete.cshtml" />
@@ -289,6 +290,7 @@
     <Content Include="Views\Settings\SetVIPStatus.cshtml" />
     <Content Include="Views\Localization\EditLocation.cshtml" />
     <Content Include="Views\Localization\CreateLocation.cshtml" />
+    <Content Include="Views\Driver\DistrictPart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

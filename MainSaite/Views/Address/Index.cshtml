@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>@Resources.Resource.TitleMainMenuAddress</h2>
+<h2>Your favourite addresses</h2>
 
 <p>
-    @Html.ActionLink(@Resources.Resource.CreateNewAddressString, "CreateAddress")
+    @Html.ActionLink("Create New", "CreateAdd")
 </p>
 <table width="800">
     <tr>
@@ -15,16 +15,16 @@
         <th></th>
         
         <th>
-            @Html.Label(@Resources.Resource.City)
+            @Html.DisplayNameFor(model => model.City)
         </th>
         <th>
-            @Html.Label(@Resources.Resource.Street)
+            @Html.DisplayNameFor(model => model.Street)
         </th>
         <th>
-            @Html.Label(@Resources.Resource.NumberHouse)
+            @Html.DisplayNameFor(model => model.Number)
         </th>
         <th>
-            @Html.Label(@Resources.Resource.Comment)
+            @Html.DisplayNameFor(model => model.Comment)
         </th>
         <th></th>
         <th></th>
@@ -53,8 +53,8 @@
                 @Html.HiddenFor(modelItem => item.UserId)
             </td>
             <td>
-                @Html.ActionLink(@Resources.Resource.editString , "EditAddress", new { id = item.AddressId })
-                @Html.ActionLink(@Resources.Resource.deleteString,"DeleteAddress", new { id = item.AddressId })
+                @Html.ActionLink("Edit", "EditAdd", new { id = item.AddressId })
+                @Html.ActionLink("Delete", "Delete", new { id = item.AddressId })
             </td>
         </tr>
     }
