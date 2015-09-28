@@ -15,7 +15,7 @@ namespace MainSaite.Controllers
     public class AccountController : BaseController
     {
 		
-		UserManager userManager = null;
+
 
 		public AccountController()
 		{

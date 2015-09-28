@@ -17,13 +17,6 @@ namespace MainSaite.Controllers
 {
 	public class SettingsController : BaseController
 	{
-		UserManager userManager;
-
-		//ASIX
-		DistrictManager districtManager;
-
-		// Nick
-		CarManager carManager;
 		
 
 

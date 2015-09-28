@@ -94,12 +94,14 @@ namespace BAL.Manager
 			if (newWorker == null)
 			{
 				uOW.WorkshiftHistoryRepo.SetStateModified(newWorker);
-				newWorker.DriverId = id;
+				newWorker.DriverId = (int)id;
 				newWorker.WorkStarted = DateTime.Now;
-				return null;
+				//newWorker.WorkEnded = null;
+				return Mapper.Map<WorkshiftHistoryDTO>(newWorker);
 			}
 			uOW.WorkshiftHistoryRepo.SetStateModified(newWorker);
 			newWorker.WorkStarted = DateTime.Now;
+			//newWorker.WorkEnded = null;
 			uOW.Save();
 			return Mapper.Map<WorkshiftHistoryDTO>(newWorker);
 		}

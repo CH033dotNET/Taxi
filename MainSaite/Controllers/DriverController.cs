@@ -17,7 +17,6 @@ namespace MainSaite.Controllers
 {
 	public class DriverController : BaseController
 	{
-		CarManager carManager;
 		public DriverController()
 		{
 			//Nick

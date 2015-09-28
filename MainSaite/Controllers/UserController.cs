@@ -11,7 +11,6 @@ namespace MainSaite.Controllers
 	{
 
 		private ImageResult imageResult;
-		PersonManager personManager;
 		//UserDTO currentUser;
 	
 		

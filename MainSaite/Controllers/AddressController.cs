@@ -16,7 +16,6 @@ namespace MainSaite.Controllers
     public class AddressController : BaseController
     {
          
-        AddressManager addressmanager;
         MainContext db = new MainContext();
         public AddressController()
         {
