@@ -2,11 +2,12 @@
 
 @{
 	ViewBag.Title = "CarEditor";
+	string username = (Session["user"] as Model.DTO.UserDTO).UserName;
 }
 @Styles.Render("~/Content/BootstrapCallout.css")
 <div>
 	<div class="page-header">
-		<h1>@Resources.Resource.Greeting,<small>[UserName]</small></h1>
+		<h1>@Resources.Resource.Greeting,<small>@username</small></h1>
 	</div>
 	<div class="panel panel-info">
 		<div class="panel-heading">
