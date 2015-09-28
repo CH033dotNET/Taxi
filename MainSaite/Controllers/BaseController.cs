@@ -1,4 +1,5 @@
-﻿using DAL;
+﻿using BAL.Manager;
+using DAL;
 using Model.DTO;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,20 @@ namespace MainSaite.Controllers
         //
         // GET: /Base/
 		protected UnitOfWork uOW;
+		protected UserManager userManager;
+		protected AddressManager addressmanager;
+		protected CarManager carManager;
+		protected DistrictManager districtManager;
+		protected PersonManager personManager;
+
 
 		public BaseController()
 		{
 			uOW = new UnitOfWork();
+			userManager = new UserManager(uOW);
+			carManager = new CarManager(uOW);
+			districtManager = new DistrictManager(uOW);
+			personManager = new PersonManager(uOW);
 		}
 
 		protected override void OnActionExecuting(ActionExecutingContext filterContext)
