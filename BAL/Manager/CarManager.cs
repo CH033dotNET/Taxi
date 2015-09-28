@@ -88,5 +88,17 @@ namespace BAL.Manager
 			}
 			return null;
 		}
+		public WorkshiftHistoryDTO StartWorkEvent(int? id)
+		{
+			var newWorker = uOW.WorkshiftHistoryRepo.Get(s => s.DriverId == id).First();
+			if (newWorker == null)
+			{
+				return null;
+			}
+			uOW.WorkshiftHistoryRepo.SetStateModified(newWorker);
+			newWorker.WorkStarted = DateTime.Now;
+			uOW.Save();
+			return Mapper.Map<WorkshiftHistoryDTO>(newWorker);
+		}
 	}
 }
