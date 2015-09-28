@@ -14,11 +14,11 @@ namespace MainSaite.Controllers
 	{
 		//
 		// GET: /Localization/
-		LocationManager localmanager;
+		LocationManager locationmanager;
 		DistrictManager districtmanager;
 		public LocationController()
 		{
-			localmanager = new LocationManager(base.uOW);
+			locationmanager = new LocationManager(base.uOW);
 			districtmanager = new DistrictManager(base.uOW);
 		}
 
@@ -38,13 +38,12 @@ namespace MainSaite.Controllers
 			var listDistricts = uOW.DistrictRepo.Get().ToList();
 			ViewBag.Districts = listDistricts;
 
-			LocationDTO localization = localmanager.GetByUserId(user.Id);
-			if (localization == null)
+			LocationDTO location = locationmanager.GetByUserId(user.Id);
+			if (location == null)
 				return RedirectToAction("CreateLocation");
 			else
 			{
-				int districtId = localization.DistrictId;
-
+				int districtId = location.DistrictId;
 				District district = districtmanager.getById(districtId);
 				string districtName = district.Name;
 				ViewBag.DistrictName = districtName;
@@ -65,10 +64,10 @@ namespace MainSaite.Controllers
 				});
 			}
 
-			LocationDTO local = localmanager.GetByUserId(user.Id);
+			LocationDTO local = locationmanager.GetByUserId(user.Id);
 			local.DistrictId = Id;
-			localmanager.UpdateLocalization(local);
-			return RedirectToAction("Index", "Home"); ;
+			locationmanager.UpdateLocation(local);
+			return RedirectToAction("Index", "Home");
 		}
 
 		[HttpGet]
@@ -79,15 +78,23 @@ namespace MainSaite.Controllers
 			return View();
 		}
 		[HttpPost]
-		public ActionResult CreateLocation(string Name)
+		public ActionResult CreateLocation(int Id)
 		{
-			int districtId = uOW.DistrictRepo.Get().Where(x => x.Name == Name).First().Id;
+			var user = Session["User"] as Model.DTO.UserDTO;
+			if (user == null)
+			{
+				return RedirectToRoute(new
+				{
+					controller = "Home",
+					action = "Index"
+				});
+			}
 			LocationDTO district = new LocationDTO()
 			{
-				UserId = (Session["User"] as Model.DTO.UserDTO).Id,
-				DistrictId = districtId
+				UserId = user.Id,
+				DistrictId = Id
 			};
-			localmanager.AddLoc(district);
+			locationmanager.AddLocation(district);
 			return RedirectToAction("Index", "Home");
 		}
 	}
