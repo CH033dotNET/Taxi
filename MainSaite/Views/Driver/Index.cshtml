@@ -17,6 +17,7 @@
 	@Styles.Render("~/Content/css")
 	@Scripts.Render("~/bundles/jquery")
 	@Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/tabHelper")
 </head>
 <body style="padding:0">
 	<div id="driver-bootstrap-menu" class="navbar navbar-default navbar-static-top" role="navigation">
@@ -37,7 +38,7 @@
 					</li>
 					<!-- Менюшки!!!
 						Індекс тимчасовий!!!-->
-					<li class="active">
+					<li >
 						<a data-toggle="tab" href="#Home">@Resources.Resource.Home</a>
 					</li>
 					<li>
@@ -56,7 +57,7 @@
 	</div>
 	<div>
 		<div id="driver-content" class="tab-content">
-			<div id="Home" class="tab-pane fade in active">
+			<div id="Home" class="tab-pane fade">
 				<h2>
 					@Resources.Resource.Home
 				</h2>

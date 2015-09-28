@@ -17,7 +17,10 @@ namespace MainSaite
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+			bundles.Add(new ScriptBundle("~/bundles/tabHelper").Include(
+						"~/Scripts/tabCorrector.js"));
+
+			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
 
