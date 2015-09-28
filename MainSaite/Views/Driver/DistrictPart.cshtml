@@ -1,4 +1,4 @@
-﻿@model Model.DTO.WorkshiftHistoryDTO
+﻿@model IEnumerable<Model.DTO.WorkshiftHistoryDTO>
 
 @{
 	ViewBag.Title = "DistrictPart";
@@ -27,6 +27,47 @@
 			<div class="panel-footer">
 				@Html.ActionLink("[Add new Car?]", "CarCreate", "Settings", null, new { @class = "btn btn-success" })
 				<input type="submit" class="btn btn-success" value="@ViewBag.SubmitValue" />
+			</div>
+			<div class="table-list">
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr class="info">
+								<th>
+									[#]
+								</th>
+								<th>
+									[Driver Name]
+								</th>
+								<th>
+									@Resources.Resource.CarState
+								</th>
+								<th>
+									[Shift Started]
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model)
+							{
+								<tr>
+									<td>
+										<div class="editor_field"></div>
+										@Html.DisplayFor(modelItem => item.DriverId)
+									</td>
+									<td>
+										<div class="editor_field"></div>
+										@Html.DisplayFor(modelItem => item.WorkStarted)
+									</td>
+									<td>
+										<div class="editor_field"></div>
+										@Html.DisplayFor(modelItem => item.WorkEnded)
+									</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</form>

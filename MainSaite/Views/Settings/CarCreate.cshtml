@@ -9,18 +9,18 @@
 	<form method="post">
 		<div class="panel panel-info">
 			<div class="panel-heading">
-				<h3 class="panel-title">[Add new car info]</h3>
+				<h3 class="panel-title">@Resources.Resource.AddNewCar</h3>
 			</div>
 			<div class="bs-callout bs-callout-primary">
-				<h4>Here is car registration page</h4>
-				Enter all required information into the form below.
+				<h4>@Resources.Resource.CreateHeader1</h4>
+				@Resources.Resource.CreateAttention1
 			</div>
 			<div class="bs-callout bs-callout-warning">
-				<h4>Keep in mind</h4>
-				You need to add all information correctly.
+				<h4>@Resources.Resource.CreateHeader2</h4>
+				@Resources.Resource.CreateAttention2
 			</div>
 			<div class="panel-footer">
-				<input class="btn btn-warning" type="reset" value="[Reset]" style="margin: 0 auto; width:200px" />
+				<input class="btn btn-warning" type="reset" value=@Resources.Resource.CarResetBtn style="margin: 0 auto; width:200px" />
 			</div>
 			<div>
 				@Html.AntiForgeryToken()
@@ -86,7 +86,7 @@
 			<div class="panel-footer">
 				<div class="btn-group" role="group" aria-label="...">
 					<input class="btn btn-success" type="submit" value="@Resources.Resource.AddNewCar" style="margin: 0 auto; width:200px" />
-					<input class="btn btn-primary" type="button" value="To menu" onclick="history.go(-1);return true;" style="margin: 0 auto; width:200px" />
+					<input class="btn btn-primary" type="button" value=@Resources.Resource.CarToMenuBtn onclick="history.go(-1);return true;" style="margin: 0 auto; width:200px" />
 				</div>
 			</div>
 		</div>

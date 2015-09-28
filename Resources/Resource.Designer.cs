@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actions.
+        /// </summary>
+        public static string ActionsColumn {
+            get {
+                return ResourceManager.GetString("ActionsColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add new car.
         /// </summary>
         public static string AddNewCar {
@@ -142,6 +151,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Autopark.
+        /// </summary>
+        public static string CarEditor {
+            get {
+                return ResourceManager.GetString("CarEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Car manufacture Date.
         /// </summary>
         public static string CarManufactureDate {
@@ -214,7 +232,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 95.
+        ///   Looks up a localized string similar to Premium-95.
         /// </summary>
         public static string CarPetrolPremium {
             get {
@@ -223,7 +241,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 92.
+        ///   Looks up a localized string similar to Regular-92.
         /// </summary>
         public static string CarPetrolRegular {
             get {
@@ -232,7 +250,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 98.
+        ///   Looks up a localized string similar to Super-98.
         /// </summary>
         public static string CarPetrolSuper {
             get {
@@ -255,6 +273,42 @@ namespace Resources {
         public static string CarRegistration {
             get {
                 return ResourceManager.GetString("CarRegistration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        public static string CarResetBtn {
+            get {
+                return ResourceManager.GetString("CarResetBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string CarSaveBtn {
+            get {
+                return ResourceManager.GetString("CarSaveBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete info.
+        /// </summary>
+        public static string CarsDeleteInfo {
+            get {
+                return ResourceManager.GetString("CarsDeleteInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        public static string CarsDetails {
+            get {
+                return ResourceManager.GetString("CarsDetails", resourceCulture);
             }
         }
         
@@ -286,6 +340,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Menu.
+        /// </summary>
+        public static string CarToMenuBtn {
+            get {
+                return ResourceManager.GetString("CarToMenuBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Client.
         /// </summary>
         public static string Client {
@@ -304,11 +367,92 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter all required information into the form below..
+        /// </summary>
+        public static string CreateAttention1 {
+            get {
+                return ResourceManager.GetString("CreateAttention1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You need to add all information correctly..
+        /// </summary>
+        public static string CreateAttention2 {
+            get {
+                return ResourceManager.GetString("CreateAttention2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here is car registration page.
+        /// </summary>
+        public static string CreateHeader1 {
+            get {
+                return ResourceManager.GetString("CreateHeader1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keep in mind.
+        /// </summary>
+        public static string CreateHeader2 {
+            get {
+                return ResourceManager.GetString("CreateHeader2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are attempting to delete all information about selected car. Deleted information will be lost..
+        /// </summary>
+        public static string DeleteAttention1 {
+            get {
+                return ResourceManager.GetString("DeleteAttention1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attention!.
+        /// </summary>
+        public static string DeleteHeader1 {
+            get {
+                return ResourceManager.GetString("DeleteHeader1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string deleteString {
             get {
                 return ResourceManager.GetString("deleteString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can view all your car info here..
+        /// </summary>
+        public static string DetailsAttention1 {
+            get {
+                return ResourceManager.GetString("DetailsAttention1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here is car details page.
+        /// </summary>
+        public static string DetailsHeader1 {
+            get {
+                return ResourceManager.GetString("DetailsHeader1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        public static string detailsString {
+            get {
+                return ResourceManager.GetString("detailsString", resourceCulture);
             }
         }
         
@@ -331,11 +475,56 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter all required information into the form below..
+        /// </summary>
+        public static string EditAttention1 {
+            get {
+                return ResourceManager.GetString("EditAttention1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit or delete your information wisely!.
+        /// </summary>
+        public static string EditAttention2 {
+            get {
+                return ResourceManager.GetString("EditAttention2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here is car registration page.
+        /// </summary>
+        public static string EditHeader1 {
+            get {
+                return ResourceManager.GetString("EditHeader1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Be carefull.
+        /// </summary>
+        public static string EditHeader2 {
+            get {
+                return ResourceManager.GetString("EditHeader2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string editString {
             get {
                 return ResourceManager.GetString("editString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit car info.
+        /// </summary>
+        public static string EditYourCar {
+            get {
+                return ResourceManager.GetString("EditYourCar", resourceCulture);
             }
         }
         
@@ -381,6 +570,60 @@ namespace Resources {
         public static string FirstName {
             get {
                 return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your garage.
+        /// </summary>
+        public static string Garage {
+            get {
+                return ResourceManager.GetString("Garage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All information about your car or cars will be displayed here. You can always view, add, edit or delete each car you want..
+        /// </summary>
+        public static string GarageAttention1 {
+            get {
+                return ResourceManager.GetString("GarageAttention1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Always keep your information up to date. Do not forget to update information you submited..
+        /// </summary>
+        public static string GarageAttention2 {
+            get {
+                return ResourceManager.GetString("GarageAttention2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is your virtual garage.
+        /// </summary>
+        public static string GarageHeader1 {
+            get {
+                return ResourceManager.GetString("GarageHeader1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keep in mind.
+        /// </summary>
+        public static string GarageHeader2 {
+            get {
+                return ResourceManager.GetString("GarageHeader2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome home.
+        /// </summary>
+        public static string Greeting {
+            get {
+                return ResourceManager.GetString("Greeting", resourceCulture);
             }
         }
         

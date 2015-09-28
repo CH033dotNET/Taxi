@@ -7,14 +7,14 @@
 <div>
 	<div class="panel panel-success">
 		<div class="panel-heading">
-			<h3 class="panel-title">[Details]</h3>
+			<h3 class="panel-title">@Resources.Resource.CarsDetails</h3>
 		</div>
 		<div class="bs-callout bs-callout-primary">
-			<h4>Here is car details page</h4>
-			You can view all your car info here.
+			<h4>@Resources.Resource.DetailsHeader1</h4>
+			@Resources.Resource.DetailsAttention1
 		</div>
 		<div class="panel-footer">
-			@Html.ActionLink("[Add new Car?]", "CarCreate", "Settings", null, new { @class = "btn btn-success" })
+			@Html.ActionLink(@Resources.Resource.AddNewCar, "CarCreate", "Settings", null, new { @class = "btn btn-success" })
 		</div>
 		<div>
 			<table class="table table-hover">
@@ -70,8 +70,8 @@
 		</div>
 		<div class="panel-footer">
 			<div class="btn-group" role="group" aria-label="...">
-				@Html.ActionLink("Edit", "CarEdit", "Settings", new { id = Model.Id }, new { @class="btn btn-warning"})
-				@Html.ActionLink("Back to List", "CarEditor", "Settings", null, new { @class = "btn btn-info" })
+				@Html.ActionLink(@Resources.Resource.editString, "CarEdit", "Settings", new { id = Model.Id }, new { @class="btn btn-warning"})
+				@Html.ActionLink(@Resources.Resource.CarToMenuBtn, "CarEditor", "Settings", null, new { @class = "btn btn-info" })
 			</div>
 		</div>
 	</div>

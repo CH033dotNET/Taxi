@@ -235,13 +235,13 @@
     <value>Other</value>
   </data>
   <data name="CarPetrolPremium" xml:space="preserve">
-    <value>95</value>
+    <value>Premium-95</value>
   </data>
   <data name="CarPetrolRegular" xml:space="preserve">
-    <value>92</value>
+    <value>Regular-92</value>
   </data>
   <data name="CarPetrolSuper" xml:space="preserve">
-    <value>98</value>
+    <value>Super-98</value>
   </data>
   <data name="LoginEmailExist" xml:space="preserve">
     <value>UserName or Email is already exists</value>
@@ -287,5 +287,86 @@
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="ActionsColumn" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="CarEditor" xml:space="preserve">
+    <value>Autopark</value>
+  </data>
+  <data name="CarResetBtn" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="CarSaveBtn" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="CarsDeleteInfo" xml:space="preserve">
+    <value>Delete info</value>
+  </data>
+  <data name="CarsDetails" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="CarToMenuBtn" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="CreateAttention1" xml:space="preserve">
+    <value>Enter all required information into the form below.</value>
+  </data>
+  <data name="CreateAttention2" xml:space="preserve">
+    <value>You need to add all information correctly.</value>
+  </data>
+  <data name="CreateHeader1" xml:space="preserve">
+    <value>Here is car registration page</value>
+  </data>
+  <data name="CreateHeader2" xml:space="preserve">
+    <value>Keep in mind</value>
+  </data>
+  <data name="DeleteAttention1" xml:space="preserve">
+    <value>You are attempting to delete all information about selected car. Deleted information will be lost.</value>
+  </data>
+  <data name="DeleteHeader1" xml:space="preserve">
+    <value>Attention!</value>
+  </data>
+  <data name="DetailsAttention1" xml:space="preserve">
+    <value>You can view all your car info here.</value>
+  </data>
+  <data name="DetailsHeader1" xml:space="preserve">
+    <value>Here is car details page</value>
+  </data>
+  <data name="detailsString" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="EditAttention1" xml:space="preserve">
+    <value>Enter all required information into the form below.</value>
+  </data>
+  <data name="EditAttention2" xml:space="preserve">
+    <value>Edit or delete your information wisely!</value>
+  </data>
+  <data name="EditHeader1" xml:space="preserve">
+    <value>Here is car registration page</value>
+  </data>
+  <data name="EditHeader2" xml:space="preserve">
+    <value>Be carefull</value>
+  </data>
+  <data name="EditYourCar" xml:space="preserve">
+    <value>Edit car info</value>
+  </data>
+  <data name="Garage" xml:space="preserve">
+    <value>Your garage</value>
+  </data>
+  <data name="GarageAttention1" xml:space="preserve">
+    <value>All information about your car or cars will be displayed here. You can always view, add, edit or delete each car you want.</value>
+  </data>
+  <data name="GarageAttention2" xml:space="preserve">
+    <value>Always keep your information up to date. Do not forget to update information you submited.</value>
+  </data>
+  <data name="GarageHeader1" xml:space="preserve">
+    <value>This is your virtual garage</value>
+  </data>
+  <data name="GarageHeader2" xml:space="preserve">
+    <value>Keep in mind</value>
+  </data>
+  <data name="Greeting" xml:space="preserve">
+    <value>Welcome home</value>
   </data>
 </root>

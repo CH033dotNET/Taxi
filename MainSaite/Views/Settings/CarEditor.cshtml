@@ -6,24 +6,24 @@
 @Styles.Render("~/Content/BootstrapCallout.css")
 <div>
 	<div class="page-header">
-		<h1>Welcome home,<small>[UserName]</small></h1>
+		<h1>@Resources.Resource.Greeting,<small>[UserName]</small></h1>
 	</div>
 	<div class="panel panel-info">
 		<div class="panel-heading">
-			<h3 class="panel-title">[Garage]</h3>
+			<h3 class="panel-title">@Resources.Resource.Garage</h3>
 		</div>
 		<div class="panel-body">
 			<div class="bs-callout bs-callout-primary">
-				<h4>This is your garage</h4>
-				All information about your car or cars will be displayed here. You can always view, add, edit or delete each car you want.
+				<h4>@Resources.Resource.GarageHeader1</h4>
+				@Resources.Resource.GarageAttention1
 			</div>
 			<div class="bs-callout bs-callout-warning">
-				<h4>Keep in mind</h4>
-				Always keep in check your information. Do not forget to update information you submited.
+				<h4>@Resources.Resource.GarageHeader2</h4>
+				@Resources.Resource.GarageAttention2
 			</div>
 		</div>
 		<div class="panel-footer">
-			@Html.ActionLink("[Add new Car?]", "CarCreate", "Settings", null, new { @class = "btn btn-success" })
+			@Html.ActionLink(@Resources.Resource.AddNewCar, "CarCreate", "Settings", null, new { @class = "btn btn-success" })
 		</div>
 		<div class="table-list">
 			<div class="table-responsive">
@@ -40,7 +40,7 @@
 								@Resources.Resource.CarState
 							</th>
 							<th>
-								[Actions]
+								@Resources.Resource.ActionsColumn
 							</th>
 						</tr>
 					</thead>
@@ -62,7 +62,7 @@
 								</td>
 								<td>
 									@Html.ActionLink(@Resources.Resource.editString, "CarEdit", "Settings", new { id = item.Id }, new { @class = "btn btn-default" })
-									@Html.ActionLink("Details", "CarDetails", "Settings", new { id = item.Id }, new { @class = "btn btn-default" })
+									@Html.ActionLink(@Resources.Resource.detailsString, "CarDetails", "Settings", new { id = item.Id }, new { @class = "btn btn-default" })
 									@Html.ActionLink(@Resources.Resource.deleteString, "CarDelete", "Settings", new { id = item.Id }, new { @class = "btn btn-default" })
 								</td>
 							</tr>

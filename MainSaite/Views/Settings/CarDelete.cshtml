@@ -8,14 +8,14 @@
 	<form method="post">
 		<div class="panel panel-danger">
 			<div class="panel-heading">
-				<h3 class="panel-title">[Delete info]</h3>
+				<h3 class="panel-title">@Resources.Resource.CarsDeleteInfo</h3>
 			</div>
 			<div class="bs-callout bs-callout-danger">
-				<h4>Attention!</h4>
-				You are attempting to delete all information about selected car. Deleted information will be lost.
+				<h4>@Resources.Resource.DeleteHeader1</h4>
+				@Resources.Resource.DeleteAttention1
 			</div>
 			<div class="panel-footer">
-				<input class="btn btn-warning" type="reset" value="[Reset]" style="margin: 0 auto; width:200px" />
+				<input class="btn btn-warning" type="reset" value=@Resources.Resource.CarResetBtn style="margin: 0 auto; width:200px" />
 			</div>
 			<div>
 				@Html.AntiForgeryToken()
@@ -72,9 +72,10 @@
 			</div>
 			<div class="panel-footer">
 				<div class="btn-group" role="group" aria-label="...">
-					<input type="submit" value="Delete" class="btn btn-danger"/>
-					@Html.ActionLink("Back to List", "CarEditor", "Settings", null, new { @class = "btn btn-info" })
+					<input type="submit" value=@Resources.Resource.deleteString class="btn btn-danger" />
+					@Html.ActionLink(@Resources.Resource.CarToMenuBtn, "CarEditor", "Settings", null, new { @class = "btn btn-info" })
 				</div>
 			</div>
+		</div>
 	</form>
 </div>

@@ -69,7 +69,7 @@
                             <li class="list-group-item">@Html.ActionLink("My Account", "Index", "User")</li>}
                             @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
                             {
-                            <li class="list-group-item">@Html.ActionLink("CarEditor", "CarEditor", "Settings")</li>}
+                            <li class="list-group-item">@Html.ActionLink(@Resources.Resource.CarEditor, "CarEditor", "Settings")</li>}
                             @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
                             {
                             <li class="list-group-item">@Html.ActionLink("[Personal]", "Index", "Driver")</li>}
