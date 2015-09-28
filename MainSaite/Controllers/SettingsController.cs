@@ -104,7 +104,7 @@ namespace MainSaite.Controllers
 			{
 				userId = ((UserDTO)Session["User"]).Id;
 				userRoleId = ((UserDTO)Session["User"]).RoleId;
-				if (userRoleId != 1 & userRoleId != 5)
+				if (userRoleId != 1)
 				{
 					return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 				}
