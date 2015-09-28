@@ -58,7 +58,7 @@
 								</td>
 								<td>
 									<div class="editor_field"></div>
-									@Html.DisplayFor(modelItem => item.CarState)
+									@EnumHelper.GetStringifyState(item.CarState)
 								</td>
 								<td>
 									@Html.ActionLink(@Resources.Resource.editString, "CarEdit", "Settings", new { id = item.Id }, new { @class = "btn btn-default" })

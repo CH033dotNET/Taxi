@@ -79,5 +79,14 @@ namespace BAL.Manager
 			}
 			return null;
 		}
+		public IEnumerable<WorkshiftHistoryDTO> GetWorkingDrivers()
+		{
+			var workingUsers = uOW.WorkshiftHistoryRepo.Get().Where(s => s.WorkEnded == null & s.WorkStarted != null).Select(s => Mapper.Map<WorkshiftHistoryDTO>(s));
+			if (workingUsers != null)
+			{
+				return workingUsers;
+			}
+			return null;
+		}
 	}
 }

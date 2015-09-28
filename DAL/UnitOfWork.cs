@@ -26,6 +26,7 @@ namespace DAL
 
 		private IGenericRepository<VIPClient> vipClientRepo;
         private IGenericRepository<Localization> localizationRepo;
+		private IGenericRepository<WorkshiftHistory> workshiftHistoryRepo;
 
         #endregion
 
@@ -43,6 +44,8 @@ namespace DAL
 
 			vipClientRepo = new GenericRepository<VIPClient>(context);
             localizationRepo = new GenericRepository<Localization>(context);
+
+			workshiftHistoryRepo = new GenericRepository<WorkshiftHistory>(context);
             
         }
 
@@ -125,6 +128,14 @@ namespace DAL
                 return localizationRepo;
             }
         }
+		public IGenericRepository<WorkshiftHistory> WorkshiftHistoryRepo
+		{
+			get
+			{
+				if (workshiftHistoryRepo == null) workshiftHistoryRepo = new GenericRepository<WorkshiftHistory>(context);
+				return workshiftHistoryRepo;
+			}
+		}
 		#endregion
 
 		#region Dispose

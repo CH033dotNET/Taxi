@@ -17,25 +17,31 @@ namespace MainSaite.Controllers
 {
 	public class DriverController : BaseController
 	{
+		CarManager carManager;
 		public DriverController()
 		{
+			//Nick
+			carManager = new CarManager(base.uOW);
 		}
 		public ActionResult Index()
 		{
 			return View();
 		}
 
-		public ActionResult DistrictPart(string userAction)
+		public ActionResult DistrictPart()
 		{
-			if (userAction == "WorkStart")
+			int? userId = null;
+			int? userRoleId = null;
+			if (Session["User"] != null)
 			{
-				ViewBag.SubmitValue = "WorkStart";
+				userId = ((UserDTO)Session["User"]).Id;
+				userRoleId = ((UserDTO)Session["User"]).RoleId;
+				if (userRoleId != 1)
+				{
+					return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+				}
 			}
-			if (userAction == "WorkEnd")
-			{
-				ViewBag.SubmitValue = "WorkEnd";
-			}
-			return PartialView();
+			return PartialView(carManager.GetWorkingDrivers());
 		}
     }
 }

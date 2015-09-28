@@ -99,9 +99,15 @@ namespace MainSaite.Controllers
 		public ActionResult CarEditor()
 		{
 		    int? userId = null;
+			int? userRoleId = null;
 			if (Session["User"]!=null)
 			{
-				userId = ((UserDTO)Session["User"]).Id; 
+				userId = ((UserDTO)Session["User"]).Id;
+				userRoleId = ((UserDTO)Session["User"]).RoleId;
+				if (userRoleId != 1)
+				{
+					return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+				}
 			}
 			return View(carManager.getCarsByUserID(userId));
 		}
