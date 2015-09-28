@@ -11,52 +11,52 @@ using System.Threading.Tasks;
 
 namespace BAL.Manager
 {
-    public class LocalizationManager : BaseManager
+    public class LocationManager : BaseManager
     {
-        public LocalizationManager(IUnitOfWork uOW)
+        public LocationManager(IUnitOfWork uOW)
             : base(uOW)
         {
         }
-        public LocalizationDTO GetByUserId(int id)
+        public LocationDTO GetByUserId(int id)
         {
-            var item = uOW.LocalizationRepo.Get().Where(s => s.UserId == id)
+            var item = uOW.LocationRepo.Get().Where(s => s.UserId == id)
                 .FirstOrDefault();
 
             if (item != null)
             {
-                return Mapper.Map<LocalizationDTO>(item);
+                return Mapper.Map<LocationDTO>(item);
             }
             return null;
         }
 
 
 
-        public LocalizationDTO AddLoc(LocalizationDTO local)
+        public LocationDTO AddLoc(LocationDTO local)
         {
 
-            var temp = Mapper.Map<Localization>(local);
-            uOW.LocalizationRepo.Insert(temp);
+            var temp = Mapper.Map<Location>(local);
+            uOW.LocationRepo.Insert(temp);
             uOW.Save();
-            return Mapper.Map<LocalizationDTO>(temp);
+            return Mapper.Map<LocationDTO>(temp);
         }
-        public LocalizationDTO UpdateLocalization(LocalizationDTO local)
+        public LocationDTO UpdateLocalization(LocationDTO local)
         {
-            var temp = uOW.LocalizationRepo.Get(u => u.UserId == local.UserId).First();
+            var temp = uOW.LocationRepo.Get(u => u.UserId == local.UserId).First();
             if (temp == null)
             {
                 return null;
             }
-            uOW.LocalizationRepo.SetStateModified(temp);
+            uOW.LocationRepo.SetStateModified(temp);
             temp.DistrictId = local.DistrictId;
             uOW.Save();
-            return Mapper.Map<LocalizationDTO>(temp);
+            return Mapper.Map<LocationDTO>(temp);
         }
-        public LocalizationDTO getByDistrictId(int id)
+        public LocationDTO getByDistrictId(int id)
         {
-            var item = uOW.LocalizationRepo.Get().Where(s => s.DistrictId == id).FirstOrDefault();
+            var item = uOW.LocationRepo.Get().Where(s => s.DistrictId == id).FirstOrDefault();
             if (item != null)
             {
-                return Mapper.Map<LocalizationDTO>(item);
+                return Mapper.Map<LocationDTO>(item);
             }
             return null;
         }

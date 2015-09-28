@@ -1,55 +1,55 @@
 ﻿@model Model.DTO.AddressDTO
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "DeleteAddress";
 }
+<legend>@Resources.Resource.TitleDeleteAddress</legend>
 
-<h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>@Resources.Resource.ConfirmDeletingAddress</h3>
 <fieldset>
 
 
-   
-    
-        @Html.HiddenFor(model => model.AddressId)
-   
+    @Html.HiddenFor(model => model.AddressId)
 
-    
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.City)
+        @Html.Label(@Resources.Resource.City)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.City)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Street)
+        @Html.Label(@Resources.Resource.Street)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Street)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Number)
+        @Html.Label(@Resources.Resource.NumberHouse)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Number)
     </div>
+
     <div class="display-label">
-        @Html.DisplayNameFor(model => model.Comment)
+        @Html.Label(@Resources.Resource.Comment)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Comment)
     </div>
-         @Html.HiddenFor(model => model.UserId)
-   
-  
+    @Html.HiddenFor(model => model.UserId)
+
+
 </fieldset>
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+        <input type="submit" value=@Resources.Resource.deleteString />
+    </p>
+    <p>
+        @Html.ActionLink(@Resources.Resource.MainLink, "Index")
     </p>
 }
