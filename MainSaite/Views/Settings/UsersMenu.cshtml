@@ -1,26 +1,26 @@
 ﻿@model IList<Model.DTO.UserDTO>
 
 @{
-    ViewBag.Title = "UsersMenu";
+    ViewBag.Title = @Resources.Resource.UserMenu;
 }
 
-<h2>Users Menu</h2>
+<h2>@Resources.Resource.UserMenu</h2>
 
 <table class="table">
     <tr>
-        <td><strong> @Html.LabelFor(x=>Model[0].Id)</strong></td>
-        <td><strong>@Html.LabelFor(x => Model[0].UserName)</strong></td>
-        <td><strong>@Html.LabelFor(x => Model[0].Email)</strong></td>
-        <td><strong>@Html.LabelFor(x => Model[0].Role.Name)</strong></td>
-        <td><strong>@Html.LabelFor(x => Model[0].Role.Description)</strong></td>
-        <td><strong>Edit</strong></td>
+        <td><strong> @Html.Label(Resources.Resource.UserId)</strong></td>
+        <td><strong>@Html.Label(Resources.Resource.UserName)</strong></td>
+        <td><strong>@Html.Label(Resources.Resource.Email)</strong></td>
+        <td><strong>@Html.Label(Resources.Resource.Role)</strong></td>
+        <td><strong>@Html.Label(Resources.Resource.Description)</strong></td>
+        <td><strong>@Resources.Resource.editString</strong></td>
     </tr>
 
     @foreach (var i in Model)
     {
      <tr>
         @Html.Partial("_ShowUser",i)
-         <td>@Html.ActionLink("Edit", "ChangeMenu", new { id = i.Id})</td>
+         <td>@Html.ActionLink(Resources.Resource.editString, "ChangeMenu", new { id = i.Id})</td>
     </tr>
     }
 

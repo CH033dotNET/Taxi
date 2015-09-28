@@ -369,4 +369,25 @@
   <data name="Greeting" xml:space="preserve">
     <value>З поверненням</value>
   </data>
+  <data name="ChangeMenu" xml:space="preserve">
+    <value>Меню змін</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Опис</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Увійти</value>
+  </data>
+  <data name="OrderTaxi" xml:space="preserve">
+    <value>Замовити Таксі</value>
+  </data>
+  <data name="SingUp" xml:space="preserve">
+    <value>Регістр</value>
+  </data>
+  <data name="UserId" xml:space="preserve">
+    <value>Номер користувача</value>
+  </data>
+  <data name="UserMenu" xml:space="preserve">
+    <value>Список користувачів</value>
+  </data>
 </root>

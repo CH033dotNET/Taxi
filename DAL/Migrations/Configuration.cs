@@ -41,6 +41,7 @@ namespace DAL.Migrations
 
 			context.SaveChanges();
 
+			if (context.Users.Where(x=>x.UserName=="admin").FirstOrDefault()==null)
 			context.Users.AddOrUpdate(
 				new User() 
 				{

@@ -4,7 +4,7 @@
 
 <tr>
     <td>
-        @Html.LabelFor(x => Model.Id)
+        @Html.Label(Resources.Resource.UserId)
 
     </td>
     <td>
@@ -15,7 +15,7 @@
 </tr>
 
 <tr>
-    <td>@Html.LabelFor(x => Model.UserName)</td>
+    <td>@Html.Label(Resources.Resource.UserName)</td>
 
     <td>
         @Html.EditorFor(x => Model.UserName)
@@ -23,21 +23,21 @@
 </tr>
 
 <tr>
-<td>@Html.LabelFor(x => Model.Password)</td>
+<td>@Html.Label(Resources.Resource.Password)</td>
     <td>
         @Html.EditorFor(x => x.Password)
     </td>
 </tr>
 
 <tr>
-<td>@Html.LabelFor(x => Model.Email)</td>
+<td>@Html.Label(Resources.Resource.Email)</td>
  <td>
         @Html.EditorFor(x => Model.Email)
     </td>
 </tr>
 
 <tr>
-<td>@Html.LabelFor(x => Model.Role.Name)</td>
+<td>@Html.Label(Resources.Resource.Role)</td>
     <td>
         @Html.DropDownListFor(x => Model.Role.Name,
             new SelectList(Enum.GetValues(typeof(Common.Enum.AvailableRoles))))

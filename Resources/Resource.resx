@@ -369,4 +369,25 @@
   <data name="Greeting" xml:space="preserve">
     <value>Welcome home</value>
   </data>
+  <data name="ChangeMenu" xml:space="preserve">
+    <value>Change menu</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Log In</value>
+  </data>
+  <data name="OrderTaxi" xml:space="preserve">
+    <value>Order Taxi</value>
+  </data>
+  <data name="SingUp" xml:space="preserve">
+    <value>Sing Up</value>
+  </data>
+  <data name="UserId" xml:space="preserve">
+    <value>User Id</value>
+  </data>
+  <data name="UserMenu" xml:space="preserve">
+    <value>User list</value>
+  </data>
 </root>
