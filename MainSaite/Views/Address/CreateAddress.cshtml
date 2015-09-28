@@ -1,31 +1,30 @@
 ﻿@model Model.DTO.AddressDTO
 
 @{
-    ViewBag.Title = "CreateAdd";
+    ViewBag.Title = "CreateAddress";
 }
 
-<h2>Add new address</h2>
+<legend>@Resources.Resource.TitleCreateAddress</legend>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        
 
-       @Html.HiddenFor(model=>model.AddressId)
 
-         <div class="editor-label">
-            @Html.LabelFor(model => model.City)
+        @Html.HiddenFor(model => model.AddressId)
+
+        <div class="editor-label">
+            @Html.Label(@Resources.Resource.City)
         </div>
         <div class="editor-field">
-            <input type="text" name="City" placeholder="Chernivtsi"/>
-            @*@Html.EditorFor(m => m.City, new {@class="form-class", @value="Chernivtsi"})*@
-            
+            @Html.TextBoxFor(model => model.City, new { id = "txtPlace", Value = @Resources.Resource.DefaultValueOfCity })
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Street)
+            @Html.Label(@Resources.Resource.Street)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Street)
@@ -33,30 +32,30 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Number)
+            @Html.Label(@Resources.Resource.NumberHouse)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Number)
             @Html.ValidationMessageFor(model => model.Number)
         </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.Comment)
+            @Html.Label(@Resources.Resource.Comment)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Comment)
             @Html.ValidationMessageFor(model => model.Comment)
-         </div>
+        </div>
 
         @Html.Hidden("UserId", (Session["User"] as Model.DTO.UserDTO).Id != null ? (Session["User"] as Model.DTO.UserDTO).Id : -1)
-         <p>
-            <input type="submit" value="Create" />
-         </p>
-        
+        <p>
+            <input type="submit" value=@Resources.Resource.addString />
+        </p>
+
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(@Resources.Resource.MainLink, "Index")
 </div>
 
 @section Scripts {

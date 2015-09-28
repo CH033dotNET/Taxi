@@ -26,8 +26,10 @@
 				</div>
 			</div>
 			<div class="panel-footer">
-				@Html.ActionLink("[Add new Car?]", "CarCreate", "Settings", null, new { @class = "btn btn-success" })
-				<input type="submit" class="btn btn-success" value="@ViewBag.SubmitValue" />
+				<div class="btn-group" aria-label="...">
+					@Html.ActionLink("Start Workshift", "WorkStateChange", "Driver", null, new { @class = "btn btn-success" })
+					<input type="submit" class="btn btn-warning" value="End Workshift" />
+				</div>
 			</div>
 			<div class="table-list">
 				<div class="table-responsive">

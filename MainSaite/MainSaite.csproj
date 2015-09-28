@@ -142,7 +142,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\DriverController.cs" />
-    <Compile Include="Controllers\LocalizationController.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -280,17 +280,17 @@
     <Content Include="Views\Settings\CarEditor.cshtml" />
     <Content Include="Views\Settings\CarCreate.cshtml" />
     <Content Include="Views\Settings\CarDetails.cshtml" />
-    <Content Include="Views\Address\CreateAdd.cshtml" />
-    <Content Include="Views\Address\Delete.cshtml" />
-    <Content Include="Views\Address\EditAdd.cshtml" />
+    <Content Include="Views\Address\CreateAddress.cshtml" />
+    <Content Include="Views\Address\DeleteAddress.cshtml" />
+    <Content Include="Views\Address\EditAddress.cshtml" />
     <Content Include="Views\Address\Index.cshtml" />
     <Content Include="Views\Settings\CarEdit.cshtml" />
     <Content Include="Views\Settings\CarDelete.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Driver\Index.cshtml" />
     <Content Include="Views\Settings\SetVIPStatus.cshtml" />
-    <Content Include="Views\Localization\EditLocation.cshtml" />
-    <Content Include="Views\Localization\CreateLocation.cshtml" />
+    <Content Include="Views\Location\EditLocation.cshtml" />
+    <Content Include="Views\Location\CreateLocation.cshtml" />
     <Content Include="Views\Driver\DistrictPart.cshtml" />
   </ItemGroup>
   <ItemGroup>

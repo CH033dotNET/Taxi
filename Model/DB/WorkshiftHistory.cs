@@ -14,10 +14,10 @@ namespace Model.DB
 		public int Id { get; set; }
 		[DataType(DataType.DateTime)]
 		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-		public DateTime WorkStarted { get; set; }
+		public Nullable<DateTime> WorkStarted { get; set; }
 		[DataType(DataType.DateTime)]
 		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-		public DateTime WorkEnded { get; set; }
+		public Nullable<DateTime> WorkEnded { get; set; }
 		[ForeignKey("DriverId")]
 		public virtual User Driver { get; set; }
 		public int DriverId { get; set; }

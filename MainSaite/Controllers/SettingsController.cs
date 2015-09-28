@@ -17,13 +17,6 @@ namespace MainSaite.Controllers
 {
 	public class SettingsController : BaseController
 	{
-		UserManager userManager;
-
-		//ASIX
-		DistrictManager districtManager;
-
-		// Nick
-		CarManager carManager;
 		
 
 
@@ -104,7 +97,7 @@ namespace MainSaite.Controllers
 			{
 				userId = ((UserDTO)Session["User"]).Id;
 				userRoleId = ((UserDTO)Session["User"]).RoleId;
-				if (userRoleId != 1 & userRoleId != 5)
+				if (userRoleId != 1)
 				{
 					return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 				}

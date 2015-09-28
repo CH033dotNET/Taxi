@@ -17,7 +17,6 @@ namespace MainSaite.Controllers
 {
 	public class DriverController : BaseController
 	{
-		CarManager carManager;
 		public DriverController()
 		{
 			//Nick
@@ -30,18 +29,35 @@ namespace MainSaite.Controllers
 
 		public ActionResult DistrictPart()
 		{
-			int? userId = null;
+			//int? userId = null;
 			int? userRoleId = null;
 			if (Session["User"] != null)
 			{
-				userId = ((UserDTO)Session["User"]).Id;
+				//userId = ((UserDTO)Session["User"]).Id;
 				userRoleId = ((UserDTO)Session["User"]).RoleId;
-				if (userRoleId != 1 & userRoleId != 5)
+				if (userRoleId != 1)
 				{
 					return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 				}
 			}
 			return PartialView(carManager.GetWorkingDrivers());
+		}
+
+		public ActionResult WorkStateChange(WorkshiftHistoryDTO workShift)
+		{
+			try
+			{
+				if (ModelState.IsValid)
+				{
+					carManager.StartWorkEvent(workShift.DriverId);
+					return RedirectToAction("DistrictPart");
+				}
+			}
+			catch (DataException)
+			{
+				ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+			}
+			return RedirectToAction("DistrictPart");
 		}
     }
 }

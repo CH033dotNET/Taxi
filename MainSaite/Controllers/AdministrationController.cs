@@ -15,7 +15,6 @@ namespace MainSaite.Controllers
         // GET: /Administration/
 
 		UnitOfWork unit = new UnitOfWork();
-		UserManager userManager = null;
 
 		public AdministrationController()
 		{
