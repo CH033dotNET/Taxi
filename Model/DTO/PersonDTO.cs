@@ -26,6 +26,7 @@ namespace Model.DTO
 		public string LastName { get; set; }
 
 		public string Phone { get; set; }
+		public string ImageName { get; set; }
 
 		[ForeignKey("UserId")]
 		public virtual UserDTO User { get; set; }

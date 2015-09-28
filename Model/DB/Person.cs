@@ -16,6 +16,7 @@ namespace Model.DB
 		public string MiddleName { get; set; }
 		public string LastName { get; set; }
 		public string Phone { get; set; }
+		public string ImageName { get; set; }
 		
 		[ForeignKey("UserId")]
 		public virtual User User { get; set; }

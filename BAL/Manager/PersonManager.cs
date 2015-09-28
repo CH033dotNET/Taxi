@@ -24,6 +24,7 @@ namespace BAL.Manager
 			 person.LastName = temp.LastName;
 			 person.Phone = temp.Phone;
 			 person.UserId = temp.UserId;
+			 person.ImageName = temp.ImageName;
 			 uOW.PersonRepo.Insert(temp);
 			 uOW.Save();
 
@@ -52,6 +53,7 @@ namespace BAL.Manager
 			 newPerson.Phone = person.Phone;
 			 newPerson.User.UserName = person.User.UserName;
 			 newPerson.User.Email = person.User.Email;
+			 newPerson.ImageName = person.ImageName;
 			 
 			 uOW.Save();
 			 return Mapper.Map<PersonDTO>(newPerson);

@@ -4,18 +4,44 @@
     ViewBag.Title = "My Account";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script>
+    $(document).ready(function () {
+        var filesExt = ['jpg', 'gif', 'png']; // массив расширений
+        $('input[type=file]').change(function () {
+            var parts = $(this).val().split('.');
+            if (filesExt.join().search(parts[parts.length - 1]) != -1) {
+                alert('Good!');
+            } else {
+                alert('WTF?!');
+            }
+        });
+    });
+
+</script>
+
 
 
     <div class="form-horizontal" style="margin: 15px 15px 15px 15px">
     <div class="row">
         <div class="col-md-6">
             <legend>@Resources.Resource.ContactInformation</legend>
-
-            @using (Html.BeginForm("Index", "User"))
+           
+             @if (ViewBag.Error != null)
             {
-                <dl class="properties">
-                    <dt><img src="..." class="img-polaroid"></dt>
-
+                <h4 style="color: red">@ViewBag.Error</h4>
+            }
+            
+            @using (Html.BeginForm("Index", "User",FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <dl class="properties" style="margin: 5px 5px 5px 5px">
+                
+                     <dt> @if (Model.ImageName != null)
+{
+    <img src="~/Images/@Model.ImageName" class="img-rounded" style="margin: 5px 5px 5px 5px" />
+}
+                    </dt>
+                    <dd><input type="file" name="avatar" data-size="sm"/></dd>
+                   
                     <dt><label >@Resources.Resource.UserName</label></dt>
                     <dd><input class="form-control" type="text" id="userName" name="User.UserName" value="@Model.User.UserName" /></dd>
 

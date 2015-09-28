@@ -35,6 +35,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +49,7 @@
     <Compile Include="Manager\BaseManager.cs" />
     <Compile Include="Manager\CarManager.cs" />
     <Compile Include="Manager\DistrictManager.cs" />
+    <Compile Include="Manager\ImageUpload.cs" />
     <Compile Include="Manager\LocalizationManager.cs" />
     <Compile Include="Manager\PersonManager.cs" />
     <Compile Include="Manager\UserManager.cs" />

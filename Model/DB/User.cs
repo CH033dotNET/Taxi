@@ -18,7 +18,7 @@ namespace Model
         [Required]
         [DataType(DataType.Password)]
         [MinLength(6,ErrorMessage="Минимальная длинна - 6 символа")]
-        
+      
         public string Password { get; set; }
         [Required]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
