@@ -29,11 +29,11 @@ namespace MainSaite.Controllers
 
 		public ActionResult DistrictPart()
 		{
-			int? userId = null;
+			//int? userId = null;
 			int? userRoleId = null;
 			if (Session["User"] != null)
 			{
-				userId = ((UserDTO)Session["User"]).Id;
+				//userId = ((UserDTO)Session["User"]).Id;
 				userRoleId = ((UserDTO)Session["User"]).RoleId;
 				if (userRoleId != 1)
 				{

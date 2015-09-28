@@ -40,8 +40,12 @@ namespace MainSaite.Controllers
 				{
 					if (!userManager.IfEmailExists(user.Email))
 					{
-						userManager.InsertUser(user);
-						return RedirectToAction("Index", "Home");
+						if (userManager.IsUserNameCorrect(user.UserName))
+						{
+							userManager.InsertUser(user);
+							return RedirectToAction("Index", "Home");
+						}
+						else ModelState.AddModelError("", "Login syntax error");
 					}
 					else ModelState.AddModelError("", "Email is already exist");
 				}

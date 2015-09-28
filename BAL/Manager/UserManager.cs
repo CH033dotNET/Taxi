@@ -81,7 +81,7 @@ namespace BAL.Manager
 		public UserDTO GetByUserName(string login, string password)
 		{
 			var item = uOW.UserRepo.Get()
-				.Where(s => (s.UserName == login && s.Password == password))
+				.Where(s => (s.UserName.ToUpper() == login.ToUpper() && s.Password == password))
 				.FirstOrDefault();
 
 			if (item != null)
@@ -289,6 +289,14 @@ namespace BAL.Manager
 			int CurrentId = uOW.UserRepo.Get(x => x.UserName == UserName).Select(d => d.Id).First();
 			uOW.VIPClientRepo.Insert(new VIPClient { UserId = CurrentId, SetDate = System.DateTime.Today });
 			uOW.Save();
+		}
+
+		public bool IsUserNameCorrect(string name)
+		{
+			for (int index = 0; index < name.Length; index++)
+				if (Char.IsLetterOrDigit(name[index]))
+					return false;
+						return true;
 		}
 
 		//
