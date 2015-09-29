@@ -23,6 +23,14 @@ namespace MainSaite
 			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
+			
+			bundles.Add(new ScriptBundle("~/bundles/inputmask").Include(
+			"~/Scripts/jquery.inputmask/inputmask.js",
+			"~/Scripts/jquery.inputmask/jquery.inputmask.js",
+						"~/Scripts/jquery.inputmask/inputmask.extensions.js",
+						"~/Scripts/jquery.inputmask/inputmask.date.extensions.js",
+				//and other extensions you want to include
+						"~/Scripts/jquery.inputmask/inputmask.numeric.extensions.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.

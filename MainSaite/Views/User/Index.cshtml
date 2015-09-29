@@ -10,39 +10,46 @@
         $('input[type=file]').change(function () {
             var parts = $(this).val().split('.');
             if (filesExt.join().search(parts[parts.length - 1]) != -1) {
-                alert('Good!');
-            } else {
-                alert('WTF?!');
-            }
-        });
-    });
+                $('input[type=submit]').prop("disabled", false);
+                $('.error').hide();
 
+            } else {
+                $('input[type=submit]').prop("disabled", true);
+                $("#error").show();
+            }
+
+        }
+        );
+
+        $('input[type=email]').inputmask();
+        $("#phone").inputmask("(999)-999-99-99");
+    });
 </script>
 
-
-
-    <div class="form-horizontal" style="margin: 15px 15px 15px 15px">
+<div class="form-horizontal" style="margin: 15px 15px 15px 15px">
     <div class="row">
         <div class="col-md-6">
             <legend>@Resources.Resource.ContactInformation</legend>
-           
-             @if (ViewBag.Error != null)
+
+            @if (ViewBag.Error != null)
             {
                 <h4 style="color: red">@ViewBag.Error</h4>
             }
-            
-            @using (Html.BeginForm("Index", "User",FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+            @using (Html.BeginForm("Index", "User", FormMethod.Post, new { id = "userForm", enctype = "multipart/form-data" }))
             {
                 <dl class="properties" style="margin: 5px 5px 5px 5px">
-                
-                     <dt> @if (Model.ImageName != null)
-{
-    <img src="~/Images/@Model.ImageName" class="img-rounded" style="margin: 5px 5px 5px 5px" />
-}
+
+                    <dt>
+                        @if (Model.ImageName != null)
+                        {
+                            <img src="~/Images/@Model.ImageName" class="img-rounded" style="margin: 5px 5px 5px 5px" />
+                        }
                     </dt>
-                    <dd><input type="file" name="avatar" data-size="sm"/></dd>
-                   
-                    <dt><label >@Resources.Resource.UserName</label></dt>
+                    <dd><input type="file" name="avatar" class="btn btn-default" data-size="sm" /></dd>
+                    <dd><div class="error" id="error" style="color: red; display: none"> Please upload a picture by jpg, png or gif! </div></dd>
+
+                    <dt><label>@Resources.Resource.UserName</label></dt>
                     <dd><input class="form-control" type="text" id="userName" name="User.UserName" value="@Model.User.UserName" /></dd>
 
                     <dt><label for="firstName">@Resources.Resource.FirstName </label></dt>
@@ -55,16 +62,16 @@
                     <dd><input class="form-control" type="text" id="lastName" name="LastName" value="@Model.LastName" /></dd>
 
                     <dt><label for="email">@Resources.Resource.Email </label></dt>
-                    <dd><input class="form-control" type="email" id="email" name="User.Email" value="@Model.User.Email"></dd>
+                    <dd><input class="form-control" type="email" id="email" name="User.Email" id="email" value="@Model.User.Email"></dd>
 
                     <dt><label for="phone">@Resources.Resource.Phone</label></dt>
-                    <dd><input class="form-control" type="text" id="phone" name="Phone" value="@Model.Phone" /></dd>
+                    <dd><input type="tel" class="form-control" name="Phone" value="@Model.Phone" id="phone" required /></dd>
                 </dl>
-    <input type="submit" class="btn btn-success" value="@Resources.Resource.UpdateProfile" />
+                <input type="submit" class="btn btn-success" value="@Resources.Resource.UpdateProfile" />
 
 
             }
         </div>
     </div>
-        </div>
+</div>
 
