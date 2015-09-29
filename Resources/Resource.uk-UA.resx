@@ -444,4 +444,34 @@
   <data name="ConfirmDeletingAddress" xml:space="preserve">
     <value>Ви впевненні, що бажаєте видалити данну адресу зі списку?</value>
   </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Контакти</value>
+  </data>
+  <data name="DistrictPartAttention1" xml:space="preserve">
+    <value>Тут ви можете знайти інформацію про інших водіїв які в данний момент працюють. Щоб розпочати зміну, натисніть "Почати зміну".</value>
+  </data>
+  <data name="DistrictPartAttention2" xml:space="preserve">
+    <value>Не забувайте натиснути "Закінчити зміну" після завершення роботи.</value>
+  </data>
+  <data name="DistrictPartHeader1" xml:space="preserve">
+    <value>Це ваше робоче місце</value>
+  </data>
+  <data name="DistrictPartHeader2" xml:space="preserve">
+    <value>Майте на увазі</value>
+  </data>
+  <data name="WorkShift" xml:space="preserve">
+    <value>Робоча зміна</value>
+  </data>
+  <data name="WorkShiftEnd" xml:space="preserve">
+    <value>Закінчити зміну</value>
+  </data>
+  <data name="WorkShiftStart" xml:space="preserve">
+    <value>Почати зміну</value>
+  </data>
+  <data name="WorkStarted" xml:space="preserve">
+    <value>Зміна почалась</value>
+  </data>
+  <data name="CarNameErrorMessage" xml:space="preserve">
+    <value>Назва має містити менше 50 символів</value>
+  </data>
 </root>

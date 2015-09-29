@@ -1,6 +1,7 @@
 ﻿using BAL.Manager;
 using Common.Enum;
 using DAL;
+using MainSaite.Helpers;
 using Model;
 using Model.DTO;
 using System;
@@ -88,7 +89,6 @@ namespace MainSaite.Controllers
 		}
 
 		// Nick: Car info settings
-	
 		public ActionResult CarEditor()
 		{
 		    int? userId = null;

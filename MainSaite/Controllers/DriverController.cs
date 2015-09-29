@@ -22,18 +22,16 @@ namespace MainSaite.Controllers
 			//Nick
 			carManager = new CarManager(base.uOW);
 		}
+		
 		public ActionResult Index()
 		{
 			return View();
 		}
-
 		public ActionResult DistrictPart()
 		{
-			//int? userId = null;
 			int? userRoleId = null;
 			if (Session["User"] != null)
 			{
-				//userId = ((UserDTO)Session["User"]).Id;
 				userRoleId = ((UserDTO)Session["User"]).RoleId;
 				if (userRoleId != 1)
 				{
@@ -43,21 +41,34 @@ namespace MainSaite.Controllers
 			return PartialView(carManager.GetWorkingDrivers());
 		}
 
-		public ActionResult WorkStateChange(WorkshiftHistoryDTO workShift)
+		public ActionResult WorkStateChange(UserDTO user)
 		{
 			try
 			{
-				if (ModelState.IsValid)
-				{
-					carManager.StartWorkEvent(workShift.DriverId);
-					return RedirectToAction("DistrictPart");
-				}
+
+				carManager.StartWorkEvent(user.Id);
+				return RedirectToAction("Index");
+
 			}
 			catch (DataException)
 			{
 				ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
 			}
-			return RedirectToAction("DistrictPart");
+			return RedirectToAction("Index");
+		}
+		public ActionResult WorkStateEnded(UserDTO user)
+		{
+			try
+			{
+				carManager.EndAllCurrentUserShifts(user.Id);
+				//carManager.EndWorkShiftEvent(user.Id);
+				return RedirectToAction("Index");
+			}
+			catch (DataException)
+			{
+				ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+			}
+			return RedirectToAction("Index");
 		}
     }
 }

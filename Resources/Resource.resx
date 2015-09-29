@@ -444,4 +444,35 @@
   <data name="ConfirmDeletingAddress" xml:space="preserve">
     <value>Are you sure you want to delete this address?</value>
   </data>
+  <data name="CarNameErrorMessage" xml:space="preserve">
+    <value>Name must be less than 50 symbols</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="DistrictPartAttention1" xml:space="preserve">
+    <value>Here you can find information about other drivers currently working.
+					To start workingshift please press "Start Shift" button</value>
+  </data>
+  <data name="DistrictPartAttention2" xml:space="preserve">
+    <value>Do not forget to end your working shift by pressing "End Shift" button</value>
+  </data>
+  <data name="DistrictPartHeader1" xml:space="preserve">
+    <value>This is your working place</value>
+  </data>
+  <data name="DistrictPartHeader2" xml:space="preserve">
+    <value>Keep in mind</value>
+  </data>
+  <data name="WorkShift" xml:space="preserve">
+    <value>Workshift</value>
+  </data>
+  <data name="WorkShiftEnd" xml:space="preserve">
+    <value>End Shift</value>
+  </data>
+  <data name="WorkShiftStart" xml:space="preserve">
+    <value>Start Shift</value>
+  </data>
+  <data name="WorkStarted" xml:space="preserve">
+    <value>Shift started</value>
+  </data>
 </root>
