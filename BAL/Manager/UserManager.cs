@@ -131,7 +131,7 @@ namespace BAL.Manager
 		
 		public bool IfUserNameExists(string userName)
 		{
-			var item = uOW.UserRepo.Get().Where(s => (s.UserName == userName)).FirstOrDefault();
+			var item = uOW.UserRepo.Get().Where(s => (s.UserName.ToUpper() == userName.ToUpper())).FirstOrDefault();
 			if (item != null)
 			{
 				return true;
@@ -141,7 +141,7 @@ namespace BAL.Manager
 
 		public bool IfEmailExists(string email)
 		{
-			var item = uOW.UserRepo.Get().Where(s => (s.Email == email)).FirstOrDefault();
+			var item = uOW.UserRepo.Get().Where(s => (s.Email.ToUpper() == email.ToUpper())).FirstOrDefault();
 			if (item != null)
 			{
 				return true;
@@ -294,7 +294,7 @@ namespace BAL.Manager
 		public bool IsUserNameCorrect(string name)
 		{
 			for (int index = 0; index < name.Length; index++)
-				if (Char.IsLetterOrDigit(name[index]))
+				if (!Char.IsLetterOrDigit(name[index]))
 					return false;
 						return true;
 		}
