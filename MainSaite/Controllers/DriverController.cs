@@ -25,19 +25,17 @@ namespace MainSaite.Controllers
 		
 		public ActionResult Index()
 		{
-			return View();
+			if (null == Session["User"] || ((UserDTO)Session["User"]).RoleId != (int)AvailableRoles.Driver)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+			}
+			else
+			{
+				return View();
+			}
 		}
 		public ActionResult DistrictPart()
 		{
-			int? userRoleId = null;
-			if (Session["User"] != null)
-			{
-				userRoleId = ((UserDTO)Session["User"]).RoleId;
-				if (userRoleId != 1)
-				{
-					return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-				}
-			}
 			return PartialView(carManager.GetWorkingDrivers());
 		}
 

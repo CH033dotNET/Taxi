@@ -91,18 +91,15 @@ namespace MainSaite.Controllers
 		// Nick: Car info settings
 		public ActionResult CarEditor()
 		{
-		    int? userId = null;
-			int? userRoleId = null;
-			if (Session["User"]!=null)
+			if (null == Session["User"] || ((UserDTO)Session["User"]).RoleId != (int)AvailableRoles.Driver)
 			{
-				userId = ((UserDTO)Session["User"]).Id;
-				userRoleId = ((UserDTO)Session["User"]).RoleId;
-				if (userRoleId != 1)
-				{
-					return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-				}
+				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 			}
-			return View(carManager.getCarsByUserID(userId));
+			else
+			{
+				int userId = ((UserDTO)Session["User"]).Id;
+				return View(carManager.getCarsByUserID(userId));
+			}
 		}
 		// GET:
 		public ActionResult CarCreate()
