@@ -61,9 +61,6 @@
                             @if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
                             {
                             <li class="list-group-item">@Html.ActionLink("UsersMenu", "UsersMenu", "Settings")</li>}
-                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
-                            {
-                            <li class="list-group-item">@Html.ActionLink("AddUser", "AddUser", "Administration")</li>}
                             @if (ViewBag.UserRoleId == (int)AvailableRoles.Client || ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
                             {
                             <li class="list-group-item">@Html.ActionLink("My Account", "Index", "User")</li>}

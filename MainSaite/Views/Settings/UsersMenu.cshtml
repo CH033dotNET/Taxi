@@ -8,12 +8,12 @@
 
 <table class="table">
     <tr>
-        <td><strong> @Html.Label(Resources.Resource.UserId)</strong></td>
-        <td><strong>@Html.Label(Resources.Resource.UserName)</strong></td>
-        <td><strong>@Html.Label(Resources.Resource.Email)</strong></td>
-        <td><strong>@Html.Label(Resources.Resource.Role)</strong></td>
-        <td><strong>@Html.Label(Resources.Resource.Description)</strong></td>
-        <td><strong>@Resources.Resource.editString</strong></td>
+        <th>@Html.Label(Resources.Resource.UserId) </th>
+        <th>@Html.Label(Resources.Resource.UserName) </th>
+        <th>@Html.Label(Resources.Resource.Email) </th>
+        <th>@Html.Label(Resources.Resource.Role) </th>
+        <th>@Html.Label(Resources.Resource.Description) </th>
+        <th>[Action]</th>
     </tr>
 
     @foreach (var i in Model)
@@ -25,3 +25,6 @@
     }
 
 </table>
+        <p>
+            @Html.ActionLink("AddUser", "AddUser", "Administration")
+        </p>
