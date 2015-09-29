@@ -67,10 +67,10 @@
                             @if (ViewBag.UserRoleId == (int)AvailableRoles.Client || ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
                             {
                             <li class="list-group-item">@Html.ActionLink("My Account", "Index", "User")</li>}
-                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
+                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver)
                             {
                             <li class="list-group-item">@Html.ActionLink(@Resources.Resource.CarEditor, "CarEditor", "Settings")</li>}
-                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
+                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver)
                             {
                             <li class="list-group-item">@Html.ActionLink(Resources.Resource.PersonalCabinet, "Index", "Driver")</li>}
                             @if (ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
