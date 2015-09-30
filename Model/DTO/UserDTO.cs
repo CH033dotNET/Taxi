@@ -14,6 +14,7 @@ namespace Model.DTO
 		[Key]
         public int Id { get; set; }
 		[Required]
+		[MaxLength(12, ErrorMessage = "Максимальная длинна - 12 символа")]
 		[MinLength(4, ErrorMessage = "Минимальная длинна - 4 символа")]
         public string UserName { get; set; }
 		[Required]
