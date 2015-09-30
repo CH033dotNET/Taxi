@@ -406,7 +406,7 @@
     <value>Chernivtsi</value>
   </data>
   <data name="EditLocation" xml:space="preserve">
-    <value>Please choose district in which You are for updating information about Your current location</value>
+    <value>If You like to change Your location,  please choose district from the list.</value>
   </data>
   <data name="NumberHouse" xml:space="preserve">
     <value>Number</value>

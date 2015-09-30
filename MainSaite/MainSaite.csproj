@@ -308,7 +308,6 @@
     <Content Include="Views\Driver\Index.cshtml" />
     <Content Include="Views\Settings\SetVIPStatus.cshtml" />
     <Content Include="Views\Location\EditLocation.cshtml" />
-    <Content Include="Views\Location\CreateLocation.cshtml" />
     <Content Include="Views\Driver\DistrictPart.cshtml" />
   </ItemGroup>
   <ItemGroup>

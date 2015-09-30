@@ -665,7 +665,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please choose district in which You are for updating information about Your current location.
+        ///   Looks up a localized string similar to If You like to change Your location,  please choose district from the list..
         /// </summary>
         public static string EditLocation {
             get {

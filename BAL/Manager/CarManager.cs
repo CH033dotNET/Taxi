@@ -90,7 +90,7 @@ namespace BAL.Manager
 		}
 		public void StartWorkEvent(int? id)
 		{
-			var worker = uOW.WorkshiftHistoryRepo.Get().Where(s => s.DriverId == id).Last(); // get the last entry for a current user
+			var worker = uOW.WorkshiftHistoryRepo.Get().Where(s => s.DriverId == id).LastOrDefault(); // get the last entry for a current user
 			var mappedworker = Mapper.Map<WorkshiftHistoryDTO>(worker);
 			if (mappedworker == null) // if entry is empty (if no entry at all)
 			{

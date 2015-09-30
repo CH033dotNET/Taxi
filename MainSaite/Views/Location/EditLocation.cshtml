@@ -4,13 +4,20 @@
 @{
     ViewBag.Title = "EditLocation";
 }
-<legend>@Resources.Resource.TitleEditLocation</legend>
-<h2>@Resources.Resource.YourCurrentLocation @ViewBag.DistrictName</h2> <p></p>
 
-<h6>@Resources.Resource.EditLocation</h6>
+@if (ViewBag.District!=null){
+<h3>@Resources.Resource.YourCurrentLocation @ViewBag.District.Name</h3> <p></p>
+<h4>@Resources.Resource.EditLocation</h4>
+}
+else
+{
+<h3>@Resources.Resource.CreateLocation</h3>
+}
+
+
 
 <div class="row">
-    <form action="EditLocation" method="post">
+    @using (Html.BeginForm("EditLocation", "Location")) { 
         <div class="col-md-6">
 
             <select name="Id" class="form-control">
@@ -26,7 +33,7 @@
         <div class="col-md-6">
             <input type="submit" value="ok" class="btn btn-default">
         </div>
-    </form>
+    }
 </div>
 
 

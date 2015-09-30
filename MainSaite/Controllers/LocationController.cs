@@ -34,21 +34,16 @@ namespace MainSaite.Controllers
 					action = "Index"
 				});
 			}
-
 			var listDistricts = uOW.DistrictRepo.Get().ToList();
 			ViewBag.Districts = listDistricts;
-
 			LocationDTO location = locationmanager.GetByUserId(user.Id);
-			if (location == null)
-				return RedirectToAction("CreateLocation");
-			else
+			if (location != null)
 			{
 				int districtId = location.DistrictId;
 				District district = districtmanager.getById(districtId);
-				string districtName = district.Name;
-				ViewBag.DistrictName = districtName;
-				return View();
+				ViewBag.District = district;
 			}
+			return PartialView();
 		}
 
 		[HttpPost]
@@ -65,37 +60,23 @@ namespace MainSaite.Controllers
 			}
 
 			LocationDTO local = locationmanager.GetByUserId(user.Id);
-			local.DistrictId = Id;
-			locationmanager.UpdateLocation(local);
-			return RedirectToAction("Index", "Home");
+			if (local != null)
+			{
+				local.DistrictId = Id;
+				locationmanager.UpdateLocation(local);
+				return RedirectToAction("Index", "Driver");
+			}
+			else
+			{
+				LocationDTO district = new LocationDTO()
+				{
+					UserId = user.Id,
+					DistrictId = Id
+				};
+				locationmanager.AddLocation(district);
+				return RedirectToAction("Index", "Driver");
+			}
 		}
 
-		[HttpGet]
-		public ActionResult CreateLocation()
-		{
-			var listDistricts = uOW.DistrictRepo.Get().ToList();
-			ViewBag.Districts = listDistricts;
-			return View();
-		}
-		[HttpPost]
-		public ActionResult CreateLocation(int Id)
-		{
-			var user = Session["User"] as Model.DTO.UserDTO;
-			if (user == null)
-			{
-				return RedirectToRoute(new
-				{
-					controller = "Home",
-					action = "Index"
-				});
-			}
-			LocationDTO district = new LocationDTO()
-			{
-				UserId = user.Id,
-				DistrictId = Id
-			};
-			locationmanager.AddLocation(district);
-			return RedirectToAction("Index", "Home");
-		}
 	}
 }

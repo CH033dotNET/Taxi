@@ -67,12 +67,11 @@
 				</p>
 			</div>
 			<div id="Settings" class="tab-pane fade">
-				<h2>
-					@Resources.Resource.Settings
-				</h2>
-				<p>
-					placeHolder2
-				</p>
+                <p>
+                    @{
+                        Html.RenderAction("EditLocation", "Location");
+                    }
+                </p>
 			</div>
 			<div id="Messages" class="tab-pane fade">
 				<h2>
