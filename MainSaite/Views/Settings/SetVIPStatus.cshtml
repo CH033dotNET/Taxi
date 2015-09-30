@@ -15,9 +15,16 @@
 
         <h1>@Resources.Resource.SetVIPStatusPage</h1>
 
-        <table class="table table-striped">
+        <table class="table">
 
-            <tr><td>@Resources.Resource.UserName</td><td>@Resources.Resource.Setdate</td></tr>
+            <tr>
+                <th>
+                    @Resources.Resource.UserName
+                </th>
+                <th>
+                    @Resources.Resource.Setdate
+                </th>
+            </tr>
 
             @{
                 List<VIPClientDTO> listlistVIPClients = (List<VIPClientDTO>)Model[0];
@@ -38,14 +45,10 @@
                 width: 157px; 
             }
         </style>
-
-        <br />
-
-
         <div class="row">
             <form action="SetVIPStatusC" method="post">
                 <div class="col-md-6">
-
+                    
                     <select name="UserName" class="form-control">
                         @{
                             List<UserDTO> listNoVIPClients = (List<UserDTO>)Model[1];

@@ -477,4 +477,10 @@
   <data name="Citydistricts" xml:space="preserve">
     <value>Райони міста</value>
   </data>
+  <data name="Action" xml:space="preserve">
+    <value>Дія</value>
+  </data>
+  <data name="DistrictEditor" xml:space="preserve">
+    <value>Редактор районів</value>
+  </data>
 </root>

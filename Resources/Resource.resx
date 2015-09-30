@@ -478,4 +478,10 @@
   <data name="Citydistricts" xml:space="preserve">
     <value>City districts</value>
   </data>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="DistrictEditor" xml:space="preserve">
+    <value>District editor</value>
+  </data>
 </root>
