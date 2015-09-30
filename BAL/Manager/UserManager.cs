@@ -260,23 +260,14 @@ namespace BAL.Manager
 					from U in listUsers.Where(x => x.RoleId == 3)
 					join V in listVIPClients
 						on U.Id equals V.UserId into joined
-					from V in joined.DefaultIfEmpty()
-					select new VIPClientDTO
+					from V in joined.DefaultIfEmpty().Where(x => x == null)
+					select new UserDTO
 					{
-						Id = V != null ? V.Id : 0,
-						UserId = U.Id,
+						Id = U.Id,
 						UserName = U.UserName
 					};
 
-			var dropbox =
-					from Q in RigthJoin.Where(x => x.Id == 0)
-					select new UserDTO
-					{
-						Id = Q.UserId,
-						UserName = Q.UserName
-					};
-
-			foreach (UserDTO U in dropbox)
+			foreach (UserDTO U in RigthJoin)
 			{
 				ListUserDTO.Add(U);
 			}

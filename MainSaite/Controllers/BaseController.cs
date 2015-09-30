@@ -21,6 +21,7 @@ namespace MainSaite.Controllers
 		protected CarManager carManager;
 		protected DistrictManager districtManager;
 		protected PersonManager personManager;
+		protected LocationManager locationManager;
 
 
 		public BaseController()
@@ -30,6 +31,7 @@ namespace MainSaite.Controllers
 			carManager = new CarManager(uOW);
 			districtManager = new DistrictManager(uOW);
 			personManager = new PersonManager(uOW);
+			locationManager = new LocationManager(uOW);
 		}
 
 		protected override void OnActionExecuting(ActionExecutingContext filterContext)

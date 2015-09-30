@@ -51,6 +51,7 @@
     <Compile Include="DTO\AddressDTO.cs" />
     <Compile Include="DTO\CarDTO.cs" />
     <Compile Include="DB\LoginModel.cs" />
+    <Compile Include="DTO\DriverDistrictInfoDTO.cs" />
     <Compile Include="DTO\LocationDTO.cs" />
     <Compile Include="DTO\Pager.cs" />
     <Compile Include="DTO\PersonDTO.cs" />

@@ -474,4 +474,7 @@
   <data name="CarNameErrorMessage" xml:space="preserve">
     <value>Назва має містити менше 50 символів</value>
   </data>
+  <data name="Citydistricts" xml:space="preserve">
+    <value>Райони міста</value>
+  </data>
 </root>

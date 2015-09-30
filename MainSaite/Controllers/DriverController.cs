@@ -36,6 +36,7 @@ namespace MainSaite.Controllers
 		}
 		public ActionResult DistrictPart()
 		{
+			ViewBag.Districts = locationManager.GetDriverDistrictInfo(); ;
 			return PartialView(carManager.GetWorkingDrivers());
 		}
 

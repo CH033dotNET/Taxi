@@ -31,6 +31,36 @@
 					@Html.ActionLink(Resources.Resource.WorkShiftEnd, "WorkStateEnded", "Driver", new { Id = currentUserId }, new { @class = "btn btn-warning" })
 				</div>
 			</div>
+
+            [@Resources.Resource.Citydistricts]
+            <div id="accordion" class="panel-group">
+                <div class="panel panel-default">
+
+                    @foreach (var district in ViewBag.Districts)
+                    {
+                        <div class="panel-heading">
+                            <h4 style="background-color:transparent">
+                                <a href="#collapse-@district.DistrictName" data-parent="#accordion" class="btn-link" data-toggle="collapse">(@district.DriverCount) @district.DistrictName</a>
+                            </h4>
+                        </div>
+
+
+                        <div id="collapse-@district.DistrictName" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul>
+                                    @foreach (var driver in district.Drivers)
+                                    {
+                                        <li>@driver</li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+
+
 			<div class="table-list">
 				<div class="table-responsive">
 					<table class="table table-striped">

@@ -60,6 +60,45 @@ namespace BAL.Manager
 			}
 			return null;
 		}
+
+		public List<DriverDistrictInfoDTO> GetDriverDistrictInfo()
+		{
+			List<DriverDistrictInfoDTO> DDI = new List<DriverDistrictInfoDTO>();
+
+			var Districts = uOW.DistrictRepo.Get().ToList();
+			var Localizations = uOW.LocationRepo.Get().ToList();
+			var Users = uOW.UserRepo.Get();
+
+			var query =
+				from D in Districts
+				join L in Localizations
+				on D.Id equals L.DistrictId
+				group D by new { D.Name, D.Id } into grouped
+				select new DriverDistrictInfoDTO { DistrictName = grouped.Key.Name, DistrictId = grouped.Key.Id, DriverCount = grouped.Count(), Drivers = new List<string>() };
+
+
+			foreach (var info in query)
+			{
+				DDI.Add(info);
+			}
+
+
+			foreach (var district in DDI)
+			{
+				var users =
+					from U in Users
+					join L in Localizations
+					on U.Id equals L.UserId
+					where L.DistrictId == district.DistrictId
+					select new { UserName = U.UserName };
+
+				foreach (var user in users)
+				{
+					district.Drivers.Add(user.UserName);
+				}
+			}
+			return DDI;
+		}
 	}
 
 }
