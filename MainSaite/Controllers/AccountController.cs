@@ -43,16 +43,9 @@ namespace MainSaite.Controllers
 						if (userManager.IsUserNameCorrect(user.UserName))
 						{
 							userManager.InsertUser(user);
-
-							var currentUser = userManager.GetByUserName(user.UserName, user.Password);
-							var currentPerson = personManager.GetPersonByUserId(currentUser.Id);
-							if (currentPerson == null)
-							{
-								currentPerson =
-									personManager.InsertPerson(new PersonDTO() { UserId = currentUser.Id, ImageName = "item_0_profile.jpg" });
-								currentPerson.User = currentUser;
-							}
-
+							
+							ValidPerson(user);
+							
 							return RedirectToAction("Index", "Home");
 						}
 						else ModelState.AddModelError("", "Login syntax error");
@@ -75,8 +68,11 @@ namespace MainSaite.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				if (userManager.GetByUserName(user.UserName, user.Password) != null)
+				var currentUser = userManager.GetByUserName(user.UserName, user.Password);
+				
+				if (currentUser != null)
 				{
+					ValidPerson(currentUser);
 					Session["User"] = userManager.GetByUserName(user.UserName, user.Password);
 					return RedirectToAction("Index", "Home");
 				}
@@ -91,5 +87,17 @@ namespace MainSaite.Controllers
 			Session["User"] = null;
 			return RedirectToAction("Index", "Home");
 		}
+
+	    public void ValidPerson( UserDTO user)
+	    {
+			var currentUser = userManager.GetByUserName(user.UserName, user.Password);
+			var currentPerson = personManager.GetPersonByUserId(currentUser.Id);
+			if (currentPerson == null || currentPerson.ImageName == null)
+			{
+				currentPerson =
+					personManager.InsertPerson(new PersonDTO() { UserId = currentUser.Id, ImageName = "item_0_profile.jpg" });
+				currentPerson.User = currentUser;
+			} 
+	    }
     }
 }
