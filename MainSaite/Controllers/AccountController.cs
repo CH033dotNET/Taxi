@@ -65,15 +65,15 @@ namespace MainSaite.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				if (user != null)
+				if (userManager.GetByUserName(user.UserName, user.Password) != null)
 				{
 					Session["User"] = userManager.GetByUserName(user.UserName, user.Password);
 					return RedirectToAction("Index", "Home");
 				}
+				else ModelState.AddModelError("", "Wrong password or login");
 			}
-			else ModelState.AddModelError("", "Wrong password or login");
 
-			return View(user);
+			return View();			
         }
 
 		public ActionResult LogOut()
