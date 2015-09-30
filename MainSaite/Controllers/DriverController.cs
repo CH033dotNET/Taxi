@@ -40,34 +40,34 @@ namespace MainSaite.Controllers
 			return PartialView(carManager.GetWorkingDrivers());
 		}
 
-		public ActionResult WorkStateChange(UserDTO user)
+		public JsonResult WorkStateChange(int Id, string Latitude, string Longitude)
 		{
 			try
 			{
 
-				carManager.StartWorkEvent(user.Id);
-				return RedirectToAction("Index");
+				carManager.StartWorkEvent(Id);
+				return Json(true);
 
 			}
 			catch (DataException)
 			{
 				ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
 			}
-			return RedirectToAction("Index");
+			return Json(false);
 		}
-		public ActionResult WorkStateEnded(UserDTO user)
+		public JsonResult WorkStateEnded(int Id, string Latitude, string Longitude)
 		{
 			try
 			{
-				carManager.EndAllCurrentUserShifts(user.Id);
+				carManager.EndAllCurrentUserShifts(Id);
 				//carManager.EndWorkShiftEvent(user.Id);
-				return RedirectToAction("Index");
+				return Json(true);
 			}
 			catch (DataException)
 			{
 				ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
 			}
-			return RedirectToAction("Index");
+			return Json(false);
 		}
     }
 }

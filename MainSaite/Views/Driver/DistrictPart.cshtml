@@ -6,6 +6,8 @@
 	int currentUserId = (Session["user"] as Model.DTO.UserDTO).Id;
 }
 
+@Scripts.Render("~/bundles/coordinates")
+
 <div>
 	<form method="post">
 		<div class="page-header">
@@ -27,12 +29,16 @@
 			</div>
 			<div class="panel-footer">
 				<div class="btn-group" aria-label="...">
-					@Html.ActionLink(Resources.Resource.WorkShiftStart, "WorkStateChange", "Driver", new { Id = currentUserId }, new { @class = "btn btn-success" })
-					@Html.ActionLink(Resources.Resource.WorkShiftEnd, "WorkStateEnded", "Driver", new { Id = currentUserId }, new { @class = "btn btn-warning" })
+                    <input type="hidden" id="Id" value="@currentUserId" />
+                    <input type="button" class="btn btn-success" id="btn_begin" value=@Resources.Resource.WorkShiftStart />
+                    <input type="button" class="btn btn-success" id="btn_end" value=@Resources.Resource.WorkShiftEnd />
 				</div>
 			</div>
 
-            [@Resources.Resource.Citydistricts]
+            <div class="panel-heading">
+                <h3 class="panel-title"> @Resources.Resource.Citydistricts</h3>
+            </div>
+  
             <div id="accordion" class="panel-group">
                 <div class="panel panel-default">
 
