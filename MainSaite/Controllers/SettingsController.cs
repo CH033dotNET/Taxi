@@ -213,5 +213,12 @@ namespace MainSaite.Controllers
 			return RedirectToAction("SetVIPStatus");
 		}
 
+		public ActionResult DeleteVIPUser(VIPClientDTO a)
+		{
+			userManager.deleteVIPById(a.Id);
+			//	districtManager.deleteById(a.Id);
+			return RedirectToAction("SetVIPStatus");
+		}
+
     }
 }

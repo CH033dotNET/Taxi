@@ -290,6 +290,13 @@ namespace BAL.Manager
 						return true;
 		}
 
+		public void deleteVIPById(int id)
+		{
+			VIPClient a = uOW.VIPClientRepo.GetByID(id);
+			uOW.VIPClientRepo.Delete(a);
+			uOW.Save();
+		}
+
 		//
 		/// end of SetVIPStatu methodes
 

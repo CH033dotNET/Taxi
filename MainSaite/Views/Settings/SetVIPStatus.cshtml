@@ -24,6 +24,9 @@
                 <th>
                     @Resources.Resource.Setdate
                 </th>
+                <th>
+                    @Resources.Resource.Action
+                </th>
             </tr>
 
             @{
@@ -34,6 +37,7 @@
                     <tr>
                         <td>@VIP.UserName</td>
                         <td>@VIP.SetDate.ToString("dd:MM:yyyy")</td>
+                        <td>@Html.ActionLink(Resources.Resource.deleteString, "DeleteVIPUser", new VIPClientDTO { Id = VIP.Id })</td>
                     </tr>
                 }
 
