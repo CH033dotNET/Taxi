@@ -74,6 +74,7 @@ namespace BAL.Manager
             temp.City = address.City;
             temp.Street = address.Street;
             temp.Number = address.Number;
+			temp.Comment = address.Comment;
             uOW.Save();
             return Mapper.Map<AddressDTO>(temp);
         }
