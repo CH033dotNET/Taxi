@@ -9,7 +9,8 @@ namespace MainSaite
         public static void RegisterBundles(BundleCollection bundles)
         {
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-						"~/Scripts/bootstrap.js")); 
+						"~/Scripts/bootstrap.js",
+						"~/Scripts/bootstrap-filestyle.js"));  
 
 			bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));

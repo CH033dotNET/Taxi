@@ -14,6 +14,7 @@
     }
     );
 
+    $(":file").filestyle({ input: false });
     $('input[type=email]').inputmask();
     $("#phone").inputmask("(999)-999-99-99");
     $("#email").inputmask({
