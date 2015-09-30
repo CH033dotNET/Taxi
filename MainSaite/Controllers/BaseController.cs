@@ -48,6 +48,7 @@ namespace MainSaite.Controllers
 			{ 
 				UserDTO user = Session["User"] as UserDTO;
 				ViewBag.UserRoleId = user.Role.Id;
+				ViewBag.ImageName = personManager.GetPersonByUserId(user.Id).ImageName;
 			}
 
 			base.OnActionExecuting(filterContext);

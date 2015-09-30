@@ -43,6 +43,16 @@ namespace MainSaite.Controllers
 						if (userManager.IsUserNameCorrect(user.UserName))
 						{
 							userManager.InsertUser(user);
+
+							var currentUser = userManager.GetByUserName(user.UserName, user.Password);
+							var currentPerson = personManager.GetPersonByUserId(currentUser.Id);
+							if (currentPerson == null)
+							{
+								currentPerson =
+									personManager.InsertPerson(new PersonDTO() { UserId = currentUser.Id, ImageName = "item_0_profile.jpg" });
+								currentPerson.User = currentUser;
+							}
+
 							return RedirectToAction("Index", "Home");
 						}
 						else ModelState.AddModelError("", "Login syntax error");

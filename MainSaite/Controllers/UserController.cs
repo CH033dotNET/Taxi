@@ -29,9 +29,9 @@ namespace MainSaite.Controllers
 				RedirectToAction("Registration", "Account");
 
 			var currentPerson = personManager.GetPersonByUserId(currentUser.Id);
+			
 			if (currentPerson == null)
-				currentPerson = personManager.InsertPerson(new PersonDTO() { UserId = currentUser.Id, ImageName = "item_0_profile.jpg" });
-			currentPerson.User = currentUser;
+				RedirectToAction("Registration", "Account");
 
 			return View(currentPerson);
 
@@ -57,6 +57,7 @@ namespace MainSaite.Controllers
 
 			personManager.EditPerson(person);
 			Session["User"] = currentUser;
+			ViewBag.ImageName = person.ImageName;
 
 
 

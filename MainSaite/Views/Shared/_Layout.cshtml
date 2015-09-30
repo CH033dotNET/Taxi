@@ -36,16 +36,21 @@
                         @Html.ActionLink(Resources.Resource.SingUp, "Registration", "Account")
                     </li>
                     }
-                    else
+                   else
                     {
                        string q = ((Model.DTO.UserDTO)Session["User"]).UserName;
 
                         <li>
-                            @Html.ActionLink(q,"","")
+                            <a href="/Home/Index"> <img src="~/Images/@ViewBag.ImageName" data-toggle="tooltip" title="@q" class="img-rounded" style="max-width: 40px; max-height: 40px; " /></a>
+                           
                         </li>
+
                         <li>
-                            @Html.ActionLink("Log out", "LogOut", "Account")
+                            @Html.ActionLink("Log out", "LogOut", "Account") 
+                          
                         </li>
+                       
+                        
                     }
 
                 </ul>
