@@ -2,37 +2,38 @@
 
 
     <div>
-        @using (Html.BeginForm("Registration"))
-        {
-           @Html.ValidationSummary();
-    <table>
-        <tr>
-            <td>
-             Login 
-            </td>
-            <td>  @Html.EditorFor(x=>x.UserName)  </td>
-</tr>    
-        <tr>
-            <td> 
-                Password
-            </td>
-            <td> @Html.EditorFor(x =>x.Password)</td>
-        </tr> 
+    @using (Html.BeginForm("Registration"))
+    {
+        @Html.ValidationSummary();
+        <table>
+            <tr>
+                <td>
+                    Login
+                </td>
+                <td>  @Html.EditorFor(x => x.UserName)  </td>
+            </tr>
+            <tr>
+                <td>
+                    Password
+                </td>
+                <td> @Html.EditorFor(x => x.Password)</td>
+            </tr>
 
-        <tr>
-            <td>   
-                Confirm Password
-            </td>
-            <td> @Html.EditorFor(x => x.ConfirmPassword)</td> 
-        </tr>
-        <tr>
-            <td> 
-                Email
-            </td>
-            <td>  @Html.EditorFor(x => x.Email)</td>
-        </tr>
+            <tr>
+                <td>
+                    Confirm Password
+                </td>
+                <td> @Html.EditorFor(x => x.ConfirmPassword)</td>
+            </tr>
+            <tr>
+                <td>
+                    Email
+                </td>
+                <td>  @Html.EditorFor(x => x.Email)</td>
+            </tr>
 
-    </table>      
-             <input type="submit" value="Register" />
-        }
-    </div>
+        </table>
+        <input type="submit" value="Register" />
+    }
+</div>
+
