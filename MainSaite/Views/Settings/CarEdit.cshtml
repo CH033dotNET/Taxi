@@ -4,6 +4,7 @@
 	ViewBag.Title = "CarEdit";
 }
 @Styles.Render("~/Content/BootstrapCallout.css")
+@Styles.Render("~/Content/bootstrap-datetimepicker.css")
 <div>
 	<form method="post">
 		<div class="panel panel-warning">
@@ -66,7 +67,7 @@
 					<tr>
 						<td><label class="control-label">@Resources.Resource.CarManufactureDate</label></td>
 						<td>
-							@Html.TextBoxFor(model => model.CarManufactureDate, new { @class = "form-control input-lg", @type = "date", @value="datepicker" })
+							@Html.TextBoxFor(model => model.CarManufactureDate, new { @class = "form-control input-lg bootstrap-datetimepicker-widget", @type = "date datetimepicker", @id = "datetimepicker" })
 							@Html.ValidationMessageFor(model => model.CarManufactureDate)
 						</td>
 					</tr>
@@ -89,4 +90,14 @@
 </div>
 @section Scripts {
 	@Scripts.Render("~/bundles/jqueryval")
+	<script src="~/Scripts/moment.js"></script>
+	<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$('#datetimepicker').datetimepicker({
+				format: 'DD.MM.YYYY',
+				toolbarPlacement: 'bottom'
+			});
+		});
+	</script>
 }

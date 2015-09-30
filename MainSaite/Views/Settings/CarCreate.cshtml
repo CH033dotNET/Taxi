@@ -5,15 +5,7 @@
 	ViewBag.Title = "CarCreate";
 }
 @Styles.Render("~/Content/BootstrapCallout.css")
-@section scripts{
-	<script type="text/javascript">
-		$('#sandbox-container input').datepicker({
-			clearBtn: true,
-			autoclose: true,
-			datesDisabled: ['2015/09/06', '2015/21/09']
-		});
-	</script>
-}
+@Styles.Render("~/Content/bootstrap-datetimepicker.css")
 <div>
 	<form method="post">
 		<div class="panel panel-info">
@@ -76,7 +68,10 @@
 					</tr>
 					<tr>
 						<td><label for="inputCarManufactureDate" class="control-label">@Resources.Resource.CarManufactureDate</label></td>
-						<td><input type="date" data-provide="datepicker" class="form-control input-lg" name="CarManufactureDate" placeholder="@Resources.Resource.CarManufactureDate"></td>
+						<td>
+							<input type='text' class="form-control input-lg bootstrap-datetimepicker-widget" id='datetimepicker' name="CarManufactureDate" placeholder="@Resources.Resource.CarManufactureDate" />
+							@*<input type="date" data-provide="datepicker" class="form-control input-lg" name="CarManufactureDate" placeholder="@Resources.Resource.CarManufactureDate">*@
+						</td>
 					</tr>
 					<tr>
 						<td><label for="inputCarState" class="control-label">@Resources.Resource.CarState</label></td>
@@ -101,6 +96,18 @@
 		</div>
 	</form>
 </div>
+@section scripts{
+	<script src="~/Scripts/moment.js"></script>
+	<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$('#datetimepicker').datetimepicker({
+				format: 'DD.MM.YYYY',
+				toolbarPlacement: 'bottom',
+			});
+		});
+	</script>
+}
 
 
 
