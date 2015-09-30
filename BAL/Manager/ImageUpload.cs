@@ -141,6 +141,16 @@ namespace BAL.Manager
 
 			return bmPhoto;
 		}
+		public void DeleteFile(string fileName, string avatarImageName, string mapFile)
+		{
+
+			if (fileName != avatarImageName)
+				if (File.Exists(mapFile))
+				{
+					File.Delete(mapFile);
+
+				}
+		}
 	}
 
 	public class ImageResult

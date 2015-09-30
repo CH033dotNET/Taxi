@@ -24,15 +24,15 @@ namespace MainSaite.Controllers
 		{
 
 			var currentUser = (UserDTO)(Session["User"]);
-			
+
 			if (currentUser == null)
 				RedirectToAction("Registration", "Account");
-			
+
 			var currentPerson = personManager.GetPersonByUserId(currentUser.Id);
 			if (currentPerson == null)
-			currentPerson =	personManager.InsertPerson(new PersonDTO() {UserId = currentUser.Id });
+				currentPerson = personManager.InsertPerson(new PersonDTO() { UserId = currentUser.Id, ImageName = "item_0_profile.jpg" });
 			currentPerson.User = currentUser;
-			
+
 			return View(currentPerson);
 
 		}
@@ -40,15 +40,37 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public ActionResult Index(PersonDTO person, FormCollection formCollection)
 		{
-			
-
 			var currentUser = (UserDTO)(Session["User"]);
+
 
 			if (person.User.UserName != currentUser.UserName)
 				currentUser.UserName = person.User.UserName;
-			
+
 			if (person.User.Email != currentUser.Email)
 				currentUser.Email = person.User.Email;
+
+			UploudImage(person, formCollection, currentUser);
+
+
+			person.UserId = currentUser.Id;
+			person.User = currentUser;
+
+			personManager.EditPerson(person);
+			Session["User"] = currentUser;
+
+
+
+
+			return View(person);
+
+		}
+
+		public void UploudImage(PersonDTO person, FormCollection formCollection, UserDTO currentUser)
+		{
+
+			var profileAvatar = "item_0_profile.jpg";
+
+			person.ImageName = personManager.GetPersonByUserId(currentUser.Id).ImageName;
 
 			foreach (string item in Request.Files)
 			{
@@ -65,10 +87,15 @@ namespace MainSaite.Controllers
 
 					// width will increase the height proportionally
 					ImageUpload imageUpload = new ImageUpload { Width = 200 };
+					string mapImage = Server.MapPath(@"~\Images\") + person.ImageName;
+
+					//delete last image
+					if (file.FileName != person.ImageName)
+						imageUpload.DeleteFile(person.ImageName, profileAvatar, mapImage);
 
 					// rename, resize, and upload
 					//return object that contains {bool Success,string ErrorMessage,string ImageName}
-					imageResult = imageUpload.RenameUploadFile(file);
+					ImageResult imageResult = imageUpload.RenameUploadFile(file);
 					if (imageResult.Success)
 					{
 						//TODO: write the filename to the db
@@ -81,20 +108,9 @@ namespace MainSaite.Controllers
 					}
 				}
 			}
-			
-			person.UserId = currentUser.Id;
-			person.User = currentUser;
-			personManager.EditPerson(person);
-
-			Session["User"] = currentUser;
-			
-
-
-
-			return View(person);
-			
 		}
 
+		
 		
 		}
 	}
