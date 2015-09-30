@@ -81,9 +81,6 @@
                             @if (ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
                             {
                             <li class="list-group-item">@Html.ActionLink(@Resources.Resource.SetVIPStatusPage, "SetVIPStatus", "Settings")</li>}
-                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver)
-                            {
-                            <li class="list-group-item">@Html.ActionLink(@Resources.Resource.TitleMainMenuLocation, "EditLocation", "Location")</li>}
 
                         </ul>
                   </div>
