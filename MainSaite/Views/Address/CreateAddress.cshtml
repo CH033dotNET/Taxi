@@ -20,7 +20,8 @@
             @Html.Label(@Resources.Resource.City)
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.City, new { id = "txtPlace", Value = @Resources.Resource.DefaultValueOfCity })
+            @Html.TextBoxFor(model => model.City, new { id = "txtPlace", Value = Resources.Resource.DefaultValueOfCity })
+            @Html.ValidationMessageFor(model => model.City)
         </div>
 
         <div class="editor-label">
@@ -42,7 +43,7 @@
             @Html.Label(@Resources.Resource.Comment)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Comment)
+            @Html.TextAreaFor(model => model.Comment, new { cols = 22, @rows = 3 })
             @Html.ValidationMessageFor(model => model.Comment)
         </div>
 

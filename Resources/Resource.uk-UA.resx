@@ -483,4 +483,7 @@
   <data name="DistrictEditor" xml:space="preserve">
     <value>Редактор районів</value>
   </data>
+  <data name="RequiredError" xml:space="preserve">
+    <value>Данне поле пусте. Будь ласка, заповніть його.</value>
+  </data>
 </root>
