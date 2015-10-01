@@ -26,6 +26,8 @@ namespace Common
             Mapper.CreateMap<LocationDTO, Location>();
 			Mapper.CreateMap<WorkshiftHistory, WorkshiftHistoryDTO>();
 			Mapper.CreateMap<WorkshiftHistoryDTO, WorkshiftHistory>();
+            Mapper.CreateMap<TarifDTO, Tarif>();
+            Mapper.CreateMap<Tarif, TarifDTO>();
 		}
 	}
 }

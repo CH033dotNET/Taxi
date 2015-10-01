@@ -45,6 +45,7 @@
     <Compile Include="DB\Location.cs" />
     <Compile Include="DB\Person.cs" />
     <Compile Include="DB\RegistrationModel.cs" />
+    <Compile Include="DB\Tarif.cs" />
     <Compile Include="DB\UserAddress.cs" />
     <Compile Include="DB\VIPClient.cs" />
     <Compile Include="DB\WorkshiftHistory.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="DTO\LocationDTO.cs" />
     <Compile Include="DTO\Pager.cs" />
     <Compile Include="DTO\PersonDTO.cs" />
+    <Compile Include="DTO\TarifDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="DTO\VIPClientDTO.cs" />
     <Compile Include="DTO\WrokShiftHistoryDTO.cs" />

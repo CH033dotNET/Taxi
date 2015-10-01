@@ -1,0 +1,53 @@
+﻿@model IList<Model.DTO.TarifDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+@Html.ActionLink("[Create New]", "Create")
+<br />
+
+<table class="table">
+    <tr>
+        <td>
+            @Html.Label("[Id]")
+        </td>
+        <td>
+            @Html.Label("[Tarif Name]")
+        </td>
+
+        <td>
+            @Html.Label("[Start Price]")
+        </td>
+        <td>
+            @Html.Label("[Waiting Cost]")
+        </td>
+
+        <td>
+            @Html.Label("[One Minute Cost]")
+        </td>
+
+        <td>
+            @Html.Label("[District Name]")
+        </td>
+
+        <td>
+            @Html.Label("[Is Intercity]")
+        </td>
+
+    </tr>
+
+    @foreach (var i in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(x => i.id)  </td>
+            <td>@Html.DisplayFor(x => i.Name)</td>
+            <td>@Html.DisplayFor(x => i.StartPrice)</td>
+            <td>@Html.DisplayFor(x => i.WaitingCost)</td>
+            <td>@Html.DisplayFor(x => i.OneMinuteCost)</td>
+            <td>@Html.DisplayFor(x => i.District.Name)</td>
+            <td>@Html.DisplayFor(x => i.IsIntercity)</td>
+            <td>@Html.ActionLink("Edit", "Edit", new { id = i.id })</td>
+            <td>@Html.ActionLink("Delete", "Delete", new { id = i.id })</td>
+        </tr>
+    }
+</table>

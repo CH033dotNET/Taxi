@@ -1,11 +1,12 @@
 namespace DAL.Migrations
 {
-	using Model;
-	using System;
-	using System.Collections.Generic;
-	using System.Data.Entity;
-	using System.Data.Entity.Migrations;
-	using System.Linq;
+    using Model;
+    using Model.DB;
+    using System;
+    using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
 
 	internal sealed class Configuration : DbMigrationsConfiguration<DAL.MainContext> 
     {
@@ -51,6 +52,9 @@ namespace DAL.Migrations
 					RoleId = 5
 				}
 			);
+            if (!context.Tarifes.Any(x => x.Name == "Standart"))
+                context.Tarifes.Add(new Tarif() { Name = "Standart", MinimalPrice = 12.50M, OneMinuteCost = 1M, StartPrice = 5M, WaitingCost = 0.5M });
+
 
 			context.SaveChanges();
     

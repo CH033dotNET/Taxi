@@ -144,11 +144,13 @@
     <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Controllers\TarifController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\EnumHelper.cs" />
+    <Compile Include="Models\CreateTarifModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -309,11 +311,13 @@
     <Content Include="Views\Settings\SetVIPStatus.cshtml" />
     <Content Include="Views\Location\EditLocation.cshtml" />
     <Content Include="Views\Driver\DistrictPart.cshtml" />
+    <Content Include="Views\Tarif\Index.cshtml" />
+    <Content Include="Views\Tarif\Create.cshtml" />
+    <Content Include="Views\Tarif\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

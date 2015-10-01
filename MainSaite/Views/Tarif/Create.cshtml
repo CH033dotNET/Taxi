@@ -1,0 +1,50 @@
+﻿@model MainSaite.Models.CreateTarifModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    <table class="table">
+        <tr>
+            <td>@Html.Label("[Tarif Name]")</td>
+            <td>@Html.EditorFor(x => x.Tarif.Name)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.Label("[Minimal Price]")</td>
+            <td>@Html.EditorFor(x => x.Tarif.MinimalPrice)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.Label("[One minute cost]")</td>
+            <td>@Html.EditorFor(x => x.Tarif.OneMinuteCost)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.Label("[Start price]")</td>
+            <td>@Html.EditorFor(x => x.Tarif.StartPrice)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.Label("[Waiting Cost]")</td>
+            <td>@Html.EditorFor(x => x.Tarif.WaitingCost)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.Label("[Is Intercity]")</td>
+            <td>@Html.EditorFor(x => x.Tarif.IsIntercity)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.Label("[Принадлежность к району]")</td>
+            <td>@Html.DropDownList("tarif.DistrictId", new SelectList(Model.Districts, "Id", "Name", "Id"), new { @class = "list" })</td>
+        </tr>
+
+    </table>
+
+
+    <input type="submit" name="Ok" value="Ok" />
+}
+

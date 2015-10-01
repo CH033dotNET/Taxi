@@ -33,5 +33,6 @@ namespace DAL
 		public DbSet<VIPClient> VIPClients { get; set; }
         public DbSet<Location> Locations { get; set; }
 		public DbSet<WorkshiftHistory> WorkshiftHistories { get; set; }
+        public DbSet<Tarif> Tarifes { get; set; }
     }
 }

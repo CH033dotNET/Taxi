@@ -22,6 +22,7 @@ namespace MainSaite.Controllers
 		protected DistrictManager districtManager;
 		protected PersonManager personManager;
 		protected LocationManager locationManager;
+        protected TarifManager tarifManager;
 
 
 		public BaseController()
@@ -32,6 +33,7 @@ namespace MainSaite.Controllers
 			districtManager = new DistrictManager(uOW);
 			personManager = new PersonManager(uOW);
 			locationManager = new LocationManager(uOW);
+            tarifManager = new TarifManager(uOW);
 		}
 
 		protected override void OnActionExecuting(ActionExecutingContext filterContext)

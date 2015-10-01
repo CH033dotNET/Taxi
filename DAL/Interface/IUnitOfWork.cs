@@ -19,6 +19,7 @@ namespace DAL.Interface
 		IGenericRepository<VIPClient> VIPClientRepo { get; }
 		IGenericRepository<Location> LocationRepo { get; }
 		IGenericRepository<WorkshiftHistory> WorkshiftHistoryRepo { get; }
+        IGenericRepository<Tarif> TarifRepo { get; }
 
 		void Dispose();
 		void Save();
