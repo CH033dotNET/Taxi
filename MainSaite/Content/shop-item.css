@@ -111,3 +111,7 @@ div.validation-summary-errors{
 div.validation-summary-valid {
 display:none;
 }
+
+input{
+	margin:3px;
+}

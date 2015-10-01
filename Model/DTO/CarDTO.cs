@@ -31,7 +31,7 @@ namespace Model.DTO
 		public int CarPetrolConsumption { get; set; }
 		[Required]
 		[DataType(DataType.Date)]
-		[DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
+		[DisplayFormat(DataFormatString = "{0:MM.DD.YYYY}", ApplyFormatInEditMode = true)]
 		public DateTime CarManufactureDate { get; set; }
 		[Required]
 		public CarStateEnum CarState { get; set; }

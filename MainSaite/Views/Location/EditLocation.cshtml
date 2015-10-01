@@ -20,7 +20,7 @@ else
     @using (Html.BeginForm("EditLocation", "Location")) { 
         <div class="col-md-6">
 
-            <select name="Id" class="form-control">
+            <select name="Id" class="form-control" style="margin:3px;">
                 @{
 
                     foreach (District District in ViewBag.Districts)
