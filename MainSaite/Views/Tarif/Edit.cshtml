@@ -39,7 +39,12 @@
         </tr>
 
         <tr>
-            <td>@Html.Label("[Принадлежность к району]")</td>
+            <td>@Html.Label("[Is Standart]")</td>
+            <td>@Html.EditorFor(x => x.Tarif.IsStandart)</td>
+        </tr>
+
+        <tr class="DistrictList">
+            <td>@Html.Label("[Району]")</td>
             <td>@Html.DropDownList("tarif.DistrictId", new SelectList(Model.Districts, "Id", "Name", "Id"), new { @class = "list" })</td>
         </tr>
 
@@ -48,3 +53,24 @@
 
     <input type="submit" name="Ok" value="Ok" />
 }
+
+<script>
+    $(document).ready(function () {
+
+        if ($('#Tarif_IsIntercity, #Tarif_IsStandart').is(':checked')) {
+            $(".DistrictList").attr("hidden", true)
+        } else {
+            $(".DistrictList").removeAttr("hidden");
+        }
+
+        $('#Tarif_IsIntercity, #Tarif_IsStandart').change(function () {
+            if ($('#Tarif_IsIntercity, #Tarif_IsStandart').is(':checked')) {
+                $(".DistrictList").attr("hidden", true)
+            } else {
+                $(".DistrictList").removeAttr("hidden");
+            }
+        });
+
+
+    })
+</script>

@@ -19,6 +19,8 @@ namespace Model.DTO
 
         [Required]
         public bool IsIntercity { get; set; }
+        [Required]
+        public bool IsStandart { get; set; }
 
         public int? DistrictId { get; set; }
         [Required]

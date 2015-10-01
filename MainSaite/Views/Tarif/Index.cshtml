@@ -16,6 +16,10 @@
         </td>
 
         <td>
+            @Html.Label("[Minimal Price]")
+        </td>
+
+        <td>
             @Html.Label("[Start Price]")
         </td>
         <td>
@@ -34,6 +38,10 @@
             @Html.Label("[Is Intercity]")
         </td>
 
+        <td>
+            @Html.Label("[Is Standart]")
+        </td>
+
     </tr>
 
     @foreach (var i in Model)
@@ -41,11 +49,13 @@
         <tr>
             <td>@Html.DisplayFor(x => i.id)  </td>
             <td>@Html.DisplayFor(x => i.Name)</td>
+            <td>@Html.DisplayFor(x => i.MinimalPrice)</td>
             <td>@Html.DisplayFor(x => i.StartPrice)</td>
             <td>@Html.DisplayFor(x => i.WaitingCost)</td>
             <td>@Html.DisplayFor(x => i.OneMinuteCost)</td>
             <td>@Html.DisplayFor(x => i.District.Name)</td>
             <td>@Html.DisplayFor(x => i.IsIntercity)</td>
+            <td>@Html.DisplayFor(x => i.IsStandart)</td>
             <td>@Html.ActionLink("Edit", "Edit", new { id = i.id })</td>
             <td>@Html.ActionLink("Delete", "Delete", new { id = i.id })</td>
         </tr>

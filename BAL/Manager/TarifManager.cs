@@ -28,6 +28,7 @@ namespace BAL.Manager
                            District = tarifes.District,
                            DistrictId = tarifes.DistrictId,
                            IsIntercity = tarifes.IsIntercity,
+                           IsStandart = tarifes.IsStandart,
                            MinimalPrice = tarifes.MinimalPrice,
                            Name = tarifes.Name,
                            OneMinuteCost = tarifes.OneMinuteCost,
@@ -43,7 +44,7 @@ namespace BAL.Manager
             var temp = Mapper.Map<Tarif>(tarifDTO);
             temp.Name = temp.Name.Trim();
 
-            if (temp.DistrictId == -1)
+            if (temp.IsIntercity || temp.IsStandart)
                 temp.DistrictId = null;
 
             uOW.TarifRepo.Insert(temp);
@@ -69,8 +70,9 @@ namespace BAL.Manager
             }*/
 
             temp.District = tarif.District;
-            temp.DistrictId = tarif.DistrictId==-1? null : tarif.DistrictId;
+            temp.DistrictId = tarif.IsIntercity || tarif.IsStandart ? null : tarif.DistrictId;
             temp.IsIntercity = tarif.IsIntercity;
+            temp.IsStandart = tarif.IsStandart;
             temp.MinimalPrice = tarif.MinimalPrice;
             temp.Name = tarif.Name;
             temp.OneMinuteCost = tarif.OneMinuteCost;
@@ -93,9 +95,7 @@ namespace BAL.Manager
 
         public List<District> getDistrictsList()
         {
-            List<District> list = new List<District>();
-            list.Add(new District() { Id=-1, Name="[Select District]"});
-            list.AddRange(uOW.DistrictRepo.Get());
+            List<District> list = uOW.DistrictRepo.Get().ToList();
             return list;
         }
 

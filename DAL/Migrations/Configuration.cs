@@ -53,7 +53,7 @@ namespace DAL.Migrations
 				}
 			);
             if (!context.Tarifes.Any(x => x.Name == "Standart"))
-                context.Tarifes.Add(new Tarif() { Name = "Standart", MinimalPrice = 12.50M, OneMinuteCost = 1M, StartPrice = 5M, WaitingCost = 0.5M });
+                context.Tarifes.Add(new Tarif() { Name = "Standart", MinimalPrice = 12.50M, OneMinuteCost = 1M, StartPrice = 5M, WaitingCost = 0.5M, IsStandart=true });
 
 
 			context.SaveChanges();
