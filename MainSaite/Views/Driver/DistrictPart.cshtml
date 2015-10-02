@@ -29,41 +29,42 @@
 			</div>
 			<div class="panel-footer">
 				<div class="btn-group" aria-label="...">
-                    <input type="hidden" id="Id" value="@currentUserId" />
-                    <input type="button" class="btn btn-success" id="btn_begin" value=@Resources.Resource.WorkShiftStart />
-                    <input type="button" class="btn btn-success" id="btn_end" value=@Resources.Resource.WorkShiftEnd />
+					<input type="hidden" id="Id" value="@currentUserId" />
+					<input type="button" class="btn btn-success" id="btn_begin" value=@Resources.Resource.WorkShiftStart />
+					<input type="button" class="btn btn-success" id="btn_end" value=@Resources.Resource.WorkShiftEnd />
 				</div>
 			</div>
 
-            <div class="panel-heading">
-                <h3 class="panel-title"> @Resources.Resource.Citydistricts</h3>
-            </div>
-  
-            <div id="accordion" class="panel-group">
-                <div class="panel panel-default">
-
-                    @foreach (var district in ViewBag.Districts)
-                    {
-                        <div class="panel-heading">
-                            <h4 style="background-color:transparent">
-                                <a href="#collapse-@district.DistrictName" data-parent="#accordion" class="btn-link" data-toggle="collapse"> <span class="badge">@district.DriverCount</span>  @district.DistrictName</a>
-                            </h4>
-                        </div>
 
 
-                        <div id="collapse-@district.DistrictName" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <ul>
-                                    @foreach (var driver in district.Drivers)
-                                    {
-                                        <li>@driver</li>
-                                    }
-                                </ul>
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
+			<div class="panel-heading">
+				<h3 class="panel-title"> @Resources.Resource.DriversActivity</h3>
+			</div>
+
+			<table class="table">
+
+				<tr>
+					<th>
+						@Resources.Resource.Active
+					</th>
+					<th>
+						@Resources.Resource.DistrictName
+					</th>
+					<th>
+						@Resources.Resource.Action
+					</th>
+				</tr>
+
+
+				@foreach (var district in ViewBag.Districts)
+				{
+					<tr>
+						<td>@district.DriverCount </td>
+						<td>@district.DistrictName</td>
+						<td>@Resources.Resource.Join</td>
+					</tr>
+				}
+			</table>
 
 
 

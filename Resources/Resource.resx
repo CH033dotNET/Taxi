@@ -487,4 +487,16 @@
   <data name="RequiredError" xml:space="preserve">
     <value>The current field is empty. Please fill it.</value>
   </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="DistrictName" xml:space="preserve">
+    <value>District name</value>
+  </data>
+  <data name="DriversActivity" xml:space="preserve">
+    <value>Drivers activity</value>
+  </data>
+  <data name="Join" xml:space="preserve">
+    <value>Join</value>
+  </data>
 </root>

@@ -486,4 +486,16 @@
   <data name="RequiredError" xml:space="preserve">
     <value>Данне поле пусте. Будь ласка, заповніть його.</value>
   </data>
+  <data name="Active" xml:space="preserve">
+    <value>Активно</value>
+  </data>
+  <data name="DistrictName" xml:space="preserve">
+    <value>Назва району</value>
+  </data>
+  <data name="DriversActivity" xml:space="preserve">
+    <value>Активність водіїв</value>
+  </data>
+  <data name="Join" xml:space="preserve">
+    <value>Приєднатися</value>
+  </data>
 </root>

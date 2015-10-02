@@ -79,6 +79,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        public static string Active {
+            get {
+                return ResourceManager.GetString("Active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add new car.
         /// </summary>
         public static string AddNewCar {
@@ -583,6 +592,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to District name.
+        /// </summary>
+        public static string DistrictName {
+            get {
+                return ResourceManager.GetString("DistrictName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Here you can find information about other drivers currently working.
         ///					To start workingshift please press &quot;Start Shift&quot; button.
         /// </summary>
@@ -625,6 +643,15 @@ namespace Resources {
         public static string Driver {
             get {
                 return ResourceManager.GetString("Driver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drivers activity.
+        /// </summary>
+        public static string DriversActivity {
+            get {
+                return ResourceManager.GetString("DriversActivity", resourceCulture);
             }
         }
         
@@ -805,6 +832,15 @@ namespace Resources {
         public static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Join.
+        /// </summary>
+        public static string Join {
+            get {
+                return ResourceManager.GetString("Join", resourceCulture);
             }
         }
         
