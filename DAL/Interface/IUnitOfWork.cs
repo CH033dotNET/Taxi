@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace DAL.Interface
 {
 	public interface IUnitOfWork
@@ -20,6 +21,8 @@ namespace DAL.Interface
 		IGenericRepository<Location> LocationRepo { get; }
 		IGenericRepository<WorkshiftHistory> WorkshiftHistoryRepo { get; }
         IGenericRepository<Tarif> TarifRepo { get; }
+
+		
 
 		void Dispose();
 		void Save();

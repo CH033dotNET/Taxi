@@ -36,6 +36,9 @@ namespace MainSaite.Controllers
 						userManager.InsertUser(user);
 
 						ValidPerson(user);
+						Authentification(new LoginModel() {  UserName = user.UserName, Password = user.Password});
+
+						
 
 						return RedirectToAction("Index", "User");
 					}

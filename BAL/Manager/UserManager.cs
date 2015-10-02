@@ -9,6 +9,8 @@ using Model;
 using Model.DTO;
 using Common;
 using Common.Enum;
+using System.Data.Entity;
+
 
 namespace BAL.Manager
 {
@@ -80,9 +82,11 @@ namespace BAL.Manager
 
 		public UserDTO GetByUserName(string login, string password)
 		{
-			var item = uOW.UserRepo.Get()
-				.Where(s => (s.UserName.ToUpper() == login.ToUpper() && s.Password == password))
+			var item = uOW.UserRepo.All
+				.Where(s => (s.UserName.ToUpper() == login.ToUpper() && s.Password == password)).Include("Role")
 				.FirstOrDefault();
+
+			
 
 			if (item != null)
 			{
