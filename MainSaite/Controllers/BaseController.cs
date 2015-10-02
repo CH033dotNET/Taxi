@@ -1,5 +1,6 @@
 ﻿using BAL.Manager;
 using DAL;
+using MainSaite.Models;
 using Model.DTO;
 using System;
 using System.Collections.Generic;
@@ -23,10 +24,14 @@ namespace MainSaite.Controllers
 		protected PersonManager personManager;
 		protected LocationManager locationManager;
         protected TarifManager tarifManager;
+		protected WebViewPageBase session;
+		protected	LocationManager locationmanager;
+		protected	DistrictManager districtmanager;
 
 
 		public BaseController()
 		{
+			addressmanager = new AddressManager(uOW);
 			uOW = new UnitOfWork();
 			userManager = new UserManager(uOW);
 			carManager = new CarManager(uOW);
@@ -34,6 +39,9 @@ namespace MainSaite.Controllers
 			personManager = new PersonManager(uOW);
 			locationManager = new LocationManager(uOW);
             tarifManager = new TarifManager(uOW);
+			session = new WebViewPageBase();
+			locationmanager = new LocationManager(uOW);
+			districtmanager = new DistrictManager(uOW);
 		}
 
 		protected override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -45,10 +53,10 @@ namespace MainSaite.Controllers
 			}
 
 
-			
-			if(!(Session["User"] == null))
-			{ 
-				UserDTO user = Session["User"] as UserDTO;
+
+			if (session.User != null)
+			{
+				UserDTO user = session.User;
 				ViewBag.UserRoleId = user.Role.Id;
 				ViewBag.ImageName = personManager.GetPersonByUserId(user.Id).ImageName;
 			}

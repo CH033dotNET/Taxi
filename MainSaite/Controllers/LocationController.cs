@@ -14,12 +14,10 @@ namespace MainSaite.Controllers
 	{
 		//
 		// GET: /Localization/
-		LocationManager locationmanager;
-		DistrictManager districtmanager;
+
 		public LocationController()
 		{
-			locationmanager = new LocationManager(base.uOW);
-			districtmanager = new DistrictManager(base.uOW);
+
 		}
 
 		[HttpGet]

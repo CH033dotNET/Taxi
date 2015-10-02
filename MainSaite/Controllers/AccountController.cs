@@ -15,13 +15,6 @@ namespace MainSaite.Controllers
     public class AccountController : BaseController
     {
 		
-
-
-		public AccountController()
-		{
-			userManager = new UserManager(uOW);
-		}
-
         //
         // GET: /Acount/
 
@@ -36,23 +29,19 @@ namespace MainSaite.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				if (!userManager.IfUserNameExists(user.UserName))
+				if (!userManager.IfUserNameExists(user.UserName) && !userManager.IfEmailExists(user.Email))
 				{
-					if (!userManager.IfEmailExists(user.Email))
+					if (userManager.IsUserNameCorrect(user.UserName))
 					{
-						if (userManager.IsUserNameCorrect(user.UserName))
-						{
-							userManager.InsertUser(user);
-							
-							ValidPerson(user);
-							
-							return RedirectToAction("Index", "Home");
-						}
-						else ModelState.AddModelError("", "Login syntax error");
+						userManager.InsertUser(user);
+
+						ValidPerson(user);
+
+						return RedirectToAction("Index", "User");
 					}
-					else ModelState.AddModelError("", "Email is already exist");
+					else ModelState.AddModelError("", "Login syntax error");
 				}
-				else ModelState.AddModelError("", "User is already exist");
+				else ModelState.AddModelError("", "User Name or Email is already exist");
 			}
 			
 			return View(user);
@@ -73,7 +62,7 @@ namespace MainSaite.Controllers
 				if (currentUser != null)
 				{
 					ValidPerson(currentUser);
-					Session["User"] = userManager.GetByUserName(user.UserName, user.Password);
+					session.User = userManager.GetByUserName(user.UserName, user.Password);
 					return RedirectToAction("Index", "Home");
 				}
 				else ModelState.AddModelError("", "Wrong password or login");

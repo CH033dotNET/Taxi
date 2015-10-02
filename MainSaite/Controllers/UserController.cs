@@ -11,19 +11,11 @@ namespace MainSaite.Controllers
 	{
 
 		private ImageResult imageResult;
-		//UserDTO currentUser;
-	
-		
-		public UserController()
-		{
-		
-		    personManager= new PersonManager(uOW);
-		}
 
 		public ActionResult Index()
 		{
 
-			var currentUser = (UserDTO)(Session["User"]);
+			var currentUser = session.User;
 
 			if (currentUser == null)
 				RedirectToAction("Registration", "Account");
@@ -40,7 +32,7 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public ActionResult Index(PersonDTO person, FormCollection formCollection)
 		{
-			var currentUser = (UserDTO)(Session["User"]);
+			var currentUser = session.User;
 
 
 			if (person.User.UserName != currentUser.UserName)
@@ -56,7 +48,7 @@ namespace MainSaite.Controllers
 			person.User = currentUser;
 
 			personManager.EditPerson(person);
-			Session["User"] = currentUser;
+			session.User = currentUser;
 			ViewBag.ImageName = person.ImageName;
 
 

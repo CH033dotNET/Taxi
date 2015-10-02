@@ -16,12 +16,8 @@ namespace MainSaite.Controllers
     public class AddressController : BaseController
     {
          
-        MainContext db = new MainContext();
-        public AddressController()
-        {
-            addressmanager = new AddressManager(base.uOW);
-        }
-       
+     
+        
         public ActionResult Index()
         {
            var ad = addressmanager.GetAddresses();

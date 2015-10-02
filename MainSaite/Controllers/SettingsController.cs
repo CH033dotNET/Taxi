@@ -18,20 +18,6 @@ namespace MainSaite.Controllers
 {
 	public class SettingsController : BaseController
 	{
-		
-
-
-		public SettingsController()
-		{
-			userManager = new UserManager(base.uOW);
-
-			//ASIX
-			districtManager = new DistrictManager(base.uOW);
-
-			//Nick
-			carManager = new CarManager(base.uOW);
-		}
-
 
 		public ActionResult Index()
 		{
@@ -91,13 +77,13 @@ namespace MainSaite.Controllers
 		// Nick: Car info settings
 		public ActionResult CarEditor()
 		{
-			if (null == Session["User"] || ((UserDTO)Session["User"]).RoleId != (int)AvailableRoles.Driver)
+			if (null == session.User || session.User.RoleId != (int)AvailableRoles.Driver)
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 			}
 			else
 			{
-				int userId = ((UserDTO)Session["User"]).Id;
+				int userId = session.User.Id;
 				return View(carManager.getCarsByUserID(userId));
 			}
 		}

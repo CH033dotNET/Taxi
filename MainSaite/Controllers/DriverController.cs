@@ -17,11 +17,7 @@ namespace MainSaite.Controllers
 {
 	public class DriverController : BaseController
 	{
-		public DriverController()
-		{
-			//Nick
-			carManager = new CarManager(base.uOW);
-		}
+		
 		
 		public ActionResult Index()
 		{
