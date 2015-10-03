@@ -36,12 +36,18 @@ namespace MainSaite.Controllers
 			return PartialView(carManager.GetWorkingDrivers());
 		}
 
-		public JsonResult WorkStateChange(int Id, string Latitude, string Longitude)
+		public JsonResult WorkStateChange(int Id, string Latitude, string Longitude, string Accuracy)
 		{
 			try
 			{
-
+				if (Latitude != null && Longitude != null)
+				{
+					CoordinatesDTO coordinates;
+					coordinates = coordinatesManager.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
+					coordinatesManager.AddCoordinates(coordinates);
+				}
 				carManager.StartWorkEvent(Id);
+
 				return Json(true);
 
 			}
@@ -51,10 +57,16 @@ namespace MainSaite.Controllers
 			}
 			return Json(false);
 		}
-		public JsonResult WorkStateEnded(int Id, string Latitude, string Longitude)
+		public JsonResult WorkStateEnded(int Id, string Latitude, string Longitude, string Accuracy)
 		{
 			try
 			{
+				if (Latitude != null && Longitude != null)
+				{
+					CoordinatesDTO coordinates;
+					coordinates = coordinatesManager.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
+					coordinatesManager.AddCoordinates(coordinates);
+				}
 				carManager.EndAllCurrentUserShifts(Id);
 				//carManager.EndWorkShiftEvent(user.Id);
 				return Json(true);

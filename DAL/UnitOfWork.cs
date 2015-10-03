@@ -30,6 +30,7 @@ namespace DAL
 		private IGenericRepository<WorkshiftHistory> workshiftHistoryRepo;
 
         private IGenericRepository<Tarif> tarifRepo;
+		private IGenericRepository<Coordinates> coordinatesHistoryRepo;
 
         #endregion
 
@@ -51,6 +52,7 @@ namespace DAL
 			workshiftHistoryRepo = new GenericRepository<WorkshiftHistory>(context);
 
             tarifRepo = new GenericRepository<Tarif>(context);
+			coordinatesHistoryRepo = new GenericRepository<Coordinates>(context);
             
         }
 
@@ -151,6 +153,15 @@ namespace DAL
                 return tarifRepo;
             }
         }
+
+		public IGenericRepository<Coordinates> CoordinatesHistoryRepo
+		{
+			get
+			{
+				if (coordinatesHistoryRepo == null) coordinatesHistoryRepo = new GenericRepository<Coordinates>(context);
+				return coordinatesHistoryRepo;
+			}
+		}
 		#endregion
 
 		#region Dispose

@@ -21,6 +21,7 @@ namespace DAL.Interface
 		IGenericRepository<Location> LocationRepo { get; }
 		IGenericRepository<WorkshiftHistory> WorkshiftHistoryRepo { get; }
         IGenericRepository<Tarif> TarifRepo { get; }
+		IGenericRepository<Coordinates> CoordinatesHistoryRepo { get; }
 
 		
 

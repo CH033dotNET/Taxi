@@ -12,6 +12,7 @@ function getBeginCoord(position) {
     dataObj.Id = document.getElementById('Id').value;
     dataObj.Latitude = position.coords.latitude;
     dataObj.Longitude = position.coords.longitude;
+    dataObj.Accuracy = position.coords.accuracy;
 
     $.ajax({
         url: '/Driver/WorkStateChange',
@@ -28,6 +29,7 @@ function getEndCoord(position) {
     dataObj.Id = document.getElementById('Id').value;
     dataObj.Latitude = position.coords.latitude;
     dataObj.Longitude = position.coords.longitude;
+    dataObj.Accuracy = position.coords.accuracy;
 
     $.ajax({
         url: '/Driver/WorkStateEnded',
@@ -41,14 +43,14 @@ function getEndCoord(position) {
 
 function setBeginlocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(getBeginCoord);
+        navigator.geolocation.watchPosition(getBeginCoord);
     } else {
         alert("Geolocation is not supported by this browser.");
     }
 }
 function setEndlocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(getEndCoord);
+        navigator.geolocation.watchPosition(getEndCoord);
     } else {
         alert("Geolocation is not supported by this browser.");
     }

@@ -128,6 +128,10 @@
     <Compile Include="Migrations\201510011957059_Tarifes3.Designer.cs">
       <DependentUpon>201510011957059_Tarifes3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510031328453_CoordinatesHistory.cs" />
+    <Compile Include="Migrations\201510031328453_CoordinatesHistory.Designer.cs">
+      <DependentUpon>201510031328453_CoordinatesHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -202,6 +206,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510011957059_Tarifes3.resx">
       <DependentUpon>201510011957059_Tarifes3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510031328453_CoordinatesHistory.resx">
+      <DependentUpon>201510031328453_CoordinatesHistory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

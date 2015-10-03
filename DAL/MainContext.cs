@@ -34,5 +34,6 @@ namespace DAL
         public DbSet<Location> Locations { get; set; }
 		public DbSet<WorkshiftHistory> WorkshiftHistories { get; set; }
         public DbSet<Tarif> Tarifes { get; set; }
+		public DbSet<Coordinates> CoordinatesHistory { get; set; }
     }
 }

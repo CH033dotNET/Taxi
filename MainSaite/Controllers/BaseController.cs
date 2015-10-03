@@ -27,6 +27,7 @@ namespace MainSaite.Controllers
 		protected WebViewPageBase session;
 		protected	LocationManager locationmanager;
 		protected	DistrictManager districtmanager;
+		protected CoordinatesManager coordinatesManager;
 
 
 		public BaseController()
@@ -42,6 +43,7 @@ namespace MainSaite.Controllers
 			session = new WebViewPageBase();
 			locationmanager = new LocationManager(uOW);
 			districtmanager = new DistrictManager(uOW);
+			coordinatesManager = new CoordinatesManager(uOW);
 		}
 
 		protected override void OnActionExecuting(ActionExecutingContext filterContext)
