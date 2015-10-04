@@ -48,6 +48,7 @@
     <Compile Include="Enum\CarEnums\CarPetrol.cs" />
     <Compile Include="Enum\CarEnums\CarState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\PriceCounter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
