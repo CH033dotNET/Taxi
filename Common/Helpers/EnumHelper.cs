@@ -1,22 +1,22 @@
-﻿using System;
+﻿using Common.Enum;
+using Common.Enum.CarEnums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using Common.Enum;
-using System.Threading;
-using Common.Enum.CarEnums;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace MainSaite.Helpers
+namespace Common.Helpers
 {
 	public static class EnumHelper
 	{
-		public static Dictionary<int,string> GetRoles()
+		public static Dictionary<int, string> GetRoles()
 		{
-			var result = new Dictionary<int,string>();
-			foreach(var val in Enum.GetValues(typeof(AvailableRoles)))
+			var result = new Dictionary<int, string>();
+			foreach (var val in System.Enum.GetValues(typeof(AvailableRoles)))
 			{
 				string name = "";
-				switch((AvailableRoles)val)
+				switch ((AvailableRoles)val)
 				{
 					case AvailableRoles.Driver:
 						name = Resources.Resource.Driver;
@@ -39,14 +39,14 @@ namespace MainSaite.Helpers
 						break;
 				}
 
-				result.Add((int)val,name);
+				result.Add((int)val, name);
 			}
 			return result;
 		}
 		public static Dictionary<int, string> GetCarClasses()
 		{
 			var result = new Dictionary<int, string>();
-			foreach (var classValue in Enum.GetValues(typeof(CarClassEnum)))
+			foreach (var classValue in System.Enum.GetValues(typeof(CarClassEnum)))
 			{
 				string className = "";
 				switch ((CarClassEnum)classValue)
@@ -68,7 +68,7 @@ namespace MainSaite.Helpers
 		public static Dictionary<int, string> GetCarStates()
 		{
 			var result = new Dictionary<int, string>();
-			foreach (var stateValue in Enum.GetValues(typeof(CarStateEnum)))
+			foreach (var stateValue in System.Enum.GetValues(typeof(CarStateEnum)))
 			{
 				string stateName = "";
 				switch ((CarStateEnum)stateValue)
@@ -87,7 +87,7 @@ namespace MainSaite.Helpers
 		public static Dictionary<int, string> GetCarPetrol()
 		{
 			var result = new Dictionary<int, string>();
-			foreach (var petrolValue in Enum.GetValues(typeof(CarPetrolEnum)))
+			foreach (var petrolValue in System.Enum.GetValues(typeof(CarPetrolEnum)))
 			{
 				string petrolName = "";
 				petrolName = EnumHelper.GetStringifyPetrol((CarPetrolEnum)petrolValue);
