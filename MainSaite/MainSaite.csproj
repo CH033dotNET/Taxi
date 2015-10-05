@@ -314,6 +314,7 @@
     <Content Include="Views\Tarif\Index.cshtml" />
     <Content Include="Views\Tarif\Create.cshtml" />
     <Content Include="Views\Tarif\Edit.cshtml" />
+    <Content Include="Views\Administration\ViewWorkShifts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

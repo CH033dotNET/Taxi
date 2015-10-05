@@ -1,12 +1,9 @@
 ﻿@model IEnumerable<Model.DTO.WorkshiftHistoryDTO>
 
 @{
-	ViewBag.Title = "DistrictPart";
+    ViewBag.Title = "ViewWorkShifts";
 	string username = (Session["user"] as Model.DTO.UserDTO).UserName;
-	int currentUserId = (Session["user"] as Model.DTO.UserDTO).Id;
 }
-
-@Scripts.Render("~/bundles/coordinates")
 
 <div>
 	<form method="post">
@@ -18,60 +15,13 @@
 				<h3 class="panel-title">@Resources.Resource.WorkShift</h3>
 			</div>
 			<div class="panel-body">
-				<div class="bs-callout bs-callout-primary">
-					<h4>@Resources.Resource.DistrictPartHeader1</h4>
-					@Resources.Resource.DistrictPartAttention1
-				</div>
-				<div class="bs-callout bs-callout-warning">
-					<h4>@Resources.Resource.DistrictPartHeader2</h4>
-					@Resources.Resource.DistrictPartAttention2
-				</div>
+
 			</div>
 			<div class="panel-footer">
-				<div class="btn-group" aria-label="...">
-					<input type="hidden" id="Id" value="@currentUserId" />
-					<input type="button" class="btn btn-success" id="btn_begin" value=@Resources.Resource.WorkShiftStart />
-					<input type="button" class="btn btn-success" id="btn_end" value=@Resources.Resource.WorkShiftEnd />
-				</div>
 				<div>
 					@ViewBag.WorkEndMessage
 				</div>
 			</div>
-
-
-
-			<div class="panel-heading">
-				<h3 class="panel-title"> @Resources.Resource.DriversActivity</h3>
-			</div>
-
-			<table class="table">
-
-				<tr>
-					<th>
-						@Resources.Resource.Active
-					</th>
-					<th>
-						@Resources.Resource.DistrictName
-					</th>
-					<th>
-						@Resources.Resource.Action
-					</th>
-				</tr>
-
-
-				@foreach (var district in ViewBag.Districts)
-				{
-					<tr>
-						<td>@district.DriverCount </td>
-						<td>@district.DistrictName</td>
-                        <td>@Resources.Resource.Join</td>
-                    </tr>
-                    
-                }
-			</table>
-
-
-
 			<div class="table-list">
 				<div class="table-responsive">
 					<table class="table table-striped">

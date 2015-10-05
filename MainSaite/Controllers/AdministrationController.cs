@@ -52,5 +52,11 @@ namespace MainSaite.Controllers
 			}
 		}
 
+		//Nick
+		public ActionResult ViewWorkShifts()
+		{
+			var workingDrivers = carManager.GetWorkingDrivers();
+			return View(workingDrivers);
+		}
     }
 }

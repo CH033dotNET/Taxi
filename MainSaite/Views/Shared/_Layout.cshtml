@@ -81,7 +81,9 @@
                             <li class="list-group-item">@Html.ActionLink(@Resources.Resource.TitleLeftMenuUserAddress, "Index", "Address")</li>}
                             @if (ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
                             {
-                            <li class="list-group-item">@Html.ActionLink(@Resources.Resource.SetVIPStatusPage, "SetVIPStatus", "Settings")</li>}
+                            <li class="list-group-item">@Html.ActionLink(@Resources.Resource.SetVIPStatusPage, "SetVIPStatus", "Settings")</li>
+							<li class="list-group-item">@Html.ActionLink("[WorkShifts]","ViewWorkShifts","Administration")</li>
+							}
 
                         </ul>
                   </div>
