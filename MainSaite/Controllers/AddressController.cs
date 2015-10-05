@@ -15,9 +15,8 @@ namespace MainSaite.Controllers
 {
     public class AddressController : BaseController
     {
-         
-     
         
+
         public ActionResult Index()
         {
            var ad = addressmanager.GetAddresses();
@@ -54,12 +53,7 @@ namespace MainSaite.Controllers
             
             return RedirectToAction("Index");
         }
-      /*  [HttpGet]
-        public ActionResult EditAdd2(AddressDTO address)
-        {
-            return View(address);
-        }*/
-
+     
         [HttpGet]
         public ActionResult EditAddress(int id)
         {

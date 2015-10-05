@@ -60,7 +60,12 @@ namespace BAL.Manager
 			}
 			return null;
 		}
-
+		public void DeleteLocation(int UserId)
+		{
+			uOW.LocationRepo.Delete(uOW.LocationRepo.GetByID(UserId));
+			uOW.Save();
+			return;
+		}
 		public List<DriverDistrictInfoDTO> GetDriverDistrictInfo()
 		{
 			List<DriverDistrictInfoDTO> DDI = new List<DriverDistrictInfoDTO>();

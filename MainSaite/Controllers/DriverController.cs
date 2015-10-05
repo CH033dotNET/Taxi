@@ -30,11 +30,13 @@ namespace MainSaite.Controllers
 				return View();
 			}
 		}
+	
 		public ActionResult DistrictPart()
 		{
 			ViewBag.Districts = locationManager.GetDriverDistrictInfo();
 			return PartialView(carManager.GetWorkingDrivers());
 		}
+		
 
 		public JsonResult WorkStateChange(int Id, string Latitude, string Longitude, string Accuracy)
 		{
@@ -70,6 +72,8 @@ namespace MainSaite.Controllers
 				var message = carManager.EndAllCurrentUserShifts(Id);
 				ViewBag.WorkEndMessage = message;
 				//carManager.EndWorkShiftEvent(user.Id);
+				if (locationManager.GetByUserId(Id) != null)
+					locationManager.DeleteLocation(Id);
 				return Json(true);
 			}
 			catch (DataException)

@@ -12,12 +12,9 @@ namespace MainSaite.Controllers
 {
 	public class LocationController : BaseController
 	{
-		//
-		// GET: /Localization/
-
+		
 		public LocationController()
 		{
-
 		}
 
 		[HttpGet]
