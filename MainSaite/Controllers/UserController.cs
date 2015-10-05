@@ -9,9 +9,6 @@ namespace MainSaite.Controllers
 {
 	public class UserController : BaseController
 	{
-
-		private ImageResult imageResult;
-
 		public ActionResult Index()
 		{
 
@@ -21,7 +18,7 @@ namespace MainSaite.Controllers
 				RedirectToAction("Registration", "Account");
 
 			var currentPerson = personManager.GetPersonByUserId(currentUser.Id);
-			
+
 			if (currentPerson == null)
 				RedirectToAction("Registration", "Account");
 
@@ -103,7 +100,7 @@ namespace MainSaite.Controllers
 			}
 		}
 
-		
-		
-		}
+
+
 	}
+}

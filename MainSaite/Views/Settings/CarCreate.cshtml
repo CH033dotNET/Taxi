@@ -1,5 +1,5 @@
-﻿@using Model.DTO
-@using Common.Helpers
+﻿@using Common.Helpers
+@using Model.DTO
 @model Model.DTO.CarDTO
 
 @{
@@ -26,20 +26,28 @@
 			</div>
 			<div>
 				@Html.AntiForgeryToken()
+				<font color="red">@Html.ValidationSummary()</font>
 				<table class="table table-hover">
 					<tr>
 						<td><label for="inputCarName" class="control-label">@Resources.Resource.CarName</label></td>
 						<td>
 							<input type="text" class="form-control input-lg" id="inputCarName" name="CarName" placeholder="@Resources.Resource.CarName">
+							@Html.ValidationMessageFor(model => Model.CarName)
 						</td>
 					</tr>
 					<tr>
 						<td><label for="inputCarNumber" class="control-label">@Resources.Resource.CarNumber</label></td>
-						<td><input type="text" class="form-control input-lg" id="inputCarNumber" name="CarNumber" placeholder="@Resources.Resource.CarNumber"></td>
+						<td>
+							<input type="text" class="form-control input-lg" id="inputCarNumber" name="CarNumber" placeholder="@Resources.Resource.CarNumber">
+							@Html.ValidationMessageFor(model => Model.CarNumber)
+						</td>
 					</tr>
 					<tr>
 						<td><label for="inputCarOccupation" class="control-label">@Resources.Resource.CarOccupation</label></td>
-						<td><input type="number" class="form-control input-lg" id="inputCarOccupation" name="CarOccupation" min="2" max="20" placeholder="@Resources.Resource.CarOccupation"></td>
+						<td>
+							<input type="number" class="form-control input-lg" id="inputCarOccupation" name="CarOccupation" min="2" max="20" placeholder="@Resources.Resource.CarOccupation">
+							@Html.ValidationMessageFor(model => Model.CarOccupation)
+						</td>
 					</tr>
 					<tr>
 						<td><label for="inputCarClass" class="control-label">@Resources.Resource.CarClass</label></td>
@@ -65,13 +73,17 @@
 					</tr>
 					<tr>
 						<td><label for="inputCarPetrolConsumption" class="control-label">@Resources.Resource.CarPetrolConsumption</label></td>
-						<td><input type="number" class="form-control input-lg" id="inputCarPetrolConsumption" name="CarPetrolConsumption" min="1" max="100" placeholder="@Resources.Resource.CarPetrolConsumption"></td>
+						<td>
+							<input type="number" class="form-control input-lg" id="inputCarPetrolConsumption" name="CarPetrolConsumption" min="1" max="100" placeholder="@Resources.Resource.CarPetrolConsumption">
+							@Html.ValidationMessageFor(model => Model.CarPetrolConsumption)
+						</td>
 					</tr>
 					<tr>
 						<td><label for="inputCarManufactureDate" class="control-label">@Resources.Resource.CarManufactureDate</label></td>
 						<td>
 							<input type='text' class="form-control input-lg bootstrap-datetimepicker-widget" id='datetimepicker' name="CarManufactureDate" placeholder="@Resources.Resource.CarManufactureDate" />
 							@*<input type="date" data-provide="datepicker" class="form-control input-lg" name="CarManufactureDate" placeholder="@Resources.Resource.CarManufactureDate">*@
+							@Html.ValidationMessageFor(model => Model.CarManufactureDate)
 						</td>
 					</tr>
 					<tr>
@@ -103,7 +115,7 @@
 	<script type="text/javascript">
 		$(function () {
 			$('#datetimepicker').datetimepicker({
-				format: 'MM.DD.YYYY',
+				format: 'DD/MM/YYYY',
 				toolbarPlacement: 'top',
 			});
 		});

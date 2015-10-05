@@ -32,7 +32,7 @@ namespace MainSaite.Controllers
 		}
 		public ActionResult DistrictPart()
 		{
-			ViewBag.Districts = locationManager.GetDriverDistrictInfo(); ;
+			ViewBag.Districts = locationManager.GetDriverDistrictInfo();
 			return PartialView(carManager.GetWorkingDrivers());
 		}
 
@@ -67,7 +67,8 @@ namespace MainSaite.Controllers
 					coordinates = coordinatesManager.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
 					coordinatesManager.AddCoordinates(coordinates);
 				}
-				carManager.EndAllCurrentUserShifts(Id);
+				var message = carManager.EndAllCurrentUserShifts(Id);
+				ViewBag.WorkEndMessage = message;
 				//carManager.EndWorkShiftEvent(user.Id);
 				return Json(true);
 			}
