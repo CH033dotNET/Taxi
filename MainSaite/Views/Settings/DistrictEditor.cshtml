@@ -1,43 +1,62 @@
 ﻿@model IList<Model.District>
-
+@{
+	string username = (Session["user"] as Model.DTO.UserDTO).UserName;
+}
 <h2>@Resources.Resource.DistrictEditor</h2>
-<table class="table">
-	<tr>
-		<th>
-			@Resources.Resource.District
-		</th>
-		<th>
-			@Resources.Resource.Action
-		</th>
-	</tr>
-	@{
-		foreach (var a in Model)
-		{
-			<tr>
-				<td>
-					@a.Name
-				</td>
-				<td>
-					@Html.ActionLink(Resources.Resource.deleteString, "DeleteDistrict", new { Id = a.Id })
-				</td>
-				<td>
-					@Html.ActionLink("[edit]", "EditDistrict", new { Id = a.Id})
-				</td>
-			</tr>
-		}
-	}
-
-	@using (Html.BeginForm())
-	{
-		<tr>
-			<td>
-				<input type="text" name="Name" autofocus style="width:99%; border-bottom-width:2; border-top-width:0; border-right-width:0; border-left-width:0;" />
-			</td>
-			<td>
-				<input type="submit" value=@Resources.Resource.addString />
-			</td>
-		</tr>
-	}
-</table>
+<div>
+	<div class="page-header">
+		<h1>@Resources.Resource.Greeting,<small>@username</small></h1>
+	</div>
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">@Resources.Resource.Garage</h3>
+		</div>
+		<div class="panel-body">
+		</div>
+		<div class="panel-footer">
+		</div>
+		<div class="table-list">
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr class="info">
+							<th>
+								@Resources.Resource.District
+							</th>
+							<th>
+								@Resources.Resource.Action
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td>
+									@item.Name
+								</td>
+								<td>
+									@Html.ActionLink(Resources.Resource.deleteString, "DeleteDistrict", new { Id = item.Id }, new {@class = "btn btn-danger" })
+									@Html.ActionLink("[edit]", "EditDistrict", new { Id = item.Id }, new { @class = "btn btn-warning" })
+								</td>
+							</tr>
+						}
+					</tbody>
+					@using (Html.BeginForm())
+					{
+						<tr>
+							<td>
+								<input type="text" name="Name" autofocus style="width:99%; border-bottom-width:2; border-top-width:0; border-right-width:0; border-left-width:0;" />
+							</td>
+							<td>
+								<input type="submit" value=@Resources.Resource.addString class="btn btn-success" />
+							</td>
+						</tr>
+					}
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
 
 
