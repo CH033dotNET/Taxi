@@ -73,6 +73,20 @@ namespace MainSaite.Controllers
 			districtManager.deleteById(a.Id);
 			return RedirectToAction("DistrictEditor");
 		}
+		[HttpGet]
+		public ActionResult EditDistrict(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			var districtForEdit = districtManager.getOneDistrictByItsID(id);
+			if (districtForEdit == null)
+			{
+				return HttpNotFound();
+			}
+			return View(districtForEdit);
+		}
 
 		// Nick: Car info settings
 		public ActionResult CarEditor()

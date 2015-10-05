@@ -44,6 +44,16 @@ namespace BAL.Manager
 			return uOW.DistrictRepo.GetByID(id);
 		}
 
+		public District getOneDistrictByItsID(int? id)
+		{
+			var getDistrict = uOW.DistrictRepo.Get().Where(s => s.Id == id).FirstOrDefault();
+			if (getDistrict != null)
+			{
+				return getDistrict;
+			}
+			return null;
+		}
+
         public District getByName(string name)
         {
             return uOW.DistrictRepo.Get().Where(s => s.Name == name).FirstOrDefault();
