@@ -43,7 +43,8 @@ namespace MainSaite
 
 			bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/bootstrap.css",
 																 "~/Content/shop-item.css",
-																 "~/Content/DriverMenu.css"));
+																 "~/Content/DriverMenu.css",
+																 "~/Content/ClientDriveService.css"));
 
 			bundles.Add(new ScriptBundle("~/bundles/datetime").Include(
 																	"~/Scripts/moment*",

@@ -498,4 +498,7 @@
   <data name="Join" xml:space="preserve">
     <value>Приєднатися</value>
   </data>
+  <data name="ClientService" xml:space="preserve">
+    <value>Сервис Клиент</value>
+  </data>
 </root>

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Model.DTO.TarifDTO>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Content/css");
+
+    <script type="text/javascript" src="~/Scripts/DriveTimer.js">
+
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col col-md-4">
+                <img src="~/Content/Picture/SandWatch.jpg" class="imgClock" />
+                <p class="timeTable"></p>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <center><h3>Select Tarif</h3></center>
+                @{
+                    if (Model != null)
+                    {
+                        foreach (var tarif in @Model)
+                        {
+                            @Html.Label(tarif.Name, new { @class = "tarifName" })
+
+                            @Html.CheckBox(tarif.Name, new { @class = "tarifCheckBox", @value = tarif.OneMinuteCost }) ;
+                    <hr />
+                        }
+                    }
+                }
+                <button class="btn Drive"><i class="fa fa-tachometer fa-lg"></i>DRIVE</button>
+            </div>
+        </div>
+        <div class="row">
+
+            <br /><br />
+            <p class="driveCounter"></p>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/bootstrap")
+
+</body>
+</html>

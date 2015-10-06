@@ -499,4 +499,7 @@
   <data name="Join" xml:space="preserve">
     <value>Join</value>
   </data>
+  <data name="ClientService" xml:space="preserve">
+    <value>Client Service</value>
+  </data>
 </root>

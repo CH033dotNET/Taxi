@@ -1,0 +1,30 @@
+﻿.tarifName{
+
+font-size:large;
+}
+
+.tarifCheckBox {
+   float:right;
+   zoom:4.0;
+}
+
+.imgClock {
+
+margin-left:-45px;
+margin-top:54px;
+}
+
+.Drive {
+    font-size:x-large;
+    letter-spacing:40px;
+    background-color:#BF926B;
+    margin-top:20px;
+    margin-left:70px;
+    border-radius:25px;
+}
+
+.timeTable{
+    margin-top:27px;
+    margin-left:-41px;
+    color:#5A3E30;
+}
