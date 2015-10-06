@@ -209,24 +209,19 @@ namespace MainSaite.Controllers
 
 		public ActionResult SetVIPStatus()
 		{
-			List<Object> ListForView = new List<object>() { userManager.GetVIPClients(), userManager.GetNoVIPClients() };
-			return View(ListForView);
+			return View(userManager.GetVIPClients());
 		}
 
-		[HttpPost]
-		public ActionResult SetVIPStatusC(string UserName)
+
+		public ActionResult SetVIPUser(VIPClientDTO client)
 		{
-			if (UserName != null)
-			{
-				userManager.SetVIPStatus(UserName);
-			}
+			userManager.SetVIPStatus(client.UserId);
 			return RedirectToAction("SetVIPStatus");
 		}
 
-		public ActionResult DeleteVIPUser(VIPClientDTO a)
+		public ActionResult DeleteVIPUser(VIPClientDTO client)
 		{
-			userManager.deleteVIPById(a.Id);
-			//	districtManager.deleteById(a.Id);
+			userManager.deleteVIPById(client.Id);
 			return RedirectToAction("SetVIPStatus");
 		}
 

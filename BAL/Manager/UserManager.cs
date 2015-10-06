@@ -236,53 +236,45 @@ namespace BAL.Manager
 			return result;
 		}
 
-		public IEnumerable<VIPClientDTO> GetVIPClients()
+
+		///SetVIPStatus methodes
+		public List<VIPClientDTO> GetVIPClients()
 		{
-
+			var listVIPClients = uOW.VIPClientRepo.Get();
 			var listUsers = uOW.UserRepo.Get();
-			var listVIPClientsDTO = new List<VIPClientDTO>();
-
-			var listVIPClients = uOW.VIPClientRepo.Get().ToList();
-			foreach (var Client in listVIPClients)
-			{
-				var CurrentUser = listUsers.Where(x => (x.Id == Client.UserId)).First();
-				listVIPClientsDTO.Add(new VIPClientDTO { Id = Client.Id, SetDate = Client.SetDate, UserId = Client.UserId, UserName = CurrentUser.UserName });
-			}
-
-			return listVIPClientsDTO;
-		}
-
-		///SetVIPStatu methodes
-		public IEnumerable<UserDTO> GetNoVIPClients()
-		{
-			var listVIPClients = uOW.VIPClientRepo.Get().ToList();
-			var listUsers = uOW.UserRepo.Get();
-			var ListUserDTO = new List<UserDTO>();
+			List<VIPClientDTO> listVipClients = new List<VIPClientDTO>();
 
 
 			var RigthJoin =
 					from U in listUsers.Where(x => x.RoleId == 3)
 					join V in listVIPClients
 						on U.Id equals V.UserId into joined
-					from V in joined.DefaultIfEmpty().Where(x => x == null)
-					select new UserDTO
+					from V in joined.DefaultIfEmpty()
+					select new VIPClientDTO
 					{
-						Id = U.Id,
+						Id = V != null ? V.Id : 0,
+						SetDate = V != null ? V.SetDate : DateTime.MaxValue,
+						UserId = U.Id,
 						UserName = U.UserName
 					};
 
-			foreach (UserDTO U in RigthJoin)
+			foreach (VIPClientDTO client in RigthJoin.OrderByDescending(x => x.Id))
 			{
-				ListUserDTO.Add(U);
+				listVipClients.Add(client);
 			}
 
-			return ListUserDTO;
+			return listVipClients;
 		}
 
-		public void SetVIPStatus(string UserName)
+		public void SetVIPStatus(int UserId)
 		{
-			int CurrentId = uOW.UserRepo.Get(x => x.UserName == UserName).Select(d => d.Id).First();
-			uOW.VIPClientRepo.Insert(new VIPClient { UserId = CurrentId, SetDate = System.DateTime.Today });
+			uOW.VIPClientRepo.Insert(new VIPClient { UserId = UserId, SetDate = System.DateTime.Today });
+			uOW.Save();
+		}
+
+		public void deleteVIPById(int id)
+		{
+			uOW.VIPClientRepo.Delete(uOW.VIPClientRepo.GetByID(id));
 			uOW.Save();
 		}
 
@@ -294,12 +286,6 @@ namespace BAL.Manager
 						return true;
 		}
 
-		public void deleteVIPById(int id)
-		{
-			VIPClient a = uOW.VIPClientRepo.GetByID(id);
-			uOW.VIPClientRepo.Delete(a);
-			uOW.Save();
-		}
 
 		//
 		/// end of SetVIPStatu methodes
