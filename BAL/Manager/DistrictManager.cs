@@ -54,6 +54,25 @@ namespace BAL.Manager
 			return null;
 		}
 
+		public District EditDistrict(District district)
+		{
+			var oldDistrict = uOW.DistrictRepo.Get(s => s.Id == district.Id).FirstOrDefault();
+			if (oldDistrict == null)
+			{
+				return null;
+			}
+			var newDistrict = SetDistrictStateModified(oldDistrict, district);
+			return newDistrict;
+		}
+
+		private District SetDistrictStateModified(District oldDistrict, District inputDistrict)
+		{
+			uOW.DistrictRepo.SetStateModified(oldDistrict);
+			oldDistrict.Name = inputDistrict.Name;
+			uOW.Save();
+			return oldDistrict;
+		}
+
         public District getByName(string name)
         {
             return uOW.DistrictRepo.Get().Where(s => s.Name == name).FirstOrDefault();

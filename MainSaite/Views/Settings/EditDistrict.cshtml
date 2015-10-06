@@ -30,7 +30,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "DistrictEditor")
+	<input type="button" value="Back" class="btn btn-warning" onclick="location.href = '@Url.Action("DistrictEditor")'" />
 </div>
 
 @section Scripts {

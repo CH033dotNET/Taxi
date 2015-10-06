@@ -87,6 +87,16 @@ namespace MainSaite.Controllers
 			}
 			return View(districtForEdit);
 		}
+		[HttpPost]
+		public ActionResult EditDistrict(District district)
+		{
+			if (ModelState.IsValid)
+			{
+				districtManager.EditDistrict(district);
+				return RedirectToAction("DistrictEditor");
+			}
+			return RedirectToAction("DistrictEditor");
+		}
 
 		// Nick: Car info settings
 		public ActionResult CarEditor()
