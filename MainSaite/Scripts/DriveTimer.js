@@ -33,13 +33,13 @@ $(document).ready(function () {
     // Start or finish drive a client
     function Switch() {
         if (switcher.hasClass("Drive")) {
-            switcher.removeClass("Drive").val("Destination");
+            switcher.removeClass("Drive").addClass("Dest").text("Destination").append("<i class='fa fa-tachometer fa-lg'></i>");
             drievingTime = setInterval(DriveTime, 1000);
         }
         else {
-            switcher.addClass("Drive");
-            switcher.val("Drive");
-            clearInterval(drievingTime);
+            switcher.removeClass("Dest").addClass("Drive");
+            switcher.text("Drive").append("<i class='fa fa-tachometer fa-lg'></i>");
+            clearInterval(drievingTime); 
         }
     }
 

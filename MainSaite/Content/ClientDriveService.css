@@ -16,13 +16,26 @@ margin-top:54px;
 
 .Drive {
     font-size:x-large;
-    letter-spacing:40px;
+    letter-spacing:30px;
     background-color:#BF926B;
     margin-top:20px;
-    margin-left:70px;
+    margin-left:200px;
     border-radius:25px;
+    font-style:italic;
+    
 }
+  .Dest {
 
+    font-size:x-large;
+    letter-spacing:10px;
+    background-color:#BF926B;
+    margin-top:20px;
+    margin-left:200px;
+    border-radius:25px;
+    font-style:italic;
+   
+}
+ 
 .timeTable{
     margin-top:27px;
     margin-left:-41px;
