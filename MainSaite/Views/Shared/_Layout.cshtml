@@ -78,7 +78,10 @@
                             <li class="list-group-item">@Html.ActionLink(Resources.Resource.PersonalCabinet, "Index", "Driver")</li>}
                             @if (ViewBag.UserRoleId == (int)AvailableRoles.Client)
                             {
-                            <li class="list-group-item">@Html.ActionLink(@Resources.Resource.TitleLeftMenuUserAddress, "Index", "Address")</li>}
+                            <li class="list-group-item">@Html.ActionLink(@Resources.Resource.TitleLeftMenuUserAddress, "Index", "Address")</li>
+                             <li class="list-group-item">@Html.ActionLink("[User menu]", "Index", "UserPage")</li>   
+                            
+                            }
                             @if (ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
                             {
                             <li class="list-group-item">@Html.ActionLink(@Resources.Resource.SetVIPStatusPage, "SetVIPStatus", "Settings")</li>
