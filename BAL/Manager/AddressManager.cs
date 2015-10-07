@@ -19,6 +19,21 @@ namespace BAL.Manager
         {
         }
 
+		public IEnumerable<AddressDTO> GetAddressesEmulation()
+		{
+			List<AddressDTO> list = new List<AddressDTO>();
+
+			for (int j = 1; j < 25; j++)
+			{
+				list.Add(new AddressDTO() { Number = "25", Street = "Halturina", City = "Chernivtsi", Comment = "", UserId = j });
+				list.Add(new AddressDTO() { Number = "76", Street = "Olega Koshoovogo", City = "Chernivtsi", Comment = "", UserId = j });
+				list.Add(new AddressDTO() { Number = "86", Street = "Golovna", City = "Chernivtsi", Comment = "", UserId = j });
+			}
+
+
+			return list;
+		}
+
         public IEnumerable<AddressDTO> GetAddresses()
         {
             var list = from address in uOW.AddressRepo.Get()

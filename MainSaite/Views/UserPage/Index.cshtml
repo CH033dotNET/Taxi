@@ -1,0 +1,46 @@
+﻿@model IList<Model.DTO.AddressDTO>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserPageLayout.cshtml";
+}
+
+@section  Menu{
+    
+
+        <div class="navbar-header">
+            <button id="OrderTaxi" class="btn btn-primary">[Order taxi]</button>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu">
+                   <span class="sr-only">[Open Nav]</span>
+                   <span class="icon-bar"></span>  
+                   <span class="icon-bar"></span>    
+                   <span class="icon-bar"></span>  
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="responsive-menu">
+            <ul class="nav navbar-nav">
+                @foreach(var i in Model)
+                {
+                    <li> <a href="#"> @String.Format("{0} {1} {2}",i.City,i.Street,i.Number) </a> </li>
+                }
+
+            </ul>
+        </div>
+
+
+
+    
+}
+
+@section  body{
+
+ <input id="autocomplete" placeholder="Enter your address"
+              type="text"></input>
+             
+
+    <input type="button" id="OkBtn" name="Find" value="Find" onclick="geocode()">
+
+<div id="map"></div>
+
+    
+}

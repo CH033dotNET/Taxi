@@ -1,0 +1,39 @@
+﻿@using Common.Enum
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body onload="initialize()">
+
+    <div class="row">
+        <div class="navbar navbar-inverse" id="menuWrap">
+            @RenderSection("Menu", false)
+        </div>
+    </div>
+
+
+    @RenderSection("body", false)
+
+
+
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/GoogleMapJS/GoogleMapUserPage")
+    @Styles.Render("~/Content/UserMenu/UserMenuMaps");
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>
