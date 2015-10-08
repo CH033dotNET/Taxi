@@ -15,7 +15,7 @@ namespace Model.DTO
 
 		public double Longitude { get; set; }
 
-		public int Accuracy { get; set; }
+		public double Accuracy { get; set; }
 
 		public DateTime AddedTime { get; set; }
 
