@@ -15,6 +15,15 @@ namespace MainSaite
 			bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
+			//GoogleMapUserPage.js
+			//--------------UserPage---------------------------------
+			bundles.Add(new ScriptBundle("~/bundles/GoogleMapJS/GoogleMapUserPage").Include(
+						"~/Scripts/GoogleMapJS/GoogleMapUserPage.js"));
+			bundles.Add(new StyleBundle("~/Content/UserMenu/UserMenuMaps").Include(
+						"~/Content/UserMenu/UserMenuMaps.css"));
+			//-------------------------------------------------------
+
+
 			bundles.Add(new ScriptBundle("~/bundles/coordinates").Include(
 						"~/Scripts/coordinates.js"));
 
@@ -43,11 +52,15 @@ namespace MainSaite
 
 			bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/bootstrap.css",
 																 "~/Content/shop-item.css",
-																 "~/Content/DriverMenu.css"));
+																 "~/Content/DriverMenu.css",
+																 "~/Content/ClientDriveService.css"));
 
 			bundles.Add(new ScriptBundle("~/bundles/datetime").Include(
 																	"~/Scripts/moment*",
 																	"~/Scripts/bootstrap-datetimepicker*"));
+
+			bundles.Add(new ScriptBundle("~/bundles/handlebars").Include(
+																	"~/Scripts/handlebars.js"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

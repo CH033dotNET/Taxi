@@ -1,0 +1,43 @@
+﻿.tarifName{
+
+font-size:large;
+}
+
+.tarifCheckBox {
+   float:right;
+   zoom:4.0;
+}
+
+.imgClock {
+
+margin-left:-45px;
+margin-top:54px;
+}
+
+.Drive {
+    font-size:x-large;
+    letter-spacing:30px;
+    background-color:#BF926B;
+    margin-top:20px;
+    margin-left:200px;
+    border-radius:25px;
+    font-style:italic;
+    
+}
+  .Dest {
+
+    font-size:x-large;
+    letter-spacing:10px;
+    background-color:#BF926B;
+    margin-top:20px;
+    margin-left:200px;
+    border-radius:25px;
+    font-style:italic;
+   
+}
+ 
+.timeTable{
+    margin-top:27px;
+    margin-left:-41px;
+    color:#5A3E30;
+}

@@ -46,6 +46,7 @@ namespace MainSaite.Controllers
 				{
 					CoordinatesDTO coordinates;
 					coordinates = coordinatesManager.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
+					coordinates.TarifId = 1;
 					coordinatesManager.AddCoordinates(coordinates);
 				}
 				carManager.StartWorkEvent(Id);
@@ -67,6 +68,7 @@ namespace MainSaite.Controllers
 				{
 					CoordinatesDTO coordinates;
 					coordinates = coordinatesManager.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
+					coordinates.TarifId = 1;
 					coordinatesManager.AddCoordinates(coordinates);
 				}
 				var message = carManager.EndAllCurrentUserShifts(Id);

@@ -30,8 +30,7 @@ namespace Model.DTO
 		[StringLength(500)]
 		public string Comment { get; set; }
 
-		[ForeignKey("UserId")]
-		public virtual User User { get; set; }
+		
 		public int UserId { get; set; }
 	}
 }

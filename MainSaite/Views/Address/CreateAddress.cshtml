@@ -13,9 +13,6 @@
 
     <fieldset>
 
-
-        @Html.HiddenFor(model => model.AddressId)
-
         <div class="editor-label">
             @Html.Label(@Resources.Resource.City)
         </div>
@@ -46,7 +43,6 @@
             @Html.TextAreaFor(model => model.Comment, new { cols = 22, @rows = 3 })
             @Html.ValidationMessageFor(model => model.Comment)
         </div>
-
         @Html.Hidden("UserId", (Session["User"] as Model.DTO.UserDTO).Id != null ? (Session["User"] as Model.DTO.UserDTO).Id : -1)
         <p>
             <input type="submit" value=@Resources.Resource.addString />

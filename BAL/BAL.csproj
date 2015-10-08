@@ -62,6 +62,7 @@
     <Compile Include="Manager\LocationManager.cs" />
     <Compile Include="Manager\PersonManager.cs" />
     <Compile Include="Manager\TarifManager.cs" />
+    <Compile Include="Tools\PriceCounter.cs" />
     <Compile Include="Manager\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

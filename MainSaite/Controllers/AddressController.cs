@@ -19,8 +19,8 @@ namespace MainSaite.Controllers
 
         public ActionResult Index()
         {
-           var ad = addressmanager.GetAddresses();
-            return View(ad);
+			var addressList = addressmanager.GetAddresses();
+			return View(addressList);
         }
 
         [HttpGet]
@@ -31,9 +31,7 @@ namespace MainSaite.Controllers
         [HttpPost]
          public ActionResult CreateAddress(AddressDTO address) 
         {
-          
             addressmanager.AddAddress(address);
-            
             return RedirectToAction("Index");
         }
 
@@ -48,9 +46,7 @@ namespace MainSaite.Controllers
         [HttpPost, ActionName("DeleteAddress")]
         public ActionResult DeleteAdd(int id)
         { 
-            
             addressmanager.DeleteAddress(id);
-            
             return RedirectToAction("Index");
         }
      

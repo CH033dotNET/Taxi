@@ -166,12 +166,14 @@
     <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ClientServiceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\TarifController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserPageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -189,6 +191,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\BootstrapCallout.css" />
+    <Content Include="Content\ClientDriveService.css" />
     <Content Include="Content\DriverMenu.css" />
     <Content Include="Content\Picture\0-well-traveled-passport-taxi-cab-global-british-american-vietnamese-engagement-wedding-photos-photographer.jpg" />
     <Content Include="Content\Picture\2.jpg" />
@@ -197,6 +200,7 @@
     <Content Include="Content\Picture\DriverIcons\cabRed.png" />
     <Content Include="Content\Picture\logo.png" />
     <Content Include="Content\Picture\roteiro.jpg" />
+    <Content Include="Content\Picture\SandWatch.jpg" />
     <Content Include="Content\Picture\slide-image-1.jpg" />
     <Content Include="Content\shop-item.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -253,6 +257,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\UserMenu\UserMenuMaps.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -262,6 +267,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="App_Readme\Handlebarsjs_README.md" />
+    <Content Include="App_Readme\Handlebarsjs_LICENSE" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
@@ -270,6 +277,16 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\coordinates.js" />
     <Content Include="Scripts\DriverMap.js" />
+    <Content Include="Scripts\DriveTimer.js" />
+    <Content Include="Scripts\GoogleMapJS\GoogleMapUserPage.js" />
+    <Content Include="Scripts\handlebars.amd.js" />
+    <Content Include="Scripts\handlebars.amd.min.js" />
+    <Content Include="Scripts\handlebars.js" />
+    <Content Include="Scripts\handlebars.min.js" />
+    <Content Include="Scripts\handlebars.runtime.amd.js" />
+    <Content Include="Scripts\handlebars.runtime.amd.min.js" />
+    <Content Include="Scripts\handlebars.runtime.js" />
+    <Content Include="Scripts\handlebars.runtime.min.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -349,6 +366,9 @@
     <Content Include="Views\Tarif\Edit.cshtml" />
     <Content Include="Views\Administration\ViewWorkShifts.cshtml" />
     <Content Include="Views\Settings\EditDistrict.cshtml" />
+    <Content Include="Views\ClientService\PeekClient.cshtml" />
+    <Content Include="Views\Shared\_UserPageLayout.cshtml" />
+    <Content Include="Views\UserPage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -2,14 +2,18 @@
 
 @{
     ViewBag.Title = "Index";
+    int number = 1;
 }
-@Html.ActionLink("[Create New]", "Create")
+
+@Html.ActionLink("[Create New]", "Create")  
 <br />
 
+
 <table class="table">
+
     <tr>
         <td>
-            @Html.Label("[Id]")
+            @Html.Label("[Number]")
         </td>
         <td>
             @Html.Label("[Tarif Name]")
@@ -47,7 +51,7 @@
     @foreach (var i in Model)
     {
         <tr>
-            <td>@Html.DisplayFor(x => i.id)  </td>
+            <td>@Html.Label((number++).ToString())  </td>
             <td>@Html.DisplayFor(x => i.Name)</td>
             <td>@Html.DisplayFor(x => i.MinimalPrice)</td>
             <td>@Html.DisplayFor(x => i.StartPrice)</td>
@@ -55,9 +59,19 @@
             <td>@Html.DisplayFor(x => i.OneMinuteCost)</td>
             <td>@Html.DisplayFor(x => i.District.Name)</td>
             <td>@Html.DisplayFor(x => i.IsIntercity)</td>
-            <td>@Html.DisplayFor(x => i.IsStandart)</td>
+            @if (i.IsStandart)
+            { 
+            <td><span title="This is the standart tariph">*</span></td>
+            } 
+            else
+            {
+                <td></td>
+            }
             <td>@Html.ActionLink("Edit", "Edit", new { id = i.id })</td>
+            @if (!i.IsStandart)
+            {
             <td>@Html.ActionLink("Delete", "Delete", new { id = i.id })</td>
+            }
         </tr>
     }
 </table>

@@ -19,45 +19,59 @@ namespace BAL.Manager
         {
         }
 
+		public IEnumerable<AddressDTO> GetAddressesEmulation()
+		{
+			List<AddressDTO> list = new List<AddressDTO>();
+
+			for (int j = 1; j < 25; j++)
+			{
+				list.Add(new AddressDTO() { Number = "25", Street = "Halturina", City = "Chernivtsi", Comment = "", UserId = j });
+				list.Add(new AddressDTO() { Number = "76", Street = "Olega Koshoovogo", City = "Chernivtsi", Comment = "", UserId = j });
+				list.Add(new AddressDTO() { Number = "86", Street = "Golovna", City = "Chernivtsi", Comment = "", UserId = j });
+			}
+
+
+			return list;
+		}
+
         public IEnumerable<AddressDTO> GetAddresses()
         {
-            var list = from address in uOW.AddressRepo.Get()
-                       select new AddressDTO
-                       {
-                           AddressId = address.AddressId,
-                           City = address.City,
-                           Street = address.Street,
-                           Number = address.Number,
-						   Comment = address.Comment,
-                           UserId = address.UserId
-                       };
-
-            return list.ToList();
-        }
-
+			var addressDat = uOW.AddressRepo.Get();
+			if (addressDat != null)
+			{
+				var list = from address in uOW.AddressRepo.Get()
+						   select new AddressDTO
+						   {
+							   AddressId = address.AddressId,
+							   City = address.City,
+							   Street = address.Street,
+							   Number = address.Number,
+							   Comment = address.Comment,
+							   UserId = address.UserId
+							};
+				return list;
+			}
+		return null;
+	}
         public AddressDTO AddAddress(AddressDTO address)
         {
-
             var temp = Mapper.Map<UserAddress>(address);
-            temp.City=temp.City.Trim();
-            temp.Street=temp.Street.Trim();
-            temp.Number=temp.Number.Trim();
-            temp.Comment = temp.Comment.Trim();
-            
-            uOW.AddressRepo.Insert(temp);
+            temp.City=address.City.Trim();
+            temp.Street=address.Street.Trim();
+            temp.Number=address.Number.Trim();
+            temp.Comment = address.Comment.Trim();
+
+			uOW.AddressRepo.Insert(temp);
             uOW.Save();
 
-
             return Mapper.Map<AddressDTO>(temp);
+
         }
 
         public void DeleteAddress(int AddressId)
         {
-
             uOW.AddressRepo.Delete(uOW.AddressRepo.GetByID(AddressId));
-
             uOW.Save();
-
             return;
         }
 
