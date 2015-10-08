@@ -17,12 +17,16 @@ namespace Model.DB
 
 		public double Longitude { get; set; }
 
-		public int Accuracy { get; set; }
+		public double Accuracy { get; set; }
 
 		public DateTime AddedTime { get; set; }
 
 		public int UserId { get; set; }
 		[ForeignKey("UserId")]
 		public virtual User User { get; set; }
+
+		public int TarifId { get; set; }
+		[ForeignKey("TarifId")]
+		public virtual Tarif Tarif { get; set; }
 	}
 }

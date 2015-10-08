@@ -9,36 +9,20 @@ namespace Common.Tools
 {
 	public class PriceCounter
 	{
-		public TarifDTO Tarif { get; set; }
+		private List<CoordinatesDTO> coordinatesHistory = new List<CoordinatesDTO>();
 		private decimal finalPrice = 0;
 		private decimal currentPrice = 0;
-		private DateTime previousTime; 
 		private const double WAITINGCOSTSPEED = 5;
 
-		public PriceCounter(TarifDTO tarif)
+		public PriceCounter(CoordinatesDTO coordinates)
 		{
-			Tarif = tarif;
+			coordinatesHistory.Add(coordinates);
 		}
 
-		public void StartCounter(DateTime time)
+		public decimal CounterTick(CoordinatesDTO coordinates)
 		{
-			previousTime = time;
-		}
-
-		public decimal CounterTick(double speed, DateTime time)
-		{
-			if (speed <= WAITINGCOSTSPEED)
-			{
-				currentPrice += (decimal)((double)Tarif.WaitingCost * CountOfMinutes(previousTime, time));
-				finalPrice = Tarif.StartPrice + currentPrice;
-				return finalPrice;
-			}
-			else 
-			{
-				currentPrice += (decimal)((double)Tarif.OneMinuteCost * CountOfMinutes(previousTime, time));
-				finalPrice = Tarif.StartPrice + currentPrice;
-				return finalPrice;
-			}
+			//Here must be calculating 
+			return 1;
 		}
 
 		public double CountOfMinutes(DateTime start, DateTime end)

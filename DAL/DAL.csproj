@@ -132,6 +132,10 @@
     <Compile Include="Migrations\201510031328453_CoordinatesHistory.Designer.cs">
       <DependentUpon>201510031328453_CoordinatesHistory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510080555084_Change Coordination.cs" />
+    <Compile Include="Migrations\201510080555084_Change Coordination.Designer.cs">
+      <DependentUpon>201510080555084_Change Coordination.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -209,6 +213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510031328453_CoordinatesHistory.resx">
       <DependentUpon>201510031328453_CoordinatesHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510080555084_Change Coordination.resx">
+      <DependentUpon>201510080555084_Change Coordination.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
