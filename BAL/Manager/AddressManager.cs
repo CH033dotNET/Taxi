@@ -36,43 +36,42 @@ namespace BAL.Manager
 
         public IEnumerable<AddressDTO> GetAddresses()
         {
-            var list = from address in uOW.AddressRepo.Get()
-                       select new AddressDTO
-                       {
-                           AddressId = address.AddressId,
-                           City = address.City,
-                           Street = address.Street,
-                           Number = address.Number,
-						   Comment = address.Comment,
-                           UserId = address.UserId
-                       };
-
-            return list.ToList();
-        }
-
+			var addressDat = uOW.AddressRepo.Get();
+			if (addressDat != null)
+			{
+				var list = from address in uOW.AddressRepo.Get()
+						   select new AddressDTO
+						   {
+							   AddressId = address.AddressId,
+							   City = address.City,
+							   Street = address.Street,
+							   Number = address.Number,
+							   Comment = address.Comment,
+							   UserId = address.UserId
+							};
+				return list;
+			}
+		return null;
+	}
         public AddressDTO AddAddress(AddressDTO address)
         {
-
             var temp = Mapper.Map<UserAddress>(address);
-            temp.City=temp.City.Trim();
-            temp.Street=temp.Street.Trim();
-            temp.Number=temp.Number.Trim();
-            temp.Comment = temp.Comment.Trim();
-            
-            uOW.AddressRepo.Insert(temp);
+            temp.City=address.City.Trim();
+            temp.Street=address.Street.Trim();
+            temp.Number=address.Number.Trim();
+            temp.Comment = address.Comment.Trim();
+
+			uOW.AddressRepo.Insert(temp);
             uOW.Save();
 
-
             return Mapper.Map<AddressDTO>(temp);
+
         }
 
         public void DeleteAddress(int AddressId)
         {
-
             uOW.AddressRepo.Delete(uOW.AddressRepo.GetByID(AddressId));
-
             uOW.Save();
-
             return;
         }
 

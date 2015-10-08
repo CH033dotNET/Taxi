@@ -32,8 +32,8 @@ namespace MainSaite.Controllers
 
 		public BaseController()
 		{
-			addressmanager = new AddressManager(uOW);
 			uOW = new UnitOfWork();
+			addressmanager = new AddressManager(uOW);
 			userManager = new UserManager(uOW);
 			carManager = new CarManager(uOW);
 			districtManager = new DistrictManager(uOW);
