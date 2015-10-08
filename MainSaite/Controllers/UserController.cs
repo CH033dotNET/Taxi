@@ -99,8 +99,5 @@ namespace MainSaite.Controllers
 				}
 			}
 		}
-
-
-
 	}
 }
