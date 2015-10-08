@@ -59,6 +59,9 @@ namespace MainSaite
 																	"~/Scripts/moment*",
 																	"~/Scripts/bootstrap-datetimepicker*"));
 
+			bundles.Add(new ScriptBundle("~/bundles/handlebars").Include(
+																	"~/Scripts/handlebars.js"));
+
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
                         "~/Content/themes/base/jquery.ui.resizable.css",
