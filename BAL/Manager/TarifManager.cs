@@ -82,14 +82,22 @@ namespace BAL.Manager
             uOW.Save();
             return Mapper.Map<TarifDTO>(temp);
         }
-
+		//TODO:
+		//need more tests
         public void DeleteTarif(int tarifId)
         {
+			var a = uOW.TarifRepo.All.Where(x => x.id == tarifId && x.IsStandart == false).FirstOrDefault();
 
-            uOW.TarifRepo.Delete(uOW.TarifRepo.GetByID(tarifId));
-            // TODO:
-            //uOW.UserInfoRepo.Delete(uOW.UserInfoRepo.GetByID(userId));
-            uOW.Save();
+			if (a != null)
+			{
+				var cordinates = uOW.CoordinatesHistoryRepo.All.Where(x => x.TarifId == tarifId);
+				foreach(var item in cordinates)
+					uOW.CoordinatesHistoryRepo.Delete(item);
+				
+				uOW.TarifRepo.Delete(a);
+				
+				uOW.Save();
+			}
 
         }
 

@@ -10,7 +10,7 @@ $(document).ready(function () {
     setInterval(ShowDate, 1000);
 
     //start drive
-    var switcher = $(".btn").on("click", Switch);
+    var switcher = $("#double").on("click", Switch);
     //CheckBox
 
     $(":checkbox").on("click", function () {
