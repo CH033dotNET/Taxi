@@ -4,6 +4,10 @@
     ViewBag.Title = "Edit";
 }
 
+<div id="Name">
+    <h2>[Edit Tarif]</h2>
+</div>
+
 @using (Html.BeginForm())
 {
     <table class="table">
@@ -38,7 +42,7 @@
             <td>@Html.EditorFor(x => x.Tarif.IsIntercity)</td>
         </tr>
 
-        <tr>
+        <tr class="IsStandart">
             <td>@Html.Label("[Is Standart]")</td>
             <td>@Html.EditorFor(x => x.Tarif.IsStandart)</td>
         </tr>
@@ -51,11 +55,14 @@
     </table>
 
 
-    <input type="submit" name="Ok" value="Ok" />
+    <input type="submit" class="btn btn-success" name="Ok" value="Ok" />
+    <input type="button" class="btn btn-primary" name="Cansel" value="Cansel" />
 }
 
 <script>
     $(document).ready(function () {
+
+        $('.IsStandart').css("display", "none");
 
         if ($('#Tarif_IsIntercity, #Tarif_IsStandart').is(':checked')) {
             $(".DistrictList").attr("hidden", true)
