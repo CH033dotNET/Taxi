@@ -656,6 +656,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are here.
+        /// </summary>
+        public static string DriverIsHere {
+            get {
+                return ResourceManager.GetString("DriverIsHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drivers activity.
         /// </summary>
         public static string DriversActivity {

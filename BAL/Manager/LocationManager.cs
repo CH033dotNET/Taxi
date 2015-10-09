@@ -78,14 +78,23 @@ namespace BAL.Manager
 				from D in Districts
 				join L in Localizations
 				on D.Id equals L.DistrictId
-				group D by new { D.Name, D.Id } into grouped
-				select new DriverDistrictInfoDTO { DistrictName = grouped.Key.Name, DistrictId = grouped.Key.Id, DriverCount = grouped.Count() };
+				group D by new { D.Id, D.Name } into grouped
+				select new DriverDistrictInfoDTO
+				{
+					DriverCount = grouped.Count(),
+					DistrictName = grouped.Key.Name,
+					DistrictId = grouped.Key.Id
+				};
 
 
 			foreach (var info in query)
 			{
+				var Id = getByDistrictId(info.DistrictId);
+				info.DriverId = Id.UserId;
 				DDI.Add(info);
+
 			}
+
 
 			return DDI;
 		}

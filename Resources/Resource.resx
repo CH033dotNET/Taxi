@@ -502,4 +502,7 @@
   <data name="ClientService" xml:space="preserve">
     <value>Client Service</value>
   </data>
+  <data name="DriverIsHere" xml:space="preserve">
+    <value>You are here</value>
+  </data>
 </root>

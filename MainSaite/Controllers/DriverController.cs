@@ -84,5 +84,34 @@ namespace MainSaite.Controllers
 			}
 			return Json(false);
 		}
+		public ActionResult JoinToLocation(int Id)
+		{
+			var user = Session["User"] as Model.DTO.UserDTO;
+			if (user == null)
+			{
+				return RedirectToRoute(new
+				{
+					controller = "Home",
+					action = "Index"
+				});
+			}
+			LocationDTO local = locationmanager.GetByUserId(user.Id);
+			if (local != null)
+			{
+				local.DistrictId = Id;
+				locationmanager.UpdateLocation(local);
+				return RedirectToAction("Index", "Driver");
+			}
+			else
+			{
+				LocationDTO district = new LocationDTO()
+				{
+					UserId = user.Id,
+					DistrictId = Id
+				};
+				locationmanager.AddLocation(district);
+				return RedirectToAction("Index", "Driver");
+			}
+		}
     }
 }
