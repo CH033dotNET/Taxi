@@ -58,44 +58,43 @@ namespace MainSaite.Controllers
 
 		public ActionResult DistrictEditor()
 		{
-			return View("DistrictEditor", districtManager.getDistricts());
+			var districts = districtManager.getDistricts();
+			return View("DistrictEditor", districts);
 		}
 
-		[HttpPost]
-		public ActionResult DistrictEditor(string Name)
+		public JsonResult AddDistrict(string Name)
 		{
-				districtManager.addDistrict(Name);
-			return RedirectToAction("DistrictEditor");
+			districtManager.addDistrict(Name);
+			var districts = districtManager.getDistricts();
+			return Json(districts,JsonRequestBehavior.AllowGet);
 		}
-		
-		public ActionResult DeleteDistrict(District a)
+		/// <summary>
+		/// Ajax call from the view sends a data to controller, 
+		/// which will be used to delete specific entry from a database
+		/// </summary>
+		/// <param name="Id">represents an id  of an entry which need to be deleted</param>
+		/// <returns></returns>
+		public JsonResult DeleteDistrict(int Id)
 		{
-			districtManager.deleteById(a.Id);
-			return RedirectToAction("DistrictEditor");
+			districtManager.deleteById(Id);
+			var districts = districtManager.getDistricts();
+			return Json(districts, JsonRequestBehavior.AllowGet);
 		}
-		[HttpGet]
-		public ActionResult EditDistrict(int? id)
-		{
-			if (id == null)
-			{
-				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-			}
-			var districtForEdit = districtManager.getOneDistrictByItsID(id);
-			if (districtForEdit == null)
-			{
-				return HttpNotFound();
-			}
-			return View(districtForEdit);
-		}
-		[HttpPost]
-		public ActionResult EditDistrict(District district)
+		/// <summary>
+		/// Ajax call from the view sends a data to controller, 
+		/// which will be used to edit specific entry in a database
+		/// </summary>
+		/// <param name="district">objects that contains all data needed for editing information</param>
+		/// <returns></returns>
+		public JsonResult EditDistrict(District district)
 		{
 			if (ModelState.IsValid)
 			{
 				districtManager.EditDistrict(district);
-				return RedirectToAction("DistrictEditor");
+				var districts = districtManager.getDistricts();
+				return Json(districts, JsonRequestBehavior.AllowGet);
 			}
-			return RedirectToAction("DistrictEditor");
+			return Json(null);
 		}
 
 		// Nick: Car info settings
@@ -225,5 +224,5 @@ namespace MainSaite.Controllers
 			return RedirectToAction("SetVIPStatus");
 		}
 
-    }
+	}
 }
