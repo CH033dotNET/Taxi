@@ -504,7 +504,4 @@
   <data name="DriverIsHere" xml:space="preserve">
     <value>Ви тут</value>
   </data>
-  <data name="CarNickName" xml:space="preserve">
-    <value>Позивной</value>
-  </data>
 </root>

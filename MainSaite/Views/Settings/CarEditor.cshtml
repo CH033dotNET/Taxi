@@ -41,9 +41,6 @@
 							<th>
 								@Resources.Resource.CarState
 							</th>
-                            <th>
-                                @Resources.Resource.CarNickName
-                            </th>
 							<th>
 								@Resources.Resource.ActionsColumn
 							</th>
@@ -65,10 +62,6 @@
 									<div class="editor_field"></div>
 									@EnumHelper.GetStringifyState(item.CarState)
 								</td>
-                                <td>
-                                    <div class="editor_field"></div>
-                                    @Html.DisplayFor(modelItem => item.CarNickName)
-                                </td>
 								<td>
 									@Html.ActionLink(@Resources.Resource.editString, "CarEdit", "Settings", new { id = item.Id }, new { @class = "btn btn-default" })
 									@Html.ActionLink(@Resources.Resource.detailsString, "CarDetails", "Settings", new { id = item.Id }, new { @class = "btn btn-default" })

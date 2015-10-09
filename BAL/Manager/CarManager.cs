@@ -68,7 +68,6 @@ namespace BAL.Manager
 			newCarObj.CarPetrolConsumption = inputCarObj.CarPetrolConsumption;
 			newCarObj.CarManufactureDate = inputCarObj.CarManufactureDate;
 			newCarObj.CarState = inputCarObj.CarState;
-			newCarObj.CarNickName = inputCarObj.CarNickName;
 			uOW.Save();
 			return Mapper.Map<CarDTO>(newCarObj);
 		}
@@ -207,8 +206,5 @@ namespace BAL.Manager
 			}
 			return message;
 		}
-
-
-		
 	}
 }

@@ -136,10 +136,6 @@
     <Compile Include="Migrations\201510080555084_Change Coordination.Designer.cs">
       <DependentUpon>201510080555084_Change Coordination.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201510091416110_CARNICKNAME field in car Model.cs" />
-    <Compile Include="Migrations\201510091416110_CARNICKNAME field in car Model.Designer.cs">
-      <DependentUpon>201510091416110_CARNICKNAME field in car Model.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -220,9 +216,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510080555084_Change Coordination.resx">
       <DependentUpon>201510080555084_Change Coordination.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510091416110_CARNICKNAME field in car Model.resx">
-      <DependentUpon>201510091416110_CARNICKNAME field in car Model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
