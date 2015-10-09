@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width" />
     <title></title>
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/Content/css");
+    @Scripts.Render("~/Content/css")
 
     <script type="text/javascript" src="~/Scripts/DriveTimer.js">
 
@@ -34,18 +34,21 @@
                         {
                             @Html.Label(tarif.Name, new { @class = "tarifName" })
 
-                            @Html.CheckBox(tarif.Name, new { @class = "tarifCheckBox", @value = tarif.OneMinuteCost }) ;
+                            @Html.CheckBox(tarif.Name, new { @class = "tarifCheckBox", @value = tarif.id }) ;
                     <hr />
                         }
                     }
                 }
+                <input type="hidden" id="Id" value="@User.Id" />
                 <button class="btn Drive" id="double">DRIVE<i class="fa fa-tachometer fa-lg"></i></button>
             </div>
         </div>
         <div class="row">
 
-            <br /><br />
-            <p class="driveCounter"></p>
+            <p id="clientPrice">
+            </p>
+
+
         </div>
     </div>
     @Scripts.Render("~/bundles/bootstrap")

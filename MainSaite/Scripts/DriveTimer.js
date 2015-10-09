@@ -1,13 +1,13 @@
-﻿
-$(document).ready(function () {
+﻿$(document).ready(function () {
     var countTimer = 1;
     var payroll = 0;
     var pointTarif = 1;
-    var drievingTime;
-
+    var Toogle;
+    
     DefaultTarif();
     ShowDate();
     setInterval(ShowDate, 1000);
+
 
     //start drive
     var switcher = $("#double").on("click", Switch);
@@ -25,26 +25,87 @@ $(document).ready(function () {
     }
 
 
-    function DriveTime() {
-        payroll += countTimer * pointTarif;
-        $(".driveCounter").text(payroll);
-    }
+
 
     // Start or finish drive a client
     function Switch() {
         if (switcher.hasClass("Drive")) {
             switcher.removeClass("Drive").addClass("Dest").text("Destination").append("<i class='fa fa-tachometer fa-lg'></i>");
-            drievingTime = setInterval(DriveTime, 1000);
+            Toogle = setInterval(StartService, 1000);
+
         }
         else {
             switcher.removeClass("Dest").addClass("Drive");
             switcher.text("Drive").append("<i class='fa fa-tachometer fa-lg'></i>");
-            clearInterval(drievingTime); 
+            clearInterval(Toogle);
+            EndService();
         }
     }
 
-    //
+
     function DefaultTarif() {
         $(":checkbox:first").attr('checked', true);
     }
+
+    ///ajax object 
+    function getBeginCoordinate(position) {
+        debugger;
+        
+        var dataObj = {}
+        dataObj.UserId = document.getElementById('Id').value;
+        dataObj.Latitude = position.coords.latitude;
+        dataObj.Longitude = position.coords.longitude;
+        dataObj.Accuracy = position.coords.accuracy;
+        dataObj.Tarifid = pointTarif;
+        $.ajax({
+            url: "/ClientService/DrivingClient",
+            method: "POST",
+            data: dataObj,
+            success: function (success) {
+                $("#clientPrice").html(success);
+            },
+            error: function (e) { }
+        });
+    }
+
+    function getEndCoordinate(position) {
+        debugger;
+        var dataObj = {}
+        dataObj.UserId = document.getElementById('Id').value;
+        dataObj.Latitude = position.coords.latitude;
+        dataObj.Longitude = position.coords.longitude;
+        dataObj.Accuracy = position.coords.accuracy;
+        dataObj.Tarifid = pointTarif;
+
+        $.ajax({
+            url: "/ClientService/DropClient",
+            mmethod: "POST",
+            data: dataObj,
+            success: function (success) {
+                $("#clientPrice").html(success);
+            },
+            error: function (e) { }
+        })
+
+
+    }
+
+
+    function StartService() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(getBeginCoordinate);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+
+    function EndService() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(getEndCoordinate);
+        }
+        else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+
 })
