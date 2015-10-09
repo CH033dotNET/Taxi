@@ -240,8 +240,8 @@ namespace BAL.Manager
 		///SetVIPStatus methodes
 		public List<VIPClientDTO> GetVIPClients()
 		{
-			var listVIPClients = uOW.VIPClientRepo.Get();
-			var listUsers = uOW.UserRepo.Get();
+			var listVIPClients = uOW.VIPClientRepo.All;
+			var listUsers = uOW.UserRepo.All;
 			List<VIPClientDTO> listVipClients = new List<VIPClientDTO>();
 
 
@@ -257,6 +257,7 @@ namespace BAL.Manager
 						UserId = U.Id,
 						UserName = U.UserName
 					};
+			
 
 			foreach (VIPClientDTO client in RigthJoin.OrderByDescending(x => x.Id))
 			{

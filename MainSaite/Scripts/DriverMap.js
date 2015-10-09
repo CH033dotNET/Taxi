@@ -11,7 +11,7 @@ function mapinit() {
     })
 }
 
-function hubInit() {
+/*function hubInit() {
     var hub = $.connection.MyHub1;//Подключились к хабу
 
     hub.client.dimine = dimine;//присобачили функцию клиента
@@ -19,7 +19,7 @@ function hubInit() {
     $.connection.hub.start().done(function () {
         hub.server.Hello(); // вызов функции сервера
     });
-}
+}*/
 
 
 function mainInit() {
@@ -33,7 +33,9 @@ function mainInit() {
                 var val = data[i];
                 markers['DriverN'+val.name] = adddriver(val.latitude, val.longitude);
                 var tr = $('<tr/>', {id:'DriverN'+val.name }).append(
-                        $('<td/>', { text: val.name }));
+                        $('<td/>', { text: val.name }),
+                        $('<td/>', { text: new Date(+val.startedTime.match(/\d+/)[0]).toLocaleString() }),
+                        $('<td/>', { text: new Date(+val.updateTime.match(/\d+/)[0]).toLocaleString() }));
                 //tr.marker = adddriver(val.latitude, val.longitude);
                 tr.hover(inhov, outhov);
                 var table = $('#DrvsCont').append(

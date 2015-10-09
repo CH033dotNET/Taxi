@@ -69,12 +69,34 @@ namespace MainSaite.Controllers
 
 		public JsonResult GetLoc()
 		{
-			var drvs = uOW.CoordinatesHistoryRepo.All
-				.GroupBy(x => x.UserId)
-				.Select(grp => grp.OrderByDescending(apo => apo.AddedTime).FirstOrDefault()).Join(
-				uOW.UserRepo.All, outr => outr.UserId, inr => inr.Id, (myinr, myotr) => new DriverLocation() {
-					id = myotr.Id, addedtime = myinr.AddedTime, latitude = myinr.Latitude, longitude = myinr.Longitude, name = myotr.UserName }).ToArray();
-			return Json(drvs, JsonRequestBehavior.AllowGet);
+			var driversForOperators = 
+				uOW.CoordinatesHistoryRepo.All //all coordinates
+				.GroupBy(coordinates => coordinates.UserId) //grouping all coordinates for each user
+				.Select(group => group.OrderByDescending(coordinates => coordinates.AddedTime).FirstOrDefault()) //select Latest coordinates from each group
+				.Join(uOW.UserRepo.All, //add user data to coordinates
+				coordinates => coordinates.UserId, user => user.Id, 
+				(coordinates, user) => new //create new model whith nesessary field
+				{
+					id = user.Id,
+					addedtime = coordinates.AddedTime,
+					latitude = coordinates.Latitude,
+					longitude = coordinates.Longitude,
+					name = user.UserName
+				})
+				.Join(uOW.WorkshiftHistoryRepo.All//join shifts
+				.Where(shift => shift.WorkStarted != null & shift.WorkEnded == null)//select only current shifts
+				, driver => driver.id, shift => shift.DriverId, (driver, shift) => new DriverLocation()
+				{
+					id = driver.id,
+					updateTime = driver.addedtime,
+					latitude = driver.latitude,
+					longitude = driver.longitude,
+					name = driver.name,
+					startedTime = shift.WorkStarted
+				}
+				) // select drivers which now working
+				.ToArray();
+            return Json(driversForOperators, JsonRequestBehavior.AllowGet);
 		}
 	}
 }
