@@ -20,7 +20,7 @@ namespace MainSaite.Controllers
 
 		public ActionResult DrivingClient(CoordinatesDTO coordinates)
 		{
-/*current Price*/
+               /*current Price*/
 
 			return PartialView(coordinates.TarifId);
 		}

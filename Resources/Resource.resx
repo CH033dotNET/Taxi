@@ -505,4 +505,7 @@
   <data name="DriverIsHere" xml:space="preserve">
     <value>You are here</value>
   </data>
+  <data name="CarNickName" xml:space="preserve">
+    <value>Car Nickname</value>
+  </data>
 </root>
