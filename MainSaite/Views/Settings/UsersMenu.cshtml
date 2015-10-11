@@ -6,25 +6,48 @@
 
 <h2>@Resources.Resource.UserMenu</h2>
 
-<table class="table">
-    <tr>
-        <th>@Html.Label(Resources.Resource.UserId) </th>
-        <th>@Html.Label(Resources.Resource.UserName) </th>
-        <th>@Html.Label(Resources.Resource.Email) </th>
-        <th>@Html.Label(Resources.Resource.Role) </th>
-        <th>@Html.Label(Resources.Resource.Description) </th>
-        <th>@Resources.Resource.Action</th>
-    </tr>
+@Html.Partial("_UserTable")
 
-    @foreach (var i in Model)
-    {
-     <tr>
-        @Html.Partial("_ShowUser",i)
-         <td>@Html.ActionLink(Resources.Resource.editString, "ChangeMenu", new { id = i.Id})</td>
-    </tr>
-    }
+<p>
+    @Html.ActionLink("AddUser", "AddUser", "Administration")
+</p>
 
-</table>
-        <p>
-            @Html.ActionLink("AddUser", "AddUser", "Administration")
-        </p>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+               
+                <div class="btform">
+                    @using (Ajax.BeginForm("PartialUsersTable", new { controller = "Settings", action = "PartialUsersTable" },
+                        new AjaxOptions
+                        {
+                            InsertionMode = InsertionMode.Replace,
+                            HttpMethod = "POST",
+                            UpdateTargetId = "users-tabe"
+                        }))
+                    {
+                        <table class="table" id="ModalContent" >
+                            
+                           
+                        </table>
+
+                     <input type="submit" id="mdal-submit" name="Ok" value="Ok" />
+                    }
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

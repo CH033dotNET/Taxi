@@ -194,6 +194,7 @@ namespace BAL.Manager
 			temp.RoleId = user.RoleId;
 			temp.Email = user.Email;
 			temp.UserName = user.UserName;
+            temp.Password = user.Password;
 			uOW.Save();
 			return Mapper.Map<UserDTO>(temp);
 		}

@@ -374,6 +374,7 @@
     <Content Include="Views\UserPage\Index.cshtml" />
     <Content Include="Views\ClientService\DrivingClient.cshtml" />
     <Content Include="Views\ClientService\DropClient.cshtml" />
+    <Content Include="Views\Settings\_UserTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
