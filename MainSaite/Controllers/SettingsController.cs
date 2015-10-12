@@ -25,6 +25,23 @@ namespace MainSaite.Controllers
 		}
 
 
+        public PartialViewResult PartialUsersTable()
+        {
+            var users = userManager.GetUsers();
+
+            return PartialView("_UserTable", users);
+        }
+
+        [HttpPost]
+        public PartialViewResult PartialUsersTable(UserDTO user)
+        {
+            ChangeMenu(user);
+
+            var users = userManager.GetUsers();
+
+            return PartialView("_UserTable", users);
+        }
+
 		public ActionResult UsersMenu()
 		{
 			var users = userManager.GetUsers();
@@ -32,16 +49,13 @@ namespace MainSaite.Controllers
 			return View(users);
 		}
 
-		public ActionResult ChangeMenu(int id = 0)
+		public PartialViewResult ChangeMenu(int id = 0)
 		{
 
 			var user = userManager.GetById(id);
-			if (user == null)
-			{
-				return HttpNotFound();
-			}
+                
 
-			return View(user);
+			return PartialView("_EditUser",user);
 		}
 		[HttpPost]
 		public ActionResult ChangeMenu(UserDTO user)

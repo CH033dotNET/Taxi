@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
-    var filesExt = ['jpg', 'gif', 'png']; // массив расширений
+
+    // Validate for image
+    var filesExt = ['jpg', 'gif', 'png'];
     $('input[type=file]').change(function () {
         var parts = $(this).val().split('.');
         if (filesExt.join().search(parts[parts.length - 1]) != -1) {
@@ -14,9 +16,16 @@
     }
     );
 
-    $(":file").filestyle({ input: false });
+    //Style for input
+    $(":file").filestyle({ input: false, 'buttonText': "Upload image", 'badge': false});
+
+    //Mask for input
     $('input[type=email]').inputmask();
+
+    //Mask for phone
     $("#phone").inputmask("(999)-999-99-99");
+
+
     $("#email").inputmask({
         mask: "*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]@*{1,20}[.*{2,6}][.*{1,2}]",
         greedy: false,

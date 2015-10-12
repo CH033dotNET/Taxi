@@ -1,0 +1,36 @@
+﻿@model IList<Model.DTO.UserDTO>
+
+
+<table class="table" id="users-tabe">
+    <tr>
+        <th>@Html.Label(Resources.Resource.UserId) </th>
+        <th>@Html.Label(Resources.Resource.UserName) </th>
+        <th>@Html.Label(Resources.Resource.Email) </th>
+        <th>@Html.Label(Resources.Resource.Role) </th>
+        <th>@Html.Label(Resources.Resource.Description) </th>
+        <th>@Resources.Resource.Action</th>
+    </tr>
+
+    @foreach (var i in Model)
+    {
+        <tr>
+            @Html.Partial("_ShowUser", i)
+            <td>
+                @Ajax.ActionLink(Resources.Resource.editString, "ChangeMenu", new { id = i.Id },
+         new AjaxOptions
+         {
+             HttpMethod = "GET",
+             UpdateTargetId = "ModalContent",
+             InsertionMode = InsertionMode.Replace
+         }, new { @class = "Edit" }
+        )
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<script src="~/Scripts/UserMenuScripts/ModalJs.js">
+
+</script>

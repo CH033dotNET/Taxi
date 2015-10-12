@@ -81,9 +81,17 @@
             url: "/ClientService/DropClient",
             mmethod: "POST",
             data: dataObj,
+            beforeSend: function () {
+                var answer = confirm("Are you done?");
+                if (answer) {
+                    return true;
+                }
+                return false;
+            },
             success: function (success) {
                 $("#clientPrice").html(success);
             },
+            
             error: function (e) { }
         })
 
