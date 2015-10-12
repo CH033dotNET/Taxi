@@ -538,4 +538,7 @@
   <data name="RestoreDistrict" xml:space="preserve">
     <value>Restore</value>
   </data>
+  <data name="Districts" xml:space="preserve">
+    <value>Districts</value>
+  </data>
 </root>

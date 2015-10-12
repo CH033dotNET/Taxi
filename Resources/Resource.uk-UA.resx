@@ -537,4 +537,7 @@
   <data name="RestoreDistrict" xml:space="preserve">
     <value>Відновити</value>
   </data>
+  <data name="Districts" xml:space="preserve">
+    <value>Райони</value>
+  </data>
 </root>

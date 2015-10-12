@@ -710,6 +710,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Districts.
+        /// </summary>
+        public static string Districts {
+            get {
+                return ResourceManager.GetString("Districts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Driver.
         /// </summary>
         public static string Driver {
