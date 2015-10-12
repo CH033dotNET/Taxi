@@ -74,9 +74,10 @@ namespace MainSaite.Controllers
 		/// </summary>
 		/// <param name="Id">represents an id  of an entry which need to be deleted</param>
 		/// <returns></returns>
-		public JsonResult DeleteDistrict(int Id)
+		public JsonResult DeleteDistrict(District district)
 		{
-			districtManager.deleteById(Id);
+			//districtManager.deleteById(Id);
+			districtManager.SetDistrictDeleted(district.Id, district.Name);
 			var districts = districtManager.getDistricts();
 			return Json(districts, JsonRequestBehavior.AllowGet);
 		}
@@ -95,6 +96,23 @@ namespace MainSaite.Controllers
 				return Json(districts, JsonRequestBehavior.AllowGet);
 			}
 			return Json(null);
+		}
+		public JsonResult DeletedDistricts()
+		{
+			var deletedDistricts = districtmanager.getDeletedDistricts();
+			return Json(deletedDistricts,JsonRequestBehavior.AllowGet);
+		}
+		public JsonResult RestoreDistrict(District district)
+		{
+			districtManager.RestoreDistrict(district.Id);
+			var deletedDistricts = districtManager.getDeletedDistricts();
+			return Json(deletedDistricts,JsonRequestBehavior.AllowGet);
+		}
+
+		public JsonResult GetAvailableDistricts()
+		{
+			var districts = districtManager.getDistricts();
+			return Json(districts, JsonRequestBehavior.AllowGet);
 		}
 
 		// Nick: Car info settings

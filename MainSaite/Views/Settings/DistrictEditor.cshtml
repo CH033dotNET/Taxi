@@ -15,7 +15,7 @@
 		</div>
 		<div class="panel-footer">
 			<a class="btn btn-success" onclick="jsController.addDistrict(this)">[ADD NEW]</a>
-			<a class="btn btn-warning" onclick="">[Basket]</a>
+			<a class="btn btn-warning" onclick="jsController.DistrictBasket(this)">[Basket]</a>
 		</div>
 		<div class="table-list">
 			<div class="table-responsive">
@@ -108,25 +108,127 @@
 					</div>
 				</div>
 
+				<div class="modal fade" id="deletedList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="myModalLabel">Add New</h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-list">
+									<div class="table-responsive">
+										<table class="table table-striped" id="districtDeletedTable">
+											<thead>
+												<tr class="info">
+													<th>
+														@Resources.Resource.District
+													</th>
+													<th>
+														@Resources.Resource.Action
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+												<script id="dsDeletedRow" type="text/x-handlebars-template">
+													{{#each deleted}}
+													<tr>
+														<td>
+															{{Name}}
+														</td>
+														<td>
+															<a class="btn btn-warning" href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.restoreDistrict(this)">[RESTORE]</a>
+														</td>
+													</tr>
+													{{/each}}
+												</script>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
 </div>
 
 <script>
+	
+	var itemId;
+	var itemName;
 	var districtTemplate = Handlebars.compile($("#dsEditRow").html());
+	var deletedDistrictsTemplate = Handlebars.compile($("#dsDeletedRow").html()); //!!!
 
 	$(document).ready(function () {
 		jsController.renderData();
+		$('#confirm-delete .btn-ok').click(function () {
+			var c = 'yupiii';
+			var request = $.ajax({
+				url: "/Settings/DeleteDistrict/",
+				data: {Id: itemId, Name: itemName },
+				method: "POST",
+			}).success(function (result) {
+				jsController.data.items = result;
+				jsController.renderData();
+			});
+			$('#confirm-delete').modal('hide');
+			return false;
+		});
 	});
-
 	var jsController = {
 		data: {items: @Html.Raw(Json.Encode(Model.ToList()))},
+		deletedData: {deleted: @Html.Raw(Json.Encode(Model.ToList()))}, //!!!!
 
 		renderData: function(){
 			$('#districtEditTable tbody').html(districtTemplate(this.data));
 		},
 
+		renderDeletedData: function(){
+			$('#districtDeletedTable tbody').html(deletedDistrictsTemplate(this.deletedData));
+		},
+
+		//! function that opens basket modal window
+		DistrictBasket: function(e){
+			$('#deletedList').modal('show');
+			$.ajax({
+				url: "/Settings/DeletedDistricts",
+			}).done(function (result) {
+				jsController.deletedData.deleted = result;
+				jsController.renderDeletedData();
+			});
+		},
+
+		restoreDistrict: function(e) {
+			var itemId = $(e).attr('data-items-id'); // get model item id from template
+			var name = $(e).attr('data-items-name'); // get model item name from template
+
+			$.ajax({
+				url: "/Settings/RestoreDistrict/",
+				data: {id: itemId}
+			}).done(function (result) {
+				jsController.deletedData.deleted = result;
+				jsController.renderDeletedData();
+				jsController.refreshData();
+			});
+		},
+
+		refreshData: function(e) {
+			$.ajax({
+				url: "/Settings/GetAvailableDistricts/",
+			}).done(function (result) {
+				jsController.data.items = result;
+				jsController.renderData();
+			});
+		},
+
+		//! function for adding new districts
 		addDistrict: function(e) {
 
 			$('#add-item').modal('show');
@@ -145,26 +247,19 @@
 			});
 		},
 
+		//! function for deleting selected district
 		deleteItem: function(e) {
-			var itemId = $(e).attr('data-items-id');
-			var name = $(e).attr('data-items-name');
+			 itemId = $(e).attr('data-items-id');
+			 itemName = $(e).attr('data-items-name');
 
-			$('.item-name').html(name);
+			$('.item-name').html(itemName);
 			$('#confirm-delete').modal('show');
 
-			$('#confirm-delete .btn-ok').click(function () {
-				$.ajax({
-					url: "/Settings/DeleteDistrict/",
-					data: {id: itemId}
-				}).done(function (result) {
-					jsController.data.items = result;
-					jsController.renderData();
-				});
 
-				$('#confirm-delete').modal('hide');
-			});
+			
 		},
 
+		//! function for editing selected district info
 		editItem: function(e) {
 			var itemId = $(e).attr('data-items-id'); // get model item id from template
 			var name = $(e).attr('data-items-name'); // get model item name from template
@@ -184,6 +279,8 @@
 
 				$("#edit-item").modal('hide');
 			});
+
+
 		}
 	};
 </script>
