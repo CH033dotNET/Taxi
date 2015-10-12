@@ -35,6 +35,9 @@
 							<th>
 								@Resources.Resource.CarName
 							</th>
+                            <th>
+                                @Resources.Resource.CarNickName
+                            </th>
 							<th>
 								@Resources.Resource.CarNumber
 							</th>
@@ -54,6 +57,10 @@
 									<div class="editor_field"></div>
 									@Html.DisplayFor(modelItem => item.CarName)
 								</td>
+                                <td>
+                                    <div class="editor_field"></div>
+                                    @Html.DisplayFor(modelItem => item.CarNickName)
+                                </td>
 								<td>
 									<div class="editor_field"></div>
 									@Html.DisplayFor(modelItem => item.CarNumber)

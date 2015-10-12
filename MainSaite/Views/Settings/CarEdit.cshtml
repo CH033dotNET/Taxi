@@ -33,6 +33,13 @@
 							@Html.ValidationMessageFor(model => model.CarName)
 						</td>
 					</tr>
+                    <tr>
+                        <td><label class="control-label">@Resources.Resource.CarNickName</label></td>
+                        <td>
+                            @Html.TextBoxFor(model => model.CarNickName, new { @class = "form-control input-lg" })
+                            @Html.ValidationMessageFor(model => model.CarNickName)
+                        </td>
+                    </tr>
 					<tr>
 						<td><label class="control-label">@Resources.Resource.CarNumber</label></td>
 						<td>
