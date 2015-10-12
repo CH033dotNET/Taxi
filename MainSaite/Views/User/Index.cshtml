@@ -4,8 +4,7 @@
     ViewBag.Title = "My Account";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<script src="~/Scripts/UserScript.js"></script>
+@Scripts.Render("~/Scripts/UserScript.js")
 <div class="form-horizontal" style="margin: 15px 15px 15px 15px">
     <div class="row">
         <div class="col-md-6">
@@ -26,7 +25,7 @@
                 <img src="~/Images/@Model.ImageName" class="img-rounded" style="margin: 0px 10px 15px 0px; width: 160px" />
             }
         </dt>
-        <dd><input type="file" name="avatar" class="filestyle" data-input="false" style="width: 180px" /></dd>
+        <dd><input type="file"/></dd>
         <dd><div class="error" id="error" style="color: red; display: none"> Please upload a picture by jpg, png or gif! </div></dd>
 
         <dt><label>@Resources.Resource.UserName</label></dt>
