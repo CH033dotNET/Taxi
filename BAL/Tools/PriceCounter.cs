@@ -15,6 +15,8 @@ namespace Common.Tools
 	public class PriceCounter
 	{
 		private List<CoordinatesDTO> coordinatesHistory = new List<CoordinatesDTO>();
+		//private List<TarifDTO> tarifes = new List<TarifDTO>();
+
 		private CoordinatesDTO lastCoordinates;
 		private TarifManager tarifManager;
 		private TarifDTO currentTarif;
@@ -50,12 +52,14 @@ namespace Common.Tools
 				if (speed > 5)
 				{
 					currentTarif = tarifManager.GetById(coordinates.TarifId);
-					return (decimal)(timePeriod * (double)currentTarif.OneMinuteCost);
+					currentPrice += (decimal)(timePeriod * (double)currentTarif.OneMinuteCost);
+					return currentPrice;
 				}
 				else
 				{
 					currentTarif = tarifManager.GetById(coordinates.TarifId);
-					return (decimal)(timePeriod * (double)currentTarif.WaitingCost);
+					currentPrice += (decimal)(timePeriod * (double)currentTarif.WaitingCost);
+					return currentPrice;
 				}
 			}
 		}
@@ -92,6 +96,7 @@ namespace Common.Tools
 		{
 			finalPrice = 0;
 			currentPrice = 0;
+			coordinatesHistory.Clear();
 		}
 	}
 }

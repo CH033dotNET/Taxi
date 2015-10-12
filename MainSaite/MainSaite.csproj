@@ -373,8 +373,6 @@
     <Content Include="Views\ClientService\PeekClient.cshtml" />
     <Content Include="Views\Shared\_UserPageLayout.cshtml" />
     <Content Include="Views\UserPage\Index.cshtml" />
-    <Content Include="Views\ClientService\DrivingClient.cshtml" />
-    <Content Include="Views\ClientService\DropClient.cshtml" />
     <Content Include="Views\Settings\_UserTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
