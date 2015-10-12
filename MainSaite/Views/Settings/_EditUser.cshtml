@@ -18,21 +18,24 @@
     <td>@Html.Label(Resources.Resource.UserName)</td>
 
     <td>
-        @Html.EditorFor(x => Model.UserName)
+        @Html.TextBoxFor(x => Model.UserName, new { @required=true,@minlength="4"})
+        @Html.ValidationMessageFor(x=>x.UserName)
     </td>
 </tr>
 
 <tr>
 <td>@Html.Label(Resources.Resource.Password)</td>
     <td>
-        @Html.EditorFor(x => x.Password)
+        @Html.PasswordFor(x => x.Password, new {@minlength="6",@value=Model.Password, @required=true })
+            @Html.ValidationMessageFor(x=>x.Password)
     </td>
 </tr>
 
 <tr>
 <td>@Html.Label(Resources.Resource.Email)</td>
  <td>
-        @Html.EditorFor(x => Model.Email)
+        @Html.TextBoxFor(x => Model.Email, new {@type="email",required =true })
+        @Html.ValidationMessageFor(x=>x.Email)
     </td>
 </tr>
 

@@ -21,6 +21,7 @@ namespace Model.DTO
 
 		[MinLength(6, ErrorMessage = "Минимальная длинна - 6 символа")]
 		[DataType(DataType.Password)]
+		
         public string Password { get; set; }
 		[Required]
 		[EmailAddress(ErrorMessage = "Invalid Email Address")]
