@@ -35,6 +35,9 @@ namespace Model.DB
 		public DateTime CarManufactureDate { get; set; }
 		[Required]
 		public CarStateEnum CarState { get; set; }
+		[Required]
+		[StringLength(16, MinimumLength = 2)]
+		public string CarNickName { get; set; }
 
 		[ForeignKey("UserId")]
 		public virtual User User { get; set; }

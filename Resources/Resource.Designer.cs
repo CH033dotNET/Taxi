@@ -205,6 +205,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Car Nick Name.
+        /// </summary>
+        public static string CarNickName {
+            get {
+                return ResourceManager.GetString("CarNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Car Number.
         /// </summary>
         public static string CarNumber {
