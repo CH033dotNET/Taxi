@@ -508,4 +508,34 @@
   <data name="CarNickName" xml:space="preserve">
     <value>Car Nick Name</value>
   </data>
+  <data name="addNewDistrict" xml:space="preserve">
+    <value>Add new district here</value>
+  </data>
+  <data name="cancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="DeletedDistricts" xml:space="preserve">
+    <value>Deleted districts list</value>
+  </data>
+  <data name="deleteDstEntryQuestion" xml:space="preserve">
+    <value>Do you really want to delete this entry?</value>
+  </data>
+  <data name="enterDistrictName" xml:space="preserve">
+    <value>Enter new district name:</value>
+  </data>
+  <data name="enterNewDstName" xml:space="preserve">
+    <value>Enter new district name</value>
+  </data>
+  <data name="saveButton" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="deleteConfirm" xml:space="preserve">
+    <value>Delete Confirmation</value>
+  </data>
+  <data name="DistrictBasket" xml:space="preserve">
+    <value>Basket</value>
+  </data>
+  <data name="RestoreDistrict" xml:space="preserve">
+    <value>Restore</value>
+  </data>
 </root>
