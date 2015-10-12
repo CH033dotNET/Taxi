@@ -1,20 +1,27 @@
 ﻿@model Model.DTO.LoginModel
 
-
-
-  
     <div class="btform">
         @using (Html.BeginForm("Authentification"))
         {
             <table>
                 @Html.ValidationSummary()
                 <tr>
-                    <td>Login</td>
-                    <td>@Html.EditorFor(x => x.UserName)</td>
+                    <td>
+                        Login
+                    </td>
+                    <td>@Html.TextBoxFor(x => x.UserName, new { @required = true, @minlength = "4", @maxlength = "16" })
+                        @Html.ValidationMessageFor(x => x.UserName, "", new { @id = "clValidReg", @minlength = "6" })
+                    </td>
+                 
                 </tr>
                 <tr>
-                    <td>Password</td>
-                    <td>@Html.EditorFor(x => x.Password)</td>
+                    <td>
+                        Password
+                    </td>
+                    <td>
+                        @Html.PasswordFor(x => x.Password, new { @required = true, @minlength = "6" })
+                        @Html.ValidationMessageFor(x => x.Password, "", new { @id = "clValidReg" })
+                    </td>          
                 </tr>
             </table>
             <input type="submit" value="Log in" />
