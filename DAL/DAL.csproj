@@ -140,6 +140,10 @@
     <Compile Include="Migrations\201510121133562_CarNickName.Designer.cs">
       <DependentUpon>201510121133562_CarNickName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510121528383_districtChanges.cs" />
+    <Compile Include="Migrations\201510121528383_districtChanges.Designer.cs">
+      <DependentUpon>201510121528383_districtChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -223,6 +227,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510121133562_CarNickName.resx">
       <DependentUpon>201510121133562_CarNickName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510121528383_districtChanges.resx">
+      <DependentUpon>201510121528383_districtChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
