@@ -9,13 +9,13 @@
 	</div>
 	<div class="panel panel-info">
 		<div class="panel-heading">
-			<h3 class="panel-title">@Resources.Resource.Garage</h3>
+			<h3 class="panel-title">@Resources.Resource.Districts</h3>
 		</div>
 		<div class="panel-body">
 		</div>
 		<div class="panel-footer">
-			<a class="btn btn-success" onclick="jsController.addDistrict(this)">[ADD NEW]</a>
-			<a class="btn btn-warning" onclick="jsController.DistrictBasket(this)">[Basket]</a>
+			<a class="btn btn-success" onclick="jsController.addDistrict(this)">@Resources.Resource.addString</a>
+			<a class="btn btn-warning" onclick="jsController.DistrictBasket(this)">@Resources.Resource.DistrictBasket</a>
 		</div>
 		<div class="table-list">
 			<div class="table-responsive">
@@ -38,8 +38,8 @@
 									{{Name}}
 								</td>
 								<td>
-									<a class="btn btn-warning" href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.editItem(this)">[EDIT]</a>
-									<a class="btn btn-danger" href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.deleteItem(this)">[DELETE]</a>
+									<a class="btn btn-warning" href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.editItem(this)">@Resources.Resource.editString</a>
+									<a class="btn btn-danger" href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.deleteItem(this)">@Resources.Resource.deleteString</a>
 								</td>
 							</tr>
 							{{/each}}
@@ -52,17 +52,17 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+								<h4 class="modal-title" id="myModalLabel">@Resources.Resource.deleteConfirm</h4>
 							</div>
 
 							<div class="modal-body">
-								<p>Ви дійсно хочете видалити цей запис?</p>
+								<p>@Resources.Resource.deleteDstEntryQuestion</p>
 								<h4><p class="item-name"></p></h4>
 							</div>
 
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-								<a class="btn btn-danger btn-ok">Delete</a>
+								<button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resource.cancelButton</button>
+								<a class="btn btn-danger btn-ok">@Resources.Resource.deleteString</a>
 							</div>
 						</div>
 					</div>
@@ -73,17 +73,17 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">Edit</h4>
+								<h4 class="modal-title" id="myModalLabel">@Resources.Resource.editString</h4>
 							</div>
 
 							<div class="modal-body">
-								<p>Enter new name</p>
+								<p>@Resources.Resource.enterNewDstName</p>
 								<h4><input id="newName" /></h4>
 							</div>
 
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-								<a class="btn btn-danger btn-ok">Save</a>
+								<button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resource.cancelButton</button>
+								<a class="btn btn-danger btn-ok">@Resources.Resource.saveButton</a>
 							</div>
 						</div>
 					</div>
@@ -94,15 +94,15 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">Add New</h4>
+								<h4 class="modal-title" id="myModalLabel">@Resources.Resource.addNewDistrict</h4>
 							</div>
 							<div class="modal-body">
-								<p>Enter new distrcit name</p>
+								<p>@Resources.Resource.enterDistrictName</p>
 								<h4><input type="text" class="form-control input-lg" id="newDistrictName" /></h4>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-								<a class="btn btn-danger btn-ok">Save</a>
+								<a class="btn btn-danger btn-ok">@Resources.Resource.saveButton</a>
 							</div>
 						</div>
 					</div>
@@ -113,7 +113,7 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">Add New</h4>
+								<h4 class="modal-title" id="myModalLabel">@Resources.Resource.DeletedDistricts</h4>
 							</div>
 							<div class="modal-body">
 								<div class="table-list">
@@ -137,7 +137,7 @@
 															{{Name}}
 														</td>
 														<td>
-															<a class="btn btn-warning" href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.restoreDistrict(this)">[RESTORE]</a>
+															<a class="btn btn-warning" href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.restoreDistrict(this)">@Resources.Resource.RestoreDistrict</a>
 														</td>
 													</tr>
 													{{/each}}
@@ -148,7 +148,7 @@
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resource.cancelButton</button>
 							</div>
 						</div>
 					</div>

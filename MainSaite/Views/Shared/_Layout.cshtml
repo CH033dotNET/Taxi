@@ -70,6 +70,51 @@
                             <li class="list-group-item">@Html.ActionLink("UsersMenu", "UsersMenu", "Settings")</li>
                             <li class="list-group-item">@Html.ActionLink("[Tarifes]", "Index", "Tarif")</li>
                         }
+            <div class="navbar navbar-default">
+               <div class="container">
+                <div class="navbar-header">
+
+                <ul class="nav navbar-nav" >
+                    @if(Session["User"]==null)
+                    { 
+                    <li>
+                        @Html.ActionLink(Resources.Resource.Login, "Authentification","Account")
+                    </li>
+                    <li>
+                        @Html.ActionLink(Resources.Resource.SingUp, "Registration", "Account")
+                    </li>
+                    }
+                   else
+                    {
+                       string q = ((Model.DTO.UserDTO)Session["User"]).UserName;
+
+                        <li>
+                            <a href="/Home/Index"> <img src="~/Images/@ViewBag.ImageName" data-toggle="tooltip" title="@q" class="img-rounded" style="max-width: 40px; max-height: 40px; " /></a>
+                           
+                        </li>
+
+                        <li>
+                            @Html.ActionLink("Log out", "LogOut", "Account") 
+                          
+                        </li>
+                       
+                        
+                    }
+
+                </ul>
+                   </div>
+               </div>
+           </div>
+                 @*Links menu by users role*@
+                    <div class="list-group">                     
+                        <ul class="nav">
+                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
+                            {
+                            <li class="list-group-item">@Html.ActionLink(Resources.Resource.Districts, "DistrictEditor", "Settings")</li>
+                                  <li class="list-group-item">@Html.ActionLink("UsersMenu", "UsersMenu", "Settings")</li>
+                                  <li class="list-group-item">@Html.ActionLink("[Tarifes]", "Index", "Tarif")</li>
+                            }
+>>>>>>> fa8e3b7caf1f1c915b9094f010c1c362df42d89e
 
                         @if (ViewBag.UserRoleId == (int)AvailableRoles.Client || ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.ReportViewer)
                         {
