@@ -7,6 +7,7 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,94 +20,90 @@
 	@Scripts.Render("~/bundles/jquery")
 	@Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryval")
- 
+   
 </head>
 <body>
-
-        <div class="row">
-            <div class="col-lg-2 col-lg-offset-1 col-md-3 col-sm-3 col-xs-12" >
+   
+    <div class="row">
+        <div class="col-lg-2 col-lg-offset-1 col-md-3 col-sm-3 col-xs-12">
 
             <div class="left-menu">
-            <div class="navbar navbar-default">
-               <div class="container">
-                <div class="navbar-header">
+                <div class="navbar navbar-default">
+                    <div class="container">
+                        <div class="navbar-header">
 
-                <ul class="nav navbar-nav" >
-                    @if(Session["User"]==null)
-                    { 
-                    <li>
-                        @Html.ActionLink(Resources.Resource.Login, "Authentification","Account")
-                    </li>
-                    <li>
-                        @Html.ActionLink(Resources.Resource.SingUp, "Registration", "Account")
-                    </li>
-                    }
-                   else
-                    {
-                       string q = ((Model.DTO.UserDTO)Session["User"]).UserName;
+                            <ul class="nav navbar-nav">
+                                @if (Session["User"] == null)
+                                {
+                                    <li>
+                                        @Html.ActionLink(Resources.Resource.Login, "Authentification", "Account")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink(Resources.Resource.SingUp, "Registration", "Account")
+                                    </li>
+                                }
+                                else
+                                {
+                                    string q = ((Model.DTO.UserDTO)Session["User"]).UserName;
 
-                        <li>
-                            <a href="/Home/Index"> <img src="~/Images/@ViewBag.ImageName" data-toggle="tooltip" title="@q" class="img-rounded" style="max-width: 40px; max-height: 40px; " /></a>
-                           
-                        </li>
+                                    <li>
+                                        <a href="/Home/Index"> <img src="~/Images/@ViewBag.ImageName" data-toggle="tooltip" title="@q" class="img-rounded" style="max-width: 40px; max-height: 40px; " /></a>
 
-                        <li>
-                            @Html.ActionLink("Log out", "LogOut", "Account") 
-                          
-                        </li>
-                       
-                        
-                    }
+                                    </li>
 
-                </ul>
-                   </div>
-               </div>
-           </div>
-                 @*Links menu by users role*@
-                    <div class="list-group">                     
-                        <ul class="nav">
-                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
-                            {
+                                    <li>
+                                        @Html.ActionLink("Log out", "LogOut", "Account")
+
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                @*Links menu by users role*@
+                <div class="list-group">
+                    <ul class="nav">
+                        @if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
+                        {
                             <li class="list-group-item">@Html.ActionLink("Districts menu", "DistrictEditor", "Settings")</li>
-                                  <li class="list-group-item">@Html.ActionLink("UsersMenu", "UsersMenu", "Settings")</li>
-                                  <li class="list-group-item">@Html.ActionLink("[Tarifes]", "Index", "Tarif")</li>
-                            }
+                            <li class="list-group-item">@Html.ActionLink("UsersMenu", "UsersMenu", "Settings")</li>
+                            <li class="list-group-item">@Html.ActionLink("[Tarifes]", "Index", "Tarif")</li>
+                        }
 
-                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Client || ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.ReportViewer)
-                            {
+                        @if (ViewBag.UserRoleId == (int)AvailableRoles.Client || ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.ReportViewer)
+                        {
                             <li class="list-group-item">@Html.ActionLink("My Account", "Index", "User")</li>}
-                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver)
-                            {
+                        @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver)
+                        {
                             <li class="list-group-item">@Html.ActionLink(@Resources.Resource.CarEditor, "CarEditor", "Settings")</li>}
-                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver)
-                            {
+                        @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver)
+                        {
                             <li class="list-group-item">@Html.ActionLink(Resources.Resource.PersonalCabinet, "Index", "Driver")</li>}
-                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Client)
-                            {
+                        @if (ViewBag.UserRoleId == (int)AvailableRoles.Client)
+                        {
                             <li class="list-group-item">@Html.ActionLink(@Resources.Resource.TitleLeftMenuUserAddress, "Index", "Address")</li>
-                             <li class="list-group-item">@Html.ActionLink("[User menu]", "Index", "UserPage")</li>   
-                            
-                            }
-                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
-                            {
+                            <li class="list-group-item">@Html.ActionLink("[User menu]", "Index", "UserPage")</li>
+
+                        }
+                        @if (ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
+                        {
                             <li class="list-group-item">@Html.ActionLink(@Resources.Resource.SetVIPStatusPage, "SetVIPStatus", "Settings")</li>
-							<li class="list-group-item">@Html.ActionLink("[WorkShifts]","ViewWorkShifts","Administration")</li>
-							}
+                            <li class="list-group-item">@Html.ActionLink("[WorkShifts]", "ViewWorkShifts", "Administration")</li>
+                        }
 
-                        </ul>
-                  </div>
-                  </div>
-
-    
+                    </ul>
+                </div>
             </div>
 
-            <div class="col-md-9 col-lg-9 col-sm-9 col-xs-12">
-                    @RenderBody()
-            </div>
 
         </div>
 
-
+        <div class="col-md-9 col-lg-9 col-sm-9 col-xs-12">
+            @RenderBody()
+        </div>
+    </div>
+    
     <!-- /.container -->
 
     <div class="container">
