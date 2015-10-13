@@ -180,7 +180,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Hubs\MyHub1.cs" />
+    <Compile Include="Hubs\driversLocationHub.cs" />
     <Compile Include="Models\CreateTarifModel.cs" />
     <Compile Include="Models\DriverLocation.cs" />
     <Compile Include="Models\WebViewPageBase.cs" />

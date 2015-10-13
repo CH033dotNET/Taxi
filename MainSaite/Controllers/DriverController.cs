@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -17,8 +18,6 @@ namespace MainSaite.Controllers
 {
 	public class DriverController : BaseController
 	{
-		
-		
 		public ActionResult Index()
 		{
 			if (null == Session["User"] || ((UserDTO)Session["User"]).RoleId != (int)AvailableRoles.Driver)
@@ -50,7 +49,7 @@ namespace MainSaite.Controllers
 					coordinatesManager.AddCoordinates(coordinates);
 				}
 				carManager.StartWorkEvent(Id);
-
+                MainSaite.driversLocationHub.addDriver(Id, double.Parse(Latitude, CultureInfo.InvariantCulture), double.Parse(Longitude, CultureInfo.InvariantCulture), DateTime.Now, userManager.GetById(Id).UserName);
 				return Json(true);
 
 			}
@@ -76,6 +75,7 @@ namespace MainSaite.Controllers
 				//carManager.EndWorkShiftEvent(user.Id);
 				if (locationManager.GetByUserId(Id) != null)
 					locationManager.DeleteLocation(Id);
+                MainSaite.driversLocationHub.removeDriver(Id);
 				return Json(true);
 			}
 			catch (DataException)
