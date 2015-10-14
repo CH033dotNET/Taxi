@@ -379,6 +379,10 @@
     <Content Include="Views\UserPage\Index.cshtml" />
     <Content Include="Views\Settings\_UserTable.cshtml" />
     <Content Include="Views\Account\IEDisable.cshtml" />
+    <Content Include="Views\Settings\_DeleteDistrictP.cshtml" />
+    <Content Include="Views\Settings\_EditDistrictP.cshtml" />
+    <Content Include="Views\Settings\_AddDistrictP.cshtml" />
+    <Content Include="Views\Settings\_DeletedListP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

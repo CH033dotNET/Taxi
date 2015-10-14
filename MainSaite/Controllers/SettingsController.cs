@@ -76,6 +76,12 @@ namespace MainSaite.Controllers
 			return View("DistrictEditor", districts);
 		}
 
+		/// <summary>
+		/// Ajax call from the view sends a data to controller, 
+		/// which will be used to create new district entry
+		/// </summary>
+		/// <param name="Name">new entry name</param>
+		/// <returns></returns>
 		public JsonResult AddDistrict(string Name)
 		{
 			districtManager.addDistrict(Name);
@@ -111,11 +117,22 @@ namespace MainSaite.Controllers
 			}
 			return Json(null);
 		}
+		/// <summary>
+		/// Ajax call from the view sends a data to controller, 
+		/// which will be used to render list of deleted districts in modal window
+		/// </summary>
+		/// <returns></returns>
 		public JsonResult DeletedDistricts()
 		{
 			var deletedDistricts = districtmanager.getDeletedDistricts();
 			return Json(deletedDistricts,JsonRequestBehavior.AllowGet);
 		}
+		/// <summary>
+		/// Ajax call from the view sends a data to controller, 
+		/// which will be used to restore specific deleted district
+		/// </summary>
+		/// <param name="district">object that contains all the data needed to find and restore district</param>
+		/// <returns></returns>
 		public JsonResult RestoreDistrict(District district)
 		{
 			districtManager.RestoreDistrict(district.Id);
