@@ -10,8 +10,13 @@ using System.Threading.Tasks;
 
 namespace BAL.Manager
 {
+    //ASIX
+    public delegate void LocaTionEvent(CoordinatesDTO coords);
 	public class CoordinatesManager : BaseManager
 	{
+        //ASIX
+        public event LocaTionEvent addedCoords;
+
 		public CoordinatesManager(IUnitOfWork uOW)
 			: base(uOW)
 		{
@@ -22,7 +27,9 @@ namespace BAL.Manager
 			var coord = Mapper.Map<Coordinates>(coordinates);
 			uOW.CoordinatesHistoryRepo.Insert(coord);
 			uOW.Save();
-			return Mapper.Map<CoordinatesDTO>(coord);
+            var coords = Mapper.Map<CoordinatesDTO>(coord);
+            if(addedCoords != null)addedCoords(coords);
+			return coords;
 		}
 		/// <summary>
 		/// Get records of Coordinates betwen fromTime and toTime 

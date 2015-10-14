@@ -14,12 +14,14 @@ namespace Common.Tools
 {
 	public class PriceCounter
 	{
+		private List<CoordinatesDTO> tempcoordinatesHistory = new List<CoordinatesDTO>();
 		private List<CoordinatesDTO> coordinatesHistory = new List<CoordinatesDTO>();
-		//private List<TarifDTO> tarifes = new List<TarifDTO>();
+		private List<TarifDTO> tarifes = new List<TarifDTO>();
 
 		private CoordinatesDTO lastCoordinates;
 		private TarifManager tarifManager;
 		private TarifDTO currentTarif;
+		private int currentTatifId = 0;
 		private double distance;
 		private double timePeriod;
 		private double speed;
@@ -32,32 +34,107 @@ namespace Common.Tools
 			this.tarifManager = tarifManager;
 		}
 
+		public PriceCounter(List<CoordinatesDTO> coordinatesHistory, List<TarifDTO> tarifes)
+		{
+			this.coordinatesHistory = coordinatesHistory;
+			this.tarifes = tarifes;
+			var item = tarifes.FirstOrDefault(tarif => tarif.id == coordinatesHistory[0].TarifId);
+			if (item != null)
+			{
+				currentPrice = item.StartPrice;
+			}
+		}
+		/// <summary>
+		/// Calculates price by list of coordinates coordinatesHistory
+		/// </summary>
+		/// <returns>price</returns>
+		public decimal CalcPrice()
+		{
+			if (coordinatesHistory.Count > 1)
+			{
+				int iterator = 0;
+				CoordinatesDTO prevCoordinates;
+				foreach (CoordinatesDTO coordinates in coordinatesHistory)
+				{
+					if (iterator == 0)
+					{
+						iterator++;
+						continue;
+					}
+					prevCoordinates = coordinatesHistory[iterator];
+					iterator++;
+					// distance (km)
+					distance = GetDistance(prevCoordinates.Latitude, prevCoordinates.Longitude,
+												coordinates.Latitude, coordinates.Longitude);
+					//timePeriod (min)
+					timePeriod = CountOfMinutes(prevCoordinates.AddedTime, coordinates.AddedTime);
+					speed = distance / (timePeriod / 60); // km/h
+					if (currentTatifId != coordinates.TarifId)
+					{
+						currentTarif = tarifes.FirstOrDefault(tarif => tarif.id == coordinates.TarifId);
+						currentTatifId = coordinates.TarifId;
+					}
+					if (speed > 5)
+					{
+
+						currentPrice += (decimal)(timePeriod * (double)currentTarif.OneMinuteCost);
+					}
+					else
+					{
+						currentPrice += (decimal)(timePeriod * (double)currentTarif.WaitingCost);
+					}
+				}
+				if (currentPrice > currentTarif.MinimalPrice)
+				{
+					return currentPrice;
+				}
+				else
+				{
+					return currentTarif.MinimalPrice;
+				}
+			}
+			else
+			{
+				return 0;
+			}
+		}
+
+		
+		/// <summary>
+		/// Temporary method wich calculate price between two coordinates and add to list coordinatesHistory
+		/// </summary>
+		/// <param name="coordinates"></param>
+		/// <returns>Price between two coordinates</returns>
 		public decimal CounterTick(CoordinatesDTO coordinates)
 		{
-			if (coordinatesHistory.Count == 0)
+			if (tempcoordinatesHistory.Count == 0)
 			{
-				coordinatesHistory.Add(coordinates);
+				tempcoordinatesHistory.Add(coordinates);
 				return 0;
 			}
 			else
 			{
-				lastCoordinates = coordinatesHistory.Last();
+				lastCoordinates = tempcoordinatesHistory.Last();
 				// distance (km)
 				distance = GetDistance(lastCoordinates.Latitude, lastCoordinates.Longitude, 
 											coordinates.Latitude, coordinates.Longitude);
 				//timePeriod (min)
 				timePeriod = CountOfMinutes(lastCoordinates.AddedTime, coordinates.AddedTime);
 				speed = distance / (timePeriod / 60); // km/h
-				coordinatesHistory.Add(coordinates);
-				if (speed > 5)
+				tempcoordinatesHistory.Add(coordinates);
+				if (currentTatifId != coordinates.TarifId)
 				{
 					currentTarif = tarifManager.GetById(coordinates.TarifId);
+					currentTatifId = coordinates.TarifId;
+				}
+				if (speed > 5)
+				{
+					
 					currentPrice += (decimal)(timePeriod * (double)currentTarif.OneMinuteCost);
 					return currentPrice;
 				}
 				else
 				{
-					currentTarif = tarifManager.GetById(coordinates.TarifId);
 					currentPrice += (decimal)(timePeriod * (double)currentTarif.WaitingCost);
 					return currentPrice;
 				}
@@ -96,7 +173,7 @@ namespace Common.Tools
 		{
 			finalPrice = 0;
 			currentPrice = 0;
-			coordinatesHistory.Clear();
+			tempcoordinatesHistory.Clear();
 		}
 	}
 }
