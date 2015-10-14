@@ -195,13 +195,13 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\BootstrapCallout.css" />
     <Content Include="Content\ClientDriveService.css" />
+    <Content Include="Content\Picture\Drawing-layerExport.jpeg" />
     <Content Include="Content\DriverMenu.css" />
     <Content Include="Content\Picture\0-well-traveled-passport-taxi-cab-global-british-american-vietnamese-engagement-wedding-photos-photographer.jpg" />
     <Content Include="Content\Picture\2.jpg" />
     <Content Include="Content\Picture\5.jpg" />
     <Content Include="Content\Picture\DriverIcons\cab.png" />
     <Content Include="Content\Picture\DriverIcons\cabRed.png" />
-    <Content Include="Content\Picture\images.jpg" />
     <Content Include="Content\Picture\JVDisable.jpg" />
     <Content Include="Content\Picture\logo.png" />
     <Content Include="Content\Picture\roteiro.jpg" />
@@ -292,6 +292,7 @@
     <Content Include="Scripts\handlebars.runtime.amd.min.js" />
     <Content Include="Scripts\handlebars.runtime.js" />
     <Content Include="Scripts\handlebars.runtime.min.js" />
+    <Content Include="Scripts\IEValidation.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -376,6 +377,7 @@
     <Content Include="Views\Shared\_UserPageLayout.cshtml" />
     <Content Include="Views\UserPage\Index.cshtml" />
     <Content Include="Views\Settings\_UserTable.cshtml" />
+    <Content Include="Views\Account\IEDisable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

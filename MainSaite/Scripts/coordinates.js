@@ -32,8 +32,9 @@ function getEndCoord(position) {
     dataObj.Accuracy = position.coords.accuracy;
 
     $.ajax({
+ method: 'POST',
         url: '/Driver/WorkStateEnded',
-        method: 'POST',
+       
         data: dataObj,
         success: function (success) { location.reload(true); },
         error: function (e) { }

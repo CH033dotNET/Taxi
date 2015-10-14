@@ -37,9 +37,6 @@ namespace MainSaite.Controllers
 
 						ValidPerson(user);
 						Authentification(new LoginModel() {  UserName = user.UserName, Password = user.Password});
-
-						
-
 						return RedirectToAction("Index", "User");
 					}
 					else ModelState.AddModelError("", "Login syntax error");
@@ -78,6 +75,14 @@ namespace MainSaite.Controllers
 		{
 			Session["User"] = null;
 			return RedirectToAction("Index", "Home");
+		}
+		/// <summary>
+		/// Not support browsers less than IE9
+		/// </summary>
+		/// <returns></returns>
+		public ActionResult IEDisable()
+		{
+			return View();
 		}
 
 	    public void ValidPerson( UserDTO user)
