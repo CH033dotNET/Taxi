@@ -12,6 +12,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Threading;
 
 
 namespace MainSaite.Controllers
@@ -28,7 +29,6 @@ namespace MainSaite.Controllers
         public PartialViewResult PartialUsersTable()
         {
             var users = userManager.GetUsers();
-
             return PartialView("_UserTable", users);
         }
 
@@ -53,8 +53,6 @@ namespace MainSaite.Controllers
 		{
 
 			var user = userManager.GetById(id);
-                
-
 			return PartialView("_EditUser",user);
 		}
 		[HttpPost]

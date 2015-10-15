@@ -3,6 +3,7 @@ using Model.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,7 +13,7 @@ namespace MainSaite.Controllers
     {
         //
         // GET: /Tarif/
-      
+
 
         public ActionResult Index()
         {
@@ -36,29 +37,31 @@ namespace MainSaite.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Edit(int id = 0)
+        public JsonResult Edit(int id = 0)
         {
             CreateTarifModel model = new CreateTarifModel();
             model.Tarif = tarifManager.GetById(id);
             model.Districts = tarifManager.getDistrictsList();
 
-            return View(model);
+            return Json(model,JsonRequestBehavior.AllowGet);
         }
-        [HttpPost]
-        public ActionResult Edit(TarifDTO tarif)
+		[HttpPost]
+        public PartialViewResult Edit(TarifDTO tarif)
         {
             tarifManager.UpdateTarif(tarif);
 
-            return RedirectToAction("Index");
-        }
+			var model = tarifManager.GetTarifes();
 
-        public ActionResult Delete(int id = 0)
+			return PartialView("_ShowTarifTable", model);
+        }
+		[HttpPost]
+        public PartialViewResult Delete(int id = 0)
         {
             tarifManager.DeleteTarif(id);
-            return RedirectToAction("Index");
+
+			var model = tarifManager.GetTarifes();
+
+			return PartialView("_ShowTarifTable", model);
         }
-
-
-
     }
 }

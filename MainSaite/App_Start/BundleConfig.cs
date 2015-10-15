@@ -23,6 +23,10 @@ namespace MainSaite
 						"~/Content/UserMenu/UserMenuMaps.css"));
 			//-------------------------------------------------------
 
+			//---------------------Handlebars----------------------
+			bundles.Add(new StyleBundle("~/Content/handlebars.js").Include("~/Content/handlebars.js"));
+			//---------------------------------------------------
+
 
 			bundles.Add(new ScriptBundle("~/bundles/coordinates").Include(
 						"~/Scripts/coordinates.js"));

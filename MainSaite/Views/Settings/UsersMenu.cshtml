@@ -23,7 +23,9 @@
                 <h4 class="modal-title">[Edit user]</h4>
             </div>
             <div class="modal-body">
-                
+                <div id="loading">
+                    <i class="fa fa-refresh fa-spin fa-5x"></i>
+                </div>
                 <div class="btform">
                     @using (Ajax.BeginForm("PartialUsersTable", new { controller = "Settings", action = "PartialUsersTable" },
                         new AjaxOptions
@@ -31,14 +33,12 @@
                             InsertionMode = InsertionMode.Replace,
                             HttpMethod = "POST",
                             UpdateTargetId = "users-tabe"
-                        }, new {@id="ChangeForm" }))
+                        }, new { @id = "ChangeForm" }))
                     {
-                        <table class="table" id="ModalContent" >
-                            
-                           
+                        <table class="table" id="ModalContent">
                         </table>
 
-                     <input type="submit" id="mdal-submit" name="Ok" value="Ok" />
+                        <input type="submit" id="mdal-submit" name="Ok" value="Ok" />
                     }
                 </div>
 

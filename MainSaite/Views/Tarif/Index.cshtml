@@ -5,73 +5,176 @@
     int number = 1;
 }
 
-@Html.ActionLink("[Create New]", "Create")  
+@Html.ActionLink("[Create New]", "Create")
 <br />
 
+@Html.Partial("_ShowTarifTable", Model)
 
-<table class="table">
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
-    <tr>
-        <td>
-            @Html.Label("[Number]")
-        </td>
-        <td>
-            @Html.Label("[Tarif Name]")
-        </td>
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">[Edit Tarif]</h4>
+      </div>
+      <div class="modal-body">
+   <div id="loading">
+    <i class="fa fa-refresh fa-spin fa-5x"></i>
+</div>
+          <div id="content"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
 
-        <td>
-            @Html.Label("[Minimal Price]")
-        </td>
+  </div>
+</div>
 
-        <td>
-            @Html.Label("[Start Price]")
-        </td>
-        <td>
-            @Html.Label("[Waiting Cost]")
-        </td>
 
-        <td>
-            @Html.Label("[One Minute Cost]")
-        </td>
 
-        <td>
-            @Html.Label("[District Name]")
-        </td>
 
-        <td>
-            @Html.Label("[Is Intercity]")
-        </td>
 
-        <td>
-            @Html.Label("[Is Standart]")
-        </td>
-
-    </tr>
-
-    @foreach (var i in Model)
+<script id="TarifesEdit" type="text/x-handlebars-template">
+		@* {{#each Tarif}}*@
+    @using (Ajax.BeginForm("Edit", new { controller = "Tarif", action = "Edit" }, new AjaxOptions { UpdateTargetId = "Tarifes", HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "Close" }))
     {
+    <table class="table">
+        <input type="hidden" name="Tarif.Id" value={{Tarif.id}}>
         <tr>
-            <td>@Html.Label((number++).ToString())  </td>
-            <td>@Html.DisplayFor(x => i.Name)</td>
-            <td>@Html.DisplayFor(x => i.MinimalPrice)</td>
-            <td>@Html.DisplayFor(x => i.StartPrice)</td>
-            <td>@Html.DisplayFor(x => i.WaitingCost)</td>
-            <td>@Html.DisplayFor(x => i.OneMinuteCost)</td>
-            <td>@Html.DisplayFor(x => i.District.Name)</td>
-            <td>@Html.DisplayFor(x => i.IsIntercity)</td>
-            @if (i.IsStandart)
-            { 
-            <td><span title="This is the standart tariph">*</span></td>
-            } 
-            else
-            {
-                <td></td>
-            }
-            <td>@Html.ActionLink("Edit", "Edit", new { id = i.id })</td>
-            @if (!i.IsStandart)
-            {
-            <td>@Html.ActionLink("Delete", "Delete", new { id = i.id })</td>
-            }
+            <td>@Html.Label("[Tarif Name]")</td>
+            <td><input type="text" name="Tarif.Name" value= {{Tarif.Name}} /></td>
         </tr>
+
+        <tr>
+            <td>@Html.Label("[Minimal Price]")</td>
+            <td><input type="text" name="Tarif.MinimalPrice" value= {{Tarif.MinimalPrice}} /></td>
+        </tr>
+
+        <tr>
+            <td>@Html.Label("[One minute cost]")</td>
+            <td><input type="text" name="Tarif.OneMinuteCost" value= {{Tarif.OneMinuteCost}} /></td>
+        </tr>
+
+        <tr>
+            <td>@Html.Label("[Start price]")</td>
+            <td><input type="text" name="Tarif.StartPrice" value= {{Tarif.StartPrice}} /></td>
+        </tr>
+
+        <tr>
+            <td>@Html.Label("[Waiting Cost]")</td>
+            <td><input type="text"  name="Tarif.WaitingCost" value= {{Tarif.WaitingCost}} /></td>
+        </tr>
+
+        <tr>
+            <td>@Html.Label("[Is Intercity]")</td>
+      {{#if Tarif.IsIntercity}}
+       <td><input type="checkbox" id="Tarif_IsIntercity" name="tarif.IsIntercity" checked="checked" value="true" /></td>
+     {{else}}
+                 <td><input type="checkbox" id="Tarif_IsIntercity" name="tarif.IsIntercity" value="true" /></td>
+     {{/if}}
+           
+        </tr>
+
+        <tr class="IsStandart">
+            <td>@Html.Label("[Is Standart]")</td>
+
+     {{#if Tarif.IsStandart}}
+               <td><input type="checkbox" id="Tarif_IsStandart" checked="checked" name="Tarif.IsStandart" value="true" /></td>
+     {{else}}
+                  <td><input type="checkbox" id="Tarif_IsStandart" name="Tarif.IsStandart" value="true" /></td>
+     {{/if}}
+        </tr>
+
+        <tr class="DistrictList" id="DistrictList">
+            <td>@Html.Label("[Районы]")</td>
+            <td>
+                 <select name="tarif.DistrictId", size="1">
+                    {{#each Districts}}
+                     <option value={{Id}}>{{Name}}</option>
+                    {{/each}}
+                </select>
+    
+            </td>
+        </tr>
+
+    </table>
+        <input type="submit" value="OK" class="btn btn-success" />
     }
-</table>
+	@*{{/each}}*@
+</script>
+
+<script id="TarifesDelete" type="text/x-handlebars-template">
+		@* {{#each Tarif}}*@
+
+       <table class="table">
+        <tr>
+            <td>@Html.Label("[Tarif Name]")</td>
+            <td><span> {{Tarif.Name}} </span></td>
+        </tr>
+
+        <tr>
+            <td>@Html.Label("[Minimal Price]")</td>
+            <td><span>  {{Tarif.MinimalPrice}} </span></td>
+        </tr>
+
+        <tr>
+            <td>@Html.Label("[One minute cost]")</td>
+            <td><span>{{Tarif.OneMinuteCost}}</span></td>
+        </tr>
+
+        <tr>
+            <td>@Html.Label("[Start price]")</td>
+            <td><span> {{Tarif.StartPrice}}</span></td>
+        </tr>
+
+        <tr>
+            <td>@Html.Label("[Waiting Cost]")</td>
+            <td><span> {{Tarif.WaitingCost}} </span></td>
+        </tr>
+
+        <tr>
+            <td>@Html.Label("[Is Intercity]")</td>
+      {{#if Tarif.IsIntercity}}
+       <td><input type="checkbox" id="Tarif_IsIntercity" name="tarif.IsIntercity" checked="checked" value="true" disabled /></td>
+     {{else}}
+                 <td><input type="checkbox" id="Tarif_IsIntercity" name="tarif.IsIntercity" value="true"  disabled /></td>
+     {{/if}}
+           
+        </tr>
+
+        <tr class="IsStandart">
+            <td>@Html.Label("[Is Standart]")</td>
+
+     {{#if Tarif.IsStandart}}
+               <td><input type="checkbox" id="Tarif_IsStandart" checked="checked" name="Tarif.IsStandart" value="true"  disabled /></td>
+     {{else}}
+                  <td><input type="checkbox" id="Tarif_IsStandart" name="Tarif.IsStandart" value="true"  disabled /></td>
+     {{/if}}
+        </tr>
+
+        <tr class="DistrictList" id="DistrictList">
+            <td>@Html.Label("[Районы]")</td>
+            <td>
+
+                   <span> {{Tarif.District.Name}}</span>
+
+            </td>
+        </tr>
+
+    </table>
+
+    @using (Ajax.BeginForm("Delete", new { controller = "Tarif", action = "Delete" }, new AjaxOptions { UpdateTargetId = "Tarifes", HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "Close" }))
+    {
+
+        <input type="hidden" name="id" value={{Tarif.id}}>
+  
+        <input type="submit" value="OK" class="btn btn-success" />
+    }
+	@*{{/each}}*@
+</script>
+
+<script src="~/Scripts/Tarif/Tarif.js"></script>

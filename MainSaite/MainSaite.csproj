@@ -323,6 +323,7 @@
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\tabCorrector.js" />
+    <Content Include="Scripts\Tarif\Tarif.js" />
     <Content Include="Scripts\UserMenuScripts\ModalJs.js" />
     <Content Include="Scripts\UserScript.js" />
     <Content Include="Scripts\_references.js" />
@@ -376,6 +377,7 @@
     <Content Include="Views\ClientService\DrivingClient.cshtml" />
     <Content Include="Views\ClientService\DropClient.cshtml" />
     <Content Include="Views\Settings\_UserTable.cshtml" />
+    <Content Include="Views\Tarif\_ShowTarifTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
