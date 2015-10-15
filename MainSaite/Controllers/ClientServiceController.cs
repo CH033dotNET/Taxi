@@ -1,4 +1,5 @@
-﻿using Model.DTO;
+﻿using Common.Tools;
+using Model.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,26 +10,31 @@ namespace MainSaite.Controllers
 {
 	public class ClientServiceController : BaseController
 	{
-
+		private static PriceCounter priceCounter;
 		//
 		// GET: /ClientService/
+
+		public ClientServiceController()
+		{
+			if(priceCounter == null)
+				priceCounter = new PriceCounter(tarifManager);
+		}
 
 		public ActionResult PeekClient()
 		{
 			return PartialView(tarifManager.GetTarifes());
 		}
 
-		public ActionResult DrivingClient(CoordinatesDTO coordinates)
-		{
-/*current Price*/
-
-			return PartialView(coordinates.TarifId);
+		public string DrivingClient(CoordinatesDTO coordinates)
+		{			
+			return String.Format("{0:0.00}", priceCounter.CounterTick(coordinates));
 		}
 
-		public ActionResult DropClient(CoordinatesDTO coordinates)
+		public string DropClient(CoordinatesDTO coordinates)
 		{
-
-			return PartialView(coordinates.TarifId = 100);
+			decimal finallPrice = priceCounter.CounterTick(coordinates);
+			priceCounter.StopCounter();
+			return String.Format("{0:0.00}", finallPrice);
 		}
 
 	}

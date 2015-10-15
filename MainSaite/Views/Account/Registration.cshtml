@@ -1,6 +1,7 @@
 ﻿@model Model.DB.RegistrationModel
 
-
+<script type="text/ng-template" src="~/Content/UserMenu/ClientDriveService.css"></script>
+<script type="text/javascript" src="~/Content/UserMenu/Registr$Authent.js"></script>
     <div class="btform">
     @using (Html.BeginForm("Registration"))
     {
@@ -10,20 +11,27 @@
                 <td>
                     Login
                 </td>
-                <td>  @Html.EditorFor(x => x.UserName)  </td>
+                <td>
+                    @Html.TextBoxFor(x => x.UserName, new { @required = true, @minlength = "4", @maxlength = "16" })
+                    @Html.ValidationMessageFor(x => x.UserName, "", new { @id = "clValidReg" })
+                </td>
             </tr>
             <tr>
                 <td>
                     Password
                 </td>
-                <td> @Html.EditorFor(x => x.Password)</td>
+                <td> @Html.PasswordFor(x => x.Password, new { @required = true, @minlength = "6" })
+                     @Html.ValidationMessageFor(x => x.Password, "", new { @id = "clValidReg" })
+                </td>
             </tr>
 
             <tr>
                 <td>
                     Confirm Password
                 </td>
-                <td> @Html.EditorFor(x => x.ConfirmPassword)</td>
+                <td> @Html.PasswordFor(x => x.ConfirmPassword, new { @required = true, @minlength = "6" })
+                     @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @id = "clValidReg" })
+                </td>
             </tr>
             <tr>
                 <td>

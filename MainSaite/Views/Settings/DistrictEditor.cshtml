@@ -9,13 +9,13 @@
 	</div>
 	<div class="panel panel-info">
 		<div class="panel-heading">
-			<h3 class="panel-title">@Resources.Resource.Garage</h3>
+			<h3 class="panel-title">@Resources.Resource.Districts</h3>
 		</div>
 		<div class="panel-body">
 		</div>
 		<div class="panel-footer">
-			<a class="btn btn-success" onclick="jsController.addDistrict(this)">[ADD NEW]</a>
-			<a class="btn btn-warning" onclick="">[Basket]</a>
+			<a class="btn btn-success" onclick="jsController.addDistrict()">@Resources.Resource.addString</a>
+			<a class="btn btn-warning" onclick="jsController.DistrictBasket(this)">@Resources.Resource.DistrictBasket</a>
 		</div>
 		<div class="table-list">
 			<div class="table-responsive">
@@ -38,154 +38,31 @@
 									{{Name}}
 								</td>
 								<td>
-									<a class="btn btn-warning" href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.editItem(this)">[EDIT]</a>
-									<a class="btn btn-danger" href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.deleteItem(this)">[DELETE]</a>
+									<a class="btn btn-warning" href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.editItem(this)">@Resources.Resource.editString</a>
+									<a class="btn btn-danger" href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.deleteItem(this)">@Resources.Resource.deleteString</a>
 								</td>
 							</tr>
 							{{/each}}
 						</script>
 					</tbody>
 				</table>
-
-				<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-							</div>
-
-							<div class="modal-body">
-								<p>Ви дійсно хочете видалити цей запис?</p>
-								<h4><p class="item-name"></p></h4>
-							</div>
-
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-								<a class="btn btn-danger btn-ok">Delete</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="modal fade" id="edit-item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">Edit</h4>
-							</div>
-
-							<div class="modal-body">
-								<p>Enter new name</p>
-								<h4><input id="newName" /></h4>
-							</div>
-
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-								<a class="btn btn-danger btn-ok">Save</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="modal fade" id="add-item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">Add New</h4>
-							</div>
-							<div class="modal-body">
-								<p>Enter new distrcit name</p>
-								<h4><input type="text" class="form-control input-lg" id="newDistrictName" /></h4>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-								<a class="btn btn-danger btn-ok">Save</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
+				@Html.Partial("_DeleteDistrictP", Model)
+				@Html.Partial("_EditDistrictP",Model)
+				@Html.Partial("_AddDistrictP",Model)
+				@Html.Partial("_DeletedListP",Model)
 			</div>
 		</div>
 	</div>
 </div>
 
 <script>
+	var itemId;
+	var itemName;
 	var districtTemplate = Handlebars.compile($("#dsEditRow").html());
-
-	$(document).ready(function () {
-		jsController.renderData();
-	});
-
-	var jsController = {
-		data: {items: @Html.Raw(Json.Encode(Model.ToList()))},
-
-		renderData: function(){
-			$('#districtEditTable tbody').html(districtTemplate(this.data));
-		},
-
-		addDistrict: function(e) {
-
-			$('#add-item').modal('show');
-
-			$('#add-item .btn-ok').click(function(){
-				var newDistrictName = $('#newDistrictName').val();
-				$.ajax({
-					url: "/Settings/AddDistrict",
-					data: {name: newDistrictName}
-				}).done(function (result) {
-					jsController.data.items = result;
-					jsController.renderData();
-				});
-
-				$("#add-item").modal('hide');
-			});
-		},
-
-		deleteItem: function(e) {
-			var itemId = $(e).attr('data-items-id');
-			var name = $(e).attr('data-items-name');
-
-			$('.item-name').html(name);
-			$('#confirm-delete').modal('show');
-
-			$('#confirm-delete .btn-ok').click(function () {
-				$.ajax({
-					url: "/Settings/DeleteDistrict/",
-					data: {id: itemId}
-				}).done(function (result) {
-					jsController.data.items = result;
-					jsController.renderData();
-				});
-
-				$('#confirm-delete').modal('hide');
-			});
-		},
-
-		editItem: function(e) {
-			var itemId = $(e).attr('data-items-id'); // get model item id from template
-			var name = $(e).attr('data-items-name'); // get model item name from template
-
-			$('#newName').val(name); // set model item name to an input field
-			$("#edit-item").modal('show'); // show modal
-
-			$('#edit-item .btn-ok').click(function() {
-				var newName = $('#newName').val();
-				$.ajax({
-					url: "/Settings/EditDistrict/",
-					data: { id: itemId, name: newName}
-				}).done(function (result) {
-					jsController.data.items = result;
-					jsController.renderData();
-				});
-
-				$("#edit-item").modal('hide');
-			});
-		}
-	};
+	var deletedDistrictsTemplate = Handlebars.compile($("#dsDeletedRow").html());
+	var encodedData = @Html.Raw(Json.Encode(Model.ToList()));
+	var encodedDeleted = @Html.Raw(Json.Encode(Model.ToList()));
 </script>
+<script type="text/javascript" src="~/Scripts/DistrictScriptLogic.js"></script>
 
 

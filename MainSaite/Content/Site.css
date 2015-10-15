@@ -755,4 +755,14 @@ tr.pager td {
         }
 }
 
+#clValidReg{
+    color:red;
 
+}
+
+  .hint {
+    font-family: 'Open Sans Condensed', sans-serif; font-size: 48px; color: #333; margin-top:50px;
+    }
+   .ieDisable {
+  margin-top:50px;
+    }

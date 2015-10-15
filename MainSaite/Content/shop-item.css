@@ -311,3 +311,46 @@ writing-mode: lr-tb;
 #loading {
 margin-left:46%;
 }
+
+/*If Javascript Enable!*/
+        body {
+            position: relative;
+        }
+
+        .noscript {
+            width: 100%;
+            height: 100%; /* will cover the text displayed when javascript is enabled*/
+            z-index: 100000; /* higher than other z-index */
+            position: absolute;
+        }
+
+            .noscript #div100 {
+                display: block;
+                height: 100%;
+                background-color: white;
+            }
+            .noscript #alert {
+              height: 100px;
+               
+            }
+          .noscript #div100 #msger {
+                  font-size:large;
+               font-style:italic;
+               color:#380D09;
+            }
+.noscript2 {
+            width: 100%;
+            height: 100%; /* will cover the text displayed when javascript is enabled*/
+            z-index: 100000; /* higher than other z-index */
+            position: absolute;
+            background-color:#666;
+}
+
+            .noscript2 #div100 #mapAlert1 {
+          color: #B4EAE8; font-size: 48px; font-family: 'Signika', sans-serif; padding-bottom: 10px; margin-left:20px;
+            }
+    .noscript2 #div100 #mapAlert2 {
+     color: #B4EAE8; font-size: 48px; font-family: 'Signika', sans-serif; padding-bottom: 10px; margin-left:20px;
+    }
+/*------------------------------------------------------------*/
+

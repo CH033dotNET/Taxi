@@ -3,7 +3,8 @@
     var payroll = 0;
     var pointTarif = 1;
     var Toogle;
-    
+  
+   
     DefaultTarif();
     ShowDate();
     setInterval(ShowDate, 1000);
@@ -31,14 +32,15 @@
     function Switch() {
         if (switcher.hasClass("Drive")) {
             switcher.removeClass("Drive").addClass("Dest").text("Destination").append("<i class='fa fa-tachometer fa-lg'></i>");
-            Toogle = setInterval(StartService, 1000);
+            Toogle = setInterval(StartService, 2000);
 
         }
         else {
-            switcher.removeClass("Dest").addClass("Drive");
-            switcher.text("Drive").append("<i class='fa fa-tachometer fa-lg'></i>");
-            clearInterval(Toogle);
-            EndService();
+            
+                switcher.removeClass("Dest").addClass("Drive");
+                switcher.text("Drive").append("<i class='fa fa-tachometer fa-lg'></i>");
+                clearInterval(Toogle);
+                EndService();
         }
     }
 
@@ -57,6 +59,7 @@
         dataObj.Longitude = position.coords.longitude;
         dataObj.Accuracy = position.coords.accuracy;
         dataObj.Tarifid = pointTarif;
+        dataObj.AddedTime = new Date().toLocaleString();
         $.ajax({
             url: "/ClientService/DrivingClient",
             method: "POST",
@@ -76,14 +79,24 @@
         dataObj.Longitude = position.coords.longitude;
         dataObj.Accuracy = position.coords.accuracy;
         dataObj.Tarifid = pointTarif;
+        dataObj.AddedTime = new Date().toLocaleString();
 
         $.ajax({
             url: "/ClientService/DropClient",
             mmethod: "POST",
             data: dataObj,
+            beforeSend: function () {
+               var answer = confirm("Are you done?");
+                if (answer) {
+                 //  Switch();
+                    return true;
+                }
+                return false;
+            },
             success: function (success) {
                 $("#clientPrice").html(success);
             },
+            
             error: function (e) { }
         })
 

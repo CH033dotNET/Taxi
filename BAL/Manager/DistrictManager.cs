@@ -36,7 +36,7 @@ namespace BAL.Manager
 		}
 		public IEnumerable<District> getDistricts()
 		{
-			var list = uOW.DistrictRepo.Get();
+			var list = uOW.DistrictRepo.Get().Where(s => s.Deleted == false).ToList();
 			return list;
 		}
 		public District getById(int id)
@@ -65,6 +65,31 @@ namespace BAL.Manager
 			return newDistrict;
 		}
 
+        public District getByName(string name)
+        {
+            return uOW.DistrictRepo.Get().Where(s => s.Name == name).FirstOrDefault();
+        }
+
+		public IEnumerable<District> getDeletedDistricts()
+		{
+			var deletedDistricts = uOW.DistrictRepo.Get().Where(s => s.Deleted == true).Select(s => s).ToList();
+			if (deletedDistricts != null)
+			{
+				return deletedDistricts;
+			}
+			return null;
+		}
+		public District RestoreDistrict(int Id)
+		{
+			var deletedDistrict = uOW.DistrictRepo.GetByID(Id);
+			if (deletedDistrict == null)
+			{
+				return null;
+			}
+			var restoredDistrict = SetStateRestored(deletedDistrict);
+			return deletedDistrict;
+		}
+
 		private District SetDistrictStateModified(District oldDistrict, District inputDistrict)
 		{
 			uOW.DistrictRepo.SetStateModified(oldDistrict);
@@ -73,9 +98,31 @@ namespace BAL.Manager
 			return oldDistrict;
 		}
 
-        public District getByName(string name)
-        {
-            return uOW.DistrictRepo.Get().Where(s => s.Name == name).FirstOrDefault();
-        }
+		public District SetDistrictDeleted(int Id, string Name)
+		{
+			var districtToDelete = uOW.DistrictRepo.Get().Where(s => s.Id == Id & s.Name == Name/* & s.Deleted == false*/).First();
+			if (districtToDelete == null)
+			{
+				return null;
+			}
+			var deletedDistrict = SetStateDeleted(districtToDelete);
+			return deletedDistrict;
+		}
+
+		private District SetStateDeleted(District district)
+		{
+			uOW.DistrictRepo.SetStateModified(district);
+			district.Deleted = true;
+			uOW.Save();
+			return district;
+		}
+
+		private District SetStateRestored(District district)
+		{
+			uOW.DistrictRepo.SetStateModified(district);
+			district.Deleted = false;
+			uOW.Save();
+			return district;
+		}
 	}
 }

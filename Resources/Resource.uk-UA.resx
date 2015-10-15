@@ -507,4 +507,37 @@
   <data name="CarNickName" xml:space="preserve">
     <value>Позивной</value>
   </data>
+  <data name="addNewDistrict" xml:space="preserve">
+    <value>Додайте новий район</value>
+  </data>
+  <data name="cancelButton" xml:space="preserve">
+    <value>Відмінити</value>
+  </data>
+  <data name="DeletedDistricts" xml:space="preserve">
+    <value>Список видалених районів</value>
+  </data>
+  <data name="deleteDstEntryQuestion" xml:space="preserve">
+    <value>Ви дійсно хочете видалити цей запис?</value>
+  </data>
+  <data name="enterDistrictName" xml:space="preserve">
+    <value>Введіть нову назву району</value>
+  </data>
+  <data name="enterNewDstName" xml:space="preserve">
+    <value>Введіть нове найменування району</value>
+  </data>
+  <data name="saveButton" xml:space="preserve">
+    <value>Зберегти</value>
+  </data>
+  <data name="deleteConfirm" xml:space="preserve">
+    <value>Підтвердження видалення</value>
+  </data>
+  <data name="DistrictBasket" xml:space="preserve">
+    <value>Корзина</value>
+  </data>
+  <data name="RestoreDistrict" xml:space="preserve">
+    <value>Відновити</value>
+  </data>
+  <data name="Districts" xml:space="preserve">
+    <value>Райони</value>
+  </data>
 </root>

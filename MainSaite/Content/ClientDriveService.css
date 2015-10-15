@@ -41,3 +41,15 @@ margin-top:54px;
     margin-left:-41px;
     color:#5A3E30;
 }
+
+#clValidReg{
+    color:red;
+
+}
+
+  .hint {
+    font-family: 'Open Sans Condensed', sans-serif; font-size: 48px; color: #333; margin-top:50px;
+    }
+   .ieDisable {
+  margin-top:50px;
+    }

@@ -74,6 +74,12 @@ namespace MainSaite.Controllers
 			return View("DistrictEditor", districts);
 		}
 
+		/// <summary>
+		/// Ajax call from the view sends a data to controller, 
+		/// which will be used to create new district entry
+		/// </summary>
+		/// <param name="Name">new entry name</param>
+		/// <returns></returns>
 		public JsonResult AddDistrict(string Name)
 		{
 			districtManager.addDistrict(Name);
@@ -86,9 +92,10 @@ namespace MainSaite.Controllers
 		/// </summary>
 		/// <param name="Id">represents an id  of an entry which need to be deleted</param>
 		/// <returns></returns>
-		public JsonResult DeleteDistrict(int Id)
+		public JsonResult DeleteDistrict(District district)
 		{
-			districtManager.deleteById(Id);
+			//districtManager.deleteById(Id);
+			districtManager.SetDistrictDeleted(district.Id, district.Name);
 			var districts = districtManager.getDistricts();
 			return Json(districts, JsonRequestBehavior.AllowGet);
 		}
@@ -107,6 +114,34 @@ namespace MainSaite.Controllers
 				return Json(districts, JsonRequestBehavior.AllowGet);
 			}
 			return Json(null);
+		}
+		/// <summary>
+		/// Ajax call from the view sends a data to controller, 
+		/// which will be used to render list of deleted districts in modal window
+		/// </summary>
+		/// <returns></returns>
+		public JsonResult DeletedDistricts()
+		{
+			var deletedDistricts = districtmanager.getDeletedDistricts();
+			return Json(deletedDistricts,JsonRequestBehavior.AllowGet);
+		}
+		/// <summary>
+		/// Ajax call from the view sends a data to controller, 
+		/// which will be used to restore specific deleted district
+		/// </summary>
+		/// <param name="district">object that contains all the data needed to find and restore district</param>
+		/// <returns></returns>
+		public JsonResult RestoreDistrict(District district)
+		{
+			districtManager.RestoreDistrict(district.Id);
+			var deletedDistricts = districtManager.getDeletedDistricts();
+			return Json(deletedDistricts,JsonRequestBehavior.AllowGet);
+		}
+
+		public JsonResult GetAvailableDistricts()
+		{
+			var districts = districtManager.getDistricts();
+			return Json(districts, JsonRequestBehavior.AllowGet);
 		}
 
 		// Nick: Car info settings

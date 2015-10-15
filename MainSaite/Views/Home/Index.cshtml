@@ -2,10 +2,20 @@
 @using Common.Enum
 
     <div class="row">
+        <noscript class="noscript">
+    <img src="~/Content/Picture/JVDisable.jpg" alt="" id="alert" />
+     </noscript>
         <div class="col-lg-6 col-md-6 col-sm-8 col-xs-8">
-            <a href="#"> <img src="~/Content/Picture/logo.png" class="topLogo pull-right" /> </a>
-        </div>
+            
+                <a href="#"> <img src="~/Content/Picture/logo.png" class="topLogo pull-right" style="border-bottom:inherit" /> </a>
+</div>
         <div class="col-lg-6 col-md-6 ">
+            <noscript class="noscript">
+                <div id="div100">
+                       
+                    <p id="msger">Something went wrong!<br/> You can still order a Taxi by calling +(038)055-45-54</p>
+                </div>
+            </noscript>
             <div class="btn-group pull-right btn-group-lg">
                 <button class="btn btn-info">
                     @Resources.Resource.OrderTaxi
