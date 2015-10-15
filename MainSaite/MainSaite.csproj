@@ -163,6 +163,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Models\CarChangeUser.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -379,15 +380,14 @@
     <Content Include="Views\Shared\_UserPageLayout.cshtml" />
     <Content Include="Views\UserPage\Index.cshtml" />
     <Content Include="Views\Settings\_UserTable.cshtml" />
-
     <Content Include="Views\Tarif\_ShowTarifTable.cshtml" />
-
     <Content Include="Views\Account\IEDisable.cshtml" />
     <Content Include="Views\Settings\_DeleteDistrictP.cshtml" />
     <Content Include="Views\Settings\_EditDistrictP.cshtml" />
     <Content Include="Views\Settings\_AddDistrictP.cshtml" />
     <Content Include="Views\Settings\_DeletedListP.cshtml" />
-
+    <Content Include="Views\Settings\ChangeCarUser.cshtml" />
+    <Content Include="Views\Settings\ReturnCarBack.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,6 +13,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Threading;
+using MainSaite.Models;
 
 
 namespace MainSaite.Controllers
@@ -250,6 +251,34 @@ namespace MainSaite.Controllers
 				carManager.EditCar(car);
 				return RedirectToAction("CarEditor");
 			}
+			return RedirectToAction("CarEditor");
+		}
+
+		public ActionResult ChangeCarUser(int id)
+		{
+			CarChangeUser model = new CarChangeUser();
+			model.Car = carManager.GetCarByCarID(id);
+			model.Drivers = userManager.GetDrivers().Where(x=>x.Id != session.User.Id).ToList();
+			return View(model);
+		}
+		[HttpPost]
+		public ActionResult ChangeCarUser(CarDTO car)
+		{
+			carManager.EditCar(car);
+			return RedirectToAction("CarEditor");
+		}
+
+		public ActionResult ReturnCarBack(int id)
+		{
+			var model = carManager.GetCarByCarID(id);
+			return View(model);
+		}
+
+		[HttpPost]
+		public ActionResult ReturnCarBack(CarDTO car)
+		{
+			car.UserId = car.OwnerId;
+			carManager.EditCar(car);
 			return RedirectToAction("CarEditor");
 		}
 

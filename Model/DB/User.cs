@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Model.DB;
 
 namespace Model
 {
@@ -29,5 +30,7 @@ namespace Model
         public int RoleId { get; set; }
 
 
+		public List<Car> CarsUser { get; set; }
+		public List<Car> CarOwner { get; set; }
     }
 }

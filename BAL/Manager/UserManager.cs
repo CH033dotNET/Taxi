@@ -312,7 +312,19 @@ namespace BAL.Manager
 
 		#endregion
 
+		public List<UserDTO> GetDrivers()
+		{
+			List<User> drivers = uOW.UserRepo.All.Where(x => x.RoleId == (int)AvailableRoles.Driver).ToList();
+			List<UserDTO> driversDTO = new List<UserDTO>();
 
+			foreach (var i in drivers)
+			{
+				driversDTO.Add(Mapper.Map<UserDTO>(i));
+			}
+
+
+			return driversDTO;
+		}
 
 		// TODO:
 		/*

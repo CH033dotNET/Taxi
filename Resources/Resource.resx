@@ -541,4 +541,13 @@
   <data name="Districts" xml:space="preserve">
     <value>Districts</value>
   </data>
+  <data name="ChangeDriver" xml:space="preserve">
+    <value>Change driver</value>
+  </data>
+  <data name="ChangeOwner" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="Return" xml:space="preserve">
+    <value>Return</value>
+  </data>
 </root>

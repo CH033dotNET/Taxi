@@ -20,6 +20,8 @@ namespace BAL.Manager
 		/// <param name="car">input object</param>
 		public void addCar(CarDTO car)
 		{
+			car.UserId = car.OwnerId;
+
 			var item = Mapper.Map<Car>(car);
 			uOW.CarRepo.Insert(item);
 			uOW.Save();
@@ -69,6 +71,7 @@ namespace BAL.Manager
 			newCarObj.CarManufactureDate = inputCarObj.CarManufactureDate;
 			newCarObj.CarState = inputCarObj.CarState;
 			newCarObj.CarNickName = inputCarObj.CarNickName;
+			newCarObj.UserId = inputCarObj.UserId;
 			uOW.Save();
 			return Mapper.Map<CarDTO>(newCarObj);
 		}

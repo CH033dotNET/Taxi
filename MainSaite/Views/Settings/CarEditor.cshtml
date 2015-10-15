@@ -73,6 +73,14 @@
 									@Html.ActionLink(@Resources.Resource.editString, "CarEdit", "Settings", new { id = item.Id }, new { @class = "btn btn-default" })
 									@Html.ActionLink(@Resources.Resource.detailsString, "CarDetails", "Settings", new { id = item.Id }, new { @class = "btn btn-default" })
 									@Html.ActionLink(@Resources.Resource.deleteString, "CarDelete", "Settings", new { id = item.Id }, new { @class = "btn btn-default" })
+                                    @if (item.OwnerId==item.UserId)
+                                    {
+                                    @Html.ActionLink(@Resources.Resource.ChangeDriver, "ChangeCarUser", "Settings", new { id = item.Id }, new { @class = "btn btn-default" })
+                                    }
+                                    else
+                                    {
+                                      @Html.ActionLink(@Resources.Resource.Return, "ReturnCarBack", "Settings", new { id = item.Id }, new { @class = "btn btn-default" })
+                                    }
 								</td>
 							</tr>
 						}

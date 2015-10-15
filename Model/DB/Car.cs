@@ -40,7 +40,16 @@ namespace Model.DB
 		public string CarNickName { get; set; }
 
 		[ForeignKey("UserId")]
+		[InverseProperty("CarsUser")]
 		public virtual User User { get; set; }
 		public int UserId { get; set; }
+
+		[ForeignKey("UserId")]
+		[InverseProperty("CarOwner")]
+		public virtual User Owner { get; set; }
+		public int OwnerId { get; set; }
+
+
+
 	}
 }

@@ -42,5 +42,9 @@ namespace Model.DTO
 		[ForeignKey("UserId")]
 		public virtual User User { get; set; }
 		public int UserId { get; set; }
+
+		[ForeignKey("OwnerId")]
+		public virtual User Owner { get; set; }
+		public int OwnerId { get; set; }
 	}
 }

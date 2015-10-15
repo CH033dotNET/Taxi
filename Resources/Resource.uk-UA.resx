@@ -540,4 +540,13 @@
   <data name="Districts" xml:space="preserve">
     <value>Райони</value>
   </data>
+  <data name="ChangeDriver" xml:space="preserve">
+    <value>Змінити водія</value>
+  </data>
+  <data name="ChangeOwner" xml:space="preserve">
+    <value>Змінити</value>
+  </data>
+  <data name="Return" xml:space="preserve">
+    <value>Вернути</value>
+  </data>
 </root>

@@ -106,7 +106,8 @@
 						</td>
 					</tr>
 				</table>
-				@Html.Hidden("UserId", (Session["User"] as Model.DTO.UserDTO).Id != null ? (Session["User"] as Model.DTO.UserDTO).Id : -1)
+				@Html.Hidden("OwnerId", (Session["User"] as Model.DTO.UserDTO).Id != null ? (Session["User"] as Model.DTO.UserDTO).Id : -1)
+                @Html.Hidden("UserId", (Session["User"] as Model.DTO.UserDTO).Id != null ? (Session["User"] as Model.DTO.UserDTO).Id : -1)
 			</div>
 			<div class="panel-footer">
 				<div class="btn-group" role="group" aria-label="...">

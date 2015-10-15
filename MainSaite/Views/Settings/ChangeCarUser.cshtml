@@ -1,0 +1,106 @@
+﻿@model MainSaite.Models.CarChangeUser
+
+@{
+    ViewBag.Title = "ChangeCarUser";
+}
+    @Styles.Render("~/Content/BootstrapCallout.css")
+@using (Html.BeginForm())
+{
+
+<div>
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			<h3 class="panel-title">@Resources.Resource.CarsDetails</h3>
+		</div>
+		<div class="bs-callout bs-callout-primary">
+			<h4>@Resources.Resource.DetailsHeader1</h4>
+			@Resources.Resource.DetailsAttention1
+		</div>
+		<div class="panel-footer">
+			@Html.ActionLink(@Resources.Resource.AddNewCar, "CarCreate", "Settings", null, new { @class = "btn btn-success" })
+		</div>
+		<div>
+			<table class="table table-hover">
+				<tr>
+					<td><label class="control-label">@Resources.Resource.CarName</label></td>
+					<td>
+						@Html.DisplayFor(model => model.Car.CarName)
+                        @Html.HiddenFor(model => model.Car.CarName)
+					</td>
+				</tr>
+                <tr>
+                    <td><label class="control-label">@Resources.Resource.CarNickName</label></td>
+                    <td>
+                        @Html.DisplayFor(model => model.Car.CarNickName)
+                        @Html.HiddenFor(model => model.Car.CarNickName)
+                    </td>
+                </tr>
+				<tr>
+					<td><label class="control-label">@Resources.Resource.CarNumber</label></td>
+					<td>
+						@Html.DisplayFor(model => model.Car.CarNumber)
+                        @Html.HiddenFor(model => model.Car.CarNumber)
+					</td>
+				</tr>
+				<tr>
+					<td><label class="control-label">@Resources.Resource.CarOccupation</label></td>
+					<td>
+						@Html.DisplayFor(model => model.Car.CarOccupation)
+                        @Html.HiddenFor(model => model.Car.CarOccupation)
+					</td>
+				</tr>
+				<tr>
+					<td><label class="control-label">@Resources.Resource.CarClass</label></td>
+					<td>
+						@EnumHelper.GetStringifyClass(Model.Car.CarClass)
+                        @Html.HiddenFor(x=>Model.Car.CarClass)
+					</td>
+				</tr>
+				<tr>
+					<td><label class="control-label">@Resources.Resource.CarPetrolType</label></td>
+					<td>
+						@EnumHelper.GetStringifyPetrol(Model.Car.CarPetrolType)
+                        @Html.HiddenFor(x=>Model.Car.CarPetrolType)
+					</td>
+				</tr>
+				<tr>
+					<td><label class="control-label">@Resources.Resource.CarPetrolConsumption</label></td>
+					<td>
+						@Html.DisplayFor(model => model.Car.CarPetrolConsumption)
+                        @Html.HiddenFor(model => model.Car.CarPetrolConsumption)
+					</td>
+				</tr>
+				<tr>
+					<td><label class="control-label">@Resources.Resource.CarManufactureDate</label></td>
+					<td>
+						@Html.DisplayFor(model => model.Car.CarManufactureDate)
+                        @Html.HiddenFor(model => model.Car.CarManufactureDate)
+					</td>
+				</tr>
+				<tr>
+					<td><label class="control-label">@Resources.Resource.CarState</label></td>
+					<td>
+						@EnumHelper.GetStringifyState(Model.Car.CarState)
+                        @Html.HiddenFor(x=>Model.Car.CarState)
+					</td>
+				</tr>
+                <tr>
+					<td><label class="control-label">[New Owner]</label></td>
+					<td>
+						@Html.DropDownList("Car.UserId", new SelectList(Model.Drivers, "Id", "UserName", Model.Drivers.First().Id), new {@name="Car.UserId" })
+				</td>
+				</tr>
+			</table>
+		</div>
+		<div class="panel-footer">
+			<div class="btn-group" role="group" aria-label="...">
+				<input type="submit" value=@Resources.Resource.saveButton  class="btn btn-success fixMargin" />
+				@Html.ActionLink(@Resources.Resource.CarToMenuBtn, "CarEditor", "Settings", null, new { @class = "btn btn-info" })
+			</div>
+		</div>
+	</div>
+</div>
+
+    @Html.HiddenFor(x => Model.Car.OwnerId);
+    @Html.HiddenFor(x => x.Car.Id);
+}
