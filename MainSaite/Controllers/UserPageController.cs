@@ -16,10 +16,16 @@ namespace MainSaite.Controllers
         {
 			List<AddressDTO> list = new List<AddressDTO>();
 			if (Session!=null && session.User!=null)
-			list = addressmanager.GetAddressesEmulation().Where(x=>x.UserId==session.User.Id).ToList();
+			list = addressmanager.GetAddresses().Where(x=>x.UserId==session.User.Id).ToList();
 
 			return View(list);
         }
+
+
+		public ActionResult Iframe()
+		{
+			return View();
+		}
 
     }
 }

@@ -99,6 +99,7 @@
                         {
                             <li class="list-group-item">@Html.ActionLink(@Resources.Resource.TitleLeftMenuUserAddress, "Index", "Address")</li>
                             <li class="list-group-item">@Html.ActionLink("[User menu]", "Index", "UserPage")</li>
+                            <li class="list-group-item">@Html.ActionLink("[Demo Page]","Iframe","UserPage") </li>
 
                         }
                         @if (ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
