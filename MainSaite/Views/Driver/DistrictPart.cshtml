@@ -1,126 +1,131 @@
 ﻿@model IEnumerable<Model.DTO.WorkshiftHistoryDTO>
 
 @{
-	ViewBag.Title = "DistrictPart";
-	string username = (Session["user"] as Model.DTO.UserDTO).UserName;
-	int currentUserId = (Session["user"] as Model.DTO.UserDTO).Id;
+    ViewBag.Title = "DistrictPart";
+    string username = (Session["user"] as Model.DTO.UserDTO).UserName;
+    int currentUserId = (Session["user"] as Model.DTO.UserDTO).Id;
 }
 
 @Scripts.Render("~/bundles/coordinates")
+@Scripts.Render("~/Scripts/moment.js")
+@Scripts.Render("/Scripts/offline.min.js")
+@Styles.Render("~/Content/themesOfflineJS/offline-theme-default.css")
+@Styles.Render("~/Content/themesOfflineJS/offline-language-english.css")
+
 
 <div>
-	<form method="post">
-		<div class="page-header">
-			<h1>@Resources.Resource.Greeting,<small>@username</small></h1>
-		</div>
-		<div class="panel panel-info">
-			<div class="panel-heading">
-				<h3 class="panel-title">@Resources.Resource.WorkShift</h3>
-			</div>
-			<div class="panel-body">
-				<div class="bs-callout bs-callout-primary">
-					<h4>@Resources.Resource.DistrictPartHeader1</h4>
-					@Resources.Resource.DistrictPartAttention1
-				</div>
-				<div class="bs-callout bs-callout-warning">
-					<h4>@Resources.Resource.DistrictPartHeader2</h4>
-					@Resources.Resource.DistrictPartAttention2
-				</div>
-			</div>
-			<div class="panel-footer">
-				<div class="btn-group" aria-label="...">
-					<input type="hidden" id="Id" value="@currentUserId" />
-					<input type="button" class="btn btn-success" id="btn_begin" value=@Resources.Resource.WorkShiftStart />
-					<input type="button" class="btn btn-success" id="btn_end" value=@Resources.Resource.WorkShiftEnd />
-				</div>
-				<div>
-					@ViewBag.WorkEndMessage
-				</div>
-			</div>
+    <form method="post">
+        <div class="page-header">
+            <h1>@Resources.Resource.Greeting,<small>@username</small></h1>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">@Resources.Resource.WorkShift</h3>
+            </div>
+            <div class="panel-body">
+                <div class="bs-callout bs-callout-primary">
+                    <h4>@Resources.Resource.DistrictPartHeader1</h4>
+                    @Resources.Resource.DistrictPartAttention1
+                </div>
+                <div class="bs-callout bs-callout-warning">
+                    <h4>@Resources.Resource.DistrictPartHeader2</h4>
+                    @Resources.Resource.DistrictPartAttention2
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="btn-group" aria-label="...">
+                    <input type="hidden" id="Id" value="@currentUserId" />
+                    <input type="button" class="btn btn-success" id="btn_begin" value=@Resources.Resource.WorkShiftStart />
+                    <input type="button" class="btn btn-success" id="btn_end" value=@Resources.Resource.WorkShiftEnd />
+                </div>
+                <div>
+                    @ViewBag.WorkEndMessage
+                </div>
+            </div>
 
 
 
-			<div class="panel-heading">
-				<h3 class="panel-title"> @Resources.Resource.DriversActivity</h3>
-			</div>
+            <div class="panel-heading">
+                <h3 class="panel-title"> @Resources.Resource.DriversActivity</h3>
+            </div>
 
-			<table class="table">
+            <table class="table">
 
-				<tr>
-					<th>
-						@Resources.Resource.Active
-					</th>
-					<th>
-						@Resources.Resource.DistrictName
-					</th>
-					<th>
-						@Resources.Resource.Action
-					</th>
-				</tr>
-
-
-				@foreach (var district in ViewBag.Districts)
-{
-    <tr>
-        <td>@district.DriverCount </td>
-        <td>@district.DistrictName</td>
-        @if (@district.DriverId != (Session["User"] as Model.DTO.UserDTO).Id)
-        {
-            <td></td>
-            <td>@Html.ActionLink(@Resources.Resource.Join, "JoinToLocation", new { Id = @district.DistrictId })</td>
-        }
-        else
-        {
-            <td></td>
-            <td>@Resources.Resource.DriverIsHere</td>
-        }
-
-        <td></td>
-    </tr>
-
-}
-			</table>
+                <tr>
+                    <th>
+                        @Resources.Resource.Active
+                    </th>
+                    <th>
+                        @Resources.Resource.DistrictName
+                    </th>
+                    <th>
+                        @Resources.Resource.Action
+                    </th>
+                </tr>
 
 
+                @foreach (var district in ViewBag.Districts)
+                {
+                    <tr>
+                        <td>@district.DriverCount </td>
+                        <td>@district.DistrictName</td>
+                        @if (@district.DriverId != (Session["User"] as Model.DTO.UserDTO).Id)
+                        {
+                            <td></td>
+                            <td>@Html.ActionLink(@Resources.Resource.Join, "JoinToLocation", new { Id = @district.DistrictId })</td>
+                        }
+                        else
+                        {
+                            <td></td>
+                            <td>@Resources.Resource.DriverIsHere</td>
+                        }
 
-			<div class="table-list">
-				<div class="table-responsive">
-					<table class="table table-striped">
-						<thead>
-							<tr class="info">
-								<th>
-									@Resources.Resource.Driver
-								</th>
-								<th>
-									@Resources.Resource.WorkStarted
-								</th>
-								<th>
-									@Resources.Resource.Contact
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach (var item in Model)
-							{
-								<tr>
-									<td>
-										<div class="editor_field"></div>
-										@Html.DisplayFor(modelItem => item.Driver.UserName)
-									</td>
-									<td>
-										<div class="editor_field"></div>
-										@Html.DisplayFor(modelItem => item.WorkStarted)
-									</td>
-									<td>
-										<div class="editor_field"></div>
-										@Html.DisplayFor(modelItem => item.Driver.Email)
-									</td>
-								</tr>
-							}
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</form>
+                        <td></td>
+                    </tr>
+
+                }
+            </table>
+
+
+
+            <div class="table-list">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr class="info">
+                                <th>
+                                    @Resources.Resource.Driver
+                                </th>
+                                <th>
+                                    @Resources.Resource.WorkStarted
+                                </th>
+                                <th>
+                                    @Resources.Resource.Contact
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="editor_field"></div>
+                                        @Html.DisplayFor(modelItem => item.Driver.UserName)
+                                    </td>
+                                    <td>
+                                        <div class="editor_field"></div>
+                                        @Html.DisplayFor(modelItem => item.WorkStarted)
+                                    </td>
+                                    <td>
+                                        <div class="editor_field"></div>
+                                        @Html.DisplayFor(modelItem => item.Driver.Email)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>

@@ -4,6 +4,7 @@ using Model.DB;
 using Model.DTO;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,6 @@ namespace BAL.Manager
 		/// <param name="car">input object</param>
 		public void addCar(CarDTO car)
 		{
-			car.UserId = car.OwnerId;
-
 			var item = Mapper.Map<Car>(car);
 			uOW.CarRepo.Insert(item);
 			uOW.Save();
@@ -71,7 +70,6 @@ namespace BAL.Manager
 			newCarObj.CarManufactureDate = inputCarObj.CarManufactureDate;
 			newCarObj.CarState = inputCarObj.CarState;
 			newCarObj.CarNickName = inputCarObj.CarNickName;
-			newCarObj.UserId = inputCarObj.UserId;
 			uOW.Save();
 			return Mapper.Map<CarDTO>(newCarObj);
 		}
@@ -134,7 +132,7 @@ namespace BAL.Manager
 		/// Starting workshift for a driver which id is matching input parameter`s value
 		/// </summary>
 		/// <param name="id">input parameter</param>
-		public void StartWorkEvent(int? id)
+		public void StartWorkEvent(int? id, string TimeStart)
 		{
 			var worker = uOW.WorkshiftHistoryRepo.Get().Where(s => s.DriverId == id).LastOrDefault(); // get the last entry for a current user
 			var mappedworker = Mapper.Map<WorkshiftHistoryDTO>(worker);
@@ -146,7 +144,7 @@ namespace BAL.Manager
 			{
 				//var dbworker = Mapper.Map<WorkshiftHistory>(mappedworker);
 				uOW.WorkshiftHistoryRepo.SetStateModified(worker); // finishing that shift 
-				worker.WorkEnded = DateTime.Now;
+				worker.WorkEnded = DateTime.ParseExact(TimeStart, "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture);
 				uOW.Save();
 				NewWorkerShift(id); // starting new shift.
 			}
@@ -183,11 +181,13 @@ namespace BAL.Manager
 			worker.WorkEnded = DateTime.Now;
 			uOW.Save();
 		}
+
 		/// <summary>
 		/// Finishes current driver`s workshift, plus ends all user`s unfinished shifts
 		/// </summary>
 		/// <param name="id">user`s id</param>
-		public string EndAllCurrentUserShifts(int id)
+		/// <param name="timeStop"></param>
+		public string EndAllCurrentUserShifts(int id, string timeStop)
 		{
 			string message = "";
 			var isWorker = uOW.WorkshiftHistoryRepo.Get().Where(s => s.DriverId == id & s.WorkEnded == null).Select(s => s).Any();
@@ -197,7 +197,7 @@ namespace BAL.Manager
 				foreach (var times in worker)
 				{
 					uOW.WorkshiftHistoryRepo.SetStateModified(times);
-					times.WorkEnded = DateTime.Now;
+					times.WorkEnded = DateTime.ParseExact(timeStop, "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture);
 					uOW.Save();
 					message = "Session was closed";
 					return message;

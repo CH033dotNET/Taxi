@@ -18,6 +18,8 @@ namespace MainSaite.Controllers
 {
 	public class DriverController : BaseController
 	{
+
+
 		public ActionResult Index()
 		{
 			if (null == Session["User"] || ((UserDTO)Session["User"]).RoleId != (int)AvailableRoles.Driver)
@@ -29,15 +31,15 @@ namespace MainSaite.Controllers
 				return View();
 			}
 		}
-	
+
 		public ActionResult DistrictPart()
 		{
 			ViewBag.Districts = locationManager.GetDriverDistrictInfo();
 			return PartialView(carManager.GetWorkingDrivers());
 		}
-		
 
-		public JsonResult WorkStateChange(int Id, string Latitude, string Longitude, string Accuracy)
+
+		public JsonResult WorkStateChange(int Id, string Latitude, string Longitude, string Accuracy, string TimeStart)
 		{
 			try
 			{
@@ -48,8 +50,8 @@ namespace MainSaite.Controllers
 					coordinates.TarifId = 1;
 					coordinatesManager.AddCoordinates(coordinates);
 				}
-				carManager.StartWorkEvent(Id);
-                MainSaite.driversLocationHub.addDriver(Id, double.Parse(Latitude, CultureInfo.InvariantCulture), double.Parse(Longitude, CultureInfo.InvariantCulture), DateTime.Now, userManager.GetById(Id).UserName);
+				carManager.StartWorkEvent(Id, TimeStart);
+
 				return Json(true);
 
 			}
@@ -59,7 +61,7 @@ namespace MainSaite.Controllers
 			}
 			return Json(false);
 		}
-		public JsonResult WorkStateEnded(int Id, string Latitude, string Longitude, string Accuracy)
+		public JsonResult WorkStateEnded(int Id, string Latitude, string Longitude, string Accuracy, string TimeStop)
 		{
 			try
 			{
@@ -70,12 +72,12 @@ namespace MainSaite.Controllers
 					coordinates.TarifId = 1;
 					coordinatesManager.AddCoordinates(coordinates);
 				}
-				var message = carManager.EndAllCurrentUserShifts(Id);
+
+				var message = carManager.EndAllCurrentUserShifts(Id, TimeStop);
 				ViewBag.WorkEndMessage = message;
 				//carManager.EndWorkShiftEvent(user.Id);
 				if (locationManager.GetByUserId(Id) != null)
 					locationManager.DeleteLocation(Id);
-                MainSaite.driversLocationHub.removeDriver(Id);
 				return Json(true);
 			}
 			catch (DataException)
@@ -113,5 +115,41 @@ namespace MainSaite.Controllers
 				return RedirectToAction("Index", "Driver");
 			}
 		}
-    }
+		public ActionResult GetArticle(string timeStart, string timeStop)
+		{
+
+			string format = "d HH:mm:ss tt";
+			try
+			{
+				string s = "2011/03/21 13:26";
+
+				DateTime dt = DateTime.ParseExact(timeStart, "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture);
+
+				string windowsTime = "2/21/2009 10:35 PM";
+
+				var time = DateTime.Parse(windowsTime);
+				Console.WriteLine(time);
+				DateTime result = DateTime.Parse(timeStart);
+			}
+			catch (FormatException)
+			{
+				Console.WriteLine("{0} is not in the correct format.", timeStart);
+
+			}
+
+			var dateString = "15/06/2008 08:30";
+			format = "g";
+			var provider = new CultureInfo("fr-FR");
+			try
+			{
+				var result = DateTime.ParseExact(dateString, format, provider);
+				Console.WriteLine("{0} converts to {1}.", dateString, result.ToString());
+			}
+			catch (FormatException)
+			{
+				Console.WriteLine("{0} is not in the correct format.", dateString);
+			}
+			return new EmptyResult();
+		}
+	}
 }

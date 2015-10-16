@@ -12,10 +12,10 @@ using System.Web.Mvc;
 
 namespace MainSaite.Controllers
 {
-    public class BaseController : Controller
-    {
-        //
-        // GET: /Base/
+	public class BaseController : Controller
+	{
+		//
+		// GET: /Base/
 		protected UnitOfWork uOW;
 		protected UserManager userManager;
 		protected AddressManager addressmanager;
@@ -23,10 +23,10 @@ namespace MainSaite.Controllers
 		protected DistrictManager districtManager;
 		protected PersonManager personManager;
 		protected LocationManager locationManager;
-        protected TarifManager tarifManager;
+		protected TarifManager tarifManager;
 		protected WebViewPageBase session;
-		protected	LocationManager locationmanager;
-		protected	DistrictManager districtmanager;
+		protected LocationManager locationmanager;
+		protected DistrictManager districtmanager;
 		protected CoordinatesManager coordinatesManager;
 
 
@@ -39,13 +39,11 @@ namespace MainSaite.Controllers
 			districtManager = new DistrictManager(uOW);
 			personManager = new PersonManager(uOW);
 			locationManager = new LocationManager(uOW);
-            tarifManager = new TarifManager(uOW);
+			tarifManager = new TarifManager(uOW);
 			session = new WebViewPageBase();
 			locationmanager = new LocationManager(uOW);
 			districtmanager = new DistrictManager(uOW);
 			coordinatesManager = new CoordinatesManager(uOW);
-            coordinatesManager.addedCoords += driversLocationHub.addedLocation;
-            
 		}
 
 		protected override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -68,5 +66,5 @@ namespace MainSaite.Controllers
 			base.OnActionExecuting(filterContext);
 		}
 
-    }
+	}
 }
