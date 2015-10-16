@@ -7,41 +7,39 @@ using Newtonsoft.Json.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using BAL.Manager;
+
 
 
 namespace Common.Tools
 {
 	public class PriceCounter
 	{
-		private List<CoordinatesDTO> tempcoordinatesHistory = new List<CoordinatesDTO>();
 		private List<CoordinatesDTO> coordinatesHistory = new List<CoordinatesDTO>();
 		private List<TarifDTO> tarifes = new List<TarifDTO>();
 
-		private CoordinatesDTO lastCoordinates;
-		private TarifManager tarifManager;
 		private TarifDTO currentTarif;
 		private int currentTatifId = 0;
 		private double distance;
 		private double timePeriod;
 		private double speed;
-		private decimal finalPrice = 0;
 		private decimal currentPrice = 0;
+		private double preLongDist;
 		private const double WAITINGCOSTSPEED = 5;
+		private const int EARTHRADIUD = 6371;
+		private const int ONEDEGREELATITUDE = 111;
 
-		public PriceCounter(TarifManager tarifManager)
-		{
-			this.tarifManager = tarifManager;
-		}
 
 		public PriceCounter(List<CoordinatesDTO> coordinatesHistory, List<TarifDTO> tarifes)
 		{
 			this.coordinatesHistory = coordinatesHistory;
 			this.tarifes = tarifes;
-			var item = tarifes.FirstOrDefault(tarif => tarif.id == coordinatesHistory[0].TarifId);
-			if (item != null)
+			if (coordinatesHistory.Count > 0)
 			{
-				currentPrice = item.StartPrice;
+				var item = tarifes.FirstOrDefault(tarif => tarif.id == coordinatesHistory[0].TarifId);
+				if (item != null)
+				{
+					currentPrice = item.StartPrice;
+				}
 			}
 		}
 		/// <summary>
@@ -61,9 +59,10 @@ namespace Common.Tools
 						iterator++;
 						continue;
 					}
-					prevCoordinates = coordinatesHistory[iterator];
+					prevCoordinates = coordinatesHistory[iterator-1];
 					iterator++;
 					// distance (km)
+
 					distance = GetDistance(prevCoordinates.Latitude, prevCoordinates.Longitude,
 												coordinates.Latitude, coordinates.Longitude);
 					//timePeriod (min)
@@ -74,7 +73,7 @@ namespace Common.Tools
 						currentTarif = tarifes.FirstOrDefault(tarif => tarif.id == coordinates.TarifId);
 						currentTatifId = coordinates.TarifId;
 					}
-					if (speed > 5)
+					if (speed > WAITINGCOSTSPEED)
 					{
 
 						currentPrice += (decimal)(timePeriod * (double)currentTarif.OneMinuteCost);
@@ -95,85 +94,38 @@ namespace Common.Tools
 			}
 			else
 			{
-				return 0;
+				return currentPrice;
 			}
 		}
 
-		
+
 		/// <summary>
-		/// Temporary method wich calculate price between two coordinates and add to list coordinatesHistory
+		/// Calculate namber of minutes between two timepoints
 		/// </summary>
-		/// <param name="coordinates"></param>
-		/// <returns>Price between two coordinates</returns>
-		public decimal CounterTick(CoordinatesDTO coordinates)
-		{
-			if (tempcoordinatesHistory.Count == 0)
-			{
-				tempcoordinatesHistory.Add(coordinates);
-				return 0;
-			}
-			else
-			{
-				lastCoordinates = tempcoordinatesHistory.Last();
-				// distance (km)
-				distance = GetDistance(lastCoordinates.Latitude, lastCoordinates.Longitude, 
-											coordinates.Latitude, coordinates.Longitude);
-				//timePeriod (min)
-				timePeriod = CountOfMinutes(lastCoordinates.AddedTime, coordinates.AddedTime);
-				speed = distance / (timePeriod / 60); // km/h
-				tempcoordinatesHistory.Add(coordinates);
-				if (currentTatifId != coordinates.TarifId)
-				{
-					currentTarif = tarifManager.GetById(coordinates.TarifId);
-					currentTatifId = coordinates.TarifId;
-				}
-				if (speed > 5)
-				{
-					
-					currentPrice += (decimal)(timePeriod * (double)currentTarif.OneMinuteCost);
-					return currentPrice;
-				}
-				else
-				{
-					currentPrice += (decimal)(timePeriod * (double)currentTarif.WaitingCost);
-					return currentPrice;
-				}
-			}
-		}
-
+		/// <param name="start"></param>
+		/// <param name="end"></param>
+		/// <returns></returns>
 		public double CountOfMinutes(DateTime start, DateTime end)
 		{
 			double checkTime = ((end.Ticks - start.Ticks) / 600000000d);
 			return (double)((end.Ticks - start.Ticks) / 600000000d);
 		}
 
+		/// <summary>
+		/// Calculate count of kilometers between two geogragic points
+		/// </summary>
+		/// <param name="PreLatitude">Previous</param>
+		/// <param name="PreLongitude"></param>
+		/// <param name="CurLatitude"></param>
+		/// <param name="CurLongitude"></param>
+		/// <returns>distance(km)</returns>
 		private double GetDistance(double PreLatitude, double PreLongitude, double CurLatitude, double CurLongitude)
 		{
-			string reqestUrl = String.Format(
-				"https://maps.googleapis.com/maps/api/distancematrix/json?origins={0},{1}&destinations={2},{3}",
-				PreLatitude, PreLongitude, CurLatitude, CurLongitude);
-			HttpWebRequest request =
-			(HttpWebRequest)WebRequest.Create(reqestUrl);
+			//the number of kilometres in one degree of Longitude in dependence of Latitude
+			preLongDist = EARTHRADIUD * (Math.PI / 180) * Math.Cos(PreLatitude * Math.PI / 180);
 
-			request.Method = "GET";
-			request.Accept = "application/json";
-
-			HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-			StreamReader reader = new StreamReader(response.GetResponseStream());
-			StringBuilder output = new StringBuilder();
-			output.Append(reader.ReadToEnd());
-			dynamic jobject = JObject.Parse(output.ToString());
-			int distant = (int)jobject.rows[0].elements[0].distance.value;
-
-			response.Close();
-			return distant / 1000;
-		}
-
-		public void StopCounter()
-		{
-			finalPrice = 0;
-			currentPrice = 0;
-			tempcoordinatesHistory.Clear();
+			return Math.Sqrt((Math.Pow(ONEDEGREELATITUDE * Math.Abs(PreLatitude - CurLatitude), 2)) + 
+							 (Math.Pow(preLongDist * Math.Abs(PreLongitude - CurLongitude), 2)));
 		}
 	}
 }

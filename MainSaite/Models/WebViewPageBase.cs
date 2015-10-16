@@ -20,7 +20,17 @@ namespace MainSaite.Models
 				HttpContext.Current.Session["User"] = value;
 			}
 		}
-
+		public List<CoordinatesDTO> Coordinates
+		{
+			get
+			{
+				return HttpContext.Current.Session["Coordinates"] as List<CoordinatesDTO>;
+			}
+			set
+			{
+				HttpContext.Current.Session["Coordinates"] = value;
+			}
+		}
 		public override void InitHelpers()
 		{
 			base.InitHelpers();
@@ -47,6 +57,17 @@ namespace MainSaite.Models
 			}
 		}
 
+		public List<CoordinatesDTO> Coordinates
+		{
+			get
+			{
+				return HttpContext.Current.Session["Coordinates"] as List<CoordinatesDTO>;
+			}
+			set
+			{
+				HttpContext.Current.Session["Coordinates"] = value;
+			}
+		}
 		public override void InitHelpers()
 		{
 			base.InitHelpers();

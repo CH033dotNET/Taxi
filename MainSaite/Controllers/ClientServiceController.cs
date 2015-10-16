@@ -10,15 +10,7 @@ namespace MainSaite.Controllers
 {
 	public class ClientServiceController : BaseController
 	{
-		private static PriceCounter priceCounter;
-		//
 		// GET: /ClientService/
-
-		public ClientServiceController()
-		{
-			if(priceCounter == null)
-				priceCounter = new PriceCounter(tarifManager);
-		}
 
 		public ActionResult PeekClient()
 		{
@@ -26,15 +18,26 @@ namespace MainSaite.Controllers
 		}
 
 		public string DrivingClient(CoordinatesDTO coordinates)
-		{			
-			return String.Format("{0:0.00}", priceCounter.CounterTick(coordinates));
+		{
+			List<CoordinatesDTO> list = session.Coordinates;
+			list.Add(coordinates);
+			session.Coordinates = list;
+			coordinatesManager.AddCoordinates(coordinates);
+			return ShowCurrentPrice();
 		}
 
+		public string ShowCurrentPrice()
+		{
+			List<TarifDTO> tarifs = tarifManager.GetTarifes().ToList();
+			PriceCounter price = new PriceCounter(session.Coordinates, tarifs);
+			return String.Format("{0:0.00}", price.CalcPrice());
+		}
 		public string DropClient(CoordinatesDTO coordinates)
 		{
-			decimal finallPrice = priceCounter.CounterTick(coordinates);
-			priceCounter.StopCounter();
-			return String.Format("{0:0.00}", finallPrice);
+			coordinatesManager.AddCoordinates(coordinates);
+			string temp = ShowCurrentPrice();
+			session.Coordinates = new List<CoordinatesDTO>();
+			return temp;
 		}
 
 	}

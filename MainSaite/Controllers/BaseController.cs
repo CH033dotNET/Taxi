@@ -63,6 +63,11 @@ namespace MainSaite.Controllers
 				ViewBag.ImageName = personManager.GetPersonByUserId(user.Id).ImageName;
 			}
 
+			if (session.Coordinates == null)
+			{
+				session.Coordinates = new List<CoordinatesDTO>();
+			}
+
 			base.OnActionExecuting(filterContext);
 		}
 

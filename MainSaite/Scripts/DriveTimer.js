@@ -83,7 +83,7 @@
 
         $.ajax({
             url: "/ClientService/DropClient",
-            mmethod: "POST",
+            method: "POST",
             data: dataObj,
             beforeSend: function () {
                var answer = confirm("Are you done?");
