@@ -114,6 +114,18 @@ namespace BAL.Manager
 			return null;
 		}
 
+		public void GiveAwayCar(int CarId, int NewCarUserId)
+		{
+			var GiveAwayCar = uOW.CarRepo.Get(s => s.Id == CarId).First();
+			if (GiveAwayCar == null)
+			{
+				throw new NotImplementedException();
+			}
+			uOW.CarRepo.SetStateModified(GiveAwayCar);
+			GiveAwayCar.UserId = NewCarUserId;
+			uOW.Save();
+		}
+
 		/// <summary>
 		/// Gets list of workers from a pero by specific criteria. If criteria is not matching returns null  
 		/// </summary>

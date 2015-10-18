@@ -74,8 +74,8 @@
       <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
@@ -163,6 +163,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CarsController.cs" />
+    <Compile Include="Models\AutoParkViewModel.cs" />
     <Compile Include="Models\CarChangeUser.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -188,6 +190,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AutoParkCustomStyles.css" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -301,6 +304,7 @@
     <Content Include="App_Readme\Handlebarsjs_README.md" />
     <Content Include="App_Readme\Handlebarsjs_LICENSE" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\AutoParkScripts.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap-filestyle.js" />
@@ -319,6 +323,7 @@
     <Content Include="Scripts\handlebars.runtime.amd.min.js" />
     <Content Include="Scripts\handlebars.runtime.js" />
     <Content Include="Scripts\handlebars.runtime.min.js" />
+    <Content Include="Scripts\HandlebarsCustomHelpers.js" />
     <Content Include="Scripts\IEValidation.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -415,6 +420,13 @@
     <Content Include="Views\Settings\ChangeCarUser.cshtml" />
     <Content Include="Views\Settings\ReturnCarBack.cshtml" />
     <Content Include="Views\UserPage\Iframe.cshtml" />
+    <Content Include="Views\Cars\CarPark.cshtml" />
+    <Content Include="Views\Cars\_DeleteCarPartial.cshtml" />
+    <Content Include="Views\Cars\_EditCarPartial.cshtml" />
+    <Content Include="Views\Cars\_AddCarPartial.cshtml" />
+    <Content Include="Views\Cars\_CarDetails.cshtml" />
+    <Content Include="Views\Cars\_GiveCarPartial.cshtml" />
+    <Content Include="Views\Cars\_ReturnCarPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

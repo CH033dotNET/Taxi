@@ -1,0 +1,100 @@
+﻿@using Common.Helpers
+@model IEnumerable<Model.DTO.CarDTO>
+
+<div class="modal fade" id="add-car-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header modal-header-success">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">@Resources.Resource.AddNewCar</h4>
+			</div>
+			<div class="modal-body">
+				@Html.AntiForgeryToken()
+				<font color="red">@Html.ValidationSummary()</font>
+				<table class="table table-condensed">
+					<tr>
+						<td class="td-ench"><label for="inputCarName" class="control-label">@Resources.Resource.CarName</label></td>
+						<td>
+							<input type="text" class="form-control input-lg" id="inputCarName" name="CarName" placeholder="@Resources.Resource.CarName">
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench">
+							<label for="inputCarNickName" class="control-label">@Resources.Resource.CarNickName</label>
+						</td>
+						<td>
+							<input type="text" class="form-control input-lg" id="inputCarNickName" name="CarNickName" placeholder="@Resources.Resource.CarNickName">
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label for="inputCarNumber" class="control-label">@Resources.Resource.CarNumber</label></td>
+						<td>
+							<input type="text" class="form-control input-lg" id="inputCarNumber" name="CarNumber" placeholder="@Resources.Resource.CarNumber">
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label for="inputCarOccupation" class="control-label">@Resources.Resource.CarOccupation</label></td>
+						<td>
+							<input type="number" class="form-control input-lg" id="inputCarOccupation" name="CarOccupation" min="2" max="20" placeholder="@Resources.Resource.CarOccupation">
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label for="inputCarClass" class="control-label">@Resources.Resource.CarClass</label></td>
+						<td>
+							<select class="form-control input-lg" name="CarClass" id="inputCarClass">
+								@foreach (var carClass in EnumHelper.GetCarClasses())
+								{
+									<option value="@carClass.Key">@carClass.Value</option>
+								}
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label for="inputCarPetrolType" class="control-label">@Resources.Resource.CarPetrolType</label></td>
+						<td>
+							<select class="form-control input-lg" name="CarPetrolType" id="inputCarPetrolType">
+								@foreach (var carPetrol in EnumHelper.GetCarPetrol())
+								{
+									<option value="@carPetrol.Key">@carPetrol.Value</option>
+								}
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label for="inputCarPetrolConsumption" class="control-label">@Resources.Resource.CarPetrolConsumption</label></td>
+						<td>
+							<input type="number" class="form-control input-lg" id="inputCarPetrolConsumption" name="CarPetrolConsumption" min="1" max="100" placeholder="@Resources.Resource.CarPetrolConsumption">
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label for="inputCarManufactureDate" class="control-label">@Resources.Resource.CarManufactureDate</label></td>
+						<td>
+							<input type='text' class="form-control input-lg bootstrap-datetimepicker-widget" id='datetimepicker2' name="CarManufactureDate" placeholder="@Resources.Resource.CarManufactureDate" />
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label for="inputCarState" class="control-label">@Resources.Resource.CarState</label></td>
+						<td>
+							<select class="form-control input-lg" name="CarState" id="inputCarState">
+								@foreach (var carState in EnumHelper.GetCarStates())
+								{
+									<option value="@carState.Key">@carState.Value</option>
+								}
+							</select>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<a class="btn btn-success role=" button" onclick="carController.addConfirm()" aria-label="Left Align">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> @Resources.Resource.addString
+				</a>
+				<button type="button" class="btn btn-info" data-dismiss="modal">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

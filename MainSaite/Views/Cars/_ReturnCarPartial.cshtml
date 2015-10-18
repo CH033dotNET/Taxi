@@ -1,0 +1,29 @@
+﻿@using Common.Helpers
+@model IEnumerable<Model.DTO.CarDTO>
+
+<div class="modal fade" id="returnback-car-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header modal-header-info">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-hourglass" aria-hidden="true">&nbsp;</span>[Return confirmation]</h4>
+			</div>
+
+			<div class="modal-body">
+				<p>[Return this car to it`s owner?]</p>
+				<h4><p id="p-enchenced-central"><text class="borrowedCar-name"></text></p></h4>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-info" data-dismiss="modal">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true">&nbsp;</span>@Resources.Resource.cancelButton
+				</button>
+				<a class="btn btn-success btn-ok">
+					<span class="glyphicon glyphicon-ok" aria-hidden="true">&nbsp;</span>@Resources.Resource.Return
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

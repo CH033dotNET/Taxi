@@ -1,0 +1,100 @@
+﻿@using Common.Helpers
+@model IEnumerable<Model.DTO.CarDTO>
+
+<div class="modal fade" id="edit-car-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header modal-header-warning">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString</h4>
+			</div>
+
+			<div class="modal-body">
+				@Html.AntiForgeryToken()
+				<table class="table table-hover">
+					<tr>
+						<td class="td-ench"><label class="control-label">@Resources.Resource.CarName</label></td>
+						<td>
+							<input type="text" class="form-control input-lg" id="newInputCarName" name="CarName" placeholder="@Resources.Resource.CarName">
+
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label class="control-label">@Resources.Resource.CarNickName</label></td>
+						<td>
+							<input type="text" class="form-control input-lg" id="newInputCarNickName" name="CarNickName" placeholder="@Resources.Resource.CarNickName">
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label class="control-label">@Resources.Resource.CarNumber</label></td>
+						<td>
+							<input type="text" class="form-control input-lg" id="newInputCarNumber" name="CarNumber" placeholder="@Resources.Resource.CarNumber">
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label class="control-label">@Resources.Resource.CarOccupation</label></td>
+						<td>
+							<input type="number" class="form-control input-lg" id="newInputCarOccupation" name="CarOccupation" min="2" max="20" placeholder="@Resources.Resource.CarOccupation">
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label class="control-label">@Resources.Resource.CarClass</label></td>
+						<td>
+							<select class="form-control input-lg" name="CarClass" id="newInputCarClass">
+								@foreach (var carClass in EnumHelper.GetCarClasses())
+								{
+									<option value="@carClass.Key">@carClass.Value</option>
+								}
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label class="control-label">@Resources.Resource.CarPetrolType</label></td>
+						<td>
+							<select class="form-control input-lg" name="CarPetrolType" id="newInputCarPetrolType">
+								@foreach (var carPetrol in EnumHelper.GetCarPetrol())
+								{
+									<option value="@carPetrol.Key">@carPetrol.Value</option>
+								}
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label class="control-label">@Resources.Resource.CarPetrolConsumption</label></td>
+						<td>
+							<input type="number" class="form-control input-lg" id="newInputCarPetrolConsumption" name="CarPetrolConsumption" min="1" max="100" placeholder="@Resources.Resource.CarPetrolConsumption">
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label class="control-label">@Resources.Resource.CarManufactureDate</label></td>
+						<td>
+							<input type='text' class="form-control input-lg bootstrap-datetimepicker-widget" id='datetimepicker1' name="CarManufactureDate" placeholder="@Resources.Resource.CarManufactureDate" />
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label class="control-label">@Resources.Resource.CarState</label></td>
+						<td>
+							<select class="form-control input-lg" name="CarState" id="newInputCarState">
+								@foreach (var carState in EnumHelper.GetCarStates())
+								{
+									<option value="@carState.Key">@carState.Value</option>
+								}
+							</select>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-warning" data-dismiss="modal">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true">&nbsp;</span>@Resources.Resource.cancelButton
+				</button>
+				<a class="btn btn-success btn-ok">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true">&nbsp;</span>@Resources.Resource.saveButton
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

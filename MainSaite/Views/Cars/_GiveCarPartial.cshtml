@@ -1,0 +1,42 @@
+﻿@using Common.Helpers
+@model MainSaite.Models.AutoParkViewModel
+
+
+<div class="modal fade" id="give-car-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header modal-header-warning">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-hourglass" aria-hidden="true">&nbsp;</span>[Transfer confirmation]</h4>
+			</div>
+
+			<div class="modal-body">
+				<h3><p>[Choose new car owner for] <text class="giveAwayCar-name"></text></p></h3>
+				<table class="table table-hover">
+					<tr>
+						<td class="td-ench"><label class="control-label">[New Owner]</label></td>
+						<td>
+							<select class="form-control input-lg" name="CarState" id="giveAwayCarDrivers">
+								@foreach (var driver in Model.Drivers)
+								{
+									<option value="@driver.Id">@driver.UserName</option>
+								}
+							</select>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-info" data-dismiss="modal">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true">&nbsp;</span>@Resources.Resource.cancelButton
+				</button>
+				<a class="btn btn-success btn-ok">
+					<span class="glyphicon glyphicon-ok" aria-hidden="true">&nbsp;</span>@Resources.Resource.saveButton
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,80 @@
+﻿@using Common.Helpers
+@model IEnumerable<Model.DTO.CarDTO>
+
+<div class="modal fade" id="details-car-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header modal-header-info">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-file" aria-hidden="true">&nbsp;</span>@Resources.Resource.CarsDetails</h4>
+			</div>
+
+			<div class="modal-body">
+				@Html.AntiForgeryToken()
+				<table class="table table-hover">
+					<tr>
+						<td class="td-ench"><label class="control-label">@Resources.Resource.CarName</label></td>
+						<td class="td-ench">
+							<p id="p-enhanced" class="detailsCarName"></p>
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label class="control-label">@Resources.Resource.CarNickName</label></td>
+						<td class="td-ench">
+							<p id="p-enhanced" class="detailsCarNickName"></p>
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label class="control-label">@Resources.Resource.CarNumber</label></td>
+						<td class="td-ench">
+							<p id="p-enhanced" class="detailsCarNumber"></p>
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label class="control-label">@Resources.Resource.CarOccupation</label></td>
+						<td class="td-ench">
+							<p id="p-enhanced" class="detailsCarOccupation"></p>
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label class="control-label">@Resources.Resource.CarClass</label></td>
+						<td class="td-ench">
+							<p id="p-enhanced" class="detailsCarClass"></p>
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label class="control-label">@Resources.Resource.CarPetrolType</label></td>
+						<td class="td-ench">
+							<p id="p-enhanced" class="detailsCarPetrolType"></p>
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label class="control-label">@Resources.Resource.CarPetrolConsumption</label></td>
+						<td class="td-ench">
+							<p id="p-enhanced" class="detailsCarPetrolConsumption"></p>
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label class="control-label">@Resources.Resource.CarManufactureDate</label></td>
+						<td class="td-ench">
+							<p id="p-enhanced" class="detailsdatetimepicker1"></p>
+						</td>
+					</tr>
+					<tr>
+						<td class="td-ench"><label class="control-label">@Resources.Resource.CarState</label></td>
+						<td class="td-ench">
+							<p id="p-enhanced" class="detailsCarState"></p>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-info" data-dismiss="modal">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true">&nbsp;</span>@Resources.Resource.cancelButton
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
