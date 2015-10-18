@@ -550,4 +550,13 @@
   <data name="Return" xml:space="preserve">
     <value>Return</value>
   </data>
+  <data name="GiveCarEntry" xml:space="preserve">
+    <value>Give this car to a new owner?</value>
+  </data>
+  <data name="newCarOwner" xml:space="preserve">
+    <value>New owner</value>
+  </data>
+  <data name="ReturnCarEntry" xml:space="preserve">
+    <value>Return this car to it`s owner?</value>
+  </data>
 </root>

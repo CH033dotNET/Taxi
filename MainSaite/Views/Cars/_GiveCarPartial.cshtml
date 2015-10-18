@@ -13,10 +13,11 @@
 			</div>
 
 			<div class="modal-body">
-				<h3><p>[Choose new car owner for] <text class="giveAwayCar-name"></text></p></h3>
+				<p>@Resources.Resource.GiveCarEntry</p>
+				<h4><p id="p-enchenced-central"class="giveAwayCar-name"></p></h4>
 				<table class="table table-hover">
 					<tr>
-						<td class="td-ench"><label class="control-label">[New Owner]</label></td>
+						<td class="td-ench"><label class="control-label">@Resources.Resource.newCarOwner</label></td>
 						<td>
 							<select class="form-control input-lg" name="CarState" id="giveAwayCarDrivers">
 								@foreach (var driver in Model.Drivers)

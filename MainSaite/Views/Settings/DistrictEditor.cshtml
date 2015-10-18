@@ -3,6 +3,7 @@
 	string username = (Session["user"] as Model.DTO.UserDTO).UserName;
 }
 <h2>@Resources.Resource.DistrictEditor</h2>
+<link rel="stylesheet" href="~/Content/AutoParkCustomStyles.css" type="text/css" />
 <div>
 	<div class="page-header">
 		<h1>@Resources.Resource.Greeting,<small>@username</small></h1>
@@ -14,8 +15,12 @@
 		<div class="panel-body">
 		</div>
 		<div class="panel-footer">
-			<a class="btn btn-success" onclick="jsController.addDistrict()">@Resources.Resource.addString</a>
-			<a class="btn btn-warning" onclick="jsController.DistrictBasket(this)">@Resources.Resource.DistrictBasket</a>
+			<a class="btn btn-success" onclick="jsController.addDistrict()">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true">&nbsp;</span>@Resources.Resource.addString
+			</a>
+			<a class="btn btn-warning" onclick="jsController.DistrictBasket(this)">
+				<span class="glyphicon glyphicon-th-list" aria-hidden="true">&nbsp;</span>@Resources.Resource.DistrictBasket
+			</a>
 		</div>
 		<div class="table-list">
 			<div class="table-responsive">
@@ -38,8 +43,12 @@
 									{{Name}}
 								</td>
 								<td>
-									<a class="btn btn-warning" href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.editItem(this)">@Resources.Resource.editString</a>
-									<a class="btn btn-danger" href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.deleteItem(this)">@Resources.Resource.deleteString</a>
+									<a class="btn btn-warning" href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.editItem(this)">
+										<span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString
+									</a>
+									<a class="btn btn-danger" href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.deleteItem(this)">
+										<span class="glyphicon glyphicon-trash" aria-hidden="true">&nbsp;</span>@Resources.Resource.deleteString
+									</a>
 								</td>
 							</tr>
 							{{/each}}
@@ -47,9 +56,9 @@
 					</tbody>
 				</table>
 				@Html.Partial("_DeleteDistrictP", Model)
-				@Html.Partial("_EditDistrictP",Model)
-				@Html.Partial("_AddDistrictP",Model)
-				@Html.Partial("_DeletedListP",Model)
+				@Html.Partial("_EditDistrictP", Model)
+				@Html.Partial("_AddDistrictP", Model)
+				@Html.Partial("_DeletedListP", Model)
 			</div>
 		</div>
 	</div>

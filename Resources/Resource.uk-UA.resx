@@ -549,4 +549,13 @@
   <data name="Return" xml:space="preserve">
     <value>Вернути</value>
   </data>
+  <data name="GiveCarEntry" xml:space="preserve">
+    <value>Віддати дане авто на користування іншому водію?</value>
+  </data>
+  <data name="newCarOwner" xml:space="preserve">
+    <value>Новый користувач авто</value>
+  </data>
+  <data name="ReturnCarEntry" xml:space="preserve">
+    <value>Повернути цей автомобіль його власнику?</value>
+  </data>
 </root>

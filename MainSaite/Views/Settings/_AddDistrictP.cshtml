@@ -3,17 +3,23 @@
 <div class="modal fade" id="add-item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">@Resources.Resource.addNewDistrict</h4>
+			<div class="modal-header modal-header-success">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-plus" aria-hidden="true">&nbsp;</span>@Resources.Resource.addNewDistrict</h4>
 			</div>
 			<div class="modal-body">
 				<p>@Resources.Resource.enterDistrictName</p>
 				<h4><input type="text" class="form-control input-lg" id="newDistrictName" /></h4>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				<a class="btn btn-danger btn-ok">@Resources.Resource.saveButton</a>
+				<button type="button" class="btn btn-warning" data-dismiss="modal">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true">&nbsp;</span>@Resources.Resource.cancelButton
+				</button>
+				<a class="btn btn-success btn-ok">
+					<span class="glyphicon glyphicon-ok" aria-hidden="true">&nbsp;</span>@Resources.Resource.saveButton
+				</a>
 			</div>
 		</div>
 	</div>

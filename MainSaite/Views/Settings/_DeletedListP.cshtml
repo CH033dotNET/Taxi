@@ -3,9 +3,11 @@
 <div class="modal fade" id="deletedList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">@Resources.Resource.DeletedDistricts</h4>
+			<div class="modal-header modal-header-info">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-th-list" aria-hidden="true">&nbsp;</span>@Resources.Resource.DeletedDistricts</h4>
 			</div>
 			<div class="modal-body">
 				<div class="table-list">
@@ -29,7 +31,9 @@
 											{{Name}}
 										</td>
 										<td>
-											<a class="btn btn-warning" href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.restoreDistrict(this)">@Resources.Resource.RestoreDistrict</a>
+											<a class="btn btn-success" href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.restoreDistrict(this)">
+												<span class="glyphicon glyphicon-plus" aria-hidden="true">&nbsp;</span>@Resources.Resource.RestoreDistrict
+											</a>
 										</td>
 									</tr>
 									{{/each}}
@@ -40,7 +44,9 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Resource.cancelButton</button>
+				<button type="button" class="btn btn-warning" data-dismiss="modal">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true">&nbsp;</span>@Resources.Resource.cancelButton
+				</button>
 			</div>
 		</div>
 	</div>
