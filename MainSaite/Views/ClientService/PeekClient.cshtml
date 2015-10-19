@@ -32,7 +32,7 @@
                         {
                             @Html.Label(tarif.Name, new { @class = "tarifName" })
 
-                            @Html.CheckBox(tarif.Name, new { @class = "tarifCheckBox", @value = tarif.id }) ;
+                            @Html.CheckBox(tarif.Name, new { @class = "tarifCheckBox", @value = tarif.id, @temp = tarif.StartPrice }) ;
                     <hr />
                         }
                     }
@@ -42,16 +42,16 @@
             </div>
         </div>
         <div class="row">
-            
-            @*$('#niceElement').show();
-            $('#niceElement').hide();*@
-            <div id="niceElement" >
-                <p id="clientPrice"></p>
+            <div class="col-lg-3 col col-md-4">
+               
             </div>
-
-
+            <div class="col-lg-9 col-md-8">
+                <div id="niceElement">
+                    <center> <img src="~/Content/Picture/Speedometer.jpg" /> <p id="clientPrice" >@Model.Where(x => x.Name == "Standart").Select(x=>x.StartPrice).First()</p></center>
+                </div>
+            </div>
+            </div>
         </div>
-    </div>
 
 </body>
 </html>

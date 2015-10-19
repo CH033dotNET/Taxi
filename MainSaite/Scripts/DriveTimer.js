@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
-    var countTimer = 1;
+
+    //var countTimer = 1;
     var payroll = 0;
     var pointTarif = 1;
     var Toogle;
@@ -18,6 +19,11 @@
         $(":checkbox").prop('checked', false);
         $(this).prop('checked', true);
         pointTarif = ($(this).val());
+        var tempor = ($(this).attr("temp"));
+        if(switcher.hasClass("Drive"))
+        {
+            $("#clientPrice").text(tempor);
+        }
     });
 
     // Local Time
@@ -47,12 +53,12 @@
 
     function DefaultTarif() {
         $(":checkbox:first").attr('checked', true);
+        
     }
 
     ///ajax object 
     function getBeginCoordinate(position) {
-        debugger;
-        
+      
         var dataObj = {}
         dataObj.UserId = document.getElementById('Id').value;
         dataObj.Latitude = position.coords.latitude;
@@ -72,7 +78,7 @@
     }
 
     function getEndCoordinate(position) {
-        debugger;
+       
         var dataObj = {}
         dataObj.UserId = document.getElementById('Id').value;
         dataObj.Latitude = position.coords.latitude;

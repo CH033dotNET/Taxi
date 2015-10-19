@@ -22,6 +22,7 @@ margin-top:54px;
     margin-left:200px;
     border-radius:25px;
     font-style:italic;
+    margin-bottom:50px;
     
 }
   .Dest {
@@ -33,7 +34,8 @@ margin-top:54px;
     margin-left:200px;
     border-radius:25px;
     font-style:italic;
-   
+    margin-bottom:50px;
+ 
 }
  
 .timeTable{
@@ -53,3 +55,9 @@ margin-top:54px;
    .ieDisable {
   margin-top:50px;
     }
+
+#clientPrice  {
+color:#421111;
+font-size:xx-large;
+margin:-47px; 
+}
