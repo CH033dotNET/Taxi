@@ -37,6 +37,16 @@ namespace MainSaite.Controllers
 			ViewBag.Districts = locationManager.GetDriverDistrictInfo();
 			return PartialView(carManager.GetWorkingDrivers());
 		}
+		/// <summary>
+		/// Checks if there are uncompleted workshifts for current Driver
+		/// </summary>
+		/// <param name="Id">drivers id</param>
+		/// <returns></returns>
+		public JsonResult CheckWorkShifts(int Id)
+		{
+			bool uncompletedShifts = carManager.GetWorkShiftsByWorkerId(Id);
+			return Json(uncompletedShifts, JsonRequestBehavior.AllowGet);
+		}
 
 
 		public JsonResult WorkStateChange(int Id, string Latitude, string Longitude, string Accuracy, string TimeStart)

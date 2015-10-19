@@ -312,6 +312,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\coordinates.js" />
+    <Content Include="Scripts\DistrictPartButtonScripts.js" />
     <Content Include="Scripts\DistrictScriptLogic.js" />
     <Content Include="Scripts\DriverMap.js" />
     <Content Include="Scripts\DriveTimer.js" />

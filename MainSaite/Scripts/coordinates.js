@@ -1,13 +1,4 @@
-﻿$(document).ready(function () {
-    $('#btn_begin').click(function () {
-        setBeginlocation();
-    });
-    $('#btn_end').click(function () {
-        setEndlocation();
-    });
-});
-
-var timeNow;
+﻿var timeNow;
 var storage = window.localStorage;
 
 function getBeginCoord(position) {

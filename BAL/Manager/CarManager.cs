@@ -139,6 +139,17 @@ namespace BAL.Manager
 			}
 			return null;
 		}
+		/// <summary>
+		/// Searches for uncompleted WorkShifts for driver with specific Id. If they are avialable, returns true, if not - false.
+		/// </summary>
+		/// <param name="WorkerId">drivers id</param>
+		/// <returns></returns>
+		public bool GetWorkShiftsByWorkerId(int WorkerId)
+		{
+			var uncompletedShifts = uOW.WorkshiftHistoryRepo.Get().Where(s => s.WorkEnded == null & s.WorkStarted != null & s.DriverId == WorkerId).Any();
+			if (uncompletedShifts) { return true; }
+			else { return false; }
+		}
 
 		/// <summary>
 		/// Starting workshift for a driver which id is matching input parameter`s value
