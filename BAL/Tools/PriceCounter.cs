@@ -83,14 +83,9 @@ namespace Common.Tools
 						currentPrice += (decimal)(timePeriod * (double)currentTarif.WaitingCost);
 					}
 				}
-				if (currentPrice > currentTarif.MinimalPrice)
-				{
-					return currentPrice;
-				}
-				else
-				{
-					return currentTarif.MinimalPrice;
-				}
+			
+				return currentPrice;
+				
 			}
 			else
 			{

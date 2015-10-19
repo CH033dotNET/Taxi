@@ -26,7 +26,7 @@ namespace MainSaite.Controllers
 			return ShowCurrentPrice();
 		}
 
-		public string ShowCurrentPrice()
+		private string ShowCurrentPrice()
 		{
 			List<TarifDTO> tarifs = tarifManager.GetTarifes().ToList();
 			PriceCounter price = new PriceCounter(session.Coordinates, tarifs);
@@ -35,9 +35,18 @@ namespace MainSaite.Controllers
 		public string DropClient(CoordinatesDTO coordinates)
 		{
 			coordinatesManager.AddCoordinates(coordinates);
-			string temp = ShowCurrentPrice();
+			string price = ShowCurrentPrice();
 			session.Coordinates = new List<CoordinatesDTO>();
-			return temp;
+			decimal minPrice = tarifManager.GetById(coordinates.TarifId).MinimalPrice;
+			if (minPrice > Decimal.Parse(price))
+			{
+				return String.Format("{0:0.00}", minPrice);
+			}
+			else
+			{
+				return price;
+			}
+			
 		}
 
 	}
