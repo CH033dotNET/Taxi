@@ -55,7 +55,7 @@ namespace MainSaite.Controllers
 
 		}
 
-		public void UploudImage(PersonDTO person, FormCollection formCollection, UserDTO currentUser)
+		private void UploudImage(PersonDTO person, FormCollection formCollection, UserDTO currentUser)
 		{
 
 			var profileAvatar = "item_0_profile.jpg";

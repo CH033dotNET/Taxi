@@ -85,7 +85,7 @@ namespace MainSaite.Controllers
 			return View();
 		}
 
-	    public void ValidPerson( UserDTO user)
+	    private void ValidPerson( UserDTO user)
 	    {
 			var currentUser = userManager.GetByUserName(user.UserName, user.Password);
 			var currentPerson = personManager.GetPersonByUserId(currentUser.Id);

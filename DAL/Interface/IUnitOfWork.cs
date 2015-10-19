@@ -22,8 +22,7 @@ namespace DAL.Interface
 		IGenericRepository<WorkshiftHistory> WorkshiftHistoryRepo { get; }
         IGenericRepository<Tarif> TarifRepo { get; }
 		IGenericRepository<Coordinates> CoordinatesHistoryRepo { get; }
-
-		
+		IGenericRepository<Order> OrderRepo { get; }
 
 		void Dispose();
 		void Save();

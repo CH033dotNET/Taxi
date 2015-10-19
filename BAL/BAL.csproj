@@ -64,6 +64,7 @@
     <Compile Include="Manager\DistrictManager.cs" />
     <Compile Include="Manager\ImageUpload.cs" />
     <Compile Include="Manager\LocationManager.cs" />
+    <Compile Include="Manager\OrderManager.cs" />
     <Compile Include="Manager\PersonManager.cs" />
     <Compile Include="Manager\TarifManager.cs" />
     <Compile Include="Tools\PriceCounter.cs" />

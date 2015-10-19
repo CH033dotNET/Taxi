@@ -31,7 +31,7 @@ namespace DAL
 
         private IGenericRepository<Tarif> tarifRepo;
 		private IGenericRepository<Coordinates> coordinatesHistoryRepo;
-
+		private IGenericRepository<Order> orderRepo;
         #endregion
 
         public UnitOfWork()
@@ -53,7 +53,7 @@ namespace DAL
 
             tarifRepo = new GenericRepository<Tarif>(context);
 			coordinatesHistoryRepo = new GenericRepository<Coordinates>(context);
-            
+			orderRepo = new GenericRepository<Order>(context);
         }
 
         public void Save()
@@ -159,6 +159,15 @@ namespace DAL
 			{
 				if (coordinatesHistoryRepo == null) coordinatesHistoryRepo = new GenericRepository<Coordinates>(context);
 				return coordinatesHistoryRepo;
+			}
+		}
+
+		public IGenericRepository<Order> OrderRepo
+		{
+			get
+			{
+				if (orderRepo == null) orderRepo = new GenericRepository<Order>(context);
+				return orderRepo;
 			}
 		}
 		#endregion

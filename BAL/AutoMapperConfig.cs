@@ -30,6 +30,8 @@ namespace Common
 			Mapper.CreateMap<Tarif, TarifDTO>();
 			Mapper.CreateMap<CoordinatesDTO, Coordinates>();
 			Mapper.CreateMap<Coordinates, CoordinatesDTO>();
+			Mapper.CreateMap<Order, OrderDTO>();
+			Mapper.CreateMap<OrderDTO, Order>();
 		}
 	}
 }
