@@ -1304,6 +1304,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tarifes.
+        /// </summary>
+        public static string Tarifes {
+            get {
+                return ResourceManager.GetString("Tarifes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add new address.
         /// </summary>
         public static string TitleCreateAddress {
