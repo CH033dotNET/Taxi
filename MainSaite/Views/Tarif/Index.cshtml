@@ -5,7 +5,7 @@
     int number = 1;
 }
 
-@Html.ActionLink("[Create New]", "Create")
+@Html.ActionLink(@Resources.Resource.addString, "Create")
 <br />
 
 @Html.Partial("_ShowTarifTable", Model)
@@ -18,7 +18,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">[Edit Tarif]</h4>
+        <h4 class="modal-title">@Resources.Resource.editString</h4>
       </div>
       <div class="modal-body">
    <div id="loading">
@@ -45,32 +45,32 @@
     <table class="table">
         <input type="hidden" name="Tarif.Id" value={{Tarif.id}}>
         <tr>
-            <td>@Html.Label("[Tarif Name]")</td>
+            <td>@Html.Label(@Resources.Resource.Name)</td>
             <td><input type="text" name="Tarif.Name" value= {{Tarif.Name}} /></td>
         </tr>
 
         <tr>
-            <td>@Html.Label("[Minimal Price]")</td>
+            <td>@Html.Label(@Resources.Resource.MinimalPrice)</td>
             <td><input type="text" name="Tarif.MinimalPrice" value= {{Tarif.MinimalPrice}} /></td>
         </tr>
 
         <tr>
-            <td>@Html.Label("[One minute cost]")</td>
+            <td>@Html.Label(@Resources.Resource.OneMinuteCost)</td>
             <td><input type="text" name="Tarif.OneMinuteCost" value= {{Tarif.OneMinuteCost}} /></td>
         </tr>
 
         <tr>
-            <td>@Html.Label("[Start price]")</td>
+            <td>@Html.Label(@Resources.Resource.StartPrice)</td>
             <td><input type="text" name="Tarif.StartPrice" value= {{Tarif.StartPrice}} /></td>
         </tr>
 
         <tr>
-            <td>@Html.Label("[Waiting Cost]")</td>
+            <td>@Html.Label(@Resources.Resource.WaitingCost)</td>
             <td><input type="text"  name="Tarif.WaitingCost" value= {{Tarif.WaitingCost}} /></td>
         </tr>
 
         <tr>
-            <td>@Html.Label("[Is Intercity]")</td>
+            <td>@Html.Label(@Resources.Resource.IsIntercity)</td>
       {{#if Tarif.IsIntercity}}
        <td><input type="checkbox" id="Tarif_IsIntercity" name="tarif.IsIntercity" checked="checked" value="true" /></td>
      {{else}}
@@ -80,7 +80,7 @@
         </tr>
 
         <tr class="IsStandart">
-            <td>@Html.Label("[Is Standart]")</td>
+            <td>@Html.Label(@Resources.Resource.IsStandart)</td>
 
      {{#if Tarif.IsStandart}}
                <td><input type="checkbox" id="Tarif_IsStandart" checked="checked" name="Tarif.IsStandart" value="true" /></td>
@@ -90,7 +90,7 @@
         </tr>
 
         <tr class="DistrictList" id="DistrictList">
-            <td>@Html.Label("[Районы]")</td>
+            <td>@Html.Label(@Resources.Resource.District)</td>
             <td>
                  <select name="tarif.DistrictId", size="1">
                     {{#each Districts}}
@@ -112,32 +112,32 @@
 
        <table class="table">
         <tr>
-            <td>@Html.Label("[Tarif Name]")</td>
+            <td>@Html.Label(@Resources.Resource.Name)</td>
             <td><span> {{Tarif.Name}} </span></td>
         </tr>
 
         <tr>
-            <td>@Html.Label("[Minimal Price]")</td>
+            <td>@Html.Label(@Resources.Resource.MinimalPrice)</td>
             <td><span>  {{Tarif.MinimalPrice}} </span></td>
         </tr>
 
         <tr>
-            <td>@Html.Label("[One minute cost]")</td>
+            <td>@Html.Label(@Resources.Resource.OneMinuteCost)</td>
             <td><span>{{Tarif.OneMinuteCost}}</span></td>
         </tr>
 
         <tr>
-            <td>@Html.Label("[Start price]")</td>
+            <td>@Html.Label(@Resources.Resource.StartPrice)</td>
             <td><span> {{Tarif.StartPrice}}</span></td>
         </tr>
 
         <tr>
-            <td>@Html.Label("[Waiting Cost]")</td>
+            <td>@Html.Label(@Resources.Resource.WaitingCost)</td>
             <td><span> {{Tarif.WaitingCost}} </span></td>
         </tr>
 
         <tr>
-            <td>@Html.Label("[Is Intercity]")</td>
+            <td>@Html.Label(@Resources.Resource.IsIntercity)</td>
       {{#if Tarif.IsIntercity}}
        <td><input type="checkbox" id="Tarif_IsIntercity" name="tarif.IsIntercity" checked="checked" value="true" disabled /></td>
      {{else}}
@@ -147,7 +147,7 @@
         </tr>
 
         <tr class="IsStandart">
-            <td>@Html.Label("[Is Standart]")</td>
+            <td>@Html.Label(@Resources.Resource.IsStandart)</td>
 
      {{#if Tarif.IsStandart}}
                <td><input type="checkbox" id="Tarif_IsStandart" checked="checked" name="Tarif.IsStandart" value="true"  disabled /></td>
@@ -157,7 +157,7 @@
         </tr>
 
         <tr class="DistrictList" id="DistrictList">
-            <td>@Html.Label("[Районы]")</td>
+            <td>@Html.Label(@Resources.Resource.District)</td>
             <td>
 
                    <span> {{Tarif.District.Name}}</span>
@@ -167,7 +167,7 @@
 
     </table>
 
-    @using (Ajax.BeginForm("Delete", new { controller = "Tarif", action = "Delete" }, new AjaxOptions { UpdateTargetId = "Tarifes", HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "Close" }))
+    @using (Ajax.BeginForm(@Resources.Resource.deleteString, new { controller = "Tarif", action = "Delete" }, new AjaxOptions { UpdateTargetId = "Tarifes", HttpMethod = "POST", InsertionMode = InsertionMode.Replace, OnSuccess = "Close" }))
     {
 
         <input type="hidden" name="id" value={{Tarif.id}}>

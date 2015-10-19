@@ -9,7 +9,7 @@
     
 
         <div class="navbar-header">
-            <button id="OrderTaxi" class="btn btn-primary">[Order taxi]</button>
+            <button id="OrderTaxi" class="btn btn-primary">@Resources.Resource.OrderTaxi</button>
             <button type="button" class="navbar-toggle" id="responsive-menu-btn" data-toggle="collapse" data-target="#responsive-menu">
                    <span class="sr-only">[Open Nav]</span>
                    <span class="icon-bar"></span>  
@@ -34,10 +34,8 @@
 
 @section  body{
 
- <input id="autocomplete" placeholder="Enter your address"
-              type="text"></input>
-             
-
+ <input id="autocomplete" placeholder=@Resources.Resource.EnterYourAdress
+              type="text" />
     <input type="button" id="OkBtn" name="Find" value="Find" onclick="geocode()">
 
 <div id="map"></div>

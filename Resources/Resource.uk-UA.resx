@@ -558,4 +558,31 @@
   <data name="ReturnCarEntry" xml:space="preserve">
     <value>Повернути цей автомобіль його власнику?</value>
   </data>
+  <data name="EnterYourAdress" xml:space="preserve">
+    <value>Ведіть ваш адрес</value>
+  </data>
+  <data name="IsIntercity" xml:space="preserve">
+    <value>Чи міжміський</value>
+  </data>
+  <data name="IsStandart" xml:space="preserve">
+    <value>Чи стандартний</value>
+  </data>
+  <data name="MinimalPrice" xml:space="preserve">
+    <value>Мінімальна ціна</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Ім'я</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Номер</value>
+  </data>
+  <data name="OneMinuteCost" xml:space="preserve">
+    <value>Ціна однієї хвилини</value>
+  </data>
+  <data name="StartPrice" xml:space="preserve">
+    <value>Початкова ціна</value>
+  </data>
+  <data name="WaitingCost" xml:space="preserve">
+    <value>Ціна очікування</value>
+  </data>
 </root>

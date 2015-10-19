@@ -7,37 +7,37 @@
 
     <tr>
         <td>
-            @Html.Label("[Number]")
+            @Html.Label(@Resources.Resource.Number)
         </td>
         <td>
-            @Html.Label("[Tarif Name]")
-        </td>
-
-        <td>
-            @Html.Label("[Minimal Price]")
+            @Html.Label(@Resources.Resource.Name)
         </td>
 
         <td>
-            @Html.Label("[Start Price]")
-        </td>
-        <td>
-            @Html.Label("[Waiting Cost]")
+            @Html.Label(@Resources.Resource.MinimalPrice)
         </td>
 
         <td>
-            @Html.Label("[One Minute Cost]")
+            @Html.Label(@Resources.Resource.StartPrice)
+        </td>
+        <td>
+            @Html.Label(@Resources.Resource.WaitingCost)
         </td>
 
         <td>
-            @Html.Label("[District Name]")
+            @Html.Label(@Resources.Resource.OneMinuteCost)
         </td>
 
         <td>
-            @Html.Label("[Is Intercity]")
+            @Html.Label(@Resources.Resource.DistrictName)
         </td>
 
         <td>
-            @Html.Label("[Is Standart]")
+            @Html.Label(@Resources.Resource.IsIntercity)
+        </td>
+
+        <td>
+            @Html.Label(@Resources.Resource.IsStandart)
         </td>
 
     </tr>
@@ -61,12 +61,12 @@
             {
                 <td></td>
             }
-            <td>@Ajax.ActionLink("Edit", "Edit", new { id = i.id },
+            <td>@Ajax.ActionLink(@Resources.Resource.editString, "Edit", new { id = i.id },
             new AjaxOptions { UpdateTargetId = "Test", HttpMethod = "GET", InsertionMode = InsertionMode.Replace, OnSuccess = "EditMethod", OnComplete="HideMethod", LoadingElementId="loading" }
             , new { @class = "btn btn-default Edit" })</td>
             @if (!i.IsStandart)
             {
-                 <td>@Ajax.ActionLink("Delete", "Edit", new { id = i.id },
+                 <td>@Ajax.ActionLink(@Resources.Resource.deleteString, "Edit", new { id = i.id },
             new AjaxOptions { UpdateTargetId = "Test", HttpMethod = "GET", InsertionMode = InsertionMode.Replace, OnSuccess = "DeleteMethod", OnComplete="HideMethod", LoadingElementId="loading" }
             , new { @class = "btn btn-default Delete" })</td>
             }
