@@ -12,19 +12,17 @@
     <meta name="viewport" content="width=device-width" />
     <title></title>
 
-    <script type="text/javascript" src="~/Scripts/DriveTimer.js">
-
-    </script>
+    <script type="text/javascript" src="~/Scripts/DriveTimer.js">    </script>
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col col-md-4">
+            <div class="col-lg-3 col col-md-4 hidden-sm hidden-xs">
                 <img src="~/Content/Picture/SandWatch.jpg" class="imgClock" />
                 <p class="timeTable"></p>
             </div>
-            <div class="col-lg-9 col-md-8">
-                <center><h3>Select Tarif</h3></center>
+            <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                <center><h3>@Resources.Resource.SelectTarif</h3></center>
                 @{
                     if (Model != null)
                     {
@@ -38,7 +36,7 @@
                     }
                 }
                 <input type="hidden" id="Id" value="@User.Id" />
-                <button class="btn Drive" id="double">DRIVE<i class="fa fa-tachometer fa-lg"></i></button>
+               <center> <button type="button" class="btn Drive" id="double">@Resources.Resource.Drive<i class="fa fa-tachometer fa-lg"></i></button></center>
             </div>
         </div>
         <div class="row">

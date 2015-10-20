@@ -1,16 +1,16 @@
-﻿$(document).ready(function () {
+﻿
 
-    //var countTimer = 1;
+$(document).ready(function () {
+
     var payroll = 0;
     var pointTarif = 1;
     var Toogle;
-  
+    
    
     DefaultTarif();
     ShowDate();
     setInterval(ShowDate, 1000);
-
-
+  
     //start drive
     var switcher = $("#double").on("click", Switch);
     //CheckBox
@@ -32,7 +32,7 @@
     }
 
 
-
+    
 
     // Start or finish drive a client
     function Switch() {
@@ -42,11 +42,11 @@
 
         }
         else {
-            
-                switcher.removeClass("Dest").addClass("Drive");
-                switcher.text("Drive").append("<i class='fa fa-tachometer fa-lg'></i>");
-                clearInterval(Toogle);
-                EndService();
+
+            switcher.removeClass("Dest").addClass("Drive");
+            switcher.text("Drive").append("<i class='fa fa-tachometer fa-lg'></i>");
+            clearInterval(Toogle);
+            EndService();
         }
     }
 
@@ -126,5 +126,7 @@
             alert("Geolocation is not supported by this browser.");
         }
     }
+
+
 
 })

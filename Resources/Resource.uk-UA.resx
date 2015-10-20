@@ -588,4 +588,10 @@
   <data name="WaitingCost" xml:space="preserve">
     <value>Ціна очікування</value>
   </data>
+  <data name="Drive" xml:space="preserve">
+    <value>Поїхали</value>
+  </data>
+  <data name="SelectTarif" xml:space="preserve">
+    <value>Виберіть Тариф</value>
+  </data>
 </root>

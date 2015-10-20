@@ -589,4 +589,10 @@
   <data name="WaitingCost" xml:space="preserve">
     <value>Waiting cost</value>
   </data>
+  <data name="Drive" xml:space="preserve">
+    <value>Drive</value>
+  </data>
+  <data name="SelectTarif" xml:space="preserve">
+    <value>Select Tarif</value>
+  </data>
 </root>
