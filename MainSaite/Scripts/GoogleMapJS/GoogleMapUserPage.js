@@ -190,7 +190,8 @@ geocode = function () {
             map.setCenter(results[0].geometry.location);
             marker = new google.maps.Marker({
                 map: map,
-                position: results[0].geometry.location
+                position: results[0].geometry.location,
+                icon: picturePath + 'logo_destination.png'
             });
         }
         else {
