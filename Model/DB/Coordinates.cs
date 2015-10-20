@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model.DB
 {
+	[Table("CoordinatesHistory")]
 	public class Coordinates
 	{
 		[Key]
@@ -20,6 +21,8 @@ namespace Model.DB
 		public double Accuracy { get; set; }
 
 		public DateTime AddedTime { get; set; }
+
+		public int OrderId { get; set; }
 
 		public int UserId { get; set; }
 		[ForeignKey("UserId")]
