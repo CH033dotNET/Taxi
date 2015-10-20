@@ -64,7 +64,8 @@ function initMap() {
             addCircle(map, pos, position.coords.accuracy);
             test1 = new google.maps.Marker({
                 position: pos,
-                map: map
+                map: map,
+                icon: picturePath+'logo_client.png'
             });
             marker.setMap(test1);
         }, function () {
@@ -100,7 +101,8 @@ function geocodeLatLng(LatLong, geocoder, map, infowindow) {
 
                 var test = new google.maps.Marker({
                     position: latlng,
-                    map: map
+                    map: map,
+                    icon: picturePath + 'logo_destination.png'
                 });
 
 

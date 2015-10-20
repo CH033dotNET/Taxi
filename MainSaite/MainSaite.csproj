@@ -213,6 +213,10 @@
     <Content Include="Content\Picture\SandWatch.jpg" />
     <Content Include="Content\Picture\slide-image-1.jpg" />
     <Content Include="Content\Picture\Speedometer.jpg" />
+    <Content Include="Content\Picture\UserMapIcons\logo_client.png" />
+    <Content Include="Content\Picture\UserMapIcons\logo_destination.png" />
+    <Content Include="Content\Picture\UserMapIcons\logo_taxi_green.png" />
+    <Content Include="Content\Picture\UserMapIcons\logo_taxi_yellow.png" />
     <Content Include="Content\shop-item.css" />
     <Content Include="Content\themesOfflineJS\offline-language-dutch-indicator.css" />
     <Content Include="Content\themesOfflineJS\offline-language-dutch.css" />
