@@ -1,17 +1,16 @@
 ﻿@model Model.DB.RegistrationModel
 
 <script type="text/ng-template" src="~/Content/UserMenu/ClientDriveService.css"></script>
-<script type="text/javascript" src="~/Content/UserMenu/Registr$Authent.js"></script>
 
     <div class="btform" style="background-image: url('../../Content/Picture/DriverIcons/Registr1.jpg'); ">  
     @using (Html.BeginForm("Registration"))
     {
-        <h2 class="regHead">Registration</h2>
+        <h2 class="regHead">@Resources.Resource.Registration</h2>
         @*@Html.ValidationSummary();*@
         <table class="regTable">
             <tr>
                 <td id="name">
-                    Login
+                    @Resources.Resource.Login
                 </td>
                 <td>
                     @Html.TextBoxFor(x => x.UserName, new { @required = true, @minlength = "4", @maxlength = "16", @id = "value"})
@@ -20,7 +19,7 @@
             </tr>
             <tr>
                 <td id="name">
-                    Password
+                    @Resources.Resource.Password
                 </td>
                 <td>
                     @Html.PasswordFor(x => x.Password, new { @required = true, @minlength = "6", @id = "value" })
@@ -30,7 +29,7 @@
 
             <tr>
                 <td id="name">
-                    Confirm Password
+                   @Resources.Resource.ConfirmPassword
                 </td>
                 <td>
                     @Html.PasswordFor(x => x.ConfirmPassword, new { @required = true, @minlength = "6", @id = "value" })
@@ -39,7 +38,7 @@
             </tr>
             <tr>
                 <td id="name">
-                    Email
+                    @Resources.Resource.Email
                 </td>
                 <td>  @Html.TextBoxFor(x => x.Email, new { @id = "emailValue" })</td>
             </tr>

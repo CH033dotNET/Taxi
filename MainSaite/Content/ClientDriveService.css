@@ -64,6 +64,7 @@ margin:-47px;
 /*Car*/
 .btform {
     height: 663px;
+    background-size:cover;
 }
 .regTable #name {
     color: #C1AD94;
@@ -75,6 +76,8 @@ margin:-47px;
     background-color: #060503;
     margin-left: 15px;
     color:#C1AD94;
+        font-size: small;
+  
 }
 
 .btn-circle {
