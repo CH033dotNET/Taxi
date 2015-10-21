@@ -39,9 +39,9 @@ namespace MainSaite.Controllers
 						Authentification(new LoginModel() {  UserName = user.UserName, Password = user.Password});
 						return RedirectToAction("Index", "User");
 					}
-					else ModelState.AddModelError("", "Login syntax error");
+					//else ModelState.AddModelError("", "Login syntax error");
 				}
-				else ModelState.AddModelError("", "User Name or Email is already exist");
+				//else ModelState.AddModelError("", "User Name or Email is already exist");
 			}
 			
 			return View(user);

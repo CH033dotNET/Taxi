@@ -69,32 +69,18 @@ function initMap() {
     
         
     map1.addListener('click', function(e) {
-    geocodeLatLng(e.latLng,geocoder, map1, infowindow); 
+        geocodeLatLng(e.latLng, geocoder, map1, infowindow);
+
+        var pos1 = {
+            lat: e.latLng.lat(),
+            lng: e.latLng.lng()
+        };
+
+        var remoteframe = document.getElementById('iframe');
+
+        remoteframe.contentWindow.postMessage(pos1, '*');
   }); 
-    
-    if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {      
-        var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      };   
-      infowindow.setPosition(pos);
-      infowindow.setContent('Location found.');
-      map1.setCenter(pos);
-        addCircle(map1,pos,position.coords.accuracy);
-        test1 = new google.maps.Marker({
-          position: pos,
-          map: map1
-        });
-        marker.setMap(test1);
-    }, function() {
-     // handleLocationError(true, infoWindow, map.getCenter());
-    });
-  }else {
-    // Browser doesn't support Geolocation
-   // handleLocationError(false, infoWindow, map.getCenter());
-  }
-    
+   
 }
         
 var placeSearch, autocomplete;
@@ -181,19 +167,7 @@ function fillInAddress() {
 // [START region_geolocation]
 // Bias the autocomplete object to the user's geographical location,
 // as supplied by the browser's 'navigator.geolocation' object.
-function geolocate() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var geolocation = new google.maps.LatLng(
-          position.coords.latitude, position.coords.longitude);
-      var circle = new google.maps.Circle({
-        center: geolocation,
-        radius: position.coords.accuracy
-      });
-      autocomplete.setBounds(circle.getBounds());
-    });
-  }
-}
+
         
 
         
@@ -271,7 +245,7 @@ geocode = function()
   <div class="container">
    <div class="row">
   <div class="img col-md-4 icontainer" style="background-image: url(/Content/Picture/Iphone.png)">
-    <iframe class="iframe" src="http://localhost:51540/UserPage" align="left"   scrolling="no"  seamless="seamless">>
+    <iframe id="iframe" class="iframe" src="http://localhost:51540/UserPage" align="left"   scrolling="no"  seamless="seamless">>
             Ваш браузер не поддерживает плавающие фреймы!
         </iframe>
         </div>

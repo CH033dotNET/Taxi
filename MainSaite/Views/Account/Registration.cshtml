@@ -2,46 +2,51 @@
 
 <script type="text/ng-template" src="~/Content/UserMenu/ClientDriveService.css"></script>
 <script type="text/javascript" src="~/Content/UserMenu/Registr$Authent.js"></script>
-    <div class="btform">
+
+    <div class="btform" style="background-image: url('../../Content/Picture/DriverIcons/Registr1.jpg'); ">  
     @using (Html.BeginForm("Registration"))
     {
-        @Html.ValidationSummary();
-        <table>
+        <h2 class="regHead">Registration</h2>
+        @*@Html.ValidationSummary();*@
+        <table class="regTable">
             <tr>
-                <td>
+                <td id="name">
                     Login
                 </td>
                 <td>
-                    @Html.TextBoxFor(x => x.UserName, new { @required = true, @minlength = "4", @maxlength = "16" })
+                    @Html.TextBoxFor(x => x.UserName, new { @required = true, @minlength = "4", @maxlength = "16", @id = "value"})
                     @Html.ValidationMessageFor(x => x.UserName, "", new { @id = "clValidReg" })
                 </td>
             </tr>
             <tr>
-                <td>
+                <td id="name">
                     Password
                 </td>
-                <td> @Html.PasswordFor(x => x.Password, new { @required = true, @minlength = "6" })
-                     @Html.ValidationMessageFor(x => x.Password, "", new { @id = "clValidReg" })
+                <td>
+                    @Html.PasswordFor(x => x.Password, new { @required = true, @minlength = "6", @id = "value" })
+                    @Html.ValidationMessageFor(x => x.Password, "", new { @id = "clValidReg" })
                 </td>
             </tr>
 
             <tr>
-                <td>
+                <td id="name">
                     Confirm Password
                 </td>
-                <td> @Html.PasswordFor(x => x.ConfirmPassword, new { @required = true, @minlength = "6" })
-                     @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @id = "clValidReg" })
+                <td>
+                    @Html.PasswordFor(x => x.ConfirmPassword, new { @required = true, @minlength = "6", @id = "value" })
+                    @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @id = "clValidReg" })
                 </td>
             </tr>
             <tr>
-                <td>
+                <td id="name">
                     Email
                 </td>
-                <td>  @Html.EditorFor(x => x.Email)</td>
+                <td>  @Html.TextBoxFor(x => x.Email, new { @id = "emailValue" })</td>
             </tr>
 
         </table>
-        <input type="submit" value="Register" />
+    <button class="btn btn-circle" type="submit" value="Register"></button>
     }
+   
 </div>
 

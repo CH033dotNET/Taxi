@@ -46,6 +46,31 @@
     @Scripts.Render("~/bundles/GoogleMapJS/GoogleMapUserPage")
     @Styles.Render("~/Content/UserMenu/UserMenuMaps");
     @RenderSection("scripts", required: false)
+
+
+             <script>
+
+
+                 function receiver(pos1) {
+                     //alert(pos1.data);
+
+
+                     var trusteddomain = '*';
+                     if (pos1.origin != "https://www.google.com") {
+                         var msgcontent = pos1.data;
+                         console.log(pos1.data);
+                         var pos = {
+                             lat: Number(pos1.data.lat),
+                             lng: Number(pos1.data.lng)
+                         };
+                         ShowFakeCoord(pos);
+                     }
+                 }
+
+                 window.addEventListener('message', receiver, false);
+
+    </script>
+
 </body>
 
 </html>

@@ -2,8 +2,10 @@
 // of the Google Places API to help users fill in the information.
 var map;
 var marker = new google.maps.Marker;
+var marker1 = new google.maps.Marker;
 var geocoder = new google.maps.Geocoder();
-
+var infowindow = new google.maps.InfoWindow;
+var circle;
 
 var addCircle = function (map, coordinates, accuracy) {
     var circleOptions = {
@@ -17,8 +19,8 @@ var addCircle = function (map, coordinates, accuracy) {
         strokeOpacity: 0.3,
         strokeWeight: 2
     };
-
-    return new google.maps.Circle(circleOptions);
+    circle = new google.maps.Circle(circleOptions);
+    return circle;
 };
 
 
@@ -41,7 +43,7 @@ function initMap() {
         center: { lat: 48.290718, lng: 25.934960 }
     });
     var geocoder = new google.maps.Geocoder;
-    var infowindow = new google.maps.InfoWindow;
+   
 
     var input = document.getElementById('autocomplete');
     var searchBox = new google.maps.places.SearchBox(input);
@@ -52,6 +54,12 @@ function initMap() {
         geocodeLatLng(e.latLng, geocoder, map, infowindow);
     });
 
+    ShowCurCoord();
+}
+
+
+var ShowCurCoord = function () {
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             var pos = {
@@ -59,24 +67,37 @@ function initMap() {
                 lng: position.coords.longitude,
             };
             infowindow.setPosition(pos);
-            infowindow.setContent('Location found.');
             map.setCenter(pos);
-            addCircle(map, pos, position.coords.accuracy);
+            circle = addCircle(map, pos, position.coords.accuracy);
             test1 = new google.maps.Marker({
                 position: pos,
                 map: map,
-                icon: picturePath+'logo_client.png'
+                icon: picturePath + 'logo_client.png'
             });
-            marker.setMap(test1);
+            marker1 = test1;
         }, function () {
             // handleLocationError(true, infoWindow, map.getCenter());
         });
-    } else {
-        // Browser doesn't support Geolocation
-        // handleLocationError(false, infoWindow, map.getCenter());
     }
-
 }
+
+var ShowFakeCoord = function (pos) {
+            infowindow.setPosition(pos);
+            map.setCenter(pos);
+            marker1.setMap(null);
+            circle.setMap(null);
+            circle = addCircle(map, pos, 200);
+            test1 = new google.maps.Marker({
+                position: pos,
+                map: map,
+                icon: picturePath + 'logo_client.png'
+            });
+            
+            marker1 = test1;
+            
+}
+
+
 
 var placeSearch, autocomplete;
 var componentForm = {
@@ -87,6 +108,7 @@ var componentForm = {
     country: 'long_name',
     postal_code: 'short_name'
 };
+
 
 function geocodeLatLng(LatLong, geocoder, map, infowindow) {
     var lon = LatLong.lat();
