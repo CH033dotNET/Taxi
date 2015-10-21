@@ -67,12 +67,13 @@
                 @*Links menu by users role*@
                 <div class="list-group">
                     <ul class="nav">
-                        @if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
+                        @*@if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
                         {
                             <li class="list-group-item">@Html.ActionLink("Districts menu", "DistrictEditor", "Settings")</li>
                             <li class="list-group-item">@Html.ActionLink(@Resources.Resource.UserMenu, "UsersMenu", "Settings")</li>
                             <li class="list-group-item">@Html.ActionLink(@Resources.Resource.Tarifes, "Index", "Tarif")</li>
-                        }
+                            <li class="list-group-item">@Html.ActionLink("Orders", "Index", "Order")</li>
+                        }*@
                         </ul>
                     </div>
 
@@ -83,7 +84,8 @@
                             {
                             <li class="list-group-item">@Html.ActionLink(Resources.Resource.Districts, "DistrictEditor", "Settings")</li>
                                   <li class="list-group-item">@Html.ActionLink(@Resources.Resource.UserMenu, "UsersMenu", "Settings")</li>
-                                  <li class="list-group-item">@Html.ActionLink(@Resources.Resource.Tarifes, "Index", "Tarif")</li>
+                                <li class="list-group-item">@Html.ActionLink(@Resources.Resource.Tarifes, "Index", "Tarif")</li>
+                                <li class="list-group-item">@Html.ActionLink("Orders", "Index", "Order")</li>
                             }
 
                         @if (ViewBag.UserRoleId == (int)AvailableRoles.Client || ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.ReportViewer)

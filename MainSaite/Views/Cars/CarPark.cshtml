@@ -81,7 +81,7 @@
 									   data-cars-class="{{CarClass}}"
 									   data-cars-petroltype="{{CarPetrolType}}"
 									   data-cars-consum="{{CarPetrolConsumption}}"
-									   data-cars-date="{{CarManufactureDate}}"
+									   edit-cars-date="{{CarManufactureDate}}"
 									   data-cars-state="{{CarState}}"
 									   role="button" onclick="carController.editCar(this)">
 										<span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString
@@ -101,7 +101,7 @@
 									   data-cars-class="{{CarClassDescription}}"
 									   data-cars-petroltype="{{CarPetrolTypeDescription}}"
 									   data-cars-consum="{{CarPetrolConsumption}}"
-									   data-cars-date="{{CarManufactureDate}}"
+									   data-cars-date="{{prettifyDate CarManufactureDate}}"
 									   data-cars-state="{{CarStateDescription}}"
 									   role="button" onclick="carController.carDetails(this)">
 										<span class="glyphicon glyphicon-file" aria-hidden="true">&nbsp;</span>@Resources.Resource.CarsDetails
@@ -138,7 +138,7 @@
 	<script type="text/javascript">
 		$(function () {
 			$('#datetimepicker1').datetimepicker({
-				format: 'DD.MM.YYYY',
+				format: 'L',
 				toolbarPlacement: 'top',
 			});
 		});
@@ -146,7 +146,7 @@
 	<script type="text/javascript">
 		$(function () {
 			$('#datetimepicker2').datetimepicker({
-				format: 'DD.MM.YYYY',
+				format: 'L',
 				toolbarPlacement: 'top',
 			});
 		});

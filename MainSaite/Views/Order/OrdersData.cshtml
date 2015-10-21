@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Model.DTO.OrderDTO>
+
+@foreach (var order in Model)
+{
+    <tr>
+        <td>@Html.DisplayFor(m => order.Id)</td>
+        <td>@Html.DisplayFor(m => order.ComeOut)</td>
+        <td>@Html.DisplayFor(m => order.ComeIn)</td>
+        <td>@Html.DisplayFor(m => order.OrderTime)</td>
+        <td>@Html.DisplayFor(m => order.RunTime)</td>
+        <td>@Html.DisplayFor(m => order.User.UserName)</td>
+    </tr>
+}
