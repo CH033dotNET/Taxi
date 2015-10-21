@@ -61,7 +61,7 @@ namespace MainSaite.Controllers
 					coordinatesManager.AddCoordinates(coordinates);
 				}
 				carManager.StartWorkEvent(Id, TimeStart);
-
+                MainSaite.driversLocationHub.addDriver(Id, double.Parse(Latitude, CultureInfo.InvariantCulture), double.Parse(Longitude, CultureInfo.InvariantCulture), DateTime.Now, userManager.GetById(Id).UserName);
 				return Json(true);
 
 			}
@@ -87,7 +87,8 @@ namespace MainSaite.Controllers
 				ViewBag.WorkEndMessage = message;
 				//carManager.EndWorkShiftEvent(user.Id);
 				if (locationManager.GetByUserId(Id) != null)
-					locationManager.DeleteLocation(Id);
+                    locationManager.DeleteLocation(Id); 
+                MainSaite.driversLocationHub.removeDriver(Id);
 				return Json(true);
 			}
 			catch (DataException)

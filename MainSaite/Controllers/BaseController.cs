@@ -46,6 +46,7 @@ namespace MainSaite.Controllers
 			districtmanager = new DistrictManager(uOW);
 			coordinatesManager = new CoordinatesManager(uOW);
 			orderManager = new OrderManager(uOW);
+            coordinatesManager.addedCoords += driversLocationHub.addedLocation;
 		}
 
 		protected override void OnActionExecuting(ActionExecutingContext filterContext)

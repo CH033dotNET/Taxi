@@ -10,13 +10,14 @@ namespace MainSaite
     [HubName("driversLocationHub")]
     public class driversLocationHub : Hub
 	{
-		[HubMethodName("Hello")]
+        [HubMethodName("addedLocation")]
 		public static void addedLocation(Model.DTO.CoordinatesDTO coords)
 		{
             var thisHub = GlobalHost.ConnectionManager.GetHubContext<driversLocationHub>();
             thisHub.Clients.All.locationUpdate(coords.Latitude, coords.Longitude, coords.AddedTime, coords.UserId);
 		}
 
+        [HubMethodName("addDriver")]
         public static void addDriver(int Id, double Latitude, double Longitude, DateTime time, string username)
         {
             var thisHub = GlobalHost.ConnectionManager.GetHubContext<driversLocationHub>();
@@ -31,6 +32,7 @@ namespace MainSaite
             });
         }
 
+        [HubMethodName("removeDriver")]
         public static void removeDriver(int id)
         {
             var thisHub = GlobalHost.ConnectionManager.GetHubContext<driversLocationHub>();
