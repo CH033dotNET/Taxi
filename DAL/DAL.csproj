@@ -156,6 +156,10 @@
     <Compile Include="Migrations\201510201518042_Extension table Coordinates.Designer.cs">
       <DependentUpon>201510201518042_Extension table Coordinates.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510211235011_Update table Orders.cs" />
+    <Compile Include="Migrations\201510211235011_Update table Orders.Designer.cs">
+      <DependentUpon>201510211235011_Update table Orders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -251,6 +255,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510201518042_Extension table Coordinates.resx">
       <DependentUpon>201510201518042_Extension table Coordinates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510211235011_Update table Orders.resx">
+      <DependentUpon>201510211235011_Update table Orders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

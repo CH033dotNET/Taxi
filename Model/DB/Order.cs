@@ -23,22 +23,29 @@ namespace Model.DB
 		[Required]
 		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh-mm-ss}", ApplyFormatInEditMode = true)]
 		public DateTime OrderTime { get; set; }
-		[Required]
-		[DisplayFormat(DataFormatString = "{hh-mm}", ApplyFormatInEditMode = true)]
-		public DateTime RunTime { get; set; }
+		[MaxLength(120, ErrorMessage = "Максимальная длинна - 80 символов")]
+		public string RunTime { get; set; }
 		[Required]
 		public float LatitudeComeOut { get; set; }
 		[Required]
 		public float LongitudeComeOut { get; set; }
-		[Required]
-		public float LongitudeAccuracy { get; set; }
+
+		public float Accuracy { get; set; }
 		[Required]
 		public float LatitudeComeIn { get; set; }
 		[Required]
 		public float LongitudeComeIn { get; set; }
+		
+		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh-mm-ss}", ApplyFormatInEditMode = true)]
+		public DateTime StartWork { get; set; }
+		
+		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh-mm-ss}", ApplyFormatInEditMode = true)]
+		public DateTime EndWork { get; set; }
+		public int DriverId { get; set; }
+		public string WaitingTime { get; set; }
 
-		[ForeignKey("UserId")]
-		public virtual User User { get; set; }
-		public int UserId { get; set; }
+		[ForeignKey("PersonId")]
+		public virtual Person Person { get; set; }
+		public int PersonId { get; set; }
 	}
 }

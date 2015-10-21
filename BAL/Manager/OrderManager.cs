@@ -23,12 +23,12 @@ namespace BAL.Manager
 			order.ComeOut = temp.ComeOut;
 			order.LatitudeComeIn = temp.LatitudeComeIn;
 			order.LatitudeComeOut = temp.LatitudeComeOut;
-			order.LongitudeAccuracy = temp.LongitudeAccuracy;
+			order.Accuracy = temp.Accuracy;
 			order.LongitudeComeIn = temp.LongitudeComeIn;
 			order.LongitudeComeOut = temp.LongitudeComeOut;
 			order.RunTime = temp.RunTime;
 			order.OrderTime = temp.OrderTime;
-			order.UserId = temp.UserId;
+			order.PersonId = temp.PersonId;
 			uOW.OrderRepo.Insert(temp);
 			uOW.Save();
 
@@ -44,7 +44,7 @@ namespace BAL.Manager
 
 		public OrderDTO EditOrder(OrderDTO order)
 		{
-			var newOrder = uOW.OrderRepo.Get(s => s.UserId == order.UserId).First();
+			var newOrder = uOW.OrderRepo.Get(s => s.PersonId == order.PersonId).First();
 			if (newOrder == null)
 			{
 				return null;
@@ -55,12 +55,12 @@ namespace BAL.Manager
 			newOrder.ComeOut = order.ComeOut;
 			newOrder.LatitudeComeIn = order.LatitudeComeIn;
 			newOrder.LatitudeComeOut = order.LatitudeComeOut;
-			newOrder.LongitudeAccuracy = order.LongitudeAccuracy;
+			newOrder.Accuracy = order.Accuracy;
 			newOrder.LongitudeComeIn = order.LongitudeComeIn;
 			newOrder.LongitudeComeOut = order.LongitudeComeOut;
 			newOrder.RunTime = order.RunTime;
 			newOrder.OrderTime = order.OrderTime;
-			newOrder.UserId = order.UserId;
+			newOrder.PersonId = order.PersonId;
 
 			uOW.Save();
 			return Mapper.Map<OrderDTO>(newOrder);
@@ -72,13 +72,13 @@ namespace BAL.Manager
 			return orderList;
 		}
 
-		public OrderDTO GetOrderByUserId(int? id)
+		public OrderDTO GetOrderByPersonId(int? id)
 		{
 			if (id == 0)
 			{
 				return null;
 			}
-			var order = uOW.OrderRepo.Get().Where(s => s.UserId == id).FirstOrDefault();
+			var order = uOW.OrderRepo.Get().Where(s => s.PersonId == id).FirstOrDefault();
 			if (order != null)
 			{
 				return Mapper.Map<OrderDTO>(order);

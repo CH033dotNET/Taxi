@@ -164,11 +164,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CarsController.cs" />
-
     <Compile Include="Controllers\OrderController.cs" />
-
-    <Compile Include="Hubs\driveServiceHub.cs" />
-
     <Compile Include="Models\AutoParkViewModel.cs" />
     <Compile Include="Models\CarChangeUser.cs" />
     <Compile Include="Startup.cs" />
