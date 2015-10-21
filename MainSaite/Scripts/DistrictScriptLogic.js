@@ -61,6 +61,7 @@ var jsController = {
 			}).done(function (result) {
 				jsController.data.items = result;
 				jsController.renderData();
+				document.getElementById("add-district-form").reset();
 			});
 
 			$("#add-item").modal('hide');

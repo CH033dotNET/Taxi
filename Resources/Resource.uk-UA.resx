@@ -594,4 +594,10 @@
   <data name="SelectTarif" xml:space="preserve">
     <value>Виберіть Тариф</value>
   </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Підтвєрдити пароль</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Регістрація</value>
+  </data>
 </root>

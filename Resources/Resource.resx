@@ -595,4 +595,10 @@
   <data name="SelectTarif" xml:space="preserve">
     <value>Select Tarif</value>
   </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Registration</value>
+  </data>
 </root>
