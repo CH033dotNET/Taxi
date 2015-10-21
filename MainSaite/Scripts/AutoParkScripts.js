@@ -96,8 +96,10 @@ var carController = {
 		}).done(function (result) {
 			carController.carData.cars = result;
 			carController.renderCarData();
+			document.getElementById("add-car-form").reset();
 		});
 		$('#datetimepicker1').datetimepicker('clear');
+		$('#datetimepicker2').datetimepicker('clear');
 		$('#add-car-modal').modal('hide');
 	},//end
 
@@ -134,7 +136,7 @@ var carController = {
 		var oldCarsClass = $(e).attr('data-cars-class');
 		var oldCarsPetrolType = $(e).attr('data-cars-petroltype');
 		var oldCarsPetrolConsumption = $(e).attr('data-cars-consum');
-		var oldCarsManufactureDate = $(e).attr('data-cars-date');
+		var oldCarsManufactureDate = $(e).attr('edit-cars-date');
 		var oldCarsState = $(e).attr('data-cars-state');
 
 		$('#newInputCarName').val(oldCarsName);
