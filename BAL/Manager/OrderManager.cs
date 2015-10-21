@@ -10,7 +10,7 @@ using Model.DTO;
 
 namespace BAL.Manager
 {
-	class OrderManager : BaseManager
+	public class OrderManager : BaseManager
 	{
 		public OrderManager(IUnitOfWork uOW)
 			: base(uOW)

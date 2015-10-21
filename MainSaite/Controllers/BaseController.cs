@@ -28,6 +28,7 @@ namespace MainSaite.Controllers
 		protected LocationManager locationmanager;
 		protected DistrictManager districtmanager;
 		protected CoordinatesManager coordinatesManager;
+		protected OrderManager orderManager;
 
 
 		public BaseController()
@@ -44,6 +45,7 @@ namespace MainSaite.Controllers
 			locationmanager = new LocationManager(uOW);
 			districtmanager = new DistrictManager(uOW);
 			coordinatesManager = new CoordinatesManager(uOW);
+			orderManager = new OrderManager(uOW);
 		}
 
 		protected override void OnActionExecuting(ActionExecutingContext filterContext)

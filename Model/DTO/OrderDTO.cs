@@ -23,7 +23,7 @@ namespace Model.DTO
 		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh-mm-ss}", ApplyFormatInEditMode = true)]
 		public DateTime OrderTime { get; set; }
 		[Required]
-		[DisplayFormat(DataFormatString = "{hh-mm}", ApplyFormatInEditMode = true)]
+		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh-mm-ss}", ApplyFormatInEditMode = true)]
 		public DateTime RunTime { get; set; }
 		[Required]
 		public float LatitudeComeOut { get; set; }

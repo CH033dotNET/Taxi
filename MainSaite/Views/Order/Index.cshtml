@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+    var options = new AjaxOptions()
+    {
+        UpdateTargetId = "tabledata",
+        Url = Url.Action("JsonOrdersData"),
+        LoadingElementId = "loadingIndicator",
+        OnSuccess = "ParseResponse",
+    };
+}
+
+<h2>Orders</h2>
+
+@using (Ajax.BeginForm(options))
+{
+    <div id="loadingIndicator" style="display:none;">Loading...</div>
+    <table cellpadding="4" class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Come in</th>
+                <th>Come out</th>
+                <th>Order Time</th>
+                <th>RunTime</th>
+                <th>UserName</th> 
+            </tr>
+        </thead>
+
+        <tbody id="tabledata">
+            @Html.Action("OrdersData")
+        </tbody>
+
+    </table>
+
+}
+
+@section scripts
+{
+   
+    <script type="text/javascript">
+        function ParseResponse(data) {
+
+            var target = $("#tabledata");
+            target.empty();
+
+            for (var i = 0; i < data.length; i++) {
+                target.append("<tr><td>" + data[i].Id + "</td><td>"
+                    + data[i].Product + "</td><td>"
+                    + data[i].Quantity + "</td><td>"
+                    + data[i].Customer + "</td></tr>");
+            }
+        }
+    </script>
+}
