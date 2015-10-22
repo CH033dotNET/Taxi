@@ -13,12 +13,12 @@ namespace MainSaite.Controllers
 {
     public class CarsController : BaseController
     {
-		AutoParkViewModel CarsViewModel = new AutoParkViewModel();
 		//
 		// GET: /Cars/
 
 		public ActionResult CarPark()
 		{
+			AutoParkViewModel CarsViewModel = new AutoParkViewModel();
 			if (session.User == null || session.User.RoleId != (int)AvailableRoles.Driver)
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
@@ -27,7 +27,7 @@ namespace MainSaite.Controllers
 			{
 				int userId = session.User.Id;
 				CarsViewModel.Cars = carManager.getCarsByUserID(userId).ToList();
-				CarsViewModel.Drivers = userManager.GetDrivers().Where(x => x.Id != session.User.Id).ToList();
+				CarsViewModel.Drivers = userManager.GetDrivers().Where(x => x.Id != session.User.Id).ToList(); //!!!!!
 				//var list = carManager.getCarsByUserID(userId).ToList();
 				return View(CarsViewModel);
 			}
@@ -35,20 +35,23 @@ namespace MainSaite.Controllers
 
 		public JsonResult AddNewCar(CarDTO car)
 		{
+			IEnumerable<CarDTO> DriversCars;
 			int userId = session.User.Id;
 			try
 			{
 				if (ModelState.IsValid)
 				{
 					carManager.addCar(car);
-					return Json(carManager.getCarsByUserID(userId), JsonRequestBehavior.AllowGet);
+					DriversCars = carManager.getCarsByUserID(userId);
+					return Json(DriversCars, JsonRequestBehavior.AllowGet);
 				}
 			}
 			catch (DataException)
 			{
 				ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
 			}
-			return Json(carManager.getCarsByUserID(userId), JsonRequestBehavior.AllowGet);
+			DriversCars = carManager.getCarsByUserID(userId);
+			return Json(DriversCars, JsonRequestBehavior.AllowGet);
 		}
 		public JsonResult GetCarDetails()
 		{
@@ -58,7 +61,8 @@ namespace MainSaite.Controllers
 		{
 			carManager.deleteCarByID(Id);
 			int userId = session.User.Id;
-			return Json(carManager.getCarsByUserID(userId), JsonRequestBehavior.AllowGet);
+			IEnumerable<CarDTO> DriversCars = carManager.getCarsByUserID(userId);
+			return Json(DriversCars, JsonRequestBehavior.AllowGet);
 		}
 
 		public JsonResult GetCarForEdit(int Id)

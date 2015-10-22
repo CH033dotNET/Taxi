@@ -27,7 +27,6 @@ namespace MainSaite.Controllers
 		{
 			Session["Culture"] = language;
 			Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
-			ViewBag.Hello = Resources.Resource.Hello;
 			return Redirect(returnUrl);
 		}
 

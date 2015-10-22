@@ -56,12 +56,6 @@ namespace MainSaite.Controllers
 		//Nick //ASIX
 		public ActionResult ViewWorkShifts()
 		{
-			/*//var popa = uOW.WorkshiftHistoryRepo.All.GroupBy(x => x.DriverId).Select(z => z.Max(y => y.WorkStarted)).ToList();
-			var drvs = uOW.CoordinatesHistoryRepo.All
-				.GroupBy(x => x.UserId)
-				.Select(grp => grp.OrderByDescending(apo => apo.AddedTime).FirstOrDefault()).Join(
-				uOW.UserRepo.All, outr => outr.UserId, inr => inr.Id, (myinr, myotr) => new DriverLocation() { id = myotr.Id, addedtime = myinr.AddedTime, latitude = myinr.Latitude, longitude = myinr.Longitude, name = myotr.UserName }).ToList();*/
-			//var workingDrivers = carManager.GetWorkingDrivers();
 			return View();
 		}
 

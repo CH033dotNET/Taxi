@@ -285,7 +285,7 @@ namespace BAL.Manager
 			for (int index = 0; index < name.Length; index++)
 				if (!Char.IsLetterOrDigit(name[index]))
 					return false;
-						return true;
+			return true;
 		}
 
 

@@ -14,6 +14,7 @@ namespace MainSaite.Controllers
 {
 	public class BaseController : Controller
 	{
+
 		//
 		// GET: /Base/
 		protected UnitOfWork uOW;
