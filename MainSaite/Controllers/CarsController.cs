@@ -16,6 +16,10 @@ namespace MainSaite.Controllers
 		//
 		// GET: /Cars/
 
+		/// <summary>
+		/// Action method, returns main view and populates it with list of objects
+		/// </summary>
+		/// <returns></returns>
 		public ActionResult CarPark()
 		{
 			AutoParkViewModel CarsViewModel = new AutoParkViewModel();
@@ -28,11 +32,14 @@ namespace MainSaite.Controllers
 				int userId = session.User.Id;
 				CarsViewModel.Cars = carManager.getCarsByUserID(userId).ToList();
 				CarsViewModel.Drivers = userManager.GetDrivers().Where(x => x.Id != session.User.Id).ToList(); //!!!!!
-				//var list = carManager.getCarsByUserID(userId).ToList();
 				return View(CarsViewModel);
 			}
 		}
-
+		/// <summary>
+		/// Gets an object from ajax call and adds it to database
+		/// </summary>
+		/// <param name="car">object from ajax call</param>
+		/// <returns></returns>
 		public JsonResult AddNewCar(CarDTO car)
 		{
 			IEnumerable<CarDTO> DriversCars;
@@ -48,15 +55,16 @@ namespace MainSaite.Controllers
 			}
 			catch (DataException)
 			{
-				ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+				ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator."); // return modal view!!!!!
 			}
 			DriversCars = carManager.getCarsByUserID(userId);
 			return Json(DriversCars, JsonRequestBehavior.AllowGet);
 		}
-		public JsonResult GetCarDetails()
-		{
-			return Json(null, JsonRequestBehavior.AllowGet);
-		}
+		/// <summary>
+		/// Get an id from ajax call and deletes a car object with current id
+		/// </summary>
+		/// <param name="Id">id from ajax call</param>
+		/// <returns></returns>
 		public JsonResult DeleteCar(int Id)
 		{
 			carManager.deleteCarByID(Id);
@@ -64,29 +72,53 @@ namespace MainSaite.Controllers
 			IEnumerable<CarDTO> DriversCars = carManager.getCarsByUserID(userId);
 			return Json(DriversCars, JsonRequestBehavior.AllowGet);
 		}
-
+		/// <summary>
+		/// Get an id from ajax call and returns a car object with current id.
+		/// </summary>
+		/// <param name="Id">id from ajax call</param>
+		/// <returns></returns>
 		public JsonResult GetCarForEdit(int Id)
 		{
 			var carForEdit = carManager.GetCarByCarID(Id);
 			return Json(carForEdit,JsonRequestBehavior.AllowGet);
 		}
+		/// <summary>
+		/// Gets an object from ajax call, edits it and saves changes to db
+		/// </summary>
+		/// <param name="car">input car object</param>
+		/// <returns></returns>
 		public JsonResult EditCar(CarDTO car)
 		{
 			carManager.EditCar(car);
 			int userId = session.User.Id;
-			return Json(carManager.getCarsByUserID(userId), JsonRequestBehavior.AllowGet);
+			IEnumerable<CarDTO> DriversCars = carManager.getCarsByUserID(userId);
+			return Json(DriversCars, JsonRequestBehavior.AllowGet);
 		}
+		/// <summary>
+		/// Gets specific id`s from ajax call and interpret them as values of specific object`s properties.
+		/// </summary>
+		/// <param name="CarId">id of a car object</param>
+		/// <param name="DriverId">Id of a driver</param>
+		/// <returns></returns>
 		public JsonResult GiveCar(int CarId, int DriverId)
 		{
 			carManager.GiveAwayCar(CarId, DriverId);
 			int userId = session.User.Id;
-			return Json(carManager.getCarsByUserID(userId), JsonRequestBehavior.AllowGet);
+			IEnumerable<CarDTO> DriversCars = carManager.getCarsByUserID(userId);
+			return Json(DriversCars, JsonRequestBehavior.AllowGet);
 		}
+		/// <summary>
+		/// Gets specific id`s from ajax call and interpret them as values of specific object`s properties.
+		/// </summary>
+		/// <param name="CarId">olololo</param>
+		/// <param name="RealOwnerId">ololololo</param>
+		/// <returns></returns>
 		public JsonResult ReturnCar(int CarId, int RealOwnerId)
 		{
 			carManager.GiveAwayCar(CarId, RealOwnerId);
 			int userId = session.User.Id;
-			return Json(carManager.getCarsByUserID(userId), JsonRequestBehavior.AllowGet);
+			IEnumerable<CarDTO> DriversCars = carManager.getCarsByUserID(userId);
+			return Json(DriversCars, JsonRequestBehavior.AllowGet);
 		}
     }
 }
