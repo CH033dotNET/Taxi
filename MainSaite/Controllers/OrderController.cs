@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Model.DB;
 
 namespace MainSaite.Controllers
 {
@@ -30,6 +31,17 @@ namespace MainSaite.Controllers
             return PartialView(data);
         }
 
+		public ActionResult InsertData(string UserId, string ComeOutlatitude, string ComeOutlongitude, string ComeInlatitude,string ComeInlongitude)
+		{
+
+			//var order = new Order() { LatitudeComeIn = float.Parse(ComeInlatitude), 
+			//	LongitudeComeIn = float.Parse(ComeInlongitude), 
+			//	LatitudeComeOut = float.Parse(ComeOutlatitude), 
+			//	LongitudeComeOut = float.Parse(ComeOutlongitude),
+			//};
+			////orderManager.InsertOrder();
+		    return new EmptyResult();
+	    }
         public ActionResult JsonOrdersData() 
         {
             var data = orderManager.GetOrders();

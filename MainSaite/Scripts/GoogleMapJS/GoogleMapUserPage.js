@@ -6,6 +6,7 @@ var marker1 = new google.maps.Marker;
 var geocoder = new google.maps.Geocoder();
 var infowindow = new google.maps.InfoWindow;
 var circle;
+var address;
 
 var addCircle = function (map, coordinates, accuracy) {
     var circleOptions = {
@@ -185,11 +186,13 @@ function fillInAddress() {
 // [START region_geolocation]
 // Bias the autocomplete object to the user's geographical location,
 // as supplied by the browser's 'navigator.geolocation' object.
+var curentPossitionLTD;
+var curentPossitionLaGD;
 function geolocate() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             var geolocation = new google.maps.LatLng(
-                position.coords.latitude, position.coords.longitude);
+             curentPossitionLTD = position.coords.latitude, curentPossitionLoGD = position.coords.longitude);
             var circle = new google.maps.Circle({
                 center: geolocation,
                 radius: position.coords.accuracy
@@ -233,4 +236,28 @@ $("a").on("click", function () {
     $("#OkBtn").click();//('click');
     $("#responsive-menu-btn").click();
 });
+
+
+var getLocation = function (lat, lng) {
+    var latlng = new google.maps.LatLng(lat, lng);
+    var address1;
+    geocoder.geocode({
+        'latLng': latlng
+    }, function (results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+            if (results[1]) {
+                address1 = results[0].formatted_address;
+            } else {
+                alert('No results found');
+            }
+        } else {
+            alert('Geocoder failed due to: ' + status);
+        }
+    });
+    return address1;
+}
+
+
+    
+
 

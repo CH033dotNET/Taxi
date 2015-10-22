@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BAL.Manager;
 using Model.DTO;
 using Model.DB;
 
@@ -35,7 +34,7 @@ namespace MainSaite.Controllers
 					{
 						userManager.InsertUser(user);
 
-						ValidPerson(user);
+						CheckPerson(user);
 						Authentification(new LoginModel() {  UserName = user.UserName, Password = user.Password});
 						return RedirectToAction("Index", "User");
 					}
@@ -61,7 +60,7 @@ namespace MainSaite.Controllers
 				
 				if (currentUser != null)
 				{
-					ValidPerson(currentUser);
+					CheckPerson(currentUser);
 					session.User = userManager.GetByUserName(user.UserName, user.Password);
 					return RedirectToAction("Index", "Home");
 				}
@@ -85,16 +84,21 @@ namespace MainSaite.Controllers
 			return View();
 		}
 
-	    private void ValidPerson( UserDTO user)
+	    private void CheckPerson( UserDTO user)
 	    {
 			var currentUser = userManager.GetByUserName(user.UserName, user.Password);
 			var currentPerson = personManager.GetPersonByUserId(currentUser.Id);
-			if (currentPerson == null || currentPerson.ImageName == null)
+
+			if (currentPerson == null)
 			{
 				currentPerson =
 					personManager.InsertPerson(new PersonDTO() { UserId = currentUser.Id, ImageName = "item_0_profile.jpg" });
 				currentPerson.User = currentUser;
-			} 
+			}
+			if (!System.IO.File.Exists(Server.MapPath(@"~\Images\") + currentPerson.ImageName))
+			{
+				personManager.DefaultImage(user.Id);
+			}
 	    }
     }
 }

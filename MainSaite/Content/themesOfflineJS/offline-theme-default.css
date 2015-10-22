@@ -15,6 +15,7 @@
   top: 0;
   left: 0;
   right: 0;
+  margin-top: 40px;
 }
 /* line 17, ../sass/_offline-theme-base.sass */
 .offline-ui .offline-ui-content:before {
@@ -378,6 +379,7 @@
   background: #f8ecad;
   color: #7c6d1f;
   padding-right: 3em;
+  
 }
 /* line 65, ../sass/offline-theme-default.sass */
 .offline-ui.offline-ui-down.offline-ui-connecting:after, .offline-ui.offline-ui-down.offline-ui-waiting:after {
@@ -409,6 +411,7 @@
 /* line 82, ../sass/offline-theme-default.sass */
 .offline-ui.offline-ui-down.offline-ui-waiting {
   padding-right: 11em;
+   padding-right: 11em;
 }
 /* line 85, ../sass/offline-theme-default.sass */
 .offline-ui.offline-ui-down.offline-ui-waiting.offline-ui-reconnect-failed-2s {

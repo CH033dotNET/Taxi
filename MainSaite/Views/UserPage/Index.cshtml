@@ -5,31 +5,76 @@
     Layout = "~/Views/Shared/_UserPageLayout.cshtml";
 }
 
-@section  Menu{
-    
 
-        <div class="navbar-header">
-            <button id="OrderTaxi" class="btn btn-primary">@Resources.Resource.OrderTaxi</button>
-            <button type="button" class="navbar-toggle" id="responsive-menu-btn" data-toggle="collapse" data-target="#responsive-menu">
-                   <span class="sr-only">[Open Nav]</span>
-                   <span class="icon-bar"></span>  
-                   <span class="icon-bar"></span>    
-                   <span class="icon-bar"></span>  
-            </button>
-        </div>
-        <div class="collapse navbar-collapse" id="responsive-menu">
-            <ul class="nav navbar-nav">
-                @foreach(var i in Model)
-                {
-                    <li> <a href="#"> @String.Format("{0} {1} {2}",i.City,i.Street,i.Number) </a> </li>
-                }
+@section Menu{
+    <script>
+        function getCoord() {
+            var orderObj = {};
+            orderObj.UserId = @User.Id
 
-            </ul>
-        </div>
+            //codeLatLng(marker1.position.lat(), marker1.position.lng());
+            //orderObj.ComeOut = address;
+            //getLocation(marker.position.lat(), marker.position.lng());
+            
+            orderObj.ComeIn = getLocation(marker1.position.lat(), marker1.position.lng());
+
+            orderObj.ComeOutlatitude = test1.position.lat();
+            orderObj.ComeOutlongitude = test1.position.lng();
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function() {
+                    alert("Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude);
+                });
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+            //  alert(navigator.geolocation.position.coords.latitude + "  " + navigator.geolocation.position.coords.longitude);
+
+            orderObj.ComeInlatitude = marker.position.lat();
+            orderObj.ComeInlongitude = marker.position.lng();
+
+            alert(marker.position.lat() + "  " + marker.position.lat() + " <br>" + marker1.position.lat() + "  " + marker1.position.lng());
+           
+
+            if (orderObj.ComeInlatitude !== null && orderObj.ComeInlongitude !== null) {
+                $.ajax({
+                    url: '/Order/InsertData',
+                    method: 'Get',
+                    data: orderObj,
+                    success: function(success) {
+
+
+                    }
+                });
+            } else {
+                alert("Not indicate the direction of ride!");
+            }
+        }
+    </script>
+
+    <div class="navbar-header">
+        <button id="OrderTaxi" class="btn btn-primary" onclick=" getCoord() ">@Resources.Resource.OrderTaxi</button>
+        <button type="button" class="navbar-toggle" id="responsive-menu-btn" data-toggle="collapse" data-target="#responsive-menu">
+            <span class="sr-only">[Open Nav]</span>
+            <span class="icon-bar"></span>  
+            <span class="icon-bar"></span>    
+            <span class="icon-bar"></span>  
+        </button>
+    </div>
+    <div class="collapse navbar-collapse" id="responsive-menu">
+        <ul class="nav navbar-nav">
+            @foreach (var i in Model)
+            {
+                <li> <a href="#"> @String.Format("{0} {1} {2}", i.City, i.Street, i.Number) </a> </li>
+            }
+
+        </ul>
+    </div>
 
 
 
-    
+
 }
 
 @section  body{

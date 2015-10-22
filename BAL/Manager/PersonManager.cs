@@ -58,6 +58,18 @@ namespace BAL.Manager
 			 uOW.Save();
 			 return Mapper.Map<PersonDTO>(newPerson);
 		 }
+		 public PersonDTO DefaultImage(int UserId)
+		 {
+			 var newPerson = uOW.PersonRepo.Get(s => s.UserId == UserId).First();
+			 if (newPerson == null)
+			 {
+				 return null;
+			 }
+			 uOW.PersonRepo.SetStateModified(newPerson);
+			 newPerson.ImageName = "item_0_profile.jpg";
+			 uOW.Save();
+			 return Mapper.Map<PersonDTO>(newPerson);
+		 }
 
 		 public IEnumerable<PersonDTO> GetPersons()
 		 {
