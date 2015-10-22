@@ -61,8 +61,10 @@ $(document).ready(function () {
       
         var dataObj = {}
         dataObj.UserId = document.getElementById('Id').value;
-        dataObj.Latitude = position.coords.latitude;
-        dataObj.Longitude = position.coords.longitude;
+        //dataObj.Latitude = position.coords.latitude;
+        //dataObj.Longitude = position.coords.longitude;
+        dataObj.Latitude = document.getElementById('hlat').value;
+        dataObj.Longitude = document.getElementById('hlong').value;
         dataObj.Accuracy = position.coords.accuracy;
         dataObj.Tarifid = pointTarif;
         dataObj.AddedTime = new Date().toLocaleString();
@@ -81,8 +83,10 @@ $(document).ready(function () {
        
         var dataObj = {}
         dataObj.UserId = document.getElementById('Id').value;
-        dataObj.Latitude = position.coords.latitude;
-        dataObj.Longitude = position.coords.longitude;
+        //dataObj.Latitude = position.coords.latitude;
+        //dataObj.Longitude = position.coords.longitude;
+        dataObj.Latitude = document.getElementById('hlat').value;
+        dataObj.Longitude = document.getElementById('hlong').value;
         dataObj.Accuracy = position.coords.accuracy;
         dataObj.Tarifid = pointTarif;
         dataObj.AddedTime = new Date().toLocaleString();

@@ -1,0 +1,43 @@
+﻿.img{
+    height: 747px;
+    width: 1098px;
+}
+
+.iframe{
+margin-top: 78px;
+    margin-left: 47px;
+    height: 594px;
+    width: 976px;
+    border: 0px;
+}
+
+.row{
+margin-left: 20px;
+}
+
+.map{
+width: 1000px;
+    height: 1300px;
+}
+
+body #map-container1{
+display: inline-block;
+}
+.icontainer{
+display: inline-block;
+}
+#map1{
+width: 900px;
+height: 950px;
+display: inline-block;
+}
+#map-canvas1 {
+height: 70%;
+margin: 0px;
+padding: 100px;
+}
+
+.container{
+margin-left: 10%;
+}
+

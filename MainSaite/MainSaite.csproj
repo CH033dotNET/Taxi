@@ -164,6 +164,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CarsController.cs" />
+    <Compile Include="Controllers\DrivingSimulationController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Models\AutoParkViewModel.cs" />
     <Compile Include="Models\CarChangeUser.cs" />
@@ -200,6 +201,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\BootstrapCallout.css" />
     <Content Include="Content\ClientDriveService.css" />
+    <Content Include="Content\DrivingSimulation\iframe.css" />
     <Content Include="Content\Picture\Drawing-layerExport.jpeg" />
     <Content Include="Content\DriverMenu.css" />
     <Content Include="Content\Picture\0-well-traveled-passport-taxi-cab-global-british-american-vietnamese-engagement-wedding-photos-photographer.jpg" />
@@ -216,6 +218,7 @@
     <Content Include="Content\Picture\slide-image-1.jpg" />
     <Content Include="Content\Picture\Speedometer.jpg" />
     <Content Include="Content\Picture\streets_cars_traffic.jpg" />
+    <Content Include="Content\Picture\tablet.png" />
     <Content Include="Content\Picture\UserMapIcons\logo_client.png" />
     <Content Include="Content\Picture\UserMapIcons\logo_destination.png" />
     <Content Include="Content\Picture\UserMapIcons\logo_taxi_green.png" />
@@ -438,6 +441,7 @@
     <Content Include="Views\Cars\_ReturnCarPartial.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Order\OrdersData.cshtml" />
+    <Content Include="Views\DrivingSimulation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
