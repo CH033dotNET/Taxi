@@ -19,6 +19,29 @@
 //	return tryParseThis;
 //});
 
-Handlebars.registerHelper("prettifyDate", function(timestamp) {
-	return moment(timestamp).format('MM.DD.YYYY').toString();
+Handlebars.registerHelper("prettifyDate", function (timestamp) {
+	var TimeString = timestamp.toString();
+	var date = moment(TimeString, ["MM/DD/YYYY", "DD/MM/YYYY", "DD.MM.YYYY", "MM.DD.YYYY"]);
+
+	//return new Date(timestamp).toString('MM/dd/yyyy');
+
+	var noMili = new Date(date).toLocaleDateString("en");
+
+	//var formatThis = moment(noMili).format('DD/MM/YYYY');
+
+	//var formatThis = moment(noMili, "L");
+	return noMili;
+});
+
+Handlebars.registerHelper("prettifyDate2", function (timestamp) {
+	return moment(timestamp);
+});
+
+Handlebars.registerHelper("prettifyDate3", function (timestamp) {
+	var curr_date = timestamp.getDate();
+	var curr_month = timestamp.getMonth();
+	curr_month++;
+	var curr_year = timestamp.getFullYear();
+	var result = curr_date + "/" + curr_month + "/" + curr_year;
+	return result;
 });

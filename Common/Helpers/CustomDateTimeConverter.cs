@@ -11,7 +11,7 @@ namespace Common.Helpers
 	{
 		public CustomDateTimeConverter()
 		{
-			base.DateTimeFormat = "dd.MM.yyyy";
+			base.DateTimeFormat = "dd/MM/yyyy";
 		}
 	}
 }

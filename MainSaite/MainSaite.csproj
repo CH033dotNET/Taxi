@@ -212,8 +212,10 @@
     <Content Include="Content\Picture\logo.png" />
     <Content Include="Content\Picture\roteiro.jpg" />
     <Content Include="Content\Picture\SandWatch.jpg" />
+    <Content Include="Content\Picture\Skyline_new_york_city.jpg" />
     <Content Include="Content\Picture\slide-image-1.jpg" />
     <Content Include="Content\Picture\Speedometer.jpg" />
+    <Content Include="Content\Picture\streets_cars_traffic.jpg" />
     <Content Include="Content\Picture\UserMapIcons\logo_client.png" />
     <Content Include="Content\Picture\UserMapIcons\logo_destination.png" />
     <Content Include="Content\Picture\UserMapIcons\logo_taxi_green.png" />

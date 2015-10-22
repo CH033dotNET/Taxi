@@ -2,7 +2,6 @@
 @{
 	string username = (Session["user"] as Model.DTO.UserDTO).UserName;
 }
-<h2>@Resources.Resource.DistrictEditor</h2>
 <link rel="stylesheet" href="~/Content/AutoParkCustomStyles.css" type="text/css" />
 <div>
 	<div class="page-header">
@@ -13,6 +12,7 @@
 			<h3 class="panel-title">@Resources.Resource.Districts</h3>
 		</div>
 		<div class="panel-body">
+			<img class="img-thumbnail" src="~/Content/Picture/Skyline_new_york_city.jpg" />
 		</div>
 		<div class="panel-footer">
 			<a class="btn btn-success" onclick="jsController.addDistrict()">

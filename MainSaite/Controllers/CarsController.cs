@@ -60,6 +60,12 @@ namespace MainSaite.Controllers
 			int userId = session.User.Id;
 			return Json(carManager.getCarsByUserID(userId), JsonRequestBehavior.AllowGet);
 		}
+
+		public JsonResult GetCarForEdit(int Id)
+		{
+			var carForEdit = carManager.GetCarByCarID(Id);
+			return Json(carForEdit,JsonRequestBehavior.AllowGet);
+		}
 		public JsonResult EditCar(CarDTO car)
 		{
 			carManager.EditCar(car);

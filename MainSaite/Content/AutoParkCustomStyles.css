@@ -70,3 +70,7 @@
 #data-dismiss-btn-enhanced {
 	color: white;
 }
+
+.modal-body-yellow {
+	background-color: lightyellow;
+}

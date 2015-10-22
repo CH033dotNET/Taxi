@@ -52,7 +52,7 @@ var jsController = {
 		var a = "breakpoint";
 		$('#add-item').modal('show');
 
-		$('#add-item .btn-ok').on("click", function () {
+		$('#add-item .btn-ok').off("click.addADistrict").on("click.addADistrict", function () {
 			var d = "breakpoint!";
 			var newDistrictName = $('#newDistrictName').val();
 			$.ajax({
@@ -65,7 +65,7 @@ var jsController = {
 			});
 
 			$("#add-item").modal('hide');
-			$('#add-item .btn-ok').off("click");
+			$('#add-item .btn-ok').off("click.addADistrict");
 		});
 	},
 
@@ -77,7 +77,7 @@ var jsController = {
 		$('.item-name').html(itemName);
 		$('#confirm-delete').modal('show');
 
-		$('#confirm-delete .btn-ok').on("click", function () {
+		$('#confirm-delete .btn-ok').off("click.deleteADistrict").on("click.deleteADistrict", function () {
 			var c = 'yupiii';
 			var request = $.ajax({
 				url: "/Settings/DeleteDistrict/",
@@ -88,7 +88,7 @@ var jsController = {
 				jsController.renderData();
 			});
 			$('#confirm-delete').modal('hide');
-			$('#confirm-delete .btn-ok').off("click");
+			$('#confirm-delete .btn-ok').off("click.deleteADistrict");
 			return false;
 		});
 	},
@@ -101,7 +101,7 @@ var jsController = {
 		$('#newName').val(name); // set model item name to an input field
 		$("#edit-item").modal('show'); // show modal
 
-		$('#edit-item .btn-ok').on("click", function () {
+		$('#edit-item .btn-ok').off("click.editADistrict").on("click.editADistrict", function () {
 			var c = "breakpoint";
 			var newName = $('#newName').val();
 			$.ajax({
@@ -113,7 +113,7 @@ var jsController = {
 			});
 
 			$("#edit-item").modal('hide');
-			$('#edit-item .btn-ok').off("click");
+			$('#edit-item .btn-ok').off("click.editADistrict");
 		});
 	}
 };

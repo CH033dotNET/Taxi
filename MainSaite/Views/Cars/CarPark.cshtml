@@ -18,14 +18,7 @@
 			<h3 class="panel-title">@Resources.Resource.Garage</h3>
 		</div>
 		<div class="panel-body">
-			<div class="bs-callout bs-callout-primary">
-				<h4>@Resources.Resource.GarageHeader1</h4>
-				@Resources.Resource.GarageAttention1
-			</div>
-			<div class="bs-callout bs-callout-warning">
-				<h4>@Resources.Resource.GarageHeader2</h4>
-				@Resources.Resource.GarageAttention2
-			</div>
+			<img class="img-thumbnail" src="~/Content/Picture/streets_cars_traffic.jpg"/>
 		</div>
 		<div class="panel-footer">
 			<a class="btn btn-success" role="button" onclick="carController.addNewCar()">
@@ -59,7 +52,7 @@
 							{{#each cars}}
 							<tr>
 								<td>
-									{{this.CarName}}
+									{{CarName}}
 								</td>
 								<td>
 									{{CarNickName}}
@@ -74,16 +67,7 @@
 									{{#ifCond OwnerId UserId}}
 									<a class="btn btn-warning" href="#"
 									   data-cars-id="{{Id}}"
-									   data-cars-name="{{CarName}}"
-									   data-cars-nname="{{CarNickName}}"
-									   data-cars-number="{{CarNumber}}"
-									   data-cars-occup="{{CarOccupation}}"
-									   data-cars-class="{{CarClass}}"
-									   data-cars-petroltype="{{CarPetrolType}}"
-									   data-cars-consum="{{CarPetrolConsumption}}"
-									   edit-cars-date="{{CarManufactureDate}}"
-									   data-cars-state="{{CarState}}"
-									   role="button" onclick="carController.editCar(this)">
+									   role="button" onclick="carController.getCarEdit(this)">
 										<span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString
 									</a>
 									{{/ifCond}}
@@ -94,16 +78,7 @@
 									{{/ifCond}}
 									<a class="btn btn-info" href="#"
 									   data-cars-id="{{Id}}"
-									   data-cars-name="{{CarName}}"
-									   data-cars-nname="{{CarNickName}}"
-									   data-cars-number="{{CarNumber}}"
-									   data-cars-occup="{{CarOccupation}}"
-									   data-cars-class="{{CarClassDescription}}"
-									   data-cars-petroltype="{{CarPetrolTypeDescription}}"
-									   data-cars-consum="{{CarPetrolConsumption}}"
-									   data-cars-date="{{prettifyDate CarManufactureDate}}"
-									   data-cars-state="{{CarStateDescription}}"
-									   role="button" onclick="carController.carDetails(this)">
+									   role="button" onclick="carController.getCarDetails(this)">
 										<span class="glyphicon glyphicon-file" aria-hidden="true">&nbsp;</span>@Resources.Resource.CarsDetails
 									</a>
 									{{#ifCond OwnerId UserId}}
@@ -140,6 +115,10 @@
 			$('#datetimepicker1').datetimepicker({
 				format: 'L',
 				toolbarPlacement: 'top',
+				widgetPositioning: {
+					horizontal: 'left',
+					vertical: 'bottom',
+				},
 			});
 		});
 	</script>
@@ -148,6 +127,10 @@
 			$('#datetimepicker2').datetimepicker({
 				format: 'L',
 				toolbarPlacement: 'top',
+				widgetPositioning: {
+					horizontal: 'left',
+					vertical: 'bottom',
+				},
 			});
 		});
 	</script>
@@ -156,7 +139,8 @@
 <script>
 	var carParkTemplate = Handlebars.compile($("#carListRow").html());
 
-	var encodedCarData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Cars.ToList()));
+	var encodedCarData;
+	encodedCarData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Cars.ToList()));
 
 	var userId = @Html.Raw((Session["User"] as Model.DTO.UserDTO).Id);
 	var ownerId = @Html.Raw((Session["User"] as Model.DTO.UserDTO).Id);
