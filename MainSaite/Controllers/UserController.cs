@@ -12,7 +12,7 @@ namespace MainSaite.Controllers
 		public ActionResult Index()
 		{
 
-			var currentUser = session.User;
+			var currentUser = SessionUser;
 
 			if (currentUser == null)
 				RedirectToAction("Registration", "Account");
@@ -29,7 +29,7 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public ActionResult Index(PersonDTO person, FormCollection formCollection)
 		{
-			var currentUser = session.User;
+			var currentUser = SessionUser;
 
 
 			if (person.User.UserName != currentUser.UserName)
@@ -45,7 +45,7 @@ namespace MainSaite.Controllers
 			person.User = currentUser;
 
 			personManager.EditPerson(person);
-			session.User = currentUser;
+			SessionUser = currentUser;
 			ViewBag.ImageName = person.ImageName;
 
 

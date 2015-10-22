@@ -148,13 +148,13 @@ namespace MainSaite.Controllers
 		// Nick: Car info settings
 		public ActionResult CarEditor()
 		{
-			if (null == session.User || session.User.RoleId != (int)AvailableRoles.Driver)
+			if (null == SessionUser || SessionUser.RoleId != (int)AvailableRoles.Driver)
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 			}
 			else
 			{
-				int userId = session.User.Id;
+				int userId = SessionUser.Id;
 				return View(carManager.getCarsByUserID(userId));
 			}
 		}
@@ -258,7 +258,7 @@ namespace MainSaite.Controllers
 		{
 			CarChangeUser model = new CarChangeUser();
 			model.Car = carManager.GetCarByCarID(id);
-			model.Drivers = userManager.GetDrivers().Where(x=>x.Id != session.User.Id).ToList();
+			model.Drivers = userManager.GetDrivers().Where(x => x.Id != SessionUser.Id).ToList();
 			return View(model);
 		}
 		[HttpPost]

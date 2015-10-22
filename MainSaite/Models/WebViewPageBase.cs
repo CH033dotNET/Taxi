@@ -15,20 +15,12 @@ namespace MainSaite.Models
 			{				
 					return HttpContext.Current.Session["User"] as UserDTO;
 			}
-			set
-			{
-				HttpContext.Current.Session["User"] = value;
-			}
 		}
 		public List<CoordinatesDTO> Coordinates
 		{
 			get
 			{
 				return HttpContext.Current.Session["Coordinates"] as List<CoordinatesDTO>;
-			}
-			set
-			{
-				HttpContext.Current.Session["Coordinates"] = value;
 			}
 		}
 		public override void InitHelpers()
@@ -51,10 +43,6 @@ namespace MainSaite.Models
 			{			
 				return HttpContext.Current.Session["User"] as UserDTO;
 			}
-			set
-			{
-				HttpContext.Current.Session["User"] = value;
-			}
 		}
 
 		public List<CoordinatesDTO> Coordinates
@@ -62,10 +50,6 @@ namespace MainSaite.Models
 			get
 			{
 				return HttpContext.Current.Session["Coordinates"] as List<CoordinatesDTO>;
-			}
-			set
-			{
-				HttpContext.Current.Session["Coordinates"] = value;
 			}
 		}
 		public override void InitHelpers()

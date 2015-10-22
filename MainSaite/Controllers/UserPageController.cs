@@ -15,8 +15,8 @@ namespace MainSaite.Controllers
         public ActionResult Index()
         {
 			List<AddressDTO> list = new List<AddressDTO>();
-			if (Session!=null && session.User!=null)
-			list = addressmanager.GetAddresses().Where(x=>x.UserId==session.User.Id).ToList();
+			if (Session != null && SessionUser != null)
+				list = addressmanager.GetAddresses().Where(x => x.UserId == SessionUser.Id).ToList();
 
 			return View(list);
         }
