@@ -90,7 +90,7 @@ namespace DAL.Migrations
 		Tarif[] tarifs = new Tarif[]{
 				new Tarif() { Name = "Standart", MinimalPrice = 12.50M, OneMinuteCost = 1M, StartPrice = 5M, WaitingCost = 0.5M, IsStandart=true },
 				new Tarif() { Name = "Region", MinimalPrice = 15.40M, OneMinuteCost = 1.4M, StartPrice = 8M, WaitingCost = 0.8M, IsIntercity = true },
-				new Tarif(){ Name ="Personal Driver", MinimalPrice = 40M, OneMinuteCost = 1.5M, StartPrice = 16M, WaitingCost =0.5M, IsStandart =true}
+				new Tarif(){ Name ="Personal Driver", MinimalPrice = 40M, OneMinuteCost = 1.5M, StartPrice = 16M, WaitingCost =0.5M, IsStandart =false}
 			};
 			context.Tarifes.AddRange(tarifs);
 			context.SaveChanges();
