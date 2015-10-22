@@ -601,4 +601,7 @@
   <data name="Registration" xml:space="preserve">
     <value>Registration</value>
   </data>
+  <data name="LastUpdate" xml:space="preserve">
+    <value>Last update</value>
+  </data>
 </root>

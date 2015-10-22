@@ -600,4 +600,7 @@
   <data name="Registration" xml:space="preserve">
     <value>Регістрація</value>
   </data>
+  <data name="LastUpdate" xml:space="preserve">
+    <value>Останне оновлення</value>
+  </data>
 </root>
