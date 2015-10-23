@@ -36,7 +36,7 @@ namespace BAL.Manager
 		}
 		public IEnumerable<District> getDistricts()
 		{
-			var list = uOW.DistrictRepo.Get().Where(s => s.Deleted == false).ToList();
+			var list = uOW.DistrictRepo.Get(s => s.Deleted == false).ToList();
 			return list;
 		}
 		public District getById(int id)
@@ -46,7 +46,7 @@ namespace BAL.Manager
 
 		public District getOneDistrictByItsID(int? id)
 		{
-			var getDistrict = uOW.DistrictRepo.Get().Where(s => s.Id == id).FirstOrDefault();
+			var getDistrict = uOW.DistrictRepo.Get(s => s.Id == id).FirstOrDefault();
 			if (getDistrict != null)
 			{
 				return getDistrict;
@@ -67,12 +67,12 @@ namespace BAL.Manager
 
         public District getByName(string name)
         {
-            return uOW.DistrictRepo.Get().Where(s => s.Name == name).FirstOrDefault();
+			return uOW.DistrictRepo.Get(s => s.Name == name).FirstOrDefault();
         }
 
 		public IEnumerable<District> getDeletedDistricts()
 		{
-			var deletedDistricts = uOW.DistrictRepo.Get().Where(s => s.Deleted == true).Select(s => s).ToList();
+			var deletedDistricts = uOW.DistrictRepo.Get(s => s.Deleted == true).ToList();
 			if (deletedDistricts != null)
 			{
 				return deletedDistricts;
@@ -100,7 +100,7 @@ namespace BAL.Manager
 
 		public District SetDistrictDeleted(int Id, string Name)
 		{
-			var districtToDelete = uOW.DistrictRepo.Get().Where(s => s.Id == Id & s.Name == Name/* & s.Deleted == false*/).First();
+			var districtToDelete = uOW.DistrictRepo.Get(s => s.Id == Id & s.Name == Name/* & s.Deleted == false*/).FirstOrDefault();
 			if (districtToDelete == null)
 			{
 				return null;

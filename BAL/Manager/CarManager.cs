@@ -44,7 +44,7 @@ namespace BAL.Manager
 		/// <returns></returns>
 		public CarDTO EditCar(CarDTO car)
 		{
-			var newCar = uOW.CarRepo.Get(s => s.Id == car.Id).First();
+			var newCar = uOW.CarRepo.Get(s => s.Id == car.Id).FirstOrDefault();
 			if (newCar == null)
 			{
 				return null;
@@ -91,7 +91,8 @@ namespace BAL.Manager
 		/// <returns>parameter representing users id</returns>
 		public IEnumerable<CarDTO> getCarsByUserID(int? id)
 		{
-			var userCars = uOW.CarRepo.Get().Where(s => s.UserId == id).Select(s => Mapper.Map<CarDTO>(s));
+			//var userCars = uOW.CarRepo.Get().Where(s => s.UserId == id).Select(s => Mapper.Map<CarDTO>(s));
+			var userCars = uOW.CarRepo.Get(s => s.UserId == id).Select(s => Mapper.Map<CarDTO>(s));
 			if (userCars != null)
 			{
 				return userCars;
@@ -106,7 +107,7 @@ namespace BAL.Manager
 		/// <returns></returns>
 		public CarDTO GetCarByCarID(int? id)
 		{
-			var userCar = uOW.CarRepo.Get().Where(s => s.Id == id).FirstOrDefault();
+			var userCar = uOW.CarRepo.Get(s => s.Id == id).FirstOrDefault();
 			if (userCar != null)
 			{
 				return Mapper.Map<CarDTO>(userCar);
@@ -116,10 +117,10 @@ namespace BAL.Manager
 
 		public void GiveAwayCar(int CarId, int NewCarUserId)
 		{
-			var GiveAwayCar = uOW.CarRepo.Get(s => s.Id == CarId).First();
+			var GiveAwayCar = uOW.CarRepo.Get(s => s.Id == CarId).FirstOrDefault();
 			if (GiveAwayCar == null)
 			{
-				throw new NotImplementedException();
+				throw new NotImplementedException(); // ------------!!!
 			}
 			uOW.CarRepo.SetStateModified(GiveAwayCar);
 			GiveAwayCar.UserId = NewCarUserId;
@@ -132,7 +133,7 @@ namespace BAL.Manager
 		/// <returns></returns>
 		public IEnumerable<WorkshiftHistoryDTO> GetWorkingDrivers()
 		{
-			var workingUsers = uOW.WorkshiftHistoryRepo.Get().Where(s => s.WorkEnded == null & s.WorkStarted != null).Select(s => Mapper.Map<WorkshiftHistoryDTO>(s));
+			var workingUsers = uOW.WorkshiftHistoryRepo.Get(s => s.WorkEnded == null & s.WorkStarted != null).Select(s => Mapper.Map<WorkshiftHistoryDTO>(s));
 			if (workingUsers != null)
 			{
 				return workingUsers;
@@ -146,7 +147,7 @@ namespace BAL.Manager
 		/// <returns></returns>
 		public bool GetWorkShiftsByWorkerId(int WorkerId)
 		{
-			var uncompletedShifts = uOW.WorkshiftHistoryRepo.Get().Where(s => s.WorkEnded == null & s.WorkStarted != null & s.DriverId == WorkerId).Any();
+			var uncompletedShifts = uOW.WorkshiftHistoryRepo.Get(s => s.WorkEnded == null & s.WorkStarted != null & s.DriverId == WorkerId).Any();
 			if (uncompletedShifts) { return true; }
 			else { return false; }
 		}
@@ -157,7 +158,7 @@ namespace BAL.Manager
 		/// <param name="id">input parameter</param>
 		public void StartWorkEvent(int? id, string TimeStart)
 		{
-			var worker = uOW.WorkshiftHistoryRepo.Get().Where(s => s.DriverId == id).LastOrDefault(); // get the last entry for a current user
+			var worker = uOW.WorkshiftHistoryRepo.Get(s => s.DriverId == id).LastOrDefault(); // get the last entry for a current user
 			var mappedworker = Mapper.Map<WorkshiftHistoryDTO>(worker);
 			if (mappedworker == null) // if entry is empty (if no entry at all)
 			{
@@ -199,7 +200,7 @@ namespace BAL.Manager
 		/// <param name="id">input parameter</param>
 		public void EndWorkShiftEvent(int? id)
 		{
-			var worker = uOW.WorkshiftHistoryRepo.Get().Where(s => s.DriverId == id).Last();
+			var worker = uOW.WorkshiftHistoryRepo.Get(s => s.DriverId == id).LastOrDefault();
 			uOW.WorkshiftHistoryRepo.SetStateModified(worker);
 			worker.WorkEnded = DateTime.Now;
 			uOW.Save();
@@ -213,10 +214,10 @@ namespace BAL.Manager
 		public string EndAllCurrentUserShifts(int id, string timeStop)
 		{
 			string message = "";
-			var isWorker = uOW.WorkshiftHistoryRepo.Get().Where(s => s.DriverId == id & s.WorkEnded == null).Select(s => s).Any();
+			var isWorker = uOW.WorkshiftHistoryRepo.Get(s => s.DriverId == id & s.WorkEnded == null).Any();
 			if (isWorker)
 			{
-				var worker = uOW.WorkshiftHistoryRepo.Get().Where(s => s.DriverId == id & s.WorkEnded == null).Select(s => s);
+				var worker = uOW.WorkshiftHistoryRepo.Get(s => s.DriverId == id & s.WorkEnded == null);
 				foreach (var times in worker)
 				{
 					uOW.WorkshiftHistoryRepo.SetStateModified(times);

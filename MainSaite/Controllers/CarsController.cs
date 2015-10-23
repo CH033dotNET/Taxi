@@ -31,7 +31,8 @@ namespace MainSaite.Controllers
 			{
 				int userId = SessionUser.Id;
 				CarsViewModel.Cars = carManager.getCarsByUserID(userId).ToList();
-				CarsViewModel.Drivers = userManager.GetDrivers().Where(x => x.Id != SessionUser.Id).ToList();
+				//CarsViewModel.Drivers = userManager.GetDrivers().Where(x => x.Id != SessionUser.Id).ToList();
+				CarsViewModel.Drivers = userManager.GetDriversExceptCurrent(userId);
 				//var list = carManager.getCarsByUserID(userId).ToList();
 				return View(CarsViewModel);
 			}
