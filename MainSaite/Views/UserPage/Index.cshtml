@@ -1,4 +1,4 @@
-﻿@model IList<Model.DTO.AddressDTO>
+﻿@model MainSaite.Models.UserPagePhoneModel
 
 @{
     ViewBag.Title = "Index";
@@ -7,6 +7,7 @@
 
 
 @section Menu{
+<script src="~/Scripts/handlebars.js"></script>
     <script>
         function getCoord() {
             var orderObj = {};
@@ -64,17 +65,13 @@
     </div>
     <div class="collapse navbar-collapse" id="responsive-menu">
         <ul class="nav navbar-nav">
-            @foreach (var i in Model)
+            @foreach (var i in Model.addresses)
             {
                 <li> <a href="#"> @String.Format("{0} {1} {2}", i.City, i.Street, i.Number) </a> </li>
             }
 
         </ul>
     </div>
-
-
-
-
 }
 
 @section  body{
@@ -83,7 +80,83 @@
               type="text" />
     <input type="button" id="OkBtn" name="Find" value="Find" onclick="geocode()">
 
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title phoneModal">Input correct mobile phone</h4>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <div id="loading">
+                    <i class="fa fa-refresh fa-spin fa-5x"></i>
+                </div>
+                @Html.Partial("_AjaxEditPersonInfo", Model.person)
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <div id="map"></div>
 
-    
+
+
+<script id="PersonInfo" type="text/x-handlebars-template">
+    <div class="content">
+        <dl class="dl-horizontal">
+
+            <dd><div class="error" id="error" style="color: red; display: none"> Please upload a picture by jpg, png or gif! </div></dd>
+
+            <dt><label for="firstName">@Resources.Resource.FirstName </label></dt>
+            <dd><input class="form-control" type="text" id="firstName" name="FirstName" value="{{FirstName}}" /></dd>
+
+            <dt><label for="middleName">@Resources.Resource.MiddleName </label></dt>
+            <dd><input class="form-control" type="text" id="middleName" name="MiddleName" value="{{MiddleName}}" /></dd>
+
+            <dt><label for="userName">@Resources.Resource.LastName </label></dt>
+            <dd><input class="form-control" type="text" id="lastName" name="LastName" value="{{LastName}}" /></dd>
+
+            <dt><label for="phone">@Resources.Resource.Phone</label></dt>
+            <dd><input type="tel" class="form-control" name="Phone" value="{{Phone}}" id="phone" required /></dd>
+        </dl>
+    </div>
+</script>
+
+
+
+    <script>
+        var template = Handlebars.compile($('#PersonInfo').html()),
+            person = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.person));
+        $('#content').html(template(person));
+    </script>
+@Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/jquery.maskedinput.js"></script>
+<script src="~/Scripts/UserScript.js"></script>
+
+
+<script>
+        $(document).ready(function () {
+
+            if ('@Model.person.Phone' === '')
+            {          
+                $('#myModal').modal({ backdrop: 'static', keyboard: false });
+                $('#myModal').modal('show');
+                $('#myModal').on('shown.bs.modal', function () {
+                    $('#phone').select();
+                    $('#phone').focus();
+                })
+            }
+
+        });
+
+    var CloseModal = function(data){
+        if (data.success)
+            $('#myModal').modal('hide');
+        else
+        $('#content').html(template(data.person));
+    }
+</script>
 }

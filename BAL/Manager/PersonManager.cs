@@ -58,6 +58,23 @@ namespace BAL.Manager
 			 uOW.Save();
 			 return Mapper.Map<PersonDTO>(newPerson);
 		 }
+
+         public void UpdatePhoneFMLnames(PersonDTO person)
+         {
+             var newPerson = uOW.PersonRepo.Get(s => s.UserId == person.UserId).First();
+             if (newPerson == null)
+             {
+                 return;
+             }
+
+             uOW.PersonRepo.SetStateModified(newPerson);
+             newPerson.FirstName = person.FirstName;
+             newPerson.MiddleName = person.MiddleName;
+             newPerson.LastName = person.LastName;
+             newPerson.Phone = person.Phone;
+             uOW.Save();
+         }
+
 		 public PersonDTO DefaultImage(int UserId)
 		 {
 			 var newPerson = uOW.PersonRepo.Get(s => s.UserId == UserId).First();

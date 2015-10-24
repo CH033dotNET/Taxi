@@ -1,4 +1,5 @@
-﻿using Model.DTO;
+﻿using MainSaite.Models;
+using Model.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,28 @@ namespace MainSaite.Controllers
 
         public ActionResult Index()
         {
-			List<AddressDTO> list = new List<AddressDTO>();
-			if (Session != null && SessionUser != null)
-				list = addressmanager.GetAddresses().Where(x => x.UserId == SessionUser.Id).ToList();
+            UserPagePhoneModel model = new UserPagePhoneModel();
+            if (SessionUser != null)
+            { 
+                model.addresses = addressmanager.GetAddressesForUser(SessionUser.Id).ToList();
+                model.person = personManager.GetPersonByUserId(SessionUser.Id);
+            }
 
-			return View(list);
+            return View(model);
+        }
+
+        [HttpPost]
+        public JsonResult Index(PersonDTO person)
+         {
+            var jsonOk = new { success = true };
+            var jsonNeOk = new { success = false, person = person };
+            if (!ModelState.IsValid)
+                return Json(jsonNeOk);
+
+            personManager.UpdatePhoneFMLnames(person);
+
+
+            return Json(jsonOk);
         }
 
 
