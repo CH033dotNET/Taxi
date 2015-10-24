@@ -603,4 +603,7 @@
   <data name="LastUpdate" xml:space="preserve">
     <value>Останне оновлення</value>
   </data>
+  <data name="UserPage" xml:space="preserve">
+    <value>Сторінка користувача</value>
+  </data>
 </root>

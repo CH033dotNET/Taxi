@@ -604,4 +604,7 @@
   <data name="LastUpdate" xml:space="preserve">
     <value>Last update</value>
   </data>
+  <data name="UserPage" xml:space="preserve">
+    <value>User page</value>
+  </data>
 </root>
