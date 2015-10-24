@@ -109,7 +109,8 @@ var carController = {
 					carController.carData.cars = result;
 					carController.renderCarData();
 				});
-
+				$('#datetimepicker1').datetimepicker('clear');
+				$('#datetimepicker2').datetimepicker('clear');
 				$('#edit-car-modal .btn-ok').off("click.editCar");
 				$('#edit-car-modal').modal('hide');
 				return false;

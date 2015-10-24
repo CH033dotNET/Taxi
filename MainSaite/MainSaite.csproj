@@ -376,6 +376,7 @@
     <Content Include="Scripts\Tarif\Tarif.js" />
     <Content Include="Scripts\UserMenuScripts\ModalJs.js" />
     <Content Include="Scripts\UserScript.js" />
+    <Content Include="Scripts\validator.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
