@@ -606,4 +606,31 @@
   <data name="UserPage" xml:space="preserve">
     <value>Сторінка користувача</value>
   </data>
+  <data name="CarClassError" xml:space="preserve">
+    <value>Неправильно вибраний класс</value>
+  </data>
+  <data name="CarMDError" xml:space="preserve">
+    <value>Неправильна дата</value>
+  </data>
+  <data name="CarNameError" xml:space="preserve">
+    <value>Неправильна марка машини</value>
+  </data>
+  <data name="CarNickNameError" xml:space="preserve">
+    <value>Неправильний позивний</value>
+  </data>
+  <data name="CarNumberError" xml:space="preserve">
+    <value>Неправильний номер</value>
+  </data>
+  <data name="CarOccupError" xml:space="preserve">
+    <value>Неправильна кількість сидячих місць</value>
+  </data>
+  <data name="CarPCError" xml:space="preserve">
+    <value>Неправильна кількість пального</value>
+  </data>
+  <data name="CarPetrolTypeError" xml:space="preserve">
+    <value>Неправильно вибраний тип палива</value>
+  </data>
+  <data name="CarStateError" xml:space="preserve">
+    <value>Неправильно вибраний стан</value>
+  </data>
 </root>

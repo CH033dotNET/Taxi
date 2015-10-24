@@ -607,4 +607,31 @@
   <data name="UserPage" xml:space="preserve">
     <value>User page</value>
   </data>
+  <data name="CarClassError" xml:space="preserve">
+    <value>Invalid Class</value>
+  </data>
+  <data name="CarMDError" xml:space="preserve">
+    <value>Invalid Date</value>
+  </data>
+  <data name="CarNameError" xml:space="preserve">
+    <value>Invalid Name</value>
+  </data>
+  <data name="CarNickNameError" xml:space="preserve">
+    <value>Invalid NickName</value>
+  </data>
+  <data name="CarNumberError" xml:space="preserve">
+    <value>Invalid Number</value>
+  </data>
+  <data name="CarOccupError" xml:space="preserve">
+    <value>Invalid Number</value>
+  </data>
+  <data name="CarPCError" xml:space="preserve">
+    <value>Invalid Petrol consumption</value>
+  </data>
+  <data name="CarPetrolTypeError" xml:space="preserve">
+    <value>Invalid Petrol type</value>
+  </data>
+  <data name="CarStateError" xml:space="preserve">
+    <value>Invalid State</value>
+  </data>
 </root>
