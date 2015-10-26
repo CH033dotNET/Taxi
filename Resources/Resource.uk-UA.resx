@@ -633,4 +633,7 @@
   <data name="CarStateError" xml:space="preserve">
     <value>Неправильно вибраний стан</value>
   </data>
+  <data name="ClientDriveHistory" xml:space="preserve">
+    <value>Історія поїздок</value>
+  </data>
 </root>

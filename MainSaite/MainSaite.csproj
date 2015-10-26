@@ -164,6 +164,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CarsController.cs" />
+    <Compile Include="Controllers\DriveClientHistoryController.cs" />
     <Compile Include="Controllers\DrivingSimulationController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Models\AutoParkViewModel.cs" />
@@ -447,6 +448,7 @@
     <Content Include="Views\DrivingSimulation\Index.cshtml" />
     <Content Include="Views\User\_EditPersonInfo.cshtml" />
     <Content Include="Views\Shared\_AjaxEditPersonInfo.cshtml" />
+    <Content Include="Views\DriveClientHistory\ShowHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

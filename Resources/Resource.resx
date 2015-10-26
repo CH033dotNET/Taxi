@@ -634,4 +634,7 @@
   <data name="CarStateError" xml:space="preserve">
     <value>Invalid State</value>
   </data>
+  <data name="ClientDriveHistory" xml:space="preserve">
+    <value>Drive History</value>
+  </data>
 </root>
