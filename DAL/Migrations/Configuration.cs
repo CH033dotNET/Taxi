@@ -64,8 +64,9 @@ namespace DAL.Migrations
 			//Addres
 			if (!context.Addresses.Any())
 			{
+				int counter = 1;
 				var addres = Angie.Configure<UserAddress>().Fill(x => x.City).AsCity<UserAddress>().Fill(x => x.Street).AsAddress<UserAddress>()
-				.MakeList<UserAddress>().Select(x => new UserAddress { City = x.City, Street = x.Street, Number = random.Next(1, 150).ToString(), Comment = x.Street, UserId = random.Next(3, 29) });
+				.MakeList<UserAddress>().Select(x => new UserAddress { City = x.City, Street = x.Street, Number = random.Next(1, 150).ToString(), Comment = x.Street, UserId = counter++ });
 				context.Addresses.AddRange(addres);
 				context.SaveChanges();
 			}
@@ -79,9 +80,10 @@ namespace DAL.Migrations
 			//Person
 			if (!context.Persons.Any())
 			{
+				int counter = 1;
 				var persons = Angie.Configure<Person>().Fill(x => x.FirstName).AsFirstName<Person>().Fill(x => x.LastName).AsLastName<Person>().Fill(x => x.MiddleName).AsMusicArtistName<Person>()
 					.Fill(x => x.Phone).AsPhoneNumber<Person>().MakeList<Person>()
-					.Select(x => new Person { FirstName = x.FirstName, LastName = x.LastName, MiddleName = x.MiddleName, Phone = x.Phone, UserId = random.Next(3, 29) });
+					.Select(x => new Person { FirstName = x.FirstName, LastName = x.LastName, MiddleName = x.MiddleName, Phone = x.Phone, UserId = counter++ });
 				context.Persons.AddRange(persons);
 				context.SaveChanges();
 			}
