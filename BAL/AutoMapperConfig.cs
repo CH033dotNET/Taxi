@@ -18,8 +18,8 @@ namespace Common
 			Mapper.CreateMap<UserDTO, User>();
 			Mapper.CreateMap<Car, CarDTO>();
 			Mapper.CreateMap<CarDTO, Car>();
-            Mapper.CreateMap<UserAddress, AddressDTO>();
             Mapper.CreateMap<AddressDTO, UserAddress>();
+            Mapper.CreateMap<UserAddress, AddressDTO>();
 			Mapper.CreateMap<Person, PersonDTO>();
 			Mapper.CreateMap<PersonDTO, Person>();
             Mapper.CreateMap<Location, LocationDTO>();

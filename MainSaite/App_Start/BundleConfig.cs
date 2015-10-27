@@ -24,7 +24,7 @@ namespace MainSaite
 			//-------------------------------------------------------
 
 			//---------------------Handlebars----------------------
-			bundles.Add(new StyleBundle("~/Content/handlebars.js").Include("~/Content/handlebars.js"));
+            bundles.Add(new ScriptBundle("~/Content/handlebars.js").Include("~/Content/handlebars.js"));
 			//---------------------------------------------------
 
 

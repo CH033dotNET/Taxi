@@ -61,7 +61,7 @@ namespace MainSaite.Controllers
 				if (currentUser != null)
 				{
 					CheckPerson(currentUser);
-					session.User = userManager.GetByUserName(user.UserName, user.Password);
+					SessionUser = currentUser;
 					return RedirectToAction("Index", "Home");
 				}
 				else ModelState.AddModelError("", "Wrong password or login");

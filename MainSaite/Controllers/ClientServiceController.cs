@@ -19,9 +19,9 @@ namespace MainSaite.Controllers
 
 		public string DrivingClient(CoordinatesDTO coordinates)
 		{
-			List<CoordinatesDTO> list = session.Coordinates;
+			List<CoordinatesDTO> list = SessionCordinates;
 			list.Add(coordinates);
-			session.Coordinates = list;
+			SessionCordinates = list;
 			coordinatesManager.AddCoordinates(coordinates);
 			return ShowCurrentPrice();
 		}
@@ -29,14 +29,14 @@ namespace MainSaite.Controllers
 		private string ShowCurrentPrice()
 		{
 			List<TarifDTO> tarifs = tarifManager.GetTarifes().ToList();
-			PriceCounter price = new PriceCounter(session.Coordinates, tarifs);
+			PriceCounter price = new PriceCounter(SessionCordinates, tarifs);
 			return String.Format("{0:0.00}", price.CalcPrice());
 		}
 		public string DropClient(CoordinatesDTO coordinates)
 		{
 			coordinatesManager.AddCoordinates(coordinates);
 			string price = ShowCurrentPrice();
-			session.Coordinates = new List<CoordinatesDTO>();
+			SessionCordinates = new List<CoordinatesDTO>();
 			decimal minPrice = tarifManager.GetById(coordinates.TarifId).MinimalPrice;
 			if (minPrice > Decimal.Parse(price))
 			{

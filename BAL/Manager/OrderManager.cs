@@ -19,16 +19,6 @@ namespace BAL.Manager
 		public OrderDTO InsertOrder(OrderDTO order)
 		{
 			var temp = Mapper.Map<Order>(order);
-			order.ComeIn = temp.ComeIn;
-			order.ComeOut = temp.ComeOut;
-			order.LatitudeComeIn = temp.LatitudeComeIn;
-			order.LatitudeComeOut = temp.LatitudeComeOut;
-			order.Accuracy = temp.Accuracy;
-			order.LongitudeComeIn = temp.LongitudeComeIn;
-			order.LongitudeComeOut = temp.LongitudeComeOut;
-			order.RunTime = temp.RunTime;
-			order.OrderTime = temp.OrderTime;
-			order.PersonId = temp.PersonId;
 			uOW.OrderRepo.Insert(temp);
 			uOW.Save();
 
@@ -51,17 +41,19 @@ namespace BAL.Manager
 			}
 
 			uOW.OrderRepo.SetStateModified(newOrder);
-			newOrder.ComeIn = order.ComeIn;
-			newOrder.ComeOut = order.ComeOut;
-			newOrder.LatitudeComeIn = order.LatitudeComeIn;
-			newOrder.LatitudeComeOut = order.LatitudeComeOut;
+			newOrder.DropPlace = order.DropPlace;
+			newOrder.PeekPlace = order.PeekPlace;
+			newOrder.LatitudePeekPlace = order.LatitudePeekPlace;
+			newOrder.LatitudeDropPlace = order.LatitudeDropPlace;
 			newOrder.Accuracy = order.Accuracy;
-			newOrder.LongitudeComeIn = order.LongitudeComeIn;
-			newOrder.LongitudeComeOut = order.LongitudeComeOut;
+			newOrder.LongitudePeekPlace = order.LongitudePeekPlace;
+			newOrder.LongitudeDropPlace = order.LongitudeDropPlace;
 			newOrder.RunTime = order.RunTime;
 			newOrder.OrderTime = order.OrderTime;
 			newOrder.PersonId = order.PersonId;
-
+			newOrder.StartWork = order.StartWork;
+			newOrder.EndWork = order.EndWork;
+			newOrder.WaitingTime = order.WaitingTime;
 			uOW.Save();
 			return Mapper.Map<OrderDTO>(newOrder);
 		}

@@ -52,7 +52,17 @@ namespace BAL.Manager
 				return list;
 			}
 		return null;
-	}
+	    }
+
+        public IEnumerable<AddressDTO> GetAddressesForUser(int id)
+        {
+                var res = uOW.AddressRepo.All.Where(x => x.UserId == id).ToList();
+
+                return res.Select(x=> Mapper.Map<AddressDTO>(x)); 
+        }
+
+
+
         public AddressDTO AddAddress(AddressDTO address)
         {
             var temp = Mapper.Map<UserAddress>(address);

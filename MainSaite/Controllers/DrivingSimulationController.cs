@@ -8,8 +8,7 @@ namespace MainSaite.Controllers
 {
 	public class DrivingSimulationController : BaseController
 	{
-		//
-		// GET: /DriverLocSim/
+
 
 		public ActionResult Index()
 		{

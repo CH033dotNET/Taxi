@@ -8,10 +8,10 @@ function getBeginCoord(position) {
 
     var dataObj = {};
     dataObj.Id = document.getElementById('Id').value;
-    //dataObj.Latitude = position.coords.latitude;
-    //dataObj.Longitude = position.coords.longitude;
-    dataObj.Latitude = document.getElementById('hlat').value;
-    dataObj.Longitude = document.getElementById('hlong').value;
+    dataObj.Latitude = position.coords.latitude;
+    dataObj.Longitude = position.coords.longitude;
+    //dataObj.Latitude = document.getElementById('hlat').value;
+    //dataObj.Longitude = document.getElementById('hlong').value;
     dataObj.Accuracy = position.coords.accuracy;
     dataObj.TimeStart = storage.getItem("StartWorkTime");
 
@@ -35,10 +35,10 @@ function getEndCoord(position) {
 
     var dataObj = {};
     dataObj.Id = document.getElementById('Id').value;
-    //dataObj.Latitude = position.coords.latitude;
-    //dataObj.Longitude = position.coords.longitude;
-    dataObj.Latitude = document.getElementById('hlat').value;
-    dataObj.Longitude = document.getElementById('hlong').value;
+    dataObj.Latitude = position.coords.latitude;
+    dataObj.Longitude = position.coords.longitude;
+    //dataObj.Latitude = document.getElementById('hlat').value;
+    //dataObj.Longitude = document.getElementById('hlong').value;
     dataObj.Accuracy = position.coords.accuracy;
     dataObj.TimeStop = storage.getItem("StopWorkTime");
 

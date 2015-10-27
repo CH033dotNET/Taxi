@@ -34,10 +34,10 @@ namespace MainSaite.Controllers
 		public ActionResult InsertData(string UserId, string ComeOutlatitude, string ComeOutlongitude, string ComeInlatitude,string ComeInlongitude)
 		{
 
-			//var order = new Order() { LatitudeComeIn = float.Parse(ComeInlatitude), 
-			//	LongitudeComeIn = float.Parse(ComeInlongitude), 
-			//	LatitudeComeOut = float.Parse(ComeOutlatitude), 
-			//	LongitudeComeOut = float.Parse(ComeOutlongitude),
+			//var order = new Order() { LatitudePeekPlace = float.Parse(ComeInlatitude), 
+			//	LongitudePeekPlace = float.Parse(ComeInlongitude), 
+			//	LatitudeDropPlace = float.Parse(ComeOutlatitude), 
+			//	LongitudeDropPlace = float.Parse(ComeOutlongitude),
 			//};
 			////orderManager.InsertOrder();
 		    return new EmptyResult();

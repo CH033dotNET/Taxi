@@ -13,86 +13,96 @@
 
 			<div class="modal-body">
 				@Html.AntiForgeryToken()
-				<table class="table table-hover">
-					<tr>
-						<td class="td-ench"><label class="control-label">@Resources.Resource.CarName</label></td>
-						<td>
-							<input type="text" class="form-control input-lg" id="newInputCarName" name="CarName" placeholder="@Resources.Resource.CarName" value="">
-						</td>
-					</tr>
-					<tr>
-						<td class="td-ench"><label class="control-label">@Resources.Resource.CarNickName</label></td>
-						<td>
-							<input type="text" class="form-control input-lg" id="newInputCarNickName" name="CarNickName" placeholder="@Resources.Resource.CarNickName" value="">
-						</td>
-					</tr>
-					<tr>
-						<td class="td-ench"><label class="control-label">@Resources.Resource.CarNumber</label></td>
-						<td>
-							<input type="text" class="form-control input-lg" id="newInputCarNumber" name="CarNumber" placeholder="@Resources.Resource.CarNumber" value="">
-						</td>
-					</tr>
-					<tr>
-						<td class="td-ench"><label class="control-label">@Resources.Resource.CarOccupation</label></td>
-						<td>
-							<input type="number" class="form-control input-lg" id="newInputCarOccupation" name="CarOccupation" min="2" max="20" placeholder="@Resources.Resource.CarOccupation" value="">
-						</td>
-					</tr>
-					<tr>
-						<td class="td-ench"><label class="control-label">@Resources.Resource.CarClass</label></td>
-						<td>
-							<select class="form-control input-lg" name="CarClass" id="newInputCarClass">
-								@foreach (var carClass in EnumHelper.GetCarClasses())
-								{
-									<option value="@carClass.Key">@carClass.Value</option>
-								}
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td class="td-ench"><label class="control-label">@Resources.Resource.CarPetrolType</label></td>
-						<td>
-							<select class="form-control input-lg" name="CarPetrolType" id="newInputCarPetrolType">
-								@foreach (var carPetrol in EnumHelper.GetCarPetrol())
-								{
-									<option value="@carPetrol.Key">@carPetrol.Value</option>
-								}
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td class="td-ench"><label class="control-label">@Resources.Resource.CarPetrolConsumption</label></td>
-						<td>
-							<input type="number" class="form-control input-lg" id="newInputCarPetrolConsumption" name="CarPetrolConsumption" min="1" max="100" placeholder="@Resources.Resource.CarPetrolConsumption" value="">
-						</td>
-					</tr>
-					<tr>
-						<td class="td-ench"><label class="control-label">@Resources.Resource.CarManufactureDate</label></td>
-						<td>
-							<input type='text' class="form-control input-lg bootstrap-datetimepicker-widget" id='datetimepicker1' name="CarManufactureDate" placeholder="@Resources.Resource.CarManufactureDate" value="">
-						</td>
-					</tr>
-					<tr>
-						<td class="td-ench"><label class="control-label">@Resources.Resource.CarState</label></td>
-						<td>
-							<select class="form-control input-lg" name="CarState" id="newInputCarState">
-								@foreach (var carState in EnumHelper.GetCarStates())
-								{
-									<option value="@carState.Key">@carState.Value</option>
-								}
-							</select>
-						</td>
-					</tr>
-				</table>
+				<form data-toggle="validator" role="form" id="edit-car-form" method="post" autocomplete="off">
+					<table class="table table-hover">
+						<tr class="form-group">
+							<td class="td-ench"><label class="control-label">@Resources.Resource.CarName</label></td>
+							<td>
+								<input type="text" class="form-control input-lg" id="newInputCarName" name="CarName" placeholder="@Resources.Resource.CarName" data-delay="150" data-minlength="2" data-maxlength="20" data-error="@Resources.Resource.CarNameError" value="" required>
+								<span class="help-block with-errors"></span>
+							</td>
+						</tr>
+						<tr class="form-group">
+							<td class="td-ench"><label class="control-label">@Resources.Resource.CarNickName</label></td>
+							<td>
+								<input type="text" class="form-control input-lg" id="newInputCarNickName" name="CarNickName" placeholder="@Resources.Resource.CarNickName" data-delay="150" data-minlength="4" data-maxlength="6" data-error="@Resources.Resource.CarNickNameError" value="" required>
+								<span class="help-block with-errors"></span>
+							</td>
+						</tr>
+						<tr class="form-group">
+							<td class="td-ench"><label class="control-label">@Resources.Resource.CarNumber</label></td>
+							<td>
+								<input type="text" class="form-control input-lg" id="newInputCarNumber" name="CarNumber" placeholder="@Resources.Resource.CarNumber" data-delay="150" data-minlength="4" data-maxlength="8" pattern="[а-я]\d{3}[а-я]{2}\d{2,3}" data-error="@Resources.Resource.CarNumberError" value="" required>
+								<span class="help-block with-errors"></span>
+							</td>
+						</tr>
+						<tr class="form-group">
+							<td class="td-ench"><label class="control-label">@Resources.Resource.CarOccupation</label></td>
+							<td>
+								<input type="number" class="form-control input-lg" id="newInputCarOccupation" name="CarOccupation" min="2" max="20" data-delay="150" data-error="@Resources.Resource.CarOccupError" placeholder="@Resources.Resource.CarOccupation" value="" required>
+								<span class="help-block with-errors"></span>
+							</td>
+						</tr>
+						<tr>
+							<td class="td-ench"><label class="control-label">@Resources.Resource.CarClass</label></td>
+							<td>
+								<select class="form-control input-lg" name="CarClass" id="newInputCarClass">
+									@foreach (var carClass in EnumHelper.GetCarClasses())
+									{
+										<option value="@carClass.Key">@carClass.Value</option>
+									}
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="td-ench"><label class="control-label">@Resources.Resource.CarPetrolType</label></td>
+							<td>
+								<select class="form-control input-lg" name="CarPetrolType" id="newInputCarPetrolType">
+									@foreach (var carPetrol in EnumHelper.GetCarPetrol())
+									{
+										<option value="@carPetrol.Key">@carPetrol.Value</option>
+									}
+								</select>
+							</td>
+						</tr>
+						<tr class="form-group">
+							<td class="td-ench"><label class="control-label">@Resources.Resource.CarPetrolConsumption</label></td>
+							<td>
+								<input type="number" class="form-control input-lg" id="newInputCarPetrolConsumption" name="CarPetrolConsumption" min="1" max="100" data-delay="150" data-error="@Resources.Resource.CarPCError" placeholder="@Resources.Resource.CarPetrolConsumption" value="" required>
+								<span class="help-block with-errors"></span>
+							</td>
+						</tr>
+						<tr class="form-group">
+							<td class="td-ench"><label class="control-label">@Resources.Resource.CarManufactureDate</label></td>
+							<td>
+								<input type='text' class="form-control input-lg bootstrap-datetimepicker-widget" id='datetimepicker1' name="CarManufactureDate" placeholder="@Resources.Resource.CarManufactureDate"
+									   pattern="^((0?[13578]|10|12)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))$"
+									   data-delay="150" data-error="@Resources.Resource.CarMDError" value="" required>
+								<span class="help-block with-errors"></span>
+							</td>
+						</tr>
+						<tr>
+							<td class="td-ench"><label class="control-label">@Resources.Resource.CarState</label></td>
+							<td>
+								<select class="form-control input-lg" name="CarState" id="newInputCarState">
+									@foreach (var carState in EnumHelper.GetCarStates())
+									{
+										<option value="@carState.Key">@carState.Value</option>
+									}
+								</select>
+							</td>
+						</tr>
+					</table>
+				</form>
 			</div>
 
 			<div class="modal-footer">
 				<button type="button" class="btn btn-warning" data-dismiss="modal">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true">&nbsp;</span>@Resources.Resource.cancelButton
 				</button>
-				<a class="btn btn-success btn-ok">
+				<button form="edit-car-form" role="button" type="submit" class="btn btn-success btn-ok">
 					<span class="glyphicon glyphicon-plus" aria-hidden="true">&nbsp;</span>@Resources.Resource.saveButton
-				</a>
+				</button>
 			</div>
 		</div>
 	</div>

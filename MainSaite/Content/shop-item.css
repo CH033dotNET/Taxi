@@ -357,3 +357,10 @@ margin-left:46%;
 .btn-group .fixMargin {
 margin:0px;
 }
+
+#loading{
+    display:none;
+}
+.phoneModal{
+    color: red;
+}

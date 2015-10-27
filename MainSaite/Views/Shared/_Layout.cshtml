@@ -99,10 +99,10 @@
                             <li class="list-group-item">@Html.ActionLink(Resources.Resource.PersonalCabinet, "Index", "Driver")</li>}
                         @if (ViewBag.UserRoleId == (int)AvailableRoles.Client)
                         {
-                            <li class="list-group-item">@Html.ActionLink(@Resources.Resource.TitleLeftMenuUserAddress, "Index", "Address")</li>
-                            <li class="list-group-item">@Html.ActionLink(@Resources.Resource.UserMenu, "Index", "UserPage")</li>
-                            <li class="list-group-item">@Html.ActionLink("[Demo Page]","Iframe","UserPage") </li>
-
+                           <li class="list-group-item">@Html.ActionLink(@Resources.Resource.TitleLeftMenuUserAddress, "Index", "Address")</li>
+                           <li class="list-group-item">@Html.ActionLink(@Resources.Resource.UserPage, "Index", "UserPage")</li>
+                           <li class="list-group-item">@Html.ActionLink("[Demo Page]","Iframe","UserPage") </li>
+                           <li class="list-group-item">@Html.ActionLink(@Resources.Resource.ClientDriveHistory, "ShowHistory", "DriveClientHistory")</li>
                         }
                         @if (ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
                         {

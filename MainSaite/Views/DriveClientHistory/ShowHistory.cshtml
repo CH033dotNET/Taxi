@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Model.DTO.OrderDTO>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/ClientDriveHistory/ClientDrHistTbl.css" rel="stylesheet" />
+
+<center class="bodyTbl">
+    <h1 id="historyHeader">@Resources.Resource.ClientDriveHistory</h1>
+    <table class="driveClHistTb">
+        <thead>
+            <tr>
+                <th>@Resources.Resource.Data</th>
+                <th> @Resources.Resource.PeekPlace</th>
+                <th>@Resources.Resource.DropPlace</th>
+                <th>@Resources.Resource.Runtime</th>
+                <th>@Resources.Resource.Price</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @{
+                foreach (var order in Model)
+                {
+                    <tr>
+                        <td>
+                           @order.OrderTime.ToLongDateString()
+                            </td>
+                            <td>
+                                @order.PeekPlace
+                            </td>
+                            <td>
+                                @order.DropPlace
+                            </td>
+                        <td>
+                            @order.RunTime
+                        </td>
+                        <td>
+                            @order.TotalPrice
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+
+    </table>
+</center>

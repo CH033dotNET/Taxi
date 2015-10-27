@@ -21,7 +21,7 @@ namespace BAL.Manager
 
         public IEnumerable<TarifDTO> GetTarifes()
         {
-            var list = from tarifes in uOW.TarifRepo.Get()
+            var list = from tarifes in uOW.TarifRepo.All
                        select new TarifDTO
                        {
                            id = tarifes.id,

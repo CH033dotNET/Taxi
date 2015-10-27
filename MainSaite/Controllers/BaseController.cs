@@ -15,6 +15,7 @@ namespace MainSaite.Controllers
 {
 	public class BaseController : Controller
 	{
+
 		//
 		// GET: /Base/
 		protected UnitOfWork uOW;
@@ -25,13 +26,35 @@ namespace MainSaite.Controllers
 		protected PersonManager personManager;
 		protected LocationManager locationManager;
 		protected TarifManager tarifManager;
-		protected WebViewPageBase session;
 		protected LocationManager locationmanager;
 		protected DistrictManager districtmanager;
 		protected CoordinatesManager coordinatesManager;
 		protected OrderManager orderManager;
         protected DriverManager driverManager;
         protected DriverLocationHelper driverLocationHelper;
+
+		public UserDTO SessionUser
+		{
+			get
+			{
+				return Session["User"] as UserDTO;
+			}
+			set
+			{
+				Session["User"] = value;
+			}
+		}
+		public List<CoordinatesDTO> SessionCordinates
+		{
+			get
+			{
+				return Session["Coordinates"] as List<CoordinatesDTO>;
+			}
+			set
+			{
+				Session["Coordinates"] = value;
+			}
+		}
 
 		public BaseController()
 		{
@@ -43,7 +66,6 @@ namespace MainSaite.Controllers
 			personManager = new PersonManager(uOW);
 			locationManager = new LocationManager(uOW);
 			tarifManager = new TarifManager(uOW);
-			session = new WebViewPageBase();
 			locationmanager = new LocationManager(uOW);
 			districtmanager = new DistrictManager(uOW);
 			coordinatesManager = new CoordinatesManager(uOW);
@@ -64,16 +86,16 @@ namespace MainSaite.Controllers
 
 
 
-			if (session.User != null)
+			if (SessionUser != null)
 			{
-				UserDTO user = session.User;
+				UserDTO user = SessionUser;
 				ViewBag.UserRoleId = user.Role.Id;
 				ViewBag.ImageName = personManager.GetPersonByUserId(user.Id).ImageName;
 			}
 
-			if (session.Coordinates == null)
+			if (SessionCordinates == null)
 			{
-				session.Coordinates = new List<CoordinatesDTO>();
+				SessionCordinates = new List<CoordinatesDTO>();
 			}
 
 			base.OnActionExecuting(filterContext);

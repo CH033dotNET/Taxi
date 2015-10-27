@@ -68,12 +68,12 @@
 						<td>@district.DistrictName</td>
 						@if (@district.DriverId != (Session["User"] as Model.DTO.UserDTO).Id)
 						{
-							<td></td>
+							
 							<td>@Html.ActionLink(@Resources.Resource.Join, "JoinToLocation", new { Id = @district.DistrictId })</td>
 						}
 						else
 						{
-							<td></td>
+							
 							<td>@Resources.Resource.DriverIsHere</td>
 						}
 

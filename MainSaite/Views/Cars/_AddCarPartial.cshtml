@@ -12,33 +12,36 @@
 			</div>
 			<div class="modal-body">
 				@Html.AntiForgeryToken()
-				<font color="red">@Html.ValidationSummary()</font>
-				<form id="add-car-form" method="post" autocomplete="off">
+				<form data-toggle="validator" role="form" id="add-car-form" method="post" autocomplete="off">
 					<table class="table table-condensed">
-						<tr>
+						<tr class="form-group">
 							<td class="td-ench"><label for="inputCarName" class="control-label">@Resources.Resource.CarName *</label></td>
 							<td>
-								<input type="text" class="form-control input-lg" id="inputCarName" name="CarName" placeholder="@Resources.Resource.CarName" value="" required>
+								<input type="text" class="form-control input-lg" id="inputCarName" name="CarName" placeholder="@Resources.Resource.CarName" data-delay="150" data-minlength="2" data-maxlength="20" data-error="@Resources.Resource.CarNameError" value="" required>
+								<span class="help-block with-errors"></span>
 							</td>
 						</tr>
-						<tr>
+						<tr class="form-group">
 							<td class="td-ench">
 								<label for="inputCarNickName" class="control-label">@Resources.Resource.CarNickName *</label>
 							</td>
 							<td>
-								<input type="text" class="form-control input-lg" id="inputCarNickName" name="CarNickName" placeholder="@Resources.Resource.CarNickName" value="" required>
+								<input type="text" class="form-control input-lg" id="inputCarNickName" name="CarNickName" placeholder="@Resources.Resource.CarNickName" data-delay="150" data-minlength="4" data-maxlength="6" data-error="@Resources.Resource.CarNickNameError" value="" required>
+								<span class="help-block with-errors"></span>
 							</td>
 						</tr>
-						<tr>
+						<tr class="form-group">
 							<td class="td-ench"><label for="inputCarNumber" class="control-label">@Resources.Resource.CarNumber *</label></td>
 							<td>
-								<input type="text" class="form-control input-lg" id="inputCarNumber" name="CarNumber" placeholder="@Resources.Resource.CarNumber" value="" required>
+								<input type="text" class="form-control input-lg" id="inputCarNumber" name="CarNumber" placeholder="@Resources.Resource.CarNumber" data-delay="150" data-minlength="4" data-maxlength="8" pattern="[а-я]\d{3}[а-я]{2}\d{2,3}" data-error="@Resources.Resource.CarNumberError" value="" required>
+								<span class="help-block with-errors"></span>
 							</td>
 						</tr>
-						<tr>
+						<tr class="form-group">
 							<td class="td-ench"><label for="inputCarOccupation" class="control-label">@Resources.Resource.CarOccupation *</label></td>
 							<td>
-								<input type="number" class="form-control input-lg" id="inputCarOccupation" name="CarOccupation" min="2" max="20" placeholder="@Resources.Resource.CarOccupation" value="" required>
+								<input type="number" class="form-control input-lg" id="inputCarOccupation" name="CarOccupation" min="2" max="20" data-delay="150" data-error="@Resources.Resource.CarOccupError" placeholder="@Resources.Resource.CarOccupation" value="" required>
+								<span class="help-block with-errors"></span>
 							</td>
 						</tr>
 						<tr>
@@ -63,16 +66,20 @@
 								</select>
 							</td>
 						</tr>
-						<tr>
+						<tr class="form-group">
 							<td class="td-ench"><label for="inputCarPetrolConsumption" class="control-label">@Resources.Resource.CarPetrolConsumption *</label></td>
 							<td>
-								<input type="number" class="form-control input-lg" id="inputCarPetrolConsumption" name="CarPetrolConsumption" min="1" max="100" placeholder="@Resources.Resource.CarPetrolConsumption" value="" required>
+								<input type="number" class="form-control input-lg" id="inputCarPetrolConsumption" name="CarPetrolConsumption" min="1" max="100" data-delay="150" data-error="@Resources.Resource.CarPCError" placeholder="@Resources.Resource.CarPetrolConsumption" value="" required>
+								<span class="help-block with-errors"></span>
 							</td>
 						</tr>
-						<tr>
+						<tr class="form-group">
 							<td class="td-ench"><label for="inputCarManufactureDate" class="control-label">@Resources.Resource.CarManufactureDate *</label></td>
 							<td>
-								<input type='text' class="form-control input-lg bootstrap-datetimepicker-widget" id='datetimepicker2' name="CarManufactureDate" placeholder="@Resources.Resource.CarManufactureDate" value="" required>
+								<input type='text' class="form-control input-lg bootstrap-datetimepicker-widget" id='datetimepicker2' name="CarManufactureDate" data-delay="150"
+									   pattern="^((0?[13578]|10|12)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))$"
+									   data-error="@Resources.Resource.CarMDError" placeholder="@Resources.Resource.CarManufactureDate" value="" required>
+								<span class="help-block with-errors"></span>
 							</td>
 						</tr>
 						<tr>
@@ -90,9 +97,9 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<a class="btn btn-success role=" button" onclick="carController.addConfirm()" aria-label="Left Align">
+				<button form="add-car-form" type="submit" class="btn btn-success" role="button" onclick="carController.addConfirm()" aria-label="Left Align">
 					<span class="glyphicon glyphicon-plus" aria-hidden="true">&nbsp;</span> @Resources.Resource.addString
-				</a>
+				</button>
 				<button type="button" class="btn btn-info" data-dismiss="modal">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true">&nbsp;</span>@Resources.Resource.cancelButton
 				</button>
