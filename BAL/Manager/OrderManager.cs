@@ -19,16 +19,6 @@ namespace BAL.Manager
 		public OrderDTO InsertOrder(OrderDTO order)
 		{
 			var temp = Mapper.Map<Order>(order);
-			order.DropPlace = temp.DropPlace;
-			order.PeekPlace = temp.PeekPlace;
-			order.LatitudePeekPlace = temp.LatitudePeekPlace;
-			order.LatitudeDropPlace = temp.LatitudeDropPlace;
-			order.Accuracy = temp.Accuracy;
-			order.LongitudePeekPlace = temp.LongitudePeekPlace;
-			order.LongitudeDropPlace = temp.LongitudeDropPlace;
-			order.RunTime = temp.RunTime;
-			order.OrderTime = temp.OrderTime;
-			order.PersonId = temp.PersonId;
 			uOW.OrderRepo.Insert(temp);
 			uOW.Save();
 
@@ -61,7 +51,9 @@ namespace BAL.Manager
 			newOrder.RunTime = order.RunTime;
 			newOrder.OrderTime = order.OrderTime;
 			newOrder.PersonId = order.PersonId;
-
+			newOrder.StartWork = order.StartWork;
+			newOrder.EndWork = order.EndWork;
+			newOrder.WaitingTime = order.WaitingTime;
 			uOW.Save();
 			return Mapper.Map<OrderDTO>(newOrder);
 		}
