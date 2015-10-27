@@ -79,13 +79,15 @@ namespace BAL.Manager
 				coordinates.Accuracy = double.Parse(Accuracy);
 			}
 			catch (FormatException)
-			{
-				Latitude = Latitude.Replace('.', ',');
-				Longitude = Longitude.Replace('.', ',');
-				Accuracy = Accuracy.Replace('.', ',');
-				coordinates.Latitude = double.Parse(Latitude);
-				coordinates.Longitude = double.Parse(Longitude);
-				coordinates.Accuracy = double.Parse(Accuracy);
+            {
+
+                    Latitude = Latitude.Replace('.', ',');
+                    Longitude = Longitude.Replace('.', ',');
+                    Accuracy = Accuracy.Replace('.', ',');
+                    coordinates.Latitude = double.Parse(Latitude);
+                    coordinates.Longitude = double.Parse(Longitude);
+                    coordinates.Accuracy = double.Parse(Accuracy);
+
 			}
 			coordinates.UserId = UserId;
 			coordinates.AddedTime = DateTime.Now;

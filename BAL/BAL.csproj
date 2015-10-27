@@ -62,6 +62,7 @@
     <Compile Include="Manager\CarManager.cs" />
     <Compile Include="Manager\CoordinatesManager.cs" />
     <Compile Include="Manager\DistrictManager.cs" />
+    <Compile Include="Manager\DriverManager.cs" />
     <Compile Include="Manager\ImageUpload.cs" />
     <Compile Include="Manager\LocationManager.cs" />
     <Compile Include="Manager\OrderManager.cs" />

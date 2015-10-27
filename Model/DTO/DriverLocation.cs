@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MainSaite.Models
+namespace Model.DTO
 {
 	public class DriverLocation
 	{

@@ -60,6 +60,7 @@
     <Compile Include="DB\LoginModel.cs" />
     <Compile Include="DTO\CoordinatesDTO.cs" />
     <Compile Include="DTO\DriverDistrictInfoDTO.cs" />
+    <Compile Include="DTO\DriverLocation.cs" />
     <Compile Include="DTO\LocationDTO.cs" />
     <Compile Include="DTO\OrderDTO.cs" />
     <Compile Include="DTO\Pager.cs" />

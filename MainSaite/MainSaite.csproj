@@ -166,6 +166,7 @@
     <Compile Include="Controllers\CarsController.cs" />
     <Compile Include="Controllers\DrivingSimulationController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Helpers\DriverLocationHelper.cs" />
     <Compile Include="Models\AutoParkViewModel.cs" />
     <Compile Include="Models\CarChangeUser.cs" />
     <Compile Include="Startup.cs" />
@@ -185,9 +186,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Hubs\driversLocationHub.cs" />
+    <Compile Include="Hubs\DriversLocationHub.cs" />
     <Compile Include="Models\CreateTarifModel.cs" />
-    <Compile Include="Models\DriverLocation.cs" />
     <Compile Include="Models\WebViewPageBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -445,7 +445,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Helpers\" />
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using MainSaite.Helpers;
 
 namespace MainSaite.Controllers
 {
@@ -29,7 +30,8 @@ namespace MainSaite.Controllers
 		protected DistrictManager districtmanager;
 		protected CoordinatesManager coordinatesManager;
 		protected OrderManager orderManager;
-
+        protected DriverManager driverManager;
+        protected DriverLocationHelper driverLocationHelper;
 
 		public BaseController()
 		{
@@ -46,7 +48,10 @@ namespace MainSaite.Controllers
 			districtmanager = new DistrictManager(uOW);
 			coordinatesManager = new CoordinatesManager(uOW);
 			orderManager = new OrderManager(uOW);
-            coordinatesManager.addedCoords += driversLocationHub.addedLocation;
+            driverManager = new DriverManager(uOW);
+            driverLocationHelper = new DriverLocationHelper();
+            coordinatesManager.addedCoords += driverLocationHelper.addedLocation;
+            
 		}
 
 		protected override void OnActionExecuting(ActionExecutingContext filterContext)
