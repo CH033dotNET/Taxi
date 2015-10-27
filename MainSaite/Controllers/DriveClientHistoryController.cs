@@ -9,10 +9,12 @@ namespace MainSaite.Controllers
     public class DriveClientHistoryController : BaseController
     {
 		
+		[HttpGet]
         public ActionResult ShowHistory()
         {
 			var clientDriveHistory = orderManager.GetOrders();
 			return View(clientDriveHistory);
         }
+
     }
 }

@@ -655,6 +655,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data.
+        /// </summary>
+        public static string Data {
+            get {
+                return ResourceManager.GetString("Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chernivtsi.
         /// </summary>
         public static string DefaultValueOfCity {
@@ -868,6 +877,15 @@ namespace Resources {
         public static string DriversActivity {
             get {
                 return ResourceManager.GetString("DriversActivity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drop place.
+        /// </summary>
+        public static string DropPlace {
+            get {
+                return ResourceManager.GetString("DropPlace", resourceCulture);
             }
         }
         
@@ -1259,6 +1277,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Peec place.
+        /// </summary>
+        public static string PeekPlace {
+            get {
+                return ResourceManager.GetString("PeekPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Personal cabinet.
         /// </summary>
         public static string PersonalCabinet {
@@ -1273,6 +1300,15 @@ namespace Resources {
         public static string Phone {
             get {
                 return ResourceManager.GetString("Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price.
+        /// </summary>
+        public static string Price {
+            get {
+                return ResourceManager.GetString("Price", resourceCulture);
             }
         }
         
@@ -1336,6 +1372,15 @@ namespace Resources {
         public static string Role {
             get {
                 return ResourceManager.GetString("Role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run time.
+        /// </summary>
+        public static string Runtime {
+            get {
+                return ResourceManager.GetString("Runtime", resourceCulture);
             }
         }
         

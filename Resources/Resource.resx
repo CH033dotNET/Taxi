@@ -637,4 +637,19 @@
   <data name="ClientDriveHistory" xml:space="preserve">
     <value>Drive History</value>
   </data>
+  <data name="Data" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="DropPlace" xml:space="preserve">
+    <value>Drop place</value>
+  </data>
+  <data name="PeekPlace" xml:space="preserve">
+    <value>Peec place</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="Runtime" xml:space="preserve">
+    <value>Run time</value>
+  </data>
 </root>

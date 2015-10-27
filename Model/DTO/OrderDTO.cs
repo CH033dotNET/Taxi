@@ -20,7 +20,7 @@ namespace Model.DTO
 		[MaxLength(120, ErrorMessage = "Максимальная длинна - 120 символов")]
 		public string DropPlace { get; set; }
 		[Required]
-		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh-mm-ss}", ApplyFormatInEditMode = true)]
+		
 		public DateTime OrderTime { get; set; }
 	    
 		[MaxLength(120, ErrorMessage = "Максимальная длинна - 80 символов")]
@@ -36,10 +36,10 @@ namespace Model.DTO
 		[Required]
 		public double LongitudePeekPlace { get; set; }
 
-		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh-mm-ss}", ApplyFormatInEditMode = true)]
+		
 		public Nullable<DateTime> StartWork { get; set; }
 		
-		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh-mm-ss}", ApplyFormatInEditMode = true)]
+
 		public Nullable<DateTime> EndWork { get; set; }
 		public int DriverId { get; set; }
 		public string WaitingTime { get; set; }

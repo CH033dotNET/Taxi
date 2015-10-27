@@ -2,51 +2,45 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style type="text/css" rel="stylesheet">
-    table, th, td {
-    
-    border-collapse:collapse;
-    border-bottom:ridge ;
-}
-    th, td {
-    padding: 15px;
-}
-    th {
-    font-size:x-large;
-    }
-    td {
-    font-size:large;
-    }
-</style>
+<link href="~/Content/ClientDriveHistory/ClientDrHistTbl.css" rel="stylesheet" />
 
-<center><h1>@Resources.Resource.ClientDriveHistory</h1></center>
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th> age</th>
-            <th>Last name</th>
-        </tr>
+<center class="bodyTbl">
+    <h1 id="historyHeader">@Resources.Resource.ClientDriveHistory</h1>
+    <table class="driveClHistTb">
+        <thead>
+            <tr>
+                <th>@Resources.Resource.Data</th>
+                <th> @Resources.Resource.PeekPlace</th>
+                <th>@Resources.Resource.DropPlace</th>
+                <th>@Resources.Resource.Runtime</th>
+                <th>@Resources.Resource.Price</th>
+            </tr>
 
-    </thead>
-    <tbody>
-        @{
-            foreach (var order in Model)
-            {
-                <tr>
-                    <td>
-                        @order.ComeIn
-                    </td>
-                    <td>
-                        @order.ComeOut
-                    </td>
-                    <td>
-                        @order.EndWork
-                    </td>
-                </tr>
-
-        }
+        </thead>
+        <tbody>
+            @{
+                foreach (var order in Model)
+                {
+                    <tr>
+                        <td>
+                           @order.OrderTime.ToLongDateString()
+                            </td>
+                            <td>
+                                @order.PeekPlace
+                            </td>
+                            <td>
+                                @order.DropPlace
+                            </td>
+                        <td>
+                            @order.RunTime
+                        </td>
+                        <td>
+                            @order.TotalPrice
+                        </td>
+                    </tr>
+                }
             }
-    </tbody>
+        </tbody>
 
-</table>
+    </table>
+</center>
