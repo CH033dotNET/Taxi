@@ -163,9 +163,13 @@
     <Compile Include="Migrations\201510211235011_Update table Orders.Designer.cs">
       <DependentUpon>201510211235011_Update table Orders.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201510271202492_Update Orders table.cs" />
-    <Compile Include="Migrations\201510271202492_Update Orders table.Designer.cs">
-      <DependentUpon>201510271202492_Update Orders table.cs</DependentUpon>
+    <Compile Include="Migrations\201510271629119_fix orders first.cs" />
+    <Compile Include="Migrations\201510271629119_fix orders first.Designer.cs">
+      <DependentUpon>201510271629119_fix orders first.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510271633273_fix orders last.cs" />
+    <Compile Include="Migrations\201510271633273_fix orders last.Designer.cs">
+      <DependentUpon>201510271633273_fix orders last.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -266,8 +270,11 @@
     <EmbeddedResource Include="Migrations\201510211235011_Update table Orders.resx">
       <DependentUpon>201510211235011_Update table Orders.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510271202492_Update Orders table.resx">
-      <DependentUpon>201510271202492_Update Orders table.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510271629119_fix orders first.resx">
+      <DependentUpon>201510271629119_fix orders first.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510271633273_fix orders last.resx">
+      <DependentUpon>201510271633273_fix orders last.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
