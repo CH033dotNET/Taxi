@@ -64,19 +64,49 @@ namespace BAL.Manager
 			return orderList;
 		}
 
-		public OrderDTO GetOrderByPersonId(int? id)
+		public IEnumerable<OrderDTO> GetOrdersByPersonId(int? id)
 		{
 			if (id == 0)
 			{
 				return null;
 			}
-			var order = uOW.OrderRepo.Get().Where(s => s.PersonId == id).FirstOrDefault();
+			var order = uOW.OrderRepo.Get().Where(s => s.PersonId == id);
+			if (order != null)
+			{
+				return Mapper.Map<IEnumerable<OrderDTO>>(order);
+			}
+			return null;
+		}
+
+		public OrderDTO GetNotStartOrderByDriver(int? id)
+		{
+			if (id == 0)
+			{
+				return null;
+			}
+			var order = uOW.OrderRepo.Get().Where(s => s.StartWork == null).FirstOrDefault();
 			if (order != null)
 			{
 				return Mapper.Map<OrderDTO>(order);
 			}
 			return null;
+
 		}
+		public OrderDTO GetStartedOrderByDriver(int? id)
+		{
+			if (id == 0)
+			{
+				return null;
+			}
+			var order = uOW.OrderRepo.Get().Where(s => s.StartWork != null && s.EndWork == null).FirstOrDefault();
+			if (order != null)
+			{
+				return Mapper.Map<OrderDTO>(order);
+			}
+			return null;
+
+		}
+
 		public OrderDTO GetOrderByOrderID(int? id)
 		{
 			if (id == 0)
