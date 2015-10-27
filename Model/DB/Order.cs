@@ -16,34 +16,35 @@ namespace Model.DB
 		public int Id { get; set; }
 		[Required]
 		[MaxLength(120, ErrorMessage = "Максимальная длинна - 120 символов")]
-		public string ComeOut { get; set; }
+		public string PeekPlace { get; set; }
 		[Required]
 		[MaxLength(120, ErrorMessage = "Максимальная длинна - 120 символов")]
-		public string ComeIn { get; set; }
+		public string DropPlace { get; set; }
 		[Required]
 		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh-mm-ss}", ApplyFormatInEditMode = true)]
 		public DateTime OrderTime { get; set; }
 		[MaxLength(120, ErrorMessage = "Максимальная длинна - 80 символов")]
 		public string RunTime { get; set; }
 		[Required]
-		public float LatitudeComeOut { get; set; }
+		public double LatitudeDropPlace { get; set; }
 		[Required]
-		public float LongitudeComeOut { get; set; }
+		public double LongitudeDropPlace { get; set; }
 
-		public float Accuracy { get; set; }
+		public double Accuracy { get; set; }
 		[Required]
-		public float LatitudeComeIn { get; set; }
+		public double LatitudePeekPlace { get; set; }
 		[Required]
-		public float LongitudeComeIn { get; set; }
+		public double LongitudePeekPlace { get; set; }
 		
 		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh-mm-ss}", ApplyFormatInEditMode = true)]
-		public DateTime StartWork { get; set; }
+		public Nullable<DateTime> StartWork { get; set; }
 		
 		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh-mm-ss}", ApplyFormatInEditMode = true)]
-		public DateTime EndWork { get; set; }
+		public Nullable<DateTime> EndWork { get; set; }
 		public int DriverId { get; set; }
 		public string WaitingTime { get; set; }
-
+		[Required]
+		public decimal TotalPrice { get; set; }
 		[ForeignKey("PersonId")]
 		public virtual Person Person { get; set; }
 		public int PersonId { get; set; }
