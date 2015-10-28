@@ -50,6 +50,60 @@ var carController = {
 		$('#add-car-modal').modal('hide');
 	},//end
 
+
+	addConfirm2: function () { //start
+		var newCarName = $('#inputCarName').val();
+		var newCarNickName = $('#inputCarNickName').val();
+		var newCarNumber = $('#inputCarNumber').val();
+		var newCarOccupation = $('#inputCarOccupation').val();
+		var newCarClass = $('#inputCarClass').val();
+		var newCarPetrolType = $('#inputCarPetrolType').val();
+		var newCarPetrolConsumption = $('#inputCarPetrolConsumption').val();
+		var newCarManufactureDate = $('#datetimepicker2').val();
+		var newCarState = $('#inputCarState').val();
+		$.ajax({
+			url: "/Cars/AddNewCar2/",
+			data: {
+				UserId: userId,
+				OwnerId: ownerId,
+				CarName: newCarName,
+				CarNickName: newCarNickName,
+				CarNumber: newCarNumber,
+				CarOccupation: newCarOccupation,
+				CarClass: newCarClass,
+				CarPetrolType: newCarPetrolType,
+				CarPetrolConsumption: newCarPetrolConsumption,
+				CarManufactureDate: newCarManufactureDate,
+				CarState: newCarState
+			},
+			dataType: "JSON",
+		}).done(function (result) {
+			if (result.success && result != null) {
+				carController.carData.cars = result;
+				carController.renderCarData();
+				document.getElementById("add-car-form").reset();
+			}
+			else {
+				carController.getErrorMessage();
+			}
+		})
+		.fail(function () { alert("SHEEET!") })
+		.always(function () {
+			$('#datetimepicker1').datetimepicker('clear');
+			$('#datetimepicker2').datetimepicker('clear');
+			$('#add-car-modal').modal('hide');
+		})
+	},//end
+
+	getErrorMessage: function () {
+		$('#get-car-error-modal').modal('show');
+		$('#get-car-error-modal .btn-try').off("click.errorCar").on("click.errorCar", function () {
+			$('#get-car-error-modal .btn-try').off("click.errorCar");
+			$('#get-car-error-modal').modal('hide');
+			return false;
+		});
+	},
+
 	getCarEdit: function (e) {
 
 		$('#edit-car-modal').modal('show');

@@ -1,4 +1,5 @@
-﻿using Common.Enum;
+﻿using BAL.Tools;
+using Common.Enum;
 using MainSaite.Models;
 using Model.DTO;
 using System;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using FluentValidation;
 
 namespace MainSaite.Controllers
 {
@@ -31,12 +33,29 @@ namespace MainSaite.Controllers
 			{
 				int userId = SessionUser.Id;
 				CarsViewModel.Cars = carManager.getCarsByUserID(userId).ToList();
-				//CarsViewModel.Drivers = userManager.GetDrivers().Where(x => x.Id != SessionUser.Id).ToList();
 				CarsViewModel.Drivers = userManager.GetDriversExceptCurrent(userId);
-				//var list = carManager.getCarsByUserID(userId).ToList();
 				return View(CarsViewModel);
 			}
 		}
+
+		public JsonResult AddNewCar2(CarDTO car)
+		{
+			IEnumerable<CarDTO> DriversCars;
+			int userId = SessionUser.Id;
+			CarModelValidator validator = new CarModelValidator();
+			var checkedCar = validator.Validate(car, ruleSet: "AddNewCar");
+			if (!checkedCar.IsValid)
+			{
+				return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+			}
+			else
+			{
+				carManager.addCar(car);
+				DriversCars = carManager.getCarsByUserID(userId);
+				return Json(new { success = true, DriversCars }, JsonRequestBehavior.AllowGet);
+			}
+		}
+
 		/// <summary>
 		/// Gets an object from ajax call and adds it to database
 		/// </summary>
