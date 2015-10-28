@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,12 +10,16 @@ namespace MainSaite.Controllers
     public class DriveClientHistoryController : BaseController
     {
 		
-		[HttpGet]
+		
         public ActionResult ShowHistory()
         {
-			var clientDriveHistory = orderManager.GetOrders();
-			return View(clientDriveHistory);
+			return View();
         }
 
+		public JsonResult GetHistory()
+		{ 
+			var clientDriveHistory = orderManager.GetOrders();
+			return Json(clientDriveHistory, JsonRequestBehavior.AllowGet);
+		}
     }
 }

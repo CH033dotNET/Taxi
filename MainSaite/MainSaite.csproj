@@ -354,6 +354,7 @@
     <None Include="Scripts\jquery-1.9.1-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\ClientDrHistory\ClientDrHistory.js" />
     <Content Include="Scripts\jquery.inputmask\inputmask.date.extensions.js" />
     <Content Include="Scripts\jquery.inputmask\inputmask.extensions.js" />
     <Content Include="Scripts\jquery.inputmask\inputmask.js" />
