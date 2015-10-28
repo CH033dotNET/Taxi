@@ -34,7 +34,7 @@ namespace BAL.Manager
 
 		public OrderDTO EditOrder(OrderDTO order)
 		{
-			var newOrder = uOW.OrderRepo.Get(s => s.PersonId == order.PersonId).First();
+			var newOrder = uOW.OrderRepo.Get(s => s.PersonId == order.PersonId).Last();
 			if (newOrder == null)
 			{
 				return null;
@@ -90,7 +90,7 @@ namespace BAL.Manager
 			{
 				return null;
 			}
-			var order = uOW.OrderRepo.Get().Where(s => s.StartWork == null).FirstOrDefault();
+			var order = uOW.OrderRepo.Get().Where(s => s.DriverId == id && s.StartWork == null).FirstOrDefault();
 			if (order != null)
 			{
 				return Mapper.Map<OrderDTO>(order);
@@ -104,7 +104,7 @@ namespace BAL.Manager
 			{
 				return null;
 			}
-			var order = uOW.OrderRepo.Get().Where(s => s.StartWork != null && s.EndWork == null).FirstOrDefault();
+			var order = uOW.OrderRepo.Get().Where(s => s.DriverId == id && s.StartWork != null && s.EndWork == null).FirstOrDefault();
 			if (order != null)
 			{
 				return Mapper.Map<OrderDTO>(order);
