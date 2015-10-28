@@ -149,7 +149,6 @@
 
 	$('#add-car-form').validator().on('submit', function (e) {
 		if (e.isDefaultPrevented()) {
-			alert("GREEE");
 			return false;
 		} else {
 			carController.addConfirm2();

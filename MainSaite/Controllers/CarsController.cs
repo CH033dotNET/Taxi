@@ -37,7 +37,11 @@ namespace MainSaite.Controllers
 				return View(CarsViewModel);
 			}
 		}
-
+		/// <summary>
+		/// Gets an object from ajax call and adds it to database
+		/// </summary>
+		/// <param name="car">object from ajax call</param>
+		/// <returns></returns>
 		public JsonResult AddNewCar2(CarDTO car)
 		{
 			IEnumerable<CarDTO> DriversCars;
@@ -110,10 +114,20 @@ namespace MainSaite.Controllers
 		/// <returns></returns>
 		public JsonResult EditCar(CarDTO car)
 		{
-			carManager.EditCar(car);
 			int userId = SessionUser.Id;
-			IEnumerable<CarDTO> DriversCars = carManager.getCarsByUserID(userId);
-			return Json(DriversCars, JsonRequestBehavior.AllowGet);
+			IEnumerable<CarDTO> DriversCars;
+			CarModelValidator validator = new CarModelValidator();
+			var checkedCar = validator.Validate(car, ruleSet: "EditThisCar");
+			if (!checkedCar.IsValid)
+			{
+				return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+			}
+			else
+			{
+				carManager.EditCar(car);
+				DriversCars = carManager.getCarsByUserID(userId);
+				return Json(new { success = true, DriversCars }, JsonRequestBehavior.AllowGet);
+			}
 		}
 		/// <summary>
 		/// Gets specific id`s from ajax call and interpret them as values of specific object`s properties.
