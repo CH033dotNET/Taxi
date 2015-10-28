@@ -3,8 +3,12 @@ body { height: 93%;
        padding-top:0px; 
        
 
-}    
-  
+}
+
+.mapContainer {
+        width: 100%;
+        height: 100%;
+}
 
 #map {
         width: 100%;
@@ -15,6 +19,15 @@ body { height: 93%;
 margin-bottom:0px;
 
 }
+
+#responsive-menu .nav> li> a{
+    padding: 10px 34px;
+    margin-left:1px;
+}
+
+.mapContainer{
+    background-color: #222;
+} 
 
 #autocomplete {
 background-color: #fff;

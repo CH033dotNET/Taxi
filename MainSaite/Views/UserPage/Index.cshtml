@@ -64,13 +64,13 @@
         </button>
     </div>
     <div class="collapse navbar-collapse" id="responsive-menu">
-        <ul class="nav navbar-nav">
-            @foreach (var i in Model.addresses)
-            {
-                <li> <a href="#"> @String.Format("{0} {1} {2}", i.City, i.Street, i.Number) </a> </li>
-            }
 
-        </ul>
+                <ul class="nav nav-tabs">
+                    <li class="active"> <a href="#map" id="show-map" data-toggle="tab">content1</a> </li>
+                    <li class=""> <a href="#tab-2" data-toggle="tab">content2</a> </li>
+                    <li class=""> <a href="#tab-3" data-toggle="tab">content3</a> </li>
+                </ul>
+
     </div>
 }
 
@@ -100,9 +100,32 @@
     </div>
 </div>
 
-<div id="map"></div>
 
 
+
+<div class="tab-content mapContainer">
+    <div id="map" class="tab-pane fade in active"></div>
+    
+     <div class="tab-pane fade" id="tab-2">
+         <ul class="nav navbar-inverse">
+
+             @foreach (var i in Model.addresses)
+             {
+                 <li> <a href="#" class="address"> @String.Format("{0} {1} {2}", i.City, i.Street, i.Number) </a> </li>
+             }
+
+         </ul> 
+    </div>
+    <div class="tab-pane fade" id="tab-3">
+        <ul class="nav navbar-inverse">
+            @foreach (var i in Model.DroPlaces)
+            {
+                <li> <a href="#" class="address"> @String.Format("{0}", i) </a> </li>
+            }
+        </ul>
+    </div>
+
+</div>
 
 <script id="PersonInfo" type="text/x-handlebars-template">
     <div class="content">

@@ -231,9 +231,10 @@ $("#autocomplete").keypress(function (e) {
 
 });
 
-$("a").on("click", function () {
+$(".address").on("click", function () {
     $("#autocomplete").val($(this).text());
-    $("#OkBtn").click();//('click');
+    $("#show-map").click();
+    $("#OkBtn").click();
     $("#responsive-menu-btn").click();
 });
 

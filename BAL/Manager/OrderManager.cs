@@ -78,6 +78,12 @@ namespace BAL.Manager
 			return null;
 		}
 
+        public IEnumerable<OrderDTO> GetOrdersByUserId(int id)
+        {
+            int pid = new PersonManager(uOW).GetPersonByUserId(id).Id;
+            return GetOrdersByPersonId(pid);
+        }
+
 		public OrderDTO GetNotStartOrderByDriver(int? id)
 		{
 			if (id == 0)

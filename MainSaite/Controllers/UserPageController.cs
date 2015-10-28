@@ -20,6 +20,7 @@ namespace MainSaite.Controllers
             { 
                 model.addresses = addressmanager.GetAddressesForUser(SessionUser.Id).ToList();
                 model.person = personManager.GetPersonByUserId(SessionUser.Id);
+                model.DroPlaces = orderManager.GetOrdersByUserId(SessionUser.Id).Select(x => x.DropPlace).ToList();
             }
 
             return View(model);
