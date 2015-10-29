@@ -1,8 +1,8 @@
 ﻿@model Model.DB.RegistrationModel
 
-<script type="text/ng-template" src="~/Content/UserMenu/ClientDriveService.css"></script>
+<!--script type="text/ng-template" src="~/Content/UserMenu/ClientDriveService.css"></script-->
 
-    <div class="btform" style="background-image: url('../../Content/Picture/DriverIcons/Registr1.jpg'); ">  
+    <div class="btform" style="/*background-image: url('../../Content/Picture/DriverIcons/Registr1.jpg'); */">  
     @using (Html.BeginForm("Registration"))
     {
         <h2 class="regHead">@Resources.Resource.Registration</h2>
@@ -42,9 +42,13 @@
                 </td>
                 <td>  @Html.TextBoxFor(x => x.Email, new { @id = "emailValue" })</td>
             </tr>
+            <tr>
+                <td colspan="2" style="text-align:center">  
+                    <button type="submit" value="Register" style="display:inline">@Resources.Resource.Registration</button>
+                </td>
+            </tr>
 
         </table>
-    <button class="btn btn-circle" type="submit" value="Register"></button>
     }
    
 </div>

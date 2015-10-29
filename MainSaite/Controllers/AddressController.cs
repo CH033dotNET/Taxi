@@ -19,7 +19,7 @@ namespace MainSaite.Controllers
 
         public ActionResult Index()
         {
-			var addressList = addressmanager.GetAddresses();
+			var addressList = addressmanager.GetAddressesForUser(SessionUser.Id);
 			return View(addressList);
         }
 
