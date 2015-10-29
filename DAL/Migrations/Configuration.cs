@@ -49,13 +49,41 @@ namespace DAL.Migrations
 			if (!context.Users.Any())
 			{
 				context.Users.AddOrUpdate(
+                new User()
+                {
+                    UserName = "admin",
+                    Password = "password",
+                    Email = "admin@gmail.com",
+                    RoleId = 5
+                },
 				new User()
 				{
-					UserName = "admin",
+					UserName = "driver",
 					Password = "password",
-					Email = "admin@gmail.com",
-					RoleId = 5
-				});
+					Email = "driver@gmail.com",
+					RoleId = 1
+				},
+                new User()
+                {
+                    UserName = "operator",
+                    Password = "password",
+                    Email = "operator@gmail.com",
+                    RoleId = 2
+                },
+                new User()
+                {
+                    UserName = "client",
+                    Password = "password",
+                    Email = "client@gmail.com",
+                    RoleId = 3
+                },
+                new User()
+                {
+                    UserName = "report",
+                    Password = "password",
+                    Email = "report@gmail.com",
+                    RoleId = 4
+                });
 				var users = Angie.Configure<User>().Fill(x => x.UserName).AsTwitterHandle<User>().Fill(x => x.Email).AsEmailAddress<User>()
 				.MakeList<User>(30).Select(x => new User { Password = "123456", RoleId = random.Next(1, 5), Email = x.Email, UserName = x.UserName });
 				context.Users.AddRange(users);
@@ -93,7 +121,7 @@ namespace DAL.Migrations
 				Tarif[] tarifs = new Tarif[]{
 				new Tarif() { Name = "Standart", MinimalPrice = 12.50M, OneMinuteCost = 1M, StartPrice = 5M, WaitingCost = 0.5M, IsStandart=true },
 				new Tarif() { Name = "Region", MinimalPrice = 15.40M, OneMinuteCost = 1.4M, StartPrice = 8M, WaitingCost = 0.8M, IsIntercity = true },
-				new Tarif(){ Name ="Personal Driver", MinimalPrice = 40M, OneMinuteCost = 1.5M, StartPrice = 16M, WaitingCost =0.5M, IsStandart =true}
+				new Tarif() { Name ="Personal Driver", MinimalPrice = 40M, OneMinuteCost = 1.5M, StartPrice = 16M, WaitingCost =0.5M}
 				};
 				context.Tarifes.AddRange(tarifs);
 				context.SaveChanges();
