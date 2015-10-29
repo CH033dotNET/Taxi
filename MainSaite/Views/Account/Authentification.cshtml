@@ -1,6 +1,11 @@
 ﻿@model Model.DTO.LoginModel
 
-    <div class="btform">
+<style>
+    .bif input{
+        width:200px;
+    }
+</style>
+    <div class="btform bif">
         @using (Html.BeginForm("Authentification"))
         {
             <table>
@@ -23,7 +28,11 @@
                         @Html.ValidationMessageFor(x => x.Password, "", new { @id = "clValidReg" })
                     </td>          
                 </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center;">
+                        <input type="submit" value="@Resources.Resource.Login" style="display:inline;" />
+                    </td>
+                </tr>
             </table>
-            <input type="submit" value="Log in" />
         }
     </div>
