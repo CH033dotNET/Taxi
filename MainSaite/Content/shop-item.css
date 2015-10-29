@@ -364,3 +364,19 @@ margin:0px;
 .phoneModal{
     color: red;
 }
+
+.WbtnGroup{
+    padding-left:15px;
+    padding-right:15px;
+    padding-top:2px;
+}
+.Wbtn{
+    color:  white;
+    background-color: #222;
+    border: 0px;
+}
+.address{
+    font-size:20px;
+    text-decoration:none;
+   color:white;
+}

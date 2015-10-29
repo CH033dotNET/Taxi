@@ -55,21 +55,21 @@
     </script>
 
     <div class="navbar-header">
-        <button id="OrderTaxi" class="btn btn-primary" onclick=" getCoord() ">@Resources.Resource.OrderTaxi</button>
-        <button type="button" class="navbar-toggle" id="responsive-menu-btn" data-toggle="collapse" data-target="#responsive-menu">
-            <span class="sr-only">[Open Nav]</span>
-            <span class="icon-bar"></span>  
-            <span class="icon-bar"></span>    
-            <span class="icon-bar"></span>  
-        </button>
-    </div>
+        <div class="btn-group input-group btn-group-justified WbtnGroup" data-toggle="btns">
+                <a class="btn btn-default btn-lg Wbtn" href="#map" id="show-map" data-toggle="tab">
+                    <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+                </a>
+            <a class="btn btn-default btn-lg Wbtn" href=" #tab-2" data-toggle="tab">
+                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+            </a>
+            <a class="btn btn-default btn-lg Wbtn" href=" #tab-3" data-toggle="tab">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </a>
+</div>
+        </div>
     <div class="collapse navbar-collapse" id="responsive-menu">
 
-                <ul class="nav nav-tabs">
-                    <li class="active"> <a href="#map" id="show-map" data-toggle="tab">content1</a> </li>
-                    <li class=""> <a href="#tab-2" data-toggle="tab">content2</a> </li>
-                    <li class=""> <a href="#tab-3" data-toggle="tab">content3</a> </li>
-                </ul>
+
 
     </div>
 }
@@ -104,14 +104,20 @@
 
 
 <div class="tab-content mapContainer">
-    <div id="map" class="tab-pane fade in active"></div>
+    <div id="map" class="tab-pane fade in active">
+
+        <button id="OrderTaxi" class="btn btn-primary" onclick="getCoord()">@Resources.Resource.OrderTaxi</button>
+    </div>
     
      <div class="tab-pane fade" id="tab-2">
          <ul class="nav navbar-inverse">
 
              @foreach (var i in Model.addresses)
              {
-                 <li> <a href="#" class="address"> @String.Format("{0} {1} {2}", i.City, i.Street, i.Number) </a> </li>
+                 <li> 
+                    
+             <a href="#" class="address"><span class="glyphicon glyphicon-home"></span> @String.Format("{0} {1} {2}", i.City, i.Street, i.Number) </a> 
+                 </li>
              }
 
          </ul> 
@@ -120,7 +126,10 @@
         <ul class="nav navbar-inverse">
             @foreach (var i in Model.DroPlaces)
             {
-                <li> <a href="#" class="address"> @String.Format("{0}", i) </a> </li>
+                <li> 
+                    
+            <a href="#" class="address"> <span class="glyphicon glyphicon-home"></span> @String.Format("{0}", i) </a>
+                 </li>
             }
         </ul>
     </div>
