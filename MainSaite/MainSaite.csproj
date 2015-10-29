@@ -226,6 +226,7 @@
     <Content Include="Content\Picture\Speedometer.jpg" />
     <Content Include="Content\Picture\streets_cars_traffic.jpg" />
     <Content Include="Content\Picture\tablet.png" />
+    <Content Include="Content\Picture\UserMapIcons\cab.png" />
     <Content Include="Content\Picture\UserMapIcons\logo_client.png" />
     <Content Include="Content\Picture\UserMapIcons\logo_destination.png" />
     <Content Include="Content\Picture\UserMapIcons\logo_taxi_green.png" />

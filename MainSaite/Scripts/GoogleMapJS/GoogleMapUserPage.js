@@ -1,13 +1,25 @@
 ﻿// This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
 var map;
-var marker = new google.maps.Marker;
 var marker1 = new google.maps.Marker;
+var marker2 = new google.maps.Marker;
 var geocoder = new google.maps.Geocoder();
 var infowindow = new google.maps.InfoWindow;
 var circle;
 var address;
+var markers = new Array();
 
+function hubInit() {
+    var hub = $.connection.driversLocationHub;//Подключились к хабу
+
+    hub.client.locationUpdate = locationUpdate;//присобачили функцию клиента
+    hub.client.driverStart = driverStart;
+    hub.client.driverFinish = driverFinish;
+
+    $.connection.hub.start().done(function () {
+        // hub.server.Hello(); // вызов функции сервера
+    });
+}
 
 
 function CenterControl(controlDiv, map) {
@@ -94,8 +106,60 @@ function initMap() {
     var centerControl = new CenterControl(centerControlDiv, map);
     centerControlDiv.index = 1;
     map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
+
+    $.ajax({
+        type: "POST",
+        url: "Administration/GetLoc",
+        dataType: "json",
+        success: function (data) {
+            for (var i = 0; i < data.length; i++) {
+                var val = data[i];
+                markers['DriverN' + val.id] = adddriver(val.latitude, val.longitude);
+                var tr = $('<tr/>', { id: 'DriverN' + val.id }).append(
+                        $('<td/>', { text: val.name }),
+                        $('<td/>', { text: new Date(+val.startedTime.match(/\d+/)[0]).toLocaleString(), id: 'DriverN' + val.id + 'start' }),
+                        $('<td/>', { text: new Date(+val.updateTime.match(/\d+/)[0]).toLocaleString(), id: 'DriverN' + val.id + 'up' }));
+                //tr.marker = adddriver(val.latitude, val.longitude);
+                tr.click(onclic);
+                var table = $('#DrvsCont').append(
+                    tr
+                );
+            }
+        },
+        error: function (error) {
+            alert(error);
+        }
+    });
+    hubInit();
 }
 
+function locationUpdate(Lat, Lng, Time, ID) {
+    if (markers['DriverN' + ID] !== undefined) {
+        markers['DriverN' + ID].setPosition(new google.maps.LatLng(Lat, Lng));
+        $('#DriverN' + ID + 'up').html(new Date(Time).toLocaleString());
+    }
+}
+
+function driverStart(val) {
+    if (markers['DriverN' + val.id] === undefined) {
+        markers['DriverN' + val.id] = adddriver(val.latitude, val.longitude);
+        var tr = $('<tr/>', { id: 'DriverN' + val.id }).append(
+                $('<td/>', { text: val.name }),
+                $('<td/>', { text: new Date(val.startedTime).toLocaleString(), id: 'DriverN' + val.id + 'start' }),
+                $('<td/>', { text: new Date(val.updateTime).toLocaleString(), id: 'DriverN' + val.id + 'up' }));
+        tr.click(onclic);
+        var table = $('#DrvsCont').append(tr);
+    }
+    else {
+        locationUpdate(val.latitude, val.longitude, val.updateTime, val.id);
+        $('#DriverN' + val.id + 'start').html(new Date(val.startedTime).toLocaleString());
+    }
+}
+function driverFinish(ID) {
+    $('#DriverN' + ID).remove();
+    markers['DriverN' + ID].setMap(null);
+    markers['DriverN' + ID] = undefined;
+}
 
 var ShowCurCoord = function () {
 
@@ -113,17 +177,27 @@ var ShowCurCoord = function () {
                 map: map,
                 icon: picturePath + 'logo_client.png'
             });
-            marker1 = test1;
+            marker2 = test1;
         }, function () {
             // handleLocationError(true, infoWindow, map.getCenter());
         });
     }
 }
+function adddriver(myLat, myLng) {
+    return marker = new google.maps.Marker({
+        position: { lat: myLat, lng: myLng },
+        map: map,
+        title: 'Hello World!',
+        icon: {
+            url: picturePath + '/cab.png'
+        }
+    });
+}
 
 var ShowFakeCoord = function (pos) {
             infowindow.setPosition(pos);
             map.setCenter(pos);
-            marker1.setMap(null);
+            marker2.setMap(null);
             circle.setMap(null);
             circle = addCircle(map, pos, 200);
             test1 = new google.maps.Marker({
@@ -131,9 +205,7 @@ var ShowFakeCoord = function (pos) {
                 map: map,
                 icon: picturePath + 'logo_client.png'
             });
-            
-            marker1 = test1;
-            
+            marker2 = test1;
 }
 
 
@@ -158,7 +230,7 @@ function geocodeLatLng(LatLong, geocoder, map, infowindow) {
             if (results[1]) {
 
 
-                marker.setMap(null);
+                marker1.setMap(null);
 
                 var test = new google.maps.Marker({
                     position: latlng,
@@ -167,11 +239,9 @@ function geocodeLatLng(LatLong, geocoder, map, infowindow) {
                 });
 
 
-                marker = test;
+                marker1 = test;
                 infowindow.setContent(results[0].formatted_address);
-
-                //shows adrees text
-                infowindow.open(map, marker);
+                
                 document.getElementById('autocomplete').value = results[0].formatted_address;
             } else {
                 window.alert('No results found');
@@ -249,9 +319,9 @@ geocode = function () {
     var address = document.getElementById('autocomplete').value;
     geocoder.geocode({ 'address': address }, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-            marker.setMap(null);
+            marker1.setMap(null);
             map.setCenter(results[0].geometry.location);
-            marker = new google.maps.Marker({
+            marker1 = new google.maps.Marker({
                 map: map,
                 position: results[0].geometry.location,
                 icon: picturePath + 'logo_destination.png'

@@ -81,7 +81,7 @@ namespace MainSaite.Controllers
 					coordinates.TarifId = 1;
 					coordinatesManager.AddCoordinates(coordinates);
 				}
-
+				carManager.EndAllCurrentUserShifts(Id, TimeStop);
 				//carManager.EndWorkShiftEvent(user.Id);
 				if (locationManager.GetByUserId(Id) != null)
                     locationManager.DeleteLocation(Id);
