@@ -10,10 +10,13 @@ using Model.DTO;
 
 namespace BAL.Manager
 {
-	 public class PersonManager : BaseManager
+	 public class PersonManager : BaseManager, IPersonManager
 	{
-		 public PersonManager(IUnitOfWork uOW) : base(uOW)
+
+		 public PersonManager(IUnitOfWork uOW)
+			 :base(uOW)
 		 {
+
 		 }
 
 		 public PersonDTO InsertPerson(PersonDTO person)

@@ -20,6 +20,15 @@ namespace MainSaite.Controllers
 {
 	public class SettingsController : BaseController
 	{
+		private IUserManager userManager;
+		private IDistrictManager districtManager;
+		private ICarManager carManager;
+		public SettingsController(IUserManager userManager, IDistrictManager districtManager, ICarManager carManager) 
+		{
+			this.userManager = userManager;
+			this.districtManager = districtManager;
+			this.carManager = carManager;
+		}
 
 		public ActionResult Index()
 		{
@@ -123,7 +132,7 @@ namespace MainSaite.Controllers
 		/// <returns></returns>
 		public JsonResult DeletedDistricts()
 		{
-			var deletedDistricts = districtmanager.getDeletedDistricts();
+			var deletedDistricts = districtManager.getDeletedDistricts();
 			return Json(deletedDistricts,JsonRequestBehavior.AllowGet);
 		}
 		/// <summary>

@@ -1,4 +1,5 @@
-﻿using Model.DTO;
+﻿using BAL.Manager;
+using Model.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,12 @@ namespace MainSaite.Controllers
 {
     public class DriveClientHistoryController : BaseController
     {
-		
-		
+		private IOrderManager orderManager;
+		public DriveClientHistoryController(IOrderManager orderManager)
+		{
+			this.orderManager = orderManager;
+		}
+
         public ActionResult ShowHistory()
         {
 			return View();

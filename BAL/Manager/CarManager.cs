@@ -11,9 +11,12 @@ using System.Threading.Tasks;
 
 namespace BAL.Manager
 {
-	public class CarManager : BaseManager
+	public class CarManager : BaseManager, ICarManager
 	{
-		public CarManager(IUnitOfWork uOW) : base(uOW) { }
+		public CarManager(IUnitOfWork uOW) :base(uOW)
+		{
+
+		}
 
 		/// <summary>
 		/// Adds new Car to repository

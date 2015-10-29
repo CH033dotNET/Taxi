@@ -9,11 +9,13 @@ using DAL.Interface;
 
 namespace BAL.Manager
 {
-    public class DriverManager : BaseManager
+    public class DriverManager :BaseManager, IDriverManager
     {
+
         public DriverManager(IUnitOfWork uOW)
-            : base(uOW)
+			:base(uOW)
         {
+
         }
         public DriverLocation[] GetFullLocations()
         {

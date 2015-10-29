@@ -10,15 +10,15 @@ using System.Threading.Tasks;
 
 namespace BAL.Manager
 {
-    //ASIX
+
     public delegate void LocaTionEvent(CoordinatesDTO coords);
-	public class CoordinatesManager : BaseManager
+	public class CoordinatesManager : BaseManager, ICoordinatesManager
 	{
-        //ASIX
+
         public event LocaTionEvent addedCoords;
 
 		public CoordinatesManager(IUnitOfWork uOW)
-			: base(uOW)
+			:base(uOW)
 		{
 
 		}

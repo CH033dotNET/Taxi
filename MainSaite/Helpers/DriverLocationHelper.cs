@@ -7,7 +7,7 @@ using MainSaite.Hubs;
 
 namespace MainSaite.Helpers
 {
-    public class DriverLocationHelper
+    public class DriverLocationHelper : IDriverLocationHelper
     {
         private IHubContext Contest = GlobalHost.ConnectionManager.GetHubContext<DriversLocationHub>();
 

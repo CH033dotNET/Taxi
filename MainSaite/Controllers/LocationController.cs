@@ -7,14 +7,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages.Html;
+using DAL.Interface;
 
 namespace MainSaite.Controllers
 {
 	public class LocationController : BaseController
 	{
-		
-		public LocationController()
+		private IUnitOfWork uOW;
+		private ILocationManager locationManager;
+		private IDistrictManager districtManager;
+
+		public LocationController(ILocationManager locationManager, IUnitOfWork uOW, IDistrictManager districtManager)
 		{
+			this.locationManager = locationManager;
+			this.uOW = uOW;
+			this.districtManager = districtManager;
 		}
 
 		[HttpGet]
@@ -31,11 +38,11 @@ namespace MainSaite.Controllers
 			}
 			var listDistricts = uOW.DistrictRepo.Get().ToList();
 			ViewBag.Districts = listDistricts;
-			LocationDTO location = locationmanager.GetByUserId(user.Id);
+			LocationDTO location = locationManager.GetByUserId(user.Id);
 			if (location != null)
 			{
 				int districtId = location.DistrictId;
-				District district = districtmanager.getById(districtId);
+				District district = districtManager.getById(districtId);
 				ViewBag.District = district;
 			}
 			return PartialView();
@@ -54,11 +61,11 @@ namespace MainSaite.Controllers
 				});
 			}
 
-			LocationDTO local = locationmanager.GetByUserId(user.Id);
+			LocationDTO local = locationManager.GetByUserId(user.Id);
 			if (local != null)
 			{
 				local.DistrictId = Id;
-				locationmanager.UpdateLocation(local);
+				locationManager.UpdateLocation(local);
 				return RedirectToAction("Index", "Driver");
 			}
 			else
@@ -68,7 +75,7 @@ namespace MainSaite.Controllers
 					UserId = user.Id,
 					DistrictId = Id
 				};
-				locationmanager.AddLocation(district);
+				locationManager.AddLocation(district);
 				return RedirectToAction("Index", "Driver");
 			}
 		}

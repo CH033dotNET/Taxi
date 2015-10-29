@@ -7,16 +7,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using BAL.Manager;
 
 
 namespace BAL.Manager
 {
-    public class AddressManager : BaseManager
+    public class AddressManager : BaseManager, IAddressManager
     {
+		
         public AddressManager(IUnitOfWork uOW)
-            : base(uOW)
+			:base(uOW)
         {
+
         }
 
 		public IEnumerable<AddressDTO> GetAddressesEmulation()

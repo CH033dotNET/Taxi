@@ -12,10 +12,14 @@ namespace MainSaite.Controllers
 {
 	public class AdministrationController : BaseController
 	{
-		//
-		// GET: /Administration/
+		private IUserManager userManager;
+		private IDriverManager driverManager;
 
-
+		public AdministrationController(IUserManager userManager, IDriverManager driverManager)
+		{
+			this.userManager = userManager;
+			this.driverManager = driverManager;
+		}
 		public ActionResult AddUser()
 		{
 			//var user = mainContext.Users.;

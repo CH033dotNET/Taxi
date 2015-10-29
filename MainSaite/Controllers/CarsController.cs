@@ -10,14 +10,19 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FluentValidation;
+using BAL.Manager;
 
 namespace MainSaite.Controllers
 {
     public class CarsController : BaseController
     {
-		//
-		// GET: /Cars/
-
+		private ICarManager carManager;
+		private IUserManager userManager;
+		public CarsController(ICarManager carManager, IUserManager userManager)
+		{ 
+			this.carManager = carManager;
+			this.userManager = userManager;
+		}
 		/// <summary>
 		/// Action method, returns main view and populates it with list of objects
 		/// </summary>

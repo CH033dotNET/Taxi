@@ -9,6 +9,13 @@ namespace MainSaite.Controllers
 {
 	public class UserController : BaseController
 	{
+		private IPersonManager personManager;
+
+		public UserController(IPersonManager personManager)
+		{
+			this.personManager = personManager;
+		}
+
 		public ActionResult Index()
 		{
 

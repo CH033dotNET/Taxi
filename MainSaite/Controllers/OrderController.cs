@@ -4,13 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Model.DB;
+using BAL.Manager;
 
 namespace MainSaite.Controllers
 {
     public class OrderController : BaseController
     {
-        //
-        // GET: /Order/
+		private IOrderManager orderManager;
+
+		public OrderController(IOrderManager orderManager)
+		{
+			this.orderManager = orderManager;
+		}
 
         public ActionResult Index()
         {

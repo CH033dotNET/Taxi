@@ -8,14 +8,20 @@ using System.Web;
 using System.Web.Mvc;
 using Model.DTO;
 using Model.DB;
+using BAL.Manager;
 
 namespace MainSaite.Controllers
 {
     public class AccountController : BaseController
     {
-		
-        //
-        // GET: /Acount/
+		private IUserManager userManager;
+		private IPersonManager personManager;
+
+		public AccountController(IUserManager userManager, IPersonManager personManager)
+		{
+			this.userManager = userManager;
+			this.personManager = personManager;
+		}
 
         public ActionResult Registration()
         {
@@ -62,6 +68,7 @@ namespace MainSaite.Controllers
 				{
 					CheckPerson(currentUser);
 					SessionUser = currentUser;
+					SessionPerson = personManager.GetPersonByUserId(currentUser.Id);
 					return RedirectToAction("Index", "Home");
 				}
 				else ModelState.AddModelError("", "Wrong password or login");

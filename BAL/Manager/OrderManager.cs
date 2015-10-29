@@ -10,11 +10,13 @@ using Model.DTO;
 
 namespace BAL.Manager
 {
-	public class OrderManager : BaseManager
+	public class OrderManager : BaseManager, IOrderManager
 	{
+	
 		public OrderManager(IUnitOfWork uOW)
-			: base(uOW)
+			:base(uOW)
 		{
+
 		}
 		public OrderDTO InsertOrder(OrderDTO order)
 		{

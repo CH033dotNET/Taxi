@@ -14,11 +14,12 @@ using System.Data.Entity;
 
 namespace BAL.Manager
 {
-	public class UserManager : BaseManager
+	public class UserManager : BaseManager, IUserManager
 	{
 		public UserManager(IUnitOfWork uOW)
-			: base(uOW)
+			:base(uOW)
 		{
+
 		}
 
 		public Pager<UserDTO> GetUserPage(string searchString, int page, int pageSize, int roleId)

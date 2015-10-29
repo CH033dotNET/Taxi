@@ -1,16 +1,30 @@
-﻿using Common.Tools;
+﻿using BAL.Manager;
+using Common.Tools;
 using Model.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MainSaite.Helpers;
 
 namespace MainSaite.Controllers
 {
 	public class ClientServiceController : BaseController
 	{
-		// GET: /ClientService/
+
+		private ITarifManager tarifManager;
+		private IOrderManager orderManager;
+		private ICoordinatesManager coordinatesManager;
+		private IDriverLocationHelper driverLocationHelper;
+		public ClientServiceController(ITarifManager tarifManager, IOrderManager orderManager, ICoordinatesManager coordinatesManager, IDriverLocationHelper driverLocationHelper)
+		{
+			this.orderManager = orderManager;
+			this.tarifManager = tarifManager;
+			this.coordinatesManager = coordinatesManager;
+			this.driverLocationHelper = driverLocationHelper;
+			this.coordinatesManager.addedCoords += this.driverLocationHelper.addedLocation;
+		}
 
 		public ActionResult PeekClient()
 		{

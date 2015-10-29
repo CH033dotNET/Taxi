@@ -11,11 +11,13 @@ using System.Threading.Tasks;
 
 namespace BAL.Manager
 {
-	public class LocationManager : BaseManager
+	public class LocationManager : BaseManager, ILocationManager
 	{
+		
 		public LocationManager(IUnitOfWork uOW)
-			: base(uOW)
+			:base(uOW)
 		{
+
 		}
 		public LocationDTO GetByUserId(int id)
 		{

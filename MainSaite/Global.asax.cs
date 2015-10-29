@@ -1,4 +1,5 @@
 ﻿using Common;
+using MainSaite.App_Start;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace MainSaite
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 			AutoMapperConfig.Configure();
+			SimpleInjectorDependency.RegistrationContainers();
         }
     }
 }

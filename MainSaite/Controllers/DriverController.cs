@@ -1,6 +1,7 @@
 ﻿using BAL.Manager;
 using Common.Enum;
 using DAL;
+using MainSaite.Helpers;
 using Model;
 using Model.DTO;
 using System;
@@ -18,7 +19,20 @@ namespace MainSaite.Controllers
 {
 	public class DriverController : BaseController
 	{
-
+		private ILocationManager locationManager;
+		private ICarManager carManager;
+		private ICoordinatesManager coordinatesManager;
+		private IUserManager userManager;
+		private IDriverLocationHelper driverLocationHelper;
+		public DriverController(ILocationManager locationManager, ICarManager carManager, ICoordinatesManager coordinatesManager, IUserManager userManager, IDriverLocationHelper driverLocationHelper) 
+		{
+			this.locationManager = locationManager;
+			this.carManager = carManager;
+			this.coordinatesManager = coordinatesManager;
+			this.userManager = userManager;
+			this.driverLocationHelper = driverLocationHelper;
+			this.coordinatesManager.addedCoords += this.driverLocationHelper.addedLocation;
+		}
 
 		public ActionResult Index()
 		{
@@ -105,11 +119,11 @@ namespace MainSaite.Controllers
 					action = "Index"
 				});
 			}
-			LocationDTO local = locationmanager.GetByUserId(user.Id);
+			LocationDTO local = locationManager.GetByUserId(user.Id);
 			if (local != null)
 			{
 				local.DistrictId = Id;
-				locationmanager.UpdateLocation(local);
+				locationManager.UpdateLocation(local);
 				return RedirectToAction("Index", "Driver");
 			}
 			else
@@ -119,7 +133,7 @@ namespace MainSaite.Controllers
 					UserId = user.Id,
 					DistrictId = Id
 				};
-				locationmanager.AddLocation(district);
+				locationManager.AddLocation(district);
 				return RedirectToAction("Index", "Driver");
 			}
 		}

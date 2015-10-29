@@ -1,4 +1,5 @@
-﻿using MainSaite.Models;
+﻿using BAL.Manager;
+using MainSaite.Models;
 using Model.DTO;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,15 @@ namespace MainSaite.Controllers
 {
     public class UserPageController : BaseController
     {
-        //
-        // GET: /UserPage/
+		private IAddressManager addressmanager;
+		private IPersonManager personManager;
+		private IOrderManager orderManager;
+		public UserPageController(IAddressManager addressmanager, IPersonManager personManager, IOrderManager orderManager)
+		{
+			this.addressmanager = addressmanager;
+			this.personManager = personManager;
+			this.orderManager = orderManager;
+		}
 
         public ActionResult Index()
         {

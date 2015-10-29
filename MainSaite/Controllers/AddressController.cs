@@ -15,7 +15,11 @@ namespace MainSaite.Controllers
 {
     public class AddressController : BaseController
     {
-        
+		private IAddressManager addressmanager;
+		public AddressController(IAddressManager addressmanager)
+		{
+			this.addressmanager = addressmanager;
+		}
 
         public ActionResult Index()
         {

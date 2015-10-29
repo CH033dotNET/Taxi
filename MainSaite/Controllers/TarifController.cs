@@ -1,4 +1,5 @@
-﻿using MainSaite.Models;
+﻿using BAL.Manager;
+using MainSaite.Models;
 using Model.DTO;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,12 @@ namespace MainSaite.Controllers
 {
     public class TarifController : BaseController
     {
-        //
-        // GET: /Tarif/
+		private ITarifManager tarifManager;
 
-
+		public TarifController(ITarifManager tarifManager)
+		{
+			this.tarifManager = tarifManager;
+		}
         public ActionResult Index()
         {
             var lst = tarifManager.GetTarifes().ToList();

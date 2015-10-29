@@ -12,11 +12,13 @@ using System.Threading.Tasks;
 namespace BAL.Manager
 {
 
-    public class TarifManager : BaseManager
+    public class TarifManager : BaseManager, ITarifManager
     {
+
         public TarifManager(IUnitOfWork uOW)
-            : base(uOW)
+			:base(uOW)
         {
+
         }
 
         public IEnumerable<TarifDTO> GetTarifes()

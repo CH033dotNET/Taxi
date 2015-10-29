@@ -8,11 +8,12 @@ using Model;
 
 namespace BAL.Manager
 {
-	public class DistrictManager : BaseManager
+	public class DistrictManager : BaseManager, IDistrictManager
 	{
-		public DistrictManager(IUnitOfWork uOW) : base(uOW)
+		public DistrictManager(IUnitOfWork uOW)
+			:base(uOW)
 		{
-			
+
 		}
 
 		public void addDistrict(string dName)
