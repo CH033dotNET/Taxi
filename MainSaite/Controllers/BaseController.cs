@@ -10,11 +10,28 @@ using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using MainSaite.Helpers;
+using Common.Helpers;
+using System.Web.Configuration;
 
 namespace MainSaite.Controllers
 {
 	public class BaseController : Controller
 	{
+		private static RequestHelper requestHelper;
+
+		public RequestHelper ApiRequestHelper
+		{
+			get
+			{
+				if (requestHelper == null)
+				{
+					requestHelper = new RequestHelper(WebConfigurationManager.AppSettings["WebAPIUrl"]);
+				}
+				return requestHelper;
+			}
+		}
+
+
 		public PersonDTO SessionPerson
 		{
 			get

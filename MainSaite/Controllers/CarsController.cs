@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using FluentValidation;
 using BAL.Manager;
+using RestSharp;
 
 namespace MainSaite.Controllers
 {
@@ -30,6 +31,7 @@ namespace MainSaite.Controllers
 		public ActionResult CarPark()
 		{
 			AutoParkViewModel CarsViewModel = new AutoParkViewModel();
+
 			if (SessionUser == null || SessionUser.RoleId != (int)AvailableRoles.Driver)
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
