@@ -35,7 +35,7 @@ namespace Common.Helpers
 
 		// Get request
 		//api/controller/id
-		public IRestResponse<T> GetUp<T>(string controller, string method, int id) where T : new()
+		public IRestResponse<T> GetById<T>(string controller, string method, int id) where T : new()
 		{
 			var request = new RestRequest(string.Format("{0}/{1}/{2}", controller, method, id), Method.GET);
 			request.AddParameter("id", id);
@@ -48,9 +48,18 @@ namespace Common.Helpers
 			return result;
 		}
 
+		public IRestResponse<List<T>> GetAll<T>(string controller, string method) where T : new()
+		{
+			var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.GET);
+
+			var result = client.Execute<List<T>>(request);
+
+			return result;
+		}
+
 		//Put request
 		// api/controller/id
-		public IRestResponse<T> Put<T>(string controller, string method, int id) where T : new()
+		public IRestResponse<T> PutById<T>(string controller, string method, int id) where T : new()
 		{
 			var request = new RestRequest(string.Format("{0}/{1}/{2}", controller, method, id), Method.PUT);
 			request.AddParameter("id", id);
@@ -60,7 +69,7 @@ namespace Common.Helpers
 			return result;
 		}
 
-		public IRestResponse<T> Put<T>(string controller, string method, T modelObj) where T : new()
+		public IRestResponse<T> PutObject<T>(string controller, string method, T modelObj) where T : new()
 		{
 			var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.PUT);
 			//request.AddParameter("modelObj", modelObj);
@@ -81,7 +90,7 @@ namespace Common.Helpers
 		//	return result;
 		//}
 
-		public IRestResponse<T> Post<T>(string controller, string method, T modelObj) where T : new()
+		public IRestResponse<T> PostObject<T>(string controller, string method, T modelObj) where T : new()
 		{
 			var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.POST);
 			request.AddBody(modelObj);
@@ -92,7 +101,7 @@ namespace Common.Helpers
 
 		// delete request
 		//api/controller/id
-		public IRestResponse<T> Delete<T>(string controller, string method, int id) where T : new()
+		public IRestResponse<T> DeleteById<T>(string controller, string method, int id) where T : new()
 		{
 			var request = new RestRequest(string.Format("{0}/{1}/{2}", controller, method, id), Method.DELETE);
 			request.AddParameter("id", id);
