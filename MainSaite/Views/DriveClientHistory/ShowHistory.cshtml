@@ -6,6 +6,7 @@
 <script src="~/Scripts/handlebars.js" type="text/javascript"></script>
 <link href="~/Content/ClientDriveHistory/ClientDrHistTbl.css" rel="stylesheet" />
 <script src="~/Scripts/ClientDrHistory/ClientDrHistory.js"></script>
+<script src="~/Scripts/HandlebarsCustomHelpers.js"></script>
 
 <script id="driveHistotyList" type="text/x-handlebars-template">  
     <table class="driveClHistTb">
@@ -22,7 +23,7 @@
             {{#each objects}}
             <tr>
                 <td>
-                   {{OrderTime}}
+                   {{PrettifyDate OrderTime}}
                 </td>
                 <td>
                     {{PeekPlace}}
