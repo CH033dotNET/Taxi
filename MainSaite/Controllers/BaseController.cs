@@ -19,6 +19,9 @@ namespace MainSaite.Controllers
 	{
 		private static RequestHelper requestHelper;
 
+		/// <summary>
+		/// Provides url for connection to WebApi. "______Url" refers to entry in library web.config file.
+		/// </summary>
 		public RequestHelper ApiRequestHelper
 		{
 			get
