@@ -8,6 +8,7 @@ namespace DAL.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 	using Angela.Core;
+	using Common.Enum.CarEnums;
 	
 
 	internal sealed class Configuration : DbMigrationsConfiguration<DAL.MainContext> 
@@ -124,6 +125,81 @@ namespace DAL.Migrations
 				new Tarif() { Name ="Personal Driver", MinimalPrice = 40M, OneMinuteCost = 1.5M, StartPrice = 16M, WaitingCost =0.5M}
 				};
 				context.Tarifes.AddRange(tarifs);
+				context.SaveChanges();
+			}
+			// Cars
+			if (!context.Cars.Any())
+			{
+				Car[] cars = new Car[]
+				{
+					new Car() { CarName = "Lada", 
+						CarNickName = "21", 
+						CarNumber = "AK9265AK", 
+						CarOccupation = 4, 
+						CarPetrolConsumption = 2, 
+						CarClass = CarClassEnum.General, 
+						CarState = CarStateEnum.Working, 
+						CarPetrolType = CarPetrolEnum.Regular92,
+						OwnerId = context.Users.FirstOrDefault(x => x.RoleId == 1).Id,
+						UserId = context.Users.FirstOrDefault(x => x.RoleId == 1).Id,
+						CarManufactureDate = new DateTime(2012,03,12,00,00,00) },
+					new Car() { CarName = "Volga", 
+						CarNickName = "13", 
+						CarNumber = "KX3456KX", 
+						CarOccupation = 4, 
+						CarPetrolConsumption = 4, 
+						CarClass = CarClassEnum.General, 
+						CarState = CarStateEnum.Working, 
+						CarPetrolType = CarPetrolEnum.Regular92,
+						OwnerId = context.Users.FirstOrDefault(x => x.RoleId == 1).Id,
+						UserId = context.Users.FirstOrDefault(x => x.RoleId == 1).Id,
+						CarManufactureDate = new DateTime(2008,07,22,00,00,00) },
+					new Car() { CarName = "Audi", 
+						CarNickName = "41", 
+						CarNumber = "HO8712HO", 
+						CarOccupation = 4, 
+						CarPetrolConsumption = 8, 
+						CarClass = CarClassEnum.General, 
+						CarState = CarStateEnum.Working, 
+						CarPetrolType = CarPetrolEnum.Premium95,
+						OwnerId = context.Users.FirstOrDefault(x => x.RoleId == 1).Id,
+						UserId = context.Users.FirstOrDefault(x => x.RoleId == 1).Id,
+						CarManufactureDate = new DateTime(2011,11,05,00,00,00) },
+					new Car() { CarName = "Mercedes Benz", 
+						CarNickName = "134", 
+						CarNumber = "IC6723IC", 
+						CarOccupation = 4, 
+						CarPetrolConsumption = 10, 
+						CarClass = CarClassEnum.Econom, 
+						CarState = CarStateEnum.Working, 
+						CarPetrolType = CarPetrolEnum.Super98, 
+						OwnerId = context.Users.FirstOrDefault(x => x.RoleId == 1).Id,
+						UserId = context.Users.FirstOrDefault(x => x.RoleId == 1).Id,
+						CarManufactureDate = new DateTime(2013,02,02,00,00,00) },
+					new Car() { CarName = "Volkswagen", 
+						CarNickName = "231", 
+						CarNumber = "HH5634HH", 
+						CarOccupation = 4, 
+						CarPetrolConsumption = 3, 
+						CarClass = CarClassEnum.General, 
+						CarState = CarStateEnum.Working, 
+						CarPetrolType = CarPetrolEnum.Regular92, 
+						OwnerId = context.Users.FirstOrDefault(x => x.RoleId == 1).Id,
+						UserId = context.Users.FirstOrDefault(x => x.RoleId == 1).Id,
+						CarManufactureDate = new DateTime(2010,03,24,00,00,00) },
+					new Car() { CarName = "Opel",
+						CarNickName = "245", 
+						CarNumber = "KO0000KO", 
+						CarOccupation = 4, 
+						CarPetrolConsumption = 7, 
+						CarClass = CarClassEnum.Premium, 
+						CarState = CarStateEnum.Working, 
+						CarPetrolType = CarPetrolEnum.Regular92, 
+						OwnerId = context.Users.FirstOrDefault(x => x.RoleId == 1).Id,
+						UserId = context.Users.FirstOrDefault(x => x.RoleId == 1).Id,
+						CarManufactureDate = new DateTime(2009,05,23,00,00,00) }
+				};
+				context.Cars.AddRange(cars);
 				context.SaveChanges();
 			}
         }

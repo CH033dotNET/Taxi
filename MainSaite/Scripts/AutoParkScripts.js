@@ -123,7 +123,7 @@ var carController = {
 						carController.renderCarData();
 						document.getElementById("add-car-form").reset();
 					}
-					else {
+					else if (!result.success) {
 						carController.getErrorMessage();
 					}
 				})
