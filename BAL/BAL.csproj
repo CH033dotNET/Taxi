@@ -82,6 +82,7 @@
     <Compile Include="Manager\OrderManager.cs" />
     <Compile Include="Manager\PersonManager.cs" />
     <Compile Include="Manager\TarifManager.cs" />
+    <Compile Include="Manager\TestManager.cs" />
     <Compile Include="Tools\CarModelValidator.cs" />
     <Compile Include="Tools\PriceCounter.cs" />
     <Compile Include="Manager\UserManager.cs" />
