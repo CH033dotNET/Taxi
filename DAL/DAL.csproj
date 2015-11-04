@@ -171,6 +171,10 @@
     <Compile Include="Migrations\201510271633273_fix orders last.Designer.cs">
       <DependentUpon>201510271633273_fix orders last.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511031554375_WorkersStatuses.cs" />
+    <Compile Include="Migrations\201511031554375_WorkersStatuses.Designer.cs">
+      <DependentUpon>201511031554375_WorkersStatuses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -279,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510271633273_fix orders last.resx">
       <DependentUpon>201510271633273_fix orders last.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511031554375_WorkersStatuses.resx">
+      <DependentUpon>201511031554375_WorkersStatuses.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

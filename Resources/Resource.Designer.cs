@@ -142,6 +142,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Awaiting order.
+        /// </summary>
+        public static string AwaitingOrder {
+            get {
+                return ResourceManager.GetString("AwaitingOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string cancelButton {
@@ -845,6 +854,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Doing order.
+        /// </summary>
+        public static string DoingOrder {
+            get {
+                return ResourceManager.GetString("DoingOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drive.
         /// </summary>
         public static string Drive {
@@ -1088,6 +1106,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Has order.
+        /// </summary>
+        public static string HasOrder {
+            get {
+                return ResourceManager.GetString("HasOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hello.
         /// </summary>
         public static string Hello {
@@ -1232,6 +1259,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No status.
+        /// </summary>
+        public static string NoStatus {
+            get {
+                return ResourceManager.GetString("NoStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number.
         /// </summary>
         public static string Number {
@@ -1345,6 +1381,15 @@ namespace Resources {
         public static string RequiredError {
             get {
                 return ResourceManager.GetString("RequiredError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resting.
+        /// </summary>
+        public static string Resting {
+            get {
+                return ResourceManager.GetString("Resting", resourceCulture);
             }
         }
         

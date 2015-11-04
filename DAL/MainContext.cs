@@ -36,5 +36,6 @@ namespace DAL
         public DbSet<Tarif> Tarifes { get; set; }
 		public DbSet<Coordinates> CoordinatesHistory { get; set; }
 		public DbSet<Order> Orders { get; set; }
+		public DbSet<WorkerStatus> WorkersStatuses { get; set; }
     }
 }

@@ -11,6 +11,7 @@ using DAL.Interface;
 using DAL;
 using SimpleInjector.Integration.Web;
 using MainSaite.Helpers;
+using BAL.Interfaces;
 
 namespace MainSaite.App_Start
 {
@@ -33,6 +34,7 @@ namespace MainSaite.App_Start
 			container.Register<ITarifManager, TarifManager>();
 			container.Register<IUserManager, UserManager>();
 			container.Register<IDriverLocationHelper, DriverLocationHelper>();
+			container.Register<IWorkerStatusManager, WorkerStatusManager>();
 			container.Verify();
 
 			DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
