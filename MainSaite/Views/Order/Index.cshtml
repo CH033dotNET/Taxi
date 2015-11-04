@@ -1,56 +1,57 @@
-﻿@{
+﻿@model IEnumerable<Model.DTO.OrderDTO>
+@{
     ViewBag.Title = "Orders";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    
-    var options = new AjaxOptions()
-    {
-        UpdateTargetId = "tabledata",
-        Url = Url.Action("JsonOrdersData"),
-        LoadingElementId = "loadingIndicator",
-        OnSuccess = "ParseResponse",
-    };
 }
-
-<h2>Orders</h2>
-
-@using (Ajax.BeginForm(options))
-{
-    <div id="loadingIndicator" style="display:none;">Loading...</div>
-    <table cellpadding="4" class="table">
+<script id="orderTemplate" type="text/x-handlebars-template">
+    <table>
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Come in</th>
-                <th>Come out</th>
+                <th>@Resources.Resource.Name</th>
+                <th>@Resources.Resource.PeekPlace</th>
+                <th>@Resources.Resource.DropPlace</th>
                 <th>Order Time</th>
-                <th>RunTime</th>
-                <th>UserName</th> 
             </tr>
         </thead>
-
-        <tbody id="tabledata">
-            @Html.Action("OrdersData")
+        <tbody>
+            {{#each objects}}
+            <tr>
+                <td>{{FirsName}}</td>
+                <td>{{PeekPlace}}</td>
+                <td>{{DropPlace}}</td>
+                <td>{{PrettifyDate OrderTime}}</td>
+                <td><button class="btn success">[Submit]</button><button class="btn btn-danger">[Discars]</button></td>
+            </tr>
+            {{/each}}
         </tbody>
-
     </table>
+</script>
 
-}
 
-@section scripts
-{
-   
-    <script type="text/javascript">
-        function ParseResponse(data) {
 
-            var target = $("#tabledata");
-            target.empty();
 
-            for (var i = 0; i < data.length; i++) {
-                target.append("<tr><td>" + data[i].Id + "</td><td>"
-                    + data[i].Product + "</td><td>"
-                    + data[i].Quantity + "</td><td>"
-                    + data[i].Customer + "</td></tr>");
+<button class="btn" onclick="cl()">get!!</button>
+<div id="orderContent"></div>
+
+<script src="~/Scripts/HandlebarsCustomHelpers.js"></script>
+<script type="text/javascript">
+    function cl() {
+        var content = $('#orderContent');
+        $.ajax({
+            type: 'POST',
+            url: "/Order/OrdersData/",
+            dataType: 'json',
+            success: function (data) {
+                var source = $("#orderTemplate").html();
+                var template = Handlebars.compile(source);
+                var wrapper = { objects: data };
+                var html = template(wrapper);
+                content.html(html);
+
+            },
+            error: function (error) {
+                console.log(error + "error!!!!");
             }
-        }
-    </script>
-}
+        });
+    }
+</script>

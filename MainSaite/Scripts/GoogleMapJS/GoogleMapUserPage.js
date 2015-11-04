@@ -50,7 +50,26 @@ function CenterControl(controlDiv, map) {
     // Setup the click event listeners: simply set the map to Chicago.
     controlUI.addEventListener('click', function () {
         map.setCenter(geocode());
-    });
+
+        var orderObj = {
+            'PeekPlace': marker1.getTitle(),
+            'DropPlace': marker2.getTitle(),
+            'OrderTime': new Date().toISOString(),
+            'LatitudeDropPlace': marker2.position.lat(),
+            'LongitudeDropPlace': marker2.position.lng(),
+            'Accuracy': circle.getRadius(),
+            'LatitudePeekPlace':marker1.position.lat(),
+            'LongitudePeekPlace': marker1.position.lng()
+        }
+
+        console.log(orderObj);
+        $.ajax({
+            url: '/Order/GetOrder/',
+            data: orderObj,
+            type: "POST",
+            success: function (data) {  }
+        });
+    })
 
 }
 
@@ -178,6 +197,7 @@ var ShowCurCoord = function () {
                 icon: picturePath + 'logo_client.png'
             });
             marker2 = test1;
+            setTitle(marker2);
         }, function () {
             // handleLocationError(true, infoWindow, map.getCenter());
         });
@@ -206,6 +226,7 @@ var ShowFakeCoord = function (pos) {
                 icon: picturePath + 'logo_client.png'
             });
             marker2 = test1;
+            setTitle(marker2);
 }
 
 
@@ -235,7 +256,8 @@ function geocodeLatLng(LatLong, geocoder, map, infowindow) {
                 var test = new google.maps.Marker({
                     position: latlng,
                     map: map,
-                    icon: picturePath + 'logo_destination.png'
+                    icon: picturePath + 'logo_destination.png',
+                    title: results[0].formatted_address
                 });
 
 
@@ -324,7 +346,8 @@ geocode = function () {
             marker1 = new google.maps.Marker({
                 map: map,
                 position: results[0].geometry.location,
-                icon: picturePath + 'logo_destination.png'
+                icon: picturePath + 'logo_destination.png',
+                title: results[0].formatte_address
             });
         }
         else {
@@ -347,15 +370,15 @@ $(".address").on("click", function () {
 });
 
 
-var getLocation = function (lat, lng) {
-    var latlng = new google.maps.LatLng(lat, lng);
-    var address1;
+
+var setTitle = function (mark) {
+    var latlng = mark.getPosition();
     geocoder.geocode({
         'latLng': latlng
     }, function (results, status) {
         if (status === google.maps.GeocoderStatus.OK) {
             if (results[1]) {
-                address1 = results[0].formatted_address;
+                mark.setTitle(results[0].formatted_address);
             } else {
                 alert('No results found');
             }
@@ -363,7 +386,6 @@ var getLocation = function (lat, lng) {
             alert('Geocoder failed due to: ' + status);
         }
     });
-    return address1;
 }
 
 

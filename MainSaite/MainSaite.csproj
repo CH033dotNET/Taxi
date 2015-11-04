@@ -466,7 +466,6 @@
     <Content Include="Views\Cars\_GiveCarPartial.cshtml" />
     <Content Include="Views\Cars\_ReturnCarPartial.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
-    <Content Include="Views\Order\OrdersData.cshtml" />
     <Content Include="Views\DrivingSimulation\Index.cshtml" />
     <Content Include="Views\User\_EditPersonInfo.cshtml" />
     <Content Include="Views\Shared\_AjaxEditPersonInfo.cshtml" />
