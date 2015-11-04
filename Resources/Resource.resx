@@ -652,4 +652,19 @@
   <data name="Runtime" xml:space="preserve">
     <value>Run time</value>
   </data>
+  <data name="AwaitingOrder" xml:space="preserve">
+    <value>Awaiting order</value>
+  </data>
+  <data name="DoingOrder" xml:space="preserve">
+    <value>Doing order</value>
+  </data>
+  <data name="HasOrder" xml:space="preserve">
+    <value>Has order</value>
+  </data>
+  <data name="NoStatus" xml:space="preserve">
+    <value>No status</value>
+  </data>
+  <data name="Resting" xml:space="preserve">
+    <value>Resting</value>
+  </data>
 </root>

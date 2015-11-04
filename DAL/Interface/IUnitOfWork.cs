@@ -23,6 +23,7 @@ namespace DAL.Interface
         IGenericRepository<Tarif> TarifRepo { get; }
 		IGenericRepository<Coordinates> CoordinatesHistoryRepo { get; }
 		IGenericRepository<Order> OrderRepo { get; }
+		IGenericRepository<WorkerStatus> WorkerStatusRepo { get; }
 
 		void Dispose();
 		void Save();

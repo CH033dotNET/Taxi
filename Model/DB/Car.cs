@@ -106,8 +106,5 @@ namespace Model.DB
 		[InverseProperty("CarOwner")]
 		public virtual User Owner { get; set; }
 		public int OwnerId { get; set; }
-
-
-
 	}
 }

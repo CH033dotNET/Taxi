@@ -1,5 +1,6 @@
 ﻿using Common.Enum;
 using Common.Enum.CarEnums;
+using Common.Enum.DriverEnum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,38 @@ namespace Common.Helpers
 {
 	public static class EnumHelper
 	{
+
+		public static Dictionary<int, string> GetWorkerStatus()
+		{
+			var result = new Dictionary<int, string>();
+			foreach (var val in System.Enum.GetValues(typeof(DriverWorkingStatusEnum)))
+			{
+				string name = "";
+				name = EnumHelper.GetStringifyStatus((DriverWorkingStatusEnum)val);
+				result.Add((int)val, name);
+			}
+			return result;
+		}
+
+		public static string GetStringifyStatus(DriverWorkingStatusEnum status)
+		{
+			switch (status)
+			{
+				case DriverWorkingStatusEnum.NoStatus:
+					return Resources.Resource.NoStatus;
+				case DriverWorkingStatusEnum.HasOrder:
+					return Resources.Resource.HasOrder;
+				case DriverWorkingStatusEnum.DoingOrder:
+					return Resources.Resource.DoingOrder;
+				case DriverWorkingStatusEnum.AwaitingOrder:
+					return Resources.Resource.AwaitingOrder;
+				case DriverWorkingStatusEnum.Resting:
+					return Resources.Resource.Resting;
+				default:
+					return "";
+			}
+		}
+
 		public static Dictionary<int, string> GetRoles()
 		{
 			var result = new Dictionary<int, string>();

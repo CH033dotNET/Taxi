@@ -55,6 +55,7 @@
     <Compile Include="Enum\CarEnums\CarClass.cs" />
     <Compile Include="Enum\CarEnums\CarPetrol.cs" />
     <Compile Include="Enum\CarEnums\CarState.cs" />
+    <Compile Include="Enum\DriverEnum\DriverWorkingStatus.cs" />
     <Compile Include="Helpers\CustomDateTimeConverter.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\RequestHelper.cs" />

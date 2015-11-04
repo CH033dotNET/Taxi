@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMapperConfig.cs" />
+    <Compile Include="Interfaces\IWorkerStatusManager.cs" />
     <Compile Include="Manager\AddressManager.cs" />
     <Compile Include="Manager\BaseManager.cs" />
     <Compile Include="Manager\CarManager.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Manager\PersonManager.cs" />
     <Compile Include="Manager\TarifManager.cs" />
     <Compile Include="Manager\TestManager.cs" />
+    <Compile Include="Manager\WorkerStatusManager.cs" />
     <Compile Include="Tools\CarModelValidator.cs" />
     <Compile Include="Tools\PriceCounter.cs" />
     <Compile Include="Manager\UserManager.cs" />

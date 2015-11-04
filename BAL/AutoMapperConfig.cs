@@ -32,6 +32,8 @@ namespace Common
 			Mapper.CreateMap<Coordinates, CoordinatesDTO>();
 			Mapper.CreateMap<Order, OrderDTO>();
 			Mapper.CreateMap<OrderDTO, Order>();
+			Mapper.CreateMap<WorkerStatus, WorkerStatusDTO>();
+			Mapper.CreateMap<WorkerStatusDTO, WorkerStatus>();
 		}
 	}
 }
