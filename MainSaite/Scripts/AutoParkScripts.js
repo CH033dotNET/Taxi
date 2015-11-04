@@ -138,6 +138,30 @@ var carController = {
 		});
 	},
 
+	getThisCarMain: function (e) {
+		var carsId = $(e).attr('data-cars-id');
+		var carsName = $(e).attr('data-cars-name');
+
+		$('#car-modal-getMain .getMainCar-name').html(carsName);
+		$('#car-modal-getMain').modal('show');
+
+		$('#car-modal-getMain .btn-ok').off("click.doMainCar").on("click.doMainCar", function () {
+			$.ajax({
+				url: "/Cars/SetCarStatus/",
+				data: { Id: carsId },
+				method: "POST",
+				dataType: "JSON"
+			}).done(function (result) {
+				carController.carData.cars = result;
+				carController.renderCarData();
+			});
+
+			$('#car-modal-getMain').modal('hide');
+			$('#car-modal-getMain .btn-ok').off("click.doMainCar");
+			return false;
+		});
+	},
+
 	deleteCar: function (e) { //start
 		var carsId = $(e).attr('data-cars-id'); //!!!
 		var carsName = $(e).attr('data-cars-name');

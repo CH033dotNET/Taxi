@@ -12,6 +12,7 @@ using System.Web.Mvc;
 using FluentValidation;
 using BAL.Manager;
 using RestSharp;
+using BAL.Interfaces;
 
 namespace MainSaite.Controllers
 {
@@ -19,10 +20,12 @@ namespace MainSaite.Controllers
     {
 		private ICarManager carManager;
 		private IUserManager userManager;
-		public CarsController(ICarManager carManager, IUserManager userManager)
+		private IWorkerStatusManager wsManager; 
+		public CarsController(ICarManager carManager, IUserManager userManager, IWorkerStatusManager wsManager)
 		{ 
 			this.carManager = carManager;
 			this.userManager = userManager;
+			this.wsManager = wsManager;
 		}
 		/// <summary>
 		/// Action method, returns main view and populates it with list of objects
@@ -30,6 +33,12 @@ namespace MainSaite.Controllers
 		/// <returns></returns>
 		public ActionResult CarPark()
 		{
+			//var car = new CarDTO();
+			//var request = ApiRequestHelper.Get<CarDTO>("Cars", "GetCar");
+			//var req = ApiRequestHelper.PutObject<CarDTO>("Cars","GetCar", car);
+			//var lolol = request.Data.CarName;
+			//var car = carManager.getCars();
+			wsManager.ChangeWorkerStatus(2, "1");
 			AutoParkViewModel CarsViewModel = new AutoParkViewModel();
 
 			if (SessionUser == null || SessionUser.RoleId != (int)AvailableRoles.Driver)
@@ -159,6 +168,14 @@ namespace MainSaite.Controllers
 		{
 			carManager.GiveAwayCar(CarId, RealOwnerId);
 			int userId = SessionUser.Id;
+			IEnumerable<CarDTO> DriversCars = carManager.getCarsByUserID(userId);
+			return Json(DriversCars, JsonRequestBehavior.AllowGet);
+		}
+
+		public JsonResult SetCarStatus(int Id)
+		{
+			int userId = SessionUser.Id;
+			carManager.ChangeCarToMain(Id, userId);
 			IEnumerable<CarDTO> DriversCars = carManager.getCarsByUserID(userId);
 			return Json(DriversCars, JsonRequestBehavior.AllowGet);
 		}

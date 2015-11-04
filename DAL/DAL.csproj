@@ -175,6 +175,14 @@
     <Compile Include="Migrations\201511031554375_WorkersStatuses.Designer.cs">
       <DependentUpon>201511031554375_WorkersStatuses.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511041155036_MainCar.cs" />
+    <Compile Include="Migrations\201511041155036_MainCar.Designer.cs">
+      <DependentUpon>201511041155036_MainCar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511041522118_OrderChanges.cs" />
+    <Compile Include="Migrations\201511041522118_OrderChanges.Designer.cs">
+      <DependentUpon>201511041522118_OrderChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -286,6 +294,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511031554375_WorkersStatuses.resx">
       <DependentUpon>201511031554375_WorkersStatuses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511041155036_MainCar.resx">
+      <DependentUpon>201511041155036_MainCar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511041522118_OrderChanges.resx">
+      <DependentUpon>201511041522118_OrderChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

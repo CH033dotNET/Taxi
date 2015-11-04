@@ -16,10 +16,10 @@ namespace Model.DB
 		[Key]
 		public int Id { get; set; }
 		[Required]
-		[StringLength(50, MinimumLength = 2)]
+		[StringLength(20, MinimumLength = 2)]
 		public string CarName { get; set; }
 		[Required]
-		[StringLength(12, MinimumLength = 3)]
+		[StringLength(10, MinimumLength = 4)]
 		public string CarNumber { get; set; }
 		[Required]
 		[Range(2, 20)]
@@ -94,8 +94,10 @@ namespace Model.DB
 			}
 		}
 		[Required]
-		[StringLength(16, MinimumLength = 2)]
+		[StringLength(4, MinimumLength = 2)]
 		public string CarNickName { get; set; }
+
+		public bool isMain { get; set; }
 
 		[ForeignKey("UserId")]
 		[InverseProperty("CarsUser")]

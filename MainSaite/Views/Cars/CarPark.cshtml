@@ -43,6 +43,9 @@
 								@Resources.Resource.CarState
 							</th>
 							<th>
+								[Working]
+							</th>
+							<th>
 								@Resources.Resource.ActionsColumn
 							</th>
 						</tr>
@@ -62,6 +65,19 @@
 								</td>
 								<td>
 									{{CarStateDescription}}
+								</td>
+								<td>
+									{{#if isMain}}
+									[Yes]
+									{{else}}
+									[No]
+									<a class="btn btn-warning" href="#"
+									   data-cars-id="{{Id}}"
+									   data-cars-name="{{CarName}}"
+									   role="button" onclick="carController.getThisCarMain(this)">
+										<span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>[Change Status]
+									</a>
+									{{/if}}
 								</td>
 								<td>
 									{{#ifCond OwnerId UserId}}
@@ -103,6 +119,7 @@
 				@Html.Partial("_GiveCarPartial", Model)
 				@Html.Partial("_ReturnCarPartial", Model.Cars)
 				@Html.Partial("_GetErrorMessage",Model)
+				@Html.Partial("_GetMainCarPartial",Model.Cars)
 			</div>
 		</div>
 	</div>

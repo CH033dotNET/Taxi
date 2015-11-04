@@ -471,6 +471,7 @@
     <Content Include="Views\Shared\_AjaxEditPersonInfo.cshtml" />
     <Content Include="Views\DriveClientHistory\ShowHistory.cshtml" />
     <Content Include="Views\Cars\_GetErrorMessage.cshtml" />
+    <Content Include="Views\Cars\_GetMainCarPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
