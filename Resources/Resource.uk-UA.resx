@@ -654,4 +654,19 @@
   <data name="LogOut" xml:space="preserve">
     <value>Вихід</value>
   </data>
+  <data name="AwaitingOrder" xml:space="preserve">
+    <value>Чекає на замовлення</value>
+  </data>
+  <data name="DoingOrder" xml:space="preserve">
+    <value>Виконує замовлення</value>
+  </data>
+  <data name="HasOrder" xml:space="preserve">
+    <value>Має замовлення</value>
+  </data>
+  <data name="NoStatus" xml:space="preserve">
+    <value>Без статусу</value>
+  </data>
+  <data name="Resting" xml:space="preserve">
+    <value>На перерві</value>
+  </data>
 </root>
