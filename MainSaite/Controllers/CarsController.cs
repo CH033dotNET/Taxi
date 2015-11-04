@@ -38,7 +38,7 @@ namespace MainSaite.Controllers
 			//var req = ApiRequestHelper.PutObject<CarDTO>("Cars","GetCar", car);
 			//var lolol = request.Data.CarName;
 			//var car = carManager.getCars();
-			wsManager.ChangeWorkerStatus(2, "1");
+			//wsManager.ChangeWorkerStatus(2, "4");
 			AutoParkViewModel CarsViewModel = new AutoParkViewModel();
 
 			if (SessionUser == null || SessionUser.RoleId != (int)AvailableRoles.Driver)

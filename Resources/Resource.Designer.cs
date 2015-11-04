@@ -484,6 +484,51 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Car status.
+        /// </summary>
+        public static string CarStatus {
+            get {
+                return ResourceManager.GetString("CarStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change status for current car?.
+        /// </summary>
+        public static string CarStatusConfirmation {
+            get {
+                return ResourceManager.GetString("CarStatusConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status change confirmation.
+        /// </summary>
+        public static string CarStatusConfirmHeader {
+            get {
+                return ResourceManager.GetString("CarStatusConfirmHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Main.
+        /// </summary>
+        public static string CarStatusMain {
+            get {
+                return ResourceManager.GetString("CarStatusMain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spare.
+        /// </summary>
+        public static string CarStatusSpare {
+            get {
+                return ResourceManager.GetString("CarStatusSpare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Menu.
         /// </summary>
         public static string CarToMenuBtn {
@@ -516,6 +561,15 @@ namespace Resources {
         public static string ChangeOwner {
             get {
                 return ResourceManager.GetString("ChangeOwner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change.
+        /// </summary>
+        public static string ChangeString {
+            get {
+                return ResourceManager.GetString("ChangeString", resourceCulture);
             }
         }
         

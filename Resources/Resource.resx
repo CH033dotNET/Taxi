@@ -670,4 +670,22 @@
   <data name="Resting" xml:space="preserve">
     <value>Resting</value>
   </data>
+  <data name="CarStatus" xml:space="preserve">
+    <value>Car status</value>
+  </data>
+  <data name="CarStatusConfirmation" xml:space="preserve">
+    <value>Change status for current car?</value>
+  </data>
+  <data name="CarStatusConfirmHeader" xml:space="preserve">
+    <value>Status change confirmation</value>
+  </data>
+  <data name="CarStatusMain" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="CarStatusSpare" xml:space="preserve">
+    <value>Spare</value>
+  </data>
+  <data name="ChangeString" xml:space="preserve">
+    <value>Change</value>
+  </data>
 </root>
