@@ -22,5 +22,28 @@ namespace TaxiAPI.Controllers
 			this.userManager = userManager;
 			this.personManager = personManager;
 		}
+
+        [HttpGet]
+        public HttpResponseMessage getUser(string param1, string param2)
+        {
+            var my = userManager.GetByUserName(param1, param2);
+            if (my == null) return Request.CreateResponse(HttpStatusCode.NotFound, my);
+            return Request.CreateResponse(HttpStatusCode.OK, my);
+        }
+        [HttpGet]
+        public HttpResponseMessage getPerson(int id)
+        {
+            var person = personManager.GetPersonByUserId(id);
+            if (person == null)
+            {
+                person = personManager.InsertPerson(new PersonDTO() { UserId = id, ImageName = "item_0_profile.jpg" });
+            }
+           /* if (!System.IO.File.Exists(Server.MapPath(@"~\Images\") + currentPerson.ImageName))
+            {
+                personManager.DefaultImage(user.Id);
+            }*/
+            return Request.CreateResponse(HttpStatusCode.OK, person);
+        }
+
     }
 }

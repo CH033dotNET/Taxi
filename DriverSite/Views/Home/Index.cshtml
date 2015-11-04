@@ -1,0 +1,123 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@Resources.Resource.PersonalCabinet</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/tabHelper")
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/BootstrapCallout.css")
+    @Styles.Render("~/Content/ClientDriveService.css")
+
+</head>
+<body style="padding:0">
+    <input type="hidden" id="hlat" value="48.309390" />
+    <input type="hidden" id="hlong" value="25.943524" />
+    <div id="driver-bootstrap-menu" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Logo</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse navbar-menubuilder">
+                <ul class="nav navbar-nav navbar-left">
+                    <!-- Менюшки!!!
+                        Індекс тимчасовий!!!-->
+                    <li>
+                        <a data-toggle="tab" href="#Home">@Resources.Resource.Home</a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#Settings">@Resources.Resource.Settings</a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#Messages">@Resources.Resource.Messages</a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#District">@Resources.Resource.District</a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#ClientService">@Resources.Resource.ClientService</a>
+                    </li>
+                    <li>
+                        @Html.ActionLink(Resources.Resource.LogOut, "LogOut", "Account")
+                    </li> 
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div>
+        <div id="driver-content" class="tab-content">
+            <div id="Home" class="tab-pane fade">
+                @{
+                   // Html.RenderAction("Index", "DrivingSimulation");
+                }
+
+            </div>
+            <div id="Settings" class="tab-pane fade">
+                <p>
+                    @{
+                     //   Html.RenderAction("EditLocation", "Location");
+                    }
+                    <ul>
+                    @if (Session["Culture"] != null && Session["Culture"].ToString().ToUpper() == "UK-UA")
+                    {
+                        <li> @Html.RouteLink("Ua", new { controller = "Home", action = "SetLanguage", language = "uk-Ua", returnUrl = Request.Url.AbsoluteUri }, new { @Class = "ActivLang" })</li>
+                        <li>@Html.RouteLink("En", new { controller = "Home", action = "SetLanguage", language = "en-us", returnUrl = Request.Url.AbsoluteUri })</li>
+                    }
+                    else
+                    {
+                        <li>@Html.RouteLink("Ua", new { controller = "Home", action = "SetLanguage", language = "uk-Ua", returnUrl = Request.Url.AbsoluteUri })</li>
+                        <li>@Html.RouteLink("En", new { controller = "Home", action = "SetLanguage", language = "en-us", returnUrl = Request.Url.AbsoluteUri }, new { @Class = "ActivLang" })</li>
+                    }
+                    </ul>
+                </p>
+            </div>
+            <div id="Messages" class="tab-pane fade">
+                <h2>
+                    @Resources.Resource.Messages
+                </h2>
+                <p>
+                    placeHolder3
+                </p>
+            </div>
+            <div id="District" class="tab-pane fade">
+                <h2>
+                    @Resources.Resource.District
+                </h2>
+                <p>
+                    @{
+                       // Html.RenderAction("District", "Home");
+                    }
+                </p>
+            </div>
+            <div id="ClientService" class="tab-pane fade">
+                <p>
+                    @{
+                       // Html.RenderAction("PeekClient", "ClientService");
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

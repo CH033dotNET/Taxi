@@ -1,0 +1,41 @@
+﻿@model Model.DTO.LoginModel
+@{
+    Layout = null;
+}
+
+<style>
+    .bif input{
+        width:200px;
+    }
+</style>
+    <div class="btform bif">
+        @using (Html.BeginForm("Authentification"))
+        {
+            <table>
+                @Html.ValidationSummary()
+                <tr>
+                    <td>
+                        Login
+                    </td>
+                    <td>@Html.TextBoxFor(x => x.UserName, new { @required = true, @minlength = "4", @maxlength = "16" })
+                        @Html.ValidationMessageFor(x => x.UserName, "", new { @id = "clValidReg", @minlength = "6" })
+                    </td>
+                 
+                </tr>
+                <tr>
+                    <td>
+                        Password
+                    </td>
+                    <td>
+                        @Html.PasswordFor(x => x.Password, new { @required = true, @minlength = "6" })
+                        @Html.ValidationMessageFor(x => x.Password, "", new { @id = "clValidReg" })
+                    </td>          
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center;">
+                        <input type="submit" value="@Resources.Resource.Login" style="display:inline;" />
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>

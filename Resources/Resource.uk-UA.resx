@@ -651,4 +651,7 @@
   <data name="Runtime" xml:space="preserve">
     <value>Час поїздки</value>
   </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Вихід</value>
+  </data>
 </root>

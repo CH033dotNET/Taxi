@@ -652,4 +652,7 @@
   <data name="Runtime" xml:space="preserve">
     <value>Run time</value>
   </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Log out</value>
+  </data>
 </root>

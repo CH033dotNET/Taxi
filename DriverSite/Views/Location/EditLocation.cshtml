@@ -1,0 +1,38 @@
+﻿@using Model
+@model Model.DTO.LocationDTO
+
+@{
+    ViewBag.Title = "EditLocation";
+}
+
+@if (ViewBag.District!=null){
+<h3>@Resources.Resource.YourCurrentLocation @ViewBag.District.Name</h3> <p></p>
+<h4>@Resources.Resource.EditLocation</h4>
+}
+else
+{
+<h3>@Resources.Resource.CreateLocation</h3>
+}
+
+
+
+<div class="row">
+    @using (Html.BeginForm("EditLocation", "Location")) { 
+        <div class="col-md-6">
+
+            <select name="Id" class="form-control" style="margin:3px;">
+                @{
+
+                    foreach (District District in ViewBag.Districts)
+                    {
+                        <option value="@District.Id"> @District.Name </option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-md-6">
+            <input type="submit" value="ok" class="btn btn-default">
+        </div>
+    }
+</div>
+
