@@ -18,6 +18,7 @@
 						<tr class="form-group">
 							<td class="td-ench"><label class="control-label">@Resources.Resource.CarName</label></td>
 							<td>
+								<input id="newInputCarId" value="" hidden>
 								<input type="text" class="form-control input-lg" id="newInputCarName" name="CarName" placeholder="@Resources.Resource.CarName" data-delay="150" data-minlength="2" data-maxlength="20" data-error="@Resources.Resource.CarNameError" value="" required>
 								<span class="help-block with-errors"></span>
 							</td>
@@ -100,7 +101,7 @@
 				<button type="button" class="btn btn-warning" data-dismiss="modal">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true">&nbsp;</span>@Resources.Resource.cancelButton
 				</button>
-				<button form="edit-car-form" role="button" type="submit" class="btn btn-success btn-ok">
+				<button form="edit-car-form" role="button" type="button" class="btn btn-success" onclick="validateShitEdit();">
 					<span class="glyphicon glyphicon-plus" aria-hidden="true">&nbsp;</span>@Resources.Resource.saveButton
 				</button>
 			</div>

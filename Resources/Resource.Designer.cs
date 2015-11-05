@@ -628,6 +628,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string Confirm {
+            get {
+                return ResourceManager.GetString("Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete this address?.
         /// </summary>
         public static string ConfirmDeletingAddress {
@@ -786,6 +795,15 @@ namespace Resources {
         public static string deleteString {
             get {
                 return ResourceManager.GetString("deleteString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Denied.
+        /// </summary>
+        public static string Denied {
+            get {
+                return ResourceManager.GetString("Denied", resourceCulture);
             }
         }
         
@@ -1340,6 +1358,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string okString {
+            get {
+                return ResourceManager.GetString("okString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to One minute cost.
         /// </summary>
         public static string OneMinuteCost {
@@ -1511,6 +1538,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Oops, something went wrong....
+        /// </summary>
+        public static string ServerErrorHeader {
+            get {
+                return ResourceManager.GetString("ServerErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, something happened when your data was pocessed. But don`t worry. Everything`s okay. Please try again or contact administrator..
+        /// </summary>
+        public static string ServerErrorMessage {
+            get {
+                return ResourceManager.GetString("ServerErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Set.
         /// </summary>
         public static string Set {
@@ -1669,6 +1714,15 @@ namespace Resources {
         public static string TitleMainMenuLocation {
             get {
                 return ResourceManager.GetString("TitleMainMenuLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string Update {
+            get {
+                return ResourceManager.GetString("Update", resourceCulture);
             }
         }
         

@@ -188,13 +188,61 @@
 	var userId = @Html.Raw((Session["User"] as Model.DTO.UserDTO).Id);
 	var ownerId = @Html.Raw((Session["User"] as Model.DTO.UserDTO).Id);
 
-	$('#add-car-form').validator().on('submit', function (e) {
-		if (e.isDefaultPrevented()) {
-			return false;
-		} else {
+	//$('#add-car-form').validator().on('submit', function (e) {
+	//	if (e.isDefaultPrevented()) {
+	//		return false;
+	//	} else {
+	//		carController.addConfirm2();
+	//	}
+	//})
+	function validateShit() {
+		var a = $('#add-car-form').validator('validate');
+		if (a.valid()){
 			carController.addConfirm2();
 		}
-	})
+		else return false;
+	}
+
+	function validateShitEdit() {
+		var b = $('#edit-car-form').validator('validate');
+		if (b.valid()){
+			carController.editConfirm();
+		}
+		else return false;
+	}
+	
+
+	//!!!!!!!!$('#add-car-form').validator().on('submit', function (e) {
+	//	e.preventDefault();
+	//	var a = $('#add-car-form').validator('validate');
+	//	//var myForm = $('#add-car-form');
+	//	//if (myForm.valid()){
+	//	//	carController.addConfirm2();
+	//	//}
+	//	if (a.valid()){
+	//		carController.addConfirm2();
+	//	}
+	//	else return false;
+	//});
+	//$("#submit").on("click", function(){
+	//	var bootstrapValidator = $("#add-car-form").data('validator');
+	//	bootstrapValidator.validate();
+	//	if(bootstrapValidator.isValid())
+	//		//$("#add-car-form").submit();
+	//		carController.addConfirm2();
+	//	else return;
+	//});
+
+	//$("#add-car-form").submit(function(ev){ev.preventDefault();});
+	//$("#submit").on("click", function(){
+	//	var bootstrapValidator = $("#add-car-form").data('validator');
+	//	bootstrapValidator.validate();
+	//	if(bootstrapValidator.isValid())
+	//		//$("#add-car-form").submit();
+	//		carController.addConfirm2();
+	//	else return;
+	//});
+
 </script>
 <script type="text/javascript" src="~/Scripts/AutoParkScripts.js"></script>
 <script type="text/javascript" src="~/Scripts/HandlebarsCustomHelpers.js"></script>

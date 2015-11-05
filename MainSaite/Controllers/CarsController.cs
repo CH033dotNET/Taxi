@@ -63,6 +63,8 @@ namespace MainSaite.Controllers
 			IEnumerable<CarDTO> DriversCars;
 			int userId = SessionUser.Id;
 			CarModelValidator validator = new CarModelValidator();
+			//car.CarName = "HJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ";
+			//car.CarNickName = "99999999999999";
 			var checkedCar = validator.Validate(car, ruleSet: "AddNewCar");
 			if (!checkedCar.IsValid)
 			{
