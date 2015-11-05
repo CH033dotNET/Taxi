@@ -670,4 +670,43 @@
   <data name="Resting" xml:space="preserve">
     <value>Resting</value>
   </data>
+  <data name="CarStatus" xml:space="preserve">
+    <value>Car status</value>
+  </data>
+  <data name="CarStatusConfirmation" xml:space="preserve">
+    <value>Change status for current car?</value>
+  </data>
+  <data name="CarStatusConfirmHeader" xml:space="preserve">
+    <value>Status change confirmation</value>
+  </data>
+  <data name="CarStatusMain" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="CarStatusSpare" xml:space="preserve">
+    <value>Spare</value>
+  </data>
+  <data name="ChangeString" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Denied" xml:space="preserve">
+    <value>Denied</value>
+  </data>
+  <data name="okString" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ServerErrorHeader" xml:space="preserve">
+    <value>Oops, something went wrong...</value>
+  </data>
+  <data name="ServerErrorMessage" xml:space="preserve">
+    <value>Sorry, something happened when your data was pocessed. But don`t worry. Everything`s okay. Please try again or contact administrator.</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="OrderTime" xml:space="preserve">
+    <value>OrderTime</value>
+  </data>
 </root>

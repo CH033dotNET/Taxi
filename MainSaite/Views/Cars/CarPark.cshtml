@@ -43,6 +43,9 @@
 								@Resources.Resource.CarState
 							</th>
 							<th>
+								@Resources.Resource.CarStatus
+							</th>
+							<th>
 								@Resources.Resource.ActionsColumn
 							</th>
 						</tr>
@@ -64,32 +67,69 @@
 									{{CarStateDescription}}
 								</td>
 								<td>
-									{{#ifCond OwnerId UserId}}
-									<a class="btn btn-warning" href="#"
-									   data-cars-id="{{Id}}"
-									   role="button" onclick="carController.getCarEdit(this)">
-										<span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString
-									</a>
-									{{/ifCond}}
-									{{#ifCond OwnerId UserId}}
-									<a class="btn btn-danger" href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" role="button" onclick="carController.deleteCar(this)">
-										<span class="glyphicon glyphicon-trash" aria-hidden="true">&nbsp;</span>@Resources.Resource.deleteString
-									</a>
-									{{/ifCond}}
-									<a class="btn btn-info" href="#"
-									   data-cars-id="{{Id}}"
-									   role="button" onclick="carController.getCarDetails(this)">
-										<span class="glyphicon glyphicon-file" aria-hidden="true">&nbsp;</span>@Resources.Resource.CarsDetails
-									</a>
-									{{#ifCond OwnerId UserId}}
-									<a class="btn btn-warning" href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" role="button" onclick="carController.giveCar(this)">
-										<span class="glyphicon glyphicon-user" aria-hidden="true">&nbsp;</span>@Resources.Resource.ChangeDriver
-									</a>
+									{{#if isMain}}
+									<span class="label label-success">@Resources.Resource.CarStatusMain</span>
 									{{else}}
-									<a class="btn btn-info" href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" data-cars-owner="{{OwnerId}}" role="button" onclick="carController.returnCar(this)">
-										<span class="glyphicon glyphicon-user" aria-hidden="true">&nbsp;</span>@Resources.Resource.Return
-									</a>
-									{{/ifCond}}
+									<span class="label label-default"
+										  data-cars-id="{{Id}}"
+										  data-cars-name="{{CarName}}"
+										  role="button" onclick="carController.getThisCarMain(this)">@Resources.Resource.CarStatusSpare</span>
+									@*<a class="btn btn-warning" href="#"
+									   data-cars-id="{{Id}}"
+									   data-cars-name="{{CarName}}"
+									   role="button" onclick="carController.getThisCarMain(this)">
+										<span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>[Change Status]
+									</a>*@
+									{{/if}}
+								</td>
+								<td>
+									<!-- Single button -->
+									<div class="btn-group">
+										<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											@Resources.Resource.ActionsColumn <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu">
+											{{#ifCond OwnerId UserId}}
+											<li>
+												<a href="#"
+												   data-cars-id="{{Id}}"
+												   role="button" onclick="carController.getCarEdit(this)">
+													<span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString
+												</a>
+											</li>
+											{{/ifCond}}
+											<li role="separator" class="divider"></li>
+											{{#ifCond OwnerId UserId}}
+											<li>
+												<a href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" role="button" onclick="carController.deleteCar(this)">
+													<span class="glyphicon glyphicon-trash" aria-hidden="true">&nbsp;</span>@Resources.Resource.deleteString
+												</a>
+											</li>
+											{{/ifCond}}
+											<li role="separator" class="divider"></li>
+											<li>
+												<a href="#"
+												   data-cars-id="{{Id}}"
+												   role="button" onclick="carController.getCarDetails(this)">
+													<span class="glyphicon glyphicon-file" aria-hidden="true">&nbsp;</span>@Resources.Resource.CarsDetails
+												</a>
+											</li>
+											<li role="separator" class="divider"></li>
+											{{#ifCond OwnerId UserId}}
+											<li>
+												<a href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" role="button" onclick="carController.giveCar(this)">
+													<span class="glyphicon glyphicon-user" aria-hidden="true">&nbsp;</span>@Resources.Resource.ChangeDriver
+												</a>
+											</li>
+											{{else}}
+											<li>
+												<a href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" data-cars-owner="{{OwnerId}}" role="button" onclick="carController.returnCar(this)">
+													<span class="glyphicon glyphicon-user" aria-hidden="true">&nbsp;</span>@Resources.Resource.Return
+												</a>
+											</li>
+											{{/ifCond}}
+										</ul>
+									</div>
 								</td>
 							</tr>
 							{{/each}}
@@ -103,6 +143,7 @@
 				@Html.Partial("_GiveCarPartial", Model)
 				@Html.Partial("_ReturnCarPartial", Model.Cars)
 				@Html.Partial("_GetErrorMessage",Model)
+				@Html.Partial("_GetMainCarPartial",Model.Cars)
 			</div>
 		</div>
 	</div>
@@ -147,13 +188,61 @@
 	var userId = @Html.Raw((Session["User"] as Model.DTO.UserDTO).Id);
 	var ownerId = @Html.Raw((Session["User"] as Model.DTO.UserDTO).Id);
 
-	$('#add-car-form').validator().on('submit', function (e) {
-		if (e.isDefaultPrevented()) {
-			return false;
-		} else {
+	//$('#add-car-form').validator().on('submit', function (e) {
+	//	if (e.isDefaultPrevented()) {
+	//		return false;
+	//	} else {
+	//		carController.addConfirm2();
+	//	}
+	//})
+	function validateShit() {
+		var a = $('#add-car-form').validator('validate');
+		if (a.valid()){
 			carController.addConfirm2();
 		}
-	})
+		else return false;
+	}
+
+	function validateShitEdit() {
+		var b = $('#edit-car-form').validator('validate');
+		if (b.valid()){
+			carController.editConfirm();
+		}
+		else return false;
+	}
+	
+
+	//!!!!!!!!$('#add-car-form').validator().on('submit', function (e) {
+	//	e.preventDefault();
+	//	var a = $('#add-car-form').validator('validate');
+	//	//var myForm = $('#add-car-form');
+	//	//if (myForm.valid()){
+	//	//	carController.addConfirm2();
+	//	//}
+	//	if (a.valid()){
+	//		carController.addConfirm2();
+	//	}
+	//	else return false;
+	//});
+	//$("#submit").on("click", function(){
+	//	var bootstrapValidator = $("#add-car-form").data('validator');
+	//	bootstrapValidator.validate();
+	//	if(bootstrapValidator.isValid())
+	//		//$("#add-car-form").submit();
+	//		carController.addConfirm2();
+	//	else return;
+	//});
+
+	//$("#add-car-form").submit(function(ev){ev.preventDefault();});
+	//$("#submit").on("click", function(){
+	//	var bootstrapValidator = $("#add-car-form").data('validator');
+	//	bootstrapValidator.validate();
+	//	if(bootstrapValidator.isValid())
+	//		//$("#add-car-form").submit();
+	//		carController.addConfirm2();
+	//	else return;
+	//});
+
 </script>
 <script type="text/javascript" src="~/Scripts/AutoParkScripts.js"></script>
 <script type="text/javascript" src="~/Scripts/HandlebarsCustomHelpers.js"></script>

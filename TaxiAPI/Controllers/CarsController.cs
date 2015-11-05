@@ -23,7 +23,7 @@ namespace TaxiAPI.Controllers
 		}
 
 		[HttpGet]
-		public CarDTO GetCar()
+		public HttpResponseMessage GetCar()
 		{
 
 			//var newcar = this.carManager.getCars();
@@ -31,7 +31,22 @@ namespace TaxiAPI.Controllers
 			//TestManager testman = new TestManager();
 			//var car = testman.GetCar();
 			//return car;
-			return newcar;
+			return Request.CreateResponse(HttpStatusCode.OK, newcar);
 		}
+
+		//тот же код
+		//[HttpGet]
+		//public HttpResponseMessage GetCar2()
+		//{
+		//	var newcar = this.carManager.GetCarByCarID(9);
+		//	if (newcar == null)
+		//	{
+		//		return Request.CreateResponse(HttpStatusCode.NoContent, "no items were found");
+		//	}
+		//	else
+		//	{
+		//		Request.CreateResponse(HttpStatusCode.OK, newcar);
+		//	}
+		//}
     }
 }

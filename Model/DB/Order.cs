@@ -35,6 +35,7 @@ namespace Model.DB
 		public double LatitudePeekPlace { get; set; }
 		[Required]
 		public double LongitudePeekPlace { get; set; }
+		public int IsConfirm { get; set; }
 		
 		[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh-mm-ss}", ApplyFormatInEditMode = true)]
 		public Nullable<DateTime> StartWork { get; set; }

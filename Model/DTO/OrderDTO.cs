@@ -36,6 +36,7 @@ namespace Model.DTO
 		[Required]
 		public double LongitudePeekPlace { get; set; }
 
+		public int IsConfirm { get; set; }
 		
 		public Nullable<DateTime> StartWork { get; set; }
 		

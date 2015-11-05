@@ -39,19 +39,21 @@ var carController = {
 				CarManufactureDate: newCarManufactureDate,
 				CarState: newCarState
 			},
+			cache: false,
 			dataType: "JSON",
-		}).done(function (result) {
+		}).done(function (result) { /// change all this shit
 			if (result.success && result != null) {
-				carController.carData.cars = result;
+				carController.carData.cars = result.DriversCars;
 				carController.renderCarData();
 				document.getElementById("add-car-form").reset();
 			}
 			else {
 				carController.getErrorMessage();
+				document.getElementById("add-car-form").reset();
 			}
 		})
-		.fail(function () { alert("SHEEET!") })
-		.always(function () {
+		.fail(function () { alert("SHEEET!"); document.getElementById("add-car-form").reset(); })
+		.always(function (result) {
 			$('#datetimepicker1').datetimepicker('clear');
 			$('#datetimepicker2').datetimepicker('clear');
 			$('#add-car-modal').modal('hide');
@@ -75,7 +77,7 @@ var carController = {
 			method: "POST",
 			dataType: "JSON"
 		}).done(function (result) {
-
+			$('#newInputCarId').val(oldCarsId);
 			$('#newInputCarName').val(result.CarName);
 			$('#newInputCarNickName').val(result.CarNickName);
 			$('#newInputCarNumber').val(result.CarNumber);
@@ -89,52 +91,79 @@ var carController = {
 			$('#datetimepicker1').val(noMili);
 			$('#newInputCarState').val(result.CarState);
 
-			$('#edit-car-modal .btn-ok').off("click.editCar").on("click.editCar", function () {
-				var newInCarsName = $('#newInputCarName').val();
-				var newInCarsNName = $('#newInputCarNickName').val();
-				var newInCarsNumber = $('#newInputCarNumber').val();
-				var newInCarsOccupation = $('#newInputCarOccupation').val();
-				var newInCarsClass = $('#newInputCarClass').val();
-				var newInCarsPT = $('#newInputCarPetrolType').val();
-				var newInCarsPC = $('#newInputCarPetrolConsumption').val();
-				var newInCarsMD = $('#datetimepicker1').val();
-				var newInCarsState = $('#newInputCarState').val();
-				$.ajax({
-					url: "/Cars/EditCar/",
-					data: {
-						Id: oldCarsId,
-						CarName: newInCarsName,
-						CarNickName: newInCarsNName,
-						CarNumber: newInCarsNumber,
-						CarOccupation: newInCarsOccupation,
-						CarClass: newInCarsClass,
-						CarPetrolType: newInCarsPT,
-						CarPetrolConsumption: newInCarsPC,
-						CarManufactureDate: newInCarsMD,
-						CarState: newInCarsState,
-						UserId: userId,
-						OwnerId: ownerId
-					},
-					method: "POST",
-					dataType: "JSON"
-				}).done(function (result) {
-					if (result.success && result != null) {
-						carController.carData.cars = result;
-						carController.renderCarData();
-						document.getElementById("add-car-form").reset();
-					}
-					else if (!result.success) {
-						carController.getErrorMessage();
-					}
-				})
-				.fail(function () { alert("SHEEET!") })
-				.always(function () {
-					$('#datetimepicker1').datetimepicker('clear');
-					$('#datetimepicker2').datetimepicker('clear');
-					$('#edit-car-modal .btn-ok').off("click.editCar");
-					$('#edit-car-modal').modal('hide');
-				})
+		});
+	},
+
+	editConfirm: function () {
+		var newInCarsId = $('#newInputCarId').val();
+		var newInCarsName = $('#newInputCarName').val();
+		var newInCarsNName = $('#newInputCarNickName').val();
+		var newInCarsNumber = $('#newInputCarNumber').val();
+		var newInCarsOccupation = $('#newInputCarOccupation').val();
+		var newInCarsClass = $('#newInputCarClass').val();
+		var newInCarsPT = $('#newInputCarPetrolType').val();
+		var newInCarsPC = $('#newInputCarPetrolConsumption').val();
+		var newInCarsMD = $('#datetimepicker1').val();
+		var newInCarsState = $('#newInputCarState').val();
+		$.ajax({
+			url: "/Cars/EditCar/",
+			data: {
+				Id: newInCarsId,
+				CarName: newInCarsName,
+				CarNickName: newInCarsNName,
+				CarNumber: newInCarsNumber,
+				CarOccupation: newInCarsOccupation,
+				CarClass: newInCarsClass,
+				CarPetrolType: newInCarsPT,
+				CarPetrolConsumption: newInCarsPC,
+				CarManufactureDate: newInCarsMD,
+				CarState: newInCarsState,
+				UserId: userId,
+				OwnerId: ownerId
+			},
+			method: "POST",
+			dataType: "JSON"
+		}).done(function (result) {
+			if (result.success && result != null) {
+				carController.carData.cars = result.DriversCars;
+				carController.renderCarData();
+				document.getElementById("edit-car-form").reset();
+			}
+			else if (!result.success) {
+				carController.getErrorMessage();
+				document.getElementById("edit-car-form").reset();
+			}
+		})
+		.fail(function () { alert("SHEEET!"); document.getElementById("edit-car-form").reset(); })
+		.always(function () {
+			$('#datetimepicker1').datetimepicker('clear');
+			$('#datetimepicker2').datetimepicker('clear');
+			$('#edit-car-modal .btn-ok').off("click.editCar");
+			$('#edit-car-modal').modal('hide');
+		})
+	},
+
+	getThisCarMain: function (e) {
+		var carsId = $(e).attr('data-cars-id');
+		var carsName = $(e).attr('data-cars-name');
+
+		$('#car-modal-getMain .getMainCar-name').html(carsName);
+		$('#car-modal-getMain').modal('show');
+
+		$('#car-modal-getMain .btn-ok').off("click.doMainCar").on("click.doMainCar", function () {
+			$.ajax({
+				url: "/Cars/SetCarStatus/",
+				data: { Id: carsId },
+				method: "POST",
+				dataType: "JSON"
+			}).done(function (result) {
+				carController.carData.cars = result;
+				carController.renderCarData();
 			});
+
+			$('#car-modal-getMain').modal('hide');
+			$('#car-modal-getMain .btn-ok').off("click.doMainCar");
+			return false;
 		});
 	},
 

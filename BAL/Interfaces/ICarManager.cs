@@ -15,5 +15,7 @@ namespace BAL.Manager
 		bool GetWorkShiftsByWorkerId(int WorkerId);
 		void GiveAwayCar(int CarId, int NewCarUserId);
 		void StartWorkEvent(int? id, string TimeStart);
+
+		string ChangeCarToMain(int carId, int userId);
 	}
 }

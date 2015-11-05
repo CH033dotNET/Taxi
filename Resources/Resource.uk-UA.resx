@@ -669,4 +669,43 @@
   <data name="Resting" xml:space="preserve">
     <value>На перерві</value>
   </data>
+  <data name="CarStatus" xml:space="preserve">
+    <value>Статус авто</value>
+  </data>
+  <data name="CarStatusConfirmation" xml:space="preserve">
+    <value>Змінити робочий статус для данного авто?</value>
+  </data>
+  <data name="CarStatusConfirmHeader" xml:space="preserve">
+    <value>Підтвердження зміни статусу</value>
+  </data>
+  <data name="CarStatusMain" xml:space="preserve">
+    <value>Робочий</value>
+  </data>
+  <data name="CarStatusSpare" xml:space="preserve">
+    <value>Запасний</value>
+  </data>
+  <data name="ChangeString" xml:space="preserve">
+    <value>Змінити</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Підтвердити</value>
+  </data>
+  <data name="Denied" xml:space="preserve">
+    <value>Відхилити</value>
+  </data>
+  <data name="okString" xml:space="preserve">
+    <value>ОК</value>
+  </data>
+  <data name="ServerErrorHeader" xml:space="preserve">
+    <value>Упс, щось трапилось...</value>
+  </data>
+  <data name="ServerErrorMessage" xml:space="preserve">
+    <value>Вибачте, але виникла проблема при обробці ваших данних. Не хвилютесь, все в порядку. Спробуйте знову, або викличте адміністратора, якщо проблема повториться.</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Оновити</value>
+  </data>
+  <data name="OrderTime" xml:space="preserve">
+    <value>Час замовлення</value>
+  </data>
 </root>

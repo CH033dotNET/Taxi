@@ -80,11 +80,11 @@
                 </p>
             </div>
             <div id="Messages" class="tab-pane fade">
-                <h2>
-                    @Resources.Resource.Messages
-                </h2>
+
                 <p>
-                    placeHolder3
+                    @{
+                        Html.RenderAction("DriverOrders", "Driver");
+                    }
                 </p>
             </div>
             <div id="District" class="tab-pane fade">

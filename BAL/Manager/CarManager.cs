@@ -130,6 +130,51 @@ namespace BAL.Manager
 			uOW.Save();
 		}
 
+		public string ChangeCarToMain(int carId, int userId)
+		{
+			// We need cars that are currently being used by current driver
+
+			var usedCar = uOW.CarRepo.Get(x => x.isMain == true & x.UserId == userId).FirstOrDefault(); // find a car with status set as true, which are used by our driver
+			if (usedCar != null) // if such car exists
+			{
+				if (usedCar.Id == carId) // and if this car id match input parameter
+				{
+					return MakeaCarMain(carId, userId); // change this car`s id
+				}
+				else // if it`s not, if its other car, change its status to false and change status of car that we need
+				{
+					uOW.CarRepo.SetStateModified(usedCar);
+					usedCar.isMain = false;
+					uOW.Save();
+					var message = MakeaCarMain(carId, userId);
+					return message;
+				} 
+			}
+			else // if there are no cars with status as true
+			{
+				var message = MakeaCarMain(carId, userId);
+				return message;
+			}
+		}
+
+		private string MakeaCarMain(int carId, int userId)
+		{
+			var car = uOW.CarRepo.Get(x => x.Id == carId & x.UserId == userId).FirstOrDefault();
+			if (car == null)
+			{
+				return "Nothing was found";
+			}
+			else
+			{
+				uOW.CarRepo.SetStateModified(car);
+				car.isMain = !car.isMain;
+				uOW.Save();
+
+				return "Success";
+			}
+
+		}
+
 		/// <summary>
 		/// Gets list of workers from a pero by specific criteria. If criteria is not matching returns null  
 		/// </summary>
