@@ -36,7 +36,7 @@ namespace BAL.Manager
 
 		public OrderDTO EditOrder(OrderDTO order)
 		{
-			var newOrder = uOW.OrderRepo.Get(s => s.PersonId == order.PersonId).Last();
+			var newOrder = uOW.OrderRepo.Get().FirstOrDefault(s => s.Id == order.Id);
 			if (newOrder == null)
 			{
 				return null;
@@ -56,6 +56,7 @@ namespace BAL.Manager
 			newOrder.StartWork = order.StartWork;
 			newOrder.EndWork = order.EndWork;
 			newOrder.WaitingTime = order.WaitingTime;
+			newOrder.IsConfirm = order.IsConfirm;
 			uOW.Save();
 			return Mapper.Map<OrderDTO>(newOrder);
 		}

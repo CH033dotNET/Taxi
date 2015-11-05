@@ -52,17 +52,16 @@ function CenterControl(controlDiv, map) {
         map.setCenter(geocode());
 
         var orderObj = {
-            'PeekPlace': marker1.getTitle(),
-            'DropPlace': marker2.getTitle(),
+            'PeekPlace': marker2.getTitle(),
+            'DropPlace': marker1.getTitle(),
             'OrderTime': new Date().toISOString(),
-            'LatitudeDropPlace': marker2.position.lat(),
-            'LongitudeDropPlace': marker2.position.lng(),
+            'LatitudeDropPlace': marker1.position.lat(),
+            'LongitudeDropPlace': marker1.position.lng(),
             'Accuracy': circle.getRadius(),
-            'LatitudePeekPlace':marker1.position.lat(),
-            'LongitudePeekPlace': marker1.position.lng()
+            'LatitudePeekPlace':marker2.position.lat(),
+            'LongitudePeekPlace': marker2.position.lng(),
+            'IsConfirm': 3
         }
-
-        console.log(orderObj);
         $.ajax({
             url: '/Order/GetOrder/',
             data: orderObj,
@@ -257,11 +256,12 @@ function geocodeLatLng(LatLong, geocoder, map, infowindow) {
                     position: latlng,
                     map: map,
                     icon: picturePath + 'logo_destination.png',
-                    title: results[0].formatted_address
+                   
                 });
 
 
                 marker1 = test;
+                setTitle(marker1);
                 infowindow.setContent(results[0].formatted_address);
                 
                 document.getElementById('autocomplete').value = results[0].formatted_address;
@@ -347,8 +347,9 @@ geocode = function () {
                 map: map,
                 position: results[0].geometry.location,
                 icon: picturePath + 'logo_destination.png',
-                title: results[0].formatte_address
             });
+
+            setTitle(marker1);
         }
         else {
             alert("Geocode was not successful for the following reason: " + status);
