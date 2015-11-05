@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "DriverOrders";
+}
+
+
+<script src="~/Scripts/handlebars.min.js"></script>
+
+
+<button id="getOrders" onclick="GetOrders()">@Resources.Resource.Update</button>
+
+<div class="modal fade" id="Asign">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title">[Take Order]</h3> 
+            </div>
+
+            <div class="modal-body">
+               This is modal window 
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" type="button">@Resources.Resource.Confirm</button>
+                <button class="btn btn-danger" type="button" data-dismiss="modal">@Resources.Resource.cancelButton</button>
+            </div> 
+        </div> 
+    </div> 
+</div>
+
+<script id="template-article" type="text/x-handlebars-template">
+    
+    <table class="table">
+
+        <tr>
+            <th> @Resources.Resource.OrderTime </th>
+            <th> @Resources.Resource.PeekPlace</th>
+            <th> @Resources.Resource.DropPlace </th>
+            <th> @Resources.Resource.Action</th>
+        </tr>
+
+        {{#each orders}}
+        <tr>
+            <td>{{PrettifyDate OrderTime}}</td>
+            <td>{{PeekPlace}}</td>
+            <td>{{DropPlace}}</td>
+            <td> <button id="butOk" class="btn btn-default" data-toggle="modal" data-target="#Asign">@Resources.Resource.Confirm</button> </td>
+        </tr>
+        {{/each}}
+
+    </table>
+</script>
+<div id="DrOrder"></div>
+
+<script type="text/javascript" src="~/Scripts/OperatorCommand/DriverCommand.js"></script>
+
+<script src="~/Scripts/HandlebarsCustomHelpers.js"></script>

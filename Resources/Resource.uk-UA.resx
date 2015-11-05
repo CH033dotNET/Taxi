@@ -705,4 +705,7 @@
   <data name="Update" xml:space="preserve">
     <value>Оновити</value>
   </data>
+  <data name="OrderTime" xml:space="preserve">
+    <value>Час замовлення</value>
+  </data>
 </root>
