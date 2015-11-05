@@ -23,7 +23,7 @@ namespace DriverSite.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-                SessionUser = ApiRequestHelper.Get<UserDTO, string, string>("Account", "getUser", user.UserName, user.Password).Data as UserDTO;
+                SessionUser = ApiRequestHelper.postData<UserDTO, LoginModel>("Account", "getUser", user).Data as UserDTO;
                 if (SessionUser != null)
 				{
                     SessionPerson = ApiRequestHelper.GetById<PersonDTO>("Account", "getPerson", SessionUser.Id).Data as PersonDTO;
