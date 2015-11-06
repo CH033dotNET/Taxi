@@ -28,3 +28,19 @@ function setOrderStatus(e) {
         }
     });
 }
+
+function GetDrRequest() {
+    var content = $('#driverRequest');
+    $.ajax({
+        type: 'POST',
+        url: "/Order/DriversRequest/",
+        dataType: 'json',
+        success: function (data) {
+            var source = $("#driverRequestTemplate").html();
+            var template = Handlebars.compile(source);
+            var wrapper = { requests: data };
+            var html = template(wrapper);
+            content.html(html);
+        }
+    });
+}

@@ -7,7 +7,7 @@
 
 
 @section Menu{
-<script src="~/Scripts/handlebars.js"></script>
+    <script src="~/Scripts/handlebars.js"></script>
     <script>
         function getCoord() {
             var orderObj = {};
@@ -16,7 +16,7 @@
             //codeLatLng(marker1.position.lat(), marker1.position.lng());
             //orderObj.PeekPlace = address;
             //getLocation(marker.position.lat(), marker.position.lng());
-            
+
             orderObj.ComeIn = getLocation(marker1.position.lat(), marker1.position.lng());
 
             orderObj.ComeOutlatitude = test1.position.lat();
@@ -24,7 +24,7 @@
 
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function() {
-                    alert("Latitude: " + position.coords.latitude + 
+                    alert("Latitude: " + position.coords.latitude +
     "<br>Longitude: " + position.coords.longitude);
                 });
             } else {
@@ -36,7 +36,7 @@
             orderObj.ComeInlongitude = marker.position.lng();
 
             alert(marker.position.lat() + "  " + marker.position.lat() + " <br>" + marker1.position.lat() + "  " + marker1.position.lng());
-           
+
 
             if (orderObj.ComeInlatitude !== null && orderObj.ComeInlongitude !== null) {
                 $.ajax({
@@ -56,17 +56,17 @@
 
     <div class="navbar-header">
         <div class="btn-group input-group btn-group-justified WbtnGroup" data-toggle="btns">
-                <a class="btn btn-default btn-lg Wbtn" href="#map" id="show-map" data-toggle="tab">
-                    <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
-                </a>
+            <a class="btn btn-default btn-lg Wbtn" href="#map" id="show-map" data-toggle="tab">
+                <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+            </a>
             <a class="btn btn-default btn-lg Wbtn" href=" #tab-2" data-toggle="tab">
                 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
             </a>
             <a class="btn btn-default btn-lg Wbtn" href=" #tab-3" data-toggle="tab">
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
             </a>
-</div>
         </div>
+    </div>
     <div class="collapse navbar-collapse" id="responsive-menu">
 
 
@@ -76,119 +76,136 @@
 
 @section  body{
 
- <input id="autocomplete" placeholder=@Resources.Resource.EnterYourAdress
-              type="text" />
+    <input id="autocomplete" placeholder=@Resources.Resource.EnterYourAdress
+           type="text" />
     <input type="button" id="OkBtn" name="Find" value="Find" onclick="geocode()">
 
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title phoneModal">Input correct mobile phone</h4>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <div id="loading">
+                        <i class="fa fa-refresh fa-spin fa-5x"></i>
+                    </div>
+                    @Html.Partial("_AjaxEditPersonInfo", Model.person)
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="orderinfo">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title phoneModal">Input correct mobile phone</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">@Resources.Resource.ClientOrderConfirm</h3>
             </div>
-            <div class="modal-body" id="modal-body">
-                <div id="loading">
-                    <i class="fa fa-refresh fa-spin fa-5x"></i>
-                </div>
-                @Html.Partial("_AjaxEditPersonInfo", Model.person)
+            <div class="modal-body">
+                <label></label>
+                <input type="text" />
             </div>
             <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">OK</button>
             </div>
         </div>
-
     </div>
 </div>
 
 
+            <div class="tab-content mapContainer">
+                <div id="map" class="tab-pane fade in active">
 
+                    <button id="OrderTaxi" class="btn btn-primary" onclick="getCoord()">@Resources.Resource.OrderTaxi</button>
+                </div>
 
-<div class="tab-content mapContainer">
-    <div id="map" class="tab-pane fade in active">
+                <div class="tab-pane fade" id="tab-2">
+                    <ul class="nav navbar-inverse">
 
-        <button id="OrderTaxi" class="btn btn-primary" onclick="getCoord()">@Resources.Resource.OrderTaxi</button>
-    </div>
-    
-     <div class="tab-pane fade" id="tab-2">
-         <ul class="nav navbar-inverse">
+                        @foreach (var i in Model.addresses)
+                        {
+                            <li>
 
-             @foreach (var i in Model.addresses)
-             {
-                 <li> 
-                    
-             <a href="#" class="address"><span class="glyphicon glyphicon-home"></span> @String.Format("{0} {1} {2}", i.City, i.Street, i.Number) </a> 
-                 </li>
-             }
+                                <a href="#" class="address"><span class="glyphicon glyphicon-home"></span> @String.Format("{0} {1} {2}", i.City, i.Street, i.Number) </a>
+                            </li>
+                        }
 
-         </ul> 
-    </div>
-    <div class="tab-pane fade" id="tab-3">
-        <ul class="nav navbar-inverse">
-            @foreach (var i in Model.DroPlaces)
-            {
-                <li> 
-                    
-            <a href="#" class="address"> <span class="glyphicon glyphicon-home"></span> @String.Format("{0}", i) </a>
-                 </li>
-            }
-        </ul>
-    </div>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="tab-3">
+                    <ul class="nav navbar-inverse">
+                        @foreach (var i in Model.DroPlaces)
+                        {
+                            <li>
 
-</div>
+                                <a href="#" class="address"> <span class="glyphicon glyphicon-home"></span> @String.Format("{0}", i) </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
 
-<script id="PersonInfo" type="text/x-handlebars-template">
-    <div class="content">
-        <dl class="dl-horizontal">
+            </div>
 
-            <dd><div class="error" id="error" style="color: red; display: none"> Please upload a picture by jpg, png or gif! </div></dd>
+            <script id="PersonInfo" type="text/x-handlebars-template">
+                <div class="content">
+                    <dl class="dl-horizontal">
 
-            <dt><label for="firstName">@Resources.Resource.FirstName </label></dt>
-            <dd><input class="form-control" type="text" id="firstName" name="FirstName" value="{{FirstName}}" /></dd>
+                        <dd><div class="error" id="error" style="color: red; display: none"> Please upload a picture by jpg, png or gif! </div></dd>
 
-            <dt><label for="middleName">@Resources.Resource.MiddleName </label></dt>
-            <dd><input class="form-control" type="text" id="middleName" name="MiddleName" value="{{MiddleName}}" /></dd>
+                        <dt><label for="firstName">@Resources.Resource.FirstName </label></dt>
+                        <dd><input class="form-control" type="text" id="firstName" name="FirstName" value="{{FirstName}}" /></dd>
 
-            <dt><label for="userName">@Resources.Resource.LastName </label></dt>
-            <dd><input class="form-control" type="text" id="lastName" name="LastName" value="{{LastName}}" /></dd>
+                        <dt><label for="middleName">@Resources.Resource.MiddleName </label></dt>
+                        <dd><input class="form-control" type="text" id="middleName" name="MiddleName" value="{{MiddleName}}" /></dd>
 
-            <dt><label for="phone">@Resources.Resource.Phone</label></dt>
-            <dd><input type="tel" class="form-control" name="Phone" value="{{Phone}}" id="phone" required /></dd>
-        </dl>
-    </div>
-</script>
+                        <dt><label for="userName">@Resources.Resource.LastName </label></dt>
+                        <dd><input class="form-control" type="text" id="lastName" name="LastName" value="{{LastName}}" /></dd>
+
+                        <dt><label for="phone">@Resources.Resource.Phone</label></dt>
+                        <dd><input type="tel" class="form-control" name="Phone" value="{{Phone}}" id="phone" required /></dd>
+                    </dl>
+                </div>
+            </script>
 
 
 
-    <script>
-        var template = Handlebars.compile($('#PersonInfo').html()),
-            person = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.person));
-        $('#content').html(template(person));
-    </script>
-@Scripts.Render("~/bundles/jqueryval")
-<script src="~/Scripts/jquery.maskedinput.js"></script>
-<script src="~/Scripts/UserScript.js"></script>
+            <script>
+                var template = Handlebars.compile($('#PersonInfo').html()),
+                    person = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.person));
+                $('#content').html(template(person));
+            </script>
+            @Scripts.Render("~/bundles/jqueryval")
+            <script src="~/Scripts/jquery.maskedinput.js"></script>
+            <script src="~/Scripts/UserScript.js"></script>
 
 
-<script>
-        $(document).ready(function () {
+            <script>
+                $(document).ready(function () {
 
-            if ('@Model.person.Phone' === '')
-            {          
-                $('#myModal').modal({ backdrop: 'static', keyboard: false });
-                $('#myModal').modal('show');
-                $('#myModal').on('shown.bs.modal', function () {
-                    $('#phone').select();
-                    $('#phone').focus();
-                })
-            }
+                    if ('@Model.person.Phone' === '')
+                    {
+                        $('#myModal').modal({ backdrop: 'static', keyboard: false });
+                        $('#myModal').modal('show');
+                        $('#myModal').on('shown.bs.modal', function () {
+                            $('#phone').select();
+                            $('#phone').focus();
+                        })
+                    }
 
-        });
+                });
 
-    var CloseModal = function(data){
-        if (data.success)
-            $('#myModal').modal('hide');
-        else
-        $('#content').html(template(data.person));
-    }
-</script>
+                var CloseModal = function(data){
+                    if (data.success)
+                        $('#myModal').modal('hide');
+                    else
+                        $('#content').html(template(data.person));
+                }
+            </script>
 }

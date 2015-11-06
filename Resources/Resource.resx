@@ -715,4 +715,13 @@
   <data name="TimeFromOrder" xml:space="preserve">
     <value>Time to travel to the client (min) : </value>
   </data>
+  <data name="WaitingTime" xml:space="preserve">
+    <value>WaitingTime</value>
+  </data>
+  <data name="DriverRequest" xml:space="preserve">
+    <value>Driver Request</value>
+  </data>
+  <data name="ClientOrderConfirm" xml:space="preserve">
+    <value>Your order have been confirmed</value>
+  </data>
 </root>

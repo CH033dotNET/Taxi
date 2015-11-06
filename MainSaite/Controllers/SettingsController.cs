@@ -90,7 +90,7 @@ namespace MainSaite.Controllers
 		/// Ajax call from the view sends a data to controller, 
 		/// which will be used to create new district entry
 		/// </summary>
-		/// <param name="Name">new entry name</param>
+		/// <param name="district">new object</param>
 		/// <returns></returns>
 		public JsonResult AddDistrict(District district)
 		{
@@ -115,7 +115,6 @@ namespace MainSaite.Controllers
 		/// <returns></returns>
 		public JsonResult DeleteDistrict(District district)
 		{
-			//districtManager.deleteById(Id);
 			districtManager.SetDistrictDeleted(district.Id, district.Name);
 			var districts = districtManager.getDistricts();
 			return Json(districts, JsonRequestBehavior.AllowGet);
@@ -161,7 +160,8 @@ namespace MainSaite.Controllers
 		{
 			districtManager.RestoreDistrict(district.Id);
 			var deletedDistricts = districtManager.getDeletedDistricts();
-			return Json(deletedDistricts,JsonRequestBehavior.AllowGet);
+			var workingDistricts = districtManager.getDistricts();
+			return Json(new { deletedDistricts, workingDistricts }, JsonRequestBehavior.AllowGet);
 		}
 
 		public JsonResult GetAvailableDistricts()

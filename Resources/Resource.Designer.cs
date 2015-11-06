@@ -610,6 +610,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your order have been confirmed.
+        /// </summary>
+        public static string ClientOrderConfirm {
+            get {
+                return ResourceManager.GetString("ClientOrderConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Client Service.
         /// </summary>
         public static string ClientService {
@@ -958,6 +967,15 @@ namespace Resources {
         public static string DriverIsHere {
             get {
                 return ResourceManager.GetString("DriverIsHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Driver Request.
+        /// </summary>
+        public static string DriverRequest {
+            get {
+                return ResourceManager.GetString("DriverRequest", resourceCulture);
             }
         }
         
@@ -1804,6 +1822,15 @@ namespace Resources {
         public static string WaitingCost {
             get {
                 return ResourceManager.GetString("WaitingCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WaitingTime.
+        /// </summary>
+        public static string WaitingTime {
+            get {
+                return ResourceManager.GetString("WaitingTime", resourceCulture);
             }
         }
         

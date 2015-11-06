@@ -58,13 +58,11 @@ namespace MainSaite.Controllers
 		/// </summary>
 		/// <param name="car">object from ajax call</param>
 		/// <returns></returns>
-		public JsonResult AddNewCar2(CarDTO car)
+		public JsonResult AddNewCar(CarDTO car)
 		{
 			IEnumerable<CarDTO> DriversCars;
 			int userId = SessionUser.Id;
 			CarModelValidator validator = new CarModelValidator();
-			//car.CarName = "HJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ";
-			//car.CarNickName = "99999999999999";
 			var checkedCar = validator.Validate(car, ruleSet: "AddNewCar");
 			if (!checkedCar.IsValid)
 			{
@@ -76,32 +74,6 @@ namespace MainSaite.Controllers
 				DriversCars = carManager.getCarsByUserID(userId);
 				return Json(new { success = true, DriversCars }, JsonRequestBehavior.AllowGet);
 			}
-		}
-
-		/// <summary>
-		/// Gets an object from ajax call and adds it to database
-		/// </summary>
-		/// <param name="car">object from ajax call</param>
-		/// <returns></returns>
-		public JsonResult AddNewCar(CarDTO car)
-		{
-			IEnumerable<CarDTO> DriversCars;
-			int userId = SessionUser.Id;
-			try
-			{
-				if (ModelState.IsValid)
-				{
-					carManager.addCar(car);
-					DriversCars = carManager.getCarsByUserID(userId);
-					return Json(DriversCars, JsonRequestBehavior.AllowGet);
-				}
-			}
-			catch (DataException)
-			{
-				ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator."); // return modal view!!!!!
-			}
-			DriversCars = carManager.getCarsByUserID(userId);
-			return Json(DriversCars, JsonRequestBehavior.AllowGet);
 		}
 		/// <summary>
 		/// Get an id from ajax call and deletes a car object with current id
@@ -173,7 +145,11 @@ namespace MainSaite.Controllers
 			IEnumerable<CarDTO> DriversCars = carManager.getCarsByUserID(userId);
 			return Json(DriversCars, JsonRequestBehavior.AllowGet);
 		}
-
+		/// <summary>
+		/// Gets specific id form ajax call and sets Car object status, which id matching received id value. 
+		/// </summary>
+		/// <param name="Id"></param>
+		/// <returns></returns>
 		public JsonResult SetCarStatus(int Id)
 		{
 			int userId = SessionUser.Id;

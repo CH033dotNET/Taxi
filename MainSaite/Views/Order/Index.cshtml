@@ -3,6 +3,7 @@
     ViewBag.Title = "Orders";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@* New orders table *@
 <script id="orderTemplate" type="text/x-handlebars-template">
     <table>
         <thead>
@@ -29,9 +30,51 @@
     </table>
 </script>
 
+@* DriverRequest table *@
+<script id="driverRequestTemplate" type="text/x-handlebars-template">
+    <table>
+        <thead>
+            <tr>
+                <th>@Resources.Resource.PeekPlace</th>
+                <th>@Resources.Resource.DropPlace</th>
+                <th>@Resources.Resource.WaitingTime</th>
+                <th>@Resources.Resource.Driver</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each requests}}
+            <tr>
+                <td>{{PeekPlace}}</td>
+                <td>{{DropPlace}}</td>
+                <td>{{WaitingTime}}</td>
+                <td>{{DriverId}}</td>
+                <td>
+                    <button class="btn success" data-orderid="{{OrderId}}" data-status="4" id="submitDrRequest" onclick="setOrderStatus(this)">@Resources.Resource.Confirm</button>
+                    <button class="btn btn-danger" data-orderid="{{OrderId}}" data-status="2" id="deniedDrRequest" onclick="setOrderStatus(this)">@Resources.Resource.Denied</button>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</script>
 
-<button class="btn btn-primary btn-lg" onclick="GetOrders()">@Resources.Resource.Update</button>
-<div id="orderContent"></div>
 
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12" style="height:400px">
+            <button class="btn btn-primary btn-lg" onclick="GetOrders()">@Resources.Resource.Update</button>
+            <div id="orderContent"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <button class="btn btn-primary btn-lg" onclick="GetDrRequest()">@Resources.Resource.DriverRequest</button>
+            <div id="driverRequest"></div>
+     
+        </div>
+
+    </div>
+</div>
 <script src="~/Scripts/HandlebarsCustomHelpers.js"></script>
 <script type="text/javascript" src="~/Scripts/OperatorCommand/OperatorCommands.js"></script>
