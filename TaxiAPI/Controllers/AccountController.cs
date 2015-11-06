@@ -23,10 +23,11 @@ namespace TaxiAPI.Controllers
 			this.personManager = personManager;
 		}
 
-        [HttpGet]
-        public HttpResponseMessage getUser(string param1, string param2)
+        [HttpPost]
+        [Route("api/Account/getUser")]
+        public HttpResponseMessage getUser(LoginModel data)
         {
-            var my = userManager.GetByUserName(param1, param2);
+            var my = userManager.GetByUserName(data.UserName, data.Password);
             if (my == null) return Request.CreateResponse(HttpStatusCode.NotFound, my);
             return Request.CreateResponse(HttpStatusCode.OK, my);
         }
