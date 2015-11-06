@@ -8,7 +8,6 @@ namespace TaxiAPI.App_Start
 	using DAL.Interface;
 	using DAL;
 	using BAL.Manager;
-	using MainSaite.Helpers;
     
     public static class SimpleInjectorWebApiInitializer
     {
@@ -41,7 +40,7 @@ namespace TaxiAPI.App_Start
 			container.Register<IPersonManager, PersonManager>();
 			container.Register<ITarifManager, TarifManager>();
 			container.Register<IUserManager, UserManager>();
-			container.Register<IDriverLocationHelper, DriverLocationHelper>();
+			//container.Register<IDriverLocationHelper, DriverLocationHelper>();
             // For instance:
             // container.Register<IUserRepository, SqlUserRepository>(Lifestyle.Scoped);
         }

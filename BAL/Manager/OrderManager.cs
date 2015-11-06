@@ -68,6 +68,12 @@ namespace BAL.Manager
 			return orderList;
 		}
 
+        public IEnumerable<OrderDTO> GetDriverOrders()
+        {
+            var orderList = uOW.OrderRepo.Get().Select(s => Mapper.Map<OrderDTO>(s)).Where(x => x.IsConfirm == 1 && x.DriverId == 0);
+            return orderList;
+        }
+
 		public IEnumerable<OrderDTO> GetOrdersByPersonId(int? id)
 		{
 			if (id == 0)

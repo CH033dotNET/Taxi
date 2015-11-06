@@ -24,10 +24,10 @@ namespace DriverSite.Controllers
                 return View();
             }
         }
-        public ActionResult District()
+      /*  public ActionResult District()
         {
             //ViewBag.Districts = locationManager.GetDriverDistrictInfo();
-            return PartialView(/*carManager.GetWorkingDrivers()*/);
+            return PartialView(carManager.GetWorkingDrivers());
         }
         public ActionResult SetLanguage(string language, string returnUrl)
         {
@@ -35,7 +35,7 @@ namespace DriverSite.Controllers
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
             return Redirect(returnUrl);
         }
-       /* public JsonResult CheckWorkShifts(int Id)
+        public JsonResult CheckWorkShifts(int Id)
         {
             bool uncompletedShifts = carManager.GetWorkShiftsByWorkerId(Id);
             return Json(uncompletedShifts, JsonRequestBehavior.AllowGet);

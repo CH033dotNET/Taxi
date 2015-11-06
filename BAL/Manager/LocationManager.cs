@@ -43,7 +43,7 @@ namespace BAL.Manager
 		}
 		public LocationDTO UpdateLocation(LocationDTO local)
 		{
-			var temp = uOW.LocationRepo.Get(u => u.UserId == local.UserId).First();
+			var temp = uOW.LocationRepo.Get(u => u.UserId == local.UserId).FirstOrDefault();
 			if (temp == null)
 			{
 				return null;

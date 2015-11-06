@@ -6,11 +6,11 @@
 	int currentUserId = (Session["user"] as Model.DTO.UserDTO).Id;
 }
 
-@Scripts.Render("~/bundles/coordinates")
+@Scripts.Render("~/Scripts/coordinates.js")
 @Scripts.Render("~/Scripts/moment.js")
 @Scripts.Render("/Scripts/offline.min.js")
-@Styles.Render("~/Content/themesOfflineJS/offline-theme-default.css")
-@Styles.Render("~/Content/themesOfflineJS/offline-language-english.css")
+@Styles.Render("~/Content/Themes/OfflineJS/offline-theme-default.css")
+@Styles.Render("~/Content/Themes/OfflineJS/offline-language-english.css")
 
 
 <div>

@@ -75,7 +75,7 @@
             <div id="Settings" class="tab-pane fade">
                 <p>
                     @{
-                     //   Html.RenderAction("EditLocation", "Location");
+                        Html.RenderAction("EditLocation", "Location");
                     }
                     <ul>
                     @if (Session["Culture"] != null && Session["Culture"].ToString().ToUpper() == "UK-UA")
@@ -105,7 +105,7 @@
                 </h2>
                 <p>
                     @{
-                       // Html.RenderAction("District", "Home");
+                        Html.RenderAction("DistrictPart", "Driver");
                     }
                 </p>
             </div>

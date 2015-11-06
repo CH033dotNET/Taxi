@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Model.DTO;
-using MainSaite.Models;
+//using MainSaite.Models;
 
 namespace TaxiAPI.Controllers
 {

@@ -74,7 +74,7 @@ namespace DriverSite.Controllers
 
 
 
-			if (SessionUser != null)
+            if (SessionUser != null && SessionUser.Email != null)
 			{
 				UserDTO user = SessionUser;
 				ViewBag.UserRoleId = user.Role.Id;

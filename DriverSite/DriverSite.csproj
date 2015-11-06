@@ -117,12 +117,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClientServiceController.cs" />
+    <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\DrivingSimulationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CoordinateMapper.cs" />
     <Compile Include="Tools\PriceCounter.cs" />
     <Compile Include="Models\WebViewPageBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -136,6 +138,8 @@
     <Content Include="Content\Picture\SandWatch.jpg" />
     <Content Include="Content\Picture\Speedometer.jpg" />
     <Content Include="Content\shop-item.css" />
+    <Content Include="Content\Themes\OfflineJS\offline-language-english.css" />
+    <Content Include="Content\Themes\OfflineJS\offline-theme-default.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -143,6 +147,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\coordinates.js" />
+    <Content Include="Scripts\DistrictPartButtonScripts.js" />
     <Content Include="Scripts\DriveTimer.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -152,6 +158,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\offline.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\TabCorrector.js" />
@@ -169,7 +177,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\District.cshtml" />
+    <Content Include="Views\Driver\DistrictPart.cshtml" />
     <Content Include="Views\DrivingSimulation\Index.cshtml" />
     <Content Include="Views\Location\EditLocation.cshtml" />
     <Content Include="Views\ClientService\PeekClient.cshtml" />

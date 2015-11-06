@@ -8,39 +8,28 @@ using System.Web.Mvc;
 using System.Web.WebPages.Html;
 
 namespace DriverSite.Controllers
-{/*
+{
 	public class LocationController : BaseController
 	{
-		private IUnitOfWork uOW;
-		private ILocationManager locationManager;
-		private IDistrictManager districtManager;
-
-		public LocationController(ILocationManager locationManager, IUnitOfWork uOW, IDistrictManager districtManager)
-		{
-			this.locationManager = locationManager;
-			this.uOW = uOW;
-			this.districtManager = districtManager;
-		}
-
+        readonly string controller = "Location";
 		[HttpGet]
 		public ActionResult EditLocation()
 		{
 			var user = Session["User"] as Model.DTO.UserDTO;
 			if (user == null)
 			{
-				return RedirectToRoute(new
-				{
-					controller = "Home",
-					action = "Index"
-				});
-			}
-			var listDistricts = uOW.DistrictRepo.Get().ToList();
+                return RedirectToAction("Index", "Home");
+			} 
+            var listDistricts = ApiRequestHelper.Get<List<District>>(controller, "getDistricts").Data;
+            //var listDistricts = districtManager.getDistricts();
 			ViewBag.Districts = listDistricts;
-			LocationDTO location = locationManager.GetByUserId(user.Id);
+            LocationDTO location = ApiRequestHelper.GetById<LocationDTO>(controller, "GetByUserId", user.Id).Data;
+			//LocationDTO location = locationManager.GetByUserId(user.Id);
 			if (location != null)
 			{
 				int districtId = location.DistrictId;
-				District district = districtManager.getById(districtId);
+                District district = ApiRequestHelper.GetById<District>(controller, "getById", districtId).Data;
+				//District district = districtManager.getById(districtId);
 				ViewBag.District = district;
 			}
 			return PartialView();
@@ -52,19 +41,17 @@ namespace DriverSite.Controllers
 			var user = Session["User"] as Model.DTO.UserDTO;
 			if (user == null)
 			{
-				return RedirectToRoute(new
-				{
-					controller = "Home",
-					action = "Index"
-				});
+                return RedirectToAction("Index", "Home");
 			}
-
-			LocationDTO local = locationManager.GetByUserId(user.Id);
+            
+            LocationDTO local = ApiRequestHelper.GetById<LocationDTO>(controller, "GetByUserId", user.Id).Data;
+			//LocationDTO local = locationManager.GetByUserId(user.Id);
 			if (local != null)
 			{
 				local.DistrictId = Id;
-				locationManager.UpdateLocation(local);
-				return RedirectToAction("Index", "Driver");
+                ApiRequestHelper.postData<LocationDTO>(controller, "UpdateLocation", local);
+				//locationManager.UpdateLocation(local);
+                return RedirectToAction("Index", "Home");
 			}
 			else
 			{
@@ -73,10 +60,12 @@ namespace DriverSite.Controllers
 					UserId = user.Id,
 					DistrictId = Id
 				};
-				locationManager.AddLocation(district);
-				return RedirectToAction("Index", "Driver");
+
+                ApiRequestHelper.postData<LocationDTO>(controller, "AddLocation", district);
+				//locationManager.AddLocation(district);
+                return RedirectToAction("Index", "Home");
 			}
 		}
 
-	}*/
+	}
 }
