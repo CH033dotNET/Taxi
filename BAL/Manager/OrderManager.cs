@@ -57,6 +57,7 @@ namespace BAL.Manager
 			newOrder.EndWork = order.EndWork;
 			newOrder.WaitingTime = order.WaitingTime;
 			newOrder.IsConfirm = order.IsConfirm;
+			newOrder.DriverId = order.DriverId;
 			uOW.Save();
 			return Mapper.Map<OrderDTO>(newOrder);
 		}

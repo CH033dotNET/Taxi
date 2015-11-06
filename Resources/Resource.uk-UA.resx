@@ -708,4 +708,13 @@
   <data name="OrderTime" xml:space="preserve">
     <value>Час замовлення</value>
   </data>
+  <data name="min" xml:space="preserve">
+    <value>хв.</value>
+  </data>
+  <data name="TimeFromOrder" xml:space="preserve">
+    <value>Час на дорогу до клієнта:</value>
+  </data>
+  <data name="TakeOrder" xml:space="preserve">
+    <value>Прийняти замовлення</value>
+  </data>
 </root>

@@ -1646,11 +1646,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Take order.
+        /// </summary>
+        public static string TakeOrder {
+            get {
+                return ResourceManager.GetString("TakeOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tarifes.
         /// </summary>
         public static string Tarifes {
             get {
                 return ResourceManager.GetString("Tarifes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time to travel to the client (min) : .
+        /// </summary>
+        public static string TimeFromOrder {
+            get {
+                return ResourceManager.GetString("TimeFromOrder", resourceCulture);
             }
         }
         

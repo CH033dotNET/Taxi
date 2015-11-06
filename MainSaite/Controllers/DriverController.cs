@@ -128,6 +128,7 @@ namespace MainSaite.Controllers
 				locationManager.UpdateLocation(local);
 				return RedirectToAction("Index", "Driver");
 			}
+
 			else
 			{
 				LocationDTO district = new LocationDTO()
@@ -176,7 +177,6 @@ namespace MainSaite.Controllers
 		}
 
 
-		//------
 		public ActionResult DriverOrders()
 		{
 			return PartialView();
@@ -184,8 +184,15 @@ namespace MainSaite.Controllers
 
 		public JsonResult GetDriverOrders()
 		{
-			var orders = orderManager.GetOrders().Where(x => x.IsConfirm == 1);
+			var orders = orderManager.GetOrders().Where(x => x.IsConfirm == 1 && x.DriverId == 0);
 			return Json(orders, JsonRequestBehavior.AllowGet);
+		}
+
+		public void GetOrder(int OrderId)
+		{
+			var order = orderManager.GetOrderByOrderID(OrderId);
+			order.DriverId = SessionUser.Id;
+			orderManager.EditOrder(order);
 		}
 	}
 }
