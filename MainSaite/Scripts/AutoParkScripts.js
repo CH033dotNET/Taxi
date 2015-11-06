@@ -6,15 +6,15 @@ $(document).ready(function () {
 var carController = {
 	carData: { cars: encodedCarData },
 
-	renderCarData: function () { //start
+	renderCarData: function () {
 		$('#CarParkTable tbody').html(carParkTemplate(this.carData));
-	},//end
+	},
 
-	addNewCar: function () { //start
+	addNewCar: function () {
 		$('#add-car-modal').modal('show');
-	},//end
+	},
 
-	addConfirm2: function () { //start
+	addCarConfirm: function () {
 		var newCarName = $('#inputCarName').val();
 		var newCarNickName = $('#inputCarNickName').val();
 		var newCarNumber = $('#inputCarNumber').val();
@@ -25,7 +25,7 @@ var carController = {
 		var newCarManufactureDate = $('#datetimepicker2').val();
 		var newCarState = $('#inputCarState').val();
 		$.ajax({
-			url: "/Cars/AddNewCar2/",
+			url: "/Cars/AddNewCar/",
 			data: {
 				UserId: userId,
 				OwnerId: ownerId,
@@ -41,26 +41,26 @@ var carController = {
 			},
 			cache: false,
 			dataType: "JSON",
-		}).done(function (result) { /// change all this shit
+		}).done(function (result) {
 			if (result.success && result != null) {
 				carController.carData.cars = result.DriversCars;
 				carController.renderCarData();
 				document.getElementById("add-car-form").reset();
 			}
 			else {
-				carController.getErrorMessage();
+				carController.getCarErrorMessage();
 				document.getElementById("add-car-form").reset();
 			}
 		})
-		.fail(function () { alert("SHEEET!"); document.getElementById("add-car-form").reset(); })
+		.fail(function () { alert("Error!"); document.getElementById("add-car-form").reset(); })
 		.always(function (result) {
 			$('#datetimepicker1').datetimepicker('clear');
 			$('#datetimepicker2').datetimepicker('clear');
 			$('#add-car-modal').modal('hide');
 		})
-	},//end
+	},
 
-	getErrorMessage: function () {
+	getCarErrorMessage: function () {
 		$('#get-car-error-modal').modal('show');
 	},
 
@@ -94,7 +94,7 @@ var carController = {
 		});
 	},
 
-	editConfirm: function () {
+	editCarConfirm: function () {
 		var newInCarsId = $('#newInputCarId').val();
 		var newInCarsName = $('#newInputCarName').val();
 		var newInCarsNName = $('#newInputCarNickName').val();
@@ -130,7 +130,7 @@ var carController = {
 				document.getElementById("edit-car-form").reset();
 			}
 			else if (!result.success) {
-				carController.getErrorMessage();
+				carController.getCarErrorMessage();
 				document.getElementById("edit-car-form").reset();
 			}
 		})

@@ -32,9 +32,10 @@ var jsController = {
 			url: "/Settings/RestoreDistrict/",
 			data: { id: itemId }
 		}).done(function (result) {
-			jsController.deletedData.deleted = result;
+			jsController.deletedData.deleted = result.deletedDistricts;
+			jsController.data.items = result.workingDistricts;
 			jsController.renderDeletedData();
-			jsController.refreshData();
+			jsController.renderData();
 		});
 	},
 
@@ -51,22 +52,6 @@ var jsController = {
 	addDistrict: function () {
 		var a = "breakpoint";
 		$('#add-item').modal('show');
-
-		//$('#add-item .btn-ok').off("click.addADistrict").on("click.addADistrict", function () {
-		//	var d = "breakpoint!";
-		//	var newDistrictName = $('#newDistrictName').val();
-		//	$.ajax({
-		//		url: "/Settings/AddDistrict",
-		//		data: { name: newDistrictName }
-		//	}).done(function (result) {
-		//		jsController.data.items = result;
-		//		jsController.renderData();
-		//		document.getElementById("add-district-form").reset();
-		//	});
-
-		//	$("#add-item").modal('hide');
-		//	$('#add-item .btn-ok').off("click.addADistrict");
-		//});
 	},
 
 	addDistrictConfirm: function () {

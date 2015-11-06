@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentValidation;
 using Model;
+using DAL;
 
 namespace BAL.Tools
 {
