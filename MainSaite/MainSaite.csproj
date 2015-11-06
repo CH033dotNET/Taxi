@@ -395,6 +395,8 @@
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\offline.min.js" />
+    <Content Include="Scripts\OperatorCommand\DriverCommand.js" />
+    <Content Include="Scripts\OperatorCommand\OperatorCommands.js" />
     <Content Include="Scripts\tabCorrector.js" />
     <Content Include="Scripts\Tarif\Tarif.js" />
     <Content Include="Scripts\UserMenuScripts\ModalJs.js" />
@@ -472,6 +474,8 @@
     <Content Include="Views\DriveClientHistory\ShowHistory.cshtml" />
     <Content Include="Views\Cars\_GetErrorMessage.cshtml" />
     <Content Include="Views\Cars\_GetMainCarPartial.cshtml" />
+    <Content Include="Views\Driver\DriverOrders.cshtml" />
+    <Content Include="Views\Settings\_ErrorDistrictPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

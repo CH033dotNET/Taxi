@@ -1,6 +1,5 @@
-﻿@using Common.Helpers
-@model MainSaite.Models.AutoParkViewModel
-<div class="modal fade" id="get-car-error-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+﻿@model IList<Model.District>
+<div class="modal fade" id="get-district-error-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header modal-header-danger">
@@ -16,8 +15,8 @@
 
 			<div class="modal-footer">
 				@*<button type="button" class="btn btn-info" data-dismiss="modal">
-					<span class="glyphicon glyphicon-remove" aria-hidden="true">&nbsp;</span>@Resources.Resource.cancelButton
-				</button>*@
+						<span class="glyphicon glyphicon-remove" aria-hidden="true">&nbsp;</span>@Resources.Resource.cancelButton
+					</button>*@
 				<a class="btn btn-danger" data-dismiss="modal">
 					<span class="glyphicon glyphicon-ok" aria-hidden="true">&nbsp;</span>@Resources.Resource.okString
 				</a>

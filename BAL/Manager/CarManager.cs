@@ -118,16 +118,18 @@ namespace BAL.Manager
 			return null;
 		}
 
-		public void GiveAwayCar(int CarId, int NewCarUserId)
+		public string GiveAwayCar(int CarId, int NewCarUserId)
 		{
 			var GiveAwayCar = uOW.CarRepo.Get(s => s.Id == CarId).FirstOrDefault();
 			if (GiveAwayCar == null)
 			{
-				throw new NotImplementedException(); // ------------!!!
+				return "Error"; // ------------!!!
 			}
 			uOW.CarRepo.SetStateModified(GiveAwayCar);
 			GiveAwayCar.UserId = NewCarUserId;
+			GiveAwayCar.isMain = false;
 			uOW.Save();
+			return "Success";
 		}
 
 		public string ChangeCarToMain(int carId, int userId)

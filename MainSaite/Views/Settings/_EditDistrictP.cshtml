@@ -11,17 +11,23 @@
 			</div>
 
 			<div class="modal-body">
-				<p>@Resources.Resource.enterNewDstName</p>
-				<h4><input type="text" class="form-control input-lg" id="newName" /></h4>
+				<form data-toggle="validator" id="edit-district-form" role="form" autocomplete="off" method="post">
+					<div class="form-group">
+						<p>@Resources.Resource.enterNewDstName</p>
+						<input id="editInputDistrictId" value="" hidden>
+						<h4><input type="text" class="form-control input-lg" id="newName" data-delay="150" data-minlength="4" data-maxlength="30" data-error="[District name Error]" required /></h4>
+						<span class="help-block with-errors"></span>
+					</div>
+				</form>
 			</div>
 
 			<div class="modal-footer">
 				<button type="button" class="btn btn-info" data-dismiss="modal">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true">&nbsp;</span>@Resources.Resource.cancelButton
 				</button>
-				<a class="btn btn-success btn-ok">
+				<button class="btn btn-success" form="edit-district-form" role="button" type="button" onclick="validateEditDistrict();">
 					<span class="glyphicon glyphicon-ok" aria-hidden="true">&nbsp;</span>@Resources.Resource.saveButton
-				</a>
+				</button>
 			</div>
 		</div>
 	</div>

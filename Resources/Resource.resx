@@ -688,4 +688,31 @@
   <data name="ChangeString" xml:space="preserve">
     <value>Change</value>
   </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Denied" xml:space="preserve">
+    <value>Denied</value>
+  </data>
+  <data name="okString" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ServerErrorHeader" xml:space="preserve">
+    <value>Oops, something went wrong...</value>
+  </data>
+  <data name="ServerErrorMessage" xml:space="preserve">
+    <value>Sorry, something happened when your data was pocessed. But don`t worry. Everything`s okay. Please try again or contact administrator.</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="OrderTime" xml:space="preserve">
+    <value>OrderTime</value>
+  </data>
+  <data name="TakeOrder" xml:space="preserve">
+    <value>Take order</value>
+  </data>
+  <data name="TimeFromOrder" xml:space="preserve">
+    <value>Time to travel to the client (min) : </value>
+  </data>
 </root>

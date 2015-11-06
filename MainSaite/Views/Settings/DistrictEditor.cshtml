@@ -59,11 +59,12 @@
 				@Html.Partial("_EditDistrictP", Model)
 				@Html.Partial("_AddDistrictP", Model)
 				@Html.Partial("_DeletedListP", Model)
+				@Html.Partial("_ErrorDistrictPartial", Model)
 			</div>
 		</div>
 	</div>
 </div>
-
+<script type="text/javascript" src="~/Scripts/validator.js"></script>
 <script>
 	var itemId;
 	var itemName;
@@ -71,6 +72,24 @@
 	var deletedDistrictsTemplate = Handlebars.compile($("#dsDeletedRow").html());
 	var encodedData = @Html.Raw(Json.Encode(Model.ToList()));
 	var encodedDeleted = @Html.Raw(Json.Encode(Model.ToList()));
+
+
+	function validateAddDistrict() {
+		var validThisData = $('#add-district-form').validator('validate');
+		if (validThisData.valid()){
+			jsController.addDistrictConfirm();
+		}
+		else return false;
+	}
+
+	function validateEditDistrict() {
+		var validThisData = $('#edit-district-form').validator('validate');
+		if (validThisData.valid()){
+			jsController.editConfirmDistrict();
+		}
+		else return false;
+	}
+
 </script>
 <script type="text/javascript" src="~/Scripts/DistrictScriptLogic.js"></script>
 

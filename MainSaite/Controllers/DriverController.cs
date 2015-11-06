@@ -24,7 +24,8 @@ namespace MainSaite.Controllers
 		private ICoordinatesManager coordinatesManager;
 		private IUserManager userManager;
 		private IDriverLocationHelper driverLocationHelper;
-		public DriverController(ILocationManager locationManager, ICarManager carManager, ICoordinatesManager coordinatesManager, IUserManager userManager, IDriverLocationHelper driverLocationHelper) 
+		private IOrderManager orderManager;
+		public DriverController(ILocationManager locationManager, ICarManager carManager, ICoordinatesManager coordinatesManager, IUserManager userManager, IDriverLocationHelper driverLocationHelper, IOrderManager orderManager) 
 		{
 			this.locationManager = locationManager;
 			this.carManager = carManager;
@@ -32,6 +33,7 @@ namespace MainSaite.Controllers
 			this.userManager = userManager;
 			this.driverLocationHelper = driverLocationHelper;
 			this.coordinatesManager.addedCoords += this.driverLocationHelper.addedLocation;
+			this.orderManager = orderManager;
 		}
 
 		public ActionResult Index()
@@ -126,6 +128,7 @@ namespace MainSaite.Controllers
 				locationManager.UpdateLocation(local);
 				return RedirectToAction("Index", "Driver");
 			}
+
 			else
 			{
 				LocationDTO district = new LocationDTO()
@@ -171,6 +174,26 @@ namespace MainSaite.Controllers
 				Console.WriteLine("{0} is not in the correct format.", dateString);
 			}
 			return new EmptyResult();
+		}
+
+
+		public ActionResult DriverOrders()
+		{
+			return PartialView();
+		}
+
+		public JsonResult GetDriverOrders()
+		{
+			var orders = orderManager.GetOrders().Where(x => x.IsConfirm == 1 && x.DriverId == 0);
+			return Json(orders, JsonRequestBehavior.AllowGet);
+		}
+
+		public void GetOrder(int orderId, string waitingTime)
+		{
+			var order = orderManager.GetOrderByOrderID(orderId);
+			order.DriverId = SessionUser.Id;
+			order.WaitingTime = waitingTime;
+			orderManager.EditOrder(order);
 		}
 	}
 }

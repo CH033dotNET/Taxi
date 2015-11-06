@@ -687,4 +687,34 @@
   <data name="ChangeString" xml:space="preserve">
     <value>Змінити</value>
   </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Підтвердити</value>
+  </data>
+  <data name="Denied" xml:space="preserve">
+    <value>Відхилити</value>
+  </data>
+  <data name="okString" xml:space="preserve">
+    <value>ОК</value>
+  </data>
+  <data name="ServerErrorHeader" xml:space="preserve">
+    <value>Упс, щось трапилось...</value>
+  </data>
+  <data name="ServerErrorMessage" xml:space="preserve">
+    <value>Вибачте, але виникла проблема при обробці ваших данних. Не хвилютесь, все в порядку. Спробуйте знову, або викличте адміністратора, якщо проблема повториться.</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Оновити</value>
+  </data>
+  <data name="OrderTime" xml:space="preserve">
+    <value>Час замовлення</value>
+  </data>
+  <data name="min" xml:space="preserve">
+    <value>хв.</value>
+  </data>
+  <data name="TimeFromOrder" xml:space="preserve">
+    <value>Час на дорогу до клієнта:</value>
+  </data>
+  <data name="TakeOrder" xml:space="preserve">
+    <value>Прийняти замовлення</value>
+  </data>
 </root>

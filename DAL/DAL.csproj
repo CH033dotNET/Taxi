@@ -183,6 +183,10 @@
     <Compile Include="Migrations\201511041522118_OrderChanges.Designer.cs">
       <DependentUpon>201511041522118_OrderChanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511051347082_IsConfirm int orders.cs" />
+    <Compile Include="Migrations\201511051347082_IsConfirm int orders.Designer.cs">
+      <DependentUpon>201511051347082_IsConfirm int orders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -300,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511041522118_OrderChanges.resx">
       <DependentUpon>201511041522118_OrderChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511051347082_IsConfirm int orders.resx">
+      <DependentUpon>201511051347082_IsConfirm int orders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

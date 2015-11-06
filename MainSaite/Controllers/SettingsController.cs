@@ -14,6 +14,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Threading;
 using MainSaite.Models;
+using FluentValidation;
+using BAL.Tools;
 
 
 namespace MainSaite.Controllers
@@ -90,11 +92,20 @@ namespace MainSaite.Controllers
 		/// </summary>
 		/// <param name="Name">new entry name</param>
 		/// <returns></returns>
-		public JsonResult AddDistrict(string Name)
+		public JsonResult AddDistrict(District district)
 		{
-			districtManager.addDistrict(Name);
-			var districts = districtManager.getDistricts();
-			return Json(districts,JsonRequestBehavior.AllowGet);
+			DistrictModelValidator validator = new DistrictModelValidator();
+			var checkedDistirct = validator.Validate(district, ruleSet: "AddDistrict");
+			if (!checkedDistirct.IsValid)
+			{
+				return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+			}
+			else
+			{
+				districtManager.addDistrict(district.Name);
+				var districts = districtManager.getDistricts();
+				return Json(new { success = true, districts }, JsonRequestBehavior.AllowGet);
+			}
 		}
 		/// <summary>
 		/// Ajax call from the view sends a data to controller, 
@@ -117,13 +128,18 @@ namespace MainSaite.Controllers
 		/// <returns></returns>
 		public JsonResult EditDistrict(District district)
 		{
-			if (ModelState.IsValid)
+			DistrictModelValidator validator = new DistrictModelValidator();
+			var checkedDistirct = validator.Validate(district, ruleSet: "EditDistrict");
+			if (!checkedDistirct.IsValid)
+			{
+				return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+			}
+			else
 			{
 				districtManager.EditDistrict(district);
 				var districts = districtManager.getDistricts();
-				return Json(districts, JsonRequestBehavior.AllowGet);
+				return Json(new { success = true, districts }, JsonRequestBehavior.AllowGet);
 			}
-			return Json(null);
 		}
 		/// <summary>
 		/// Ajax call from the view sends a data to controller, 

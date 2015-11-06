@@ -86,6 +86,7 @@
     <Compile Include="Manager\TestManager.cs" />
     <Compile Include="Manager\WorkerStatusManager.cs" />
     <Compile Include="Tools\CarModelValidator.cs" />
+    <Compile Include="Tools\DistrictModelValidator.cs" />
     <Compile Include="Tools\PriceCounter.cs" />
     <Compile Include="Manager\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

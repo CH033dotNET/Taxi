@@ -34,16 +34,25 @@ namespace MainSaite.Controllers
 			return Json(JsonRequestBehavior.AllowGet);
 		}
 
+		public void SetOrderStatus(int orderId, int status)
+		{
+			var order = orderManager.GetOrderByOrderID(orderId);
+			if (order != null)
+			{
+				order.IsConfirm = status;
+				orderManager.EditOrder(order);
+			}
+		}
 
 		public JsonResult OrdersData()
 		{
-			var orders = orderManager.GetOrders().ToList();
+			var orders = orderManager.GetOrders().Where(x=>x.IsConfirm == 3).ToList();
 			var peoples = personManager.GetPersons().ToList();
 
 			var operatorOrders = from O in orders
 								 join P in peoples
 								 on O.PersonId equals P.Id
-								 select new { FirsName = P.FirstName, OrderTime = O.OrderTime, PeekPlace = O.PeekPlace, DropPlace = O.DropPlace };
+								 select new { OrderId = O.Id, FirsName = P.FirstName, OrderTime = O.OrderTime, PeekPlace = O.PeekPlace, DropPlace = O.DropPlace };
 
 			return Json(operatorOrders, JsonRequestBehavior.AllowGet);
 		}

@@ -10,7 +10,7 @@
                 <th>@Resources.Resource.Name</th>
                 <th>@Resources.Resource.PeekPlace</th>
                 <th>@Resources.Resource.DropPlace</th>
-                <th>Order Time</th>
+                <th>@Resources.Resource.OrderTime</th>
             </tr>
         </thead>
         <tbody>
@@ -20,38 +20,18 @@
                 <td>{{PeekPlace}}</td>
                 <td>{{DropPlace}}</td>
                 <td>{{PrettifyDate OrderTime}}</td>
-                <td><button class="btn success">[Submit]</button><button class="btn btn-danger">[Discars]</button></td>
-            </tr>
+                <td>
+                    <button class="btn success" data-orderid="{{OrderId}}" data-status="1" id="submitOrdering" onclick="setOrderStatus(this)">@Resources.Resource.Confirm</button>
+                    <button class="btn btn-danger" data-orderid="{{OrderId}}" data-status="2" id="deniedOrdering" onclick="setOrderStatus(this)">@Resources.Resource.Denied</button></td>
+                </tr>
             {{/each}}
         </tbody>
     </table>
 </script>
 
 
-
-
-<button class="btn" onclick="cl()">get!!</button>
+<button class="btn btn-primary btn-lg" onclick="GetOrders()">@Resources.Resource.Update</button>
 <div id="orderContent"></div>
 
 <script src="~/Scripts/HandlebarsCustomHelpers.js"></script>
-<script type="text/javascript">
-    function cl() {
-        var content = $('#orderContent');
-        $.ajax({
-            type: 'POST',
-            url: "/Order/OrdersData/",
-            dataType: 'json',
-            success: function (data) {
-                var source = $("#orderTemplate").html();
-                var template = Handlebars.compile(source);
-                var wrapper = { objects: data };
-                var html = template(wrapper);
-                content.html(html);
-
-            },
-            error: function (error) {
-                console.log(error + "error!!!!");
-            }
-        });
-    }
-</script>
+<script type="text/javascript" src="~/Scripts/OperatorCommand/OperatorCommands.js"></script>
