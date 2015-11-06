@@ -13,7 +13,7 @@ namespace BAL.Manager
 		System.Collections.Generic.IEnumerable<Model.DTO.CarDTO> getCarsByUserID(int? id);
 		System.Collections.Generic.IEnumerable<Model.DTO.WorkshiftHistoryDTO> GetWorkingDrivers();
 		bool GetWorkShiftsByWorkerId(int WorkerId);
-		void GiveAwayCar(int CarId, int NewCarUserId);
+		string GiveAwayCar(int CarId, int NewCarUserId);
 		void StartWorkEvent(int? id, string TimeStart);
 
 		string ChangeCarToMain(int carId, int userId);

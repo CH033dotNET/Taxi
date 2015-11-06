@@ -475,6 +475,7 @@
     <Content Include="Views\Cars\_GetErrorMessage.cshtml" />
     <Content Include="Views\Cars\_GetMainCarPartial.cshtml" />
     <Content Include="Views\Driver\DriverOrders.cshtml" />
+    <Content Include="Views\Settings\_ErrorDistrictPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -52,20 +52,42 @@ var jsController = {
 		var a = "breakpoint";
 		$('#add-item').modal('show');
 
-		$('#add-item .btn-ok').off("click.addADistrict").on("click.addADistrict", function () {
-			var d = "breakpoint!";
-			var newDistrictName = $('#newDistrictName').val();
-			$.ajax({
-				url: "/Settings/AddDistrict",
-				data: { name: newDistrictName }
-			}).done(function (result) {
-				jsController.data.items = result;
+		//$('#add-item .btn-ok').off("click.addADistrict").on("click.addADistrict", function () {
+		//	var d = "breakpoint!";
+		//	var newDistrictName = $('#newDistrictName').val();
+		//	$.ajax({
+		//		url: "/Settings/AddDistrict",
+		//		data: { name: newDistrictName }
+		//	}).done(function (result) {
+		//		jsController.data.items = result;
+		//		jsController.renderData();
+		//		document.getElementById("add-district-form").reset();
+		//	});
+
+		//	$("#add-item").modal('hide');
+		//	$('#add-item .btn-ok').off("click.addADistrict");
+		//});
+	},
+
+	addDistrictConfirm: function () {
+		var d = "breakpoint!";
+		var newDistrictName = $('#newDistrictName').val();
+		$.ajax({
+			url: "/Settings/AddDistrict",
+			data: { Name: newDistrictName, Deleted: false }
+		}).done(function (result) {
+			if (result.success && result != null) {
+				jsController.data.items = result.districts;
 				jsController.renderData();
 				document.getElementById("add-district-form").reset();
-			});
-
+			}
+			else if (!result.success) {
+				jsController.getDistrictErrorMessage();
+				document.getElementById("add-district-form").reset();
+			}
+		})
+		.always(function () {
 			$("#add-item").modal('hide');
-			$('#add-item .btn-ok').off("click.addADistrict");
 		});
 	},
 
@@ -101,19 +123,36 @@ var jsController = {
 		$('#newName').val(name); // set model item name to an input field
 		$("#edit-item").modal('show'); // show modal
 
-		$('#edit-item .btn-ok').off("click.editADistrict").on("click.editADistrict", function () {
-			var c = "breakpoint";
-			var newName = $('#newName').val();
-			$.ajax({
-				url: "/Settings/EditDistrict/",
-				data: { id: itemId, name: newName }
-			}).done(function (result) {
-				jsController.data.items = result;
-				jsController.renderData();
-			});
+		$('#editInputDistrictId').val(itemId); /////addd id!!!
 
+	},
+
+	editConfirmDistrict: function () {
+		var datId = $('#editInputDistrictId').val();
+		var c = "breakpoint";
+		var newName = $('#newName').val();
+		$.ajax({
+			url: "/Settings/EditDistrict/",
+			data: { id: datId, name: newName },
+			method: "POST",
+			dataType: "JSON"
+		}).done(function (result) {
+			if (result.success && result != null) {
+				jsController.data.items = result.districts;
+				jsController.renderData();
+				document.getElementById("edit-district-form").reset();
+			}
+			else if (!result.success) {
+				jsController.getDistrictErrorMessage();
+				document.getElementById("edit-district-form").reset();
+			}
+		})
+		.always(function () {
 			$("#edit-item").modal('hide');
-			$('#edit-item .btn-ok').off("click.editADistrict");
 		});
+	},
+
+	getDistrictErrorMessage: function () {
+		$('#get-district-error-modal').modal('show');
 	}
 };
