@@ -726,4 +726,7 @@
   <data name="DriverRequest" xml:space="preserve">
     <value>Запит водія</value>
   </data>
+  <data name="ClientOrderConfirm" xml:space="preserve">
+    <value>Замовлення успішно підтверджено</value>
+  </data>
 </root>

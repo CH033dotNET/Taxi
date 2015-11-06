@@ -610,6 +610,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your order have been confirmed.
+        /// </summary>
+        public static string ClientOrderConfirm {
+            get {
+                return ResourceManager.GetString("ClientOrderConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Client Service.
         /// </summary>
         public static string ClientService {

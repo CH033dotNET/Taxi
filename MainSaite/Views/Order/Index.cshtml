@@ -49,7 +49,7 @@
                 <td>{{WaitingTime}}</td>
                 <td>{{DriverId}}</td>
                 <td>
-                    <button class="btn success" data-orderid="{{OrderId}}" data-status="1" id="submitDrRequest" onclick="setOrderStatus(this)">@Resources.Resource.Confirm</button>
+                    <button class="btn success" data-orderid="{{OrderId}}" data-status="4" id="submitDrRequest" onclick="setOrderStatus(this)">@Resources.Resource.Confirm</button>
                     <button class="btn btn-danger" data-orderid="{{OrderId}}" data-status="2" id="deniedDrRequest" onclick="setOrderStatus(this)">@Resources.Resource.Denied</button>
                 </td>
             </tr>
@@ -76,36 +76,5 @@
 
     </div>
 </div>
-<script type="text/javascript">
-    function GetDrRequest() {
-        var content = $('#driverRequest');
-        $.ajax({
-            type: 'POST',
-            url: "/Order/DriversRequest/",
-            dataType: 'json',
-            success: function (data) {
-                var source = $("#driverRequestTemplate").html();
-                var template = Handlebars.compile(source);
-                var wrapper = { requests: data };
-                var html = template(wrapper);
-                content.html(html);
-            }
-        });
-    }
-    //function ConfirmDrRequest(e) {
-    //    var OrderId = $(e).attr('data-orderid');
-    //    var Status = $(e).attr('data-status');
-    //    $.ajax({
-    //        url: '/Order/SetOrderStatus/',
-    //        data: {
-    //            orderId: OrderId,
-    //            status: Status
-    //        },
-    //        success: function (data) {
-    //            GetOrders();
-    //        }
-    //    });
-    //}
-</script>
 <script src="~/Scripts/HandlebarsCustomHelpers.js"></script>
 <script type="text/javascript" src="~/Scripts/OperatorCommand/OperatorCommands.js"></script>

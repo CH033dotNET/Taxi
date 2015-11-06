@@ -1,6 +1,7 @@
 ﻿// This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
 var map;
+var markerTaxi = new google.maps.Marker;
 var marker1 = new google.maps.Marker;
 var marker2 = new google.maps.Marker;
 var geocoder = new google.maps.Geocoder();
@@ -50,7 +51,7 @@ function CenterControl(controlDiv, map) {
     // Setup the click event listeners: simply set the map to Chicago.
     controlUI.addEventListener('click', function () {
         map.setCenter(geocode());
-
+      
         var orderObj = {
             'PeekPlace': marker2.getTitle(),
             'DropPlace': marker1.getTitle(),
@@ -66,7 +67,7 @@ function CenterControl(controlDiv, map) {
             url: '/Order/GetOrder/',
             data: orderObj,
             type: "POST",
-            success: function (data) {  }
+            success: function (data) { $('#orderinfo').modal('toggle'); }
         });
     })
 
