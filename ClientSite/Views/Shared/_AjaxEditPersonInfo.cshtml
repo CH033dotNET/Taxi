@@ -1,0 +1,18 @@
+﻿@model Model.DTO.PersonDTO
+
+@using (Ajax.BeginForm("Index", "UserPage", new AjaxOptions
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "content",
+    LoadingElementId = "loading",
+    OnSuccess = "CloseModal"
+}))
+{
+
+    <div id="content"></div>
+    @Html.Hidden("UserId", User.Id)
+    <input type="submit" class="btn btn-success" value="@Resources.Resource.UpdateProfile" />
+
+
+}

@@ -33,29 +33,35 @@ namespace Common.Helpers
 
 			return result;
 		}
-
-        public IRestResponse<T> Get<T,T2>(string controller, string method, T2 data) where T : new()
-        {
-            var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.POST);
-            request.RequestFormat = DataFormat.Json;
-            request.AddJsonBody(data);
-
-            var result = client.Execute<T>(request);
-
-            return result;
-        }
-
 		// Get request
 		//api/controller/id
 		public IRestResponse<T> GetById<T>(string controller, string method, int id) where T : new()
 		{
-            var request = new RestRequest(string.Format("{0}/{1}?id={2}", controller, method, id), Method.GET);
-			//request.AddParameter("id", id);
+			var request = new RestRequest(string.Format("{0}/{1}", controller, method, id), Method.GET);
+			request.AddParameter("id", id);
 
-			/*if (HttpContext.Current.User.Identity.IsAuthenticated) {
-				request.AddHeader("Authorization", getToken());
-			}*/
 			var result = client.Execute<T>(request);
+
+			return result;
+		}
+
+		public IRestResponse<T> Get<T, T2>(string controller, string method, T2 data) where T : new()
+		{
+			var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.GET);
+			request.AddParameter("data", data);
+
+			var result = client.Execute<T>(request);
+
+			return result;
+		}
+
+		public IRestResponse<T1> Get<T1, T2, T3>(string controller, string method, T2 param1, T3 param2) where T1 : new()
+		{
+			var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.GET);
+			request.AddParameter("param1", param1);
+			request.AddParameter("param2", param2);
+		
+			var result = client.Execute<T1>(request);
 
 			return result;
 		}
@@ -68,7 +74,8 @@ namespace Common.Helpers
 
 			return result;
 		}
-
+		//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			
 		//Put request
 		// api/controller/id
 		public IRestResponse<T> PutById<T>(string controller, string method, int id) where T : new()
@@ -102,33 +109,44 @@ namespace Common.Helpers
 		//	return result;
 		//}
 
-        
-        public IRestResponse<T1> Get<T1,T2,T3>(string controller, string method, T2 param1, T3 param2) where T1 : new()
-        {
-            var request = new RestRequest(string.Format("{0}/{1}?param1={2}&param2={3}", controller, method, param1, param2), Method.GET);
+		public IRestResponse<T> PostJ<T, T2>(string controller, string method, T2 item) where T : new()
+		{
+			var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.POST);
+			var json = JsonConvert.SerializeObject(item);
+			request.AddParameter("text/json", json, ParameterType.RequestBody);
 
-            /*if (HttpContext.Current.User.Identity.IsAuthenticated) {
-                request.AddHeader("Authorization", getToken());
-            }*/
-            var result = client.Execute<T1>(request);
-
-            return result;
-        }
-
-        public IRestResponse<T> PostJ<T,T2>(string controller, string method, T2 item) where T : new()
-        {
-            var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.POST);
-            var json = JsonConvert.SerializeObject(item);
-            request.AddParameter("text/json", json, ParameterType.RequestBody);
-
-            var result = client.Execute<T>(request);
-            return result;
-        }
+			var result = client.Execute<T>(request);
+			return result;
+		}
 
 		public IRestResponse<T> PostObject<T>(string controller, string method, T modelObj) where T : new()
 		{
 			var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.POST);
 			request.AddBody(modelObj);
+			var result = client.Execute<T>(request);
+
+			return result;
+		}
+
+		public IRestResponse<T> postData<T>(string controller, string method, T data) where T : new()
+		{
+			var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.POST);
+			//request.AddParameter("data", data, ParameterType.GetOrPost);
+			request.RequestFormat = DataFormat.Json;
+			request.AddParameter("Application/Json", JsonConvert.SerializeObject(data), ParameterType.RequestBody);
+
+			var result = client.Execute<T>(request);
+
+			return result;
+		}
+
+		public IRestResponse<T> postData<T, Tobject>(string controller, string method, Tobject data) where T : new()
+		{
+			var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.POST);
+			//request.AddParameter("data", data, ParameterType.GetOrPost);
+			request.RequestFormat = DataFormat.Json;
+			request.AddParameter("Application/Json", JsonConvert.SerializeObject(data), ParameterType.RequestBody);
+
 			var result = client.Execute<T>(request);
 
 			return result;

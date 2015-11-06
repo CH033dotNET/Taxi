@@ -1,0 +1,10 @@
+﻿@if (Session["Culture"] != null && Session["Culture"].ToString().ToUpper() == "UK-UA")
+{
+    <li> @Html.RouteLink("Ua", new { controller = "Home", action = "SetLanguage", language = "uk-Ua", returnUrl = Request.Url.AbsoluteUri }, new { @Class = "ActivLang" })</li>
+    <li>@Html.RouteLink("En", new { controller = "Home", action = "SetLanguage", language = "en-us", returnUrl = Request.Url.AbsoluteUri })</li>
+}
+else
+{
+    <li>@Html.RouteLink("Ua", new { controller = "Home", action = "SetLanguage", language = "uk-Ua", returnUrl = Request.Url.AbsoluteUri })</li>
+    <li>@Html.RouteLink("En", new { controller = "Home", action = "SetLanguage", language = "en-us", returnUrl = Request.Url.AbsoluteUri }, new { @Class = "ActivLang" })</li>
+}

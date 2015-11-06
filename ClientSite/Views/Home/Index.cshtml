@@ -1,0 +1,103 @@
+﻿@using Model.DTO
+@using Common.Enum
+
+<div class="row">
+    <noscript class="noscript">
+        <img src="~/Content/Picture/JVDisable.jpg" alt="" id="alert" />
+    </noscript>
+    <div class="col-lg-6 col-md-6 col-sm-8 col-xs-8">
+
+        <a href="#"> <img src="~/Content/Picture/logo.png" class="topLogo pull-right" style="border-bottom:inherit" /> </a>
+    </div>
+    <div class="col-lg-6 col-md-6 ">
+        <noscript class="noscript">
+            <div id="div100">
+
+                <p id="msger">Something went wrong!<br /> You can still order a Taxi by calling +(038)055-45-54</p>
+            </div>
+        </noscript>
+        <div class="btn-group pull-right btn-group-lg">
+            <button class="btn btn-info">
+                @Resources.Resource.OrderTaxi
+            </button>
+            <button class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-car"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+@*Our Img Slidding*@
+<div id="carousel" class="carousel slide">
+    <ol class="carousel-indicators">
+        <li class="active" data-target="#carousel" data-slide-to="0"></li>
+        <li data-target="#carousel" data-slide-to="1"></li>
+        <li data-target="#carousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="item active qwert">
+            <img src="~/Content/Picture/0-well-traveled-passport-taxi-cab-global-british-american-vietnamese-engagement-wedding-photos-photographer.jpg" alt="" />
+            @*<div class="carousel-caption">
+                    <h4>Slaid 1</h4>
+                </div>*@
+        </div>
+        <div class="item qwert">
+            <img src="~/Content/Picture/2.jpg" alt="" />
+            @*<div class="carousel-caption">
+                    <h4>Slaid 2</h4>
+                </div>*@
+        </div>
+        <div class="item qwert">
+            <img src="~/Content/Picture/5.jpg" alt="" />
+            @*<div class="carousel-caption">
+                    <h4>Slaid 3</h4>
+                </div>*@
+        </div>
+    </div>
+    <a href="#carousel" class="left carousel-control" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a href="#carousel" class="right carousel-control" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>
+
+@*Social banner*@
+
+<div class="slider-controls">
+    <div class="well">
+        <div class=" navbar-header">
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#socialCont" style="background-color:lightblue">
+                <i class="fa fa-google-plus"></i>
+            </button>
+
+        </div>
+        <div class="collapse navbar-collapse" id="socialCont">
+            <a href="">
+                <i class="largeIcon fa fa-facebook"></i>
+            </a>
+            <a href="">
+                <i class="largeIcon fa fa-twitter"></i>
+            </a>
+            <a href="">
+                <i class="largeIcon fa fa-google"></i>
+            </a>
+            <a href="">
+                <i class="largeIcon fa fa-youtube"></i>
+            </a>
+            <a href="">
+                <i class="largeIcon fa fa-lg fa-github"></i>
+            </a>
+            <a href="">
+                <i class="largeIcon fa fa-lg fa-linkedin"></i>
+            </a>
+            <a href="#">
+                <i class="largeIcon fa fa-lg fa-vimeo-square"></i>
+            </a>
+        </div>
+    </div>
+
+</div>
+

@@ -17,5 +17,31 @@ namespace TaxiAPI.Controllers
 		{
 			this.personManager = personManager;
 		}
+
+		[HttpGet]
+		[Route("api/User/GetPersonByUserId")]
+		public HttpResponseMessage GetPersonByUserId(int? id)
+		{
+			var person = personManager.GetPersonByUserId(id);
+			if (person == null)
+			{
+				return Request.CreateResponse(HttpStatusCode.NotFound, person);
+			}
+
+			return Request.CreateResponse(HttpStatusCode.OK, person);
+		}
+
+		[HttpPost]
+		[Route("api/User/EditPerson")]
+		public HttpResponseMessage EditPerson(PersonDTO person)
+		{
+			var pers = personManager.EditPerson(person);
+			if (pers == null)
+			{
+				return Request.CreateResponse(HttpStatusCode.NotFound, pers);
+			}
+
+			return Request.CreateResponse(HttpStatusCode.OK, pers);
+		}
 	}
 }

@@ -16,5 +16,18 @@ namespace TaxiAPI.Controllers
 		{
 			this.orderManager = orderManager;
 		}
+
+		[HttpGet]
+		[Route("api/DriveClientHistory/GetOrders")]
+		public HttpResponseMessage GetOrders()
+		{
+			var orders = orderManager.GetOrders();
+			if (orders == null)
+			{
+				Request.CreateResponse(HttpStatusCode.NotFound, orders);
+			}
+
+			return Request.CreateResponse(HttpStatusCode.OK, orders);
+		}
     }
 }
