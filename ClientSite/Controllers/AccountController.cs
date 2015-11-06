@@ -33,8 +33,9 @@ namespace ClientSite.Controllers
 					{
 						ApiRequestHelper.PutObject<UserDTO>("Account", "InsertUser", user);
 						//userManager.InsertUser(user);
-
-						CheckPerson(user);
+						SessionPerson = null;
+						SessionUser = user;
+						CheckPerson();
 						Authentification(new LoginModel() { UserName = user.UserName, Password = user.Password });
 						return RedirectToAction("Index", "User");
 					}
@@ -57,13 +58,12 @@ namespace ClientSite.Controllers
 			if (ModelState.IsValid)
 			{
 				//var currentUser = userManager.GetByUserName(user.UserName, user.Password);
-				var currentUser = 
-					ApiRequestHelper.Get<UserDTO, string, string>("Account", "GetUser", user.UserName, user.Password).Data as UserDTO;
-				if (currentUser != null)
+				SessionUser =
+					ApiRequestHelper.postData<UserDTO, LoginModel>("Account", "GetUser", user).Data as UserDTO;
+				if (SessionUser != null)
 				{
-					CheckPerson(currentUser);
-					SessionUser = currentUser;
-					SessionPerson = ApiRequestHelper.GetById<PersonDTO>("Account", "getPerson", currentUser.Id).Data as PersonDTO;
+					CheckPerson();
+					SessionPerson = ApiRequestHelper.GetById<PersonDTO>("Account", "getPerson", SessionUser.Id).Data as PersonDTO;
 					//SessionPerson = personManager.GetPersonByUserId(currentUser.Id);
 					return RedirectToAction("Index", "Home");
 				}
@@ -87,23 +87,21 @@ namespace ClientSite.Controllers
 			return View();
 		}
 
-		private void CheckPerson(UserDTO user)
+		private void CheckPerson()
 		{
 			//var currentUser = userManager.GetByUserName(user.UserName, user.Password);
 			//var currentPerson = personManager.GetPersonByUserId(currentUser.Id);
-			var currentUser = ApiRequestHelper.Get<UserDTO, string, string>("Account", "getUser", user.UserName, user.Password).Data as UserDTO;
-			var currentPerson = ApiRequestHelper.GetById<PersonDTO>("Account", "GetPersonByUserId", currentUser.Id).Data as PersonDTO;
 
-			if (currentPerson == null)
+			if (SessionPerson == null)
 			{
-				PersonDTO myPerson = new PersonDTO() { UserId = currentUser.Id, ImageName = "item_0_profile.jpg" };
+				PersonDTO myPerson = new PersonDTO() { UserId = SessionUser.Id, ImageName = "item_0_profile.jpg" };
 				//currentPerson = personManager.InsertPerson(new PersonDTO() { UserId = currentUser.Id, ImageName = "item_0_profile.jpg" });
-				currentPerson = ApiRequestHelper.PutObject<PersonDTO>("Account", "InsertPerson", myPerson).Data as PersonDTO;
-				currentPerson.User = currentUser;
+				SessionPerson = ApiRequestHelper.postData<PersonDTO>("Account", "InsertPerson", myPerson).Data as PersonDTO;
+				SessionPerson.User = SessionUser;
 			}
-			if (!System.IO.File.Exists(Server.MapPath(@"~\Images\") + currentPerson.ImageName))
+			if (!System.IO.File.Exists(Server.MapPath(@"~\Images\") + SessionPerson.ImageName))
 			{
-				ApiRequestHelper.GetById<PersonDTO>("Account", "DefaultImage", user.Id);
+				ApiRequestHelper.GetById<PersonDTO>("Account", "DefaultImage", SessionUser.Id);
 				//personManager.DefaultImage(user.Id);
 
 			}

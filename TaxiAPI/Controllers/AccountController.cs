@@ -32,6 +32,7 @@ namespace TaxiAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, my);
         }
         [HttpGet]
+		[Route("api/Account/getPerson")]
         public HttpResponseMessage getPerson(int id)
         {
             var person = personManager.GetPersonByUserId(id);
@@ -45,6 +46,60 @@ namespace TaxiAPI.Controllers
             }*/
             return Request.CreateResponse(HttpStatusCode.OK, person);
         }
+
+		[HttpGet]
+		[Route("api/Account/IfUserNameExists")]
+		public HttpResponseMessage IfUserNameExists(string userName)
+		{
+			var exist = userManager.IfUserNameExists(userName);
+			if (exist == null) return Request.CreateResponse(HttpStatusCode.NotFound, exist);
+			return Request.CreateResponse(HttpStatusCode.OK, exist);
+		}
+
+		[HttpGet]
+		[Route("api/Account/IfEmailExists")]
+		public HttpResponseMessage IfEmailExists(string userName)
+		{
+			var exist = userManager.IfEmailExists(userName);
+			if (exist == null) return Request.CreateResponse(HttpStatusCode.NotFound, exist);
+			return Request.CreateResponse(HttpStatusCode.OK, exist);
+		}
+
+		[HttpGet]
+		[Route("api/Account/IsUserNameCorrect")]
+		public HttpResponseMessage IsUserNameCorrect(string userName)
+		{
+			var exist = userManager.IsUserNameCorrect(userName);
+			if (exist == null) return Request.CreateResponse(HttpStatusCode.NotFound, exist);
+			return Request.CreateResponse(HttpStatusCode.OK, exist);
+		}
+
+		[HttpGet]
+		[Route("api/Account/DefaultImage")]
+		public HttpResponseMessage DefaultImage(int UserId)
+		{
+			var defImg = personManager.DefaultImage(UserId);
+			if (defImg == null) return Request.CreateResponse(HttpStatusCode.NotFound, defImg);
+			return Request.CreateResponse(HttpStatusCode.OK, defImg);
+		}
+
+		[HttpPost]
+		[Route("api/Account/InsertUser")]
+		public HttpResponseMessage InsertUser(UserDTO user)
+		{
+			var IsInsert = userManager.InsertUser(user);
+			if (IsInsert == null) return Request.CreateResponse(HttpStatusCode.NotFound, IsInsert);
+			return Request.CreateResponse(HttpStatusCode.OK, IsInsert);
+		}
+
+		[HttpPost]
+		[Route("api/Account/InsertPerson")]
+		public HttpResponseMessage InsertPerson(PersonDTO person)
+		{
+			var IsInsert = personManager.InsertPerson(person);
+			if (IsInsert == null) return Request.CreateResponse(HttpStatusCode.NotFound, IsInsert);
+			return Request.CreateResponse(HttpStatusCode.OK, IsInsert);
+		}
 
     }
 }
