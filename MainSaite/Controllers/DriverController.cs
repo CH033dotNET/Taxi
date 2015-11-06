@@ -188,10 +188,11 @@ namespace MainSaite.Controllers
 			return Json(orders, JsonRequestBehavior.AllowGet);
 		}
 
-		public void GetOrder(int OrderId)
+		public void GetOrder(int orderId, string waitingTime)
 		{
-			var order = orderManager.GetOrderByOrderID(OrderId);
+			var order = orderManager.GetOrderByOrderID(orderId);
 			order.DriverId = SessionUser.Id;
+			order.WaitingTime = waitingTime;
 			orderManager.EditOrder(order);
 		}
 	}

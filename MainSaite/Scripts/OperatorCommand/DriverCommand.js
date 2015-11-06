@@ -1,6 +1,4 @@
-﻿var currentOrderId;
-
-function GetOrders() {
+﻿function GetOrders() {
     var content = $("#DrOrder");
 
     $.ajax({
@@ -23,17 +21,14 @@ function GetOrders() {
 }
 
 
-function getOrdedId(e) {
-    currentOrderId = $(e).attr('data-orderid');
-}
 
 function Assign() {
     var time = $("#timetotravel").val();
-    alert("Підтверджено, час до клієнтаа:" + time + " хв");
+    var currentOrderId = $("#orderid").attr('data-orderid');
 
         $.ajax({
             url: '/Driver/GetOrder/',
-            data: { orderId : currentOrderId},
+            data: { orderId : currentOrderId, waitingTime : time},
             success: function (data) {
                 GetOrders();
             }
