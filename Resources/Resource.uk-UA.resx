@@ -717,4 +717,13 @@
   <data name="TakeOrder" xml:space="preserve">
     <value>Прийняти замовлення</value>
   </data>
+  <data name="DriverName" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WaitingTime" xml:space="preserve">
+    <value>Час очікування</value>
+  </data>
+  <data name="DriverRequest" xml:space="preserve">
+    <value>Запит водія</value>
+  </data>
 </root>

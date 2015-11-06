@@ -57,6 +57,22 @@ namespace MainSaite.Controllers
 			return Json(operatorOrders, JsonRequestBehavior.AllowGet);
 		}
 
+		public JsonResult DriversRequest()
+		{ 
+		    var orders =  orderManager.GetOrders().Where(x=>x.IsConfirm == 1 && x.DriverId != 0).ToList();
+			var peoples = personManager.GetPersons().ToList();
+			var driverRequest = from O in orders
+								join P in peoples
+								on O.PersonId equals P.Id
+								select new { OrderId = O.Id, PeekPlace = O.PeekPlace, DropPlace = O.DropPlace, WaitingTime = O.WaitingTime, DriverId = O.DriverId };
+			return Json(driverRequest, JsonRequestBehavior.AllowGet);
+		}
+
+		//public JsonResult CloseOrder()
+		//{ 
+		
+		
+		//}
     }
 }
 

@@ -962,6 +962,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Driver Request.
+        /// </summary>
+        public static string DriverRequest {
+            get {
+                return ResourceManager.GetString("DriverRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drivers activity.
         /// </summary>
         public static string DriversActivity {
@@ -1804,6 +1813,15 @@ namespace Resources {
         public static string WaitingCost {
             get {
                 return ResourceManager.GetString("WaitingCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WaitingTime.
+        /// </summary>
+        public static string WaitingTime {
+            get {
+                return ResourceManager.GetString("WaitingTime", resourceCulture);
             }
         }
         

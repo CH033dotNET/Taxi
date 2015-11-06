@@ -16,6 +16,7 @@
             </div>
 
             <div class="modal-body">
+
                 <label>@Resources.Resource.TimeFromOrder</label>
                 <label> <input type="text" id="timetotravel"/></label>
                 </div>
@@ -40,11 +41,10 @@
 
         {{#each orders}}
         <tr>
-            <td hidden id="orderid" data-orderid="{{Id}}" ></td>
             <td>{{PrettifyDate OrderTime}}</td>
             <td>{{PeekPlace}}</td>
             <td>{{DropPlace}}</td>
-            <td> <button id="butOk" type="button" class="btn btn-default" data-toggle="modal" data-target="#Asign">@Resources.Resource.Confirm</button> </td>
+            <td> <button id="buttOk" type="button" class="btn btn-default" data-orderid="{{Id}}" data-toggle="modal" data-target="#Asign" onclick="saveOrderId(this)">@Resources.Resource.Confirm</button> </td>
         </tr>
         {{/each}}
 
