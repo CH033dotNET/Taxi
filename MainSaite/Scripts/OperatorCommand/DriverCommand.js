@@ -1,4 +1,6 @@
-﻿function GetOrders() {
+﻿var currentOrderId;
+
+function GetOrders() {
     var content = $("#DrOrder");
 
     $.ajax({
@@ -21,10 +23,12 @@
 }
 
 
+function saveOrderId(e) {
+    currentOrderId = $(e).attr('data-orderid');
+}
 
 function Assign() {
     var time = $("#timetotravel").val();
-    var currentOrderId = $("#orderid").attr('data-orderid');
 
         $.ajax({
             url: '/Driver/GetOrder/',
