@@ -729,4 +729,10 @@
   <data name="ClientOrderConfirm" xml:space="preserve">
     <value>Замовлення успішно підтверджено</value>
   </data>
+  <data name="GiveCarConfirmation" xml:space="preserve">
+    <value>Підтвердження передачі</value>
+  </data>
+  <data name="ReturnConfirmation" xml:space="preserve">
+    <value>Підтвердження повернення</value>
+  </data>
 </root>

@@ -724,4 +724,10 @@
   <data name="ClientOrderConfirm" xml:space="preserve">
     <value>Your order have been confirmed</value>
   </data>
+  <data name="GiveCarConfirmation" xml:space="preserve">
+    <value>Giveaway confirmation</value>
+  </data>
+  <data name="ReturnConfirmation" xml:space="preserve">
+    <value>Return confirmation</value>
+  </data>
 </root>

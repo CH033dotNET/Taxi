@@ -5,25 +5,25 @@ var jsController = {
 	data: { items: encodedData },
 	deletedData: { deleted: encodedDeleted },
 
+	// render non-deleted districts in template
 	renderData: function () {
 		$('#districtEditTable tbody').html(districtTemplate(this.data));
 	},
-
+	//render deleted districts in template
 	renderDeletedData: function () {
 		$('#districtDeletedTable tbody').html(deletedDistrictsTemplate(this.deletedData));
 	},
-
 	//! function that opens basket modal window
 	DistrictBasket: function (e) {
-		$('#deletedList').modal('show');
 		$.ajax({
 			url: "/Settings/DeletedDistricts",
 		}).done(function (result) {
-			jsController.deletedData.deleted = result;
+			jsController.deletedData.deleted = result.deletedDistricts;
 			jsController.renderDeletedData();
+			$('#deletedList').modal('show');
 		});
 	},
-
+	//! function that restore distirct form deleted state
 	restoreDistrict: function (e) {
 		var itemId = $(e).attr('data-items-id'); // get model item id from template
 		var name = $(e).attr('data-items-name'); // get model item name from template
@@ -32,10 +32,13 @@ var jsController = {
 			url: "/Settings/RestoreDistrict/",
 			data: { id: itemId }
 		}).done(function (result) {
-			jsController.deletedData.deleted = result.deletedDistricts;
-			jsController.data.items = result.workingDistricts;
-			jsController.renderDeletedData();
-			jsController.renderData();
+			if (result.success && result != null) {
+				jsController.deletedData.deleted = result.deletedDistricts;
+				jsController.data.items = result.workingDistricts;
+				jsController.renderDeletedData();
+				jsController.renderData();
+			}
+			else { jsController.getDistrictErrorMessage(); }
 		});
 	},
 
@@ -47,13 +50,12 @@ var jsController = {
 			jsController.renderData();
 		});
 	},
-
-	//! function for adding new districts
+	//! function for adding new districts. Opens modal window.
 	addDistrict: function () {
 		var a = "breakpoint";
 		$('#add-item').modal('show');
 	},
-
+	//! function for adding new districts. Gets data and sends it on server via ajax.
 	addDistrictConfirm: function () {
 		var d = "breakpoint!";
 		var newDistrictName = $('#newDistrictName').val();
@@ -66,7 +68,7 @@ var jsController = {
 				jsController.renderData();
 				document.getElementById("add-district-form").reset();
 			}
-			else if (!result.success) {
+			else {
 				jsController.getDistrictErrorMessage();
 				document.getElementById("add-district-form").reset();
 			}
@@ -75,8 +77,7 @@ var jsController = {
 			$("#add-item").modal('hide');
 		});
 	},
-
-	//! function for deleting selected district
+	//! function for deleting selected district.
 	deleteItem: function (e) {
 		itemId = $(e).attr('data-items-id');
 		itemName = $(e).attr('data-items-name');
@@ -90,28 +91,31 @@ var jsController = {
 				url: "/Settings/DeleteDistrict/",
 				data: { Id: itemId, Name: itemName },
 				method: "POST",
-			}).success(function (result) {
-				jsController.data.items = result;
-				jsController.renderData();
+			}).done(function (result) {
+				if (result.success && result != null) {
+					jsController.data.items = result.districts;
+					jsController.renderData();
+				}
+				else { jsController.getDistrictErrorMessage(); }
 			});
 			$('#confirm-delete').modal('hide');
 			$('#confirm-delete .btn-ok').off("click.deleteADistrict");
 			return false;
 		});
 	},
-
 	//! function for editing selected district info
 	editItem: function (e) {
 		var itemId = $(e).attr('data-items-id'); // get model item id from template
 		var name = $(e).attr('data-items-name'); // get model item name from template
 
 		$('#newName').val(name); // set model item name to an input field
-		$("#edit-item").modal('show'); // show modal
 
 		$('#editInputDistrictId').val(itemId); /////addd id!!!
 
-	},
+		$("#edit-item").modal('show'); // show modal
 
+	},
+	//! function for editing selected district info. Gathers all data and sends it on server via ajax.
 	editConfirmDistrict: function () {
 		var datId = $('#editInputDistrictId').val();
 		var c = "breakpoint";
@@ -127,7 +131,7 @@ var jsController = {
 				jsController.renderData();
 				document.getElementById("edit-district-form").reset();
 			}
-			else if (!result.success) {
+			else {
 				jsController.getDistrictErrorMessage();
 				document.getElementById("edit-district-form").reset();
 			}
@@ -136,7 +140,7 @@ var jsController = {
 			$("#edit-item").modal('hide');
 		});
 	},
-
+	//! function that opens modal window with error message.
 	getDistrictErrorMessage: function () {
 		$('#get-district-error-modal').modal('show');
 	}

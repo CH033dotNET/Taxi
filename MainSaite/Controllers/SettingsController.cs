@@ -102,9 +102,13 @@ namespace MainSaite.Controllers
 			}
 			else
 			{
-				districtManager.addDistrict(district.Name);
-				var districts = districtManager.getDistricts();
-				return Json(new { success = true, districts }, JsonRequestBehavior.AllowGet);
+				string statusMessage = districtManager.addDistrict(district.Name);
+				if (statusMessage == "Error") { return Json(new { success = false }, JsonRequestBehavior.AllowGet); }
+				else
+				{
+					var districts = districtManager.getDistricts();
+					return Json(new { success = true, districts }, JsonRequestBehavior.AllowGet);
+				}
 			}
 		}
 		/// <summary>
@@ -115,9 +119,10 @@ namespace MainSaite.Controllers
 		/// <returns></returns>
 		public JsonResult DeleteDistrict(District district)
 		{
-			districtManager.SetDistrictDeleted(district.Id, district.Name);
+			var checkObject = districtManager.SetDistrictDeleted(district.Id, district.Name);
+			if (checkObject == null) { return Json(new { success = false }, JsonRequestBehavior.AllowGet); }
 			var districts = districtManager.getDistricts();
-			return Json(districts, JsonRequestBehavior.AllowGet);
+			return Json(new { success = true, districts }, JsonRequestBehavior.AllowGet);
 		}
 		/// <summary>
 		/// Ajax call from the view sends a data to controller, 
@@ -148,7 +153,7 @@ namespace MainSaite.Controllers
 		public JsonResult DeletedDistricts()
 		{
 			var deletedDistricts = districtManager.getDeletedDistricts();
-			return Json(deletedDistricts,JsonRequestBehavior.AllowGet);
+			return Json(new { deletedDistricts }, JsonRequestBehavior.AllowGet);
 		}
 		/// <summary>
 		/// Ajax call from the view sends a data to controller, 
@@ -156,12 +161,16 @@ namespace MainSaite.Controllers
 		/// </summary>
 		/// <param name="district">object that contains all the data needed to find and restore district</param>
 		/// <returns></returns>
-		public JsonResult RestoreDistrict(District district)
+		public JsonResult RestoreDistrict(int id)
 		{
-			districtManager.RestoreDistrict(district.Id);
-			var deletedDistricts = districtManager.getDeletedDistricts();
-			var workingDistricts = districtManager.getDistricts();
-			return Json(new { deletedDistricts, workingDistricts }, JsonRequestBehavior.AllowGet);
+			var checkObject = districtManager.RestoreDistrict(id);
+			if (checkObject == null) { return Json(new { success = false }, JsonRequestBehavior.AllowGet); }
+			else
+			{
+				var deletedDistricts = districtManager.getDeletedDistricts();
+				var workingDistricts = districtManager.getDistricts();
+				return Json(new { success = true, deletedDistricts, workingDistricts }, JsonRequestBehavior.AllowGet); 
+			}
 		}
 
 		public JsonResult GetAvailableDistricts()
@@ -171,141 +180,141 @@ namespace MainSaite.Controllers
 		}
 
 		// Nick: Car info settings
-		public ActionResult CarEditor()
-		{
-			if (null == SessionUser || SessionUser.RoleId != (int)AvailableRoles.Driver)
-			{
-				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
-			}
-			else
-			{
-				int userId = SessionUser.Id;
-				return View(carManager.getCarsByUserID(userId));
-			}
-		}
-		// GET:
-		public ActionResult CarCreate()
-		{
-			return View();
-		}
+		//public ActionResult CarEditor()
+		//{
+		//	if (null == SessionUser || SessionUser.RoleId != (int)AvailableRoles.Driver)
+		//	{
+		//		return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+		//	}
+		//	else
+		//	{
+		//		int userId = SessionUser.Id;
+		//		return View(carManager.getCarsByUserID(userId));
+		//	}
+		//}
+		//// GET:
+		//public ActionResult CarCreate()
+		//{
+		//	return View();
+		//}
 
-		// POST:
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult CarCreate(CarDTO car)
-		{
-			try
-			{
-				if (ModelState.IsValid)
-				{
-					carManager.addCar(car);
-					return RedirectToAction("CarEditor");
-				}
-			}
-			catch (DataException)
-			{
-				ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-			}
-			return RedirectToAction("CarEditor");
-		}
+		//// POST:
+		//[HttpPost]
+		//[ValidateAntiForgeryToken]
+		//public ActionResult CarCreate(CarDTO car)
+		//{
+		//	try
+		//	{
+		//		if (ModelState.IsValid)
+		//		{
+		//			carManager.addCar(car);
+		//			return RedirectToAction("CarEditor");
+		//		}
+		//	}
+		//	catch (DataException)
+		//	{
+		//		ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+		//	}
+		//	return RedirectToAction("CarEditor");
+		//}
 
-		public ActionResult CarDetails(int? id)
-		{
-			if (id == null)
-			{
-				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-			}
-			var carID = carManager.GetCarByCarID(id);
-			if (carID == null)
-			{
-				return HttpNotFound();
-			}
-			return View(carID);
-		}
-		// GET: 
-		public ActionResult CarDelete(int? id)
-		{
-			if (id == null)
-			{
-				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-			}
-			var carForDelete = carManager.GetCarByCarID(id);
-			if (carForDelete == null)
-			{
-				return HttpNotFound();
-			}
-			return View(carForDelete);
-		}
-		// POST:
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult CarDelete(CarDTO car)
-		{
-			try
-			{
-				carManager.deleteCarByID(car.Id);
-			}
-			catch (DataException)
-			{
-				return RedirectToAction("CarDelete");
-			}
-			return RedirectToAction("CarEditor");
-		}
-		// GET: 
-		public ActionResult CarEdit(int? id)
-		{
-			if (id == null)
-			{
-				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-			}
-			var carID = carManager.GetCarByCarID(id);
-			if (carID == null)
-			{
-				return HttpNotFound();
-			}
-			return View(carID);
-		}
+		//public ActionResult CarDetails(int id)
+		//{
+		//	if (id == null)
+		//	{
+		//		return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+		//	}
+		//	var carID = carManager.GetCarByCarID(id);
+		//	if (carID == null)
+		//	{
+		//		return HttpNotFound();
+		//	}
+		//	return View(carID);
+		//}
+		//// GET: 
+		//public ActionResult CarDelete(int id)
+		//{
+		//	if (id == null)
+		//	{
+		//		return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+		//	}
+		//	var carForDelete = carManager.GetCarByCarID(id);
+		//	if (carForDelete == null)
+		//	{
+		//		return HttpNotFound();
+		//	}
+		//	return View(carForDelete);
+		//}
+		//// POST:
+		//[HttpPost]
+		//[ValidateAntiForgeryToken]
+		//public ActionResult CarDelete(CarDTO car)
+		//{
+		//	try
+		//	{
+		//		carManager.deleteCarByID(car.Id);
+		//	}
+		//	catch (DataException)
+		//	{
+		//		return RedirectToAction("CarDelete");
+		//	}
+		//	return RedirectToAction("CarEditor");
+		//}
+		//// GET: 
+		//public ActionResult CarEdit(int id)
+		//{
+		//	//if (id == null)
+		//	//{
+		//	//	return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+		//	//}
+		//	var carID = carManager.GetCarByCarID(id);
+		//	if (carID == null)
+		//	{
+		//		return HttpNotFound();
+		//	}
+		//	return View(carID);
+		//}
 
-		// POST:
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult CarEdit(CarDTO car)
-		{
-			if (ModelState.IsValid)
-			{
-				carManager.EditCar(car);
-				return RedirectToAction("CarEditor");
-			}
-			return RedirectToAction("CarEditor");
-		}
+		//// POST:
+		//[HttpPost]
+		//[ValidateAntiForgeryToken]
+		//public ActionResult CarEdit(CarDTO car)
+		//{
+		//	if (ModelState.IsValid)
+		//	{
+		//		carManager.EditCar(car);
+		//		return RedirectToAction("CarEditor");
+		//	}
+		//	return RedirectToAction("CarEditor");
+		//}
 
-		public ActionResult ChangeCarUser(int id)
-		{
-			CarChangeUser model = new CarChangeUser();
-			model.Car = carManager.GetCarByCarID(id);
-			model.Drivers = userManager.GetDrivers().Where(x => x.Id != SessionUser.Id).ToList();
-			return View(model);
-		}
-		[HttpPost]
-		public ActionResult ChangeCarUser(CarDTO car)
-		{
-			carManager.EditCar(car);
-			return RedirectToAction("CarEditor");
-		}
+		//public ActionResult ChangeCarUser(int id)
+		//{
+		//	CarChangeUser model = new CarChangeUser();
+		//	model.Car = carManager.GetCarByCarID(id);
+		//	model.Drivers = userManager.GetDrivers().Where(x => x.Id != SessionUser.Id).ToList();
+		//	return View(model);
+		//}
+		//[HttpPost]
+		//public ActionResult ChangeCarUser(CarDTO car)
+		//{
+		//	carManager.EditCar(car);
+		//	return RedirectToAction("CarEditor");
+		//}
 
-		public ActionResult ReturnCarBack(int id)
-		{
-			var model = carManager.GetCarByCarID(id);
-			return View(model);
-		}
+		//public ActionResult ReturnCarBack(int id)
+		//{
+		//	var model = carManager.GetCarByCarID(id);
+		//	return View(model);
+		//}
 
-		[HttpPost]
-		public ActionResult ReturnCarBack(CarDTO car)
-		{
-			car.UserId = car.OwnerId;
-			carManager.EditCar(car);
-			return RedirectToAction("CarEditor");
-		}
+		//[HttpPost]
+		//public ActionResult ReturnCarBack(CarDTO car)
+		//{
+		//	car.UserId = car.OwnerId;
+		//	carManager.EditCar(car);
+		//	return RedirectToAction("CarEditor");
+		//}
 
 		public ActionResult SetVIPStatus()
 		{

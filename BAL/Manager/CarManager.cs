@@ -33,11 +33,19 @@ namespace BAL.Manager
 		/// Finds car by it`s id and deletes it
 		/// </summary>
 		/// <param name="id">value that represents car id</param>
-		public void deleteCarByID(int? id)
+		public string deleteCarByID(int id)
 		{
-			Car car = uOW.CarRepo.GetByID(id);
-			uOW.CarRepo.Delete(car);
-			uOW.Save();
+			if (id <= 0)
+			{
+				return "Failure";
+			}
+			else
+			{
+				Car car = uOW.CarRepo.GetByID(id);
+				uOW.CarRepo.Delete(car);
+				uOW.Save();
+				return "Success";
+			}
 		}
 
 		/// <summary>
@@ -94,8 +102,9 @@ namespace BAL.Manager
 		/// <returns>parameter representing users id</returns>
 		public IEnumerable<CarDTO> getCarsByUserID(int? id)
 		{
-			//var userCars = uOW.CarRepo.Get().Where(s => s.UserId == id).Select(s => Mapper.Map<CarDTO>(s));
-			var userCars = uOW.CarRepo.Get(s => s.UserId == id).Select(s => Mapper.Map<CarDTO>(s));
+			if (id <= 0 || id == null) { return null; }
+			var userCars = uOW.CarRepo.All.Where(x => x.UserId == id).ToList().Select(s => Mapper.Map<CarDTO>(s));
+			//var userCars = uOW.CarRepo.Get(s => s.UserId == id).Select(s => Mapper.Map<CarDTO>(s));
 			if (userCars != null)
 			{
 				return userCars;
@@ -108,22 +117,39 @@ namespace BAL.Manager
 		/// </summary>
 		/// <param name="id">input parameter</param>
 		/// <returns></returns>
-		public CarDTO GetCarByCarID(int? id)
+		public CarDTO GetCarByCarID(int id)
 		{
-			var userCar = uOW.CarRepo.Get(s => s.Id == id).FirstOrDefault();
-			if (userCar != null)
+			if (id <= 0)
 			{
-				return Mapper.Map<CarDTO>(userCar);
+				return null;
 			}
-			return null;
+			else
+			{
+				var userCar = uOW.CarRepo.Get(s => s.Id == id).FirstOrDefault();
+				if (userCar != null)
+				{
+					return Mapper.Map<CarDTO>(userCar);
+				}
+				return null;
+			}
 		}
-
+		/// <summary>
+		/// Manager method that is used to set specific car objects UserId property, 
+		/// used to determine who is currently using specific car. 
+		/// </summary>
+		/// <param name="CarId">Input parameter that represents car object`s id.</param>
+		/// <param name="NewCarUserId">Input paramenter that represents new car object`s id.</param>
+		/// <returns></returns>
 		public string GiveAwayCar(int CarId, int NewCarUserId)
 		{
+			if (CarId <= 0 || NewCarUserId <= 0)
+			{
+				return "Error";
+			}
 			var GiveAwayCar = uOW.CarRepo.Get(s => s.Id == CarId).FirstOrDefault();
 			if (GiveAwayCar == null)
 			{
-				return "Error"; // ------------!!!
+				return "Error";
 			}
 			uOW.CarRepo.SetStateModified(GiveAwayCar);
 			GiveAwayCar.UserId = NewCarUserId;
@@ -131,35 +157,68 @@ namespace BAL.Manager
 			uOW.Save();
 			return "Success";
 		}
-
+		/// <summary>
+		/// Manager method that is used to change car`s isUsed property.
+		/// </summary>
+		/// <param name="carId">Input parameter that represents specific car object`s id.</param>
+		/// <param name="userId">Input parameter that represents id of a current user.</param>
+		/// <returns></returns>
 		public string ChangeCarToMain(int carId, int userId)
 		{
-			// We need cars that are currently being used by current driver
-
+			if (carId <= 0 || userId <= 0)
+			{
+				return "Error";
+			}
+			// We need cars that are currently being used by current driver.
 			var usedCar = uOW.CarRepo.Get(x => x.isMain == true & x.UserId == userId).FirstOrDefault(); // find a car with status set as true, which are used by our driver
 			if (usedCar != null) // if such car exists
 			{
 				if (usedCar.Id == carId) // and if this car id match input parameter
 				{
-					return MakeaCarMain(carId, userId); // change this car`s id
+					return MakeACarMain(usedCar); // change this car`s id
 				}
 				else // if it`s not, if its other car, change its status to false and change status of car that we need
 				{
 					uOW.CarRepo.SetStateModified(usedCar);
 					usedCar.isMain = false;
 					uOW.Save();
-					var message = MakeaCarMain(carId, userId);
+					var message = MakeACarMain(carId, userId);
 					return message;
 				} 
 			}
 			else // if there are no cars with status as true
 			{
-				var message = MakeaCarMain(carId, userId);
+				var message = MakeACarMain(carId, userId);
 				return message;
 			}
 		}
+		/// <summary>
+		/// Private manager method taht is used to change isMain property of a specific car object`s property.
+		/// </summary>
+		/// <param name="carToChange">Input parameter that represents object that we need to change.</param>
+		/// <returns></returns>
+		private string MakeACarMain(Car carToChange)
+		{
+			try
+			{
+				uOW.CarRepo.SetStateModified(carToChange);
+				carToChange.isMain = !carToChange.isMain;
+				uOW.Save();
+			}
+			catch (Exception)
+			{
+				return "Error";
+			}
+			return "Success";
+		}
 
-		private string MakeaCarMain(int carId, int userId)
+		/// <summary>
+		/// Private manager method taht is used to change isMain property of a specific car object`s property.
+		/// </summary>
+		/// <param name="carId">Input parameter that represents car object`s id.</param>
+		/// <param name="userId">Input parameter that represents id of a current user.</param>
+		/// <returns></returns>
+		private string MakeACarMain(int carId, int userId)
 		{
 			var car = uOW.CarRepo.Get(x => x.Id == carId & x.UserId == userId).FirstOrDefault();
 			if (car == null)

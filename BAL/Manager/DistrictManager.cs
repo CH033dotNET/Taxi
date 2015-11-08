@@ -11,7 +11,7 @@ namespace BAL.Manager
 	public class DistrictManager : BaseManager, IDistrictManager
 	{
 		public DistrictManager(IUnitOfWork uOW)
-			:base(uOW)
+			: base(uOW)
 		{
 
 		}
@@ -19,28 +19,34 @@ namespace BAL.Manager
 		/// Managaer method that adds new district entry to Db
 		/// </summary>
 		/// <param name="dName">parameter that represents a name property of a new object</param>
-		public void addDistrict(string dName)
+		public string addDistrict(string dName)
 		{
-			if (dName.Length > 3)
+			District newD = new Model.District { Name = dName };
+			if (uOW.DistrictRepo.All.Where(x => x.Name.Equals(newD.Name, StringComparison.InvariantCultureIgnoreCase)).Count() == 0)
 			{
-				District newD = new Model.District { Name = dName };
-				if (uOW.DistrictRepo.All.Where(x => x.Name.Equals(newD.Name, StringComparison.InvariantCultureIgnoreCase)).Count() == 0)
-				{
-
-					uOW.DistrictRepo.Insert(newD);
-					uOW.Save();
-				}
+				uOW.DistrictRepo.Insert(newD);
+				uOW.Save();
+				return "Success";
 			}
+			else { return "Error"; }
 		}
 		/// <summary>
 		/// Managaer method that deletes a specific district enty with id matching id parameter
 		/// </summary>
-		/// <param name="id">parameter thats represents specific district id</param>
-		public void deleteById(int id)
+		/// <param name="id">Input parameter thats represents specific district id</param>
+		public string deleteById(int id)
 		{
-			District a = uOW.DistrictRepo.GetByID(id);
-			uOW.DistrictRepo.Delete(a);
-			uOW.Save();
+			if (id <= 0)
+			{
+				return "Error";
+			}
+			else
+			{
+				District a = uOW.DistrictRepo.GetByID(id);
+				uOW.DistrictRepo.Delete(a);
+				uOW.Save();
+				return "Success";
+			}
 		}
 		/// <summary>
 		/// Managaer method that gets new list of avialable district entries. These entries doesnt have Deleted property set to true.
@@ -58,6 +64,7 @@ namespace BAL.Manager
 		/// <returns></returns>
 		public District getById(int id)
 		{
+			if (id <= 0) { return null; }
 			return uOW.DistrictRepo.GetByID(id);
 		}
 		/// <summary>
@@ -65,8 +72,9 @@ namespace BAL.Manager
 		/// </summary>
 		/// <param name="id">Input parameter that represents id property value.</param>
 		/// <returns></returns>
-		public District getOneDistrictByItsID(int? id)
+		public District getOneDistrictByItsID(int id)
 		{
+			if (id <= 0) { return null; }
 			var getDistrict = uOW.DistrictRepo.Get(s => s.Id == id).FirstOrDefault();
 			if (getDistrict != null)
 			{
@@ -94,10 +102,11 @@ namespace BAL.Manager
 		/// </summary>
 		/// <param name="name">Input parameter that represents name property value.</param>
 		/// <returns></returns>
-        public District getByName(string name)
-        {
+		public District getByName(string name)
+		{
+			if (name == "") { return null; }
 			return uOW.DistrictRepo.Get(s => s.Name == name).FirstOrDefault();
-        }
+		}
 		/// <summary>
 		/// Managaer method that gets new list of deleted district entries. 
 		/// These entries doesnt have Deleted property set to true.
@@ -120,13 +129,14 @@ namespace BAL.Manager
 		/// <returns></returns>
 		public District RestoreDistrict(int Id)
 		{
+			if (Id <= 0) { return null; }
 			var deletedDistrict = uOW.DistrictRepo.GetByID(Id);
 			if (deletedDistrict == null)
 			{
 				return null;
 			}
 			var restoredDistrict = SetStateRestored(deletedDistrict);
-			return deletedDistrict;
+			return restoredDistrict;
 		}
 		/// <summary>
 		/// Private managaer method that incapsulates edititng logic. Used by edit method, 
@@ -151,7 +161,8 @@ namespace BAL.Manager
 		/// <returns></returns>
 		public District SetDistrictDeleted(int Id, string Name)
 		{
-			var districtToDelete = uOW.DistrictRepo.Get(s => s.Id == Id & s.Name == Name/* & s.Deleted == false*/).FirstOrDefault();
+			if (Id <= 0 || Name == "") { return null; }
+			var districtToDelete = uOW.DistrictRepo.Get(s => s.Id == Id & s.Name == Name & s.Deleted == false).FirstOrDefault();
 			if (districtToDelete == null)
 			{
 				return null;

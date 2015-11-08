@@ -13,141 +13,143 @@
 	<div class="page-header">
 		<h1>@Resources.Resource.Greeting,<small>@username</small></h1>
 	</div>
-	<div class="panel panel-info">
-		<div class="panel-heading">
-			<h3 class="panel-title">@Resources.Resource.Garage</h3>
-		</div>
-		<div class="panel-body">
-			<img class="img-thumbnail" src="~/Content/Picture/streets_cars_traffic.jpg"/>
-		</div>
-		<div class="panel-footer">
-			<a class="btn btn-success" role="button" onclick="carController.addNewCar()">
-				<span class="glyphicon glyphicon-th-list" aria-hidden="true">&nbsp;</span>@Resources.Resource.AddNewCar
-			</a>
-		</div>
-		<div class="table-list">
-			<div class="table-responsive">
-				<table class="table table-striped" id="CarParkTable">
-					<thead>
-						<tr class="info">
-							<th>
-								@Resources.Resource.CarName
-							</th>
-							<th>
-								@Resources.Resource.CarNickName
-							</th>
-							<th>
-								@Resources.Resource.CarNumber
-							</th>
-							<th>
-								@Resources.Resource.CarState
-							</th>
-							<th>
-								@Resources.Resource.CarStatus
-							</th>
-							<th>
-								@Resources.Resource.ActionsColumn
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						<script id="carListRow" type="text/x-handlebars-template">
-							{{#each cars}}
-							<tr>
-								<td>
-									{{CarName}}
-								</td>
-								<td>
-									{{CarNickName}}
-								</td>
-								<td>
-									{{CarNumber}}
-								</td>
-								<td>
-									{{CarStateDescription}}
-								</td>
-								<td>
-									{{#if isMain}}
-									<span class="label label-success">@Resources.Resource.CarStatusMain</span>
-									{{else}}
-									<span class="label label-default"
-										  data-cars-id="{{Id}}"
-										  data-cars-name="{{CarName}}"
-										  role="button" onclick="carController.getThisCarMain(this)">@Resources.Resource.CarStatusSpare</span>
-									@*<a class="btn btn-warning" href="#"
-									   data-cars-id="{{Id}}"
-									   data-cars-name="{{CarName}}"
-									   role="button" onclick="carController.getThisCarMain(this)">
-										<span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>[Change Status]
-									</a>*@
-									{{/if}}
-								</td>
-								<td>
-									<!-- Single button -->
-									<div class="btn-group">
-										<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											@Resources.Resource.ActionsColumn <span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu">
-											{{#ifCond OwnerId UserId}}
-											<li>
-												<a href="#"
-												   data-cars-id="{{Id}}"
-												   role="button" onclick="carController.getCarEdit(this)">
-													<span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString
-												</a>
-											</li>
-											{{/ifCond}}
-											<li role="separator" class="divider"></li>
-											{{#ifCond OwnerId UserId}}
-											<li>
-												<a href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" role="button" onclick="carController.deleteCar(this)">
-													<span class="glyphicon glyphicon-trash" aria-hidden="true">&nbsp;</span>@Resources.Resource.deleteString
-												</a>
-											</li>
-											{{/ifCond}}
-											<li role="separator" class="divider"></li>
-											<li>
-												<a href="#"
-												   data-cars-id="{{Id}}"
-												   role="button" onclick="carController.getCarDetails(this)">
-													<span class="glyphicon glyphicon-file" aria-hidden="true">&nbsp;</span>@Resources.Resource.CarsDetails
-												</a>
-											</li>
-											<li role="separator" class="divider"></li>
-											{{#ifCond OwnerId UserId}}
-											<li>
-												<a href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" role="button" onclick="carController.giveCar(this)">
-													<span class="glyphicon glyphicon-user" aria-hidden="true">&nbsp;</span>@Resources.Resource.ChangeDriver
-												</a>
-											</li>
-											{{else}}
-											<li>
-												<a href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" data-cars-owner="{{OwnerId}}" role="button" onclick="carController.returnCar(this)">
-													<span class="glyphicon glyphicon-user" aria-hidden="true">&nbsp;</span>@Resources.Resource.Return
-												</a>
-											</li>
-											{{/ifCond}}
-										</ul>
-									</div>
-								</td>
+	<div class="panel-group">
+		<div id="overpanel" class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">@Resources.Resource.Garage</h3>
+			</div>
+			<div class="panel-body">
+				<img class="img-thumbnail" src="~/Content/Picture/streets_cars_traffic.jpg" />
+			</div>
+			<div class="panel-footer">
+				<a class="btn btn-success" role="button" onclick="carController.addNewCar()">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true">&nbsp;</span>@Resources.Resource.AddNewCar
+				</a>
+			</div>
+			<div class="table-list">
+				<div class="table-responsive">
+					<table class="table table-striped" id="CarParkTable">
+						<thead>
+							<tr class="info">
+								<th>
+									@Resources.Resource.ActionsColumn
+								</th>
+								<th>
+									@Resources.Resource.CarName
+								</th>
+								<th>
+									@Resources.Resource.CarNickName
+								</th>
+								<th>
+									@Resources.Resource.CarNumber
+								</th>
+								<th>
+									@Resources.Resource.CarState
+								</th>
+								<th>
+									@Resources.Resource.CarStatus
+								</th>
 							</tr>
-							{{/each}}
-						</script>
-					</tbody>
-				</table>
-				@Html.Partial("_DeleteCarPartial", Model.Cars)
-				@Html.Partial("_EditCarPartial", Model.Cars)
-				@Html.Partial("_AddCarPartial", Model.Cars)
-				@Html.Partial("_CarDetails", Model.Cars)
-				@Html.Partial("_GiveCarPartial", Model)
-				@Html.Partial("_ReturnCarPartial", Model.Cars)
-				@Html.Partial("_GetErrorMessage",Model)
-				@Html.Partial("_GetMainCarPartial",Model.Cars)
+						</thead>
+						<tbody>
+							<script id="carListRow" type="text/x-handlebars-template">
+								{{#each cars}}
+								<tr>
+									<td>
+										<!-- Single button -->
+										<div class="btn-group">
+											<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												@Resources.Resource.ActionsColumn <span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu">
+												{{#ifCond OwnerId UserId}}
+												<li>
+													<a href="#"
+													   data-cars-id="{{Id}}"
+													   role="button" onclick="carController.getCarEdit(this)">
+														<span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString
+													</a>
+												</li>
+												<li role="separator" class="divider"></li>
+												{{/ifCond}}
+												{{#ifCond OwnerId UserId}}
+												<li>
+													<a href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" role="button" onclick="carController.deleteCar(this)">
+														<span class="glyphicon glyphicon-trash" aria-hidden="true">&nbsp;</span>@Resources.Resource.deleteString
+													</a>
+												</li>
+												<li role="separator" class="divider"></li>
+												{{/ifCond}}
+												<li>
+													<a href="#"
+													   data-cars-id="{{Id}}"
+													   role="button" onclick="carController.getCarDetails(this)">
+														<span class="glyphicon glyphicon-file" aria-hidden="true">&nbsp;</span>@Resources.Resource.CarsDetails
+													</a>
+												</li>
+												<li role="separator" class="divider"></li>
+												{{#ifCond OwnerId UserId}}
+												<li>
+													<a href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" role="button" onclick="carController.giveCar(this)">
+														<span class="glyphicon glyphicon-user" aria-hidden="true">&nbsp;</span>@Resources.Resource.ChangeDriver
+													</a>
+												</li>
+												{{else}}
+												<li>
+													<a href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" data-cars-owner="{{OwnerId}}" role="button" onclick="carController.returnCar(this)">
+														<span class="glyphicon glyphicon-user" aria-hidden="true">&nbsp;</span>@Resources.Resource.Return
+													</a>
+												</li>
+												{{/ifCond}}
+											</ul>
+										</div>
+									</td>
+									<td>
+										{{CarName}}
+									</td>
+									<td>
+										{{CarNickName}}
+									</td>
+									<td>
+										{{CarNumber}}
+									</td>
+									<td>
+										{{CarStateDescription}}
+									</td>
+									<td>
+										{{#if isMain}}
+										<span class="label label-success">@Resources.Resource.CarStatusMain</span>
+										{{else}}
+										<span class="label label-default"
+											  data-cars-id="{{Id}}"
+											  data-cars-name="{{CarName}}"
+											  role="button" onclick="carController.getThisCarMain(this)">@Resources.Resource.CarStatusSpare</span>
+											@*<a class="btn btn-warning" href="#"
+												   data-cars-id="{{Id}}"
+												   data-cars-name="{{CarName}}"
+												   role="button" onclick="carController.getThisCarMain(this)">
+													<span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>[Change Status]
+												</a>*@
+											{{/if}}
+										</td>
+									</tr>
+									{{/each}}
+								</script>
+							</tbody>
+						</table>
+						@Html.Partial("_DeleteCarPartial", Model.Cars)
+						@Html.Partial("_EditCarPartial", Model.Cars)
+						@Html.Partial("_AddCarPartial", Model.Cars)
+						@Html.Partial("_CarDetails", Model.Cars)
+						@Html.Partial("_GiveCarPartial", Model)
+						@Html.Partial("_ReturnCarPartial", Model.Cars)
+						@Html.Partial("_GetErrorMessage", Model)
+						@Html.Partial("_GetMainCarPartial", Model.Cars)
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
 @section scripts{
 	<script src="~/Scripts/moment.js"></script>

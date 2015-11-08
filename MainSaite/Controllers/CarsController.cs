@@ -33,12 +33,6 @@ namespace MainSaite.Controllers
 		/// <returns></returns>
 		public ActionResult CarPark()
 		{
-			//var car = new CarDTO();
-			//var request = ApiRequestHelper.Get<CarDTO>("Cars", "GetCar");
-			//var req = ApiRequestHelper.PutObject<CarDTO>("Cars","GetCar", car);
-			//var lolol = request.Data.CarName;
-			//var car = carManager.getCars();
-			//wsManager.ChangeWorkerStatus(2, "4");
 			AutoParkViewModel CarsViewModel = new AutoParkViewModel();
 
 			if (SessionUser == null || SessionUser.RoleId != (int)AvailableRoles.Driver)
@@ -78,14 +72,21 @@ namespace MainSaite.Controllers
 		/// <summary>
 		/// Get an id from ajax call and deletes a car object with current id
 		/// </summary>
-		/// <param name="Id">id from ajax call</param>
+		/// <param name="Id">Id from ajax call</param>
 		/// <returns></returns>
 		public JsonResult DeleteCar(int Id)
 		{
-			carManager.deleteCarByID(Id);
-			int userId = SessionUser.Id;
-			IEnumerable<CarDTO> DriversCars = carManager.getCarsByUserID(userId);
-			return Json(DriversCars, JsonRequestBehavior.AllowGet);
+			var statusMessage = carManager.deleteCarByID(Id);
+			if (statusMessage == "Failure")
+			{
+				return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+			}
+			else
+			{
+				int userId = SessionUser.Id;
+				IEnumerable<CarDTO> DriversCars = carManager.getCarsByUserID(userId);
+				return Json(new { success = true, DriversCars }, JsonRequestBehavior.AllowGet);
+			}
 		}
 		/// <summary>
 		/// Get an id from ajax call and returns a car object with current id.
@@ -95,7 +96,14 @@ namespace MainSaite.Controllers
 		public JsonResult GetCarForEdit(int Id)
 		{
 			var carForEdit = carManager.GetCarByCarID(Id);
-			return Json(carForEdit,JsonRequestBehavior.AllowGet);
+			if (carForEdit == null)
+			{
+				return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+			}
+			else
+			{
+				return Json(new { success = true, carForEdit }, JsonRequestBehavior.AllowGet);
+			}
 		}
 		/// <summary>
 		/// Gets an object from ajax call, edits it and saves changes to db
@@ -114,9 +122,16 @@ namespace MainSaite.Controllers
 			}
 			else
 			{
-				carManager.EditCar(car);
-				DriversCars = carManager.getCarsByUserID(userId);
-				return Json(new { success = true, DriversCars }, JsonRequestBehavior.AllowGet);
+				var newCar = carManager.EditCar(car);
+				if (newCar == null)
+				{
+					return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+				}
+				else
+				{
+					DriversCars = carManager.getCarsByUserID(userId);
+					return Json(new { success = true, DriversCars }, JsonRequestBehavior.AllowGet);
+				}
 			}
 		}
 		/// <summary>
@@ -127,10 +142,17 @@ namespace MainSaite.Controllers
 		/// <returns></returns>
 		public JsonResult GiveCar(int CarId, int DriverId)
 		{
-			carManager.GiveAwayCar(CarId, DriverId);
-			int userId = SessionUser.Id;
-			IEnumerable<CarDTO> DriversCars = carManager.getCarsByUserID(userId);
-			return Json(DriversCars, JsonRequestBehavior.AllowGet);
+			var statusMessage = carManager.GiveAwayCar(CarId, DriverId);
+			if (statusMessage == "Error")
+			{
+				return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+			}
+			else
+			{
+				int userId = SessionUser.Id;
+				IEnumerable<CarDTO> DriversCars = carManager.getCarsByUserID(userId);
+				return Json(new { success = true, DriversCars }, JsonRequestBehavior.AllowGet);
+			}
 		}
 		/// <summary>
 		/// Gets specific id`s from ajax call and interpret them as values of specific object`s properties.
@@ -140,10 +162,17 @@ namespace MainSaite.Controllers
 		/// <returns></returns>
 		public JsonResult ReturnCar(int CarId, int RealOwnerId)
 		{
-			carManager.GiveAwayCar(CarId, RealOwnerId);
-			int userId = SessionUser.Id;
-			IEnumerable<CarDTO> DriversCars = carManager.getCarsByUserID(userId);
-			return Json(DriversCars, JsonRequestBehavior.AllowGet);
+			var statusMessage = carManager.GiveAwayCar(CarId, RealOwnerId);
+			if (statusMessage == "Error")
+			{
+				return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+			}
+			else
+			{
+				int userId = SessionUser.Id;
+				IEnumerable<CarDTO> DriversCars = carManager.getCarsByUserID(userId);
+				return Json(new { success = true, DriversCars }, JsonRequestBehavior.AllowGet); 
+			}
 		}
 		/// <summary>
 		/// Gets specific id form ajax call and sets Car object status, which id matching received id value. 
@@ -153,9 +182,16 @@ namespace MainSaite.Controllers
 		public JsonResult SetCarStatus(int Id)
 		{
 			int userId = SessionUser.Id;
-			carManager.ChangeCarToMain(Id, userId);
-			IEnumerable<CarDTO> DriversCars = carManager.getCarsByUserID(userId);
-			return Json(DriversCars, JsonRequestBehavior.AllowGet);
+			var statusMessage = carManager.ChangeCarToMain(Id, userId);
+			if (statusMessage == "Error")
+			{
+				return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+			}
+			else
+			{
+				IEnumerable<CarDTO> DriversCars = carManager.getCarsByUserID(userId);
+				return Json(new { success = true, DriversCars }, JsonRequestBehavior.AllowGet); 
+			}
 		}
     }
 }

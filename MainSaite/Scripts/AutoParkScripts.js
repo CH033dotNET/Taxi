@@ -52,7 +52,7 @@ var carController = {
 				document.getElementById("add-car-form").reset();
 			}
 		})
-		.fail(function () { alert("Error!"); document.getElementById("add-car-form").reset(); })
+		.fail(function () { carController.getCarErrorMessage(); document.getElementById("add-car-form").reset(); })
 		.always(function (result) {
 			$('#datetimepicker1').datetimepicker('clear');
 			$('#datetimepicker2').datetimepicker('clear');
@@ -65,10 +65,8 @@ var carController = {
 	},
 
 	getCarEdit: function (e) {
-
-		$('#edit-car-modal').modal('show');
+		//$('#edit-car-modal').modal('show');
 		var oldCarsId = $(e).attr('data-cars-id'); // take car`s id and send it via ajax
-
 		$.ajax({
 			url: "/Cars/GetCarForEdit/",
 			data: {
@@ -77,20 +75,25 @@ var carController = {
 			method: "POST",
 			dataType: "JSON"
 		}).done(function (result) {
-			$('#newInputCarId').val(oldCarsId);
-			$('#newInputCarName').val(result.CarName);
-			$('#newInputCarNickName').val(result.CarNickName);
-			$('#newInputCarNumber').val(result.CarNumber);
-			$('#newInputCarOccupation').val(result.CarOccupation);
-			$('#newInputCarClass').val(result.CarClass);
-			$('#newInputCarPetrolType').val(result.CarPetrolType);
-			$('#newInputCarPetrolConsumption').val(result.CarPetrolConsumption);
+			if (result.success && result != null) {
+				$('#newInputCarId').val(oldCarsId);
+				$('#newInputCarName').val(result.carForEdit.CarName);
+				$('#newInputCarNickName').val(result.carForEdit.CarNickName);
+				$('#newInputCarNumber').val(result.carForEdit.CarNumber);
+				$('#newInputCarOccupation').val(result.carForEdit.CarOccupation);
+				$('#newInputCarClass').val(result.carForEdit.CarClass);
+				$('#newInputCarPetrolType').val(result.carForEdit.CarPetrolType);
+				$('#newInputCarPetrolConsumption').val(result.carForEdit.CarPetrolConsumption);
 
-			var ParseThis = moment(result.CarManufactureDate);
-			var noMili = new Date(ParseThis).toLocaleDateString("en");
-			$('#datetimepicker1').val(noMili);
-			$('#newInputCarState').val(result.CarState);
-
+				var ParseThis = moment(result.carForEdit.CarManufactureDate);
+				var noMili = new Date(ParseThis).toLocaleDateString("en");
+				$('#datetimepicker1').val(noMili);
+				$('#newInputCarState').val(result.carForEdit.CarState);
+				$('#edit-car-modal').modal('show');//!!!
+			}
+			else {
+				carController.getCarErrorMessage();
+			}
 		});
 	},
 
@@ -129,12 +132,12 @@ var carController = {
 				carController.renderCarData();
 				document.getElementById("edit-car-form").reset();
 			}
-			else if (!result.success) {
+			else {
 				carController.getCarErrorMessage();
 				document.getElementById("edit-car-form").reset();
 			}
 		})
-		.fail(function () { alert("SHEEET!"); document.getElementById("edit-car-form").reset(); })
+		.fail(function () { carController.getCarErrorMessage(); document.getElementById("edit-car-form").reset(); })
 		.always(function () {
 			$('#datetimepicker1').datetimepicker('clear');
 			$('#datetimepicker2').datetimepicker('clear');
@@ -157,10 +160,14 @@ var carController = {
 				method: "POST",
 				dataType: "JSON"
 			}).done(function (result) {
-				carController.carData.cars = result;
-				carController.renderCarData();
+				if (result.success && result != null) {
+					carController.carData.cars = result.DriversCars;
+					carController.renderCarData();
+				}
+				else {
+					carController.getCarErrorMessage();
+				}
 			});
-
 			$('#car-modal-getMain').modal('hide');
 			$('#car-modal-getMain .btn-ok').off("click.doMainCar");
 			return false;
@@ -181,10 +188,14 @@ var carController = {
 				method: "POST",
 				dataType: "JSON"
 			}).done(function (result) {
-				carController.carData.cars = result;
-				carController.renderCarData();
+				if (result.success && result != null) {
+					carController.carData.cars = result.DriversCars;
+					carController.renderCarData();
+				}
+				else {
+					carController.getCarErrorMessage();
+				}
 			});
-
 			$('#car-modal-delete').modal('hide');
 			$('#car-modal-delete .btn-ok').off("click.deleteCar");
 			return false;
@@ -207,10 +218,12 @@ var carController = {
 				method: "POST",
 				dataType: "JSON"
 			}).done(function (result) {
-				carController.carData.cars = result;
-				carController.renderCarData();
+				if (result.success && result != null) {
+					carController.carData.cars = result.DriversCars;
+					carController.renderCarData();
+				}
+				else { carController.getCarErrorMessage(); }
 			});
-
 			$('#give-car-modal').modal('hide');
 			$('#give-car-modal .btn-ok').off("click.giveCar");
 			return false;
@@ -234,10 +247,12 @@ var carController = {
 				method: "POST",
 				dataType: "JSON"
 			}).done(function (result) {
-				carController.carData.cars = result;
-				carController.renderCarData();
+				if (result.success && result != null) {
+					carController.carData.cars = result.DriversCars;
+					carController.renderCarData();
+				}
+				else { carController.getCarErrorMessage(); }
 			});
-
 			$('#returnback-car-modal').modal('hide');
 			$('#returnback-car-modal .btn-ok').off("click.returnCar");
 			return false;
@@ -245,7 +260,6 @@ var carController = {
 	},
 
 	getCarDetails: function (e) {
-		$('#details-car-modal').modal('show');
 
 		var detailCarsId = $(e).attr('data-cars-id');
 
@@ -257,18 +271,23 @@ var carController = {
 			method: "POST",
 			dataType: "JSON"
 		}).done(function (result) {
-			$('#details-car-modal .detailsCarName').html(result.CarName);
-			$('#details-car-modal .detailsCarNickName').html(result.CarNickName);
-			$('#details-car-modal .detailsCarNumber').html(result.CarNumber);
-			$('#details-car-modal .detailsCarOccupation').html(result.CarOccupation);
-			$('#details-car-modal .detailsCarClass').html(result.CarClassDescription);
-			$('#details-car-modal .detailsCarPetrolType').html(result.CarPetrolTypeDescription);
-			$('#details-car-modal .detailsCarPetrolConsumption').html(result.CarPetrolConsumption);
+			if (result.success && result != null) {
+				$('#details-car-modal .detailsCarName').html(result.carForEdit.CarName);
+				$('#details-car-modal .detailsCarNickName').html(result.carForEdit.CarNickName);
+				$('#details-car-modal .detailsCarNumber').html(result.carForEdit.CarNumber);
+				$('#details-car-modal .detailsCarOccupation').html(result.carForEdit.CarOccupation);
+				$('#details-car-modal .detailsCarClass').html(result.carForEdit.CarClassDescription);
+				$('#details-car-modal .detailsCarPetrolType').html(result.carForEdit.CarPetrolTypeDescription);
+				$('#details-car-modal .detailsCarPetrolConsumption').html(result.carForEdit.CarPetrolConsumption);
 
-			var ParseThis = moment(result.CarManufactureDate);
-			var noMili = new Date(ParseThis).toLocaleDateString("en");
-			$('#details-car-modal .detailsdatetimepicker1').html(noMili);
-			$('#details-car-modal .detailsCarState').html(result.CarStateDescription);
+				var ParseThis = moment(result.carForEdit.CarManufactureDate);
+				var noMili = new Date(ParseThis).toLocaleDateString("en");
+				$('#details-car-modal .detailsdatetimepicker1').html(noMili);
+				$('#details-car-modal .detailsCarState').html(result.carForEdit.CarStateDescription);
+
+				$('#details-car-modal').modal('show');
+			}
+			else { carController.getCarErrorMessage(); }
 		});
 	},
 };
