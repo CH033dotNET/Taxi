@@ -735,4 +735,10 @@
   <data name="ReturnConfirmation" xml:space="preserve">
     <value>Підтвердження повернення</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Пошук</value>
+  </data>
+  <data name="DistrictNameError" xml:space="preserve">
+    <value>Неправильно вибрана назва району.</value>
+  </data>
 </root>

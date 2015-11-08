@@ -889,6 +889,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to District name error.
+        /// </summary>
+        public static string DistrictNameError {
+            get {
+                return ResourceManager.GetString("DistrictNameError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Here you can find information about other drivers currently working.
         ///					To start workingshift please press &quot;Start Shift&quot; button.
         /// </summary>
@@ -1570,6 +1579,15 @@ namespace Resources {
         public static string saveButton {
             get {
                 return ResourceManager.GetString("saveButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
             }
         }
         

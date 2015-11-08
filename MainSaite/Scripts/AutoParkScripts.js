@@ -10,6 +10,44 @@ var carController = {
 		$('#CarParkTable tbody').html(carParkTemplate(this.carData));
 	},
 
+	sortBy: function (e) {
+		switch (sortCounter) {
+			case "name":
+				if (e == "name") {
+					e = "name_desc";
+					break;
+				}
+				else { break; }
+			case "nickname":
+				if (e == "nickname") {
+					e = "nickname_desc";
+					break;
+				}
+				else { break; }
+			case "number":
+				if (e == "number") {
+					e = "number_desc";
+					break;
+				}
+				else { break; }
+			default:
+				break;
+		}
+		sortCounter = e;
+		$.ajax({
+			url: "/Cars/SortBy",
+			data: { parameter: e },
+			cache: false,
+			dataType: "JSON",
+		}).done(function (result) {
+			if (result.success && result != null) {
+				carController.carData.cars = result.DriversCars;
+				carController.renderCarData();
+			}
+			else { return false; }
+		});
+	},
+
 	addNewCar: function () {
 		$('#add-car-modal').modal('show');
 	},

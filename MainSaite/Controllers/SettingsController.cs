@@ -85,6 +85,101 @@ namespace MainSaite.Controllers
 			var districts = districtManager.getDistricts();
 			return View("DistrictEditor", districts);
 		}
+		/// <summary>
+		/// Action method that receives parameter from ajax call and uses it for searching entries
+		/// Is used only for searching non-deleted districts
+		/// </summary>
+		/// <param name="parameter">Represents value from ajax call</param>
+		/// <returns></returns>
+		public JsonResult SearchDistrict(string parameter)
+		{
+			if (!String.IsNullOrEmpty(parameter))
+			{
+				IEnumerable<District> resultDistricts = districtManager.searchDistricts(parameter).ToList();
+				return Json(new { success = true, resultDistricts }, JsonRequestBehavior.AllowGet);
+			}
+			else 
+			{
+				var districts = districtManager.getDistricts();
+				return Json(new { success = false, districts }, JsonRequestBehavior.AllowGet); 
+			}
+		}
+
+		public JsonResult SearchDeletedDistrict(string parameter)
+		{
+			if (!String.IsNullOrEmpty(parameter))
+			{
+				IEnumerable<District> resultDistricts = districtManager.searchDeletedDistricts(parameter).ToList();
+				return Json(new { success = true, resultDistricts }, JsonRequestBehavior.AllowGet);
+			}
+			else
+			{
+				var districts = districtManager.getDeletedDistricts();
+				return Json(new { success = false, districts }, JsonRequestBehavior.AllowGet);
+			}
+		}
+		/// <summary>
+		/// Action method that receives parameter from ajax call and uses it for searching 
+		/// and sorting result entries. Is used solely for non-deleted districts.
+		/// </summary>
+		/// <param name="search"></param>
+		/// <param name="sort"></param>
+		/// <returns></returns>
+		public JsonResult SearchAndSort(string search, string sort)
+		{
+			if (!String.IsNullOrEmpty(search))
+			{
+				IEnumerable<District> resultDistricts = districtManager.searchAndSortDistricts(search, sort).ToList();
+				return Json(new { success = true, resultDistricts }, JsonRequestBehavior.AllowGet);
+			}
+			else
+			{
+				IEnumerable<District> resultDistricts = districtManager.GetSortedDistricts(sort).ToList();
+				return Json(new { success = true, resultDistricts }, JsonRequestBehavior.AllowGet);
+			}
+		}
+
+		public JsonResult DeletedSearchAndSort(string search, string sort)
+		{
+			if (!String.IsNullOrEmpty(search))
+			{
+				IEnumerable<District> sortedDeletedDistricts = districtManager.searchAndSortDeletedDistricts(search, sort).ToList();
+				return Json(new { success = true, sortedDeletedDistricts }, JsonRequestBehavior.AllowGet);
+			}
+			else
+			{
+				IEnumerable<District> sortedDeletedDistricts;
+				sortedDeletedDistricts = districtManager.GetSortedDeletedDistrictsBy(sort).ToList();
+				return Json(new { success = true, sortedDeletedDistricts }, JsonRequestBehavior.AllowGet);
+			}
+		}
+
+#if BETA
+		/// <summary>
+		/// Action method that receives parameter from ajax call and uses it for sorting entries
+		/// in non-deleted list
+		/// </summary>
+		/// <param name="parameter">Input parameter taht represents data from ajax call</param>
+		/// <returns></returns>
+		public JsonResult SortDistrictBy(string parameter)
+		{
+			IEnumerable<District> sortedDistricts;
+			sortedDistricts = districtManager.GetSortedDistricts(parameter).ToList();
+			return Json(new { success = true, sortedDistricts }, JsonRequestBehavior.AllowGet);
+		}
+		/// <summary>
+		/// Action method that receives parameter from ajax call and uses it for sorting entries
+		/// in deleted list
+		/// </summary>
+		/// <param name="parameter">Input parameter taht represents data from ajax call</param>
+		/// <returns></returns>
+		public JsonResult SortDeletedDistrictBy(string parameter)
+		{
+			IEnumerable<District> sortedDeletedDistricts;
+			sortedDeletedDistricts = districtManager.GetSortedDeletedDistrictsBy(parameter).ToList();
+			return Json(new { success = true, sortedDeletedDistricts }, JsonRequestBehavior.AllowGet);
+		} 
+#endif
 
 		/// <summary>
 		/// Ajax call from the view sends a data to controller, 

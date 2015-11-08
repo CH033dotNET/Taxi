@@ -112,6 +112,35 @@ namespace BAL.Manager
 			return null;
 		}
 
+		public IEnumerable<CarDTO> getCarsByUserID(int? id, string parameter)
+		{
+			if (id <= 0 || id == null) { return null; }
+			switch (parameter)
+			{
+				case "name":
+					var userCars = uOW.CarRepo.All.Where(x => x.UserId == id).OrderBy(x => x.CarName).ToList().Select(s => Mapper.Map<CarDTO>(s));
+					return userCars;
+				case "name_desc":
+					userCars = uOW.CarRepo.All.Where(x => x.UserId == id).OrderByDescending(x => x.CarName).ToList().Select(s => Mapper.Map<CarDTO>(s));
+					return userCars;
+				case "nickname":
+					userCars = uOW.CarRepo.All.Where(x => x.UserId == id).OrderBy(x => x.CarNickName).ToList().Select(s => Mapper.Map<CarDTO>(s));
+					return userCars;
+				case "nickname_desc":
+					userCars = uOW.CarRepo.All.Where(x => x.UserId == id).OrderByDescending(x => x.CarNickName).ToList().Select(s => Mapper.Map<CarDTO>(s));
+					return userCars;
+				case "number":
+					userCars = uOW.CarRepo.All.Where(x => x.UserId == id).OrderBy(x => x.CarNumber).ToList().Select(s => Mapper.Map<CarDTO>(s));
+					return userCars;
+				case "number_desc":
+					userCars = uOW.CarRepo.All.Where(x => x.UserId == id).OrderByDescending(x => x.CarNumber).ToList().Select(s => Mapper.Map<CarDTO>(s));
+					return userCars;
+				default:
+					userCars = uOW.CarRepo.All.Where(x => x.UserId == id).ToList().Select(s => Mapper.Map<CarDTO>(s));
+					return userCars;
+			}
+		}
+
 		/// <summary>
 		/// Gets a car which id is matching the value of input parameter
 		/// </summary>

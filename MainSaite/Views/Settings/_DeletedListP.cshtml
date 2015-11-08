@@ -10,13 +10,19 @@
 				<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-th-list" aria-hidden="true">&nbsp;</span>@Resources.Resource.DeletedDistricts</h4>
 			</div>
 			<div class="modal-body">
+				<form id="deleted-form" class="form-inline">
+					<div class="form-group">
+						<input type="text" class="form-control input-sm" placeholder="@Resources.Resource.Search" oninput="jsController.searchDeletedDistricts(this.value);" id="searchDeletedDistrictName" value="" />
+					</div>
+				</form>
+				<hr>
 				<div class="table-list">
 					<div class="table-responsive">
 						<table class="table table-striped" id="districtDeletedTable">
 							<thead>
 								<tr class="info">
 									<th>
-										@Resources.Resource.District
+										<a href="#" class="btn-link" onclick="jsController.sortDeletedDistrictBy('name')">@Resources.Resource.District</a>
 									</th>
 									<th>
 										@Resources.Resource.Action

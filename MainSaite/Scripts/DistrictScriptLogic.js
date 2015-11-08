@@ -9,6 +9,104 @@ var jsController = {
 	renderData: function () {
 		$('#districtEditTable tbody').html(districtTemplate(this.data));
 	},
+	//! function that is part of dinamic search. Only for searching.
+	searchDistricts: function (e) {
+		//var searchString = $('#editInputDistrictId').val();
+		var searchString = e;
+		$.ajax({
+			url: "/Settings/SearchDistrict",
+			data: { parameter: searchString },
+			cache: false,
+			dataType: "JSON",
+		}).done(function (result) {
+			if (result.success && result != null) {
+				jsController.data.items = result.resultDistricts;
+				jsController.renderData();
+			}
+			else if (!result.success && result.districts != undefined ) {
+				jsController.data.items = result.districts;
+				jsController.renderData();
+			}
+			else { return false; }
+		});
+	},
+	//! function that is part of dinamic search of deleted districts. Only for searching.
+	searchDeletedDistricts: function (e) {
+		var searchDeletedString = e;
+		$.ajax({
+			url: "/Settings/SearchDeletedDistrict",
+			data: { parameter: searchDeletedString },
+			cache: false,
+			dataType: "JSON",
+		}).done(function (result) {
+			if (result.success && result != null) {
+				jsController.deletedData.deleted = result.resultDistricts;
+				jsController.renderDeletedData();
+			}
+			else if (!result.success && result.districts != undefined) {
+				jsController.deletedData.deleted = result.districts;
+				jsController.renderDeletedData();
+			}
+			else { return false; }
+		});
+	},
+
+
+	//! function that is part of sorting non-deleted entries logic. Affected by search input value.
+	sortDistrictBy: function (e) {
+		var searchDString = $('#searcDhistrictName').val();
+		switch (sortDistrictCounter) {
+			case "name":
+				if (e == "name") {
+					e = "name_desc";
+					break;
+				}
+				else { break; }
+			default:
+				break;
+		}
+		sortDistrictCounter = e;
+		$.ajax({
+			url: "/Settings/SearchAndSort",
+			data: { search: searchDString, sort: e },
+			cache: false,
+			dataType: "JSON",
+		}).done(function (result) {
+			if (result.success && result != null) {
+				jsController.data.items = result.resultDistricts;
+				jsController.renderData();
+			}
+			else { return false; }
+		});
+	},
+	//! function that is part of sorting deleted entries logic. Affected by search input value.
+	sortDeletedDistrictBy: function (e) {
+		var searchDeletedDString = $('#searchDeletedDistrictName').val();
+		switch (sortDeletedDistrictCounter) {
+			case "name":
+				if (e == "name") {
+					e = "name_desc";
+					break;
+				}
+				else { break; }
+			default:
+				break;
+		}
+		sortDeletedDistrictCounter = e;
+		$.ajax({
+			url: "/Settings/DeletedSearchAndSort",
+			data: { search: searchDeletedDString, sort: e },
+			cache: false,
+			dataType: "JSON",
+		}).done(function (result) {
+			if (result.success && result != null) {
+				jsController.deletedData.deleted = result.sortedDeletedDistricts;
+				jsController.renderDeletedData();
+			}
+			else { return false; }
+		});
+	},
+
 	//render deleted districts in template
 	renderDeletedData: function () {
 		$('#districtDeletedTable tbody').html(deletedDistrictsTemplate(this.deletedData));

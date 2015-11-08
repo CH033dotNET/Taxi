@@ -11,6 +11,7 @@ namespace BAL.Manager
 		Model.DTO.CarDTO GetCarByCarID(int id);
 		System.Collections.Generic.IEnumerable<Model.DTO.CarDTO> getCars();
 		System.Collections.Generic.IEnumerable<Model.DTO.CarDTO> getCarsByUserID(int? id);
+		System.Collections.Generic.IEnumerable<Model.DTO.CarDTO> getCarsByUserID(int? id, string parameter);
 		System.Collections.Generic.IEnumerable<Model.DTO.WorkshiftHistoryDTO> GetWorkingDrivers();
 		bool GetWorkShiftsByWorkerId(int WorkerId);
 		string GiveAwayCar(int CarId, int NewCarUserId);

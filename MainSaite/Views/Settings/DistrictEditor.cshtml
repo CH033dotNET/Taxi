@@ -15,12 +15,17 @@
 			<img class="img-thumbnail" src="~/Content/Picture/Skyline_new_york_city.jpg" />
 		</div>
 		<div class="panel-footer">
-			<a class="btn btn-success" onclick="jsController.addDistrict()">
-				<span class="glyphicon glyphicon-plus" aria-hidden="true">&nbsp;</span>@Resources.Resource.addString
-			</a>
-			<a class="btn btn-warning" onclick="jsController.DistrictBasket(this)">
-				<span class="glyphicon glyphicon-th-list" aria-hidden="true">&nbsp;</span>@Resources.Resource.DistrictBasket
-			</a>
+			<form id="non-deleted-form" class="form-inline">
+				<div class="form-group">
+					<a class="btn btn-success" onclick="jsController.addDistrict()">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true">&nbsp;</span>@Resources.Resource.addString
+					</a>
+					<a class="btn btn-warning" onclick="jsController.DistrictBasket(this)">
+						<span class="glyphicon glyphicon-th-list" aria-hidden="true">&nbsp;</span>@Resources.Resource.DistrictBasket
+					</a>
+					<input type="text" class="form-control input-sm" placeholder="@Resources.Resource.Search" oninput="jsController.searchDistricts(this.value);" id="searcDhistrictName" value="" />
+				</div>
+			</form>
 		</div>
 		<div class="table-list">
 			<div class="table-responsive">
@@ -28,7 +33,7 @@
 					<thead>
 						<tr class="info">
 							<th>
-								@Resources.Resource.District
+								<a href="#" class="btn-link" onclick="jsController.sortDistrictBy('name')">@Resources.Resource.District</a>
 							</th>
 							<th>
 								@Resources.Resource.Action
@@ -72,6 +77,9 @@
 	var deletedDistrictsTemplate = Handlebars.compile($("#dsDeletedRow").html());
 	var encodedData = @Html.Raw(Json.Encode(Model.ToList()));
 	var encodedDeleted = @Html.Raw(Json.Encode(Model.ToList()));
+
+	var sortDistrictCounter;
+	var sortDeletedDistrictCounter;
 
 
 	function validateAddDistrict() {

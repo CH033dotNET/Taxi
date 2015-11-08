@@ -47,6 +47,15 @@ namespace MainSaite.Controllers
 				return View(CarsViewModel);
 			}
 		}
+
+		public JsonResult SortBy(string parameter)
+		{
+			IEnumerable<CarDTO> DriversCars;
+			int userId = SessionUser.Id;
+			DriversCars = carManager.getCarsByUserID(userId, parameter).ToList();
+			return Json(new { success = true, DriversCars }, JsonRequestBehavior.AllowGet);
+		}
+
 		/// <summary>
 		/// Gets an object from ajax call and adds it to database
 		/// </summary>

@@ -57,6 +57,86 @@ namespace BAL.Manager
 			var list = uOW.DistrictRepo.Get(s => s.Deleted == false).ToList();
 			return list;
 		}
+
+		public IEnumerable<District> GetSortedDistricts(string parameter)
+		{
+			switch (parameter)
+			{
+				case "name":
+					var districtList = uOW.DistrictRepo.All.Where(x => x.Deleted == false).ToList().OrderBy(x => x.Name);
+					return districtList;
+				case "name_desc":
+					districtList = uOW.DistrictRepo.All.Where(x => x.Deleted == false).ToList().OrderByDescending(x => x.Name);
+					return districtList;
+				default:
+					districtList = uOW.DistrictRepo.All.Where(x => x.Deleted == false).ToList().OrderBy(x => x.Name);
+					return districtList;
+			}
+		}
+
+		public IEnumerable<District> GetSortedDeletedDistrictsBy(string parameter)
+		{
+			switch (parameter)
+			{
+				case "name":
+					var deletedDistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == true).ToList().OrderBy(x => x.Name);
+					return deletedDistrictList;
+				case "name_desc":
+					deletedDistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == true).ToList().OrderByDescending(x => x.Name);
+					return deletedDistrictList;
+				default:
+					deletedDistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == true).ToList().OrderBy(x => x.Name);
+					return deletedDistrictList;
+			}
+		}
+
+		public IEnumerable<District> searchDistricts(string parameter)
+		{
+			//students = students.Where(s => s.LastName.Contains(searchString)
+			//				   || s.FirstMidName.Contains(searchString));
+			var result = uOW.DistrictRepo.All.Where(s => s.Deleted == false & (s.Name.StartsWith(parameter) || s.Name.Contains(parameter)));
+			return result;
+		}
+
+		public IEnumerable<District> searchDeletedDistricts(string parameter)
+		{
+
+			var result = uOW.DistrictRepo.All.Where(s => s.Deleted == true & (s.Name.StartsWith(parameter) || s.Name.Contains(parameter)));
+			return result;
+		}
+
+		public IEnumerable<District> searchAndSortDistricts(string search, string sort) 
+		{
+			switch (sort)
+			{
+				case "name":
+					var DistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == false & (s.Name.StartsWith(search) || s.Name.Contains(search))).ToList().OrderBy(x => x.Name);
+					return DistrictList;
+				case "name_desc":
+					DistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == false & (s.Name.StartsWith(search) || s.Name.Contains(search))).ToList().OrderByDescending(x => x.Name);
+					return DistrictList;
+				default:
+					DistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == false & (s.Name.StartsWith(search) || s.Name.Contains(search))).ToList().OrderBy(x => x.Name);
+					return DistrictList;
+			}
+		}
+
+		public IEnumerable<Model.District> searchAndSortDeletedDistricts(string search, string sort)
+		{
+			switch (sort)
+			{
+				case "name":
+					var deletedDistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == true & (s.Name.StartsWith(search) || s.Name.Contains(search))).ToList().OrderBy(x => x.Name);
+					return deletedDistrictList;
+				case "name_desc":
+					deletedDistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == true & (s.Name.StartsWith(search) || s.Name.Contains(search))).ToList().OrderByDescending(x => x.Name);
+					return deletedDistrictList;
+				default:
+					deletedDistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == true & (s.Name.StartsWith(search) || s.Name.Contains(search))).ToList().OrderBy(x => x.Name);
+					return deletedDistrictList;
+			}
+		}
+
 		/// <summary>
 		/// Managaer method that gets one district entry which id property value matches input parameter.
 		/// </summary>

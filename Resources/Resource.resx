@@ -730,4 +730,10 @@
   <data name="ReturnConfirmation" xml:space="preserve">
     <value>Return confirmation</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="DistrictNameError" xml:space="preserve">
+    <value>District name error</value>
+  </data>
 </root>

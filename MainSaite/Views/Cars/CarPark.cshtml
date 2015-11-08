@@ -35,13 +35,13 @@
 									@Resources.Resource.ActionsColumn
 								</th>
 								<th>
-									@Resources.Resource.CarName
+									<a href="#" class="btn-link" onclick="carController.sortBy('name')">@Resources.Resource.CarName</a>
 								</th>
 								<th>
-									@Resources.Resource.CarNickName
+									<a href="#" class="btn-link" onclick="carController.sortBy('nickname')">@Resources.Resource.CarNickName</a>
 								</th>
 								<th>
-									@Resources.Resource.CarNumber
+									<a href="#" class="btn-link" onclick="carController.sortBy('number')">@Resources.Resource.CarNumber</a>
 								</th>
 								<th>
 									@Resources.Resource.CarState
@@ -189,6 +189,8 @@
 
 	var userId = @Html.Raw((Session["User"] as Model.DTO.UserDTO).Id);
 	var ownerId = @Html.Raw((Session["User"] as Model.DTO.UserDTO).Id);
+
+	var sortCounter;
 
 	function addCarFormValidate() {
 		var a = $('#add-car-form').validator('validate');

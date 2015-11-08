@@ -13,5 +13,16 @@ namespace BAL.Manager
 		Model.District getOneDistrictByItsID(int id);
 		Model.District RestoreDistrict(int Id);
 		Model.District SetDistrictDeleted(int Id, string Name);
+		System.Collections.Generic.IEnumerable<Model.District> GetSortedDistricts(string parameter);
+
+		System.Collections.Generic.IEnumerable<Model.District> GetSortedDeletedDistrictsBy(string parameter);
+
+		System.Collections.Generic.IEnumerable<Model.District> searchDistricts(string parameter);
+
+		System.Collections.Generic.IEnumerable<Model.District> searchAndSortDistricts(string search, string sort);
+
+		System.Collections.Generic.IEnumerable<Model.District> searchAndSortDeletedDistricts(string search, string sort);
+
+		System.Collections.Generic.IEnumerable<Model.District> searchDeletedDistricts(string parameter);
 	}
 }
