@@ -4,14 +4,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @* New orders table *@
+
+<p class="text-center"><h3>[Нові замовлення]</h3></p>
 <script id="orderTemplate" type="text/x-handlebars-template">
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>@Resources.Resource.Name</th>
                 <th>@Resources.Resource.PeekPlace</th>
                 <th>@Resources.Resource.DropPlace</th>
                 <th>@Resources.Resource.OrderTime</th>
+                <th>@Resources.Resource.Action</th>
             </tr>
         </thead>
         <tbody>
@@ -23,22 +26,26 @@
                 <td>{{PrettifyDate OrderTime}}</td>
                 <td>
                     <button class="btn success" data-orderid="{{OrderId}}" data-status="1" id="submitOrdering" onclick="setOrderStatus(this)">@Resources.Resource.Confirm</button>
-                    <button class="btn btn-danger" data-orderid="{{OrderId}}" data-status="2" id="deniedOrdering" onclick="setOrderStatus(this)">@Resources.Resource.Denied</button></td>
-                </tr>
+                    <button class="btn btn-danger" data-orderid="{{OrderId}}" data-status="2" id="deniedOrdering" onclick="setOrderStatus(this)">@Resources.Resource.Denied</button>
+                </td>
+            </tr>
             {{/each}}
         </tbody>
     </table>
 </script>
+<div id="orderContent"></div>
 
 @* DriverRequest table *@
+<p class="text-center"><h3>[Підтверджено водіями]</h3></p>
 <script id="driverRequestTemplate" type="text/x-handlebars-template">
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>@Resources.Resource.PeekPlace</th>
                 <th>@Resources.Resource.DropPlace</th>
                 <th>@Resources.Resource.WaitingTime</th>
                 <th>@Resources.Resource.Driver</th>
+                <th>@Resources.Resource.Action</th>
             </tr>
         </thead>
         <tbody>
@@ -57,24 +64,8 @@
         </tbody>
     </table>
 </script>
+<div id="driverRequest"></div>
 
 
-
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12" style="height:400px">
-            <button class="btn btn-primary btn-lg" onclick="GetOrders()">@Resources.Resource.Update</button>
-            <div id="orderContent"></div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <button class="btn btn-primary btn-lg" onclick="GetDrRequest()">@Resources.Resource.DriverRequest</button>
-            <div id="driverRequest"></div>
-     
-        </div>
-
-    </div>
-</div>
 <script src="~/Scripts/HandlebarsCustomHelpers.js"></script>
 <script type="text/javascript" src="~/Scripts/OperatorCommand/OperatorCommands.js"></script>

@@ -195,5 +195,7 @@ namespace MainSaite.Controllers
 			order.WaitingTime = waitingTime;
 			orderManager.EditOrder(order);
 		}
+
+
 	}
 }

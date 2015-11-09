@@ -59,6 +59,7 @@
     <Compile Include="DTO\AddressDTO.cs" />
     <Compile Include="DTO\CarDTO.cs" />
     <Compile Include="DB\LoginModel.cs" />
+    <Compile Include="DTO\ClientOrderedDTO.cs" />
     <Compile Include="DTO\CoordinatesDTO.cs" />
     <Compile Include="DTO\DriverDistrictInfoDTO.cs" />
     <Compile Include="DTO\DriverLocation.cs" />

@@ -103,5 +103,12 @@ namespace BAL.Manager
 			coordinates.AddedTime = DateTime.Now;
 			return coordinates;
 		}
+
+		public IEnumerable<Coordinates> GetCoordinatesByUserId(int userId)
+		{
+			var userCoordinates = uOW.CoordinatesHistoryRepo.Get().
+				Where(x => x.UserId == userId).ToList();
+			return userCoordinates;
+		}
 	}
 }

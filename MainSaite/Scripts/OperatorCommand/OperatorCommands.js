@@ -1,4 +1,11 @@
-﻿function GetOrders() {
+﻿$(document).ready(function () {
+    setInterval(function () {
+        GetOrders();
+        GetDrRequest()
+    }, 3000)
+});
+
+function GetOrders() {
     var content = $('#orderContent');
     $.ajax({
         type: 'POST',

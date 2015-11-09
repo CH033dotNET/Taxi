@@ -13,12 +13,14 @@ namespace MainSaite.Controllers
     {
 		private IOrderManager orderManager;
 		private IPersonManager personManager;
+		private ICoordinatesManager coordinatesManager;
 
-		public OrderController(IOrderManager orderManager, IPersonManager personManager)
+
+		public OrderController(IOrderManager orderManager, IPersonManager personManager, ICoordinatesManager coordinatesManager)
 		{
 			this.orderManager = orderManager;
 			this.personManager = personManager;
-
+			this.coordinatesManager = coordinatesManager;
 		}
 
 		public ActionResult Index()
@@ -28,10 +30,11 @@ namespace MainSaite.Controllers
 
 		public JsonResult GetOrder(OrderDTO order)
 		{
-
 			order.PersonId = SessionPerson.Id;
-			orderManager.InsertOrder(order);
-			return Json(JsonRequestBehavior.AllowGet);
+			var insertOrder = orderManager.InsertOrder(order);
+			
+			var orderId = insertOrder.Id;
+			return Json(orderId,JsonRequestBehavior.AllowGet);
 		}
 
 		public void SetOrderStatus(int orderId, int status)
@@ -66,6 +69,31 @@ namespace MainSaite.Controllers
 								on O.PersonId equals P.Id
 								select new { OrderId = O.Id, PeekPlace = O.PeekPlace, DropPlace = O.DropPlace, WaitingTime = O.WaitingTime, DriverId = O.DriverId };
 			return Json(driverRequest, JsonRequestBehavior.AllowGet);
+		}
+
+		public JsonResult GetOrderedTaxi(int orderId)
+		{
+
+			var order = orderManager.GetOrderByOrderID(orderId);
+			if (order.IsConfirm == 4)
+			{
+				var driverCoordinates = coordinatesManager.GetCoordinatesByUserId(order.DriverId).
+					OrderByDescending(x => x.AddedTime).FirstOrDefault();
+
+				ClientOrderedDTO currentOrder = new ClientOrderedDTO() 
+				{Latitude = driverCoordinates.Latitude, Longitude = driverCoordinates.Longitude, WaitingTime = order.WaitingTime};
+
+				return Json(currentOrder, JsonRequestBehavior.AllowGet);
+			}
+
+			if (order.IsConfirm == 2)
+			{
+				return Json("denied", JsonRequestBehavior.AllowGet);
+			}
+			else
+			{
+				return Json("wait", JsonRequestBehavior.AllowGet);
+			}
 		}
 
 		//public JsonResult CloseOrder()

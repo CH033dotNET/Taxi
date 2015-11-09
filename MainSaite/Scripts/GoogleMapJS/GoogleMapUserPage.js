@@ -1,7 +1,6 @@
 ﻿// This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
 var map;
-var markerTaxi = new google.maps.Marker;
 var marker1 = new google.maps.Marker;
 var marker2 = new google.maps.Marker;
 var geocoder = new google.maps.Geocoder();
@@ -9,6 +8,10 @@ var infowindow = new google.maps.InfoWindow;
 var circle;
 var address;
 var markers = new Array();
+
+var markerTaxi = new google.maps.Marker;
+var myOrderId;
+var intervalID;
 
 function hubInit() {
     var hub = $.connection.driversLocationHub;//Подключились к хабу
@@ -52,26 +55,74 @@ function CenterControl(controlDiv, map) {
     controlUI.addEventListener('click', function () {
         map.setCenter(geocode());
       
-        var orderObj = {
-            'PeekPlace': marker2.getTitle(),
-            'DropPlace': marker1.getTitle(),
-            'OrderTime': new Date().toISOString(),
-            'LatitudeDropPlace': marker1.position.lat(),
-            'LongitudeDropPlace': marker1.position.lng(),
-            'Accuracy': circle.getRadius(),
-            'LatitudePeekPlace':marker2.position.lat(),
-            'LongitudePeekPlace': marker2.position.lng(),
-            'IsConfirm': 3
+        if (myOrderId == null) {
+            var orderObj = {
+                'PeekPlace': marker2.getTitle(),
+                'DropPlace': marker1.getTitle(),
+                'OrderTime': new Date().toISOString(),
+                'LatitudeDropPlace': marker1.position.lat(),
+                'LongitudeDropPlace': marker1.position.lng(),
+                'Accuracy': circle.getRadius(),
+                'LatitudePeekPlace': marker2.position.lat(),
+                'LongitudePeekPlace': marker2.position.lng(),
+                'IsConfirm': 3
+            }
+            $.ajax({
+                url: '/Order/GetOrder/',
+                data: orderObj,
+                type: "POST",
+                success: function (data) {
+                    myOrderId = data;
+                    intervalID = setInterval(getMyTaxi, 2000);
+                }
+            });
         }
-        $.ajax({
-            url: '/Order/GetOrder/',
-            data: orderObj,
-            type: "POST",
-            success: function (data) { $('#orderinfo').modal('toggle'); }
-        });
+
+        else
+        {
+            alert('Ви вже замовили таксі, чекайте на відповідь оператора!');
+        }
     })
 
 }
+
+function getMyTaxi() {
+
+    $.ajax({
+        url: "/Order/GetOrderedTaxi/",
+        data: { orderId: myOrderId },
+        type: 'POST',
+
+        success: function (d) {
+            
+            if (d != 'wait' && d != 'denied') {
+
+                clearInterval(intervalID);
+                myOrderId = null;
+
+                $('#waittime').val(d.WaitingTime);
+                $('#orderinfo').modal('toggle');
+                setTaxiMarker(d.Latitude, d.Longitude);
+
+            }
+            if (d == 'denied') {
+
+                clearInterval(intervalID);
+                myOrderId = null;
+
+                $('#deniedorderinfo').modal('toggle');
+            }
+            else {
+                console.log(d);
+            }
+
+        },
+        error: function (error) {
+            alert("error!" + error);
+        }
+    });
+}
+
 
 var addCircle = function (map, coordinates, accuracy) {
     var circleOptions = {
@@ -88,6 +139,16 @@ var addCircle = function (map, coordinates, accuracy) {
     circle = new google.maps.Circle(circleOptions);
     return circle;
 };
+
+var setTaxiMarker = function(lt, lg)
+{
+
+    var latlng = { lat: lt, lng: lg };
+    markerTaxi.setPosition(latlng);
+    markerTaxi.setIcon(picturePath + 'logo_taxi_yellow.png');
+    markerTaxi.setAnimation(google.maps.Animation.BOUNCE);
+    markerTaxi.setMap(map);
+}
 
 
 function handleLocationError(browserHasGeolocation, infowindow, pos) {
