@@ -5,7 +5,7 @@
 <script src="~/Scripts/handlebars.min.js"></script>
 
 
-Dr<div class="modal fade" id="Asign">
+<div class="modal fade" id="Asign">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
@@ -19,11 +19,40 @@ Dr<div class="modal fade" id="Asign">
                 <label> <input type="text" id="timetotravel"/></label>
                 </div>
             <div class="modal-footer">
-                <button class="btn btn-success" type="button" data-dismiss="modal" onclick="Assign()">@Resources.Resource.Confirm</button>
+                <button class="btn btn-success" type="button" data-dismiss="modal" onclick="Assign()" >@Resources.Resource.Confirm</button>
                 <button class="btn btn-danger" type="button" data-dismiss="modal">@Resources.Resource.cancelButton</button>
             </div> 
         </div> 
     </div> 
+</div>
+
+<div class="modal fade" id="successDriverOrder">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">[Заказ подвержден. Едте]</h3>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deniedDriverOrder">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">[Заказ отклонен]</h3>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">OK</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script id="template-article" type="text/x-handlebars-template">
@@ -42,14 +71,15 @@ Dr<div class="modal fade" id="Asign">
             <td>{{PrettifyDate OrderTime}}</td>
             <td>{{PeekPlace}}</td>
             <td>{{DropPlace}}</td>
-            <td> <button id="buttOk" type="button" class="btn btn-default" data-orderid="{{Id}}" data-toggle="modal" data-target="#Asign" onclick="saveOrderId(this)">@Resources.Resource.Confirm</button> </td>
+            <td> <button type="button" class="submitButton btn btn-default" data-orderid="{{Id}}" data-toggle="modal" data-target="#Asign" onclick="saveOrderId(this)">@Resources.Resource.Confirm</button> </td>
         </tr>
         {{/each}}
 
     </table>
 </script>
 <div id="DrOrder"></div>
-
+<button type="button" class="btn successDriverOrder" style="display:none" data-toggle="modal" data-target="#successDriverOrder"></button>
+<button type="button" class="btn deniedDriverOrder" style="display:none" data-toggle="modal" data-target="#deniedDriverOrder"></button>
 <script type="text/javascript" src="~/Scripts/OperatorCommand/DriverCommand.js"></script>
 
 <script src="~/Scripts/HandlebarsCustomHelpers.js"></script>

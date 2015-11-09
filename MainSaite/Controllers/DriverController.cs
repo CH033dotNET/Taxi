@@ -193,9 +193,15 @@ namespace MainSaite.Controllers
 			var order = orderManager.GetOrderByOrderID(orderId);
 			order.DriverId = SessionUser.Id;
 			order.WaitingTime = waitingTime;
+			
 			orderManager.EditOrder(order);
 		}
 
+		public JsonResult GetCurrentOrder(int orderId)
+		{
+			var currentOrder = orderManager.GetOrderByOrderID(orderId);
+			return Json(currentOrder.IsConfirm, JsonRequestBehavior.AllowGet);
+		}
 
 	}
 }
