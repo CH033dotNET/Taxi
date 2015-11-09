@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width" />
     <title></title>
-
-    <script type="text/javascript" src="~/Scripts/DriveTimer.js">    </script>
 </head>
 <body>
     <div class="container">
@@ -35,21 +33,28 @@
                         }
                     }
                 }
+
+
                 <input type="hidden" id="Id" value="@User.Id" />
-               <center> <button type="button" class="btn Drive" id="double">@Resources.Resource.Drive<i class="fa fa-tachometer fa-lg"></i></button></center>
+                <center> <button type="button" class="btn Drive" id="double">@Resources.Resource.Drive<i class="fa fa-tachometer fa-lg"></i></button></center>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-3 col col-md-4">
-               
+
             </div>
             <div class="col-lg-9 col-md-8">
                 <div id="niceElement">
-                    <center> <img src="~/Content/Picture/Speedometer.jpg" /> <p id="clientPrice" >@Model.Where(x => x.Name == "Standart").Select(x=>x.StartPrice).First()</p></center>
+                    <center> <img src="~/Content/Picture/Speedometer.jpg" /> <p id="clientPrice">@Model.Where(x => x.Name == "Standart").Select(x => x.StartPrice.ToString().Replace(',', '.')).First()</p></center>
                 </div>
             </div>
-            </div>
         </div>
+    </div>
 
 </body>
 </html>
+
+<script>
+    var tarifes =  @Html.Raw(Json.Encode(Tarifes));
+</script>
+<script type="text/javascript" src="~/Scripts/DriveTimer.js">    </script>

@@ -31,6 +31,17 @@ namespace BAL.Manager
             if(addedCoords != null)addedCoords(coords);
 			return coords;
 		}
+
+        public List<CoordinatesDTO> AddRangeCoordinates(List<CoordinatesDTO> coordinates,int orderId)
+        {
+            foreach (var t in coordinates)
+                t.OrderId = orderId;
+            var coord = coordinates.Select(x => Mapper.Map<Coordinates>(x)).ToList();
+            foreach (var i in coord)
+                uOW.CoordinatesHistoryRepo.Insert(i);
+            uOW.Save();
+            return coordinates;
+        }
 		/// <summary>
 		/// Get records of Coordinates betwen fromTime and toTime 
 		/// </summary>

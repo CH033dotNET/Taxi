@@ -122,5 +122,22 @@ namespace MainSaite.Controllers
 			return order;
 		}
 
+        public JsonResult CheckConnection()
+        {
+            return Json(new { data = "OK" });
+        }
+
+        public JsonResult OrderResult(CoordinatesDTO[][] Trips, string Price)
+        {
+            OrderDTO startedOrder = orderManager.GetStartedOrderByDriver(Trips[0].First().UserId);
+
+            orderManager.EditOrder(startedOrder, Trips[0].First().AddedTime, Trips[0].Last().AddedTime, Price);
+            coordinatesManager.AddRangeCoordinates(Trips[0].ToList(), startedOrder.Id);
+
+            SessionCordinates = new List<CoordinatesDTO>();
+            return Json(new { data = "OK" });
+        }
+
 	}
+
 }

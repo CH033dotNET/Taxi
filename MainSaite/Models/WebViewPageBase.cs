@@ -16,6 +16,14 @@ namespace MainSaite.Models
 					return HttpContext.Current.Session["User"] as UserDTO;
 			}
 		}
+        public List<TarifDTO> Tarifes
+        {
+            get
+            {
+                return HttpContext.Current.Session["Tarifes"] as List<TarifDTO>;
+            }
+        }
+
 		public List<CoordinatesDTO> Coordinates
 		{
 			get
@@ -44,6 +52,14 @@ namespace MainSaite.Models
 				return HttpContext.Current.Session["User"] as UserDTO;
 			}
 		}
+
+        public List<TarifDTO> Tarifes
+        {
+            get
+            {
+                return HttpContext.Current.Session["Tarifes"] as List<TarifDTO>;
+            }
+        }
 
 		public List<CoordinatesDTO> Coordinates
 		{

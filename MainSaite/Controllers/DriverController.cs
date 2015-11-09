@@ -25,7 +25,8 @@ namespace MainSaite.Controllers
 		private IUserManager userManager;
 		private IDriverLocationHelper driverLocationHelper;
 		private IOrderManager orderManager;
-		public DriverController(ILocationManager locationManager, ICarManager carManager, ICoordinatesManager coordinatesManager, IUserManager userManager, IDriverLocationHelper driverLocationHelper, IOrderManager orderManager) 
+        private ITarifManager tarifManager;
+		public DriverController(ILocationManager locationManager, ICarManager carManager, ICoordinatesManager coordinatesManager, IUserManager userManager, IDriverLocationHelper driverLocationHelper, IOrderManager orderManager,ITarifManager tarifManager) 
 		{
 			this.locationManager = locationManager;
 			this.carManager = carManager;
@@ -34,6 +35,7 @@ namespace MainSaite.Controllers
 			this.driverLocationHelper = driverLocationHelper;
 			this.coordinatesManager.addedCoords += this.driverLocationHelper.addedLocation;
 			this.orderManager = orderManager;
+            this.tarifManager = tarifManager;
 		}
 
 		public ActionResult Index()
@@ -51,6 +53,7 @@ namespace MainSaite.Controllers
 		public ActionResult DistrictPart()
 		{
 			ViewBag.Districts = locationManager.GetDriverDistrictInfo();
+            Tarifes = tarifManager.GetTarifes().ToList();
 			return PartialView(carManager.GetWorkingDrivers());
 		}
 		/// <summary>
@@ -61,6 +64,7 @@ namespace MainSaite.Controllers
 		public JsonResult CheckWorkShifts(int Id)
 		{
 			bool uncompletedShifts = carManager.GetWorkShiftsByWorkerId(Id);
+            Tarifes = tarifManager.GetTarifes().ToList();
 			return Json(uncompletedShifts, JsonRequestBehavior.AllowGet);
 		}
 
