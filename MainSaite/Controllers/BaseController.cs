@@ -47,6 +47,19 @@ namespace MainSaite.Controllers
 			}
 		}
 
+        public List<TarifDTO> Tarifes
+        {
+            get
+            {
+                return Session["Tarifes"] as List<TarifDTO>;
+            }
+            set
+            {
+                Session["Tarifes"] = value;
+            }
+
+        }
+
 		public UserDTO SessionUser
 		{
 			get

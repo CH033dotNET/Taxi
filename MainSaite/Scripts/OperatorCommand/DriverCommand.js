@@ -21,7 +21,7 @@ function GetOrders() {
             content.html(html);
         },
         error: function (error) {
-            alert("error!!!!"+error);
+            console.log("error " + error);
         }
     });
 }

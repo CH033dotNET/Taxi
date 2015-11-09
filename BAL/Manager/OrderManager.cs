@@ -62,6 +62,36 @@ namespace BAL.Manager
 			return Mapper.Map<OrderDTO>(newOrder);
 		}
 
+        public OrderDTO EditOrder(OrderDTO order, DateTime start, DateTime end, string price)
+        {
+            var newOrder = uOW.OrderRepo.Get().FirstOrDefault(s => s.Id == order.Id);
+            if (newOrder == null)
+            {
+                return null;
+            }
+
+            uOW.OrderRepo.SetStateModified(newOrder);
+            newOrder.DropPlace = order.DropPlace;
+            newOrder.PeekPlace = order.PeekPlace;
+            newOrder.LatitudePeekPlace = order.LatitudePeekPlace;
+            newOrder.LatitudeDropPlace = order.LatitudeDropPlace;
+            newOrder.Accuracy = order.Accuracy;
+            newOrder.LongitudePeekPlace = order.LongitudePeekPlace;
+            newOrder.LongitudeDropPlace = order.LongitudeDropPlace;
+            newOrder.RunTime = order.RunTime;
+            newOrder.OrderTime = order.OrderTime;
+            newOrder.PersonId = order.PersonId;
+            newOrder.StartWork = start;
+            newOrder.EndWork = end;
+            newOrder.WaitingTime = order.WaitingTime;
+            newOrder.IsConfirm = order.IsConfirm;
+            newOrder.DriverId = order.DriverId;
+            newOrder.TotalPrice = Decimal.Parse(price);
+            uOW.Save();
+            return Mapper.Map<OrderDTO>(newOrder);
+        }
+
+
 		public IEnumerable<OrderDTO> GetOrders()
 		{
 			var orderList = uOW.OrderRepo.Get().Select(s => Mapper.Map<OrderDTO>(s));
