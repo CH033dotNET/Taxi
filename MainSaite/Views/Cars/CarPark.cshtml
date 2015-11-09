@@ -27,7 +27,7 @@
 				</a>
 			</div>
 			<div class="table-list">
-				<div class="table-responsive">
+				<div id="carTableResponsive" class="table-responsive">
 					<table class="table table-striped" id="CarParkTable">
 						<thead>
 							<tr class="info">
@@ -35,13 +35,13 @@
 									@Resources.Resource.ActionsColumn
 								</th>
 								<th>
-									<a href="#" class="btn-link" onclick="carController.sortBy('name')">@Resources.Resource.CarName</a>
+									<a id="carlink" href="#" class="btn-link" onclick="carController.sortBy('name')">@Resources.Resource.CarName</a>
 								</th>
 								<th>
-									<a href="#" class="btn-link" onclick="carController.sortBy('nickname')">@Resources.Resource.CarNickName</a>
+									<a id="carlink" href="#" class="btn-link" onclick="carController.sortBy('nickname')">@Resources.Resource.CarNickName</a>
 								</th>
 								<th>
-									<a href="#" class="btn-link" onclick="carController.sortBy('number')">@Resources.Resource.CarNumber</a>
+									<a id="carlink" href="#" class="btn-link" onclick="carController.sortBy('number')">@Resources.Resource.CarNumber</a>
 								</th>
 								<th>
 									@Resources.Resource.CarState

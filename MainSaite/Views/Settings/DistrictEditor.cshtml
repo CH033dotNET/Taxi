@@ -28,12 +28,12 @@
 			</form>
 		</div>
 		<div class="table-list">
-			<div class="table-responsive">
+			<div id="districtTableResponsive" class="table-responsive">
 				<table class="table table-striped" id="districtEditTable">
 					<thead>
 						<tr class="info">
 							<th>
-								<a href="#" class="btn-link" onclick="jsController.sortDistrictBy('name')">@Resources.Resource.District</a>
+								<a id="carlink" href="#" class="btn-link" onclick="jsController.sortDistrictBy('name')">@Resources.Resource.District</a>
 							</th>
 							<th>
 								@Resources.Resource.Action
@@ -48,12 +48,24 @@
 									{{Name}}
 								</td>
 								<td>
-									<a class="btn btn-warning" href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.editItem(this)">
-										<span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString
-									</a>
-									<a class="btn btn-danger" href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.deleteItem(this)">
-										<span class="glyphicon glyphicon-trash" aria-hidden="true">&nbsp;</span>@Resources.Resource.deleteString
-									</a>
+									<div class="btn-group">
+										<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											@Resources.Resource.ActionsColumn <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu">
+											<li>
+												<a href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.editItem(this)">
+													<span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString
+												</a>
+											</li>
+											<li role="separator" class="divider"></li>
+											<li>
+												<a href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.deleteItem(this)">
+													<span class="glyphicon glyphicon-trash" aria-hidden="true">&nbsp;</span>@Resources.Resource.deleteString
+												</a>
+											</li>
+										</ul>
+									</div>
 								</td>
 							</tr>
 							{{/each}}

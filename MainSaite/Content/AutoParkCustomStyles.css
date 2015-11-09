@@ -74,3 +74,15 @@
 .modal-body-yellow {
 	background-color: lightyellow;
 }
+
+#carTableResponsive {
+	overflow-x: visible;
+}
+
+#carlink {
+	font-weight: bold;
+}
+
+#districtTableResponsive{
+	overflow-x: visible;
+}
