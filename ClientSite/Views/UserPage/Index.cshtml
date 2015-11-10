@@ -1,4 +1,5 @@
-﻿@model MainSaite.Models.UserPagePhoneModel
+﻿@using Model.DTO;
+@model ClientSite.Models.UserPagePhoneModel
 
 @{
     ViewBag.Title = "Index";
@@ -11,8 +12,8 @@
     <script>
         function getCoord() {
             var orderObj = {};
-            orderObj.UserId = @User.Id
-
+            //orderObj.UserId = User.Id;
+            orderObj.UserId = @((Session["User"] as UserDTO).Id)
             //codeLatLng(marker1.position.lat(), marker1.position.lng());
             //orderObj.PeekPlace = address;
             //getLocation(marker.position.lat(), marker.position.lng());
@@ -104,31 +105,16 @@
     <div class="modal fade" id="orderinfo">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #5cb85c; border-color: #4cae4c; color: white; ">
+            <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 id="myModalLabel">@Resources.Resource.ClientOrderConfirm</h3>
             </div>
-            <div class="modal-body" style="text-align: center;">
-                <label><font size="4"> Зачекайте<input type="button" style="border: none; background: transparent" id="waittime" value="" maxlength="2" /> хвилин.</font></label>
+            <div class="modal-body">
+                <label></label>
+                <input type="text" />
             </div>
             <div class="modal-footer">
-                <button class="btn btn-success"  data-dismiss="modal" aria-hidden="true">OK</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="modal fade" id="deniedorderinfo">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color: #f0ad4e;	border-color: #eea236;	color: white;">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">[Нажаль ваш запит відхилено, спробуйте пізніше]</h3>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">OK</button>
+                <button class="btn" data-dismiss="modal" aria-hidden="true">OK</button>
             </div>
         </div>
     </div>
@@ -174,6 +160,14 @@
 
                         <dd><div class="error" id="error" style="color: red; display: none"> Please upload a picture by jpg, png or gif! </div></dd>
 
+                        <dt><label for="firstName">@Resources.Resource.FirstName </label></dt>
+                        <dd><input class="form-control" type="text" id="firstName" name="FirstName" value="{{FirstName}}" /></dd>
+
+                        <dt><label for="middleName">@Resources.Resource.MiddleName </label></dt>
+                        <dd><input class="form-control" type="text" id="middleName" name="MiddleName" value="{{MiddleName}}" /></dd>
+
+                        <dt><label for="userName">@Resources.Resource.LastName </label></dt>
+                        <dd><input class="form-control" type="text" id="lastName" name="LastName" value="{{LastName}}" /></dd>
 
                         <dt><label for="phone">@Resources.Resource.Phone</label></dt>
                         <dd><input type="tel" class="form-control" name="Phone" value="{{Phone}}" id="phone" required /></dd>
@@ -196,8 +190,6 @@
             <script>
                 $(document).ready(function () {
 
-                    
-
                     if ('@Model.person.Phone' === '')
                     {
                         $('#myModal').modal({ backdrop: 'static', keyboard: false });
@@ -208,8 +200,6 @@
                         })
                     }
 
-                   
-
                 });
 
                 var CloseModal = function(data){
@@ -217,7 +207,6 @@
                         $('#myModal').modal('hide');
                     else
                         $('#content').html(template(data.person));
-
                 }
             </script>
 }

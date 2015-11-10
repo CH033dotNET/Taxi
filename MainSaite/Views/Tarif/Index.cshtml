@@ -46,27 +46,27 @@
         <input type="hidden" name="Tarif.Id" value={{Tarif.id}}>
         <tr>
             <td>@Html.Label(@Resources.Resource.Name)</td>
-            <td><input type="text" name="Tarif.Name" value= {{Tarif.Name}} /></td>
+            <td><input type="text" name="Tarif.Name" value= {{Tarif.Name}} required /></td>
         </tr>
 
         <tr>
             <td>@Html.Label(@Resources.Resource.MinimalPrice)</td>
-            <td><input type="text" name="Tarif.MinimalPrice" value= {{Tarif.MinimalPrice}} /></td>
+            <td><input type="number" step="any" name="Tarif.MinimalPrice" value={{Tarif.MinimalPrice}} required /></td>
         </tr>
 
         <tr>
             <td>@Html.Label(@Resources.Resource.OneMinuteCost)</td>
-            <td><input type="text" name="Tarif.OneMinuteCost" value= {{Tarif.OneMinuteCost}} /></td>
+            <td><input type="number" step="any" name="Tarif.OneMinuteCost" value={{Tarif.OneMinuteCost}} required /></td>
         </tr>
 
         <tr>
             <td>@Html.Label(@Resources.Resource.StartPrice)</td>
-            <td><input type="text" name="Tarif.StartPrice" value= {{Tarif.StartPrice}} /></td>
+            <td><input type="number" step="any" name="Tarif.StartPrice" value={{Tarif.StartPrice}} required /></td>
         </tr>
 
         <tr>
             <td>@Html.Label(@Resources.Resource.WaitingCost)</td>
-            <td><input type="text"  name="Tarif.WaitingCost" value= {{Tarif.WaitingCost}} /></td>
+            <td><input type="number" step="any" name="Tarif.WaitingCost" value={{Tarif.WaitingCost}} required /></td>
         </tr>
 
         <tr>

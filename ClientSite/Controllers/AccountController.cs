@@ -63,7 +63,7 @@ namespace ClientSite.Controllers
 				if (SessionUser != null)
 				{
 					CheckPerson();
-					SessionPerson = ApiRequestHelper.GetById<PersonDTO>("Account", "getPerson", SessionUser.Id).Data as PersonDTO;
+					SessionPerson = ApiRequestHelper.Get<PersonDTO, int>("Account", "getPerson", SessionUser.Id).Data as PersonDTO;
 					//SessionPerson = personManager.GetPersonByUserId(currentUser.Id);
 					return RedirectToAction("Index", "Home");
 				}
