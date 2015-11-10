@@ -176,14 +176,6 @@
 
                         <dd><div class="error" id="error" style="color: red; display: none"> Please upload a picture by jpg, png or gif! </div></dd>
 
-                        <dt><label for="firstName">@Resources.Resource.FirstName </label></dt>
-                        <dd><input class="form-control" type="text" id="firstName" name="FirstName" value="{{FirstName}}" /></dd>
-
-                        <dt><label for="middleName">@Resources.Resource.MiddleName </label></dt>
-                        <dd><input class="form-control" type="text" id="middleName" name="MiddleName" value="{{MiddleName}}" /></dd>
-
-                        <dt><label for="userName">@Resources.Resource.LastName </label></dt>
-                        <dd><input class="form-control" type="text" id="lastName" name="LastName" value="{{LastName}}" /></dd>
 
                         <dt><label for="phone">@Resources.Resource.Phone</label></dt>
                         <dd><input type="tel" class="form-control" name="Phone" value="{{Phone}}" id="phone" required /></dd>
@@ -206,6 +198,8 @@
             <script>
                 $(document).ready(function () {
 
+                    
+
                     if ('@Model.person.Phone' === '')
                     {
                         $('#myModal').modal({ backdrop: 'static', keyboard: false });
@@ -216,6 +210,8 @@
                         })
                     }
 
+                   
+
                 });
 
                 var CloseModal = function(data){
@@ -223,6 +219,7 @@
                         $('#myModal').modal('hide');
                     else
                         $('#content').html(template(data.person));
+
                 }
             </script>
 }
