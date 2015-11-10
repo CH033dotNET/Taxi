@@ -104,16 +104,15 @@
     <div class="modal fade" id="orderinfo">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="background-color: #5cb85c; border-color: #4cae4c; color: white; ">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 id="myModalLabel">@Resources.Resource.ClientOrderConfirm</h3>
             </div>
-            <div class="modal-body">
-                <label> Зачекайте <input type="text" id="waittime" value="" maxlength="2"/> хвилин.</label>
-                
+            <div class="modal-body" style="text-align: center;">
+                <label><font size="4"> Зачекайте<input type="button" style="border: none; background: transparent" id="waittime" value="" maxlength="2" /> хвилин.</font></label>
             </div>
             <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">OK</button>
+                <button class="btn btn-success"  data-dismiss="modal" aria-hidden="true">OK</button>
             </div>
         </div>
     </div>
@@ -124,13 +123,12 @@
 <div class="modal fade" id="deniedorderinfo">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="background-color: #f0ad4e;	border-color: #eea236;	color: white;">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 id="myModalLabel">[Нажаль ваш запит відхилено, спробуйте пізніше]</h3>
             </div>
-            <div class="modal-body"></div>
             <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">OK</button>
+                <button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">OK</button>
             </div>
         </div>
     </div>
