@@ -48,7 +48,7 @@
     <div class="modal-dialog modal-md">
         <div class="modal-content" style="background-color: #C33030;color: white">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <center><h1>@Resources.Resource.Denied</h1></center>
+            <center><h1>@Resources.Resource.DeniedToDriver</h1></center>
             <div class="modal-footer" style="border-color: #C33030">
                 <button class="btn btn-md pull-right" style="color:#fff; background-color:#68424A" data-dismiss="modal">@Resources.Resource.okString</button>
             </div>
@@ -72,7 +72,7 @@
             <td>{{PrettifyDate OrderTime}}</td>
             <td>{{PeekPlace}}</td>
             <td>{{DropPlace}}</td>
-            <td> <button type="button" class="submitButton btn btn-default" data-orderid="{{Id}}" data-toggle="modal" data-target="#Asign" onclick="saveOrderId(this)">@Resources.Resource.Confirm</button> </td>
+            <td> <button type="button" class="submitButton btn btn-success" data-orderid="{{Id}}" data-toggle="modal" data-target="#Asign" onclick="saveOrderId(this)">@Resources.Resource.Confirm</button> </td>
         </tr>
         {{/each}}
 

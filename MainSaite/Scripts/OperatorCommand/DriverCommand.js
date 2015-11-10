@@ -58,14 +58,18 @@ function OrderConfirmStatus()
             switch (data) {
                 case 1: break;
                 case 2:
-                    $('.deniedDriverOrder').click();
-                    clearInterval(isConfirmIntervalId);
-                    isOrdered = false;
-                    break;
+                    {
+                        $('.deniedDriverOrder').click();
+                        clearInterval(isConfirmIntervalId);
+                        isOrdered = false;
+                        break;
+                    }
                 case 4:
-                    $('.successDriverOrder').click();
-                    clearInterval(isConfirmIntervalId);
-                    break;
+                    {
+                        $('.successDriverOrder').click();
+                        clearInterval(isConfirmIntervalId);
+                        break;
+                    }
                 default: break;
             }
         }

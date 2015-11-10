@@ -106,10 +106,10 @@
         <div class="modal-content">
             <div class="modal-header" style="background-color: #5cb85c; border-color: #4cae4c; color: white; ">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">@Resources.Resource.ClientOrderConfirm</h3>
+                <h3 id="myModalLabel" style="text-align:center">@Resources.Resource.ClientOrderConfirm</h3>
             </div>
             <div class="modal-body" style="text-align: center;">
-                <label><font size="4"> Зачекайте<input type="button" style="border: none; background: transparent" id="waittime" value="" maxlength="2" /> хвилин.</font></label>
+                <label><font size="4"> @Resources.Resource.Wait <input type="button" style="border: none; background: transparent" id="waittime" value=""/> @Resources.Resource.Minutes.</font></label>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-success"  data-dismiss="modal" aria-hidden="true">OK</button>
@@ -125,7 +125,7 @@
         <div class="modal-content">
             <div class="modal-header" style="background-color: #f0ad4e;	border-color: #eea236;	color: white;">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">[Нажаль ваш запит відхилено, спробуйте пізніше]</h3>
+                <h3 id="myModalLabel" style="text-align:center">@Resources.Resource.DeniedOrder</h3>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">OK</button>

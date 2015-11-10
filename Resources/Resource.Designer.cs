@@ -655,6 +655,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirmed by drivers.
+        /// </summary>
+        public static string ConfirmedByDrivers {
+            get {
+                return ResourceManager.GetString("ConfirmedByDrivers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm Password.
         /// </summary>
         public static string ConfirmPassword {
@@ -817,11 +826,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Demo page.
+        /// </summary>
+        public static string DemoPage {
+            get {
+                return ResourceManager.GetString("DemoPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Denied.
         /// </summary>
         public static string Denied {
             get {
                 return ResourceManager.GetString("Denied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unfortunatly your orders is denied, please try again.
+        /// </summary>
+        public static string DeniedOrder {
+            get {
+                return ResourceManager.GetString("DeniedOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Denied request.
+        /// </summary>
+        public static string DeniedToDriver {
+            get {
+                return ResourceManager.GetString("DeniedToDriver", resourceCulture);
             }
         }
         
@@ -1295,6 +1331,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string log {
+            get {
+                return ResourceManager.GetString("log", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log In.
         /// </summary>
         public static string Login {
@@ -1358,6 +1403,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to minutes.
+        /// </summary>
+        public static string Minutes {
+            get {
+                return ResourceManager.GetString("Minutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My account.
+        /// </summary>
+        public static string MyAccount {
+            get {
+                return ResourceManager.GetString("MyAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
@@ -1372,6 +1435,15 @@ namespace Resources {
         public static string newCarOwner {
             get {
                 return ResourceManager.GetString("newCarOwner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New orders.
+        /// </summary>
+        public static string NewOrders {
+            get {
+                return ResourceManager.GetString("NewOrders", resourceCulture);
             }
         }
         
@@ -1426,6 +1498,15 @@ namespace Resources {
         public static string Operator {
             get {
                 return ResourceManager.GetString("Operator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order.
+        /// </summary>
+        public static string Order {
+            get {
+                return ResourceManager.GetString("Order", resourceCulture);
             }
         }
         
@@ -1858,6 +1939,15 @@ namespace Resources {
         public static string UserPage {
             get {
                 return ResourceManager.GetString("UserPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wait.
+        /// </summary>
+        public static string Wait {
+            get {
+                return ResourceManager.GetString("Wait", resourceCulture);
             }
         }
         

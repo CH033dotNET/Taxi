@@ -744,4 +744,34 @@
   <data name="ConfirmRequest" xml:space="preserve">
     <value>Заява підтвердженна</value>
   </data>
+  <data name="ConfirmedByDrivers" xml:space="preserve">
+    <value>Підтверджено водіями</value>
+  </data>
+  <data name="DemoPage" xml:space="preserve">
+    <value>Демо сторінка</value>
+  </data>
+  <data name="log" xml:space="preserve">
+    <value>Логін</value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>Мій профіль</value>
+  </data>
+  <data name="NewOrders" xml:space="preserve">
+    <value>Нові замовлення</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Замовлення</value>
+  </data>
+  <data name="DeniedOrder" xml:space="preserve">
+    <value>Нажаль ваш запит відхилено, спробуйте пізніше.</value>
+  </data>
+  <data name="DeniedToDriver" xml:space="preserve">
+    <value>Запит відхилено</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>хвилин</value>
+  </data>
+  <data name="Wait" xml:space="preserve">
+    <value>Зачекайте</value>
+  </data>
 </root>

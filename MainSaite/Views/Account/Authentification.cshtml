@@ -12,7 +12,7 @@
                 @Html.ValidationSummary()
                 <tr>
                     <td>
-                        Login
+                        @Resources.Resource.log
                     </td>
                     <td>@Html.TextBoxFor(x => x.UserName, new { @required = true, @minlength = "4", @maxlength = "16" })
                         @Html.ValidationMessageFor(x => x.UserName, "", new { @id = "clValidReg", @minlength = "6" })
@@ -21,7 +21,7 @@
                 </tr>
                 <tr>
                     <td>
-                        Password
+                        @Resources.Resource.Password
                     </td>
                     <td>
                         @Html.PasswordFor(x => x.Password, new { @required = true, @minlength = "6" })
