@@ -1,0 +1,60 @@
+﻿@model Model.DTO.AddressDTO
+
+@{
+    ViewBag.Title = "CreateAddress";
+}
+
+<legend>@Resources.Resource.TitleCreateAddress</legend>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+
+        <div class="editor-label">
+            @Html.Label(@Resources.Resource.City)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.City, new { id = "txtPlace", Value = Resources.Resource.DefaultValueOfCity })
+            @Html.ValidationMessageFor(model => model.City)
+        </div>
+
+        <div class="editor-label">
+            @Html.Label(@Resources.Resource.Street)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Street)
+            @Html.ValidationMessageFor(model => model.Street)
+        </div>
+
+        <div class="editor-label">
+            @Html.Label(@Resources.Resource.NumberHouse)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Number)
+            @Html.ValidationMessageFor(model => model.Number)
+        </div>
+        <div class="editor-label">
+            @Html.Label(@Resources.Resource.Comment)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Comment, new { cols = 22, @rows = 3 })
+            @Html.ValidationMessageFor(model => model.Comment)
+        </div>
+        @Html.Hidden("UserId", (Session["User"] as Model.DTO.UserDTO).Id != null ? (Session["User"] as Model.DTO.UserDTO).Id : -1)
+        <p>
+            <input type="submit" value=@Resources.Resource.addString />
+        </p>
+
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink(@Resources.Resource.MainLink, "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

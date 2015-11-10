@@ -1,0 +1,37 @@
+﻿@model Model.DTO.PersonDTO
+
+    @using (Html.BeginForm("Index", "User", FormMethod.Post, new { id = "userForm", enctype = "multipart/form-data" }))
+    {
+        <dl class="dl-horizontal">
+
+            <dt style="width: 200px">
+                @if (Model.ImageName != null)
+                {
+                    <img src="~/Images/@Model.ImageName" class="img-rounded" style="margin: 0px 10px 15px 0px; width: 160px" />
+                }
+            </dt>
+            <dd><input type="file" name="ImageName"></dd>
+            <dd><div class="error" id="error" style="color: red; display: none"> Please upload a picture by jpg, png or gif! </div></dd>
+
+            <dt><label>@Resources.Resource.UserName</label></dt>
+            <dd><input class="form-control" type="text" id="userName" name="User.UserName" value="@Model.User.UserName" /></dd>
+
+            <dt><label for="firstName">@Resources.Resource.FirstName </label></dt>
+            <dd><input class="form-control" type="text" id="firstName" name="FirstName" value="@Model.FirstName" /></dd>
+
+            <dt><label for="middleName">@Resources.Resource.MiddleName </label></dt>
+            <dd><input class="form-control" type="text" id="middleName" name="MiddleName" value="@Model.MiddleName" /></dd>
+
+            <dt><label for="userName">@Resources.Resource.LastName </label></dt>
+            <dd><input class="form-control" type="text" id="lastName" name="LastName" value="@Model.LastName" /></dd>
+
+            <dt><label for="email">@Resources.Resource.Email </label></dt>
+            <dd><input class="form-control" type="text" id="email" name="User.Email" id="email" value="@Model.User.Email" required /></dd>
+
+            <dt><label for="phone">@Resources.Resource.Phone</label></dt>
+            <dd><input type="tel" class="form-control" name="Phone" value="@Model.Phone" id="phone" /></dd>
+        </dl>
+        <input type="submit" class="btn btn-success" value="@Resources.Resource.UpdateProfile" />
+
+
+    }

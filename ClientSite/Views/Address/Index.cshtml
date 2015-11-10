@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Model.DTO.AddressDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@Resources.Resource.TitleMainMenuAddress</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label(@Resources.Resource.City)
+        </th>
+        <th>
+            @Html.Label(@Resources.Resource.Street)
+        </th>
+        <th>
+            @Html.Label(@Resources.Resource.NumberHouse)
+        </th>
+        <th>
+            @Html.Label(@Resources.Resource.Comment)
+        </th>
+        <th>@Resources.Resource.Action</th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Street)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                <td>
+                    @Html.ActionLink(@Resources.Resource.editString, "EditAddress", new { id = item.AddressId })
+                    @Html.ActionLink(@Resources.Resource.deleteString, "DeleteAddress", new { id = item.AddressId })
+                </td>
+            </tr>
+        }
+    }
+</table>
+<p>
+    @Html.ActionLink(@Resources.Resource.CreateNewAddressString, "CreateAddress")
+</p>
+
