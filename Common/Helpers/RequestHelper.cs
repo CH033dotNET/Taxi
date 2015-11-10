@@ -89,6 +89,19 @@ namespace Common.Helpers
 
             return result;
         }
+
+		public IRestResponse<T> postData<T, Tobject>(string controller, string method, T data1, Tobject data2) where T : new()
+		{
+			var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.POST);
+			//request.AddParameter("data", data, ParameterType.GetOrPost);
+			request.RequestFormat = DataFormat.Json;
+			request.AddParameter("Application/Json", JsonConvert.SerializeObject(data1), ParameterType.RequestBody);
+			request.AddParameter("Application/Json", JsonConvert.SerializeObject(data2), ParameterType.RequestBody);
+
+			var result = client.Execute<T>(request);
+
+			return result;
+		}
 		//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         public IRestResponse<List<T>> GetAll<T>(string controller, string method) where T : new()

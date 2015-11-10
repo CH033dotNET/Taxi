@@ -24,9 +24,9 @@ namespace TaxiAPI.Controllers
 
 		[HttpGet]
 		[Route("api/UserPage/GetAddressesForUser")]
-		public HttpResponseMessage GetAddressesForUser(int id)
+		public HttpResponseMessage GetAddressesForUser(int data)
 		{
-			var address = addressmanager.GetAddressesForUser(id);
+			var address = addressmanager.GetAddressesForUser(data);
 			if (address == null)
 			{
 				return Request.CreateResponse(HttpStatusCode.NotFound, address);
@@ -37,9 +37,9 @@ namespace TaxiAPI.Controllers
 
 		[HttpGet]
 		[Route("api/UserPage/GetPersonByUserId")]
-		public HttpResponseMessage GetPersonByUserId(int id)
+		public HttpResponseMessage GetPersonByUserId(int data)
 		{
-			var person =  personManager.GetPersonByUserId(id);
+			var person = personManager.GetPersonByUserId(data);
 			if (person == null)
 			{
 				return Request.CreateResponse(HttpStatusCode.NotFound, person);
@@ -50,9 +50,9 @@ namespace TaxiAPI.Controllers
 
 		[HttpGet]
 		[Route("api/UserPage/GetOrdersByUserId")]
-		public HttpResponseMessage GetOrdersByUserId(int id)
+		public HttpResponseMessage GetOrdersByUserId(int data)
 		{
-			var order = orderManager.GetOrdersByUserId(id);
+			var order = orderManager.GetOrdersByUserId(data);
 			if (order == null)
 			{
 				return Request.CreateResponse(HttpStatusCode.NotFound, order);
@@ -63,18 +63,18 @@ namespace TaxiAPI.Controllers
 
 		[HttpPost]
 		[Route("api/UserPage/UpdatePhoneFMLnames")]
-		public HttpResponseMessage UpdatePhoneFMLnames(PersonDTO person)
+		public HttpResponseMessage UpdatePhoneFMLnames(PersonDTO data)
 		{
 			try
 			{
-				UpdatePhoneFMLnames(person);
+				UpdatePhoneFMLnames(data);
 				return Request.CreateResponse(HttpStatusCode.OK, 0);
 			}
 			catch (Exception)
 			{
 				return Request.CreateResponse(HttpStatusCode.NotFound, 1);
 			}
-			
+
 		}
 	}
 }

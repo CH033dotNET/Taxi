@@ -22,10 +22,10 @@ namespace TaxiAPI.Controllers
 
 		[HttpGet]
 		[Route("api/Address/GetAddressesForUser")]
-		public HttpResponseMessage GetAddressesForUser(int id)
+		public HttpResponseMessage GetAddressesForUser(int data)
 		{
-			var addresses = addressmanager.GetAddressesForUser(id);
-			if (addresses == null)
+			var addresses = addressmanager.GetAddressesForUser(data);
+			if (addresses.Count() < 1)
 			{
 				return Request.CreateResponse(HttpStatusCode.NotFound, addresses);
 			}
@@ -35,9 +35,9 @@ namespace TaxiAPI.Controllers
 
 		[HttpGet]
 		[Route("api/Address/GetById")]
-		public HttpResponseMessage GetById(int id)
+		public HttpResponseMessage GetById(int data)
 		{
-			var addresses = addressmanager.GetById(id);
+			var addresses = addressmanager.GetById(data);
 			if (addresses == null)
 			{
 				return Request.CreateResponse(HttpStatusCode.NotFound, addresses);
@@ -47,24 +47,24 @@ namespace TaxiAPI.Controllers
 
 		[HttpGet]
 		[Route("api/Address/DeleteAddress")]
-		public HttpResponseMessage DeleteAddress(int id)
+		public HttpResponseMessage DeleteAddress(int data)
 		{
 			try
 			{
-				addressmanager.DeleteAddress(id);
+				addressmanager.DeleteAddress(data);
 				return Request.CreateResponse(HttpStatusCode.OK, 0);
 			}
 			catch (Exception)
 			{
 				return Request.CreateResponse(HttpStatusCode.BadRequest, 1);
-			} 
+			}
 		}
 
 		[HttpPost]
 		[Route("api/Address/UpdateAddress")]
-		public HttpResponseMessage UpdateAddress(AddressDTO address)
+		public HttpResponseMessage UpdateAddress(AddressDTO data)
 		{
-			var myAddress = addressmanager.UpdateAddress(address);
+			var myAddress = addressmanager.UpdateAddress(data);
 			if (myAddress == null)
 			{
 				return Request.CreateResponse(HttpStatusCode.NotFound, myAddress);
@@ -73,10 +73,10 @@ namespace TaxiAPI.Controllers
 		}
 
 		[HttpPost]
-		[Route("api/Address/GetAddressesForUser")]
-		public HttpResponseMessage AddAddress(AddressDTO address)
+		[Route("api/Address/AddAddress")]
+		public HttpResponseMessage AddAddress(AddressDTO data)
 		{
-			var myAddress = addressmanager.AddAddress(address);
+			var myAddress = addressmanager.AddAddress(data);
 			if (myAddress == null)
 			{
 				return Request.CreateResponse(HttpStatusCode.NotFound, myAddress);
