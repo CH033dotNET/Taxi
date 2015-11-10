@@ -14,12 +14,15 @@ namespace BAL.Tools
 		public DistrictModelValidator()
 		{
 			RuleSet("AddDistrict", () => {
-				RuleFor(district => district.Id).Equal(0).WithMessage("Ololo");
-				RuleFor(district => district.Name).NotEmpty().Length(4, 30).WithLocalizedMessage(() => "");
+				RuleFor(district => district.Id).Equal(0).WithMessage("Incorrect Id");
+				RuleFor(district => district.Name).NotEmpty()
+					.Matches(@"([A-Z]{0,1}[a-z]{1,10}\s{0,1}){1,4}")
+					.Length(4, 30)
+					.WithLocalizedMessage(() => Resources.Resource.DistrictNameError);
 			});
 
 			RuleSet("EditDistrict", () => {
-				RuleFor(district => district.Name).NotEmpty().Length(4, 30).WithLocalizedMessage(() => "");
+				RuleFor(district => district.Name).NotEmpty().Matches(@"([A-Z]{0,1}[a-z]{1,10}\s{0,1}){1,4}").Length(4, 30).WithLocalizedMessage(() => Resources.Resource.DistrictNameError);
 			});
 		}
 	}

@@ -17,7 +17,7 @@
 						<tr class="form-group">
 							<td class="td-ench"><label for="inputCarName" class="control-label">@Resources.Resource.CarName *</label></td>
 							<td>
-								<input type="text" class="form-control input-lg" id="inputCarName" name="CarName" placeholder="@Resources.Resource.CarName" data-delay="150" data-minlength="2" data-maxlength="20" data-error="@Resources.Resource.CarNameError" value="" required>
+								<input type="text" class="form-control input-lg" id="inputCarName" name="CarName" placeholder="@Resources.Resource.CarName" data-delay="150" data-minlength="2" data-maxlength="20" pattern="([A-Z]{0,1}[a-z]{1,10}\s{0,1}){1,2}" data-error="@Resources.Resource.CarNameError" value="" required>
 								<span class="help-block with-errors"></span>
 							</td>
 						</tr>
@@ -26,7 +26,7 @@
 								<label for="inputCarNickName" class="control-label">@Resources.Resource.CarNickName *</label>
 							</td>
 							<td>
-								<input type="text" class="form-control input-lg" id="inputCarNickName" name="CarNickName" placeholder="@Resources.Resource.CarNickName" data-delay="150" data-minlength="2" data-maxlength="4" data-error="@Resources.Resource.CarNickNameError" value="" required>
+								<input type="text" class="form-control input-lg" id="inputCarNickName" name="CarNickName" placeholder="@Resources.Resource.CarNickName" data-delay="150" data-minlength="2" data-maxlength="4" pattern="[0-9]{2,4}" data-error="@Resources.Resource.CarNickNameError" value="" required>
 								<span class="help-block with-errors"></span>
 							</td>
 						</tr>
