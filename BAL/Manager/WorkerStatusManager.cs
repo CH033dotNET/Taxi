@@ -13,8 +13,11 @@ using AutoMapper;
 
 namespace BAL.Manager
 {
+
+    public delegate void StatusChange(WorkerStatusDTO status);
 	public class WorkerStatusManager : BaseManager, IWorkerStatusManager
 	{
+        public event StatusChange ChangeStatus;
 		public WorkerStatusManager(IUnitOfWork uOW) 
 			: base(uOW)
 		{
@@ -32,14 +35,16 @@ namespace BAL.Manager
 			if (isWorkerWithStatus == null)
 			{
 				//create new status
-				var newWorkerStatus = CreateWorkersStatus(workerid, status);
-				InsertStatus(newWorkerStatus);
+                isWorkerWithStatus = CreateWorkersStatus(workerid, status);
+                InsertStatus(isWorkerWithStatus);
 			}
 			else
 			{
 				// edit current status
-				EditCurrentStatus(isWorkerWithStatus, status);
+                isWorkerWithStatus = EditCurrentStatus(isWorkerWithStatus, status);
 			}
+            if (ChangeStatus != null) ChangeStatus(Mapper.Map<WorkerStatusDTO>(isWorkerWithStatus));
+
 		}
 
 		/// <summary>

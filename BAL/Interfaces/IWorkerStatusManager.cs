@@ -8,6 +8,7 @@ namespace BAL.Interfaces
 {
 	public interface IWorkerStatusManager
 	{
+        
 		void ChangeWorkerStatus(int id, string status);
 	}
 }

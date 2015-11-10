@@ -17,8 +17,8 @@ function hubInit() {
     var hub = $.connection.driversLocationHub;//Подключились к хабу
 
     hub.client.locationUpdate = locationUpdate;//присобачили функцию клиента
-    hub.client.driverStart = driverStart;
-    hub.client.driverFinish = driverFinish;
+    hub.client.driverStartOnUserPage = driverStartOnUserPage;
+    hub.client.driverFinishUserPage = driverFinishUserPage;
 
     $.connection.hub.start().done(function () {
         // hub.server.Hello(); // вызов функции сервера
@@ -194,7 +194,7 @@ function initMap() {
         success: function (data) {
             for (var i = 0; i < data.length; i++) {
                 var val = data[i];
-                markers['DriverN' + val.id] = adddriver(val.latitude, val.longitude);
+                markers['DriverN' + val.id] = addOnUserPageDriver(val.latitude, val.longitude);
                 var tr = $('<tr/>', { id: 'DriverN' + val.id }).append(
                         $('<td/>', { text: val.name }),
                         $('<td/>', { text: new Date(+val.startedTime.match(/\d+/)[0]).toLocaleString(), id: 'DriverN' + val.id + 'start' }),
@@ -220,9 +220,9 @@ function locationUpdate(Lat, Lng, Time, ID) {
     }
 }
 
-function driverStart(val) {
+function driverStartOnUserPage(val) {
     if (markers['DriverN' + val.id] === undefined) {
-        markers['DriverN' + val.id] = adddriver(val.latitude, val.longitude);
+        markers['DriverN' + val.id] = addOnUserPageDriver(val.latitude, val.longitude);
         var tr = $('<tr/>', { id: 'DriverN' + val.id }).append(
                 $('<td/>', { text: val.name }),
                 $('<td/>', { text: new Date(val.startedTime).toLocaleString(), id: 'DriverN' + val.id + 'start' }),
@@ -235,7 +235,7 @@ function driverStart(val) {
         $('#DriverN' + val.id + 'start').html(new Date(val.startedTime).toLocaleString());
     }
 }
-function driverFinish(ID) {
+function driverFinishUserPage(ID) {
     $('#DriverN' + ID).remove();
     markers['DriverN' + ID].setMap(null);
     markers['DriverN' + ID] = undefined;
@@ -264,7 +264,7 @@ var ShowCurCoord = function () {
         });
     }
 }
-function adddriver(myLat, myLng) {
+function addOnUserPageDriver(myLat, myLng) {
     return marker = new google.maps.Marker({
         position: { lat: myLat, lng: myLng },
         map: map,

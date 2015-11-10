@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MainSaite.Helpers;
+using BAL.Interfaces;
 
 namespace MainSaite.Controllers
 {
@@ -17,13 +18,15 @@ namespace MainSaite.Controllers
 		private IOrderManager orderManager;
 		private ICoordinatesManager coordinatesManager;
 		private IDriverLocationHelper driverLocationHelper;
-		public ClientServiceController(ITarifManager tarifManager, IOrderManager orderManager, ICoordinatesManager coordinatesManager, IDriverLocationHelper driverLocationHelper)
+        public IWorkerStatusManager workerStatusManager;
+		public ClientServiceController(ITarifManager tarifManager, IOrderManager orderManager, ICoordinatesManager coordinatesManager, IDriverLocationHelper driverLocationHelper,IWorkerStatusManager workerStatusManager)
 		{
 			this.orderManager = orderManager;
 			this.tarifManager = tarifManager;
 			this.coordinatesManager = coordinatesManager;
 			this.driverLocationHelper = driverLocationHelper;
 			this.coordinatesManager.addedCoords += this.driverLocationHelper.addedLocation;
+            this.workerStatusManager = workerStatusManager;
 		}
 
 		public ActionResult PeekClient()
@@ -41,6 +44,10 @@ namespace MainSaite.Controllers
 			order = orderManager.GetNotStartOrderByDriver(SessionUser.Id);
 			order.StartWork = DateTime.Now;
 			orderManager.EditOrder(order);
+
+            workerStatusManager.ChangeWorkerStatus(SessionUser.Id, "2");
+            driverLocationHelper.removeDriverFromUserPage(SessionUser.Id);
+
 		}
 
 		public string DrivingClient(CoordinatesDTO coordinates)
@@ -61,6 +68,8 @@ namespace MainSaite.Controllers
 		public string DropClient(CoordinatesDTO coordinates)
 		{
 			OrderDTO startedOrder = orderManager.GetStartedOrderByDriver(SessionUser.Id);
+            workerStatusManager.ChangeWorkerStatus(SessionUser.Id, "0");
+            driverLocationHelper.addOnUserPageDriver(SessionUser.Id, coordinates.Latitude, coordinates.Longitude, coordinates.AddedTime, "Free");
 			if (startedOrder != null)
 			{
 				startedOrder.EndWork = DateTime.Now;
@@ -78,7 +87,7 @@ namespace MainSaite.Controllers
 			{
 				return price;
 			}
-			
+          			
 		}
 
 		public bool IsInTheWay()

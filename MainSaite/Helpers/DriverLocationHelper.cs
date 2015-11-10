@@ -30,9 +30,27 @@ namespace MainSaite.Helpers
             });
         }
 
+        public void addOnUserPageDriver(int Id, double Latitude, double Longitude, DateTime time, string username)
+        {
+            Contest.Clients.All.driverStartOnUserPage(new
+            {
+                id = Id,
+                latitude = Latitude,
+                longitude = Longitude,
+                startedTime = time,
+                updateTime = time,
+                name = username
+            });
+        }
+
         public void removeDriver(int id)
         {
             Contest.Clients.All.driverFinish(id);
+        }
+
+        public void removeDriverFromUserPage(int id)
+        {
+            Contest.Clients.All.driverFinishUserPage(id);
         }
     }
 }
