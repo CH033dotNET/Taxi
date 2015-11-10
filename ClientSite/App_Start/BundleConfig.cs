@@ -23,6 +23,47 @@ namespace ClientSite
 			bundles.Add(new StyleBundle("~/Content/css").Include(
 					  "~/Content/bootstrap.css",
 					  "~/Content/site.css"));
+
+			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+						"~/Scripts/jquery.unobtrusive*",
+						"~/Scripts/jquery.validate*"));
+
+			bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/bootstrap.css",
+																 "~/Content/shop-item.css",
+																 "~/Content/DriverMenu.css"));
+
+			bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
+						"~/Scripts/modernizr-*", "~/Scripts/jquery-1.11.3.js", "~/Scripts/bootstrap.js"));
+
+			bundles.Add(new ScriptBundle("~/bundles/handlebars").Include(
+																	"~/Scripts/handlebars.js"));
+
+			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+						"~/Scripts/bootstrap.js",
+						"~/Scripts/bootstrap-filestyle.js"));
+
+			bundles.Add(new ScriptBundle("~/bundles/handlebars").Include(
+																	"~/Scripts/handlebars.js"));
+
+			bundles.Add(new ScriptBundle("~/bundles/inputmask").Include(
+			"~/Scripts/jquery.inputmask/inputmask.js",
+			"~/Scripts/jquery.inputmask/jquery.inputmask.js",
+						"~/Scripts/jquery.inputmask/inputmask.extensions.js",
+						"~/Scripts/jquery.inputmask/inputmask.date.extensions.js",
+				//and other extensions you want to include
+						"~/Scripts/jquery.inputmask/inputmask.numeric.extensions.js"));
+
+			bundles.Add(new ScriptBundle("~/bundles/datetime").Include(
+																	"~/Scripts/moment*",
+																	"~/Scripts/bootstrap-datetimepicker*"));
+
+			bundles.Add(new ScriptBundle("~/bundles/GoogleMapJS/GoogleMapUserPage").Include(
+						"~/Scripts/GoogleMapJS/GoogleMapUserPage.js"));
+
+			bundles.Add(new StyleBundle("~/Content/UserMenu/UserMenuMaps").Include(
+						"~/Content/UserMenu/UserMenuMaps.css"));
+
+
 		}
 	}
 }
