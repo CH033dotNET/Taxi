@@ -741,4 +741,7 @@
   <data name="DistrictNameError" xml:space="preserve">
     <value>Неправильно вибрана назва району.</value>
   </data>
+  <data name="ConfirmRequest" xml:space="preserve">
+    <value>Заява підтвердженна</value>
+  </data>
 </root>

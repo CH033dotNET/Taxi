@@ -23,7 +23,7 @@ namespace MainSaite.Controllers
 
 		public JsonResult GetHistory()
 		{ 
-			var clientDriveHistory = orderManager.GetOrders();
+			var clientDriveHistory = orderManager.GetOrdersByPersonId(SessionUser.Id);
 			return Json(clientDriveHistory, JsonRequestBehavior.AllowGet);
 		}
     }

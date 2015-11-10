@@ -34,17 +34,17 @@ function saveOrderId(e) {
 }
 
 function Assign() {
-    var time = $("#timetotravel").val();  
-        $.ajax({
-            url: '/Driver/GetOrder/',
-            data: { orderId : currentOrderId, waitingTime : time},
-            success: function (data) {
+    var time = $("#timetotravel").val();
+    $.ajax({
+        url: '/Driver/GetOrder/',
+        data: { orderId: currentOrderId, waitingTime: time },
+        success: function (data) {
             $(".submitButton").attr("disabled", "disabled");
             GetOrders();
             isOrdered = true;
             isConfirmIntervalId = setInterval(OrderConfirmStatus, 3000);
-            }
-        });
+        }
+    });
 }
 
 function OrderConfirmStatus()

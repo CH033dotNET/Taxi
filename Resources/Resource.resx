@@ -736,4 +736,7 @@
   <data name="DistrictNameError" xml:space="preserve">
     <value>District name error</value>
   </data>
+  <data name="ConfirmRequest" xml:space="preserve">
+    <value>Confirm request</value>
+  </data>
 </root>
