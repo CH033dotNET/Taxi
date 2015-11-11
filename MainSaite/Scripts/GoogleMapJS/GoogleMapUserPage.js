@@ -255,10 +255,16 @@ var ShowCurCoord = function () {
             circle = addCircle(map, pos, position.coords.accuracy);
             test1 = new google.maps.Marker({
                 position: pos,
+                draggable:true,
                 map: map,
                 icon: picturePath + 'logo_client.png'
             });
             marker2 = test1;
+
+            google.maps.event.addListener(marker2, 'dragend', function () { setTitle(marker2); });
+        
+
+
             setTitle(marker2);
         }, function () {
             // handleLocationError(true, infoWindow, map.getCenter());
