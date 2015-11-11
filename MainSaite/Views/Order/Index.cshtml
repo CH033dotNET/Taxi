@@ -4,12 +4,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @* New orders table *@
-
-<h3 style="text-align:center">@Resources.Resource.NewOrders</h3>
+<h2 class="OperatortbNames">@Resources.Resource.NewOrders</h2>
 <script id="orderTemplate" type="text/x-handlebars-template">
-    <table class="table">
+    <table class="table table-hover">
         <thead>
-            <tr>
+            <tr class="historyTh">
                 <th>@Resources.Resource.Name</th>
                 <th>@Resources.Resource.PeekPlace</th>
                 <th>@Resources.Resource.DropPlace</th>
@@ -35,12 +34,44 @@
 </script>
 <div id="orderContent"></div>
 
-@* DriverRequest table *@
-<h3 style="text-align:center">@Resources.Resource.ConfirmedByDrivers</h3>
-<script id="driverRequestTemplate" type="text/x-handlebars-template">
-    <table class="table">
+@* Waiting Orders *@
+<h2 class="OperatortbNames">@Resources.Resource.WaitingOrders</h2>
+<script id="waitingOrderTemplate" type="text/x-handlebars-template">
+    <table class="table table-hover">
         <thead>
+            <tr class="historyTh">
+                <th>@Resources.Resource.Name</th>
+                <th>@Resources.Resource.PeekPlace</th>
+                <th>@Resources.Resource.DropPlace</th>
+                <th>@Resources.Resource.OrderTime</th>
+                <th>@Resources.Resource.Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each waitingOrders}}
             <tr>
+                <td>{{FirsName}}</td>
+                <td>{{PeekPlace}}</td>
+                <td>{{DropPlace}}</td>
+                <td>{{PrettifyDate OrderTime}}</td>
+                <td>
+                    <button class="btn btn-danger" data-orderid="{{OrderId}}" data-status="2" id="waitingOrders" onclick="setOrderStatus(this)">@Resources.Resource.Denied</button>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</script>
+<div id="waitingOrdersContent"></div>
+
+
+
+@* DriverRequest table *@
+<h2 class="OperatortbNames">@Resources.Resource.ConfirmedByDrivers</h2>
+<script id="driverRequestTemplate" type="text/x-handlebars-template">
+    <table class="table table-hover">
+        <thead>
+            <tr class="historyTh">
                 <th>@Resources.Resource.PeekPlace</th>
                 <th>@Resources.Resource.DropPlace</th>
                 <th>@Resources.Resource.WaitingTime</th>
@@ -69,3 +100,4 @@
 
 <script src="~/Scripts/HandlebarsCustomHelpers.js"></script>
 <script type="text/javascript" src="~/Scripts/OperatorCommand/OperatorCommands.js"></script>
+<link href="~/Content/BootstrapTb/BootstrapTb.css" rel="stylesheet" />

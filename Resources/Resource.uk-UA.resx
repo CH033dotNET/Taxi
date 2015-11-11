@@ -745,7 +745,7 @@
     <value>Заява підтвердженна</value>
   </data>
   <data name="ConfirmedByDrivers" xml:space="preserve">
-    <value>Підтверджено водіями</value>
+    <value>Підтверджені замовлення</value>
   </data>
   <data name="DemoPage" xml:space="preserve">
     <value>Демо сторінка</value>
@@ -773,5 +773,11 @@
   </data>
   <data name="Wait" xml:space="preserve">
     <value>Зачекайте</value>
+  </data>
+  <data name="WaitingOrders" xml:space="preserve">
+    <value>Замовлення що очікують</value>
+  </data>
+  <data name="NoCar" xml:space="preserve">
+    <value>Вибачте, вільних машин зараз нєма</value>
   </data>
 </root>
