@@ -190,7 +190,7 @@
     <value>Вмістимість машини</value>
   </data>
   <data name="CarPetrolConsumption" xml:space="preserve">
-    <value>Обсяг споживання палива</value>
+    <value>Обсяг споживання палива (л/100км)</value>
   </data>
   <data name="CarPetrolType" xml:space="preserve">
     <value>Тип палива</value>
@@ -472,7 +472,7 @@
     <value>Зміна почалась</value>
   </data>
   <data name="CarNameErrorMessage" xml:space="preserve">
-    <value>Назва має містити менше 50 символів</value>
+    <value>Назва має містити менше 30 символів</value>
   </data>
   <data name="Citydistricts" xml:space="preserve">
     <value>Райони міста</value>
@@ -613,19 +613,19 @@
     <value>Неправильна дата</value>
   </data>
   <data name="CarNameError" xml:space="preserve">
-    <value>Неправильна марка машини</value>
+    <value>Неправильна марка машини. Має бути меньше 30 і більше 2 символів.</value>
   </data>
   <data name="CarNickNameError" xml:space="preserve">
-    <value>Неправильний позивний</value>
+    <value>Неправильний позивний. Має бути більше 2 та до 4 цифр.</value>
   </data>
   <data name="CarNumberError" xml:space="preserve">
-    <value>Неправильний номер</value>
+    <value>Неправильний номер. Має бути CI0000MO формат</value>
   </data>
   <data name="CarOccupError" xml:space="preserve">
-    <value>Неправильна кількість сидячих місць</value>
+    <value>Неправильна кількість сидячих місць. Має бути меньше 20 та більше 1</value>
   </data>
   <data name="CarPCError" xml:space="preserve">
-    <value>Неправильна кількість пального</value>
+    <value>Неправильна кількість пального. Має бути в діапазоні 1-100</value>
   </data>
   <data name="CarPetrolTypeError" xml:space="preserve">
     <value>Неправильно вибраний тип палива</value>
@@ -739,7 +739,7 @@
     <value>Пошук</value>
   </data>
   <data name="DistrictNameError" xml:space="preserve">
-    <value>Неправильно вибрана назва району.</value>
+    <value>Неправильно вибрана назва району. Має містити від 4 до 30 символів (латинські чи кирилиця).</value>
   </data>
   <data name="ConfirmRequest" xml:space="preserve">
     <value>Заява підтвердженна</value>

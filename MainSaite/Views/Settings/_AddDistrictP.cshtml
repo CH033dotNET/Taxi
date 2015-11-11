@@ -13,7 +13,7 @@
 				<p>@Resources.Resource.enterDistrictName</p>
 				<form data-toggle="validator" id="add-district-form" role="form" autocomplete="off" method="post">
 					<div class="form-group">
-						<h4><input type="text" class="form-control input-lg" placeholder="@Resources.Resource.DistrictName" data-delay="150" data-minlength="4" pattern="([A-Z]{0,1}[a-z]{1,10}\s{0,1}){1,4}" data-maxlength="30" data-error="@Resources.Resource.DistrictNameError" id="newDistrictName" value="" required /></h4>
+						<h4><input type="text" class="form-control input-lg" placeholder="@Resources.Resource.DistrictName" data-delay="150" minlength="4" pattern="^((([A-Z]){0,1}([a-z]){1,10}([ ]){0,1}[^0-9]){1,4}|(([А-Я]){0,1}([а-я]){1,10}([ ]){0,1}[^0-9]){1,4})" maxlength="30" data-error="@Resources.Resource.DistrictNameError" id="newDistrictName" value="" required /></h4>
 						<span class="help-block with-errors"></span>
 					</div>
 				</form>

@@ -16,13 +16,13 @@ namespace BAL.Tools
 			RuleSet("AddDistrict", () => {
 				RuleFor(district => district.Id).Equal(0).WithMessage("Incorrect Id");
 				RuleFor(district => district.Name).NotEmpty()
-					.Matches(@"([A-Z]{0,1}[a-z]{1,10}\s{0,1}){1,4}")
+					.Matches(@"^((([A-Z]){0,1}([a-z]){1,10}([ ]){0,1}[^0-9]){1,4}|(([А-Я]){0,1}([а-я]){1,10}([ ]){0,1}[^0-9]){1,4})")
 					.Length(4, 30)
 					.WithLocalizedMessage(() => Resources.Resource.DistrictNameError);
 			});
 
 			RuleSet("EditDistrict", () => {
-				RuleFor(district => district.Name).NotEmpty().Matches(@"([A-Z]{0,1}[a-z]{1,10}\s{0,1}){1,4}").Length(4, 30).WithLocalizedMessage(() => Resources.Resource.DistrictNameError);
+				RuleFor(district => district.Name).NotEmpty().Matches(@"^((([A-Z]){0,1}([a-z]){1,10}([ ]){0,1}[^0-9]){1,4}|(([А-Я]){0,1}([а-я]){1,10}([ ]){0,1}[^0-9]){1,4})").Length(4, 30).WithLocalizedMessage(() => Resources.Resource.DistrictNameError);
 			});
 		}
 	}

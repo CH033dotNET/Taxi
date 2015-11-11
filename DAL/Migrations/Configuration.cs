@@ -84,6 +84,13 @@ namespace DAL.Migrations
                     Password = "password",
                     Email = "report@gmail.com",
                     RoleId = 4
+                },
+				new User()
+                {
+                    UserName = "Nickolas",
+                    Password = "password",
+                    Email = "coyotet@gmail.com",
+                    RoleId = 1
                 });
 				var users = Angie.Configure<User>().Fill(x => x.UserName).AsTwitterHandle<User>().Fill(x => x.Email).AsEmailAddress<User>()
 				.MakeList<User>(30).Select(x => new User { Password = "123456", RoleId = random.Next(1, 5), Email = x.Email, UserName = x.UserName });

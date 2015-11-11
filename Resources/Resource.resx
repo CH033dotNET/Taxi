@@ -190,7 +190,7 @@
     <value>Car Occupation</value>
   </data>
   <data name="CarPetrolConsumption" xml:space="preserve">
-    <value>Car Petrol Consumption</value>
+    <value>Car Petrol Consumption (l/100km)</value>
   </data>
   <data name="CarPetrolType" xml:space="preserve">
     <value>Petrol Type</value>
@@ -445,7 +445,7 @@
     <value>Are you sure you want to delete this address?</value>
   </data>
   <data name="CarNameErrorMessage" xml:space="preserve">
-    <value>Name must be less than 50 symbols</value>
+    <value>Name must be less than 30 and more than 2 symbols</value>
   </data>
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
@@ -614,19 +614,19 @@
     <value>Invalid Date</value>
   </data>
   <data name="CarNameError" xml:space="preserve">
-    <value>Invalid Name</value>
+    <value>Invalid Name. Name must be less than 30 and more than 2 symbols</value>
   </data>
   <data name="CarNickNameError" xml:space="preserve">
-    <value>Invalid NickName</value>
+    <value>Invalid NickName. Must contain more than 1 and up to 4 digits only</value>
   </data>
   <data name="CarNumberError" xml:space="preserve">
-    <value>Invalid Number</value>
+    <value>Invalid Number. Must match CC0000CC pattern.</value>
   </data>
   <data name="CarOccupError" xml:space="preserve">
-    <value>Invalid Number</value>
+    <value>Invalid Number. Must be more than 1 and less than 20.</value>
   </data>
   <data name="CarPCError" xml:space="preserve">
-    <value>Invalid Petrol consumption</value>
+    <value>Invalid Petrol consumption. Must be more than 0 and less than 100.</value>
   </data>
   <data name="CarPetrolTypeError" xml:space="preserve">
     <value>Invalid Petrol type</value>
@@ -734,7 +734,7 @@
     <value>Search</value>
   </data>
   <data name="DistrictNameError" xml:space="preserve">
-    <value>District name error</value>
+    <value>District name error. Must contain from 4 to 30 cymbols (cyrillic or latin letters)</value>
   </data>
   <data name="ConfirmRequest" xml:space="preserve">
     <value>Confirm request</value>
