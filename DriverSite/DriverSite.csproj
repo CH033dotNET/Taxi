@@ -121,6 +121,7 @@
     <Compile Include="Controllers\DrivingSimulationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\TemporaryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -137,6 +138,7 @@
     <Content Include="Content\DriverMenu.css" />
     <Content Include="Content\Picture\SandWatch.jpg" />
     <Content Include="Content\Picture\Speedometer.jpg" />
+    <Content Include="Content\Picture\tablet.png" />
     <Content Include="Content\shop-item.css" />
     <Content Include="Content\Themes\OfflineJS\offline-language-english.css" />
     <Content Include="Content\Themes\OfflineJS\offline-theme-default.css" />
@@ -182,6 +184,7 @@
     <Content Include="Views\Location\EditLocation.cshtml" />
     <Content Include="Views\ClientService\PeekClient.cshtml" />
     <Content Include="Views\Account\Authentification.cshtml" />
+    <Content Include="Views\Temporary\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
