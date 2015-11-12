@@ -740,7 +740,7 @@
     <value>Confirm request</value>
   </data>
   <data name="ConfirmedByDrivers" xml:space="preserve">
-    <value>Confirmed by drivers</value>
+    <value>Confirmed orders</value>
   </data>
   <data name="DemoPage" xml:space="preserve">
     <value>Demo page</value>
@@ -768,5 +768,11 @@
   </data>
   <data name="Wait" xml:space="preserve">
     <value>Wait</value>
+  </data>
+  <data name="WaitingOrders" xml:space="preserve">
+    <value>Waiting orders</value>
+  </data>
+  <data name="NoCar" xml:space="preserve">
+    <value>Unfortunatly there is no float car right now</value>
   </data>
 </root>

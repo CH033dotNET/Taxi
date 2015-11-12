@@ -94,29 +94,31 @@ function getMyTaxi() {
         data: { orderId: myOrderId },
         type: 'POST',
 
-        success: function (d) {
+        success: function (data) {
             
-            if (d != 'wait' && d != 'denied') {
-
-                clearInterval(intervalID);
-                myOrderId = null;
-
-                $('#waittime').val(d.WaitingTime);
-                $('#orderinfo').modal('toggle');
-                setTaxiMarker(d.Latitude, d.Longitude);
-
+            switch (data.IsConfirm) {
+               case 4: {
+                    clearInterval(intervalID);
+                    myOrderId = null;
+                    $('#waittime').val(d.WaitingTime);
+                    $('#orderinfo').modal('toggle');
+                    setTaxiMarker(d.Latitude, d.Longitude);
+                    break;
+                };
+                case 2: {
+                    clearInterval(intervalID);
+                    myOrderId = null;
+                    $('#deniedorderinfo').modal('toggle');
+                    break;
+                }
+                case 5:
+                    {
+                        clearInterval(intervalID);
+                        myOrderId = null;
+                        $('#nocarorderinfo').modal('toggle');
+                        break;
+                    }
             }
-            if (d == 'denied') {
-
-                clearInterval(intervalID);
-                myOrderId = null;
-
-                $('#deniedorderinfo').modal('toggle');
-            }
-            else {
-                console.log(d);
-            }
-
         },
         error: function (error) {
             alert("error!" + error);
@@ -255,10 +257,16 @@ var ShowCurCoord = function () {
             circle = addCircle(map, pos, position.coords.accuracy);
             test1 = new google.maps.Marker({
                 position: pos,
+                draggable:true,
                 map: map,
                 icon: picturePath + 'logo_client.png'
             });
             marker2 = test1;
+
+            google.maps.event.addListener(marker2, 'dragend', function () { setTitle(marker2); });
+        
+
+
             setTitle(marker2);
         }, function () {
             // handleLocationError(true, infoWindow, map.getCenter());
