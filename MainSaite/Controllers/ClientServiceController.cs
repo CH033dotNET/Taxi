@@ -140,7 +140,7 @@ namespace MainSaite.Controllers
         {
             OrderDTO startedOrder = orderManager.GetStartedOrderByDriver(Trips[0].First().UserId);
 
-            orderManager.EditOrder(startedOrder, Trips[0].First().AddedTime, Trips[0].Last().AddedTime, Price);
+            //TEMP //orderManager.EditOrder(startedOrder, Trips[0].First().AddedTime, Trips[0].Last().AddedTime, Price);
             coordinatesManager.AddRangeCoordinates(Trips[0].ToList(), startedOrder.Id);
 
             SessionCordinates = new List<CoordinatesDTO>();

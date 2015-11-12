@@ -13,7 +13,6 @@ namespace BAL.Manager
 		System.Collections.Generic.IEnumerable<Model.DTO.OrderDTO> GetOrdersByPersonId(int? id);
 		System.Collections.Generic.IEnumerable<Model.DTO.OrderDTO> GetOrdersByUserId(int id);
 		Model.DTO.OrderDTO GetStartedOrderByDriver(int? id);
-        OrderDTO EditOrder(OrderDTO order, DateTime start, DateTime end, string price);
 		Model.DTO.OrderDTO InsertOrder(Model.DTO.OrderDTO order);
 	}
 }

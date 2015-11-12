@@ -60,6 +60,12 @@ namespace TaxiAPI.Controllers
         {
             return Request.CreateResponse(HttpStatusCode.OK, coordinatesManager.AddCoordinates(data));
         }
+		[HttpPost]
+		[Route("api/ClientService/AddRangeCoordinates")]
+		public HttpResponseMessage AddRangeCoordinates(List<CoordinatesDTO> data1, int data2)
+		{
+			return Request.CreateResponse(HttpStatusCode.OK, coordinatesManager.AddRangeCoordinates(data1,data2));
+		}
         [HttpGet]
         [Route("api/ClientService/GetById")]
         public HttpResponseMessage GetById(int id)

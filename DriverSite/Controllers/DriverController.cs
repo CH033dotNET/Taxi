@@ -18,10 +18,7 @@ namespace DriverSite.Controllers
         readonly string controller = "Driver";
         public ActionResult DistrictPart()
         {
-            ViewBag.Districts = ApiRequestHelper.Get<List<DriverDistrictInfoDTO>>(controller, "GetDriverDistrictInfo").Data;
-            //ViewBag.Districts = locationManager.GetDriverDistrictInfo();
-            return PartialView(ApiRequestHelper.Get<List<WorkshiftHistoryDTO>>(controller, "GetWorkingDrivers").Data);
-            //return PartialView(carManager.GetWorkingDrivers());
+            return PartialView(ApiRequestHelper.Get<List<WorkshiftHistoryDTO>>(controller, "GetWorkingDrivers").Data);            //return PartialView(carManager.GetWorkingDrivers());
 		}
 		/// <summary>
 		/// Checks if there are uncompleted workshifts for current Driver
@@ -33,6 +30,11 @@ namespace DriverSite.Controllers
             bool uncompletedShifts = ApiRequestHelper.GetById<bool>(controller, "GetWorkShiftsByWorkerId", Id).Data;
             //bool uncompletedShifts = carManager.GetWorkShiftsByWorkerId(Id);
 			return Json(uncompletedShifts, JsonRequestBehavior.AllowGet);
+		}
+
+		public JsonResult GetDistricts()
+		{
+			return Json(ApiRequestHelper.GetById<List<DriverDistrictInfoDTO>>(controller, "GetDriverDistrictInfo", SessionUser.Id).Data, JsonRequestBehavior.AllowGet);
 		}
 
 
@@ -89,38 +91,28 @@ namespace DriverSite.Controllers
 			}
 			return Json(false);
 		}
-		public ActionResult JoinToLocation(int Id)
+		[HttpPost]
+		public JsonResult JoinToLocation(int Id)
 		{
-			var user = Session["User"] as Model.DTO.UserDTO;
-			if (user == null)
-			{
-				return RedirectToRoute(new
-				{
-					controller = "Home",
-					action = "Index"
-				});
-			}
-            LocationDTO local = ApiRequestHelper.GetById<LocationDTO>(controller, "GetByUserId", user.Id).Data;
-			//LocationDTO local = locationManager.GetByUserId(user.Id);
+            LocationDTO local = ApiRequestHelper.GetById<LocationDTO>(controller, "GetByUserId", SessionUser.Id).Data;
 			if (local != null)
 			{
 				local.DistrictId = Id;
-                ApiRequestHelper.postData<LocationDTO>(controller, "UpdateLocation", local);
-				//locationManager.UpdateLocation(local);
-				return RedirectToAction("Index", "Driver");
+                ApiRequestHelper.postData<LocationDTO>(controller, "UpdateLocation", local);				//locationManager.UpdateLocation(local);
+				return Json(0);
 			}
 
 			else
 			{
 				LocationDTO district = new LocationDTO()
 				{
-					UserId = user.Id,
+					UserId = SessionUser.Id,
 					DistrictId = Id
 				};
 
                 ApiRequestHelper.postData<LocationDTO>(controller, "AddLocation", district);
 				//locationManager.AddLocation(district);
-				return RedirectToAction("Index", "Driver");
+				return Json(0);
 			}
 		}
 		public ActionResult GetArticle(string timeStart, string timeStop)

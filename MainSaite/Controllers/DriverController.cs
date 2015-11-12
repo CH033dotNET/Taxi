@@ -52,7 +52,7 @@ namespace MainSaite.Controllers
 
 		public ActionResult DistrictPart()
 		{
-			ViewBag.Districts = locationManager.GetDriverDistrictInfo();
+			ViewBag.Districts = locationManager.GetDriverDistrictInfo(4);
             Tarifes = tarifManager.GetTarifes().ToList();
 			return PartialView(carManager.GetWorkingDrivers());
 		}

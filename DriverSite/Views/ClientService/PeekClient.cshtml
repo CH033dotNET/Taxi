@@ -13,6 +13,9 @@
     <title></title>
 
     <script type="text/javascript" src="~/Scripts/DriveTimer.js">    </script>
+	<script>
+		var tarifes =  @Html.Raw(Json.Encode(Model));
+	</script>
 </head>
 <body>
     <div class="container">

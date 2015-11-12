@@ -29,9 +29,9 @@ namespace TaxiAPI.Controllers
         }
         [HttpGet]
         [Route("api/Driver/GetDriverDistrictInfo")]
-        public HttpResponseMessage GetDriverDistrictInfo()
+        public HttpResponseMessage GetDriverDistrictInfo(int id)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, locationManager.GetDriverDistrictInfo());
+            return Request.CreateResponse(HttpStatusCode.OK, locationManager.GetDriverDistrictInfo(id));
         }
         [HttpGet]
         [Route("api/Driver/getDistricts")]

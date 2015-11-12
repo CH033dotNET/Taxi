@@ -74,9 +74,6 @@
             </div>
             <div id="Settings" class="tab-pane fade">
                 <p>
-                    @{
-                        Html.RenderAction("EditLocation", "Location");
-                    }
                     <ul>
                     @if (Session["Culture"] != null && Session["Culture"].ToString().ToUpper() == "UK-UA")
                     {

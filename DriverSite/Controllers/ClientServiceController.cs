@@ -13,7 +13,7 @@ namespace DriverSite.Controllers
         readonly string controller = "ClientService";
 		public ActionResult PeekClient()
 		{
-            return PartialView(ApiRequestHelper.Get<List<TarifDTO>>("ClientService", "GetTarifes").Data);
+			return PartialView(ApiRequestHelper.Get<List<TarifDTO>>("ClientService", "GetTarifes").Data);
 		}
 
 		public void StartTrip(CoordinatesDTO coordinates)
@@ -95,7 +95,26 @@ namespace DriverSite.Controllers
 					return false;
 				}
 			}
-		}
+		}      
+		public JsonResult CheckConnection()
+        {
+            return Json(new { data = "OK" });
+        }
+
+        public JsonResult OrderResult(CoordinatesDTO[][] Trips, string Price)
+        {
+			OrderDTO startedOrder = ApiRequestHelper.GetById<OrderDTO>(controller, "GetStartedOrderByDriver", Trips[0].First().UserId).Data;
+            //OrderDTO startedOrder = orderManager.GetStartedOrderByDriver(Trips[0].First().UserId);
+			startedOrder.StartWork = Trips[0].First().AddedTime;
+			startedOrder.EndWork = Trips[0].Last().AddedTime;
+			startedOrder.TotalPrice = Decimal.Parse(Price);
+			ApiRequestHelper.postData<OrderDTO>(controller, "EditOrder", startedOrder);            //orderManager.EditOrder(startedOrder, Trips[0].First().AddedTime, Trips[0].Last().AddedTime, Price);
+			ApiRequestHelper.postData<List<CoordinatesDTO>, int>(controller, "AddRangeCoordinates", Trips[0].ToList(), startedOrder.Id);
+            //coordinatesManager.AddRangeCoordinates(Trips[0].ToList(), startedOrder.Id);
+
+            SessionCordinates = new List<CoordinatesDTO>();
+            return Json(new { data = "OK" });
+        }
 		private OrderDTO FillOrder(CoordinatesDTO coordinates)
 		{
 			OrderDTO order = new OrderDTO();

@@ -52,7 +52,7 @@ function mainInit() {
             }
         },
         error: function (error) {
-            alert(error);
+        	alert(error.statusText);
         }
     });
     hubInit();

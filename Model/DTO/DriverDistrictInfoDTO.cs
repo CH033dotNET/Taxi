@@ -11,7 +11,7 @@ namespace Model.DTO
 		public int DriverCount { get; set; }
 		public string DistrictName { get; set; }
 		public int DistrictId { get; set; }
-		public int DriverId { get; set; }
+		public bool ThoseDriver { get; set; }
 
 	}
 }
