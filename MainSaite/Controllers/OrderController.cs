@@ -94,18 +94,14 @@ namespace MainSaite.Controllers
 					OrderByDescending(x => x.AddedTime).FirstOrDefault();
 
 				ClientOrderedDTO currentOrder = new ClientOrderedDTO() 
-				{Latitude = driverCoordinates.Latitude, Longitude = driverCoordinates.Longitude, WaitingTime = order.WaitingTime};
+				{IsConfirm = order.IsConfirm, Latitude = driverCoordinates.Latitude, Longitude = driverCoordinates.Longitude, WaitingTime = order.WaitingTime};
 
 				return Json(currentOrder, JsonRequestBehavior.AllowGet);
 			}
 
-			if (order.IsConfirm == 2)
-			{
-				return Json("denied", JsonRequestBehavior.AllowGet);
-			}
 			else
 			{
-				return Json("wait", JsonRequestBehavior.AllowGet);
+				return Json(order, JsonRequestBehavior.AllowGet);
 			}
 		}
 

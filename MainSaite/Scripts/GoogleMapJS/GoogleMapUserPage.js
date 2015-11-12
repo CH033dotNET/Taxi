@@ -94,29 +94,31 @@ function getMyTaxi() {
         data: { orderId: myOrderId },
         type: 'POST',
 
-        success: function (d) {
+        success: function (data) {
             
-            if (d != 'wait' && d != 'denied') {
-
-                clearInterval(intervalID);
-                myOrderId = null;
-
-                $('#waittime').val(d.WaitingTime);
-                $('#orderinfo').modal('toggle');
-                setTaxiMarker(d.Latitude, d.Longitude);
-
+            switch (data.IsConfirm) {
+               case 4: {
+                    clearInterval(intervalID);
+                    myOrderId = null;
+                    $('#waittime').val(d.WaitingTime);
+                    $('#orderinfo').modal('toggle');
+                    setTaxiMarker(d.Latitude, d.Longitude);
+                    break;
+                };
+                case 2: {
+                    clearInterval(intervalID);
+                    myOrderId = null;
+                    $('#deniedorderinfo').modal('toggle');
+                    break;
+                }
+                case 5:
+                    {
+                        clearInterval(intervalID);
+                        myOrderId = null;
+                        $('#nocarorderinfo').modal('toggle');
+                        break;
+                    }
             }
-            if (d == 'denied') {
-
-                clearInterval(intervalID);
-                myOrderId = null;
-
-                $('#deniedorderinfo').modal('toggle');
-            }
-            else {
-                console.log(d);
-            }
-
         },
         error: function (error) {
             alert("error!" + error);
