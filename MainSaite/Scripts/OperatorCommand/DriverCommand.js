@@ -9,7 +9,8 @@ $(function () {
 
     chat.client.showMessage = function (message) {
         // Own function 
-        alert(message);
+        swal('New message from operator!', message, 'success');
+
     };
 
 
@@ -21,14 +22,22 @@ $(function () {
         chat.server.connect(roleId);
 
 
-        $('#sendmessage').click(function () {
-            // Start Hub Method 
-            chat.server.sendToOperators($('#message').val());
-            $('#message').val('');
-        });
+        $('#showform').click(function () {
+            swal({
+                title: 'Input Your message:',
+                html: '<p><input id="input-field">',
+                showCancelButton: true,
+                closeOnConfirm: false
+            }, function () {
+                chat.server.sendToOperators($('#input-field').val(), $('#txtUserName').val());
+                swal('Your message has been sent', '', 'success');
+            });
+        })
 
     });
 });
+
+
 
 $(document).ready(function () {
     setInterval(function () {

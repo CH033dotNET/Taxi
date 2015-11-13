@@ -7,23 +7,22 @@
 <!--
     Messages
 -->
-<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+@Styles.Render("~/Content/sweetalert2")
+
+
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
 <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+<script src="~/Scripts/sweetalert2.min.js"></script>
+<script src="~/signalr/hubs"></script>
 
 
-<div class="main">
+
+<div class="main" style="float:right">
     <input id="txtRoleId" type="hidden" value="@((Session["User"] as Model.DTO.UserDTO).RoleId)" />
-
-    <div id="chatBody">
-        <div id="inputForm">
-            <input type="text" id="message" />
-            <input type="button" id="sendmessage" value="Send a message to Drivers" />
-        </div>
-    </div>
+    <button class="btn btn-primary" id="showform">Message to drivers</button> <br />
 </div>
 
 
-<script src="~/signalr/hubs"></script>
 
 
 <!--

@@ -15,9 +15,9 @@ namespace MainSaite.Hubs
 	
 
 		// send messages
-		public void SendToOperators(string message)
+		public void SendToOperators(string message, string userName)
 		{
-			Clients.Group("Operators").showMessage(message);
+			Clients.Group("Operators").showMessage(message, userName);
 		}
 
 		public void SendToDrivers(string message)
@@ -33,8 +33,6 @@ namespace MainSaite.Hubs
 
 			if (!Users.Any(x => x.ConnectionId == id))
 			{
-				Users.Add(currentUser);
-
 
 				if (roleId == 1)
 				{
@@ -47,6 +45,8 @@ namespace MainSaite.Hubs
 					currentUser.Group = "Operators";
 					Groups.Add(Context.ConnectionId, "Operators");
 				}
+
+				Users.Add(currentUser);
 
 			}
 		}

@@ -1,9 +1,9 @@
 ﻿$(function () {
     var chat = $.connection.messagesHub;
 
-    chat.client.showMessage = function (message) {
+    chat.client.showMessage = function (message, userName) {
     // Own function 
-        alert(message);
+        swal('Message from '+userName+':', message, 'success');
     };
 
 
@@ -14,13 +14,17 @@
         var roleId = $("#txtRoleId").val();
         chat.server.connect(roleId);
 
-
-        $('#sendmessage').click(function () {
-    // Start Hub Method 
-            chat.server.sendToDrivers($('#message').val());
-            $('#message').val('');
-        });
-
+        $('#showform').click(function () {
+            swal({
+                title: 'Input Your message:',
+                html: '<p><input id="input-field">',
+                showCancelButton: true,
+                closeOnConfirm: false
+            }, function () {
+                chat.server.sendToDrivers($('#input-field').val());
+                swal('Your message has been sent', '', 'success');
+            });
+        })
     });
 });
 

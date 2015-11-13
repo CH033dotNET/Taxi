@@ -251,6 +251,7 @@
     <Content Include="Content\Picture\UserMapIcons\logo_taxi_green.png" />
     <Content Include="Content\Picture\UserMapIcons\logo_taxi_yellow.png" />
     <Content Include="Content\shop-item.css" />
+    <Content Include="Content\sweetalert2.css" />
     <Content Include="Content\themesOfflineJS\offline-language-dutch-indicator.css" />
     <Content Include="Content\themesOfflineJS\offline-language-dutch.css" />
     <Content Include="Content\themesOfflineJS\offline-language-english-indicator.css" />
@@ -401,6 +402,7 @@
     <Content Include="Scripts\offline.min.js" />
     <Content Include="Scripts\OperatorCommand\DriverCommand.js" />
     <Content Include="Scripts\OperatorCommand\OperatorCommands.js" />
+    <Content Include="Scripts\sweetalert2.min.js" />
     <Content Include="Scripts\tabCorrector.js" />
     <Content Include="Scripts\Tarif\Tarif.js" />
     <Content Include="Scripts\UserMenuScripts\ModalJs.js" />
