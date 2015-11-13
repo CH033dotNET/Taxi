@@ -61,14 +61,14 @@ namespace BAL.Manager
 		}
 		public List<DriverDistrictInfoDTO> GetDriverDistrictInfo(int userId)
 		{
-			int currentDistrict = uOW.LocationRepo.All.Where(x => x.UserId == userId).Select(x => x.DistrictId).FirstOrDefault();
+			//int currentDistrict = uOW.LocationRepo.All.Where(x => x.UserId == userId).Select(x => x.DistrictId).FirstOrDefault();
 			
 			var tet = uOW.DistrictRepo.All.Where(x => !(x.Deleted)).Select(x =>
 				new DriverDistrictInfoDTO() { 
 					DriverCount = uOW.LocationRepo.All.Where(y => y.DistrictId == x.Id).Count(),
 					DistrictName = x.Name,
 					DistrictId = x.Id,
-					ThoseDriver = x.Id == currentDistrict
+					ThoseDriver = x.Id == uOW.LocationRepo.All.Where(z => z.UserId == userId).Select(z => z.DistrictId).FirstOrDefault()
 				});
 			return tet.ToList();
 		}

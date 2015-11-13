@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Model.DTO.WorkshiftHistoryDTO>
+﻿@model bool
 
 @{
 	ViewBag.Title = "DistrictPart";
@@ -21,14 +21,14 @@
 
 <div>
 	<form method="post">
-		<div class="page-header">
+		<div class="nonopage-header">
 			<h1>@Resources.Resource.Greeting,<small>@User.UserName</small></h1>
 		</div>
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<h3 class="panel-title">@Resources.Resource.WorkShift</h3>
 			</div>
-			<div class="panel-body">
+			@*<div class="panel-body">
 				<div class="bs-callout bs-callout-primary">
 					<h4>@Resources.Resource.DistrictPartHeader1</h4>
 					@Resources.Resource.DistrictPartAttention1
@@ -37,10 +37,19 @@
 					<h4>@Resources.Resource.DistrictPartHeader2</h4>
 					@Resources.Resource.DistrictPartAttention2
 				</div>
-			</div>
+			</div>*@
 			<div class="panel-footer">
 					<input type="hidden" id="Id" value="@User.Id" />
-					<input type="button" class="btn btn-success" id="workshift-button" change-btn-id="pending" value="***" onclick="buttonChangeOnClick()" />
+				@{
+					if (Model)
+					{
+						<input type="button" class="btn btn-warning" id="workshift-button" change-btn-id="work_end" value="End workshift" onclick="buttonChangeOnClick()" />
+					}
+					else
+					{
+						<input type="button" class="btn btn-success" id="workshift-button" change-btn-id="work_start" value="Start workshift" onclick="buttonChangeOnClick()" />
+					}
+}
 				<div>
 					@ViewBag.WorkEndMessage
 				</div>

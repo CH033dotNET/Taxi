@@ -21,7 +21,7 @@ function getBeginCoord(position) {
         data: dataObj,
         success: function (success) {
             storage.removeItem("StartWorkTime");
-            location.reload(true);
+            //location.reload(true);
         }
 
     });
@@ -48,8 +48,10 @@ function getEndCoord(position) {
         data: dataObj,
         success: function (success) {
             storage.removeItem("StopWorkTime");
-            location.reload(true);
-
+        	//location.reload(true);
+            $('#DistrictN' + currentDistrict + ">.text").html(joinToLocation);
+            hub.server.swap(0, currentDistrict);
+            currentDistrict = 0;
         }
 
     });
@@ -58,14 +60,14 @@ function getEndCoord(position) {
 
 function setBeginlocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.watchPosition(getBeginCoord);
+    	navigator.geolocation.getCurrentPosition(getBeginCoord);
     } else {
         alert("Geolocation is not supported by this browser.");
     }
 }
 function setEndlocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.watchPosition(getEndCoord);
+    	navigator.geolocation.getCurrentPosition(getEndCoord);
     } else {
         alert("Geolocation is not supported by this browser.");
     }

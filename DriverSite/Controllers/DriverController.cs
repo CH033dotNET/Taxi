@@ -17,19 +17,8 @@ namespace DriverSite.Controllers
     {
         readonly string controller = "Driver";
         public ActionResult DistrictPart()
-        {
-            return PartialView(ApiRequestHelper.Get<List<WorkshiftHistoryDTO>>(controller, "GetWorkingDrivers").Data);            //return PartialView(carManager.GetWorkingDrivers());
-		}
-		/// <summary>
-		/// Checks if there are uncompleted workshifts for current Driver
-		/// </summary>
-		/// <param name="Id">drivers id</param>
-		/// <returns></returns>
-		public JsonResult CheckWorkShifts(int Id)
-        {
-            bool uncompletedShifts = ApiRequestHelper.GetById<bool>(controller, "GetWorkShiftsByWorkerId", Id).Data;
-            //bool uncompletedShifts = carManager.GetWorkShiftsByWorkerId(Id);
-			return Json(uncompletedShifts, JsonRequestBehavior.AllowGet);
+		{
+            return PartialView(ApiRequestHelper.GetById<bool>(controller, "GetWorkShiftsByWorkerId", SessionUser.Id).Data);            //return PartialView(carManager.GetWorkingDrivers());
 		}
 
 		public JsonResult GetDistricts()
