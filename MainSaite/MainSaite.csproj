@@ -187,8 +187,11 @@
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Helpers\DriverLocationHelper.cs" />
     <Compile Include="Helpers\IDriverLocationHelper.cs" />
+    <Compile Include="Hubs\MessagesHub.cs" />
     <Compile Include="Models\AutoParkViewModel.cs" />
     <Compile Include="Models\CarChangeUser.cs" />
+    <Compile Include="Models\SignalRGroup.cs" />
+    <Compile Include="Models\SignalRUser.cs" />
     <Compile Include="Models\UserPagePhoneModel.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -330,7 +333,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -338,6 +340,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="App_Readme\Handlebarsjs_README.md" />
     <Content Include="App_Readme\Handlebarsjs_LICENSE" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\AutoParkScripts.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />

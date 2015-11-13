@@ -1,4 +1,31 @@
-﻿$(document).ready(function () {
+﻿$(function () {
+    var chat = $.connection.messagesHub;
+
+    chat.client.showMessage = function (message) {
+    // Own function 
+        alert(message);
+    };
+
+
+    //Open connection
+    $.connection.hub.start().done(function () {
+
+    // LogIn
+        var roleId = $("#txtRoleId").val();
+        chat.server.connect(roleId);
+
+
+        $('#sendmessage').click(function () {
+    // Start Hub Method 
+            chat.server.sendToDrivers($('#message').val());
+            $('#message').val('');
+        });
+
+    });
+});
+
+
+$(document).ready(function () {
     setInterval(function () {
         GetOrders();
         GetDrRequest();

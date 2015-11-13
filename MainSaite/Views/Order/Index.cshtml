@@ -3,6 +3,34 @@
     ViewBag.Title = "Orders";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<!--
+    Messages
+-->
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+
+
+<div class="main">
+    <input id="txtRoleId" type="hidden" value="@((Session["User"] as Model.DTO.UserDTO).RoleId)" />
+
+    <div id="chatBody">
+        <div id="inputForm">
+            <input type="text" id="message" />
+            <input type="button" id="sendmessage" value="Send a message to Drivers" />
+        </div>
+    </div>
+</div>
+
+
+<script src="~/signalr/hubs"></script>
+
+
+<!--
+    End messages
+-->
+
+
 @* New orders table *@
 <h2 class="OperatortbNames">@Resources.Resource.NewOrders</h2>
 <script id="orderTemplate" type="text/x-handlebars-template">

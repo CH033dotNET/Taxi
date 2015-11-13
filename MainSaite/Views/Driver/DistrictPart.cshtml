@@ -61,12 +61,12 @@
 				</tr>
 
 
-				@foreach (var district in ViewBag.Districts)
+				@*@foreach (var district in ViewBag.Districts)
 				{
 					<tr>
 						<td>@district.DriverCount </td>
 						<td>@district.DistrictName</td>
-						@if (@district.DriverId != (Session["User"] as Model.DTO.UserDTO).Id)
+						@if (@district.ThoseDriver != (Session["User"] as Model.DTO.UserDTO).Id)
 						{
 							
 							<td>@Html.ActionLink(@Resources.Resource.Join, "JoinToLocation", new { Id = @district.DistrictId })</td>
@@ -80,49 +80,11 @@
 						<td></td>
 					</tr>
 
-				}
+				}*@
 			</table>
 
+            
 
-
-<!--			<div class="table-list">
-				<div class="table-responsive">
-					<table class="table table-striped">
-						<thead>
-							<tr class="info">
-								<th>
-									Resources.Resource.Driver
-								</th>
-								<th>
-									Resources.Resource.WorkStarted
-								</th>
-								<th>
-									Resources.Resource.Contact
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							foreach (var item in Model)
-							{
-								<tr>
-									<td>
-										<div class="editor_field"></div>
-										Html.DisplayFor(modelItem => item.Driver.UserName)
-									</td>
-									<td>
-										<div class="editor_field"></div>
-										Html.DisplayFor(modelItem => item.WorkStarted)
-									</td>
-									<td>
-										<div class="editor_field"></div>
-										Html.DisplayFor(modelItem => item.Driver.Email)
-									</td>
-								</tr>
-							}
-						</tbody>
-					</table>
-				</div>
-			</div> -->
 		</div>
 	</form>
 </div>
