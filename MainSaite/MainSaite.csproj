@@ -356,6 +356,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\coordinates.js" />
+    <Content Include="Scripts\CustomHighCharts\DistrictOrdersPerYear.js" />
     <Content Include="Scripts\DistrictPartButtonScripts.js" />
     <Content Include="Scripts\DistrictScriptLogic.js" />
     <Content Include="Scripts\DriverMap.js" />
@@ -522,6 +523,7 @@
     <Content Include="Views\Driver\DriverOrders.cshtml" />
     <Content Include="Views\Settings\_ErrorDistrictPartial.cshtml" />
     <Content Include="Views\ReportCharts\Index.cshtml" />
+    <Content Include="Views\ReportCharts\DistrictReportsPerYear.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

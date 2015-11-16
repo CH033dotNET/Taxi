@@ -1,8 +1,101 @@
 ﻿@{
     ViewBag.Title = "HighchartsDemo1";
 }
-
-<h2>HighchartsDemo1</h2>
-
-
-@ViewBag.Chart
+<div>
+	<div class="page-header">
+		<h1>[Our statistics]</h1>
+	</div>
+	<div class="container-fluid">
+		<ul class="nav nav-tabs nav-justified">
+			<li role="presentation" class="active">
+				<a data-toggle="tab" href="#Chart1">[Chart1]</a>
+			</li>
+			<li role="presentation">
+				<a data-toggle="tab" href="#Chart2">[Chart2]</a>
+			</li>
+			<li role="presentation">
+				<a data-toggle="tab" href="#Chart3">[Chart3]</a>
+			</li>
+			<li role="presentation">
+				<a data-toggle="tab" href="#Chart4">[Chart4]</a>
+			</li>
+			<li role="presentation">
+				<a data-toggle="tab" href="#Chart5">[Chart5]</a>
+			</li>
+			<li role="presentation">
+				<a data-toggle="tab" href="#Chart6">[Chart6]</a>
+			</li>
+			<li role="presentation">
+				<a data-toggle="tab" href="#Chart7">[Chart7]</a>
+			</li>
+			<li role="presentation">
+				<a data-toggle="tab" href="#Chart8">[Chart8]</a>
+			</li>
+		</ul>
+	</div>
+	<div>
+		<div id="reports-content" class="tab-content">
+			<div id="Chart1" class="tab-pane fade">
+				<p>
+					[death]
+					@*@{
+							Html.RenderAction("", "");
+						}*@
+				</p>
+			</div>
+			<div id="Chart2" class="tab-pane fade">
+				@{
+					Html.RenderAction("DistrictReportsPerYear", "ReportCharts");
+				}
+			</div>
+			<div id="Chart3" class="tab-pane fade">
+				<p>
+					@ViewBag.Chart
+					@*@{
+							Html.RenderAction("", "");
+						}*@
+				</p>
+			</div>
+			<div id="Chart4" class="tab-pane fade">
+				<p>
+					[death]
+					@*@{
+							Html.RenderAction("", "");
+						}*@
+				</p>
+			</div>
+			<div id="Chart5" class="tab-pane fade">
+				<p>
+					[death]
+					@*@{
+							Html.RenderAction("", "");
+						}*@
+				</p>
+			</div>
+			<div id="Chart6" class="tab-pane fade">
+				<p>
+					[death]
+					@*@{
+							Html.RenderAction("", "");
+						}*@
+				</p>
+			</div>
+			<div id="Chart7" class="tab-pane fade">
+				<p>
+					[death]
+					@*@{
+							Html.RenderAction("", "");
+						}*@
+				</p>
+			</div>
+			<div id="Chart8" class="tab-pane fade">
+				<p>
+					[death]
+					@*@{
+							Html.RenderAction("", "");
+						}*@
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

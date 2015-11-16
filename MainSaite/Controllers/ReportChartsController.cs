@@ -83,5 +83,10 @@ namespace MainSaite.Controllers
 			return View();
         }
 
+		public ActionResult DistrictReportsPerYear()
+		{
+			return PartialView();
+		}
+
     }
 }
