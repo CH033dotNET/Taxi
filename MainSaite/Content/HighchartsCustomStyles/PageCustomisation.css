@@ -1,0 +1,8 @@
+﻿.nav-tabs > li.active {
+	border-color: tomato;
+    border-width: thick;
+}
+#sup{
+	border-color: tomato;
+    border-width: thick;
+}

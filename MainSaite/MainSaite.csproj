@@ -233,6 +233,7 @@
     <Content Include="Content\ClientDriveService.css" />
     <Content Include="Content\DrivingSimulation\iframe.css" />
     <Content Include="Content\BootstrapTb\BootstrapTb.css" />
+    <Content Include="Content\HighchartsCustomStyles\PageCustomisation.css" />
     <Content Include="Content\Picture\Drawing-layerExport.jpeg" />
     <Content Include="Content\DriverMenu.css" />
     <Content Include="Content\Picture\0-well-traveled-passport-taxi-cab-global-british-american-vietnamese-engagement-wedding-photos-photographer.jpg" />
