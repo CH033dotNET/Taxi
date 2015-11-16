@@ -1,19 +1,56 @@
-﻿$(function () {
-    var chat = $.connection.messagesHub;
+﻿var operatorHub;
+$(function () {
+    GetOrders();
+    GetDrRequest();
+    GetAwaitOrders()
+    var signal = $.connection.messagesHub;
+   var driverHub = $.connection.DriverHub;
+    operatorHub = $.connection.OperatorHub;
 
-    chat.client.showMessage = function (message, userName) {
+    signal.client.showMessage = function (message, userName) {
     // Own function 
         swal('Message from '+userName+':', message, 'success');
     };
 
-
+    signal.client.addNewOrderToTable = function (newOrder)
+    {
+        var content = $('#orderContent');
+        var source = $("#orderTemplate").html();
+        var template = Handlebars.compile(source);
+        var wrapper = {object: newOrder};
+        var html = template(wrapper);
+        content.append(html);
+    }
+    operatorHub.client.addWaitingOrder = function (newWaitOrder)
+    {
+        var waitingOrders = $('#waitingOrdersContent');
+        var source = $('#waitingOrderTemplate').html();
+        var template = Handlebars.compile(source);
+        var wrapper = { waitingOrder: newWaitOrder };
+        var html = template(wrapper);
+        waitingOrders.append(html);
+    }
+    operatorHub.client.removeNewOrders = function (removeOrder)
+    {
+       // Remove neworder after sending
+     }
+    driverHub.client.assignedDrOrder = function (newRequest) {
+        var content = $('#driverRequest');
+        var source = $("#driverRequestTemplate").html();
+        var template = Handlebars.compile(source);
+        var wrapper = { request: newRequest };
+        var html = template(wrapper);
+        content.append(html);
+    }
     //Open connection
+
     $.connection.hub.start().done(function () {
-
-    // LogIn
+        // LogIn
+        var operatorId = 2;
         var roleId = $("#txtRoleId").val();
-        chat.server.connect(roleId);
-
+        signal.server.connect(roleId);
+        driverHub.server.connectUser(operatorId);
+        operatorHub.server.connectUser(operatorId);
         $('#showform').click(function () {
             swal({
                 title: 'Input Your message:',
@@ -21,21 +58,39 @@
                 showCancelButton: true,
                 closeOnConfirm: false
             }, function () {
-                chat.server.sendToDrivers($('#input-field').val());
+                signal.server.sendToDrivers($('#input-field').val());
                 swal('Your message has been sent', '', 'success');
             });
-        })
+        })     
     });
 });
 
-
-$(document).ready(function () {
-    setInterval(function () {
-        GetOrders();
-        GetDrRequest();
-        GetAwaitOrders()
-    }, 2000)
-});
+function setOrderStatus(e) {
+        var OrderId = $(e).attr('data-orderid');
+        var Status = $(e).attr('data-status');
+        $.ajax({
+            url: '/Order/SetOrderStatus/',
+            data: {
+                orderId: OrderId,
+                status: Status
+            },
+            success: function (data) {
+                debugger;
+                console.log(data);
+                switch (Status) {
+                       case "1": {
+                           operatorHub.server.orderForDrivers(data);
+                           operatorHub.server.waitingOrderOp(data);
+                          // operatorHub.server.removeNewOrder(data);
+                           break;
+                       }
+                    case "2": {/*Here we should provide Denied functions*/ break; }
+                    case "4": { operatorHub.server.confirmRequest(data.DriverId); break; }
+                    default: break;
+                }
+            }
+        });
+    }
 
 function GetOrders() {
     var content = $('#orderContent');
@@ -52,25 +107,8 @@ function GetOrders() {
         }
     });
 }
-$('.waitingOrders').on('click', function (e) {
-    $('.nocarorder').trigger('click');
-})
 
-function setOrderStatus(e) {
 
-    var OrderId = $(e).attr('data-orderid');
-    var Status = $(e).attr('data-status');
-    $.ajax({
-        url: '/Order/SetOrderStatus/',
-        data: {
-            orderId: OrderId,
-            status: Status
-        },
-        success: function (data) {
-            GetOrders();
-        }
-    });
-}
 
 function GetDrRequest() {
     var content = $('#driverRequest');

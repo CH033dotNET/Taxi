@@ -20,9 +20,8 @@
 
 
 <div class="main" style="float:right">
-    <input id="txtRoleId" type="hidden" value="@((Session["User"] as Model.DTO.UserDTO).RoleId)"/>
-    <input id="txtUserName" type="hidden" value="@((Session["User"] as Model.DTO.UserDTO).UserName)" />
-
+    <input id="txtRoleId" type="hidden" value="@User.RoleId"/>
+    <input id="txtUserName" type="hidden" value="@User.UserName" />
     <p> <button class="btn btn-primary" id="showform">Message to operators</button> <br /></p>
 </div>
 
@@ -54,7 +53,7 @@
                      </table>
             </div>      
             <div class="modal-footer" style="background-color:whitesmoke">
-                <button class="btn btn-success" type="button" data-dismiss="modal" onclick="Assign();">@Resources.Resource.Confirm</button>
+                <button class="btn btn-success" id="assignOrder" type="button" data-dismiss="modal" onclick="Assign()">@Resources.Resource.Confirm</button>
                  <button class="btn btn-danger" type="button" data-dismiss="modal">@Resources.Resource.cancelButton</button>
             </div>
         </div> 
@@ -85,31 +84,41 @@
     </div>
 </div>
 
+
+
 <script id="template-article" type="text/x-handlebars-template">
-    <h2 class="OperatortbNames">@Resources.Resource.NewOrders</h2> 
-    <table class="table">
-
-        <tr>
-            <th> @Resources.Resource.OrderTime </th>
-            <th> @Resources.Resource.PeekPlace</th>
-            <th> @Resources.Resource.DropPlace </th>
-            <th> @Resources.Resource.Action</th>
-        </tr>
-
         {{#each orders}}
         <tr>
             <td>{{PrettifyDate OrderTime}}</td>
             <td>{{PeekPlace}}</td>
             <td>{{DropPlace}}</td>
             <td> <button type="button" class="submitButton btn btn-success" data-orderid="{{Id}}" data-toggle="modal" data-target="#Asign" onclick="saveOrderId(this)">@Resources.Resource.Confirm</button> </td>
-        </tr>
+        </tr>      
         {{/each}}
+        {{#if newOrder}}
+        <tr>
+            <td>{{PrettifyDate OrderTime}}</td>
+            <td>{{newOrder.PeekPlace}}</td>
+            <td>{{newOrder.DropPlace}}</td>
+            <td> <button type="button" class="submitButton btn btn-success" data-orderid="{{newOrder.Id}}" data-toggle="modal" data-target="#Asign" onclick="saveOrderId(this)">@Resources.Resource.Confirm</button> </td>
+        </tr>
+        {{/if}}
 
-    </table>
 </script>
-<div id="DrOrder"></div>
-
-<button type="button" class="btn successDriverOrder" style="display:none" data-toggle="modal" data-target="#successDriverOrder"></button>
-<button type="button" class="btn deniedDriverOrder" style="display:none" data-toggle="modal" data-target="#deniedDriverOrder"></button>
-<script type="text/javascript" src="~/Scripts/OperatorCommand/DriverCommand.js"></script>
-<script src="~/Scripts/HandlebarsCustomHelpers.js"></script>
+<h2 class="OperatortbNames">@Resources.Resource.NewOrders</h2> 
+<table class="table table-hover historyTh">
+    <tr>
+        <th> @Resources.Resource.OrderTime </th>
+        <th> @Resources.Resource.PeekPlace</th>
+        <th> @Resources.Resource.DropPlace </th>
+        <th> @Resources.Resource.Action</th>
+    </tr>
+    <tbody id="DrOrder"></tbody>
+</table>
+    
+<input type="text" hidden="hidden" id="currentUserId" value="@User.Id" />
+    <button type="button" class="btn successDriverOrder" style="display:none" data-toggle="modal" data-target="#successDriverOrder"></button>
+    <button type="button" class="btn deniedDriverOrder" style="display:none" data-toggle="modal" data-target="#deniedDriverOrder"></button>
+    <script type="text/javascript" src="~/Scripts/OperatorCommand/DriverCommand.js"></script>
+<link href="~/Content/BootstrapTb/BootstrapTb.css" rel="stylesheet" />
+    <script src="~/Scripts/HandlebarsCustomHelpers.js"></script>

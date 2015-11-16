@@ -5,15 +5,14 @@ using System.Web;
 using Microsoft.AspNet.SignalR;
 using MainSaite.Models;
 using MainSaite.Models;
+using Model.DTO;
+
 namespace MainSaite.Hubs
 {
 	public class MessagesHub : Hub
 	{
 		static ICollection<SignalRUser> Users = new List<SignalRUser>();
 		static ICollection<SignalRGroup> Grops = new List<SignalRGroup>();
-
-	
-
 		// send messages
 		public void SendToOperators(string message, string userName)
 		{
@@ -24,6 +23,15 @@ namespace MainSaite.Hubs
 		{
 			Clients.Group("Drivers").showMessage(message);
 		}
+
+		//new order from client to operators
+		public void SendNewOrderToOperators(OrderDTO newOrder)
+		{
+			Clients.Group("Operators").addNewOrderToTable(newOrder);
+		}
+
+
+
 
 		// Connect a new user
 		public void Connect(int roleId)
@@ -45,6 +53,13 @@ namespace MainSaite.Hubs
 					currentUser.Group = "Operators";
 					Groups.Add(Context.ConnectionId, "Operators");
 				}
+
+				if (roleId == 3)
+				{
+					currentUser.Group = "Clients";
+					Groups.Add(Context.ConnectionId, "Clients");
+				}
+
 
 				Users.Add(currentUser);
 

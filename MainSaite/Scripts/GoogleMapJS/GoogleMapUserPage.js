@@ -12,6 +12,7 @@ var markers = new Array();
 var markerTaxi = new google.maps.Marker;
 var myOrderId;
 var intervalID;
+var newOrder;
 
 function hubInit() {
     var hub = $.connection.driversLocationHub;//Подключились к хабу
@@ -25,6 +26,23 @@ function hubInit() {
     });
 }
 
+
+
+$(function () {
+    newOrder = $.connection.messagesHub;
+
+     //Open connection
+    $.connection.hub.start().done(function () {
+
+        // LogIn
+        var roleId = 3;
+        newOrder.server.connect(roleId);
+
+    });
+});
+function sendNewOrder(data) {
+    newOrder.server.sendNewOrderToOperators(data);
+}
 
 function CenterControl(controlDiv, map) {
 
@@ -69,11 +87,13 @@ function CenterControl(controlDiv, map) {
                 'IsConfirm': 3
             }
             $.ajax({
-                url: '/Order/GetOrder/',
+                url: '/Order/NewOrder/',
                 data: orderObj,
                 type: "POST",
                 success: function (data) {
-                    myOrderId = data;
+                    myOrderId = data.Id;
+
+                    sendNewOrder(data);
                     intervalID = setInterval(getMyTaxi, 2000);
                 }
             });

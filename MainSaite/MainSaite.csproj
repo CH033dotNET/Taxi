@@ -187,6 +187,8 @@
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Helpers\DriverLocationHelper.cs" />
     <Compile Include="Helpers\IDriverLocationHelper.cs" />
+    <Compile Include="Hubs\DriverHub.cs" />
+    <Compile Include="Hubs\OperatorHub.cs" />
     <Compile Include="Hubs\MessagesHub.cs" />
     <Compile Include="Models\AutoParkViewModel.cs" />
     <Compile Include="Models\CarChangeUser.cs" />

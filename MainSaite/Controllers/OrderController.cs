@@ -28,16 +28,15 @@ namespace MainSaite.Controllers
 			return View();
 		}
 
-		public JsonResult GetOrder(OrderDTO order)
+		public JsonResult NewOrder(OrderDTO order)
 		{
 			order.PersonId = SessionPerson.Id;
-			var insertOrder = orderManager.InsertOrder(order);
-			
-			var orderId = insertOrder.Id;
-			return Json(orderId,JsonRequestBehavior.AllowGet);
+			var insertedOrder = orderManager.InsertOrder(order);
+	
+			return Json(insertedOrder,JsonRequestBehavior.AllowGet);
 		}
 
-		public void SetOrderStatus(int orderId, int status)
+		public JsonResult SetOrderStatus(int orderId, int status)
 		{
 			var order = orderManager.GetOrderByOrderID(orderId);
 			if (order != null)
@@ -45,6 +44,7 @@ namespace MainSaite.Controllers
 				order.IsConfirm = status;
 				orderManager.EditOrder(order);
 			}
+            return Json(order, JsonRequestBehavior.AllowGet);
 		}
 
 		public JsonResult OrdersData()
