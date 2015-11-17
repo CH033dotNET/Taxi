@@ -1,26 +1,20 @@
 ﻿var operatorHub;
+var driverHub
+
 $(function () {
     GetOrders();
     GetDrRequest();
     GetAwaitOrders()
-    var signal = $.connection.messagesHub;
-   var driverHub = $.connection.DriverHub;
+
+    driverHub = $.connection.DriverHub;
     operatorHub = $.connection.OperatorHub;
 
-    signal.client.showMessage = function (message, userName) {
+    driverHub.client.showMessage = function (message, userName) {
     // Own function 
         swal('Message from '+userName+':', message, 'success');
     };
 
-    signal.client.addNewOrderToTable = function (newOrder)
-    {
-        var content = $('#orderContent');
-        var source = $("#orderTemplate").html();
-        var template = Handlebars.compile(source);
-        var wrapper = {object: newOrder};
-        var html = template(wrapper);
-        content.append(html);
-    }
+
     operatorHub.client.addWaitingOrder = function (newWaitOrder)
     {
         var waitingOrders = $('#waitingOrdersContent');
@@ -46,11 +40,14 @@ $(function () {
 
     $.connection.hub.start().done(function () {
         // LogIn
-        var operatorId = 2;
-        var roleId = $("#txtRoleId").val();
-        signal.server.connect(roleId);
-        driverHub.server.connectUser(operatorId);
-        operatorHub.server.connectUser(operatorId);
+
+        var operatorRoleId = 2;
+        var operatorUserId = $('#currentUserId').val();
+
+
+        driverHub.server.connectUser(operatorRoleId, operatorUserId);
+        operatorHub.server.connectUser(operatorRoleId, operatorUserId);
+
         $('#showform').click(function () {
             swal({
                 title: 'Input Your message:',
@@ -58,7 +55,7 @@ $(function () {
                 showCancelButton: true,
                 closeOnConfirm: false
             }, function () {
-                signal.server.sendToDrivers($('#input-field').val());
+                operatorHub.server.sendToDrivers($('#input-field').val());
                 swal('Your message has been sent', '', 'success');
             });
         })     

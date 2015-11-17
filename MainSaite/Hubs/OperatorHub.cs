@@ -11,8 +11,14 @@ namespace MainSaite.Hubs
     [HubName("OperatorHub")]
     public class OperatorHub: Hub
     {
-        static ICollection<SignalRUser> operators = new List<SignalRUser>();
-      //  static ICollection<SignalRGroup> groups = new List<SignalRGroup>();
+        static ICollection<SignalRUser> operatorHubUsers = new List<SignalRUser>();
+
+		[HubMethodName("sendToDrivers")]
+		public void SendToDrivers(string message)
+		{
+			Clients.Group("Driver").showMessage(message);
+		}
+
 
         [HubMethodName("orderForDrivers")]
         public void OrderForDrivers(OrderDTO order)
@@ -32,27 +38,30 @@ namespace MainSaite.Hubs
         [HubMethodName("confirmRequest")]
         public void ConfirmRequest(int driverID)
         {
-            Clients.Group(driverID.ToString()).confirmDrRequest();
+			var driverConnectionId = operatorHubUsers.FirstOrDefault(x => x.UserId == driverID).ConnectionId;
+			Clients.Client(driverConnectionId).confirmDrRequest();
         }
+
         [HubMethodName("connectUser")]
-        public void ConnectUser(int RoleId)
+        public void ConnectUser(int roleId, int userId)
         {
             string connectionId = Context.ConnectionId;
-            int roleId = RoleId;
-            var currentUser = new SignalRUser() { ConnectionId = connectionId, RoleId = RoleId };
-            if (!operators.Any(x => x.ConnectionId == connectionId))
+            int RoleId = roleId;
+
+            var currentUser = new SignalRUser() { ConnectionId = connectionId, RoleId = roleId, UserId = userId };
+            if (!operatorHubUsers.Any(x => x.ConnectionId == connectionId))
             {
-                if (RoleId == 1)
+                if (roleId == 1)
                 {
                     currentUser.Group = "Driver";
                     Groups.Add(Context.ConnectionId, "Driver");
                 }
-                if(RoleId == 2)
+                if(roleId == 2)
                 {
                     currentUser.Group = "Operator";
                     Groups.Add(Context.ConnectionId, "Operator");
                 }
-                operators.Add(currentUser);
+                operatorHubUsers.Add(currentUser);
             }
         }
 

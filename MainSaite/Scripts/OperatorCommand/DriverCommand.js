@@ -3,13 +3,14 @@ var intervalID;
 var isConfirmIntervalId;
 var isOrdered = false;
 var driverHub;
+var operatorHub;
 
 $(function () {
     GetOrders();
-    var chat = $.connection.messagesHub;
-    var operatorHub = $.connection.OperatorHub;
+
+   operatorHub = $.connection.OperatorHub;
    driverHub = $.connection.DriverHub;
-    chat.client.showMessage = function (message) {
+   operatorHub.client.showMessage = function (message) {
         // Own function 
         swal('New message from operator!', message, 'success');
 
@@ -26,18 +27,17 @@ $(function () {
     }
     operatorHub.client.confirmDrRequest = function ()
     {
-        debugger;
         $('.successDriverOrder').click();
     }
     //Open connection
     $.connection.hub.start().done(function () {
         // LogIn
-        var roleId = $("#txtRoleId").val();
         var driverRoleId = 1;
-        var driverId = $('#currentUserId').val();
-         chat.server.connect(roleId);
-         driverHub.server.privateDriverLine(driverId);
-         operatorHub.server.connectUser(driverRoleId);
+        var driverUserId = $('#currentUserId').val();
+
+        driverHub.server.connectUser(driverRoleId, driverUserId);
+        operatorHub.server.connectUser(driverRoleId, driverUserId);
+
         $('#showform').click(function () {
             swal({
                 title: 'Input Your message:',
@@ -45,7 +45,7 @@ $(function () {
                 showCancelButton: true,
                 closeOnConfirm: false
             }, function () {
-                chat.server.sendToOperators($('#input-field').val(), $('#txtUserName').val());
+                driverHub.server.sendToOperators($('#input-field').val(), $('#txtUserName').val());
                 swal('Your message has been sent', '', 'success');
             });
         })

@@ -193,7 +193,6 @@
     <Compile Include="Helpers\IDriverLocationHelper.cs" />
     <Compile Include="Hubs\DriverHub.cs" />
     <Compile Include="Hubs\OperatorHub.cs" />
-    <Compile Include="Hubs\MessagesHub.cs" />
     <Compile Include="Models\AutoParkViewModel.cs" />
     <Compile Include="Models\CarChangeUser.cs" />
     <Compile Include="Models\SignalRGroup.cs" />

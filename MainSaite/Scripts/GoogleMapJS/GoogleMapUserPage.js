@@ -28,21 +28,6 @@ function hubInit() {
 
 
 
-$(function () {
-    newOrder = $.connection.messagesHub;
-
-     //Open connection
-    $.connection.hub.start().done(function () {
-
-        // LogIn
-        var roleId = 3;
-        newOrder.server.connect(roleId);
-
-    });
-});
-function sendNewOrder(data) {
-    newOrder.server.sendNewOrderToOperators(data);
-}
 
 function CenterControl(controlDiv, map) {
 
@@ -92,8 +77,6 @@ function CenterControl(controlDiv, map) {
                 type: "POST",
                 success: function (data) {
                     myOrderId = data.Id;
-
-                    sendNewOrder(data);
                     intervalID = setInterval(getMyTaxi, 2000);
                 }
             });

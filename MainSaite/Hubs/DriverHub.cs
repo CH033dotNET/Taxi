@@ -11,48 +11,43 @@ namespace MainSaite.Hubs
     [HubName("DriverHub")]
     public class DriverHub:Hub
     {
-        static ICollection<SignalRUser> drivers = new List<SignalRUser>();
+        static ICollection<SignalRUser> driverHubUsers = new List<SignalRUser>();
+
+
+		[HubMethodName("sendToOperators")]
+		public void SendToOperators(string message, string userName)
+		{
+			Clients.Group("Operator").showMessage(message, userName);
+		}
 
         [HubMethodName("assignedOrder")]
         public void AssignedOrder(OrderDTO order)
         {
             Clients.Group("Operator").assignedDrOrder(order);
         }
+
+
         [HubMethodName("connectUser")]
-        public void ConnectUser(int RoleId)
+        public void ConnectUser(int roleId, int userId)
         {
             string connectionId = Context.ConnectionId;
-            int roleId = RoleId;
-            var currentUser = new SignalRUser() { ConnectionId = connectionId, RoleId = RoleId };
-            if (!drivers.Any(x => x.ConnectionId == connectionId))
+            int RoleId = roleId;
+            var currentUser = new SignalRUser() { ConnectionId = connectionId, RoleId = roleId, UserId = userId};
+            if (!driverHubUsers.Any(x => x.ConnectionId == connectionId))
             {
-                if (RoleId == 1)
+                if (roleId == 1)
                 {
                     currentUser.Group = "Driver";
                     Groups.Add(Context.ConnectionId, "Driver");
                 }
-                if (RoleId == 2)
+                if (roleId == 2)
                 {
                     currentUser.Group = "Operator";
                     Groups.Add(Context.ConnectionId, "Operator");
                 }
-                drivers.Add(currentUser);
+                driverHubUsers.Add(currentUser);
             }
         }
-        [HubMethodName("privateDriverLine")]
-        public void PrivateDriverLine(int DriverID)
-        {
-            string connectionId = Context.ConnectionId;
-            int driverID = DriverID;
-            var currentDriver = new SignalRUser() { ConnectionId = connectionId, RoleId = DriverID };
-            if (!drivers.Any(x => x.ConnectionId == connectionId))
-            {
-                currentDriver.Group = driverID.ToString();
-                Groups.Add(Context.ConnectionId, driverID.ToString());
-            }
-            drivers.Add(currentDriver);
-        }
-
-
+       
     }
 }
