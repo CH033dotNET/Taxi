@@ -14,10 +14,7 @@ namespace ClientSite.Controllers
 		{
 			UserPagePhoneModel model = new UserPagePhoneModel();
 			if (SessionUser != null)
-			{ 
-				//model.addresses = addressmanager.GetAddressesForUser(SessionUser.Id).ToList();
-				//model.person = personManager.GetPersonByUserId(SessionUser.Id);
-				//model.DroPlaces = orderManager.GetOrdersByUserId(SessionUser.Id).Select(x => x.DropPlace).ToList();
+			{
 				var addresses = ApiRequestHelper.Get<List<AddressDTO>, int>("UserPage", "GetAddressesForUser", SessionUser.Id).Data as List<AddressDTO>;
 				model.addresses = addresses.ToList();
 				model.person = ApiRequestHelper.Get<PersonDTO, int>("UserPage", "GetPersonByUserId", SessionUser.Id).Data as PersonDTO;
@@ -35,7 +32,6 @@ namespace ClientSite.Controllers
 			if (!ModelState.IsValid)
 				return Json(jsonNeOk);
 
-			//personManager.UpdatePhoneFMLnames(person);
 			var update = ApiRequestHelper.postData<PersonDTO>("UserPage", "UpdatePhoneFMLnames", person).Data as PersonDTO;
 
 			return Json(jsonOk);

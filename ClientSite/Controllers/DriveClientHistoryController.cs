@@ -18,7 +18,6 @@ namespace ClientSite.Controllers
 
 		public JsonResult GetHistory()
 		{
-			//var clientDriveHistory = orderManager.GetOrders();
 			var clientDriveHistory = ApiRequestHelper.Get<List<OrderDTO>,int>("DriveClientHistory", "GetOrders", 1).Data as List<OrderDTO>;
 			return Json(clientDriveHistory, JsonRequestBehavior.AllowGet);
 		}

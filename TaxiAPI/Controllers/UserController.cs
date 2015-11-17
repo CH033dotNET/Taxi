@@ -25,10 +25,6 @@ namespace TaxiAPI.Controllers
 		public HttpResponseMessage GetPersonByUserId(int data)
 		{
 			var person = personManager.GetPersonByUserId(data);
-			if (person == null)
-			{
-				return Request.CreateResponse(HttpStatusCode.NotFound, person);
-			}
 
 			return Request.CreateResponse(HttpStatusCode.OK, person);
 		}
