@@ -381,3 +381,10 @@ margin:0px;
     text-decoration:none;
    color:white;
 }
+
+.login-btn{
+    padding-right: 5px;
+}
+#reg-btn{
+    width: 250px;
+}
