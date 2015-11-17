@@ -326,6 +326,14 @@ namespace BAL.Manager
 
 			return driversDTO;
 		}
+
+
+        public IQueryable<User> GetQueryableDrivers()
+        {
+            return uOW.UserRepo.All.Where(x => x.RoleId == (int)AvailableRoles.Driver);
+        }
+
+
 		public List<UserDTO> GetDriversExceptCurrent(int id)
 		{
 			//List<User> drivers = uOW.UserRepo.All.Where(x => x.RoleId == (int)AvailableRoles.Driver).ToList();

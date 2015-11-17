@@ -524,6 +524,7 @@
     <Content Include="Views\Settings\_ErrorDistrictPartial.cshtml" />
     <Content Include="Views\ReportCharts\Index.cshtml" />
     <Content Include="Views\ReportCharts\DistrictReportsPerYear.cshtml" />
+    <Content Include="Views\ReportCharts\ChartOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

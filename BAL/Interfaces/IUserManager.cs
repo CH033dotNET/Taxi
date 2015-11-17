@@ -11,6 +11,7 @@ namespace BAL.Manager
 		Model.DTO.UserDTO GetById(int id);
 		Model.DTO.UserDTO GetByUserName(string login, string password);
 		System.Collections.Generic.List<Model.DTO.UserDTO> GetDrivers();
+        System.Linq.IQueryable<Model.User> GetQueryableDrivers();
 		System.Collections.Generic.List<Model.DTO.UserDTO> GetDriversExceptCurrent(int id);
 		Model.DTO.Pager<Model.DTO.UserDTO> GetUserPage(string searchString, int page, int pageSize, int roleId);
 		System.Collections.Generic.IEnumerable<Model.DTO.UserDTO> GetUsers();
