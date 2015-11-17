@@ -262,7 +262,7 @@ namespace MainSaite.Controllers
 			}
 			else
 			{
-				var response = ApiRequestHelper.PostObject<CarDTO>("Cars", "PostCar", car);
+				var response = ApiRequestHelper.PostCar<CarDTO>("Cars", "PostCar", car);
 				DriversCars = ApiRequestHelper.GetById<List<CarDTO>>("Cars", "GetCarsBy", userId).Data as List<CarDTO>;
 				//carManager.addCar(car);
 				//DriversCars = carManager.getCarsByUserID(userId);
@@ -329,7 +329,7 @@ namespace MainSaite.Controllers
 			}
 			else
 			{
-				var newCar = ApiRequestHelper.PostObject<CarDTO>("Cars","PutCar", car);
+				var newCar = ApiRequestHelper.PostCar<CarDTO>("Cars","PutCar", car);
 				//var newCar = carManager.EditCar(car);
 				if (newCar.StatusCode.ToString() != "Created")
 				{

@@ -44,6 +44,17 @@ namespace Common.Helpers
 
 			return result;
 		}
+		//!!!
+		public IRestResponse<T> GetById<T>(string controller, string method, int id, string parameter) where T : new()
+		{
+			var request = new RestRequest(string.Format("{0}/{1}",controller, method),Method.GET);
+			request.AddParameter("userid", id);
+			request.AddParameter("parameter", parameter);
+
+			var result = client.ExecuteAsGet<T>(request, "GetCarsBy");
+
+			return result;
+		}
 
 		public IRestResponse<T> Get<T, T2>(string controller, string method, T2 data) where T : new()
 		{
@@ -102,6 +113,18 @@ namespace Common.Helpers
 
 			return result;
 		}
+
+		public IRestResponse<T> PutById<T>(string controller, string method, int id, int id2) where T : new()
+		{
+			var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.PUT);
+			request.AddParameter("id", id);
+			request.AddParameter("id2", id2);
+
+			var result = client.Execute<T>(request);
+			return result;
+		}
+
+
 		//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         public IRestResponse<List<T>> GetAll<T>(string controller, string method) where T : new()
@@ -161,6 +184,16 @@ namespace Common.Helpers
 			request.AddBody(modelObj);
 			var result = client.Execute<T>(request);
 
+			return result;
+		}
+
+		public IRestResponse<T> PostCar<T>(string controller, string method, T car) where T : new()
+		{
+			var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.POST);
+			request.AddObject(car);
+			request.RequestFormat = DataFormat.Json;
+			//request.AddParameter("Application/Json", JsonConvert.SerializeObject(data), ParameterType.RequestBody);
+			var result = client.Execute<T>(request);
 			return result;
 		}
 

@@ -61,7 +61,7 @@
 @* Waiting Orders *@
 <script id="waitingOrderTemplate" type="text/x-handlebars-template">
             {{#each waitingOrders}}
-            <tr>
+            <tr id="{{Id}}">
                 <td>{{FirsName}}</td>
                 <td>{{PeekPlace}}</td>
                 <td>{{DropPlace}}</td>
@@ -72,15 +72,15 @@
             </tr>
             {{/each}}
     {{#if waitingOrder}}
-    <tr>
-            <td>{{FirstName}}</td> @*How to extract First Name*@
-            <td>{{waitingOrder.PeekPlace}}</td>
-            <td>{{waitingOrder.DropPlace}}</td>
-            <td>{{PrettifyDate OrderTime}}</td>
-            <td>
-                <button class="btn btn-danger" data-orderid="{{waitingOrder.OrderId}}" data-status="5" id="waitingOrders" onclick="setOrderStatus(this)">@Resources.Resource.Denied</button>
-            </td>
-        </tr>
+	<tr id="{{waitingOrder.Id}}">
+		<td>{{FirstName}}</td> @*How to extract First Name*@
+		<td>{{waitingOrder.PeekPlace}}</td>
+		<td>{{waitingOrder.DropPlace}}</td>
+		<td>{{PrettifyDate OrderTime}}</td>
+		<td>
+			<button class="btn btn-danger" data-orderid="{{waitingOrder.OrderId}}" data-status="5" id="waitingOrders" onclick="setOrderStatus(this)">@Resources.Resource.Denied</button>
+		</td>
+	</tr>
         {{/if}}
     </script>
 

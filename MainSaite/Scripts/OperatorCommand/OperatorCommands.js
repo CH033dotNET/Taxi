@@ -4,7 +4,7 @@ var driverHub
 $(function () {
     GetOrders();
     GetDrRequest();
-    GetAwaitOrders()
+    GetAwaitOrders();
 
     driverHub = $.connection.DriverHub;
     operatorHub = $.connection.OperatorHub;
@@ -14,7 +14,7 @@ $(function () {
         swal('Message from '+userName+':', message, 'success');
     };
 
-
+	// function that takes an object as an input parameter from a hub call and appends a waitingOrder table with its data.
     operatorHub.client.addWaitingOrder = function (newWaitOrder)
     {
         var waitingOrders = $('#waitingOrdersContent');
@@ -23,7 +23,31 @@ $(function () {
         var wrapper = { waitingOrder: newWaitOrder };
         var html = template(wrapper);
         waitingOrders.append(html);
+        getOrderRed(newWaitOrder.Id);
     }
+	// function that takes an awating order id as parameter and mark a row containing this order as expired.
+    function getOrderRed(id) {
+    	var rowToPaint = document.getElementById(id);
+    	if (rowToPaint.className == null || rowToPaint.className == undefined) {
+    		setTimeout(function () { rowToPaint.className = "expiredOrderClass"; }, 300000)
+    	}
+    	else {
+    		setTimeout(function () { rowToPaint.className = rowToPaint.className + " expiredOrderClass"; }, 300000)
+    	}
+    }
+	//! Don`t touch this. +_+
+    function checkExpiredOrders() {
+    	var timeNow = new Date();
+    	var awaitingOrders = $('#waitingOrdersContent'); // array of awating orders here. Need glodal variable to store current lists
+    	for (var i = 0; i < awaitingOrders.length; i++) {
+    		if (awaitingOrders[i].OrderTime != timeNow) {
+    			var orderTime = awaitingOrders[i].OrderTime;
+    			var dateDiff = Math.abs(orderTime - timeNow);
+    			alert(dateDiff);
+    		}
+    	}
+    }
+
     operatorHub.client.removeNewOrders = function (removeOrder)
     {
        // Remove neworder after sending
