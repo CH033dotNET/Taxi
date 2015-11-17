@@ -1,12 +1,17 @@
 ﻿@{
     ViewBag.Title = "HighchartsDemo1";
 }
+<link rel="stylesheet" href="~/Content/HighchartsCustomStyles/PageCustomisation.css" type="text/css" />
 <div>
 	<div class="page-header">
 		<h1>[Our statistics]</h1>
 	</div>
 	<div class="container-fluid">
 		<ul class="nav nav-tabs nav-justified">
+			<li>
+				<a href="~/" class="btn btn-info">@Resources.Resource.MainLink</a>
+				@*@Html.ActionLink(Resources.Resource.MainLink, "Index", "Home")*@
+			</li>
 			<li role="presentation" class="active">
 				<a data-toggle="tab" href="#Chart1">[Chart1]</a>
 			</li>
@@ -35,12 +40,12 @@
 	</div>
 	<div>
 		<div id="reports-content" class="tab-content">
-			<div id="Chart1" class="tab-pane fade">
+			<div id="Chart1" class="tab-pane fade in active">
 				<p>
 					[death]
 					@*@{
-							Html.RenderAction("", "");
-						}*@
+					Html.RenderAction("", "");
+				}*@
 				</p>
 			</div>
 			<div id="Chart2" class="tab-pane fade">

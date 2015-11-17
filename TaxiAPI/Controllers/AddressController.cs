@@ -25,9 +25,9 @@ namespace TaxiAPI.Controllers
 		public HttpResponseMessage GetAddressesForUser(int data)
 		{
 			var addresses = addressmanager.GetAddressesForUser(data);
-			if (addresses.Count() < 1)
+			if (addresses.Count() == 0)
 			{
-				return Request.CreateResponse(HttpStatusCode.NotFound, addresses);
+				return Request.CreateResponse(HttpStatusCode.NoContent, addresses);
 			}
 
 			return Request.CreateResponse(HttpStatusCode.OK, addresses);
@@ -38,9 +38,9 @@ namespace TaxiAPI.Controllers
 		public HttpResponseMessage GetById(int data)
 		{
 			var addresses = addressmanager.GetById(data);
-			if (addresses == null)
+			if (addresses.AddressId == 0)
 			{
-				return Request.CreateResponse(HttpStatusCode.NotFound, addresses);
+				return Request.CreateResponse(HttpStatusCode.NoContent, addresses);
 			}
 			return Request.CreateResponse(HttpStatusCode.OK, addresses);
 		}
@@ -67,7 +67,7 @@ namespace TaxiAPI.Controllers
 			var myAddress = addressmanager.UpdateAddress(data);
 			if (myAddress == null)
 			{
-				return Request.CreateResponse(HttpStatusCode.NotFound, myAddress);
+				return Request.CreateResponse(HttpStatusCode.NoContent, myAddress);
 			}
 			return Request.CreateResponse(HttpStatusCode.OK, myAddress);
 		}
@@ -77,10 +77,6 @@ namespace TaxiAPI.Controllers
 		public HttpResponseMessage AddAddress(AddressDTO data)
 		{
 			var myAddress = addressmanager.AddAddress(data);
-			if (myAddress == null)
-			{
-				return Request.CreateResponse(HttpStatusCode.NotFound, myAddress);
-			}
 			return Request.CreateResponse(HttpStatusCode.OK, myAddress);
 		}
 

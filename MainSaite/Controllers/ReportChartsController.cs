@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace MainSaite.Controllers
 {
-    public class ReportChartsController : Controller
+    public class ReportChartsController : BaseController
     {
         //
         // GET: /ReportCharts/

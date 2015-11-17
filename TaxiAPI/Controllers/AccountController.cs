@@ -8,6 +8,7 @@ using System.Web.Http;
 using RestSharp;
 using Model.DTO;
 using Common.Helpers;
+using Model.DB;
 
 
 namespace TaxiAPI.Controllers
@@ -41,10 +42,6 @@ namespace TaxiAPI.Controllers
 			{
 				person = personManager.InsertPerson(new PersonDTO() { UserId = data, ImageName = "item_0_profile.jpg" });
 			}
-			/* if (!System.IO.File.Exists(Server.MapPath(@"~\Images\") + currentPerson.ImageName))
-			 {
-				 personManager.DefaultImage(user.Id);
-			 }*/
 			return Request.CreateResponse(HttpStatusCode.OK, person);
 		}
 
@@ -53,7 +50,6 @@ namespace TaxiAPI.Controllers
 		public HttpResponseMessage IfUserNameExists(string data)
 		{
 			var exist = userManager.IfUserNameExists(data);
-			if (exist == null) return Request.CreateResponse(HttpStatusCode.NotFound, exist);
 			return Request.CreateResponse(HttpStatusCode.OK, exist);
 		}
 
@@ -62,7 +58,6 @@ namespace TaxiAPI.Controllers
 		public HttpResponseMessage IfEmailExists(string data)
 		{
 			var exist = userManager.IfEmailExists(data);
-			if (exist == null) return Request.CreateResponse(HttpStatusCode.NotFound, exist);
 			return Request.CreateResponse(HttpStatusCode.OK, exist);
 		}
 
@@ -71,7 +66,6 @@ namespace TaxiAPI.Controllers
 		public HttpResponseMessage IsUserNameCorrect(string data)
 		{
 			var exist = userManager.IsUserNameCorrect(data);
-			if (exist == null) return Request.CreateResponse(HttpStatusCode.NotFound, exist);
 			return Request.CreateResponse(HttpStatusCode.OK, exist);
 		}
 
@@ -80,16 +74,15 @@ namespace TaxiAPI.Controllers
 		public HttpResponseMessage DefaultImage(int data)
 		{
 			var defImg = personManager.DefaultImage(data);
-			if (defImg == null) return Request.CreateResponse(HttpStatusCode.NotFound, defImg);
+			if (defImg == null) return Request.CreateResponse(HttpStatusCode.NoContent, defImg);
 			return Request.CreateResponse(HttpStatusCode.OK, defImg);
 		}
 
 		[HttpPost]
 		[Route("api/Account/InsertUser")]
-		public HttpResponseMessage InsertUser(UserDTO data)
+		public HttpResponseMessage InsertUser(RegistrationModel data)
 		{
 			var IsInsert = userManager.InsertUser(data);
-			if (IsInsert == null) return Request.CreateResponse(HttpStatusCode.NotFound, IsInsert);
 			return Request.CreateResponse(HttpStatusCode.OK, IsInsert);
 		}
 
@@ -98,7 +91,6 @@ namespace TaxiAPI.Controllers
 		public HttpResponseMessage InsertPerson(PersonDTO data)
 		{
 			var IsInsert = personManager.InsertPerson(data);
-			if (IsInsert == null) return Request.CreateResponse(HttpStatusCode.NotFound, IsInsert);
 			return Request.CreateResponse(HttpStatusCode.OK, IsInsert);
 		}
 

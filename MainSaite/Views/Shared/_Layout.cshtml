@@ -84,14 +84,16 @@
                             @if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
                             {
                             <li class="list-group-item">@Html.ActionLink(Resources.Resource.Districts, "DistrictEditor", "Settings")</li>
-                                  <li class="list-group-item">@Html.ActionLink(@Resources.Resource.UserMenu, "UsersMenu", "Settings")</li>
+                                <li class="list-group-item">@Html.ActionLink(@Resources.Resource.UserMenu, "UsersMenu", "Settings")</li>
                                 <li class="list-group-item">@Html.ActionLink(@Resources.Resource.Tarifes, "Index", "Tarif")</li>
                                 <li class="list-group-item">@Html.ActionLink(Resources.Resource.Order, "Index", "Order")</li>
                             }
 
                         @if (ViewBag.UserRoleId == (int)AvailableRoles.Client || ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.ReportViewer)
                         {
-                            <li class="list-group-item">@Html.ActionLink(@Resources.Resource.MyAccount, "Index", "User")</li>}
+                            <li class="list-group-item">@Html.ActionLink(@Resources.Resource.MyAccount, "Index", "User")</li>
+							<li class="list-group-item">@Html.ActionLink("[Statistics]", "Index", "ReportCharts")</li>
+						}
                         @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver)
                         {
                             <li class="list-group-item">@Html.ActionLink(@Resources.Resource.CarEditor, "CarPark", "Cars")</li>}
@@ -110,7 +112,6 @@
                             <li class="list-group-item">@Html.ActionLink(@Resources.Resource.SetVIPStatusPage, "SetVIPStatus", "Settings")</li>
                             <li class="list-group-item">@Html.ActionLink(@Resources.Resource.WorkShift, "ViewWorkShifts", "Administration")</li>
                         }
-
                     </ul>
                 </div>
             </div>

@@ -22,9 +22,9 @@ namespace TaxiAPI.Controllers
 		public HttpResponseMessage GetOrders(int data)
 		{
 			var orders = orderManager.GetOrders();
-			if (orders == null)
+			if (orders.Count() == 0)
 			{
-				Request.CreateResponse(HttpStatusCode.NotFound, orders);
+				Request.CreateResponse(HttpStatusCode.NoContent, orders);
 			}
 
 			return Request.CreateResponse(HttpStatusCode.OK, orders);

@@ -21,7 +21,6 @@ namespace ClientSite.Controllers
 			if (currentUser == null)
 				RedirectToAction("Registration", "Account");
 
-			//var currentPerson = personManager.GetPersonByUserId(currentUser.Id);
 			var currentPerson = ApiRequestHelper.Get<PersonDTO, int>("User", "GetPersonByUserId", currentUser.Id).Data as PersonDTO;
 
 			if (currentPerson == null)
@@ -48,7 +47,6 @@ namespace ClientSite.Controllers
 			person.UserId = currentUser.Id;
 			person.User = currentUser;
 
-			//personManager.EditPerson(person);
 			var myPerson = ApiRequestHelper.postData<PersonDTO>("User", "EditPerson", person).Data as PersonDTO;
 			SessionUser = currentUser;
 			ViewBag.ImageName = person.ImageName;
@@ -63,7 +61,6 @@ namespace ClientSite.Controllers
 		private void UploudImage(PersonDTO person, FormCollection formCollection, UserDTO currentUser)
 		{
 
-			//person.ImageName = personManager.GetPersonByUserId(currentUser.Id).ImageName;
 			var currentPerson = ApiRequestHelper.Get<PersonDTO, int>("User", "GetPersonByUserId", currentUser.Id).Data as PersonDTO;
 			person.ImageName = currentPerson.ImageName;
 
@@ -81,8 +78,6 @@ namespace ClientSite.Controllers
 					{
 						var myResponse = ApiRequestHelper.postData<PersonDTO, string>("User", "ImageDelete", person, mapImage).Data as PersonDTO;
 					}
-						
-						//imageUpload.DeleteFile(person.ImageName, profileAvatar, mapImage);
 
 					// rename, resize, and upload
 					//return object that contains {bool Success,string ErrorMessage,string ImageName}
