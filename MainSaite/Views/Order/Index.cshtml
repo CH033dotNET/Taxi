@@ -39,8 +39,8 @@
                 <td>{{DropPlace}}</td>
                 <td>{{PrettifyDate OrderTime}}</td>
                 <td>
-                    <button class="btn btn-success" data-orderid="{{OrderId}}" data-status="1" id="submitOrdering" onclick="setOrderStatus(this)">@Resources.Resource.Confirm</button>
-                    <button class="btn btn-danger" data-orderid="{{OrderId}}" data-status="2" id="deniedOrdering" onclick="setOrderStatus(this)">@Resources.Resource.Denied</button>
+                    <button class="btn btn-success" data-orderid="{{OrderId}}" data-status="1" id="submitOrdering{{OrderId}}" onclick="setOrderStatus(this)">@Resources.Resource.Confirm</button>
+                    <button class="btn btn-danger" data-orderid="{{OrderId}}" data-status="2" id="deniedOrdering{{OrderId}}" onclick="setOrderStatus(this)">@Resources.Resource.Denied</button>
                 </td>
             </tr>
             {{/each}}
@@ -51,8 +51,8 @@
                 <td>{{object.DropPlace}}</td>
                 <td>{{PrettifyDate OrderTime}}</td>
                 <td>
-                    <button class="btn btn-success" data-orderid="{{OrderId}}" data-status="1" id="submitOrdering" onclick="setOrderStatus(this)">@Resources.Resource.Confirm</button>
-                    <button class="btn btn-danger" data-orderid="{{OrderId}}" data-status="2" id="deniedOrdering" onclick="setOrderStatus(this)">@Resources.Resource.Denied</button>
+                    <button class="btn btn-success" data-orderid="{{object.Id}}" data-status="1" id="submitOrdering{{object.Id}}" onclick="setOrderStatus(this)">@Resources.Resource.Confirm</button>
+                    <button class="btn btn-danger" data-orderid="{{object.Id}}" data-status="2" id="deniedOrdering{{object.Id}}" onclick="setOrderStatus(this)">@Resources.Resource.Denied</button>
                 </td>
             </tr>
             {{/if}}
@@ -78,7 +78,7 @@
 		<td>{{waitingOrder.DropPlace}}</td>
 		<td>{{PrettifyDate OrderTime}}</td>
 		<td>
-			<button class="btn btn-danger" data-orderid="{{waitingOrder.OrderId}}" data-status="5" id="waitingOrders" onclick="setOrderStatus(this)">@Resources.Resource.Denied</button>
+			<button class="btn btn-danger" data-orderid="{{waitingOrder.Id}}" data-status="5" id="waitingOrders" onclick="setOrderStatus(this)">@Resources.Resource.Denied</button>
 		</td>
 	</tr>
         {{/if}}
@@ -93,8 +93,8 @@
                 <td>{{WaitingTime}}</td>
                 <td>{{DriverId}}</td>
                 <td>
-                    <button class="btn btn-success" data-orderid="{{OrderId}}" data-status="4" id="submitDrRequest" onclick="setOrderStatus(this)">@Resources.Resource.Confirm</button>
-                    <button class="btn btn-danger" data-orderid="{{OrderId}}" data-status="2" id="deniedDrRequest" onclick="setOrderStatus(this)">@Resources.Resource.Denied</button>
+                    <button class="btn btn-success" data-orderid="{{OrderId}}" data-status="4" id="submitDrRequest{{OrderId}}" onclick="setOrderStatus(this)">@Resources.Resource.Confirm</button>
+                    <button class="btn btn-danger" data-orderid="{{OrderId}}" data-status="6" id="deniedDrRequest{{OrderId}}" onclick="setOrderStatus(this)">@Resources.Resource.Denied</button>
                 </td>
             </tr>
             {{/each}}
@@ -105,8 +105,8 @@
         <td>{{request.WaitingTime}}</td>
         <td>{{request.DriverId}}</td>
         <td>
-            <button class="btn btn-success" data-orderid="{{request.Id}}" data-status="4" id="submitDrRequest" onclick="setOrderStatus(this)">@Resources.Resource.Confirm</button>
-            <button class="btn btn-danger" data-orderid="{{request.Id}}" data-status="2" id="deniedDrRequest" onclick="setOrderStatus(this)">@Resources.Resource.Denied</button>
+            <button class="btn btn-success" data-orderid="{{request.Id}}" data-status="4" id="submitDrRequest{{request.Id}}" onclick="setOrderStatus(this)">@Resources.Resource.Confirm</button>
+            <button class="btn btn-danger" data-orderid="{{request.Id}}" data-status="6" id="deniedDrRequest{{request.Id}}" onclick="setOrderStatus(this)">@Resources.Resource.Denied</button>
         </td>
     </tr>
     {{/if}}

@@ -25,10 +25,22 @@ $(function () {
         var html = template(wrapper);
         content.append(html);
     }
+
+    operatorHub.client.removeAwaitOrders = function (ordereId) {
+        $('#submitButton' + ordereId).closest('tr').remove();
+    }
     operatorHub.client.confirmDrRequest = function ()
-    {
+    { 
         $('.successDriverOrder').click();
     }
+
+    operatorHub.client.deniedDrRequest = function ()
+    {
+        debugger;
+           $('.deniedDriverOrder').click();
+           isOrdered = false;
+    }
+
     //Open connection
     $.connection.hub.start().done(function () {
         // LogIn
@@ -88,6 +100,7 @@ function Assign() {
                 $(".submitButton").attr("disabled", "disabled");
                 isOrdered = true;
                 driverHub.server.assignedOrder(data);
+                //driverHub.server.reservOrder(innerId);
             }
         });
     }
