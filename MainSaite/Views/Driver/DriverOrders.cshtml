@@ -91,7 +91,7 @@
             <td>{{PrettifyDate OrderTime}}</td>
             <td>{{PeekPlace}}</td>
             <td>{{DropPlace}}</td>
-            <td> <button type="button" class="submitButton btn btn-success" data-orderid="{{Id}}" data-toggle="modal" data-target="#Asign" onclick="saveOrderId(this)">@Resources.Resource.Confirm</button> </td>
+            <td> <button type="button" class="submitButton btn btn-success" id="submitButton{{Id}}" data-orderid="{{Id}}" data-toggle="modal" data-target="#Asign" onclick="saveOrderId(this)">@Resources.Resource.Confirm</button> </td>
         </tr>      
         {{/each}}
         {{#if newOrder}}
@@ -99,7 +99,7 @@
             <td>{{PrettifyDate OrderTime}}</td>
             <td>{{newOrder.PeekPlace}}</td>
             <td>{{newOrder.DropPlace}}</td>
-            <td> <button type="button" class="submitButton btn btn-success" data-orderid="{{newOrder.Id}}" data-toggle="modal" data-target="#Asign" onclick="saveOrderId(this)">@Resources.Resource.Confirm</button> </td>
+            <td> <button type="button" class="submitButton btn btn-success" id="submitButton{{newOrder.Id}}" data-orderid="{{newOrder.Id}}" data-toggle="modal" data-target="#Asign" onclick="saveOrderId(this)">@Resources.Resource.Confirm</button> </td>
         </tr>
         {{/if}}
 

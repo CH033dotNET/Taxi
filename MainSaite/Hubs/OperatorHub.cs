@@ -30,10 +30,10 @@ namespace MainSaite.Hubs
         {
             Clients.Group("Operator").addWaitingOrder(order);
         }
-        [HubMethodName("removeNewOrder")]
-        public void RemoveNewOrder(OrderDTO order)
+		[HubMethodName("removeAwaitOrder")]
+        public void RemoveAwaitOrder(string orderId)
         {
-            //Clients.All.removeNewOrders(order);
+			Clients.Group("Driver").removeAwaitOrders(orderId);
         }
         [HubMethodName("confirmRequest")]
         public void ConfirmRequest(int driverID)
@@ -41,6 +41,14 @@ namespace MainSaite.Hubs
 			var driverConnectionId = operatorHubUsers.FirstOrDefault(x => x.UserId == driverID).ConnectionId;
 			Clients.Client(driverConnectionId).confirmDrRequest();
         }
+
+
+		[HubMethodName("deniedRequest")]
+		public void DeniedRequest(int driverID)
+		{
+			var driverConnectionId = operatorHubUsers.FirstOrDefault(x => x.UserId == driverID).ConnectionId;
+			Clients.Client(driverConnectionId).deniedDrRequest();
+		}
 
         [HubMethodName("connectUser")]
         public void ConnectUser(int roleId, int userId)

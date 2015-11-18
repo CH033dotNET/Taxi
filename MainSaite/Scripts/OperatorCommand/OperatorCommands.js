@@ -96,17 +96,17 @@ function setOrderStatus(e) {
                 status: Status
             },
             success: function (data) {
-                debugger;
-                console.log(data);
                 switch (Status) {
                        case "1": {
                            operatorHub.server.orderForDrivers(data);
                            operatorHub.server.waitingOrderOp(data);
-                          // operatorHub.server.removeNewOrder(data);
+                           $(e).closest('tr').remove();
                            break;
                        }
-                    case "2": {/*Here we should provide Denied functions*/ break; }
-                    case "4": { operatorHub.server.confirmRequest(data.DriverId); break; }
+                    case "2": { $(e).closest('tr').remove(); break; }
+                    case "4": { operatorHub.server.confirmRequest(data.DriverId); $(e).closest('tr').remove(); break; }
+                    case "5": { operatorHub.server.removeAwaitOrder(OrderId); $(e).closest('tr').remove(); break; }
+                    case "6": { operatorHub.server.deniedRequest(data.DriverId); $(e).closest('tr').remove(); break; }
                     default: break;
                 }
             }
