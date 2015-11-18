@@ -27,19 +27,6 @@ namespace DriverSite.Controllers
 			}
 		}
 
-
-		public PersonDTO SessionPerson
-		{
-			get
-			{
-				return Session["Person"] as PersonDTO;
-			}
-			set
-			{
-				Session["Person"] = value;
-			}
-		}
-
 		public UserDTO SessionUser
 		{
 			get
@@ -78,7 +65,7 @@ namespace DriverSite.Controllers
 			{
 				UserDTO user = SessionUser;
 				ViewBag.UserRoleId = user.Role.Id;
-				ViewBag.ImageName = SessionPerson.ImageName;
+				//ViewBag.ImageName = SessionPerson.ImageName;
 			}
 
 			if (SessionCordinates == null)

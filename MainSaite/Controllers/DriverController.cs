@@ -49,13 +49,6 @@ namespace MainSaite.Controllers
 				return View();
 			}
 		}
-
-		public ActionResult DistrictPart()
-		{
-			ViewBag.Districts = locationManager.GetDriverDistrictInfo(4);
-            Tarifes = tarifManager.GetTarifes().ToList();
-			return PartialView(carManager.GetWorkingDrivers());
-		}
 		/// <summary>
 		/// Checks if there are uncompleted workshifts for current Driver
 		/// </summary>

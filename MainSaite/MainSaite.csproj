@@ -186,7 +186,6 @@
     <Compile Include="App_Start\SimpleInjectorDependency.cs" />
     <Compile Include="Controllers\CarsController.cs" />
     <Compile Include="Controllers\DriveClientHistoryController.cs" />
-    <Compile Include="Controllers\DrivingSimulationController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ReportChartsController.cs" />
     <Compile Include="Helpers\DriverLocationHelper.cs" />
@@ -204,10 +203,8 @@
     <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\ClientServiceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\DriverController.cs" />
-    <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\TarifController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -486,14 +483,11 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Driver\Index.cshtml" />
     <Content Include="Views\Settings\SetVIPStatus.cshtml" />
-    <Content Include="Views\Location\EditLocation.cshtml" />
-    <Content Include="Views\Driver\DistrictPart.cshtml" />
     <Content Include="Views\Tarif\Index.cshtml" />
     <Content Include="Views\Tarif\Create.cshtml" />
     <Content Include="Views\Tarif\Edit.cshtml" />
     <Content Include="Views\Administration\ViewWorkShifts.cshtml" />
     <Content Include="Views\Settings\EditDistrict.cshtml" />
-    <Content Include="Views\ClientService\PeekClient.cshtml" />
     <Content Include="Views\Shared\_UserPageLayout.cshtml" />
     <Content Include="Views\UserPage\Index.cshtml" />
     <Content Include="Views\Settings\_UserTable.cshtml" />
@@ -514,7 +508,6 @@
     <Content Include="Views\Cars\_GiveCarPartial.cshtml" />
     <Content Include="Views\Cars\_ReturnCarPartial.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
-    <Content Include="Views\DrivingSimulation\Index.cshtml" />
     <Content Include="Views\User\_EditPersonInfo.cshtml" />
     <Content Include="Views\Shared\_AjaxEditPersonInfo.cshtml" />
     <Content Include="Views\DriveClientHistory\ShowHistory.cshtml" />

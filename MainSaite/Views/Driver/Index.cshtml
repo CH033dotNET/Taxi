@@ -67,16 +67,16 @@
     <div>
         <div id="driver-content" class="tab-content">
             <div id="Home" class="tab-pane fade">
-                @{
+                
                     Html.RenderAction("Index", "DrivingSimulation");
-                }
+               
 
             </div>
             <div id="Settings" class="tab-pane fade">
                 <p>
-                    @{
+                    
                         Html.RenderAction("EditLocation", "Location");
-                    }
+                   
                 </p>
             </div>
             <div id="Messages" class="tab-pane fade">
@@ -92,16 +92,14 @@
                     @Resources.Resource.District
                 </h2>
                 <p>
-                    @{
+                    
                         Html.RenderAction("DistrictPart", "Driver");
-                    }
+                   
                 </p>
             </div>
             <div id="ClientService" class="tab-pane fade">
                 <p>
-                    @{
                         Html.RenderAction("PeekClient", "ClientService");
-                    }
                 </p>
             </div>
         </div>
