@@ -89,11 +89,10 @@
                                 <li class="list-group-item">@Html.ActionLink(Resources.Resource.Order, "Index", "Order")</li>
                             }
 
-                        @if (ViewBag.UserRoleId == (int)AvailableRoles.Client || ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.ReportViewer)
+                        @if (ViewBag.UserRoleId == (int)AvailableRoles.ReportViewer)
                         {
                             <li class="list-group-item">@Html.ActionLink(@Resources.Resource.MyAccount, "Index", "User")</li>
 							<li class="list-group-item">@Html.ActionLink("[Statistics]", "Index", "ReportCharts")</li>
-                            <li class="list-group-item">@Html.ActionLink("[Order Statistics]", "ChartOrders", "ReportCharts")</li>
 						}
                         @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver)
                         {
