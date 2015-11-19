@@ -142,6 +142,11 @@ namespace BAL.Manager
 			}
 			return null;
 		}
+		public IQueryable<IGrouping<int, OrderDTO>> GetTop10()
+		{
+			var top10 = GetOrders().GroupBy(x => x.PersonId).OrderByDescending(o => o.Select(y => y.PersonId).Count()).Take(10);
+			return top10.AsQueryable();
+		}
 	}
 
 }

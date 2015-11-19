@@ -1520,6 +1520,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Diagrama of orders.
+        /// </summary>
+        public static string OrderDiagrama {
+            get {
+                return ResourceManager.GetString("OrderDiagrama", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order Taxi.
         /// </summary>
         public static string OrderTaxi {

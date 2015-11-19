@@ -1,4 +1,6 @@
-﻿@{
+﻿@using DotNet.Highcharts
+@model Highcharts
+@{
     ViewBag.Title = "HighchartsDemo1";
 }
 <link rel="stylesheet" href="~/Content/HighchartsCustomStyles/PageCustomisation.css" type="text/css" />
@@ -22,7 +24,8 @@
                 <a data-toggle="tab" href="#Chart3">[Chart3]</a>
             </li>
             <li role="presentation">
-                <a data-toggle="tab" href="#Chart4">[Chart4]</a>
+                <a data-toggle="tab" href="#Chart4">@Resources.Resource.OrderDiagrama</a>
+              
             </li>
             <li role="presentation">
                 <a data-toggle="tab" href="#Chart5">[Chart5]</a>
@@ -49,9 +52,7 @@
                 </p>
             </div>
             <div id="Chart2" class="tab-pane fade">
-                @{
-                    Html.RenderAction("DistrictReportsPerYear", "ReportCharts");
-                }
+               
             </div>
             <div id="Chart3" class="tab-pane fade">
                 <p>
@@ -62,16 +63,9 @@
                 </p>
             </div>
             <div id="Chart4" class="tab-pane fade">
-                <p>
-
-       [death]
-                    @*@{
-                Html.RenderAction("", "");
-        }*@
-   
-
-
-                </p>
+                    @{
+                        Html.RenderPartial("TopOrderingClientsPartial");
+                     }
             </div>
             <div id="Chart5" class="tab-pane fade">
                 <p>
