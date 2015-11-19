@@ -104,7 +104,7 @@ namespace MainSaite.Controllers
 
         public ActionResult ChartOrders()
         {
-            Highcharts orders = new Highcharts("SomehartID");
+            Highcharts orders = new Highcharts("OrderID");
             orders.SetTitle(new Title() { Text = "Orders" });
             orders.SetYAxis(new YAxis
             {
