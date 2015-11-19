@@ -187,6 +187,14 @@
     <Compile Include="Migrations\201511051347082_IsConfirm int orders.Designer.cs">
       <DependentUpon>201511051347082_IsConfirm int orders.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511181928299_Orders+districts.cs" />
+    <Compile Include="Migrations\201511181928299_Orders+districts.Designer.cs">
+      <DependentUpon>201511181928299_Orders+districts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511191600039_OrderTweaks.cs" />
+    <Compile Include="Migrations\201511191600039_OrderTweaks.Designer.cs">
+      <DependentUpon>201511191600039_OrderTweaks.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -307,6 +315,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511051347082_IsConfirm int orders.resx">
       <DependentUpon>201511051347082_IsConfirm int orders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511181928299_Orders+districts.resx">
+      <DependentUpon>201511181928299_Orders+districts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511191600039_OrderTweaks.resx">
+      <DependentUpon>201511191600039_OrderTweaks.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

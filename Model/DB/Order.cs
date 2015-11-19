@@ -11,6 +11,10 @@ namespace Model.DB
 {
 	public class Order
 	{
+		public Order()
+		{
+			this.District = null;
+		}
 
 		[Key]
 		public int Id { get; set; }
@@ -49,5 +53,8 @@ namespace Model.DB
 		[ForeignKey("PersonId")]
 		public virtual Person Person { get; set; }
 		public int PersonId { get; set; }
+		[ForeignKey("DistrictId")]
+		public virtual District District { get; set; }
+		public int? DistrictId { get; set; }
 	}
 }

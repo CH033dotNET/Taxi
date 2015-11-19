@@ -28,6 +28,8 @@ namespace Common.Tools
 		private const int EARTHRADIUD = 6371;
 		private const int ONEDEGREELATITUDE = 111;
 
+        public PriceCounter()
+        { }
 
 		public PriceCounter(List<CoordinatesDTO> coordinatesHistory, List<TarifDTO> tarifes)
 		{

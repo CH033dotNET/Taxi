@@ -775,4 +775,7 @@
   <data name="NoCar" xml:space="preserve">
     <value>Unfortunatly there is no float car right now</value>
   </data>
+  <data name="OrderDiagrama" xml:space="preserve">
+    <value>Diagrama of orders</value>
+  </data>
 </root>

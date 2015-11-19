@@ -209,6 +209,16 @@ namespace DAL.Migrations
 				context.Cars.AddRange(cars);
 				context.SaveChanges();
 			}
+			if (!context.Orders.Any())
+			{
+				var NewOrders = new List<Order>();
+				for (int i = 0; i < 100; i++)
+				{
+					NewOrders.Add(new Order { OrderTime = DateTime.UtcNow, PeekPlace = string.Format("some place {0}", i), DropPlace = string.Format("some other place {0}", i), DriverId = 2, DistrictId = random.Next(1, 7), PersonId = random.Next(1, 25) });
+				}
+				context.Orders.AddRange(NewOrders);
+				context.SaveChanges();
+			}
         }
     }
 }
