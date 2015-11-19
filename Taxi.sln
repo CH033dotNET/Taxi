@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriverSite", "DriverSite\Dr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientSite", "ClientSite\ClientSite.csproj", "{ED7AB565-0110-4C62-AD31-D1E11517A236}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{B8DB1FA7-DFED-42C7-87E2-23525C7674AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{ED7AB565-0110-4C62-AD31-D1E11517A236}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED7AB565-0110-4C62-AD31-D1E11517A236}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED7AB565-0110-4C62-AD31-D1E11517A236}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8DB1FA7-DFED-42C7-87E2-23525C7674AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8DB1FA7-DFED-42C7-87E2-23525C7674AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8DB1FA7-DFED-42C7-87E2-23525C7674AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8DB1FA7-DFED-42C7-87E2-23525C7674AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
