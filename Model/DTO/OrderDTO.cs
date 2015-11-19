@@ -10,6 +10,10 @@ namespace Model.DTO
 {
 	public class OrderDTO
 	{
+		public OrderDTO()
+		{
+			this.District = null;
+		}
 
 		[Key]
 		public int Id { get; set; }
@@ -51,5 +55,9 @@ namespace Model.DTO
 		[ForeignKey("PersonId")]
 		public virtual PersonDTO Person { get; set; }
 		public int PersonId { get; set; }
+
+		[ForeignKey("DistrictId")]
+		public virtual District District { get; set; }
+		public int? DistrictId { get; set; }
 	}
 }

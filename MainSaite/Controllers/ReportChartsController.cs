@@ -13,12 +13,14 @@ namespace MainSaite.Controllers
 {
     public class ReportChartsController : BaseController
     {
+		IDistrictManager districtManager;
         IOrderManager orderManager;
         IUserManager userManager;
-        public ReportChartsController(IOrderManager orderManager, IUserManager userManager)
+		public ReportChartsController(IOrderManager orderManager, IUserManager userManager, IDistrictManager districtManager)
         {
             this.orderManager = orderManager;
             this.userManager = userManager;
+			this.districtManager = districtManager;
         }
         
         //
@@ -27,8 +29,8 @@ namespace MainSaite.Controllers
         { 
             ChartOrders();
             DorinTewst();
-           
-			return View();
+			
+			return View(GrafickOf10TopClients());
         }
 
         private void DorinTewst()
@@ -102,9 +104,18 @@ namespace MainSaite.Controllers
 			return PartialView();
 		}
 
+		public JsonResult GetDistrictReportsPerYear()
+		{
+			var allOrders = orderManager.GetQueryableOrders().Where(x => x.DistrictId != 0 && x.District != null);
+			//var allCompletedOrders = orderManager.GetQueryableOrders().Where(x => x.isFinishedProperty?)
+			var allDistricts = districtManager.GetIQueryableDistricts();
+			var OrdersPerDistrict = allOrders.Join(allDistricts, x => x.DistrictId, y => y.Id, (x, y) => new { dName = y.Name, ordersSum = 1 }).GroupBy(x => x.dName).ToList();
+			return Json(OrdersPerDistrict, JsonRequestBehavior.AllowGet);
+		}
+
         public ActionResult ChartOrders()
         {
-            Highcharts orders = new Highcharts("SomehartID");
+            Highcharts orders = new Highcharts("OrderID");
             orders.SetTitle(new Title() { Text = "Orders" });
             orders.SetYAxis(new YAxis
             {
@@ -117,7 +128,7 @@ namespace MainSaite.Controllers
             var res = ord.Join(drivers, x => x.DriverId, y => y.Id, (x, y) => new { Name = y.UserName, Orders = 1 }).GroupBy(x=>x.Name).ToList();
 
 
-
+			
 
             List<Series> series = new List<Series>();
             List<object> serieData = new List<object>();
@@ -157,6 +168,35 @@ namespace MainSaite.Controllers
             return View();
         }
 
+		public Highcharts GrafickOf10TopClients()
+		{
+			Highcharts chart = new Highcharts("OrdersReport");
+			chart.SetTitle(new Title() { Text = "Order statistic" });
+			chart.SetSubtitle(new Subtitle() { Text = "Top 10 client" });
+			chart.SetYAxis(new YAxis() { Title = new YAxisTitle() { Text = "Income from Orders" } });
+			chart.SetXAxis(new XAxis() { Title = new XAxisTitle() { Text = "Amount of Orders" } });
+			List<Series> series = new List<Series>();
+			List<object[]> data = new List<object[]>();
+			foreach (var client in orderManager.GetTop10())
+			{
+				Series serie = serie = new Series();
+				serie.Type = ChartTypes.Column;
+				serie.Name = client.Select(x => x.Person.FirstName).First(); ;
+				data.Clear();
+				data.Add(new object[] { client.Count(), client.Sum(x => x.TotalPrice) });
+				serie.Data = new Data(data.ToArray());
+				series.Add(serie);
+			}
+			chart.SetSeries(series.ToArray());
+			chart.SetLegend(new Legend()
+			{
+				Align = HorizontalAligns.Right,
+				Layout = Layouts.Vertical,
+				VerticalAlign = VerticalAligns.Top
+			});
+
+			return chart;
+		}
 
     }
 }
