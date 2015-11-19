@@ -33,7 +33,7 @@ namespace MainSaite.Controllers
 			this.coordinatesManager = coordinatesManager;
 			this.userManager = userManager;
 			this.driverLocationHelper = driverLocationHelper;
-			this.coordinatesManager.addedCoords += this.driverLocationHelper.addedLocation;
+			//this.coordinatesManager.addedCoords += this.driverLocationHelper.addedLocation;
 			this.orderManager = orderManager;
             this.tarifManager = tarifManager;
 		}
@@ -74,7 +74,7 @@ namespace MainSaite.Controllers
 					coordinatesManager.AddCoordinates(coordinates);
 				}
 				carManager.StartWorkEvent(Id, TimeStart);
-                driverLocationHelper.addDriver(Id, double.Parse(Latitude, CultureInfo.InvariantCulture), double.Parse(Longitude, CultureInfo.InvariantCulture), DateTime.Now, userManager.GetById(Id).UserName);
+                //driverLocationHelper.addDriver(Id, double.Parse(Latitude, CultureInfo.InvariantCulture), double.Parse(Longitude, CultureInfo.InvariantCulture), DateTime.Now, userManager.GetById(Id).UserName);
 				return Json(true);
 			}
 			catch (DataException)
@@ -98,7 +98,7 @@ namespace MainSaite.Controllers
 				//carManager.EndWorkShiftEvent(user.Id);
 				if (locationManager.GetByUserId(Id) != null)
                     locationManager.DeleteLocation(Id);
-                driverLocationHelper.removeDriver(Id);
+                //driverLocationHelper.removeDriver(Id);
 				return Json(true);
 			}
 			catch (DataException)

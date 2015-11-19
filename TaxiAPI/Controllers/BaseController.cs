@@ -12,7 +12,9 @@ namespace TaxiAPI.Controllers
     public class BaseController : ApiController
     {
 
-		private static RequestHelper requestHelper;
+		private static RequestHelper mainRquestHelper;
+		private static RequestHelper driverRquestHelper;
+		private static RequestHelper clientRquestHelper;
 
 		/// <summary>
 		/// Provides url for connection to MainSite. "______Url" refers to entry in library web.config file.
@@ -21,39 +23,39 @@ namespace TaxiAPI.Controllers
 		{
 			get
 			{
-				if (requestHelper == null)
+				if (mainRquestHelper == null)
 				{
-					requestHelper = new RequestHelper(WebConfigurationManager.AppSettings["MainSiteUrl"]);
+					mainRquestHelper = new RequestHelper(WebConfigurationManager.AppSettings["MainSiteAPIUrl"]);
 				}
-				return requestHelper;
+				return mainRquestHelper;
 			}
 		}
 		/// <summary>
 		/// Provides url for connection to Phone App. "______Url" refers to entry in library web.config file.
 		/// </summary>
-		public RequestHelper PhoneRequestHelper
+		public RequestHelper DriverRequestHelper
 		{
 			get
 			{
-				if (requestHelper == null)
+				if (driverRquestHelper == null)
 				{
-					requestHelper = new RequestHelper(WebConfigurationManager.AppSettings["PhoneAppUrl"]);
+					driverRquestHelper = new RequestHelper(WebConfigurationManager.AppSettings["DriverAPIUrl"]);
 				}
-				return requestHelper;
+				return driverRquestHelper;
 			}
 		}
 		/// <summary>
 		/// Provides url for connection to Tablet App. "______Url" refers to entry in library web.config file.
 		/// </summary>
-		public RequestHelper TabletRequestHelper
+		public RequestHelper ClientRequestHelper
 		{
 			get
 			{
-				if (requestHelper == null)
+				if (clientRquestHelper == null)
 				{
-					requestHelper = new RequestHelper(WebConfigurationManager.AppSettings["TabletAppUrl"]);
+					clientRquestHelper = new RequestHelper(WebConfigurationManager.AppSettings["ClientAPIUrl"]);
 				}
-				return requestHelper;
+				return clientRquestHelper;
 			}
 		}
 

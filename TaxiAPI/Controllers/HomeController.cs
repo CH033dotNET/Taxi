@@ -6,7 +6,11 @@ using System.Web.Mvc;
 
 namespace TaxiAPI.Controllers
 {
-	public class HomeController : BaseController
+	public class HomeController : Controller
 	{
+		public ActionResult Index()
+		{
+			return View();
+		}
 	}
 }

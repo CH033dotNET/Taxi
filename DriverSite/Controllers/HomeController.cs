@@ -22,5 +22,11 @@ namespace DriverSite.Controllers
                 return View();
             }
         }
+		public ActionResult SetLanguage(string language, string returnUrl)
+		{
+			Session["Culture"] = language;
+			Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+			return Redirect(returnUrl);
+		}
     }
 }

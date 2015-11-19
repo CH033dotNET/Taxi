@@ -40,9 +40,17 @@ namespace DriverSite.Controllers
                     ApiRequestHelper.postData<CoordinatesDTO>(controller, "AddCoordinates", coordinates);
 					//coordinatesManager.AddCoordinates(coordinates);
 				}
-                ApiRequestHelper.Get<object, int?, string>(controller, "StartWorkEvent", Id, TimeStart);
+
+				ApiRequestHelper.postData<DriverLocation>(controller, "StartWorkEvent", new DriverLocation() {
+					id = Id,
+					latitude = double.Parse(Latitude, CultureInfo.InvariantCulture), 
+					longitude = double.Parse(Longitude, CultureInfo.InvariantCulture), 
+					startedTime = DateTime.Now, 
+					updateTime = DateTime.Now,
+					name = SessionUser.UserName
+				});
 				//carManager.StartWorkEvent(Id, TimeStart);
-                //-Hub PROBLEM!!!--------------------------driverLocationHelper.addDriver(Id, double.Parse(Latitude, CultureInfo.InvariantCulture), double.Parse(Longitude, CultureInfo.InvariantCulture), DateTime.Now, userManager.GetById(Id).UserName);
+                //-Hub PROBLEM!!!--------------------------driverLocationHelper.addDriver();
 				return Json(true);
 			}
 			catch (DataException)

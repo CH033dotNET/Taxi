@@ -10,19 +10,17 @@ using BAL.Manager;
 
 namespace TaxiAPI.Controllers
 {
-    public class ClientServiceController : ApiController
+    public class ClientServiceController : BaseController
     {
 		private ITarifManager tarifManager;
 		private IOrderManager orderManager;
 		private ICoordinatesManager coordinatesManager;
-		//private IDriverLocationHelper driverLocationHelper;
-		public ClientServiceController(ITarifManager tarifManager, IOrderManager orderManager, ICoordinatesManager coordinatesManager/*, IDriverLocationHelper driverLocationHelper*/)
+		public ClientServiceController(ITarifManager tarifManager, IOrderManager orderManager, ICoordinatesManager coordinatesManager)
 		{
 			this.orderManager = orderManager;
 			this.tarifManager = tarifManager;
 			this.coordinatesManager = coordinatesManager;
-			/*this.driverLocationHelper = driverLocationHelper;
-			this.coordinatesManager.addedCoords += this.driverLocationHelper.addedLocation;*/
+			this.coordinatesManager.addedCoords += coordinates => MainSiteRequestHelper.postData<bool, CoordinatesDTO>("OperatorHub", "AddedLocation", coordinates);
 		}
         [HttpGet]
         [Route("api/ClientService/GetTarifes")]

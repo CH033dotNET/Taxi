@@ -186,6 +186,7 @@
     <Compile Include="App_Start\SimpleInjectorDependency.cs" />
     <Compile Include="Controllers\CarsController.cs" />
     <Compile Include="Controllers\DriveClientHistoryController.cs" />
+    <Compile Include="Controllers\OperatorHubController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ReportChartsController.cs" />
     <Compile Include="Helpers\DriverLocationHelper.cs" />

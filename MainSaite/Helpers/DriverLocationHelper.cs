@@ -4,20 +4,30 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.SignalR;
 using MainSaite.Hubs;
+using Model.DTO;
 
 namespace MainSaite.Helpers
 {
     public class DriverLocationHelper : IDriverLocationHelper
     {
-        private IHubContext Contest = GlobalHost.ConnectionManager.GetHubContext<DriversLocationHub>();
+        private static IHubContext Contest = GlobalHost.ConnectionManager.GetHubContext<DriversLocationHub>();
 
-        public void addedLocation(Model.DTO.CoordinatesDTO coords)
+		public static void addedLocation(Model.DTO.CoordinatesDTO coords)
         {
-            var user = HttpContext.Current.Session["User"];
             Contest.Clients.All.locationUpdate(coords.Latitude, coords.Longitude, coords.AddedTime, coords.UserId);
         }
 
-        public void addDriver(int Id, double Latitude, double Longitude, DateTime time, string username)
+		public static void removeDriver(int id)
+		{
+			Contest.Clients.All.driverFinish(id);
+		}
+
+		public static void addDriver(DriverLocation data)
+		{
+			Contest.Clients.All.driverStart(data);
+		}
+
+		public static void addDriver(int Id, double Latitude, double Longitude, DateTime time, string username)
         {
             Contest.Clients.All.driverStart(new
             {
@@ -41,11 +51,6 @@ namespace MainSaite.Helpers
                 updateTime = time,
                 name = username
             });
-        }
-
-        public void removeDriver(int id)
-        {
-            Contest.Clients.All.driverFinish(id);
         }
 
         public void removeDriverFromUserPage(int id)
