@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 namespace BAL.Manager
 {
 	public interface IDistrictManager
@@ -24,5 +25,7 @@ namespace BAL.Manager
 		System.Collections.Generic.IEnumerable<Model.District> searchAndSortDeletedDistricts(string search, string sort);
 
 		System.Collections.Generic.IEnumerable<Model.District> searchDeletedDistricts(string parameter);
+
+		IQueryable<Model.District> GetIQueryableDistricts();
 	}
 }

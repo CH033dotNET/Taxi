@@ -275,5 +275,10 @@ namespace BAL.Manager
 			uOW.Save();
 			return district;
 		}
+
+		public IQueryable<District> GetIQueryableDistricts()
+		{
+			return uOW.DistrictRepo.All;
+		}
 	}
 }

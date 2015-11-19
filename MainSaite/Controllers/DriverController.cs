@@ -190,7 +190,10 @@ namespace MainSaite.Controllers
 			var order = orderManager.GetOrderByOrderID(orderId);
 			order.DriverId = SessionUser.Id;
 			order.WaitingTime = waitingTime;
-			
+			//add district id.// from location
+			var driverLocation = locationManager.GetByUserId(SessionUser.Id);
+			order.DistrictId = driverLocation.DistrictId;
+			order.District = driverLocation.District;
 			var updatedOrder = orderManager.EditOrder(order);
 
             return Json(updatedOrder, JsonRequestBehavior.AllowGet);

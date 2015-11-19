@@ -13,12 +13,14 @@ namespace MainSaite.Controllers
 {
     public class ReportChartsController : BaseController
     {
+		IDistrictManager districtManager;
         IOrderManager orderManager;
         IUserManager userManager;
-        public ReportChartsController(IOrderManager orderManager, IUserManager userManager)
+		public ReportChartsController(IOrderManager orderManager, IUserManager userManager, IDistrictManager districtManager)
         {
             this.orderManager = orderManager;
             this.userManager = userManager;
+			this.districtManager = districtManager;
         }
         
         //
@@ -100,6 +102,15 @@ namespace MainSaite.Controllers
 		public ActionResult DistrictReportsPerYear()
 		{
 			return PartialView();
+		}
+
+		public JsonResult GetDistrictReportsPerYear()
+		{
+			var allOrders = orderManager.GetQueryableOrders().Where(x => x.DistrictId != 0 && x.District != null);
+			//var allCompletedOrders = orderManager.GetQueryableOrders().Where(x => x.isFinishedProperty?)
+			var allDistricts = districtManager.GetIQueryableDistricts();
+			var OrdersPerDistrict = allOrders.Join(allDistricts, x => x.DistrictId, y => y.Id, (x, y) => new { dName = y.Name, ordersSum = 1 }).GroupBy(x => x.dName).ToList();
+			return Json(OrdersPerDistrict, JsonRequestBehavior.AllowGet);
 		}
 
         public ActionResult ChartOrders()

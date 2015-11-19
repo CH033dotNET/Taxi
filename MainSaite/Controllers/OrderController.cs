@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Model.DB;
 using BAL.Manager;
 using Model.DTO;
+using Model;
 
 namespace MainSaite.Controllers
 {
@@ -31,6 +32,8 @@ namespace MainSaite.Controllers
 		public JsonResult NewOrder(OrderDTO order)
 		{
 			order.PersonId = SessionPerson.Id;
+			//order.DriverId = 0;
+			//order.District = new District() { Name = "unknown", Id = 0 };
 			var insertedOrder = orderManager.InsertOrder(order);
 	
 			return Json(insertedOrder,JsonRequestBehavior.AllowGet);
