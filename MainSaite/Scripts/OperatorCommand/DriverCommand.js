@@ -26,17 +26,18 @@ $(function () {
         content.append(html);
     }
 
-    operatorHub.client.removeAwaitOrders = function (ordereId) {
-        $('#submitButton' + ordereId).closest('tr').remove();
+    operatorHub.client.removeAwaitOrders = function (orderId) {
+        $('#submitButton' + orderId).closest('tr').remove();
     }
     operatorHub.client.confirmDrRequest = function ()
-    { 
+    {
+        console.log('successful');
         $('.successDriverOrder').click();
     }
 
     operatorHub.client.deniedDrRequest = function ()
     {
-        debugger;
+           $(".submitButton").removeAttr('disabled');
            $('.deniedDriverOrder').click();
            isOrdered = false;
     }
@@ -90,18 +91,31 @@ function saveOrderId(e) {
 
 function Assign() {
     var time = $("#timetotravel").val();
-    var innerId = currentOrderId;
+    var driverUserId = $('#currentUserId').val();
+
     if (time != "" && time.trim().length != 0) {
         $.ajax({
-            url: "/Driver/GetOrder/",
-            data: { orderId: innerId, waitingTime: time },
+            url: "/Driver/GetCurrentOrder/",
+            data: { orderId: currentOrderId},
             dataType: 'json',
             success: function (data) {
+
                 $(".submitButton").attr("disabled", "disabled");
+
+                data.WaitingTime = time;
+                data.DriverId = driverUserId;
+
                 isOrdered = true;
                 driverHub.server.assignedOrder(data);
                 //driverHub.server.reservOrder(innerId);
             }
+        });
+
+        $.ajax({
+            url: "/Driver/GetOrder/",
+            data: { orderId: currentOrderId, waitingTime: time},
+            dataType: 'json',
+            success: function (data) { }
         });
     }
 }

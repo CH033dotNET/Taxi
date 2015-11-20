@@ -10,8 +10,8 @@ using Model;
 
 namespace MainSaite.Controllers
 {
-    public class OrderController : BaseController
-    {
+	public class OrderController : BaseController
+	{
 		private IOrderManager orderManager;
 		private IPersonManager personManager;
 		private ICoordinatesManager coordinatesManager;
@@ -26,34 +26,37 @@ namespace MainSaite.Controllers
 
 		public ActionResult Index()
 		{
-		
+
 			return View();
 		}
 
 		public JsonResult NewOrder(OrderDTO order)
 		{
 			order.PersonId = SessionPerson.Id;
-			//order.DriverId = 0;
-			//order.District = new District() { Name = "unknown", Id = 0 };
-			var insertedOrder = orderManager.InsertOrder(order);
-	
-			return Json(insertedOrder,JsonRequestBehavior.AllowGet);
+			OrderDTO insertedOrder = orderManager.InsertOrder(order);
+
+			insertedOrder.FirstName = personManager.GetPersons().FirstOrDefault(x => x.Id == insertedOrder.PersonId).FirstName;
+
+
+			return Json(insertedOrder, JsonRequestBehavior.AllowGet);
 		}
 
 		public JsonResult SetOrderStatus(int orderId, int status)
 		{
-			var order = orderManager.GetOrderByOrderID(orderId);
+			OrderDTO order = orderManager.GetOrderByOrderID(orderId);
 			if (order != null)
 			{
 				order.IsConfirm = status;
 				orderManager.EditOrder(order);
 			}
-            return Json(order, JsonRequestBehavior.AllowGet);
+
+			order.FirstName = personManager.GetPersons().FirstOrDefault(x => x.Id == order.PersonId).FirstName;
+			return Json(order, JsonRequestBehavior.AllowGet);
 		}
 
 		public JsonResult OrdersData()
 		{
-			var orders = orderManager.GetOrders().Where(x=>x.IsConfirm == 3).ToList();
+			var orders = orderManager.GetOrders().Where(x => x.IsConfirm == 3).ToList();
 			var peoples = personManager.GetPersons().ToList();
 
 			var operatorOrders = from O in orders
@@ -65,8 +68,8 @@ namespace MainSaite.Controllers
 		}
 
 		public JsonResult DriversRequest()
-		{ 
-		    var orders =  orderManager.GetOrders().Where(x=>x.IsConfirm == 1 && x.DriverId != 0).ToList();
+		{
+			var orders = orderManager.GetOrders().Where(x => x.IsConfirm == 1 && x.DriverId != 0).ToList();
 			var peoples = personManager.GetPersons().ToList();
 			var driverRequest = from O in orders
 								join P in peoples
@@ -88,27 +91,29 @@ namespace MainSaite.Controllers
 			return Json(operatorOrders, JsonRequestBehavior.AllowGet);
 		}
 
-		public JsonResult GetOrderedTaxi(int orderId)
+
+
+		public JsonResult SetOrderToDriver(int orderId, string waitingTime, int driverId)
 		{
 
 			var order = orderManager.GetOrderByOrderID(orderId);
-			if (order.IsConfirm == 4)
-			{
-				var driverCoordinates = coordinatesManager.GetCoordinatesByUserId(order.DriverId).
+			order.DriverId = SessionUser.Id;
+			order.WaitingTime = waitingTime;
+			order.DriverId = driverId;
+			//add district id.// from location
+			/*var driverLocation = locationManager.GetByUserId(SessionUser.Id);
+			order.DistrictId = driverLocation.DistrictId;
+			order.District = driverLocation.District;*/
+			var updatedOrder = orderManager.EditOrder(order);
+
+			var driverCoordinates = coordinatesManager.GetCoordinatesByUserId(driverId).
 					OrderByDescending(x => x.AddedTime).FirstOrDefault();
 
-				ClientOrderedDTO currentOrder = new ClientOrderedDTO() 
-				{IsConfirm = order.IsConfirm, Latitude = driverCoordinates.Latitude, Longitude = driverCoordinates.Longitude, WaitingTime = order.WaitingTime};
+			ClientOrderedDTO currentOrder = new ClientOrderedDTO() { Latitude = driverCoordinates.Latitude, Longitude = driverCoordinates.Longitude, WaitingTime = waitingTime };
 
-				return Json(currentOrder, JsonRequestBehavior.AllowGet);
-			}
-
-			else
-			{
-				return Json(order, JsonRequestBehavior.AllowGet);
-			}
+			return Json(currentOrder, JsonRequestBehavior.AllowGet);
 		}
 
-    }
+	}
 }
 

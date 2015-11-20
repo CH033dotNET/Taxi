@@ -20,17 +20,20 @@ namespace MainSaite.Hubs
 			Clients.Group("Operator").showMessage(message, userName);
 		}
 
+
         [HubMethodName("assignedOrder")]
         public void AssignedOrder(OrderDTO order)
         {
             Clients.Group("Operator").assignedDrOrder(order);
         }
 
+
 		[HubMethodName("reservOrder")]
 		public void ReservOrder(int order)
 		{
 			Clients.OthersInGroup("Driver").assignedOrder(order);
 		}
+
 
         [HubMethodName("connectUser")]
         public void ConnectUser(int roleId, int userId)

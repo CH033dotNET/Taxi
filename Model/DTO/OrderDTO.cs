@@ -59,5 +59,6 @@ namespace Model.DTO
 		[ForeignKey("DistrictId")]
 		public virtual District District { get; set; }
 		public int? DistrictId { get; set; }
+		public string FirstName { get; set; }
 	}
 }
