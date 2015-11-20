@@ -1,5 +1,6 @@
 ﻿var operatorHub;
-var driverHub
+var driverHub;
+
 
 $(function () {
     GetOrders();
@@ -8,7 +9,6 @@ $(function () {
 
     driverHub = $.connection.DriverHub;
     operatorHub = $.connection.OperatorHub;
-    clientHub = $.connection.ClientHub;
 
     //Show message from Driver
     driverHub.client.showMessage = function (message, userName) {
@@ -27,9 +27,34 @@ $(function () {
         waitingOrders.append(html);
         getOrderRed(newWaitOrder.Id);
 
-
+        //delete waiting order from New orders table
         $('#submitOrdering' + newWaitOrder.Id).closest('tr').remove();
     }
+
+    // delete order from confirmed table
+    operatorHub.client.deleteDrRequest = function (OrderId)
+    {
+        $('#deniedDrRequest' + OrderId).closest('tr').remove();
+    }
+
+    //delete Denied Client Order from New Order table
+    operatorHub.client.deleteDeniedOrder = function (orderId) {
+        $('#deniedOrdering' + orderId).closest('tr').remove();
+    }
+
+    //delete Await Order from New Order table
+    operatorHub.client.removeAwaitOrders = function (orderId) {
+        $('#waitingOrders' + orderId).closest('tr').remove();
+    }
+
+    //delete Order from confirmed table
+    operatorHub.client.removeAwaitOrderFromOperators = function (orderId) {
+        $('#submitDrRequest' + orderId).closest('tr').remove();
+    }
+
+
+    
+
 	// function that takes an awating order id as parameter and mark a row containing this order as expired.
     function getOrderRed(id) {
     	var rowToPaint = document.getElementById(id);
@@ -54,7 +79,7 @@ $(function () {
     }
 
     //Get new order from client, add to first table
-    clientHub.client.newOrderFromClient = function (newOrder) {
+    operatorHub.client.newOrderFromClient = function (newOrder) {
         var content = $('#orderContent');
         var source = $("#orderTemplate").html();
         var template = Handlebars.compile(source);
@@ -65,12 +90,8 @@ $(function () {
     }
 
 
-    operatorHub.client.removeNewOrders = function (removeOrder)
-    {
-       // Remove neworder after sending
-    }
 
-
+    //Add new assigned order from driver
     driverHub.client.assignedDrOrder = function (newRequest) {
         var content = $('#driverRequest');
         var source = $("#driverRequestTemplate").html();
@@ -90,7 +111,6 @@ $(function () {
 
         driverHub.server.connectUser(operatorRoleId, operatorUserId);
         operatorHub.server.connectUser(operatorRoleId, operatorUserId);
-        clientHub.server.connectUser(operatorRoleId, operatorUserId);
 
         //Broadcast message to all drivers
         $('#showform').click(function () {
@@ -122,22 +142,31 @@ $(document).on("click", ".ordrerAction", function () {
         success: function (data) {
             switch (Status) {
                 case "1": {
+
+                    //Send order to driver's table
                     operatorHub.server.orderForDrivers(data);
+
+                    //send wait order to all operators and delete from newOrdertable
                     operatorHub.server.waitingOrderOp(data);
-                    //$(e).closest('tr').remove();
+
                     break;
                 }
                 case "2": {
-                    operatorHub.server.deniedClientOrder();
-                    $('#deniedOrdering' + OrderId).closest('tr').remove();
+                    //denied Client Order
+                    operatorHub.server.deniedClientOrder(data.Person.UserId);
+
+                    //delete denied order from table
+                    operatorHub.server.deleteDeniedClientOrder(OrderId);
+
                     break;
                 }
 
                 case "4": {
+                    //Submit driver request
                     var goodDriverId = $('#submitDrRequest'+OrderId).parent('td').prev('td').text();
                     var waitingTime = $('#submitDrRequest' + OrderId).parent('td').prev('td').prev('td').text();
 
-
+                    //Set order to current driver
                     $.ajax({
                         url: "/Order/SetOrderToDriver/",
                         data: { orderId: OrderId, waitingTime: waitingTime, DriverId: goodDriverId },
@@ -146,10 +175,6 @@ $(document).on("click", ".ordrerAction", function () {
                             operatorHub.server.confirmClientOrder(data.WaitingTime, data.Latitude, data.Longitude);
                         }
                     });
-                   // $('.sub' + OrderId).attr('disabled', 'disabled');
-
-                    //delete current order from table
-                    $('#submitDrRequest' + OrderId).closest('tr').remove();
 
                     //send confirmRequest to selected driver
                     operatorHub.server.confirmRequest(goodDriverId);
@@ -157,21 +182,42 @@ $(document).on("click", ".ordrerAction", function () {
                     //remove current order from drivers
                     operatorHub.server.removeAwaitOrder(OrderId);
 
+                    //remove current order from operators
+                    operatorHub.server.removeAwaitOrderFromOperators(OrderId);
+
+                    //Remove current order from awaiting table operators
+                    operatorHub.server.removeAwaitOrders(OrderId);
+
+                    //deny for others drivers
                     $('.deny'+OrderId).click();
                     break;
                 }
 
                 case "5": {
+
+                    //Send message to client "No free Cars"
                     operatorHub.server.noFreeCarClientOrder(data.Person.UserId);
+
+                    //Show modal window for driver "denied", if he confirmed current order
+                    $('.deny' + OrderId).click();
+
+                    //remove current order from operators (confirmed by drivers)
+                    operatorHub.server.removeAwaitOrderFromOperators(OrderId);
+
+                    //Remove current order from awaiting table operators
+                    operatorHub.server.removeAwaitOrders(OrderId);
+
+                    //Remove current order from table drivers
                     operatorHub.server.removeAwaitOrder(OrderId);
-                    $('#waitingOrders' + OrderId).closest('tr').remove();
+
                     break;
                 }
 
                 case "6": {
-                    driverId = $('#submitDrRequest'+OrderId).parent('td').prev('td').text();
-                    operatorHub.server.deniedRequest(driverId);
-                    $('#deniedDrRequest' + OrderId).closest('tr').remove();
+                    driverId = $('#submitDrRequest' + OrderId).parent('td').prev('td').text();
+
+                    //deny driver request and delete from confirmed table
+                    operatorHub.server.deniedRequest(driverId, OrderId);
                     break;
                 }
                 default: break;
@@ -181,7 +227,7 @@ $(document).on("click", ".ordrerAction", function () {
 });
 
 
-
+//get orders from db
 function GetOrders() {
     var content = $('#orderContent');
     $.ajax({

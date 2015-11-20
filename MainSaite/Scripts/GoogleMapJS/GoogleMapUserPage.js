@@ -14,7 +14,7 @@ var markers = new Array();
 var myOrderId;
 var intervalID;
 var newOrder;
-var clientHub;
+var operatorHub;
 
 function hubInit() {
     var hub = $.connection.driversLocationHub;//Подключились к хабу
@@ -27,7 +27,6 @@ function hubInit() {
 
 $(document).ready(function () {
 
-    clientHub = $.connection.ClientHub;
     operatorHub = $.connection.OperatorHub;
 
     operatorHub.client.deniedClientOrder = function () {
@@ -40,7 +39,7 @@ $(document).ready(function () {
         $('#nocarorderinfo').modal('toggle');
     }
 
-    operatorHub.client.waiYourCar = function (waitingTime, lat, lng) {
+    operatorHub.client.waitYourCar = function (waitingTime, lat, lng) {
         myOrderId = null;
         $('#waittime').val(waitingTime);
         $('#orderinfo').modal('toggle');
@@ -52,7 +51,6 @@ $(document).ready(function () {
         var clientRoleId = 3;
         var clientUserId = $('#currentUserId').val();
 
-        clientHub.server.connectUser(clientRoleId, clientUserId);
         operatorHub.server.connectUser(clientRoleId, clientUserId);
 
 
@@ -110,55 +108,19 @@ function CenterControl(controlDiv, map) {
                 type: "POST",
                 success: function (data) {
                     myOrderId = data.Id;
-
-                    console.log(data);
-                    clientHub.server.sendNewOrderToOperators(data);
-                   // intervalID = setInterval(getMyTaxi, 2000);
+                    operatorHub.server.sendNewOrderToOperators(data);
                 }
             });
         }
 
         else
         {
-            alert('Ви вже замовили таксі, чекайте на відповідь оператора!');
+            $('#hasorder').modal('toggle');
         }
     })
 
 }
 
-function getMyTaxi() {
-
-    $.ajax({
-        url: "/Order/GetOrderedTaxi/",
-        data: { orderId: myOrderId },
-        type: 'POST',
-
-        success: function (data) {
-            
-            switch (data.IsConfirm) {
-               case 4: {
-                    clearInterval(intervalID);
-
-                    break;
-                };
-                case 2: {
-                    clearInterval(intervalID);
-
-                    break;
-                }
-                case 5:
-                    {
-                        clearInterval(intervalID);
-
-                        break;
-                    }
-            }
-        },
-        error: function (error) {
-            console.log("error!" + error);
-        }
-    });
-}
 
 
 var addCircle = function (map, coordinates, accuracy) {
@@ -244,7 +206,6 @@ function initMap() {
             }
         },
         error: function (error) {
-            console.log(error);
         }
     });
     hubInit();
@@ -486,10 +447,10 @@ var setTitle = function (mark) {
             if (results[1]) {
                 mark.setTitle(results[0].formatted_address);
             } else {
-                alert('No results found');
+                console.log('No results found');
             }
         } else {
-            alert('Geocoder failed due to: ' + status);
+            console.log('Geocoder failed due to: ' + status);
         }
     });
 }

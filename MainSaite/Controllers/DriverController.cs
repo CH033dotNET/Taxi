@@ -185,20 +185,6 @@ namespace MainSaite.Controllers
 			return Json(orders, JsonRequestBehavior.AllowGet);
 		}
 
-		public JsonResult GetOrder(int orderId, string waitingTime)
-		{
-			var order = orderManager.GetOrderByOrderID(orderId);
-			order.DriverId = SessionUser.Id;
-			order.WaitingTime = waitingTime;
-			//add district id.// from location
-			/*var driverLocation = locationManager.GetByUserId(SessionUser.Id);
-			order.DistrictId = driverLocation.DistrictId;
-			order.District = driverLocation.District;*/
-			var updatedOrder = orderManager.EditOrder(order);
-
-            return Json(updatedOrder, JsonRequestBehavior.AllowGet);
-		}
-
 		public JsonResult GetCurrentOrder(int orderId)
 		{
 			var currentOrder = orderManager.GetOrderByOrderID(orderId);

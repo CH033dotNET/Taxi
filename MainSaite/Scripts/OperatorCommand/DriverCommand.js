@@ -10,12 +10,15 @@ $(function () {
 
    operatorHub = $.connection.OperatorHub;
    driverHub = $.connection.DriverHub;
+
+   //Show message from operators
    operatorHub.client.showMessage = function (message) {
         // Own function 
         swal('New message from operator!', message, 'success');
 
     };
    
+    //Add new order to table
     operatorHub.client.newDriverOrders = function (order)
     {
         var content = $("#DrOrder");
@@ -26,15 +29,19 @@ $(function () {
         content.append(html);
     }
 
+    //remove order from table
     operatorHub.client.removeAwaitOrders = function (orderId) {
         $('#submitButton' + orderId).closest('tr').remove();
     }
+
+    //driver can go, show modal form confirm Driver Request
     operatorHub.client.confirmDrRequest = function ()
     {
-        console.log('successful');
         $('.successDriverOrder').click();
     }
 
+
+    //driver can't go, show modal form denied Driver Request
     operatorHub.client.deniedDrRequest = function ()
     {
            $(".submitButton").removeAttr('disabled');
@@ -51,6 +58,8 @@ $(function () {
         driverHub.server.connectUser(driverRoleId, driverUserId);
         operatorHub.server.connectUser(driverRoleId, driverUserId);
 
+
+        //Send message to operators
         $('#showform').click(function () {
             swal({
                 title: 'Input Your message:',
@@ -65,6 +74,8 @@ $(function () {
     });
 });
 
+
+//get orders from db
 function GetOrders() {
     var content = $("#DrOrder");
     $.ajax({
@@ -85,18 +96,19 @@ function GetOrders() {
 }
 
 
-function saveOrderId(e) {
-    currentOrderId = $(e).attr('data-orderid');
-}
+$(document).on("click", ".sub", function () {
+    currentOrderId = $(this).attr('data-orderid');
+});
 
-function Assign() {
+
+$(document).on("click", ".assign", function () {
     var time = $("#timetotravel").val();
     var driverUserId = $('#currentUserId').val();
 
     if (time != "" && time.trim().length != 0) {
         $.ajax({
             url: "/Driver/GetCurrentOrder/",
-            data: { orderId: currentOrderId},
+            data: { orderId: currentOrderId },
             dataType: 'json',
             success: function (data) {
 
@@ -106,43 +118,10 @@ function Assign() {
                 data.DriverId = driverUserId;
 
                 isOrdered = true;
-                driverHub.server.assignedOrder(data);
-                //driverHub.server.reservOrder(innerId);
-            }
-        });
 
-        $.ajax({
-            url: "/Driver/GetOrder/",
-            data: { orderId: currentOrderId, waitingTime: time},
-            dataType: 'json',
-            success: function (data) { }
+                //Send assigned order to operators
+                driverHub.server.assignedOrder(data);
+            }
         });
     }
-}
-
-function OrderConfirmStatus()
-{
-    $.ajax({
-        type: 'POST',
-        url: "/Driver/GetCurrentOrder/",
-        dataType: 'json',
-        data: { orderId: currentOrderId },
-        success: function (data) {
-            switch (data) {
-                case 1: break;
-                case 2:
-                    {
-                        $('.deniedDriverOrder').click();
-                        isOrdered = false;
-                        break;
-                    }
-                case 4:
-                    {
-                        break;
-                    }
-                default: break;
-            }
-        }
-    });
-
-}
+});

@@ -1529,6 +1529,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your order in progress, please wait.
+        /// </summary>
+        public static string OrderInProgress {
+            get {
+                return ResourceManager.GetString("OrderInProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order Taxi.
         /// </summary>
         public static string OrderTaxi {
