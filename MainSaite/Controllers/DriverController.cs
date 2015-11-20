@@ -181,7 +181,7 @@ namespace MainSaite.Controllers
 
 		public JsonResult GetDriverOrders()
 		{
-			var orders = orderManager.GetOrders().Where(x => x.IsConfirm == 1 && x.DriverId == 0);
+			var orders = orderManager.GetOrders().Where(x => x.IsConfirm == 1 && x.DriverId == 0).ToList();
 			return Json(orders, JsonRequestBehavior.AllowGet);
 		}
 
@@ -191,9 +191,9 @@ namespace MainSaite.Controllers
 			order.DriverId = SessionUser.Id;
 			order.WaitingTime = waitingTime;
 			//add district id.// from location
-			var driverLocation = locationManager.GetByUserId(SessionUser.Id);
+			/*var driverLocation = locationManager.GetByUserId(SessionUser.Id);
 			order.DistrictId = driverLocation.DistrictId;
-			order.District = driverLocation.District;
+			order.District = driverLocation.District;*/
 			var updatedOrder = orderManager.EditOrder(order);
 
             return Json(updatedOrder, JsonRequestBehavior.AllowGet);
@@ -202,8 +202,10 @@ namespace MainSaite.Controllers
 		public JsonResult GetCurrentOrder(int orderId)
 		{
 			var currentOrder = orderManager.GetOrderByOrderID(orderId);
-			return Json(currentOrder.IsConfirm, JsonRequestBehavior.AllowGet);
+			return Json(currentOrder, JsonRequestBehavior.AllowGet);
 		}
+
+
 
 	}
 }

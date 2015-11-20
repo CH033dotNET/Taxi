@@ -2,8 +2,6 @@
     ViewBag.Title = "DriverOrders";
 }
 
-<script src="~/Scripts/handlebars.min.js"></script>
-
 
 <!--
     Messages
@@ -16,6 +14,12 @@
 <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
 <script src="~/Scripts/sweetalert2.min.js"></script>
 <script src="~/signalr/hubs"></script>
+<script src="~/Scripts/handlebars.min.js"></script>
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Scripts/HandlebarsCustomHelpers.js"></script>
+<script type="text/javascript" src="~/Scripts/OperatorCommand/DriverCommand.js"></script>
+
+
 
 
 
@@ -118,6 +122,5 @@
 <input type="text" hidden="hidden" id="currentUserId" value="@User.Id" />
     <button type="button" class="btn successDriverOrder" style="display:none" data-toggle="modal" data-target="#successDriverOrder"></button>
     <button type="button" class="btn deniedDriverOrder" style="display:none" data-toggle="modal" data-target="#deniedDriverOrder"></button>
-    <script type="text/javascript" src="~/Scripts/OperatorCommand/DriverCommand.js"></script>
 <link href="~/Content/BootstrapTb/BootstrapTb.css" rel="stylesheet" />
-    <script src="~/Scripts/HandlebarsCustomHelpers.js"></script>
+

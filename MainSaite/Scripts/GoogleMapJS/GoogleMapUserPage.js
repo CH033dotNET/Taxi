@@ -3,16 +3,18 @@
 var map;
 var marker1 = new google.maps.Marker;
 var marker2 = new google.maps.Marker;
+var markerTaxi = new google.maps.Marker;
+
 var geocoder = new google.maps.Geocoder();
 var infowindow = new google.maps.InfoWindow;
 var circle;
 var address;
 var markers = new Array();
 
-var markerTaxi = new google.maps.Marker;
 var myOrderId;
 var intervalID;
 var newOrder;
+var clientHub;
 
 function hubInit() {
     var hub = $.connection.driversLocationHub;//Подключились к хабу
@@ -20,11 +22,42 @@ function hubInit() {
     hub.client.locationUpdate = locationUpdate;//присобачили функцию клиента
     hub.client.driverStartOnUserPage = driverStartOnUserPage;
     hub.client.driverFinishUserPage = driverFinishUserPage;
+}
+
+
+$(document).ready(function () {
+
+    clientHub = $.connection.ClientHub;
+    operatorHub = $.connection.OperatorHub;
+
+    operatorHub.client.deniedClientOrder = function () {
+        myOrderId = null;
+        $('#deniedorderinfo').modal('toggle');
+    }
+    
+    operatorHub.client.noFreeCar = function () {
+        myOrderId = null;
+        $('#nocarorderinfo').modal('toggle');
+    }
+
+    operatorHub.client.waiYourCar = function (waitingTime, lat, lng) {
+        myOrderId = null;
+        $('#waittime').val(waitingTime);
+        $('#orderinfo').modal('toggle');
+        setTaxiMarker(lat, lng);
+    }
 
     $.connection.hub.start().done(function () {
-        // hub.server.Hello(); // вызов функции сервера
+        // LogIn
+        var clientRoleId = 3;
+        var clientUserId = $('#currentUserId').val();
+
+        clientHub.server.connectUser(clientRoleId, clientUserId);
+        operatorHub.server.connectUser(clientRoleId, clientUserId);
+
+
     });
-}
+})
 
 
 
@@ -77,7 +110,10 @@ function CenterControl(controlDiv, map) {
                 type: "POST",
                 success: function (data) {
                     myOrderId = data.Id;
-                    intervalID = setInterval(getMyTaxi, 2000);
+
+                    console.log(data);
+                    clientHub.server.sendNewOrderToOperators(data);
+                   // intervalID = setInterval(getMyTaxi, 2000);
                 }
             });
         }
@@ -102,29 +138,24 @@ function getMyTaxi() {
             switch (data.IsConfirm) {
                case 4: {
                     clearInterval(intervalID);
-                    myOrderId = null;
-                    $('#waittime').val(d.WaitingTime);
-                    $('#orderinfo').modal('toggle');
-                    setTaxiMarker(d.Latitude, d.Longitude);
+
                     break;
                 };
                 case 2: {
                     clearInterval(intervalID);
-                    myOrderId = null;
-                    $('#deniedorderinfo').modal('toggle');
+
                     break;
                 }
                 case 5:
                     {
                         clearInterval(intervalID);
-                        myOrderId = null;
-                        $('#nocarorderinfo').modal('toggle');
+
                         break;
                     }
             }
         },
         error: function (error) {
-            alert("error!" + error);
+            console.log("error!" + error);
         }
     });
 }
@@ -213,7 +244,7 @@ function initMap() {
             }
         },
         error: function (error) {
-            alert(error);
+            console.log(error);
         }
     });
     hubInit();
