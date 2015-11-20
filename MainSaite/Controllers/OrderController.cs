@@ -109,11 +109,6 @@ namespace MainSaite.Controllers
 			}
 		}
 
-		//public JsonResult CloseOrder()
-		//{ 
-		
-		
-		//}
     }
 }
 
