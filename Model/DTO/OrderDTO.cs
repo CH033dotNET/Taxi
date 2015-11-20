@@ -60,5 +60,6 @@ namespace Model.DTO
 		public virtual District District { get; set; }
 		public int? DistrictId { get; set; }
 		public float FuelSpent { get; set; }
+		public string FirstName { get; set; }
 	}
 }

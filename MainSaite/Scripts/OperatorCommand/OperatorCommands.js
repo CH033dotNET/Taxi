@@ -8,7 +8,9 @@ $(function () {
 
     driverHub = $.connection.DriverHub;
     operatorHub = $.connection.OperatorHub;
+    clientHub = $.connection.ClientHub;
 
+    //Show message from Driver
     driverHub.client.showMessage = function (message, userName) {
     // Own function 
         swal('Message from '+userName+':', message, 'success');
@@ -24,6 +26,9 @@ $(function () {
         var html = template(wrapper);
         waitingOrders.append(html);
         getOrderRed(newWaitOrder.Id);
+
+
+        $('#submitOrdering' + newWaitOrder.Id).closest('tr').remove();
     }
 	// function that takes an awating order id as parameter and mark a row containing this order as expired.
     function getOrderRed(id) {
@@ -48,10 +53,24 @@ $(function () {
     	}
     }
 
+    //Get new order from client, add to first table
+    clientHub.client.newOrderFromClient = function (newOrder) {
+        var content = $('#orderContent');
+        var source = $("#orderTemplate").html();
+        var template = Handlebars.compile(source);
+        var wrapper = { object: newOrder };
+        var html = template(wrapper);
+        content.append(html);
+
+    }
+
+
     operatorHub.client.removeNewOrders = function (removeOrder)
     {
        // Remove neworder after sending
-     }
+    }
+
+
     driverHub.client.assignedDrOrder = function (newRequest) {
         var content = $('#driverRequest');
         var source = $("#driverRequestTemplate").html();
@@ -71,7 +90,9 @@ $(function () {
 
         driverHub.server.connectUser(operatorRoleId, operatorUserId);
         operatorHub.server.connectUser(operatorRoleId, operatorUserId);
+        clientHub.server.connectUser(operatorRoleId, operatorUserId);
 
+        //Broadcast message to all drivers
         $('#showform').click(function () {
             swal({
                 title: 'Input Your message:',
@@ -82,36 +103,84 @@ $(function () {
                 operatorHub.server.sendToDrivers($('#input-field').val());
                 swal('Your message has been sent', '', 'success');
             });
-        })     
+        })
+
+
     });
 });
 
-function setOrderStatus(e) {
-        var OrderId = $(e).attr('data-orderid');
-        var Status = $(e).attr('data-status');
-        $.ajax({
-            url: '/Order/SetOrderStatus/',
-            data: {
-                orderId: OrderId,
-                status: Status
-            },
-            success: function (data) {
-                switch (Status) {
-                       case "1": {
-                           operatorHub.server.orderForDrivers(data);
-                           operatorHub.server.waitingOrderOp(data);
-                           $(e).closest('tr').remove();
-                           break;
-                       }
-                    case "2": { $(e).closest('tr').remove(); break; }
-                    case "4": { operatorHub.server.confirmRequest(data.DriverId); $(e).closest('tr').remove(); break; }
-                    case "5": { operatorHub.server.removeAwaitOrder(OrderId); $(e).closest('tr').remove(); break; }
-                    case "6": { operatorHub.server.deniedRequest(data.DriverId); $(e).closest('tr').remove(); break; }
-                    default: break;
+
+$(document).on("click", ".ordrerAction", function () {
+    var OrderId = $(this).attr('data-orderid');
+    var Status = $(this).attr('data-status');
+    $.ajax({
+        url: '/Order/SetOrderStatus/',
+        data: {
+            orderId: OrderId,
+            status: Status
+        },
+        success: function (data) {
+            switch (Status) {
+                case "1": {
+                    operatorHub.server.orderForDrivers(data);
+                    operatorHub.server.waitingOrderOp(data);
+                    //$(e).closest('tr').remove();
+                    break;
                 }
+                case "2": {
+                    operatorHub.server.deniedClientOrder();
+                    $('#deniedOrdering' + OrderId).closest('tr').remove();
+                    break;
+                }
+
+                case "4": {
+                    var goodDriverId = $('#submitDrRequest'+OrderId).parent('td').prev('td').text();
+                    var waitingTime = $('#submitDrRequest' + OrderId).parent('td').prev('td').prev('td').text();
+
+
+                    $.ajax({
+                        url: "/Order/SetOrderToDriver/",
+                        data: { orderId: OrderId, waitingTime: waitingTime, DriverId: goodDriverId },
+                        dataType: 'json',
+                        success: function (data) {
+                            operatorHub.server.confirmClientOrder(data.WaitingTime, data.Latitude, data.Longitude);
+                        }
+                    });
+                   // $('.sub' + OrderId).attr('disabled', 'disabled');
+
+                    //delete current order from table
+                    $('#submitDrRequest' + OrderId).closest('tr').remove();
+
+                    //send confirmRequest to selected driver
+                    operatorHub.server.confirmRequest(goodDriverId);
+
+                    //remove current order from drivers
+                    operatorHub.server.removeAwaitOrder(OrderId);
+
+                    $('.deny'+OrderId).click();
+                    break;
+                }
+
+                case "5": {
+                    operatorHub.server.noFreeCarClientOrder(data.Person.UserId);
+                    operatorHub.server.removeAwaitOrder(OrderId);
+                    $('#waitingOrders' + OrderId).closest('tr').remove();
+                    break;
+                }
+
+                case "6": {
+                    driverId = $('#submitDrRequest'+OrderId).parent('td').prev('td').text();
+                    operatorHub.server.deniedRequest(driverId);
+                    $('#deniedDrRequest' + OrderId).closest('tr').remove();
+                    break;
+                }
+                default: break;
             }
-        });
-    }
+        }
+    });
+});
+
+
 
 function GetOrders() {
     var content = $('#orderContent');

@@ -13,18 +13,39 @@ namespace MainSaite.Hubs
     {
         static ICollection<SignalRUser> operatorHubUsers = new List<SignalRUser>();
 
+
+		[HubMethodName("deniedClientOrder")]
+		public void DeniedClientOrder()
+		{
+			Clients.Group("Client").deniedClientOrder();
+		}
+
+		[HubMethodName("noFreeCarClientOrder")]
+		public void NoFreeCarClientOrder(int clientId)
+		{
+			var clientConnectionId = operatorHubUsers.FirstOrDefault(x => x.UserId == clientId).ConnectionId;
+			Clients.Client(clientConnectionId).noFreeCar();
+		
+		}
+
+		[HubMethodName("confirmClientOrder")]
+		public void ConfirmClientOrder(string waitingTime, double lat, double lng)
+		{
+			Clients.Group("Client").waiYourCar(waitingTime, lat, lng);
+		}
+
 		[HubMethodName("sendToDrivers")]
 		public void SendToDrivers(string message)
 		{
 			Clients.Group("Driver").showMessage(message);
 		}
-
-
         [HubMethodName("orderForDrivers")]
         public void OrderForDrivers(OrderDTO order)
         {
             Clients.Group("Driver").newDriverOrders(order);
         }
+
+		//add waitin order 
         [HubMethodName("waitingOrderOp")]
         public void WaitingOrderOp(OrderDTO order)
         {
@@ -36,13 +57,11 @@ namespace MainSaite.Hubs
 			Clients.Group("Driver").removeAwaitOrders(orderId);
         }
         [HubMethodName("confirmRequest")]
-        public void ConfirmRequest(int driverID)
+        public void ConfirmRequest(int driverId)
         {
-			var driverConnectionId = operatorHubUsers.FirstOrDefault(x => x.UserId == driverID).ConnectionId;
+			var driverConnectionId = operatorHubUsers.FirstOrDefault(x => x.UserId == driverId).ConnectionId;
 			Clients.Client(driverConnectionId).confirmDrRequest();
         }
-
-
 		[HubMethodName("deniedRequest")]
 		public void DeniedRequest(int driverID)
 		{
@@ -69,12 +88,24 @@ namespace MainSaite.Hubs
                     currentUser.Group = "Operator";
                     Groups.Add(Context.ConnectionId, "Operator");
                 }
+				if (roleId == 3)
+				{
+					currentUser.Group = "Client";
+					Groups.Add(Context.ConnectionId, "Client");
+				}
                 operatorHubUsers.Add(currentUser);
+
             }
         }
 
         public override System.Threading.Tasks.Task OnDisconnected(bool stopCalled)
         {
+			var item = operatorHubUsers.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
+			if (item != null)
+			{
+				operatorHubUsers.Remove(item);
+			}
+
 
             return base.OnDisconnected(stopCalled);
         }
