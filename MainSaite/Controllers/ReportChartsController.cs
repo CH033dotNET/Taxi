@@ -179,6 +179,19 @@ namespace MainSaite.Controllers
 
 			return chart;
 		}
-
+		private void YearIncome()
+		{
+			var Categories = new string[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+			Highcharts chart = new Highcharts("IncomeByMonthes");
+			chart.SetSeries(new Series()
+			{
+				Type = ChartTypes.Column,
+				Data = new Data(orderManager.YearIncome().Select(x =>(object)x).ToArray())
+			});
+			chart.SetXAxis(new XAxis()
+			{
+				Categories = new string[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }
+			});
+		}
     }
 }

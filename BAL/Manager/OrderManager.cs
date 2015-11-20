@@ -147,6 +147,12 @@ namespace BAL.Manager
 			var top10 = GetOrders().GroupBy(x => x.PersonId).OrderByDescending(o => o.Select(y => y.PersonId).Count()).Take(10);
 			return top10.AsQueryable();
 		}
+		public IQueryable<decimal> YearIncome()
+		{
+			var lastYear = DateTime.Now.AddYears(-1);
+			var price12 = uOW.OrderRepo.All.Where(x => x.EndWork > lastYear).OrderBy(x => x.EndWork).GroupBy(x => x.EndWork.Value.Month).Select(x => x.Sum(y => y.TotalPrice));
+			return price12;
+		}
 	}
 
 }

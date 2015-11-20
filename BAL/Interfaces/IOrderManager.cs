@@ -18,5 +18,6 @@ namespace BAL.Manager
 		OrderDTO GetStartedOrderByDriver(int? id);
 		OrderDTO InsertOrder(OrderDTO order);
 		IQueryable<IGrouping<int, OrderDTO>> GetTop10();
+		IQueryable<decimal> YearIncome();
 	}
 }
