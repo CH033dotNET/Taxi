@@ -24,7 +24,8 @@ var ChartController = {
 		for (var i = 0; i < e.length; i++) {
 			getData[i] = {
 				name: "District: " + e[i][0].dName, // district name is created here.
-				y: e[i].length // percent are evaluated here. 
+				y: e[i].length, // percent are evaluated here. 
+				Year: e[i][0].Year // curent orders year is evaluated here.
 			}
 		};
 		// summon highcharts!!
@@ -42,7 +43,7 @@ var ChartController = {
 				type: 'pie'
 			},
 			title: {
-				text: 'Browser market shares January, 2015 to May, 2015'
+				text: 'Orders percentage per District per year, ' + receivedData[0].Year
 			},
 			tooltip: {
 				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

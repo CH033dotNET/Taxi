@@ -15,13 +15,15 @@ namespace MainSaite.Controllers
 		private IOrderManager orderManager;
 		private IPersonManager personManager;
 		private ICoordinatesManager coordinatesManager;
+		private ILocationManager locationManager;
 
 
-		public OrderController(IOrderManager orderManager, IPersonManager personManager, ICoordinatesManager coordinatesManager)
+		public OrderController(IOrderManager orderManager, IPersonManager personManager, ICoordinatesManager coordinatesManager, ILocationManager locationManager)
 		{
 			this.orderManager = orderManager;
 			this.personManager = personManager;
 			this.coordinatesManager = coordinatesManager;
+			this.locationManager = locationManager;
 		}
 
 		public ActionResult Index()
@@ -36,7 +38,6 @@ namespace MainSaite.Controllers
 			OrderDTO insertedOrder = orderManager.InsertOrder(order);
 
 			insertedOrder.FirstName = personManager.GetPersons().FirstOrDefault(x => x.Id == insertedOrder.PersonId).FirstName;
-
 
 			return Json(insertedOrder, JsonRequestBehavior.AllowGet);
 		}
@@ -92,18 +93,23 @@ namespace MainSaite.Controllers
 		}
 
 
-
+		/// <summary>
+		/// Action method that is executed when operator chooses a suitable driver for an order.
+		/// </summary>
+		/// <param name="orderId">id of an order</param>
+		/// <param name="waitingTime">Time neede for taxi to reach client</param>
+		/// <param name="driverId">id of a driver assigned to an order</param>
+		/// <returns></returns>
 		public JsonResult SetOrderToDriver(int orderId, string waitingTime, int driverId)
 		{
 
 			var order = orderManager.GetOrderByOrderID(orderId);
-			order.DriverId = SessionUser.Id;
+			order.DriverId = SessionUser.Id; // 1. dublicate
 			order.WaitingTime = waitingTime;
-			order.DriverId = driverId;
-			//add district id.// from location
-			/*var driverLocation = locationManager.GetByUserId(SessionUser.Id);
+			order.DriverId = driverId; // 2. dublicate
+			var driverLocation = locationManager.GetByUserId(SessionUser.Id); // find location by driver id
 			order.DistrictId = driverLocation.DistrictId;
-			order.District = driverLocation.District;*/
+			order.District = driverLocation.District;
 			var updatedOrder = orderManager.EditOrder(order);
 
 			var driverCoordinates = coordinatesManager.GetCoordinatesByUserId(driverId).
@@ -112,6 +118,7 @@ namespace MainSaite.Controllers
 			ClientOrderedDTO currentOrder = new ClientOrderedDTO() { Latitude = driverCoordinates.Latitude, Longitude = driverCoordinates.Longitude, WaitingTime = waitingTime };
 
 			return Json(currentOrder, JsonRequestBehavior.AllowGet);
+
 		}
 
 	}

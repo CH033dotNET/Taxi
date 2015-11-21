@@ -25,7 +25,7 @@ $(function () {
         var wrapper = { waitingOrder: newWaitOrder };
         var html = template(wrapper);
         waitingOrders.append(html);
-        getOrderRed(newWaitOrder.Id);
+        setOrderExpired(newWaitOrder.Id); // set waiting order as expired after 5 minutes
 
         //delete waiting order from New orders table
         $('#submitOrdering' + newWaitOrder.Id).closest('tr').remove();
@@ -52,31 +52,6 @@ $(function () {
         $('#submitDrRequest' + orderId).closest('tr').remove();
     }
 
-
-    
-
-	// function that takes an awating order id as parameter and mark a row containing this order as expired.
-    function getOrderRed(id) {
-    	var rowToPaint = document.getElementById(id);
-    	if (rowToPaint.className == null || rowToPaint.className == undefined) {
-    		setTimeout(function () { rowToPaint.className = "expiredOrderClass"; }, 300000)
-    	}
-    	else {
-    		setTimeout(function () { rowToPaint.className = rowToPaint.className + " expiredOrderClass"; }, 300000)
-    	}
-    }
-	//! Don`t touch this. +_+
-    function checkExpiredOrders() {
-    	var timeNow = new Date();
-    	var awaitingOrders = $('#waitingOrdersContent'); // array of awating orders here. Need glodal variable to store current lists
-    	for (var i = 0; i < awaitingOrders.length; i++) {
-    		if (awaitingOrders[i].OrderTime != timeNow) {
-    			var orderTime = awaitingOrders[i].OrderTime;
-    			var dateDiff = Math.abs(orderTime - timeNow);
-    			alert(dateDiff);
-    		}
-    	}
-    }
 
     //Get new order from client, add to first table
     operatorHub.client.newOrderFromClient = function (newOrder) {
@@ -274,6 +249,73 @@ function GetAwaitOrders() {
             var wrapper= { waitingOrders: data };
             var html = template(wrapper);
             waitingOrders.html(html)
+            checkExpiredOrders(data); // check all awating orders wether they are expired (Time now > OrderTime for more tha 5 mins)
         }
     });
+}
+
+//function that checks array of awating orders wether they are expired or not.
+function checkExpiredOrders(OrdersList) {
+	var timeNow = moment();
+	var awaitingOrders = OrdersList; // array of awating orders here. Need glodal variable to store current lists
+	for (var i = 0; i < awaitingOrders.length; i++) {
+		if (awaitingOrders[i].OrderTime != timeNow) { // chacking if datetimes are equal or not. If not:
+			var dayDiff = timeNow.diff(awaitingOrders[i].OrderTime, "days"); // checking day difference
+			var hourDiff = timeNow.diff(awaitingOrders[i].OrderTime, "hours"); // checking hour difference
+			var minuteDiff = timeNow.diff(awaitingOrders[i].OrderTime, "minutes"); // checking minute difference
+			if (dayDiff >= 1 || hourDiff >= 1) { // if dateNow hour day or hour value is bigger then order`s
+				applyExpiredClass(awaitingOrders[i].OrderId);
+			}
+			else if (minuteDiff >= 5) { // if dateNow day or hour value is equal to order`s but minutes count is bigger
+				applyExpiredClass(awaitingOrders[i].OrderId);
+			}
+			else return false;
+			//var timeNowHours = moment(timeNow).hours(); // hours in date-time now
+			//var orderTimeHours = moment(awaitingOrders[i].OrderTime).hours(); // hours in orderTime
+			//var timeNowMinutes = moment(timeNow).minutes(); // minutes in date-time now
+			//var orderTimeMinutes = moment(awaitingOrders[i].OrderTime).minutes(); // hours in orderTime
+
+			//if (timeNowHours > orderTimeHours) { applyExpiredClass(awaitingOrders[i].OrderId) }
+			//else {
+			//	var timeNowMinutes = moment(timeNow).minutes();
+			//	var orderTimeMinutes = moment(awaitingOrders[i].OrderTime).minutes();
+			//	var dateDiff = Math.abs(timeNowMinutes - orderTimeMinutes);
+			//	if (dateDiff > 5) { applyExpiredClass(awaitingOrders[i].OrderId) }
+			//	else return false;
+			//}
+		}
+	}
+}
+
+// function that takes an awating order id as parameter and mark a row containing this order as expired.
+function setOrderExpired(id) {
+	var rowToPaint = document.getElementById(id);
+	if (rowToPaint.className == null || rowToPaint.className == undefined) {
+		setTimeout(function () {
+			var checkRowAgain = document.getElementById(id); // check again if element is available.
+			if (checkRowAgain == null) { return false }
+			else { rowToPaint.className = "expiredOrderClass"; }
+		}, 300000)
+	}
+	else {
+		setTimeout(function () {
+			var checkRowAgain = document.getElementById(id); // check again if element is available.
+			if (checkRowAgain == null) { return false }
+			else { checkRowAgain.className = rowToPaint.className + " expiredOrderClass"; }
+		}, 300000)
+	}
+}
+
+// function that add expired class immediately
+function applyExpiredClass(id) {
+	if (document.readyState == 'complete') {
+		var rowToPaint = document.getElementById(id);
+		if (rowToPaint.className == null || rowToPaint.className == undefined) {
+			rowToPaint.className = "expiredOrderClass";
+		}
+		else {
+			rowToPaint.className = rowToPaint.className + " expiredOrderClass";
+		}
+	}
+	else alert("not ready");
 }

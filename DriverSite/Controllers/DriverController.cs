@@ -88,6 +88,13 @@ namespace DriverSite.Controllers
 			}
 			return Json(false);
 		}
+		/// <summary>
+		/// Action method used to add location info (district) for current driver. If user is unauthorized it redirects it to home page.
+		/// If user is authorized it checks db for existing location for this user. If search is successfull, it updates it.
+		/// If not - creates new.
+		/// </summary>
+		/// <param name="Id">District ID</param>
+		/// <returns></returns>
 		[HttpPost]
 		public JsonResult JoinToLocation(int Id)
 		{

@@ -88,10 +88,10 @@ namespace MainSaite.Controllers
 
 		public JsonResult GetDistrictReportsPerYear()
 		{
-			var allOrders = orderManager.GetQueryableOrders().Where(x => x.DistrictId != 0 && x.District != null);
+			var allOrders = orderManager.GetQueryableOrders().Where(x => x.District != null && x.DistrictId != 0 && x.DriverId != 0 && x.OrderTime.Year == DateTime.Now.Year);
 			//var allCompletedOrders = orderManager.GetQueryableOrders().Where(x => x.isFinishedProperty?)
 			var allDistricts = districtManager.GetIQueryableDistricts();
-			var OrdersPerDistrict = allOrders.Join(allDistricts, x => x.DistrictId, y => y.Id, (x, y) => new { dName = y.Name, ordersSum = 1 }).GroupBy(x => x.dName).ToList();
+			var OrdersPerDistrict = allOrders.Join(allDistricts, x => x.DistrictId, y => y.Id, (x, y) => new { dName = y.Name, ordersSum = 1, Year = x.OrderTime.Year }).GroupBy(x => x.dName).ToList();
 			return Json(OrdersPerDistrict, JsonRequestBehavior.AllowGet);
 		}
 
