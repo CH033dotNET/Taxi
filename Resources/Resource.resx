@@ -781,4 +781,10 @@
   <data name="OrderInProgress" xml:space="preserve">
     <value>Your order in progress, please wait</value>
   </data>
+  <data name="OrdersPerDistrictStat" xml:space="preserve">
+    <value>Orders per district</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Reports and statistics</value>
+  </data>
 </root>
