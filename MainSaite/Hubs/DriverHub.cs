@@ -21,18 +21,13 @@ namespace MainSaite.Hubs
 		}
 
 
+		//Assign order to driver
         [HubMethodName("assignedOrder")]
         public void AssignedOrder(OrderDTO order)
         {
             Clients.Group("Operator").assignedDrOrder(order);
         }
 
-
-		[HubMethodName("reservOrder")]
-		public void ReservOrder(int order)
-		{
-			Clients.OthersInGroup("Driver").assignedOrder(order);
-		}
 
 
         [HubMethodName("connectUser")]
@@ -56,6 +51,17 @@ namespace MainSaite.Hubs
                 driverHubUsers.Add(currentUser);
             }
         }
+
+		public override System.Threading.Tasks.Task OnDisconnected(bool stopCalled)
+		{
+			var item = driverHubUsers.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
+			if (item != null)
+			{
+				driverHubUsers.Remove(item);
+			}
+
+			return base.OnDisconnected(stopCalled);
+		}
        
     }
 }

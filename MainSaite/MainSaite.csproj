@@ -191,7 +191,6 @@
     <Compile Include="Controllers\ReportChartsController.cs" />
     <Compile Include="Helpers\DriverLocationHelper.cs" />
     <Compile Include="Helpers\IDriverLocationHelper.cs" />
-    <Compile Include="Hubs\ClientHub.cs" />
     <Compile Include="Hubs\DriverHub.cs" />
     <Compile Include="Hubs\OperatorHub.cs" />
     <Compile Include="Models\AutoParkViewModel.cs" />

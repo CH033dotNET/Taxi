@@ -21,14 +21,10 @@
 
 
 
-
-
 <div class="main" style="float:right">
     <input id="txtUserName" type="hidden" value="@User.UserName" />
     <p> <button class="btn btn-primary" id="showform">Message to operators</button> <br /></p>
 </div>
-
-
 
 <!--
     End messages
@@ -56,7 +52,7 @@
                      </table>
             </div>      
             <div class="modal-footer" style="background-color:whitesmoke">
-                <button class="btn btn-success" id="assignOrder" type="button" data-dismiss="modal" onclick="Assign()">@Resources.Resource.Confirm</button>
+                <button class="btn btn-success assign" id="assignOrder" type="button" data-dismiss="modal">@Resources.Resource.Confirm</button>
                  <button class="btn btn-danger" type="button" data-dismiss="modal">@Resources.Resource.cancelButton</button>
             </div>
         </div> 
@@ -95,7 +91,7 @@
             <td>{{PrettifyDate OrderTime}}</td>
             <td>{{PeekPlace}}</td>
             <td>{{DropPlace}}</td>
-            <td> <button type="button" class="submitButton btn btn-success" id="submitButton{{Id}}" data-orderid="{{Id}}" data-toggle="modal" data-target="#Asign" onclick="saveOrderId(this)">@Resources.Resource.Confirm</button> </td>
+            <td> <button type="button" class="submitButton btn btn-success sub" id="submitButton{{Id}}" data-orderid="{{Id}}" data-toggle="modal" data-target="#Asign">@Resources.Resource.Confirm</button> </td>
         </tr>      
         {{/each}}
         {{#if newOrder}}
@@ -103,7 +99,7 @@
             <td>{{PrettifyDate OrderTime}}</td>
             <td>{{newOrder.PeekPlace}}</td>
             <td>{{newOrder.DropPlace}}</td>
-            <td> <button type="button" class="submitButton btn btn-success" id="submitButton{{newOrder.Id}}" data-orderid="{{newOrder.Id}}" data-toggle="modal" data-target="#Asign" onclick="saveOrderId(this)">@Resources.Resource.Confirm</button> </td>
+            <td> <button type="button" class="submitButton btn btn-success sub" id="submitButton{{newOrder.Id}}" data-orderid="{{newOrder.Id}}" data-toggle="modal" data-target="#Asign">@Resources.Resource.Confirm</button> </td>
         </tr>
         {{/if}}
 

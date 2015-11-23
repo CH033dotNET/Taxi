@@ -783,4 +783,13 @@
   <data name="OrderDiagrama" xml:space="preserve">
     <value>Діаграма замовлєнь</value>
   </data>
+  <data name="OrderInProgress" xml:space="preserve">
+    <value>Ваше замовлення виконується, зачекайте.</value>
+  </data>
+  <data name="OrdersPerDistrictStat" xml:space="preserve">
+    <value>Замовлення по районам</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Звіти та статистика</value>
+  </data>
 </root>

@@ -61,7 +61,7 @@
 @* Waiting Orders *@
 <script id="waitingOrderTemplate" type="text/x-handlebars-template">
             {{#each waitingOrders}}
-            <tr id="{{Id}}">
+            <tr id="{{OrderId}}">
                 <td>{{FirsName}}</td>
                 <td>{{PeekPlace}}</td>
                 <td>{{DropPlace}}</td>
@@ -73,7 +73,7 @@
             {{/each}}
     {{#if waitingOrder}}
 	<tr id="{{waitingOrder.Id}}">
-		<td>{{FirstName}}</td> @*How to extract First Name*@
+		<td>{{waitingOrder.FirstName}}</td> @*How to extract First Name*@
 		<td>{{waitingOrder.PeekPlace}}</td>
 		<td>{{waitingOrder.DropPlace}}</td>
 		<td>{{PrettifyDate OrderTime}}</td>
@@ -124,6 +124,7 @@
     </tr>
     <tbody id="orderContent"></tbody>
 </table>
+
 <h2 class="OperatortbNames">@Resources.Resource.WaitingOrders</h2>
 <table class="table table-hover">
     <tr class="historyTh">
@@ -135,6 +136,7 @@
     </tr>
     <tbody id="waitingOrdersContent"></tbody>
 </table>
+
 <h2 class="driverRequest">@Resources.Resource.ConfirmedByDrivers</h2>
 <table class="table table-hover">
         <tr class="historyTh">

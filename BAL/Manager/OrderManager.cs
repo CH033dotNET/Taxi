@@ -58,6 +58,8 @@ namespace BAL.Manager
 			newOrder.WaitingTime = order.WaitingTime;
 			newOrder.IsConfirm = order.IsConfirm;
 			newOrder.DriverId = order.DriverId;
+			newOrder.DistrictId = order.DistrictId;
+			newOrder.District = order.District;
 			uOW.Save();
 			return Mapper.Map<OrderDTO>(newOrder);
 		}

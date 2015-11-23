@@ -107,6 +107,13 @@ namespace MainSaite.Controllers
 			}
 			return Json(false);
 		}
+		/// <summary>
+		/// Action method used to add location info (district) for current driver. If user is unauthorized it redirects it to home page.
+		/// If user is authorized it checks db for existing location for this user. If search is successfull, it updates it.
+		/// If not - creates new.
+		/// </summary>
+		/// <param name="Id">District ID</param>
+		/// <returns></returns>
 		public ActionResult JoinToLocation(int Id)
 		{
 			var user = Session["User"] as Model.DTO.UserDTO;
@@ -183,20 +190,6 @@ namespace MainSaite.Controllers
 		{
 			var orders = orderManager.GetOrders().Where(x => x.IsConfirm == 1 && x.DriverId == 0).ToList();
 			return Json(orders, JsonRequestBehavior.AllowGet);
-		}
-
-		public JsonResult GetOrder(int orderId, string waitingTime)
-		{
-			var order = orderManager.GetOrderByOrderID(orderId);
-			order.DriverId = SessionUser.Id;
-			order.WaitingTime = waitingTime;
-			//add district id.// from location
-			/*var driverLocation = locationManager.GetByUserId(SessionUser.Id);
-			order.DistrictId = driverLocation.DistrictId;
-			order.District = driverLocation.District;*/
-			var updatedOrder = orderManager.EditOrder(order);
-
-            return Json(updatedOrder, JsonRequestBehavior.AllowGet);
 		}
 
 		public JsonResult GetCurrentOrder(int orderId)
