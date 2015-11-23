@@ -150,7 +150,16 @@ namespace BAL.Manager
 		public IQueryable<decimal> YearIncome()
 		{
 			var lastYear = DateTime.Now.AddYears(-1);
-			var price12 = uOW.OrderRepo.All.Where(x => x.EndWork > lastYear).OrderBy(x => x.EndWork).GroupBy(x => x.EndWork.Value.Month).Select(x => x.Sum(y => y.TotalPrice));
+			/*var r1 = uOW.OrderRepo.Get().ToList();
+			var r2 = r1.Where(x => x.EndWork > lastYear).ToList();
+			var r3 = r2.OrderBy(x => x.EndWork).ToList();
+			var r4 = r3.GroupBy(x => x.EndWork.Value.Month).ToList();
+			var r5 = r4.Select(x => x.Sum(y => y.TotalPrice)).ToList();*/
+
+			var price12 = uOW.OrderRepo.All.Where(x => x.EndWork > lastYear)
+				.OrderBy(x => x.EndWork)
+				.GroupBy(x => x.EndWork.Value.Month)
+				.Select(x => x.Sum(y => y.TotalPrice));
 			return price12;
 		}
 	}

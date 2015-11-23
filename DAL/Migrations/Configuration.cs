@@ -211,10 +211,27 @@ namespace DAL.Migrations
 			}
 			if (!context.Orders.Any())
 			{
+				var r = context.Users.Where(x => x.RoleId == 1).Select(x => x.Id).ToArray();
 				var NewOrders = new List<Order>();
 				for (int i = 0; i < 100; i++)
 				{
-					NewOrders.Add(new Order { OrderTime = DateTime.UtcNow, PeekPlace = string.Format("some place {0}", i), DropPlace = string.Format("some other place {0}", i), DriverId = 2, DistrictId = random.Next(1, 7), PersonId = random.Next(1, 25) });
+					var date = DateTime.Now.AddMonths(-random.Next(0, 15));
+					NewOrders.Add(new Order()
+						{
+							Accuracy = random.Next(1,11),
+							DistrictId = random.Next(1, 7),
+							DriverId = r[random.Next(0, r.Length)],
+							PeekPlace = string.Format("some place {0}", i),
+							DropPlace = string.Format("some other place {0}", i),
+							EndWork = date,
+							FuelSpent = random.Next(1,100),
+							OrderTime = date,
+							StartWork = date.AddHours(-random.Next(1,15)),
+							PersonId = 2,
+							IsConfirm = 4,
+							TotalPrice = random.Next(5,500),
+							WaitingTime = random.Next(2,10).ToString()
+						});
 				}
 				context.Orders.AddRange(NewOrders);
 				context.SaveChanges();

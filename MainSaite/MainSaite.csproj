@@ -521,6 +521,7 @@
     <Content Include="Views\ReportCharts\DistrictReportsPerYear.cshtml" />
     <Content Include="Views\ReportCharts\ChartOrders.cshtml" />
     <Content Include="Views\ReportCharts\TopOrderingClientsPartial.cshtml" />
+    <Content Include="Views\ReportCharts\YearIncome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

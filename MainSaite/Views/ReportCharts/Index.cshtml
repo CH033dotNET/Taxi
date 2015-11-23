@@ -72,10 +72,9 @@
 			</div>
 			<div id="Chart5" class="tab-pane fade">
 				<p>
-					[death]
-					@*@{
-							Html.RenderAction("", "");
-						}*@
+					@{
+						Html.RenderAction("YearIncome", "ReportCharts");
+					}
 				</p>
 			</div>
 			<div id="Chart6" class="tab-pane fade">

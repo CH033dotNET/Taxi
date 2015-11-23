@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Linq.Expressions;
+using System.Collections;
 
 namespace MainSaite.Controllers
 {
@@ -179,19 +181,27 @@ namespace MainSaite.Controllers
 
 			return chart;
 		}
-		private void YearIncome()
+		public ActionResult YearIncome()
 		{
-			var Categories = new string[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+			Queue<string> categoriesQueue = new Queue<string>(new string[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" });
+			for(int i = 0; i < DateTime.Now.Month; i++)
+			{
+				categoriesQueue.Enqueue(categoriesQueue.Dequeue());
+			}
+			var categories = categoriesQueue.ToArray();
 			Highcharts chart = new Highcharts("IncomeByMonthes");
+			var list = orderManager.YearIncome().ToList();
+			var data = list.Select(x => (object)x).ToArray();
 			chart.SetSeries(new Series()
 			{
 				Type = ChartTypes.Column,
-				Data = new Data(orderManager.YearIncome().Select(x =>(object)x).ToArray())
+				Data = new Data(data)
 			});
 			chart.SetXAxis(new XAxis()
 			{
-				Categories = new string[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }
+				Categories = categories
 			});
+			return PartialView(chart);
 		}
     }
 }
