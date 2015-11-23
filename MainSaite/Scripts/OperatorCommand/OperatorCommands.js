@@ -263,28 +263,60 @@ function checkExpiredOrders(OrdersList) {
 			var dayDiff = timeNow.diff(awaitingOrders[i].OrderTime, "days"); // checking day difference
 			var hourDiff = timeNow.diff(awaitingOrders[i].OrderTime, "hours"); // checking hour difference
 			var minuteDiff = timeNow.diff(awaitingOrders[i].OrderTime, "minutes"); // checking minute difference
+			var secondDiff = timeNow.diff(awaitingOrders[i].OrderTime, "seconds"); // checking seconds difference
 			if (dayDiff >= 1 || hourDiff >= 1) { // if dateNow hour day or hour value is bigger then order`s
 				applyExpiredClass(awaitingOrders[i].OrderId);
 			}
 			else if (minuteDiff >= 5) { // if dateNow day or hour value is equal to order`s but minutes count is bigger
 				applyExpiredClass(awaitingOrders[i].OrderId);
 			}
+				// if minute difference is less than 5 minutes
+			else if (minuteDiff < 5 && minuteDiff > 0) {
+				applyExpiredClass3(awaitingOrders[i].OrderId, minuteDiff, 0)
+			}
+			else if (secondDiff > 0 && secondDiff < 60) {
+				applyExpiredClass3(awaitingOrders[i].OrderId, 0, secondDiff)
+			}
 			else return false;
-			//var timeNowHours = moment(timeNow).hours(); // hours in date-time now
-			//var orderTimeHours = moment(awaitingOrders[i].OrderTime).hours(); // hours in orderTime
-			//var timeNowMinutes = moment(timeNow).minutes(); // minutes in date-time now
-			//var orderTimeMinutes = moment(awaitingOrders[i].OrderTime).minutes(); // hours in orderTime
-
-			//if (timeNowHours > orderTimeHours) { applyExpiredClass(awaitingOrders[i].OrderId) }
-			//else {
-			//	var timeNowMinutes = moment(timeNow).minutes();
-			//	var orderTimeMinutes = moment(awaitingOrders[i].OrderTime).minutes();
-			//	var dateDiff = Math.abs(timeNowMinutes - orderTimeMinutes);
-			//	if (dateDiff > 5) { applyExpiredClass(awaitingOrders[i].OrderId) }
-			//	else return false;
-			//}
 		}
 	}
+}
+// function that add expired class to those entries that were added less than 5 minutes ago.
+function applyExpiredClass3(id, minutes, seconds) {
+	var rowToPaint = document.getElementById(id);
+	if (minutes > 0 && seconds == 0) {
+		if (rowToPaint.className == null || rowToPaint.className == undefined) {
+			setTimeout(function () {
+				var checkRowAgain = document.getElementById(id); // check again if element is available.
+				if (checkRowAgain == null) { return false }
+				else { rowToPaint.className = "expiredOrderClass"; }
+			}, (5 - minutes) * 60000)
+		}
+		else {
+			setTimeout(function () {
+				var checkRowAgain = document.getElementById(id); // check again if element is available.
+				if (checkRowAgain == null) { return false }
+				else { checkRowAgain.className = rowToPaint.className + " expiredOrderClass"; }
+			}, (5 - minutes) * 60000)
+		}
+	}
+	else if (seconds > 0 && minutes == 0) {
+		if (rowToPaint.className == null || rowToPaint.className == undefined) {
+			setTimeout(function () {
+				var checkRowAgain = document.getElementById(id); // check again if element is available.
+				if (checkRowAgain == null) { return false }
+				else { rowToPaint.className = "expiredOrderClass"; }
+			}, (300 - seconds) * 1000)
+		}
+		else {
+			setTimeout(function () {
+				var checkRowAgain = document.getElementById(id); // check again if element is available.
+				if (checkRowAgain == null) { return false }
+				else { checkRowAgain.className = rowToPaint.className + " expiredOrderClass"; }
+			}, (300 - seconds) * 1000)
+		}
+	}
+	else return false;
 }
 
 // function that takes an awating order id as parameter and mark a row containing this order as expired.
