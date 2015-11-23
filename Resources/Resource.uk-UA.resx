@@ -792,4 +792,16 @@
   <data name="Statistics" xml:space="preserve">
     <value>Звіти та статистика</value>
   </data>
+  <data name="Drivers" xml:space="preserve">
+    <value>Водії</value>
+  </data>
+  <data name="DriversIncome" xml:space="preserve">
+    <value>Дохід водіїв</value>
+  </data>
+  <data name="IncomeUAH" xml:space="preserve">
+    <value>Дохід (грн.)</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Інформація</value>
+  </data>
 </root>

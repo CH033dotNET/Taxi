@@ -31,7 +31,7 @@
 				<a data-toggle="tab" href="#Chart5">[Chart5]</a>
 			</li>
 			<li role="presentation">
-				<a data-toggle="tab" href="#Chart6">[Chart6]</a>
+				<a data-toggle="tab" href="#Chart6">@Resources.Resource.DriversIncome</a>
 			</li>
 			<li role="presentation">
 				<a data-toggle="tab" href="#Chart7">[Chart7]</a>
@@ -79,10 +79,7 @@
 			</div>
 			<div id="Chart6" class="tab-pane fade">
 				<p>
-					[death]
-					@*@{
-							Html.RenderAction("", "");
-						}*@
+					@ViewBag.DriversIncomeChart
 				</p>
 			</div>
 			<div id="Chart7" class="tab-pane fade">

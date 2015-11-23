@@ -164,6 +164,26 @@ namespace BAL.Manager
 				.Select(x => x.Sum(y => y.TotalPrice));
 			return price12;
 		}
+
+		public IQueryable<ChartsColumnDTO> GetDriversIncome()
+		{
+			var DriversIncome = uOW.OrderRepo.All.GroupBy(x => new { x.DriverId })
+							.Select(y => new
+							{
+								DriverId = y.Key.DriverId,
+								Income = y.Sum(s => s.TotalPrice).ToString()
+							}).Join(uOW.UserRepo.All,
+								dr => dr.DriverId,
+								us => us.Id,
+								(dr, us) => new ChartsColumnDTO
+								{
+									ColumnName = us.UserName,
+									Value = dr.Income
+								}
+							).ToList();
+
+			return DriversIncome.AsQueryable();
+		}
 	}
 
 }

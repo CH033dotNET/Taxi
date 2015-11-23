@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Linq.Expressions;
 using System.Collections;
+using Model.DTO;
 
 namespace MainSaite.Controllers
 {
@@ -31,7 +32,7 @@ namespace MainSaite.Controllers
         { 
             ChartOrders();
             DorinTewst();
-			
+			DriversIncome();
 			return View(GrafickOf10TopClients());
         }
 
@@ -202,6 +203,58 @@ namespace MainSaite.Controllers
 				Categories = categories
 			});
 			return PartialView(chart);
+		}
+
+		public void DriversIncome()
+		{
+			var DriversInc = orderManager.GetDriversIncome();
+
+			Highcharts driversIncomeChart = new Highcharts("driversChartId");
+
+			driversIncomeChart.SetTitle(new Title() { Text = Resources.Resource.DriversIncome });
+
+			driversIncomeChart.SetXAxis(new XAxis() { 
+				Title = new XAxisTitle() { Text = @Resources.Resource.Drivers },
+				Categories = new string[] {Resources.Resource.Info}
+			});
+			driversIncomeChart.SetYAxis(new YAxis() { 
+				Title = new YAxisTitle() { Text = @Resources.Resource.IncomeUAH }});
+
+			List<Series> series = new List<Series>();
+			List<object> serieData = new List<object>();
+
+			Series serie = new Series();
+
+			foreach (ChartsColumnDTO item in DriversInc)
+			{
+				serie = new Series();
+				serie.Name = item.ColumnName;
+				serie.Type = ChartTypes.Column;
+				serieData.Clear();
+				serieData.Add(new object[] { item.Value });
+				serie.Data = new Data(serieData.ToArray());
+				series.Add(serie);
+
+			};
+
+			driversIncomeChart.SetSeries(series.ToArray());
+
+
+			driversIncomeChart.SetLegend(new Legend()
+			{
+				Align = HorizontalAligns.Right,
+				Layout = Layouts.Vertical,
+				VerticalAlign = VerticalAligns.Top
+			});
+
+			driversIncomeChart.SetPlotOptions(new PlotOptions()
+			{
+				Area = new PlotOptionsArea() { Stacking = Stackings.Normal }
+			});
+
+			driversIncomeChart.SetCredits(new Credits() { Enabled = false });
+			ViewBag.DriversIncomeChart = driversIncomeChart;
+
 		}
     }
 }
