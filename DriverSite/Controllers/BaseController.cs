@@ -51,6 +51,18 @@ namespace DriverSite.Controllers
 			}
 		}
 
+		public int SessionOrderId
+		{
+			get
+			{
+				return Convert.ToInt32(Session["OrderId"]);
+			}
+			set
+			{
+				Session["OrderId"] = value;
+			}
+		}
+
 		protected override void OnActionExecuting(ActionExecutingContext filterContext)
 		{
 			if (Session["Culture"] != null)
@@ -71,6 +83,11 @@ namespace DriverSite.Controllers
 			if (SessionCordinates == null)
 			{
 				SessionCordinates = new List<CoordinatesDTO>();
+			}
+
+			if (SessionOrderId == null)
+			{
+				SessionOrderId = 0;
 			}
 
 			base.OnActionExecuting(filterContext);

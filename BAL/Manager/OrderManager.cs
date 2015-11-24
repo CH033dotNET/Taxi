@@ -60,6 +60,7 @@ namespace BAL.Manager
 			newOrder.DriverId = order.DriverId;
 			newOrder.DistrictId = order.DistrictId;
 			newOrder.District = order.District;
+			newOrder.FuelSpent = order.FuelSpent;
 			uOW.Save();
 			return Mapper.Map<OrderDTO>(newOrder);
 		}
@@ -183,6 +184,22 @@ namespace BAL.Manager
 							).ToList();
 
 			return DriversIncome.AsQueryable();
+		}
+
+		public float GetFuelConsumption(int DriverId)
+		{
+			var fuelConsumotion = uOW.CarRepo.Get().FirstOrDefault(x => x.UserId == DriverId).CarPetrolConsumption;
+			return (float)fuelConsumotion;
+		}
+
+		public IQueryable<float> AnnualFuelConsumption()
+		{
+			var lastYear = DateTime.Now.AddYears(-1);
+			var fuelConsumption = uOW.OrderRepo.All.Where(x => x.EndWork > lastYear)
+				.OrderBy(x => x.EndWork)
+				.GroupBy(x => x.EndWork.Value.Month)
+				.Select(x => x.Sum(y => y.FuelSpent));
+			return fuelConsumption;
 		}
 	}
 

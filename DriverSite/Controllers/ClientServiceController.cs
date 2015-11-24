@@ -37,14 +37,23 @@ namespace DriverSite.Controllers
 			SessionCordinates = list;
             ApiRequestHelper.postData<CoordinatesDTO>(controller, "AddCoordinates", coordinates);
 			//coordinatesManager.AddCoordinates(coordinates);
-			return ShowCurrentPrice();
+			return ShowCurrentPrice(false);
 		}
-        
-		private string ShowCurrentPrice()
+
+		private string ShowCurrentPrice(bool lastCalc)
 		{
 			List<TarifDTO> tarifs = ApiRequestHelper.Get<List<TarifDTO>>("ClientService", "GetTarifes").Data;
 			PriceCounter price = new PriceCounter(SessionCordinates, tarifs);
-			return String.Format("{0:0.00}", price.CalcPrice());
+			decimal currentPrice = price.CalcPrice();
+			if (lastCalc)
+			{
+				float consumption = ApiRequestHelper.Get<float, int>("ClientService", "GetFuelConsumption", SessionUser.Id).Data;
+				float distance = (float)price.finalDistance;
+				OrderDTO order = ApiRequestHelper.Get<OrderDTO, int>("ClientService", "GetOrderById", SessionOrderId).Data;
+				order.FuelSpent = (distance * consumption == 0) ? 12F : distance * consumption;
+				ApiRequestHelper.postData<OrderDTO>(controller, "EditOrder", order);
+			}
+			return String.Format("{0:0.00}", currentPrice);
 		}
         
 		public string DropClient(CoordinatesDTO coordinates)
@@ -59,7 +68,7 @@ namespace DriverSite.Controllers
 			}
             ApiRequestHelper.postData<CoordinatesDTO>(controller, "AddCoordinates", coordinates);
 			//coordinatesManager.AddCoordinates(coordinates);
-			string price = ShowCurrentPrice();
+			string price = ShowCurrentPrice(true);
 			SessionCordinates = new List<CoordinatesDTO>();
             decimal minPrice = ApiRequestHelper.GetById<TarifDTO>(controller, "GetById", coordinates.TarifId).Data.MinimalPrice;
 			//decimal minPrice = tarifManager.GetById(coordinates.TarifId).MinimalPrice;

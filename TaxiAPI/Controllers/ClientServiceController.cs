@@ -70,5 +70,17 @@ namespace TaxiAPI.Controllers
         {
             return Request.CreateResponse(HttpStatusCode.OK, tarifManager.GetById(id));
         }
+		[HttpGet]
+		[Route("api/ClientService/GetFuelConsumption")]
+		public HttpResponseMessage GetFuelConsumption(int data)
+		{
+			return Request.CreateResponse(HttpStatusCode.OK, orderManager.GetFuelConsumption(data));
+		}
+		[HttpGet]
+		[Route("api/ClientService/GetOrderById")]
+		public HttpResponseMessage GetOrderById(int data)
+		{
+			return Request.CreateResponse(HttpStatusCode.OK, orderManager.GetOrderByOrderID(data));
+		}
     }
 }

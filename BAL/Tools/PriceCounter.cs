@@ -20,6 +20,7 @@ namespace Common.Tools
 		private TarifDTO currentTarif;
 		private int currentTatifId = 0;
 		private double distance;
+		public double finalDistance { get; private set; }
 		private double timePeriod;
 		private double speed;
 		private decimal currentPrice = 0;
@@ -63,10 +64,11 @@ namespace Common.Tools
 					}
 					prevCoordinates = coordinatesHistory[iterator-1];
 					iterator++;
-					// distance (km)
 
+					// distance (km)
 					distance = GetDistance(prevCoordinates.Latitude, prevCoordinates.Longitude,
 												coordinates.Latitude, coordinates.Longitude);
+					finalDistance += distance;
 					//timePeriod (min)
 					timePeriod = CountOfMinutes(prevCoordinates.AddedTime, coordinates.AddedTime);
 					speed = distance / (timePeriod / 60); // km/h

@@ -20,5 +20,7 @@ namespace BAL.Manager
 		IQueryable<IGrouping<int, OrderDTO>> GetTop10();
 		IQueryable<decimal> YearIncome();
 		IQueryable<ChartsColumnDTO> GetDriversIncome();
+		float GetFuelConsumption(int DriverId);
+		IQueryable<float> AnnualFuelConsumption();
 	}
 }

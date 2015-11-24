@@ -38,8 +38,23 @@ namespace MainSaite.Controllers
 
         private void DorinTewst()
         {
+			Queue<string> categoriesQueue = new Queue<string>(new string[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" });
+			for (int i = 0; i < DateTime.Now.Month; i++)
+			{
+				categoriesQueue.Enqueue(categoriesQueue.Dequeue());
+			}
+			var categories = categoriesQueue.ToArray();
 			Highcharts chart = new Highcharts("FuelConsumptionID");
 			chart.SetTitle(new Title() { Text = "Fuel Consumption" });
+			var list = orderManager.AnnualFuelConsumption();
+
+			List<object> obList = new List<object>();
+			foreach (var item in list)
+			{
+				var iut = (int)item;
+				obList.Add((object)iut);
+			}
+
 			chart.SetYAxis(new YAxis
 			{
 				Title = new YAxisTitle() { Text = "Fuel (l)" },
@@ -49,19 +64,18 @@ namespace MainSaite.Controllers
 			chart.SetXAxis(new XAxis
 			{
 				Title = new XAxisTitle() { Text = "Month" },
-				Categories = new string[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }
+				Categories = categories
 			});
 
 
 
 			List<Series> series = new List<Series>();
-			//Temporary data
-			List<object> serieData = new List<object>() { 1, 4, 7, 4, 8, 4, 3, 5, 22, 4, 6, 3 };
 
 			Series serie = new Series();
 			serie.Name = "liters";
 			serie.Type = ChartTypes.Column;
-			serie.Data = new Data(serieData.ToArray());
+			//serie.Data = new Data(serieData.ToArray());
+			serie.Data = new Data(obList.ToArray());
 			series.Add(serie);
 
 
