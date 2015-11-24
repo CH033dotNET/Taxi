@@ -804,4 +804,10 @@
   <data name="Info" xml:space="preserve">
     <value>Інформація</value>
   </data>
+  <data name="MessageToDrivers" xml:space="preserve">
+    <value>Повідомлення для водіїв</value>
+  </data>
+  <data name="MessageToOperators" xml:space="preserve">
+    <value>Повідомлення для операторів</value>
+  </data>
 </root>

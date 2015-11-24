@@ -1421,6 +1421,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Message to drivers.
+        /// </summary>
+        public static string MessageToDrivers {
+            get {
+                return ResourceManager.GetString("MessageToDrivers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message to operators.
+        /// </summary>
+        public static string MessageToOperators {
+            get {
+                return ResourceManager.GetString("MessageToOperators", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Middle name.
         /// </summary>
         public static string MiddleName {

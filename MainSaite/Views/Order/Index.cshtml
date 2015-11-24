@@ -17,12 +17,11 @@
 
 
 
-<div class="main" style="float:right">
+<div class="main">
     <input id="currentUserId" type="hidden" value="@User.Id" />
-    <button class="btn btn-primary" id="showform">Message to drivers</button> <br />
 </div>
 
-
+<button class="btn btn-primary pull-right" id="showform">@Resources.Resource.MessageToDrivers</button> <br/><br/>
 
 
 <!--
@@ -112,33 +111,47 @@
     {{/if}}
 </script>
 
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="OperatortbNames" style="text-align:center;">@Resources.Resource.NewOrders</h3>
+    </div>
 
-<h2 class="OperatortbNames">@Resources.Resource.NewOrders</h2>
-<table class="table table-hover">
-    <tr class="historyTh">
-        <th>@Resources.Resource.Name</th>
-        <th>@Resources.Resource.PeekPlace</th>
-        <th>@Resources.Resource.DropPlace</th>
-        <th>@Resources.Resource.OrderTime</th>
-        <th>@Resources.Resource.Action</th>
-    </tr>
-    <tbody id="orderContent"></tbody>
-</table>
+    <table class="table table-hover">
+        <tr class="historyTh">
+            <th>@Resources.Resource.Name</th>
+            <th>@Resources.Resource.PeekPlace</th>
+            <th>@Resources.Resource.DropPlace</th>
+            <th>@Resources.Resource.OrderTime</th>
+            <th>@Resources.Resource.Action</th>
+        </tr>
+        <tbody id="orderContent"></tbody>
+    </table>
+</div>
 
-<h2 class="OperatortbNames">@Resources.Resource.WaitingOrders</h2>
-<table class="table table-hover">
-    <tr class="historyTh">
-        <th>@Resources.Resource.Name</th>
-        <th>@Resources.Resource.PeekPlace</th>
-        <th>@Resources.Resource.DropPlace</th>
-        <th>@Resources.Resource.OrderTime</th>
-        <th>@Resources.Resource.Action</th>
-    </tr>
-    <tbody id="waitingOrdersContent"></tbody>
-</table>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="OperatortbNames" style="text-align:center;">@Resources.Resource.WaitingOrders</h3>
+    </div>
 
-<h2 class="driverRequest">@Resources.Resource.ConfirmedByDrivers</h2>
-<table class="table table-hover">
+    <table class="table table-hover">
+        <tr class="historyTh">
+            <th>@Resources.Resource.Name</th>
+            <th>@Resources.Resource.PeekPlace</th>
+            <th>@Resources.Resource.DropPlace</th>
+            <th>@Resources.Resource.OrderTime</th>
+            <th>@Resources.Resource.Action</th>
+        </tr>
+        <tbody id="waitingOrdersContent"></tbody>
+    </table>
+</div>
+
+
+<div class="panel panel-info">
+    <div class="panel-heading" style="text-align:center;">
+        <h3 class="driverRequest">@Resources.Resource.ConfirmedByDrivers</h3>
+    </div>
+
+    <table class="table table-hover">
         <tr class="historyTh">
             <th>@Resources.Resource.PeekPlace</th>
             <th>@Resources.Resource.DropPlace</th>
@@ -146,9 +159,9 @@
             <th>@Resources.Resource.Driver</th>
             <th>@Resources.Resource.Action</th>
         </tr>
-    <tbody id="driverRequest"></tbody>
-</table>
+        <tbody id="driverRequest"></tbody>
+    </table>
+</div>
 
     <script src="~/Scripts/HandlebarsCustomHelpers.js"></script>
     <script type="text/javascript" src="~/Scripts/OperatorCommand/OperatorCommands.js"></script>
-    <link href="~/Content/BootstrapTb/BootstrapTb.css" rel="stylesheet" />
