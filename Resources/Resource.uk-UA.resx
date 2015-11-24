@@ -810,4 +810,7 @@
   <data name="MessageToOperators" xml:space="preserve">
     <value>Повідомлення для операторів</value>
   </data>
+  <data name="FuelConsumption" xml:space="preserve">
+    <value>Затрати пального</value>
+  </data>
 </root>
