@@ -1,4 +1,5 @@
 ﻿@model bool
+@using Common.Helpers
 
 @{
 	ViewBag.Title = "DistrictPart";
@@ -20,7 +21,7 @@
 </script>
 
 <div>
-	<form method="post">
+	<form method="post" class="form-inline">
 		<div class="nonopage-header">
 			<h1>@Resources.Resource.Greeting,<small>@User.UserName</small></h1>
 		</div>
@@ -29,34 +30,63 @@
 				<h3 class="panel-title">@Resources.Resource.WorkShift</h3>
 			</div>
 			@*<div class="panel-body">
-				<div class="bs-callout bs-callout-primary">
-					<h4>@Resources.Resource.DistrictPartHeader1</h4>
-					@Resources.Resource.DistrictPartAttention1
-				</div>
-				<div class="bs-callout bs-callout-warning">
-					<h4>@Resources.Resource.DistrictPartHeader2</h4>
-					@Resources.Resource.DistrictPartAttention2
-				</div>
-			</div>*@
+					<div class="bs-callout bs-callout-primary">
+						<h4>@Resources.Resource.DistrictPartHeader1</h4>
+						@Resources.Resource.DistrictPartAttention1
+					</div>
+					<div class="bs-callout bs-callout-warning">
+						<h4>@Resources.Resource.DistrictPartHeader2</h4>
+						@Resources.Resource.DistrictPartAttention2
+					</div>
+				</div>*@
 			<div class="panel-footer">
+				<div class="form-group">
 					<input type="hidden" id="Id" value="@User.Id" />
+					@{
+						if (Model)
+						{
+							<input type="button" class="btn btn-warning" id="workshift-button" change-btn-id="work_end" value="End workshift" onclick="buttonChangeOnClick()" />
+						}
+						else
+						{
+							<input type="button" class="btn btn-success" id="workshift-button" change-btn-id="work_start" value="Start workshift" onclick="buttonChangeOnClick()" />
+						}
+					}
+				</div>
 				@{
 					if (Model)
 					{
-						<input type="button" class="btn btn-warning" id="workshift-button" change-btn-id="work_end" value="End workshift" onclick="buttonChangeOnClick()" />
+						<div id="worker-status-group" style="display:inline">
+							<div class="form-group">
+								<select class="form-control input-sm" name="driverStatus" id="inputDriverStatus">
+									@foreach (var status in Common.Helpers.EnumHelper.GetWorkerStatus())
+									{
+										<option value="@status.Key">@status.Value</option>
+									}
+								</select>
+							</div>
+							<input type="button" class="btn btn-info" id="change-status-button" value="change status" onclick="workerStatusChange()" />
+						</div>
 					}
 					else
 					{
-						<input type="button" class="btn btn-success" id="workshift-button" change-btn-id="work_start" value="Start workshift" onclick="buttonChangeOnClick()" />
+						<div id="worker-status-group" style="display:none">
+							<div class="form-group">
+								<select class="form-control input-sm" name="driverStatus" id="inputDriverStatus">
+									@foreach (var status in Common.Helpers.EnumHelper.GetWorkerStatus())
+									{
+										<option value="@status.Key">@status.Value</option>
+									}
+								</select>
+							</div>
+							<input type="button" class="btn btn-info" id="change-status-button" value="change status" onclick="workerStatusChange()" />
+						</div>
 					}
-}
+				}
 				<div>
 					@ViewBag.WorkEndMessage
 				</div>
 			</div>
-
-
-
 			<div class="panel-heading">
 				<h3 class="panel-title"> @Resources.Resource.DriversActivity</h3>
 			</div>

@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using BAL.Manager;
 using Model.DTO;
+using BAL.Interfaces;
 //using MainSaite.Helpers;
 
 namespace TaxiAPI.Controllers
@@ -17,14 +18,30 @@ namespace TaxiAPI.Controllers
 		private ICoordinatesManager coordinatesManager;
 		private IUserManager userManager;
         private IOrderManager orderManager;
-        public DriverController(ILocationManager locationManager, ICarManager carManager, ICoordinatesManager coordinatesManager, IUserManager userManager, IOrderManager orderManager)
+		private IWorkerStatusManager workerStatusManager;
+		public DriverController(ILocationManager locationManager, ICarManager carManager, ICoordinatesManager coordinatesManager, IUserManager userManager, IOrderManager orderManager, IWorkerStatusManager workerStatusManager)
 		{
 			this.locationManager = locationManager;
 			this.carManager = carManager;
 			this.coordinatesManager = coordinatesManager;
 			this.userManager = userManager;
 			this.coordinatesManager.addedCoords += coordinates => MainSiteRequestHelper.postData<bool,CoordinatesDTO>("OperatorHub", "AddedLocation", coordinates);
-        }
+			this.workerStatusManager = workerStatusManager;
+		}
+		[HttpGet]
+		public HttpResponseMessage GetDriverStatus(int id)
+		{
+			return Request.CreateResponse(HttpStatusCode.OK, workerStatusManager.ShowStatus(id));
+		}
+
+		[HttpGet]
+		public HttpResponseMessage UpdateWorkerStatus(int param1, int param2)
+		{
+			workerStatusManager.ChangeWorkerStatus(param1, param2.ToString());
+			var success = true;
+			return Request.CreateResponse(HttpStatusCode.OK, success);
+		}
+
         [HttpGet]
         //[Route("api/Driver/GetDriverDistrictInfo")]
         public HttpResponseMessage GetDriverDistrictInfo(int id)

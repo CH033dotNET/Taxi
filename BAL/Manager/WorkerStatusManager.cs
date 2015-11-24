@@ -23,7 +23,6 @@ namespace BAL.Manager
 		{
 
 		}
-
 		/// <summary>
 		/// Creates or changes status for a driver with specific id
 		/// </summary>

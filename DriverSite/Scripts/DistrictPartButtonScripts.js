@@ -5,11 +5,15 @@
 		$("#workshift-button").attr('class', 'btn btn-warning'); // changing buttons class
 		$("#workshift-button").prop('value', 'End workshift'); // changing buttons text
 		setBeginlocation();
+		setDriverStatus(3);
+		changeStatusDisplay(1);
 	}
 	else if (isValue == "End workshift") {
 		$("#workshift-button").attr("change-btn-id", "work_start"); // changing custom attribute value
 		$("#workshift-button").attr('class', 'btn btn-success'); // changing custom attribute value
 		$("#workshift-button").prop('value', 'Start workshift'); // changing buttons text
 		setEndlocation();
+		setDriverStatus(0);
+		changeStatusDisplay(0);
 	};
 }
