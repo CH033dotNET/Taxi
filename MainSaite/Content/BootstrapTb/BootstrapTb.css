@@ -1,4 +1,4 @@
-﻿body {
+﻿/*body {
 }
 
 .historyTh th {
@@ -13,8 +13,7 @@
 	line-height: 48px;
 	margin: 0;
 	text-align: center;
-}
-
+}*/
 .expiredOrderClass {
 	background-color: lightpink;
 }
