@@ -787,4 +787,22 @@
   <data name="Statistics" xml:space="preserve">
     <value>Reports and statistics</value>
   </data>
+  <data name="Drivers" xml:space="preserve">
+    <value>Drivers</value>
+  </data>
+  <data name="DriversIncome" xml:space="preserve">
+    <value>Drivers income</value>
+  </data>
+  <data name="IncomeUAH" xml:space="preserve">
+    <value>Income (UAH)</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="MessageToDrivers" xml:space="preserve">
+    <value>Message to drivers</value>
+  </data>
+  <data name="MessageToOperators" xml:space="preserve">
+    <value>Message to operators</value>
+  </data>
 </root>

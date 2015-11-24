@@ -63,7 +63,7 @@ $(function () {
         $('#showform').click(function () {
             swal({
                 title: 'Input Your message:',
-                html: '<p><input id="input-field">',
+                html: '<p><textarea id="input-field" style="width: 100%; height: 75px "> </textarea>',
                 showCancelButton: true,
                 closeOnConfirm: false
             }, function () {

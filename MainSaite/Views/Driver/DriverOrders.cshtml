@@ -23,8 +23,8 @@
 
 <div class="main" style="float:right">
     <input id="txtUserName" type="hidden" value="@User.UserName" />
-    <p> <button class="btn btn-primary" id="showform">Message to operators</button> <br /></p>
 </div>
+<button class="btn btn-primary pull-right" id="showform">@Resources.Resource.MessageToOperators</button> <br /><br />
 
 <!--
     End messages
@@ -104,19 +104,24 @@
         {{/if}}
 
 </script>
-<h2 class="OperatortbNames">@Resources.Resource.NewOrders</h2> 
-<table class="table table-hover historyTh">
-    <tr>
-        <th> @Resources.Resource.OrderTime </th>
-        <th> @Resources.Resource.PeekPlace</th>
-        <th> @Resources.Resource.DropPlace </th>
-        <th> @Resources.Resource.Action</th>
-    </tr>
-    <tbody id="DrOrder"></tbody>
-</table>
-    
-<input type="text" hidden="hidden" id="currentUserId" value="@User.Id" />
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="OperatortbNames" style="text-align:center;">@Resources.Resource.NewOrders</h3>
+    </div>
+
+    <table class="table table-hover historyTh">
+        <tr>
+            <th> @Resources.Resource.OrderTime </th>
+            <th> @Resources.Resource.PeekPlace</th>
+            <th> @Resources.Resource.DropPlace </th>
+            <th> @Resources.Resource.Action</th>
+        </tr>
+        <tbody id="DrOrder"></tbody>
+    </table>
+</div>
+
+    <input type="text" hidden="hidden" id="currentUserId" value="@User.Id" />
     <button type="button" class="btn successDriverOrder" style="display:none" data-toggle="modal" data-target="#successDriverOrder"></button>
     <button type="button" class="btn deniedDriverOrder" style="display:none" data-toggle="modal" data-target="#deniedDriverOrder"></button>
-<link href="~/Content/BootstrapTb/BootstrapTb.css" rel="stylesheet" />
 
