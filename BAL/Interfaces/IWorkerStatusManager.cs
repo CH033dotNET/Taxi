@@ -8,7 +8,7 @@ namespace BAL.Interfaces
 {
 	public interface IWorkerStatusManager
 	{
-        
+		Model.DTO.WorkerStatusDTO ShowStatus(int workerid);
 		void ChangeWorkerStatus(int id, string status);
 	}
 }

@@ -26,6 +26,25 @@ namespace DriverSite.Controllers
 			return Json(ApiRequestHelper.GetById<List<DriverDistrictInfoDTO>>(controller, "GetDriverDistrictInfo", SessionUser.Id).Data, JsonRequestBehavior.AllowGet);
 		}
 
+		public JsonResult GetCurrentDriverStatus()
+		{
+			var result = ApiRequestHelper.GetById<WorkerStatusDTO>(controller, "GetDriverStatus", SessionUser.Id).Data;
+			if (result == null) { return Json(new { success = false }, JsonRequestBehavior.AllowGet); }
+			else
+			{
+				return Json(new { success = true, result.WorkingStatus }, JsonRequestBehavior.AllowGet);
+			}
+		}
+
+		public JsonResult ChangeCurrentDriverStatus(int status)
+		{
+			var result = ApiRequestHelper.Get<bool,int,int>(controller, "UpdateWorkerStatus", SessionUser.Id, status).Data;
+			if (result == false) { return Json(new { success = false }, JsonRequestBehavior.AllowGet); }
+			else
+			{
+				return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+			}
+		}
 
 		public JsonResult WorkStateChange(int Id, string Latitude, string Longitude, string Accuracy, string TimeStart)
 		{
