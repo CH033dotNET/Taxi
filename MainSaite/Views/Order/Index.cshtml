@@ -90,8 +90,9 @@
             <tr>
                 <td>{{PeekPlace}}</td>
                 <td>{{DropPlace}}</td>
+                <td>{{request.DriverName}}</td>
                 <td>{{WaitingTime}}</td>
-                <td>{{DriverId}}</td>
+                <td hidden>{{DriverId}}</td>
                 <td>
                     <button class="btn btn-success ordrerAction" data-orderid="{{OrderId}}" data-status="4" id="submitDrRequest{{OrderId}}">@Resources.Resource.Confirm</button>
                     <button class="btn btn-danger ordrerAction" data-orderid="{{OrderId}}" data-status="6" id="deniedDrRequest{{OrderId}}">@Resources.Resource.Denied</button>
@@ -102,8 +103,9 @@
     <tr>
         <td>{{request.PeekPlace}}</td>
         <td>{{request.DropPlace}}</td>
+        <td>{{request.DriverName}}</td>
         <td>{{request.WaitingTime}}</td>
-        <td>{{request.DriverId}}</td>
+        <td hidden>{{request.DriverId}}</td>
         <td>
             <button class="btn btn-success ordrerAction sub{{request.Id}}" data-orderid="{{request.Id}}" data-status="4" id="submitDrRequest{{request.Id}}">@Resources.Resource.Confirm</button>
             <button class="btn btn-danger ordrerAction deny{{request.Id}}" data-orderid="{{request.Id}}" data-status="6" id="deniedDrRequest{{request.Id}}">@Resources.Resource.Denied</button>
@@ -156,13 +158,22 @@
         <tr class="historyTh">
             <th>@Resources.Resource.PeekPlace</th>
             <th>@Resources.Resource.DropPlace</th>
-            <th>@Resources.Resource.WaitingTime</th>
             <th>@Resources.Resource.Driver</th>
+            <th>@Resources.Resource.WaitingTime</th>
+            <th hidden></th>
             <th>@Resources.Resource.Action</th>
         </tr>
         <tbody id="driverRequest"></tbody>
     </table>
 </div>
+
+<script>
+    var LocStrings = {
+        message: '@Resources.Resource.MessageFromDriver',
+        InputYourMessage: '@Resources.Resource.InputYourMessage',
+        MessageHasBeenSent: '@Resources.Resource.MessageHasBeenSent'
+    }
+</script>
 
     <script src="~/Scripts/HandlebarsCustomHelpers.js"></script>
     <script type="text/javascript" src="~/Scripts/OperatorCommand/OperatorCommands.js"></script>

@@ -241,16 +241,11 @@ namespace BAL.Manager
 
 
 		///SetVIPStatus methodes
-		public List<VIPClientDTO> GetVIPClients()
+		public IQueryable<VIPClientDTO> GetVIPClients()
 		{
-			var listVIPClients = uOW.VIPClientRepo.All;
-			var listUsers = uOW.UserRepo.All;
-			List<VIPClientDTO> listVipClients = new List<VIPClientDTO>();
-
-
-			var RigthJoin =
-					from U in listUsers.Where(x => x.RoleId == 3)
-					join V in listVIPClients
+			var VipClients =
+					from U in uOW.UserRepo.All.Where(x => x.RoleId == 3)
+					join V in uOW.VIPClientRepo.All
 						on U.Id equals V.UserId into joined
 					from V in joined.DefaultIfEmpty()
 					select new VIPClientDTO
@@ -260,19 +255,13 @@ namespace BAL.Manager
 						UserId = U.Id,
 						UserName = U.UserName
 					};
-			
 
-			foreach (VIPClientDTO client in RigthJoin.OrderByDescending(x => x.Id))
-			{
-				listVipClients.Add(client);
-			}
-
-			return listVipClients;
+			return VipClients.OrderByDescending(x => x.Id);
 		}
 
-		public void SetVIPStatus(int UserId)
+		public void SetVIPStatus(int userId)
 		{
-			uOW.VIPClientRepo.Insert(new VIPClient { UserId = UserId, SetDate = System.DateTime.Today });
+			uOW.VIPClientRepo.Insert(new VIPClient { UserId = userId, SetDate = System.DateTime.Today });
 			uOW.Save();
 		}
 
@@ -281,6 +270,8 @@ namespace BAL.Manager
 			uOW.VIPClientRepo.Delete(uOW.VIPClientRepo.GetByID(id));
 			uOW.Save();
 		}
+
+
 
 		public bool IsUserNameCorrect(string name)
 		{

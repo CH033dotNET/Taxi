@@ -13,7 +13,7 @@ $(function () {
     //Show message from Driver
     driverHub.client.showMessage = function (message, userName) {
     // Own function 
-        swal('Message from '+userName+':', message, 'success');
+        swal(LocStrings.message+' '+userName+':', message, 'success');
     };
 
 	// function that takes an object as an input parameter from a hub call and appends a waitingOrder table with its data.
@@ -90,13 +90,13 @@ $(function () {
         //Broadcast message to all drivers
         $('#showform').click(function () {
             swal({
-                title: 'Input Your message:',
+                title: LocStrings.InputYourMessage,
                 html: '<p><textarea id="input-field" style="width: 100%; height: 75px "> </textarea>',
                 showCancelButton: true,
                 closeOnConfirm: false
             }, function () {
                 operatorHub.server.sendToDrivers($('#input-field').val());
-                swal('Your message has been sent', '', 'success');
+                swal(LocStrings.MessageHasBeenSent, '', 'success');
             });
         })
 

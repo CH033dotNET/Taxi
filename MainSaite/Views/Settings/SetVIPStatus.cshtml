@@ -1,5 +1,5 @@
 ﻿@using Model.DTO;
-@model List<VIPClientDTO>
+@model IQueryable<VIPClientDTO>
 
 <!DOCTYPE html>
 
@@ -10,11 +10,12 @@
 </head>
 
 <body>
-    <div>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3  style="text-align:center;">@Resources.Resource.SetVIPStatusPage</h3>
+        </div>
 
-        <h1>@Resources.Resource.SetVIPStatusPage</h1>
-
-        <table class="table">
+        <table class="table table-hover">
             <tr>
                 <th>
                     @Resources.Resource.UserName
@@ -34,7 +35,7 @@
                     <tr>
                         <td>@client.UserName</td>
 
-                        @if (@client.Id == 0)
+                        @if (client.Id == 0)
                         {
                             <td></td>
                             <td>@Html.ActionLink(Resources.Resource.Set, "SetVIPUser", new VIPClientDTO() { UserId = client.UserId })</td>

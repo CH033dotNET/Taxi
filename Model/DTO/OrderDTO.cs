@@ -61,5 +61,7 @@ namespace Model.DTO
 		public int? DistrictId { get; set; }
 		public float FuelSpent { get; set; }
 		public string FirstName { get; set; }
+		public string DriverName { get; set; }
+
 	}
 }
