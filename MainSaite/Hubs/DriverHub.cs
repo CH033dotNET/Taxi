@@ -25,7 +25,7 @@ namespace MainSaite.Hubs
         [HubMethodName("assignedOrder")]
         public void AssignedOrder(OrderDTO order)
         {
-            Clients.Group("Operator").assignedDrOrder(order);
+			Clients.Group("Operator").assignedDrOrder(order);
         }
 
 

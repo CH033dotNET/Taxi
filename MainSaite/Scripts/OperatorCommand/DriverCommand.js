@@ -115,6 +115,7 @@ $(document).on("click", ".assign", function () {
 
                 data.WaitingTime = time;
                 data.DriverId = driverUserId;
+                data.DriverName = $('#txtUserName').val();
 
                 isOrdered = true;
 
