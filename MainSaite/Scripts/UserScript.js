@@ -20,6 +20,6 @@
     $(":file").filestyle({ input: false, 'buttonText': "Upload image", 'badge': false});
 
     //Mask for phone
-    $("#phone").mask("(999)-999-99-99");
+   // $("#phone").mask("(999)-999-99-99");
 
 });

@@ -32,9 +32,23 @@
             <dd><input type="tel" class="form-control" name="Phone" value="@Model.Phone" id="phone" /></dd>
 
             <dt><label for="language">@Resources.Resource.Language</label></dt>
-          <dd> @Html.DropDownList("language", new SelectList(new[] { new { Text = "English", Value = "en-us" }, new { Text = "Українська", Value = "uk-Ua" } }, "Value", "Text", "Value"), new { @class = "form-control" }) </dd>
+          <dd id="languages"> @Html.DropDownList("language", new SelectList(new[] { new { Text = "English", Value = "en-us", Select = false }, new { Text = "Українська", Value = "uk-Ua", Select = true } }, "Value", "Text"), new { @class = "form-control" }) </dd>
         </dl>
         <input type="submit" class="btn btn-success" value="@Resources.Resource.UpdateProfile" />
-
-
     }
+
+<script>
+    $(document).ready(function () {
+        $('#languages option').prop('selected', false);
+
+        if ('@Html.Raw(Json.Encode(Session["Culture"]))' == '"en-us"') {
+            $('#languages option:eq(0)').prop('selected', true);
+        }
+        else {
+            $('#languages option:eq(1)').prop('selected', true);
+        }
+
+    });
+
+
+</script>
