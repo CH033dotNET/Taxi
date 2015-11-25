@@ -13,6 +13,7 @@
 @Scripts.Render("/signalr/hubs")
 @Styles.Render("~/Content/Themes/OfflineJS/offline-theme-default.css")
 @Styles.Render("~/Content/Themes/OfflineJS/offline-language-english.css")
+<link rel="stylesheet" href="~/Content/AutoParkCustomStyles.css" type="text/css" />
 
 <script>
 	var WorkerId = @User.Id;
@@ -49,7 +50,7 @@
 						}
 						else
 						{
-							<input type="button" class="btn btn-success" id="workshift-button" change-btn-id="work_start" value="Start workshift" onclick="buttonChangeOnClick()" />
+							<input type="button" class="btn btn-success" id="workshift-button" change-btn-id="work_start" value="Start workshift" onclick="checkMainCars()" />
 						}
 					}
 				</div>
@@ -84,7 +85,7 @@
 					}
 				}
 				<div>
-					@ViewBag.WorkEndMessage
+					@{Html.RenderPartial("_CarNotFoundP");}
 				</div>
 			</div>
 			<div class="panel-heading">

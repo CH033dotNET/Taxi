@@ -18,6 +18,12 @@ namespace BAL.Manager
 
 		}
 
+		public bool FindMainCar(int id)
+		{
+			var result = uOW.CarRepo.Get(x => x.UserId == id & x.OwnerId == id & x.isMain == true).Any();
+			return result;
+		}
+
 		/// <summary>
 		/// Adds new Car to repository
 		/// </summary>

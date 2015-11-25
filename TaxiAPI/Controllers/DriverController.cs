@@ -33,12 +33,31 @@ namespace TaxiAPI.Controllers
 		{
 			return Request.CreateResponse(HttpStatusCode.OK, workerStatusManager.ShowStatus(id));
 		}
-
+		/// <summary>
+		/// API method that is used for changing ctatus of a driver
+		/// </summary>
+		/// <param name="param1">represents an id of a driver</param>
+		/// <param name="param2">represents a status of a driver</param>
+		/// <returns></returns>
 		[HttpGet]
 		public HttpResponseMessage UpdateWorkerStatus(int param1, int param2)
 		{
-			workerStatusManager.ChangeWorkerStatus(param1, param2.ToString());
-			var success = true;
+			bool success = false;
+			try
+			{
+				workerStatusManager.ChangeWorkerStatus(param1, param2.ToString());
+			}
+			catch (Exception)
+			{
+				return Request.CreateResponse(HttpStatusCode.BadRequest, success);
+			}
+			success = true;
+			return Request.CreateResponse(HttpStatusCode.OK, success);
+		}
+		[HttpGet]
+		public HttpResponseMessage CheckMainCar(int id)
+		{
+			var success = carManager.FindMainCar(id);
 			return Request.CreateResponse(HttpStatusCode.OK, success);
 		}
 

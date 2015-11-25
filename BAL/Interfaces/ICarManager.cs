@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 namespace BAL.Manager
 {
 	public interface ICarManager
@@ -16,6 +17,8 @@ namespace BAL.Manager
 		bool GetWorkShiftsByWorkerId(int WorkerId);
 		string GiveAwayCar(int CarId, int NewCarUserId);
 		void StartWorkEvent(int? id, string TimeStart);
+
+		bool FindMainCar(int id);
 
 		string ChangeCarToMain(int carId, int userId);
 	}

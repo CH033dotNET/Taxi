@@ -25,7 +25,10 @@ namespace DriverSite.Controllers
 		{
 			return Json(ApiRequestHelper.GetById<List<DriverDistrictInfoDTO>>(controller, "GetDriverDistrictInfo", SessionUser.Id).Data, JsonRequestBehavior.AllowGet);
 		}
-
+		/// <summary>
+		/// Driver Site action method that is used for getting current driver status info
+		/// </summary>
+		/// <returns></returns>
 		public JsonResult GetCurrentDriverStatus()
 		{
 			var result = ApiRequestHelper.GetById<WorkerStatusDTO>(controller, "GetDriverStatus", SessionUser.Id).Data;
@@ -35,11 +38,28 @@ namespace DriverSite.Controllers
 				return Json(new { success = true, result.WorkingStatus }, JsonRequestBehavior.AllowGet);
 			}
 		}
-
+		/// <summary>
+		/// Driver Site action method that is used for changing current driver`s status.
+		/// </summary>
+		/// <param name="status">inout parameter representing a new status value</param>
+		/// <returns></returns>
 		public JsonResult ChangeCurrentDriverStatus(int status)
 		{
 			var result = ApiRequestHelper.Get<bool,int,int>(controller, "UpdateWorkerStatus", SessionUser.Id, status).Data;
 			if (result == false) { return Json(new { success = false }, JsonRequestBehavior.AllowGet); }
+			else
+			{
+				return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+			}
+		}
+		/// <summary>
+		/// Driver Site action method that is used for checking available main car for specific driver
+		/// </summary>
+		/// <returns></returns>
+		public JsonResult CheckDriverMainCar()
+		{
+			var result = ApiRequestHelper.GetById<bool>(controller, "CheckMainCar", SessionUser.Id).Data;
+			if (!result) { return Json(new { success = false }, JsonRequestBehavior.AllowGet); }
 			else
 			{
 				return Json(new { success = true }, JsonRequestBehavior.AllowGet);

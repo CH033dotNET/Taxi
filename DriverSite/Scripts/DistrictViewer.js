@@ -35,6 +35,26 @@ function mainInit() {
 	});
 	hubInit();
 }
+// function that check if a worker has main car available
+function checkMainCars() {
+	$.ajax({
+		method: "GET",
+		url: "Driver/CheckDriverMainCar",
+		dataType: "JSON",
+	}).done(function (response) {
+		if (response.success && response != null) {
+			buttonChangeOnClick();
+		}
+		else {
+			getNotFoundMessage();
+		}
+	});
+}
+// shows error message if the main car wasn`t found for a specific worker
+function getNotFoundMessage() {
+	$('#get-driver-error-modal').modal('show');
+}
+
 // function that checks driver`s working status after page reloading
 function checkstatus() {
 	$.ajax({

@@ -816,4 +816,7 @@
   <data name="Language" xml:space="preserve">
     <value>Мова</value>
   </data>
+  <data name="CarNotFoundError" xml:space="preserve">
+    <value>Ви не вибрали жодної машини для роботи.</value>
+  </data>
 </root>

@@ -811,4 +811,7 @@
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="CarNotFoundError" xml:space="preserve">
+    <value>You haven`t choose a main car.</value>
+  </data>
 </root>

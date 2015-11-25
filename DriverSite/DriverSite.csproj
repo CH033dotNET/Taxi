@@ -150,6 +150,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AutoParkCustomStyles.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\BootstrapCallout.css" />
@@ -206,6 +207,7 @@
     <Content Include="Views\ClientService\PeekClient.cshtml" />
     <Content Include="Views\Account\Authentification.cshtml" />
     <Content Include="Views\Temporary\Index.cshtml" />
+    <Content Include="Views\Driver\_CarNotFoundP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
