@@ -808,4 +808,7 @@
   <data name="FuelConsumption" xml:space="preserve">
     <value>Fuel Consumption</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
 </root>

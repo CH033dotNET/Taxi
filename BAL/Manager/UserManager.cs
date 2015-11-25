@@ -196,6 +196,7 @@ namespace BAL.Manager
 			temp.Email = user.Email;
 			temp.UserName = user.UserName;
             temp.Password = user.Password;
+            temp.Lang = user.Lang;
 			uOW.Save();
 			return Mapper.Map<UserDTO>(temp);
 		}

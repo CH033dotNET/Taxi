@@ -813,4 +813,7 @@
   <data name="FuelConsumption" xml:space="preserve">
     <value>Затрати пального</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Мова</value>
+  </data>
 </root>

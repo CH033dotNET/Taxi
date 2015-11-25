@@ -30,6 +30,9 @@
 
             <dt><label for="phone">@Resources.Resource.Phone</label></dt>
             <dd><input type="tel" class="form-control" name="Phone" value="@Model.Phone" id="phone" /></dd>
+
+            <dt><label for="language">@Resources.Resource.Language</label></dt>
+          <dd> @Html.DropDownList("language", new SelectList(new[] { new { Text = "English", Value = "en-us" }, new { Text = "Українська", Value = "uk-Ua" } }, "Value", "Text", "Value"), new { @class = "form-control" }) </dd>
         </dl>
         <input type="submit" class="btn btn-success" value="@Resources.Resource.UpdateProfile" />
 

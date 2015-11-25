@@ -26,6 +26,8 @@ namespace MainSaite.Controllers
 		public ActionResult SetLanguage(string language, string returnUrl)
 		{
 			Session["Culture"] = language;
+            if (SessionUser != null)
+                SessionUser.Lang = language;
 			Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
 			return Redirect(returnUrl);
 		}

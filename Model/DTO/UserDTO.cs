@@ -30,6 +30,7 @@ namespace Model.DTO
 		[ForeignKey("RoleId")]
 		public int RoleId { get; set; }
         public Role Role { get; set; }
+        public string Lang { get; set; }
 
 		public UserDTO()
 		{

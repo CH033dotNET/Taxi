@@ -10,10 +10,12 @@ namespace MainSaite.Controllers
 	public class UserController : BaseController
 	{
 		private IPersonManager personManager;
+        private IUserManager userManager;
 
-		public UserController(IPersonManager personManager)
+		public UserController(IPersonManager personManager, IUserManager userManager)
 		{
 			this.personManager = personManager;
+            this.userManager = userManager;
 		}
 
 		public ActionResult Index()
@@ -34,9 +36,10 @@ namespace MainSaite.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Index(PersonDTO person, FormCollection formCollection)
+		public ActionResult Index(PersonDTO person, FormCollection formCollection, string language)
 		{
 			var currentUser = SessionUser;
+            SessionUser.Lang = language;
 
 
 			if (person.User.UserName != currentUser.UserName)
@@ -55,8 +58,8 @@ namespace MainSaite.Controllers
 			SessionUser = currentUser;
 			ViewBag.ImageName = person.ImageName;
 
-
-
+            userManager.UpdateUser(SessionUser);
+            
 
 			return View(person);
 

@@ -86,11 +86,19 @@ namespace MainSaite.Controllers
 
 		protected override void OnActionExecuting(ActionExecutingContext filterContext)
 		{
-			if (Session["Culture"] != null)
-			{
-				CultureInfo cultInfo = new CultureInfo((string)Session["Culture"]);
-				Thread.CurrentThread.CurrentUICulture = cultInfo;
-			}
+            CultureInfo cultInfo =  new CultureInfo("en-us");
+
+            if (SessionUser != null)
+            {
+                cultInfo = new CultureInfo(SessionUser.Lang);
+                Session["Culture"] = SessionUser.Lang;
+            }
+            else if (Session["Culture"] != null)
+            {
+                cultInfo = new CultureInfo((string)Session["Culture"]);
+               
+            }
+            Thread.CurrentThread.CurrentUICulture = cultInfo;
 
 
 

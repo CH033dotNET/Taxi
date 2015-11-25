@@ -31,6 +31,7 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public ActionResult AddUser(UserDTO user)
 		{
+            user.Lang = "en-us";
 			List<string> msgs = new List<string>();
 			if (userManager.UserValidation(user, msgs))
 			{

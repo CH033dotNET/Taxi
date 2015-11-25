@@ -27,8 +27,9 @@ namespace Model
 
        [ForeignKey("RoleId")]
         public virtual Role Role { get; set; }
+        
         public int RoleId { get; set; }
-
+        public string Lang { get; set; }
 
 		public List<Car> CarsUser { get; set; }
 		public List<Car> CarOwner { get; set; }

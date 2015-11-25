@@ -199,6 +199,10 @@
     <Compile Include="Migrations\201511201529575_FuelSpentInOrder.Designer.cs">
       <DependentUpon>201511201529575_FuelSpentInOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511251127340_UserLang.cs" />
+    <Compile Include="Migrations\201511251127340_UserLang.Designer.cs">
+      <DependentUpon>201511251127340_UserLang.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -328,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511201529575_FuelSpentInOrder.resx">
       <DependentUpon>201511201529575_FuelSpentInOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511251127340_UserLang.resx">
+      <DependentUpon>201511251127340_UserLang.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

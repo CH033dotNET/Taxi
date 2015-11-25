@@ -55,45 +55,51 @@ namespace DAL.Migrations
                     UserName = "admin",
                     Password = "password",
                     Email = "admin@gmail.com",
-                    RoleId = 5
+                    RoleId = 5,
+                    Lang = "en-us"
                 },
 				new User()
 				{
 					UserName = "driver",
 					Password = "password",
 					Email = "driver@gmail.com",
-					RoleId = 1
+					RoleId = 1,
+                    Lang = "en-us"
 				},
                 new User()
                 {
                     UserName = "operator",
                     Password = "password",
                     Email = "operator@gmail.com",
-                    RoleId = 2
+                    RoleId = 2,
+                    Lang = "en-us"
                 },
                 new User()
                 {
                     UserName = "client",
                     Password = "password",
                     Email = "client@gmail.com",
-                    RoleId = 3
+                    RoleId = 3,
+                    Lang = "en-us"
                 },
                 new User()
                 {
                     UserName = "report",
                     Password = "password",
                     Email = "report@gmail.com",
-                    RoleId = 4
+                    RoleId = 4,
+                    Lang = "en-us"
                 },
 				new User()
                 {
                     UserName = "Nickolas",
                     Password = "password",
                     Email = "coyotet@gmail.com",
-                    RoleId = 1
+                    RoleId = 1,
+                    Lang = "en-us"
                 });
 				var users = Angie.Configure<User>().Fill(x => x.UserName).AsTwitterHandle<User>().Fill(x => x.Email).AsEmailAddress<User>()
-				.MakeList<User>(30).Select(x => new User { Password = "123456", RoleId = random.Next(1, 5), Email = x.Email, UserName = x.UserName });
+                .MakeList<User>(30).Select(x => new User { Password = "123456", RoleId = random.Next(1, 5), Email = x.Email, UserName = x.UserName, Lang = "en-us" });
 				context.Users.AddRange(users);
 				context.SaveChanges();
 			}
