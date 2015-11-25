@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 namespace BAL.Manager
 {
 	public interface IUserManager
@@ -15,7 +16,7 @@ namespace BAL.Manager
 		System.Collections.Generic.List<Model.DTO.UserDTO> GetDriversExceptCurrent(int id);
 		Model.DTO.Pager<Model.DTO.UserDTO> GetUserPage(string searchString, int page, int pageSize, int roleId);
 		System.Collections.Generic.IEnumerable<Model.DTO.UserDTO> GetUsers();
-		System.Collections.Generic.List<Model.DTO.VIPClientDTO> GetVIPClients();
+		IQueryable<Model.DTO.VIPClientDTO> GetVIPClients();
 		bool IfEmailExists(string email);
 		bool IfUserNameExists(string userName);
 		Model.DTO.UserDTO InsertUser(Model.DTO.UserDTO user);

@@ -11,12 +11,11 @@ $(function () {
    operatorHub = $.connection.OperatorHub;
    driverHub = $.connection.DriverHub;
 
-   //Show message from operators
+    //Show message from operators
    operatorHub.client.showMessage = function (message) {
-        // Own function 
-        swal('New message from operator!', message, 'success');
-
-    };
+       // Own function
+       swal(LocStrings.message, message, 'success');
+   };
    
     //Add new order to table
     operatorHub.client.newDriverOrders = function (order)
@@ -62,13 +61,13 @@ $(function () {
         //Send message to operators
         $('#showform').click(function () {
             swal({
-                title: 'Input Your message:',
+                title: LocStrings.InputYourMessage,
                 html: '<p><textarea id="input-field" style="width: 100%; height: 75px "> </textarea>',
                 showCancelButton: true,
                 closeOnConfirm: false
             }, function () {
                 driverHub.server.sendToOperators($('#input-field').val(), $('#txtUserName').val());
-                swal('Your message has been sent', '', 'success');
+                swal(LocStrings.MessageHasBeenSent, '', 'success');
             });
         })
     });
