@@ -253,7 +253,7 @@
     <value>Set date</value>
   </data>
   <data name="SetVIPStatusPage" xml:space="preserve">
-    <value>Set VIP Status</value>
+    <value>Input Your message</value>
   </data>
   <data name="EmptyEmail" xml:space="preserve">
     <value>Email is empty</value>
@@ -813,5 +813,17 @@
   </data>
   <data name="CarNotFoundError" xml:space="preserve">
     <value>You haven`t choose a main car.</value>
+  </data>
+  <data name="MessageFromDriver" xml:space="preserve">
+    <value>New message from driver</value>
+  </data>
+  <data name="MessageFromOperator" xml:space="preserve">
+    <value>New message from operator:</value>
+  </data>
+  <data name="MessageHasBeenSent" xml:space="preserve">
+    <value>Message has been sent!</value>
+  </data>
+  <data name="InputYourMessage" xml:space="preserve">
+    <value>Input Your message:</value>
   </data>
 </root>

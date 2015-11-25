@@ -253,7 +253,7 @@
     <value>Дата встановлення</value>
   </data>
   <data name="SetVIPStatusPage" xml:space="preserve">
-    <value>Встановити VIP статус</value>
+    <value>VIP клієнти</value>
   </data>
   <data name="EmptyEmail" xml:space="preserve">
     <value>Email порожній</value>
@@ -818,5 +818,17 @@
   </data>
   <data name="CarNotFoundError" xml:space="preserve">
     <value>Ви не вибрали жодної машини для роботи.</value>
+  </data>
+  <data name="InputYourMessage" xml:space="preserve">
+    <value>Введіть повідомлення:</value>
+  </data>
+  <data name="MessageFromDriver" xml:space="preserve">
+    <value>Повідомлення від водія</value>
+  </data>
+  <data name="MessageFromOperator" xml:space="preserve">
+    <value>Повідомлення від оператора:</value>
+  </data>
+  <data name="MessageHasBeenSent" xml:space="preserve">
+    <value>Повідомлення відправлено!</value>
   </data>
 </root>
