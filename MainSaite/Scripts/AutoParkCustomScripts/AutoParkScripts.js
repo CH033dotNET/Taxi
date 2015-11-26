@@ -1,4 +1,5 @@
-﻿
+﻿var carParkTemplate = Handlebars.compile($("#carListRow").html());
+var sortCounter;
 $(document).ready(function () {
 	carController.renderCarData();
 });

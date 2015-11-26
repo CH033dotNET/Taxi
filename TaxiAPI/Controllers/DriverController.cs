@@ -27,6 +27,7 @@ namespace TaxiAPI.Controllers
 			this.userManager = userManager;
 			this.coordinatesManager.addedCoords += coordinates => MainSiteRequestHelper.postData<bool,CoordinatesDTO>("OperatorHub", "AddedLocation", coordinates);
 			this.workerStatusManager = workerStatusManager;
+			this.orderManager = orderManager;
 		}
 		[HttpGet]
 		public HttpResponseMessage GetDriverStatus(int id)

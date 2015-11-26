@@ -43,7 +43,7 @@ namespace MainSaite
 			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
-			
+
 			bundles.Add(new ScriptBundle("~/bundles/inputmask").Include(
 			"~/Scripts/jquery.inputmask/inputmask.js",
 			"~/Scripts/jquery.inputmask/jquery.inputmask.js",
@@ -68,6 +68,18 @@ namespace MainSaite
 			bundles.Add(new ScriptBundle("~/bundles/handlebars").Include(
 																	"~/Scripts/handlebars.js"));
 
+			bundles.Add(new ScriptBundle("~/bundles/AutoParkCustomScripts").Include(
+				"~/Scripts/AutoParkCustomScripts/AutoParkPicker.js",
+				"~/Scripts/validator.js", //!
+				"~/Scripts/AutoParkCustomScripts/PreValidation.js", //!
+				"~/Scripts/AutoParkCustomScripts/AutoParkScripts.js",
+				"~/Scripts/HandlebarsCustomHelpers.js"));
+			bundles.Add(new ScriptBundle("~/bundles/DistrictCustomScripts").Include(
+				"~/Scripts/validator.js",
+				"~/Scripts/DistrictsCustomScripts/PreValidation.js",
+				"~/Scripts/DistrictsCustomScripts/DistrictScriptLogic.js"));
+
+
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
                         "~/Content/themes/base/jquery.ui.resizable.css",
@@ -83,6 +95,9 @@ namespace MainSaite
                         "~/Content/themes/base/jquery.ui.theme.css",
 						"~/Content/bootstrap.css",
 						"~/Content/BootstrapCallout.css"));
+
+			bundles.Add(new StyleBundle("~/Content/Autopark/css").Include(
+				"~/Content/AutoParkCustomStyles.css"));
         }
     }
 }

@@ -2,27 +2,17 @@
 @{
 	string username = (Session["user"] as Model.DTO.UserDTO).UserName;
 }
-<link rel="stylesheet" href="~/Content/AutoParkCustomStyles.css" type="text/css" />
+@Styles.Render("~/Content/AutoParkCustomStyles.css")
 <div>
-	<div class="page-header">
-		<h1>@Resources.Resource.Greeting,<small>@username</small></h1>
-	</div>
+	<div class="page-header"><h1>@Resources.Resource.Greeting,<small>@username</small></h1></div>
 	<div class="panel panel-info">
-		<div class="panel-heading">
-			<h3 class="panel-title">@Resources.Resource.Districts</h3>
-		</div>
-		<div class="panel-body">
-			<img class="img-thumbnail" src="~/Content/Picture/Skyline_new_york_city.jpg" />
-		</div>
+		<div class="panel-heading"><h3 class="panel-title">@Resources.Resource.Districts</h3></div>
+		<div class="panel-body"><img class="img-thumbnail" src="~/Content/Picture/Skyline_new_york_city.jpg" /></div>
 		<div class="panel-footer">
 			<form id="non-deleted-form" class="form-inline">
 				<div class="form-group">
-					<a class="btn btn-success" onclick="jsController.addDistrict()">
-						<span class="glyphicon glyphicon-plus" aria-hidden="true">&nbsp;</span>@Resources.Resource.addString
-					</a>
-					<a class="btn btn-warning" onclick="jsController.DistrictBasket(this)">
-						<span class="glyphicon glyphicon-th-list" aria-hidden="true">&nbsp;</span>@Resources.Resource.DistrictBasket
-					</a>
+					<a class="btn btn-success" onclick="jsController.addDistrict()"><span class="glyphicon glyphicon-plus" aria-hidden="true">&nbsp;</span>@Resources.Resource.addString</a>
+					<a class="btn btn-warning" onclick="jsController.DistrictBasket(this)"><span class="glyphicon glyphicon-th-list" aria-hidden="true">&nbsp;</span>@Resources.Resource.DistrictBasket</a>
 					<input type="text" class="form-control input-sm" placeholder="@Resources.Resource.Search" oninput="jsController.searchDistricts(this.value);" id="searcDhistrictName" value="" />
 				</div>
 			</form>
@@ -32,37 +22,25 @@
 				<table class="table table-striped" id="districtEditTable">
 					<thead>
 						<tr class="info">
-							<th>
-								<a id="carlink" href="#" class="btn-link" onclick="jsController.sortDistrictBy('name')">@Resources.Resource.District</a>
-							</th>
-							<th>
-								@Resources.Resource.Action
-							</th>
+							<th><a id="carlink" href="#" class="btn-link" onclick="jsController.sortDistrictBy('name')">@Resources.Resource.District</a></th>
+							<th>@Resources.Resource.Action</th>
 						</tr>
 					</thead>
 					<tbody>
 						<script id="dsEditRow" type="text/x-handlebars-template">
 							{{#each items}}
 							<tr>
-								<td>
-									{{Name}}
-								</td>
+								<td>{{Name}}</td>
 								<td>
 									<div class="btn-group">
-										<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											@Resources.Resource.ActionsColumn <span class="caret"></span>
-										</button>
+										<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Resources.Resource.ActionsColumn <span class="caret"></span></button>
 										<ul class="dropdown-menu">
 											<li>
-												<a href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.editItem(this)">
-													<span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString
-												</a>
+												<a href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.editItem(this)"><span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString</a>
 											</li>
 											<li role="separator" class="divider"></li>
 											<li>
-												<a href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.deleteItem(this)">
-													<span class="glyphicon glyphicon-trash" aria-hidden="true">&nbsp;</span>@Resources.Resource.deleteString
-												</a>
+												<a href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.deleteItem(this)"><span class="glyphicon glyphicon-trash" aria-hidden="true">&nbsp;</span>@Resources.Resource.deleteString</a>
 											</li>
 										</ul>
 									</div>
@@ -81,53 +59,10 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="~/Scripts/validator.js"></script>
 <script>
-	var itemId;
-	var itemName;
-	var districtTemplate = Handlebars.compile($("#dsEditRow").html());
-	var deletedDistrictsTemplate = Handlebars.compile($("#dsDeletedRow").html());
 	var encodedData = @Html.Raw(Json.Encode(Model.ToList()));
 	var encodedDeleted = @Html.Raw(Json.Encode(Model.ToList()));
-
-	var sortDistrictCounter;
-	var sortDeletedDistrictCounter;
-
-	var regDistName = /([A-Z]{0,1}[a-z]{1,10}\s{0,1}){1,4}/;
-	var regDistNameV1 = /^([A-Z]{0,1}[a-z]{1,10}[ ]{0,1}){1,4}|([А-Я]{0,1}[а-я]{1,10}[ ]{0,1}){1,4}/;
-	var regDistNameV2 = /^(([A-Z][^0-9]){0,1}([a-z][^0-9]){1,10}([ ][^0-9]){0,1}){1,4}|(([А-Я][^0-9]){0,1}([а-я][^0-9]){1,10}([ ][^0-9]){0,1}){1,4}/;
-	var regDistNameV3 = /^((([A-Z]){0,1}([a-z]){1,10}([ ]){0,1}[^0-9]){1,4}|(([А-Я]){0,1}([а-я]){1,10}([ ]){0,1}[^0-9]){1,4})/;
-
-	function checDistkWithReg(input, regExp){
-		var isValueOk = regExp.exec(input.value);
-		if (!isValueOk){
-			return false;
-		}
-		else return true;
-	}
-
-
-	function validateAddDistrict() {
-		var isNameOK = checDistkWithReg(document.getElementById('newDistrictName'), regDistNameV3);
-		if (!isNameOK) return false;
-		var validThisData = $('#add-district-form').validator('validate');
-		if (validThisData.valid()){
-			jsController.addDistrictConfirm();
-		}
-		else return false;
-	}
-
-	function validateEditDistrict() {
-		var isNewNameOK = checDistkWithReg(document.getElementById('newName'), regDistNameV3);
-		if (!isNewNameOK) return false;
-		var validThisData = $('#edit-district-form').validator('validate');
-		if (validThisData.valid()){
-			jsController.editConfirmDistrict();
-		}
-		else return false;
-	}
-
 </script>
-<script type="text/javascript" src="~/Scripts/DistrictScriptLogic.js"></script>
+@Scripts.Render("~/bundles/DistrictCustomScripts")
 
 

@@ -1,4 +1,12 @@
-﻿$(document).ready(function () {
+﻿var itemId;
+var itemName;
+var districtTemplate = Handlebars.compile($("#dsEditRow").html());
+var deletedDistrictsTemplate = Handlebars.compile($("#dsDeletedRow").html());
+
+var sortDistrictCounter;
+var sortDeletedDistrictCounter;
+
+$(document).ready(function () {
 	jsController.renderData();
 });
 var jsController = {
