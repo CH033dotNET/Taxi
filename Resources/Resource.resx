@@ -253,7 +253,7 @@
     <value>Set date</value>
   </data>
   <data name="SetVIPStatusPage" xml:space="preserve">
-    <value>Input Your message</value>
+    <value>VIP clients</value>
   </data>
   <data name="EmptyEmail" xml:space="preserve">
     <value>Email is empty</value>

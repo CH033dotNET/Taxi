@@ -157,7 +157,7 @@
     <value>Роль</value>
   </data>
   <data name="UserName" xml:space="preserve">
-    <value>Ім’я Користувача</value>
+    <value>Ім’я користувача</value>
   </data>
   <data name="AddNewCar" xml:space="preserve">
     <value>Додайте нове авто</value>

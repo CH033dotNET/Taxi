@@ -1,7 +1,4 @@
-﻿@using Model.DTO;
-@model IQueryable<VIPClientDTO>
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
@@ -10,47 +7,55 @@
 </head>
 
 <body>
+
+    @Scripts.Render("~/Scripts/jquery-1.9.1.min.js")
+    @Scripts.Render("~/Scripts/handlebars.min.js")
+    @Scripts.Render("~/Scripts/moment.js")
+    @Scripts.Render("~/Scripts/HandlebarsCustomHelpers.js")
+    @Scripts.Render("~/Scripts/VipClients.js")
+
+
+    <script type="text/javascript">
+
+    </script>
+
+    <script type="text/javascript" src="~/Scripts/OperatorCommand/DriverCommand.js"></script>
+
     <div class="panel panel-info">
         <div class="panel-heading">
-            <h3  style="text-align:center;">@Resources.Resource.SetVIPStatusPage</h3>
+            <h3 style="text-align:center;">@Resources.Resource.SetVIPStatusPage</h3>
         </div>
 
         <table class="table table-hover">
             <tr>
-                <th>
-                    @Resources.Resource.UserName
-                </th>
-                <th>
-                    @Resources.Resource.Setdate
-                </th>
-                <th>
-                    @Resources.Resource.Action
-                </th>
+                <th>@Resources.Resource.UserName </th>
+                <th> @Resources.Resource.Setdate</th>
+                <th style="width:150px"> @Resources.Resource.Action</th>
             </tr>
-
-            @{
-
-                foreach (VIPClientDTO client in Model)
-                {
-                    <tr>
-                        <td>@client.UserName</td>
-
-                        @if (client.Id == 0)
-                        {
-                            <td></td>
-                            <td>@Html.ActionLink(Resources.Resource.Set, "SetVIPUser", new VIPClientDTO() { UserId = client.UserId })</td>
-                        }
-                        else
-                        {
-                            <td>@client.SetDate.ToString("dd:MM:yyyy")</td>
-                            <td>@Html.ActionLink(Resources.Resource.deleteString, "DeleteVIPUser", new VIPClientDTO() { Id = client.Id })</td>
-                        }
-                    </tr>
-                }
-            }
+            <tbody id="vip"></tbody>
         </table>
 
+        <script id="vip-template" type="text/x-handlebars-template">
+            {{#each clients}}
+            <tr>
+                <td>{{UserName}}</td>
+
+                {{#if Id }}
+                <td>{{PrettifyDate SetDate}}</td>
+                <td><button class="btn btn-warning btn-block glyphicon glyphicon-remove del" data-idclient="{{Id}}" style="width: 120px">
+                        <span> @Resources.Resource.deleteString </span></button> </td>
+
+                {{else}}
+                <td></td>
+                <td><button class="btn btn-primary btn-block glyphicon glyphicon-ok set" data-idclient="{{UserId}}" style="width: 120px">
+                        <span >@Resources.Resource.Set</span></button> </td>
+                {{/if}}
+            </tr>
+
+            {{/each}}
+        </script>
     </div>
+
 </body>
 </html>
 

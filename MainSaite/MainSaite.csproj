@@ -446,6 +446,7 @@
     <Content Include="Scripts\UserMenuScripts\ModalJs.js" />
     <Content Include="Scripts\UserScript.js" />
     <Content Include="Scripts\validator.js" />
+    <Content Include="Scripts\VipClients.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -483,7 +484,6 @@
     <Content Include="Views\Settings\CarDelete.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Driver\Index.cshtml" />
-    <Content Include="Views\Settings\SetVIPStatus.cshtml" />
     <Content Include="Views\Tarif\Index.cshtml" />
     <Content Include="Views\Tarif\Create.cshtml" />
     <Content Include="Views\Tarif\Edit.cshtml" />
@@ -521,6 +521,7 @@
     <Content Include="Views\ReportCharts\ChartOrders.cshtml" />
     <Content Include="Views\ReportCharts\TopOrderingClientsPartial.cshtml" />
     <Content Include="Views\ReportCharts\YearIncome.cshtml" />
+    <Content Include="Views\Settings\SetVIPStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

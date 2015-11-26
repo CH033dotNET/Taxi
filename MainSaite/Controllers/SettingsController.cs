@@ -413,21 +413,27 @@ namespace MainSaite.Controllers
 
 		public ActionResult SetVIPStatus()
 		{
-			return View(userManager.GetVIPClients());
+			return View();
 		}
 
 
-		public ActionResult SetVIPUser(VIPClientDTO client)
+		public JsonResult GetVipClients()
 		{
-			userManager.SetVIPStatus(client.UserId);
-			return RedirectToAction("SetVIPStatus");
+			var VipClients = userManager.GetVIPClients();
+			return Json(VipClients, JsonRequestBehavior.AllowGet);
 		}
 
-		public ActionResult DeleteVIPUser(VIPClientDTO client)
+		public void SetClientVip(int clientId)
 		{
-			userManager.deleteVIPById(client.Id);
-			return RedirectToAction("SetVIPStatus");
+			userManager.SetVIPStatus(clientId);
 		}
+
+		public void DelClientVip(int clientId)
+		{
+			userManager.deleteVIPById(clientId);
+		}
+
+
 
 	}
 }

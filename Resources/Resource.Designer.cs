@@ -1889,7 +1889,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Input Your message.
+        ///   Looks up a localized string similar to VIP clients.
         /// </summary>
         public static string SetVIPStatusPage {
             get {
