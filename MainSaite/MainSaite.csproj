@@ -362,6 +362,7 @@
     <Content Include="Scripts\DistrictsCustomScripts\PreValidation.js" />
     <Content Include="Scripts\DriverMap.js" />
     <Content Include="Scripts\DriveTimer.js" />
+    <Content Include="Scripts\FavoriteAddresses.js" />
     <Content Include="Scripts\GoogleMapJS\GoogleMapUserPage.js" />
     <Content Include="Scripts\handlebars.amd.js" />
     <Content Include="Scripts\handlebars.amd.min.js" />
@@ -476,9 +477,6 @@
     <Content Include="Views\Settings\DistrictEditor.cshtml" />
     <Content Include="Views\Administration\AddUser.cshtml" />
     <Content Include="Views\Shared\_Language.cshtml" />
-    <Content Include="Views\Address\CreateAddress.cshtml" />
-    <Content Include="Views\Address\DeleteAddress.cshtml" />
-    <Content Include="Views\Address\EditAddress.cshtml" />
     <Content Include="Views\Address\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Driver\Index.cshtml" />

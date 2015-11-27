@@ -63,9 +63,22 @@ namespace BAL.Manager
                 return res.Select(x=> Mapper.Map<AddressDTO>(x)); 
         }
 
+		public AddressDTO AddAddress(AddressDTO address)
+		{
+			var temp = Mapper.Map<UserAddress>(address);
+			temp.City = address.City.Trim();
+			temp.Street = address.Street.Trim();
+			temp.Number = address.Number.Trim();
+			temp.Comment = address.Comment.Trim();
 
+			uOW.AddressRepo.Insert(temp);
+			uOW.Save();
 
-        public AddressDTO AddAddress(AddressDTO address)
+			return Mapper.Map<AddressDTO>(temp);
+
+		}
+
+        public void AddFavoriteAddress(AddressDTO address)
         {
             var temp = Mapper.Map<UserAddress>(address);
             temp.City=address.City.Trim();
@@ -75,10 +88,9 @@ namespace BAL.Manager
 
 			uOW.AddressRepo.Insert(temp);
             uOW.Save();
-
-            return Mapper.Map<AddressDTO>(temp);
-
         }
+
+
 
         public void DeleteAddress(int AddressId)
         {
@@ -87,23 +99,37 @@ namespace BAL.Manager
             return;
         }
 
-        public AddressDTO UpdateAddress(AddressDTO address)
-        {
-            var temp = uOW.AddressRepo.Get(u => u.AddressId == address.AddressId).First();
-            if (temp == null)
-            {
-                return null;
-            }
+		public AddressDTO UpdateAddress(AddressDTO address)
+		{
+			var temp = uOW.AddressRepo.Get(u => u.AddressId == address.AddressId).First();
+			if (temp == null)
+			{
+				return null;
+			}
 
-            uOW.AddressRepo.SetStateModified(temp);
+			uOW.AddressRepo.SetStateModified(temp);
 
-            temp.City = address.City;
-            temp.Street = address.Street;
-            temp.Number = address.Number;
+			temp.City = address.City;
+			temp.Street = address.Street;
+			temp.Number = address.Number;
 			temp.Comment = address.Comment;
+			uOW.Save();
+			return Mapper.Map<AddressDTO>(temp);
+		}
+
+        public void UpdAddress(AddressDTO address)
+        {
+			var currentAddress = uOW.AddressRepo.Get().FirstOrDefault(u => u.AddressId == address.AddressId);
+
+            uOW.AddressRepo.SetStateModified(currentAddress);
+
+            currentAddress.City = address.City;
+            currentAddress.Street = address.Street;
+            currentAddress.Number = address.Number;
+			currentAddress.Comment = address.Comment;
             uOW.Save();
-            return Mapper.Map<AddressDTO>(temp);
         }
+
         public AddressDTO GetById(int id)
         {
             var item = uOW.AddressRepo.Get().Where(s => s.AddressId == id)

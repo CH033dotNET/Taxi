@@ -1,51 +1,104 @@
-﻿@model IEnumerable<Model.DTO.AddressDTO>
+﻿@Scripts.Render("~/Scripts/jquery-1.9.1.min.js")
+@Scripts.Render("~/Scripts/handlebars.min.js")
+@Scripts.Render("~/Scripts/moment.js")
+@Scripts.Render("~/Scripts/HandlebarsCustomHelpers.js")
+@Scripts.Render("~/Scripts/FavoriteAddresses.js")
+@Scripts.Render("~/Scripts/sweetalert2.min.js")
 
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>@Resources.Resource.TitleMainMenuAddress</h2>
-<table class="table">
-    <tr>
-        <th>
-            @Html.Label(@Resources.Resource.City)
-        </th>
-        <th>
-            @Html.Label(@Resources.Resource.Street)
-        </th>
-        <th>
-            @Html.Label(@Resources.Resource.NumberHouse)
-        </th>
-        <th>
-            @Html.Label(@Resources.Resource.Comment)
-        </th>
-        <th>@Resources.Resource.Action</th>
-    </tr>
-    @if (Model != null)
-    {
-    foreach (var item in Model)
-    {
+@Styles.Render("~/Content/sweetalert2")
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="	background-color: #5bc0de; color: white;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">[Favorite address]</h4>
+            </div>
+            <div class="modal-body">
+                    <table class="table table-hover">
+                        <tr class="form-group">
+                            <td class="td-ench"><label class="control-label">@Resources.Resource.City</label></td>
+                            <td>
+                                <input id="newInputCarId" value="" hidden>
+                                <input type="text" class="form-control input-lg" id="newCity" placeholder="@Resources.Resource.City" required>
+                            </td>
+                        </tr>
+                        <tr class="form-group">
+                            <td class="td-ench"><label class="control-label">@Resources.Resource.Street</label></td>
+                            <td>
+                                <input id="newInputCarId" value="" hidden>
+                                <input type="text" class="form-control input-lg" id="newStreet" placeholder="@Resources.Resource.Street" required>
+                            </td>
+                        </tr>
+                        <tr class="form-group">
+                            <td class="td-ench"><label class="control-label">@Resources.Resource.Number</label></td>
+                            <td>
+                                <input id="newInputCarId" value="" hidden>
+                                <input type="text" class="form-control input-lg" id="newNumber" placeholder="@Resources.Resource.Number" required>
+                            </td>
+                        </tr>
+                        <tr class="form-group">
+                            <td class="td-ench"><label class="control-label">@Resources.Resource.Comment</label></td>
+                            <td>
+                                <input id="newInputCarId" value="" hidden>
+                                <input type="text" class="form-control input-lg" id="newComment" placeholder="@Resources.Resource.Comment" required>
+                            </td>
+                        </tr>
+
+                    </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success addupd">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 style="text-align:center;">@Resources.Resource.TitleMainMenuAddress</h3>
+    </div>
+
+    <table class="table table-hover">
         <tr>
+            <th>@Resources.Resource.City</th>
+            <th>@Resources.Resource.Street</th>
+            <th>@Resources.Resource.NumberHouse</th>
+            <th>@Resources.Resource.Comment</th>
+            <th style="width:215px">@Resources.Resource.Action</th>
+        </tr>
+        <tbody id="favorite"></tbody>
+    </table>
+
+    <script id="favorite-template" type="text/x-handlebars-template">
+        {{#each addresses}}
+        <tr>
+            <td id="city{{AddressId}}">{{City}}</td>
+            <td id="street{{AddressId}}">{{Street}}</td>
+            <td id="number{{AddressId}}">{{Number}}</td>
+            <td id="comment{{AddressId}}">{{Comment}}</td>
             <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Street)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comment)
-            </td>
-            <td>
-                @Html.ActionLink(@Resources.Resource.editString, "EditAddress", new { id = item.AddressId })
-                @Html.ActionLink(@Resources.Resource.deleteString, "DeleteAddress", new { id = item.AddressId })
+                <button class="btn btn-primary edit" data-idaddress="{{AddressId}}" data-toggle="modal" data-target=".bs-example-modal-sm"><span>@Resources.Resource.editString</span></button>
+                <button class="btn btn-warning del" data-idaddress="{{AddressId}}"><span>@Resources.Resource.deleteString</span></button>
             </td>
         </tr>
+
+        {{/each}}
+    </script>
+</div>
+
+
+<button class="btn btn-success edit" data-idaddress="-1"><span>@Resources.Resource.addString</span></button>
+
+<script>
+    var LocStrings = {
+        Yes: '@Resources.Resource.Yes',
+        AreYouSure: '@Resources.Resource.AreYouSure',
+        No: '@Resources.Resource.No',
+        YourAddressHasBeenDeleted: '@Resources.Resource.YourAddressHasBeenDeleted'
     }
-    }
-</table>
-<p>
-    @Html.ActionLink(@Resources.Resource.CreateNewAddressString, "CreateAddress")
-</p>
+</script>

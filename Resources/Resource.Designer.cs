@@ -142,6 +142,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure?.
+        /// </summary>
+        public static string AreYouSure {
+            get {
+                return ResourceManager.GetString("AreYouSure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Awaiting order.
         /// </summary>
         public static string AwaitingOrder {
@@ -795,6 +804,15 @@ namespace Resources {
         public static string deleteConfirm {
             get {
                 return ResourceManager.GetString("deleteConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleted!.
+        /// </summary>
+        public static string Deleted {
+            get {
+                return ResourceManager.GetString("Deleted", resourceCulture);
             }
         }
         
@@ -1565,6 +1583,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unfortunatly there is no float car right now.
         /// </summary>
         public static string NoCar {
@@ -2173,6 +2200,24 @@ namespace Resources {
         public static string WorkStarted {
             get {
                 return ResourceManager.GetString("WorkStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your address has been deleted..
+        /// </summary>
+        public static string YourAddressHasBeenDeleted {
+            get {
+                return ResourceManager.GetString("YourAddressHasBeenDeleted", resourceCulture);
             }
         }
         

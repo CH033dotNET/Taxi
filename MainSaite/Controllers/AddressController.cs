@@ -23,50 +23,30 @@ namespace MainSaite.Controllers
 
         public ActionResult Index()
         {
-			var addressList = addressmanager.GetAddressesForUser(SessionUser.Id);
-			return View(addressList);
+			return View();
         }
 
-        [HttpGet]
-        public ActionResult CreateAddress()
-        {
-            return View();
-        }
-        [HttpPost]
-         public ActionResult CreateAddress(AddressDTO address) 
-        {
-            addressmanager.AddAddress(address);
-            return RedirectToAction("Index");
-        }
+		public JsonResult GetFavoriteAddresses()
+		{
+			var addresses = addressmanager.GetAddressesForUser(SessionUser.Id);
+			return Json(addresses, JsonRequestBehavior.AllowGet);
+		}
 
-        [HttpGet]
-        public ActionResult DeleteAddress(int id)
-        {
+		public void DelAddress(int addressId)
+		{
+			addressmanager.DeleteAddress(addressId);
+		}
 
-            AddressDTO address = addressmanager.GetById(id);
+		public void UpdAddress(AddressDTO address)
+		{
+			addressmanager.UpdAddress(address);
+		}
 
-            return View(address);
-        }
-        [HttpPost, ActionName("DeleteAddress")]
-        public ActionResult DeleteAdd(int id)
-        { 
-            addressmanager.DeleteAddress(id);
-            return RedirectToAction("Index");
-        }
-     
-        [HttpGet]
-        public ActionResult EditAddress(int id)
-        {
-           
-            AddressDTO address = addressmanager.GetById(id);
 
-            return View(address);
-        }
-        [HttpPost]
-        public ActionResult EditAddress(AddressDTO address)
-        {
-            addressmanager.UpdateAddress(address);
-            return RedirectToAction("Index");
-        }
+		public void AddAddress(AddressDTO address)
+		{
+			address.UserId = SessionUser.Id;
+			addressmanager.AddAddress(address);
+		}
     }
 }

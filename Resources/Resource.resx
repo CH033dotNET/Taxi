@@ -826,4 +826,19 @@
   <data name="InputYourMessage" xml:space="preserve">
     <value>Input Your message:</value>
   </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>Deleted!</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="YourAddressHasBeenDeleted" xml:space="preserve">
+    <value>Your address has been deleted.</value>
+  </data>
 </root>
