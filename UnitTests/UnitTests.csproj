@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CarTest\CarTestClass.cs" />
     <Compile Include="OrderTest\OrderTest.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,11 +60,16 @@
       <Project>{013e37b3-2878-4f25-8d1f-8355bd9fc506}</Project>
       <Name>BAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{6d19160d-0229-4693-aaf9-b9083c44a3b4}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{2fb3ff29-7421-45db-af46-f2b3851dc500}</Project>
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
