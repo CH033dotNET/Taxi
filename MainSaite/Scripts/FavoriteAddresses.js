@@ -52,7 +52,7 @@ $(document).on("click", ".addupd", function () {
     if (UserAddress.AddressId != -1)
     {
         $.ajax({
-            url: '/Address/UpdAddress/',
+            url: './Address/UpdAddress/',
             data: UserAddress,
             success: function () {
                 getAddresses();
@@ -62,7 +62,7 @@ $(document).on("click", ".addupd", function () {
     else {
         UserAddress.AddressId = null;
         $.ajax({
-            url: '/Address/AddAddress/',
+            url: './Address/AddAddress/',
             data: UserAddress,
             success: function () {
                 getAddresses();
@@ -88,7 +88,7 @@ $(document).on("click", ".del", function () {
     }, function () {
 
         $.ajax({
-            url: '/Address/DelAddress/',
+            url: './Address/DelAddress/',
                 data: {
                     addressId: AddressId
                 },
@@ -104,7 +104,8 @@ $(document).on("click", ".del", function () {
 function getAddresses() {
     $.ajax({
         type: 'POST',
-        url: "/Address/GetFavoriteAddresses/",
+        
+        url: "./Address/GetFavoriteAddresses/",
         dataType: 'json',
         success: function (data) {
             var content = $("#favorite");

@@ -64,8 +64,8 @@ function CenterControl(controlDiv, map) {
 
     // Set CSS for the control border.
     var controlUI = document.createElement('div');
-    controlUI.style.backgroundColor = 'Yellow';
-    controlUI.style.border = '2px solid #fff';
+    controlUI.style.backgroundColor = '#5cb85c';
+    controlUI.style.border = '2px solid #4cae4c';
     controlUI.style.borderRadius = '3px';
     controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
     controlUI.style.cursor = 'pointer';
@@ -77,7 +77,7 @@ function CenterControl(controlDiv, map) {
    
     // Set CSS for the control interior.
     var controlText = document.createElement('div');
-    controlText.style.color = 'rgb(25,25,25)';
+    controlText.style.color = 'white';
     controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
     controlText.style.fontSize = '20px';
     controlText.style.lineHeight = '38px';
@@ -103,7 +103,7 @@ function CenterControl(controlDiv, map) {
                 'IsConfirm': 3
             }
             $.ajax({
-                url: '/Order/NewOrder/',
+                url: './Order/NewOrder/',
                 data: orderObj,
                 type: "POST",
                 success: function (data) {
@@ -188,7 +188,7 @@ function initMap() {
 
     $.ajax({
         type: "POST",
-        url: "Administration/GetLoc",
+        url: "./Administration/GetLoc",
         dataType: "json",
         success: function (data) {
             for (var i = 0; i < data.length; i++) {
@@ -453,6 +453,16 @@ var setTitle = function (mark) {
             console.log('Geocoder failed due to: ' + status);
         }
     });
+}
+
+var moveMarkerToDestinatio = function (markerSource, markerDestionation) {
+
+    var Srclat = markerSource.getPosition().lat();
+    var Srclng = markerSource.getPosition().lng();
+
+    var Dstlat = markerSource.markerDestionation().lat();
+    var Dstlng = markerSource.markerDestionation().lng();
+
 }
 
 

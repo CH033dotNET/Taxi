@@ -109,7 +109,7 @@ $(document).on("click", ".ordrerAction", function () {
     var OrderId = $(this).attr('data-orderid');
     var Status = $(this).attr('data-status');
     $.ajax({
-        url: '/Order/SetOrderStatus/',
+        url: './Order/SetOrderStatus/',
         data: {
             orderId: OrderId,
             status: Status
@@ -143,7 +143,7 @@ $(document).on("click", ".ordrerAction", function () {
 
                     //Set order to current driver
                     $.ajax({
-                        url: "/Order/SetOrderToDriver/",
+                        url: "./Order/SetOrderToDriver/",
                         data: { orderId: OrderId, waitingTime: waitingTime, DriverId: goodDriverId },
                         dataType: 'json',
                         success: function (data) {
@@ -207,7 +207,7 @@ function GetOrders() {
     var content = $('#orderContent');
     $.ajax({
         type: 'POST',
-        url: "/Order/OrdersData/",
+        url: "./Order/OrdersData/",
         dataType: 'json',
         success: function (data) {
             var source = $("#orderTemplate").html();
@@ -225,7 +225,7 @@ function GetDrRequest() {
     var content = $('#driverRequest');
     $.ajax({
         type: 'POST',
-        url: "/Order/DriversRequest/",
+        url: "./Order/DriversRequest/",
         dataType: 'json',
         success: function (data) {
             var source = $("#driverRequestTemplate").html();
@@ -241,7 +241,7 @@ function GetAwaitOrders() {
     var waitingOrders = $('#waitingOrdersContent');
     $.ajax({
         type: 'POST',
-        url: "/Order/GetWaitingOrders/",
+        url: "./Order/GetWaitingOrders/",
         dataType: 'json',
         success: function (data) {
             var source = $('#waitingOrderTemplate').html();
