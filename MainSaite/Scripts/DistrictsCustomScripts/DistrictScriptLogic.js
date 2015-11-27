@@ -22,7 +22,7 @@ var jsController = {
 		//var searchString = $('#editInputDistrictId').val();
 		var searchString = e;
 		$.ajax({
-			url: "/Settings/SearchDistrict",
+			url: "./SearchDistrict", // <----------------------------------------------------!!
 			data: { parameter: searchString },
 			cache: false,
 			dataType: "JSON",
@@ -42,7 +42,7 @@ var jsController = {
 	searchDeletedDistricts: function (e) {
 		var searchDeletedString = e;
 		$.ajax({
-			url: "/Settings/SearchDeletedDistrict",
+			url: "./SearchDeletedDistrict", // <----------------------------------------------------!!
 			data: { parameter: searchDeletedString },
 			cache: false,
 			dataType: "JSON",
@@ -75,7 +75,7 @@ var jsController = {
 		}
 		sortDistrictCounter = e;
 		$.ajax({
-			url: "/Settings/SearchAndSort",
+			url: "./SearchAndSort", // <----------------------------------------------------!!
 			data: { search: searchDString, sort: e },
 			cache: false,
 			dataType: "JSON",
@@ -102,7 +102,7 @@ var jsController = {
 		}
 		sortDeletedDistrictCounter = e;
 		$.ajax({
-			url: "/Settings/DeletedSearchAndSort",
+			url: "./DeletedSearchAndSort", // <----------------------------------------------------!!
 			data: { search: searchDeletedDString, sort: e },
 			cache: false,
 			dataType: "JSON",
@@ -122,7 +122,7 @@ var jsController = {
 	//! function that opens basket modal window
 	DistrictBasket: function (e) {
 		$.ajax({
-			url: "/Settings/DeletedDistricts",
+			url: "./DeletedDistricts", // <----------------------------------------------------!!
 		}).done(function (result) {
 			jsController.deletedData.deleted = result.deletedDistricts;
 			jsController.renderDeletedData();
@@ -135,7 +135,7 @@ var jsController = {
 		var name = $(e).attr('data-items-name'); // get model item name from template
 
 		$.ajax({
-			url: "/Settings/RestoreDistrict/",
+			url: "./RestoreDistrict/", // <----------------------------------------------------!!
 			data: { id: itemId }
 		}).done(function (result) {
 			if (result.success && result != null) {
@@ -150,7 +150,7 @@ var jsController = {
 
 	refreshData: function (e) {
 		$.ajax({
-			url: "/Settings/GetAvailableDistricts/",
+			url: "./GetAvailableDistricts/", // <----------------------------------------------------!!
 		}).done(function (result) {
 			jsController.data.items = result;
 			jsController.renderData();
@@ -166,7 +166,7 @@ var jsController = {
 		var d = "breakpoint!";
 		var newDistrictName = $('#newDistrictName').val();
 		$.ajax({
-			url: "/Settings/AddDistrict",
+			url: "./AddDistrict", // <----------------------------------------------------!!
 			data: { Name: newDistrictName, Deleted: false }
 		}).done(function (result) {
 			if (result.success && result != null) {
@@ -192,9 +192,8 @@ var jsController = {
 		$('#confirm-delete').modal('show');
 
 		$('#confirm-delete .btn-ok').off("click.deleteADistrict").on("click.deleteADistrict", function () {
-			var c = 'yupiii';
 			var request = $.ajax({
-				url: "/Settings/DeleteDistrict/",
+				url: "./DeleteDistrict/", // <----------------------------------------------------!!
 				data: { Id: itemId, Name: itemName },
 				method: "POST",
 			}).done(function (result) {
@@ -227,7 +226,7 @@ var jsController = {
 		var c = "breakpoint";
 		var newName = $('#newName').val();
 		$.ajax({
-			url: "/Settings/EditDistrict/",
+			url: "./EditDistrict/", // <----------------------------------------------------!!
 			data: { id: datId, name: newName },
 			method: "POST",
 			dataType: "JSON"

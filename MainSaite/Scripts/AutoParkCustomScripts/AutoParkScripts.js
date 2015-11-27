@@ -64,7 +64,7 @@ var carController = {
 		var newCarManufactureDate = $('#datetimepicker2').val();
 		var newCarState = $('#inputCarState').val();
 		$.ajax({
-			url: "/Cars/AddNewCar/",
+			url: "./AddNewCar/", // <----------------------------------------------------!!
 			data: {
 				UserId: userId,
 				OwnerId: ownerId,
@@ -107,7 +107,7 @@ var carController = {
 		//$('#edit-car-modal').modal('show');
 		var oldCarsId = $(e).attr('data-cars-id'); // take car`s id and send it via ajax
 		$.ajax({
-			url: "/Cars/GetCarForEdit/",
+			url: "./GetCarForEdit/", // <----------------------------------------------------!!
 			data: {
 				Id: oldCarsId,
 			},
@@ -148,7 +148,7 @@ var carController = {
 		var newInCarsMD = $('#datetimepicker1').val();
 		var newInCarsState = $('#newInputCarState').val();
 		$.ajax({
-			url: "/Cars/EditCar/",
+			url: "./EditCar/", // <----------------------------------------------------!!
 			data: {
 				Id: newInCarsId,
 				CarName: newInCarsName,
@@ -194,7 +194,7 @@ var carController = {
 
 		$('#car-modal-getMain .btn-ok').off("click.doMainCar").on("click.doMainCar", function () {
 			$.ajax({
-				url: "/Cars/SetCarStatus/",
+				url: "./SetCarStatus/", // <----------------------------------------------------!!
 				data: { Id: carsId },
 				method: "POST",
 				dataType: "JSON"
@@ -222,7 +222,7 @@ var carController = {
 
 		$('#car-modal-delete .btn-ok').off("click.deleteCar").on("click.deleteCar", function () {
 			$.ajax({
-				url: "/Cars/DeleteCar/",
+				url: "./DeleteCar/", // <----------------------------------------------------!!
 				data: { Id: carsId },
 				method: "POST",
 				dataType: "JSON"
@@ -252,7 +252,7 @@ var carController = {
 			var NewCarUserId = $('#giveAwayCarDrivers').val();
 
 			$.ajax({
-				url: "/Cars/GiveCar/",
+				url: "./GiveCar/", // <----------------------------------------------------!!
 				data: { CarId: giftCarsId, DriverId: NewCarUserId },
 				method: "POST",
 				dataType: "JSON"
@@ -281,7 +281,7 @@ var carController = {
 		$('#returnback-car-modal .btn-ok').off("click.returnCar").on("click.returnCar", function () {
 
 			$.ajax({
-				url: "/Cars/ReturnCar/",
+				url: "./ReturnCar/", // <----------------------------------------------------!!
 				data: { CarId: BorrowedCarsId, RealOwnerId: BorrowedCarsOwnerId },
 				method: "POST",
 				dataType: "JSON"
@@ -303,7 +303,7 @@ var carController = {
 		var detailCarsId = $(e).attr('data-cars-id');
 
 		$.ajax({
-			url: "/Cars/GetCarForEdit/",
+			url: "./GetCarForEdit/", // <----------------------------------------------------!!
 			data: {
 				Id: detailCarsId,
 			},
