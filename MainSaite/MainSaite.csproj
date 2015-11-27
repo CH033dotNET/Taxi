@@ -346,6 +346,7 @@
     <Content Include="App_Readme\Handlebarsjs_README.md" />
     <Content Include="App_Readme\Handlebarsjs_LICENSE" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Properties\PublishProfiles\taxiPub.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\AutoParkCustomScripts\AutoParkScripts.js" />
     <Content Include="Scripts\AutoParkCustomScripts\AutoParkPicker.js" />
