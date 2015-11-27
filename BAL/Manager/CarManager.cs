@@ -20,7 +20,7 @@ namespace BAL.Manager
 
 		public bool FindMainCar(int id)
 		{
-			var result = uOW.CarRepo.Get(x => x.UserId == id & x.OwnerId == id & x.isMain == true).Any();
+			var result = uOW.CarRepo.Get(x => x.UserId == id & x.isMain == true).Any();
 			return result;
 		}
 
