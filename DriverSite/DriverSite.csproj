@@ -144,6 +144,7 @@
     </Compile>
     <Compile Include="Helpers\CoordinateMapper.cs" />
     <Compile Include="Hubs\DistrictsHub.cs" />
+    <Compile Include="Hubs\DriverLocationHub.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Tools\PriceCounter.cs" />
     <Compile Include="Models\WebViewPageBase.cs" />
@@ -155,6 +156,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\BootstrapCallout.css" />
     <Content Include="Content\ClientDriveService.css" />
+    <Content Include="Content\DriverIcons\cab.png" />
+    <Content Include="Content\DriverIcons\cabRed.png" />
     <Content Include="Content\DriverMenu.css" />
     <Content Include="Content\Picture\SandWatch.jpg" />
     <Content Include="Content\Picture\Speedometer.jpg" />
@@ -172,6 +175,7 @@
     <Content Include="Scripts\coordinates.js" />
     <Content Include="Scripts\DistrictPartButtonScripts.js" />
     <Content Include="Scripts\DistrictViewer.js" />
+    <Content Include="Scripts\DriverLocationHubAndDriverMapScrypts\DriverMapAndHub.js" />
     <Content Include="Scripts\DriveTimer.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -208,6 +212,7 @@
     <Content Include="Views\Account\Authentification.cshtml" />
     <Content Include="Views\Temporary\Index.cshtml" />
     <Content Include="Views\Driver\_CarNotFoundP.cshtml" />
+    <Content Include="Views\Driver\_DriverMap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -217,5 +217,10 @@ namespace DriverSite.Controllers
             ApiRequestHelper.postData<OrderDTO>(controller, "EditOrder", order);
 			//orderManager.EditOrder(order);
 		}
+
+        public ActionResult DriverMap()
+        {
+            return PartialView("_DriverMap");
+        }
 	}
 }

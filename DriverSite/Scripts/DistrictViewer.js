@@ -5,9 +5,16 @@ function hubInit() {
 
     hub.client.swap = swap;
 
-    $.connection.hub.start().done(function () {
+
+    //all hubs work with one connection. this one sould be commented becouse  hub on _DriverMap(path below) starts after
+    //not shure what to do, if you need to add ivent on your "done()", perhapse you sould coll function on my ivent done(...)
+
+    //-------------------------* path*----------------------------------//
+    ///Scripts/DriverLocationHubAndDriverMapScrypts/DriverMapAndHub.js
+
+   /* $.connection.hub.start().done(function () {
        // hub.server.Hello(); // вызов функции сервера
-    });
+    });*/
 }
 function mainInit() {
 	$.ajax({
