@@ -9,7 +9,7 @@
     /*if (lastTab) {
         $('[href="' + lastTab + '"]').tab('show');
     }
-    else {*/
+    else {
         $('[href="#Home"]').tab('show');
-   // }
+    }*/
 });
