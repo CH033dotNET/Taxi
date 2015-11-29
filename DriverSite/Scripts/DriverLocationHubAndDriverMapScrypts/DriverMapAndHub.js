@@ -100,6 +100,7 @@
             //    infoWindow = new google.maps.InfoWindow({ map: map });
                 initHub(function() {
                     getPossition();
+                    initHubDriverMessage();
                     updateInterval = setInterval(collServerUpdate, 5000);
                 });
             }

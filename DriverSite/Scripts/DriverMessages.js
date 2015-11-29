@@ -58,40 +58,45 @@ $(function () {
     }
 
     //Open connection
-    $.connection.hub.start().done(function () {
+   /* $.connection.hub.start().done(function () {
         // LogIn
-        var driverRoleId = 1;
-        var driverUserId = $('#currentUserId').val();
 
-        //driverHub.server.connectUser(driverUserId);
-        //driverHub.server.connectUser(driverRoleId, driverUserId);
-        //operatorHub.server.connectUser(driverRoleId, driverUserId);
-
-
-        //Send message to operators
-        $('#showform').click(function () {
-            swal({
-                title: 'Input Your message:',
-                html: '<p><textarea id="input-field" style="width: 100%; height: 75px "> </textarea>',
-                showCancelButton: true,
-                closeOnConfirm: false
-            }, function () {
-            	$.ajax({
-            		type: 'POST',
-            		url: "/Orders/SendToOperators/",
-            		data: { 
-            			message: $('#input-field').val(),
-            			username: $('#txtUserName').val() },
-            		dataType: 'json',
-            		success: function () { console.log('yyyeah'); },
-            		error: function () { console.log('nooo'); }
-            	});
-              //  driverHub.server.sendToOperators($('#input-field').val(), $('#txtUserName').val()); //////!!!!!
-                swal('Your message has been sent', '', 'success');
-            });
-        })
-    });
+    });*/
 });
+
+var initHubDriverMessage = function () {
+    var driverRoleId = 1;
+    var driverUserId = $('#currentUserId').val();
+
+    //driverHub.server.connectUser(driverUserId);
+    //driverHub.server.connectUser(driverRoleId, driverUserId);
+    //operatorHub.server.connectUser(driverRoleId, driverUserId);
+
+
+    //Send message to operators
+    $('#showform').click(function () {
+        swal({
+            title: 'Input Your message:',
+            html: '<p><textarea id="input-field" style="width: 100%; height: 75px "> </textarea>',
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
+            $.ajax({
+                type: 'POST',
+                url: "/Orders/SendToOperators/",
+                data: {
+                    message: $('#input-field').val(),
+                    username: $('#txtUserName').val()
+                },
+                dataType: 'json',
+                success: function () { console.log('yyyeah'); },
+                error: function () { console.log('nooo'); }
+            });
+            //  driverHub.server.sendToOperators($('#input-field').val(), $('#txtUserName').val()); //////!!!!!
+            swal('Your message has been sent', '', 'success');
+        });
+    })
+}
 
 
 //get orders from db
