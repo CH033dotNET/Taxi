@@ -22,5 +22,7 @@ namespace BAL.Manager
 		IQueryable<ChartsColumnDTO> GetDriversIncome();
 		float GetFuelConsumption(int DriverId);
 		IQueryable<float> AnnualFuelConsumption();
+		IQueryable<DriverRequest> GetDriverRequests();
+	
 	}
 }

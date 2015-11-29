@@ -8,10 +8,10 @@ using Model.DTO;
 using MainSaite.Models;
 namespace MainSaite.Hubs
 {
-    [HubName("OperatorHub")]
-    public class OperatorHub: Hub
-    {
-        static ICollection<SignalRUser> operatorHubUsers = new List<SignalRUser>();
+	[HubName("OperatorHub")]
+	public class OperatorHub : Hub
+	{
+		static ICollection<SignalRUser> operatorHubUsers = new List<SignalRUser>();
 
 
 		//deny Client Order
@@ -37,7 +37,7 @@ namespace MainSaite.Hubs
 		{
 			Clients.Group("Operator").newOrderFromClient(newOrder);
 		}
-		
+
 
 		//Show modal form 'no free cars'
 		[HubMethodName("noFreeCarClientOrder")]
@@ -60,32 +60,32 @@ namespace MainSaite.Hubs
 		[HubMethodName("sendToDrivers")]
 		public void SendToDrivers(string message)
 		{
-			Clients.Group("Driver").showMessage(message);
+			Clients.Group("Driver").showMessage(message); //////////////!!!!!!!!!!!!!!!!!!!!!!!!
 		}
 
 
 		//Send order to driver's table
-        [HubMethodName("orderForDrivers")]
-        public void OrderForDrivers(OrderDTO order)
-        {
-            Clients.Group("Driver").newDriverOrders(order);
-        }
+		[HubMethodName("orderForDrivers")]
+		public void OrderForDrivers(OrderDTO order)
+		{
+			//Clients.Group("Driver").newDriverOrders(order); //////////////!!!!!!!!!!!!!!!!!!!!!!!!
+		}
 
 
 		//send wait order to all operators and delete from newOrdertable
-        [HubMethodName("waitingOrderOp")]
-        public void WaitingOrderOp(OrderDTO order)
-        {
-            Clients.Group("Operator").addWaitingOrder(order);
-        }
+		[HubMethodName("waitingOrderOp")]
+		public void WaitingOrderOp(OrderDTO order)
+		{
+			Clients.Group("Operator").addWaitingOrder(order);
+		}
 
 
 		//remove current order from drivers
 		[HubMethodName("removeAwaitOrder")]
-        public void RemoveAwaitOrder(int orderId)
-        {
-			Clients.Group("Driver").removeAwaitOrders(orderId);
-        }
+		public void RemoveAwaitOrder(int orderId)
+		{
+			//Clients.Group("Driver").removeAwaitOrders(orderId); //////////////!!!!!!!!!!!!!!!!!!!!!!!!
+		}
 
 
 		//Remove current order from awaiting table  operators
@@ -105,63 +105,61 @@ namespace MainSaite.Hubs
 
 
 		//send confirmRequest to selected driver
-        [HubMethodName("confirmRequest")]
-        public void ConfirmRequest(int driverId)
-        {
+		[HubMethodName("confirmRequest")]
+		public void ConfirmRequest(int driverId)
+		{
 			var driverConnectionId = operatorHubUsers.FirstOrDefault(x => x.UserId == driverId).ConnectionId;
-			Clients.Client(driverConnectionId).confirmDrRequest();
-        }
+			//Clients.Client(driverConnectionId).confirmDrRequest(); //////////////!!!!!!!!!!!!!!!!!!!!!!!!
+		}
 
 
 		//deny driver request and delete from operator's confirmed table
 		[HubMethodName("deniedRequest")]
-		public void DeniedRequest(int driverId, int OrderId)
+		public void DeniedRequest(int OrderId)
 		{
-			var driverConnectionId = operatorHubUsers.FirstOrDefault(x => x.UserId == driverId).ConnectionId;
-			Clients.Client(driverConnectionId).deniedDrRequest();
 			Clients.Group("Operator").deleteDrRequest(OrderId);
 		}
 
 
 
-        [HubMethodName("connectUser")]
-        public void ConnectUser(int roleId, int userId)
-        {
-            string connectionId = Context.ConnectionId;
-            int RoleId = roleId;
+		[HubMethodName("connectUser")]
+		public void ConnectUser(int roleId, int userId)
+		{
+			string connectionId = Context.ConnectionId;
+			int RoleId = roleId;
 
-            var currentUser = new SignalRUser() { ConnectionId = connectionId, RoleId = roleId, UserId = userId };
-            if (!operatorHubUsers.Any(x => x.ConnectionId == connectionId))
-            {
-                if (roleId == 1)
-                {
-                    currentUser.Group = "Driver";
-                    Groups.Add(Context.ConnectionId, "Driver");
-                }
-                if(roleId == 2)
-                {
-                    currentUser.Group = "Operator";
-                    Groups.Add(Context.ConnectionId, "Operator");
-                }
+			var currentUser = new SignalRUser() { ConnectionId = connectionId, RoleId = roleId, UserId = userId };
+			if (!operatorHubUsers.Any(x => x.ConnectionId == connectionId))
+			{
+				if (roleId == 1)
+				{
+					currentUser.Group = "Driver";
+					Groups.Add(Context.ConnectionId, "Driver");
+				}
+				if (roleId == 2)
+				{
+					currentUser.Group = "Operator";
+					Groups.Add(Context.ConnectionId, "Operator");
+				}
 				if (roleId == 3)
 				{
 					currentUser.Group = "Client";
 					Groups.Add(Context.ConnectionId, "Client");
 				}
-                operatorHubUsers.Add(currentUser);
+				operatorHubUsers.Add(currentUser);
 
-            }
-        }
+			}
+		}
 
-        public override System.Threading.Tasks.Task OnDisconnected(bool stopCalled)
-        {
+		public override System.Threading.Tasks.Task OnDisconnected(bool stopCalled)
+		{
 			var item = operatorHubUsers.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
 			if (item != null)
 			{
 				operatorHubUsers.Remove(item);
 			}
 
-            return base.OnDisconnected(stopCalled);
-        }
-    }
+			return base.OnDisconnected(stopCalled);
+		}
+	}
 }

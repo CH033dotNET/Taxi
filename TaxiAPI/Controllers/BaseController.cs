@@ -23,10 +23,10 @@ namespace TaxiAPI.Controllers
 		{
 			get
 			{
-				if (mainRquestHelper == null)
-				{
+				//if (mainRquestHelper == null)
+				//{
 					mainRquestHelper = new RequestHelper(WebConfigurationManager.AppSettings["MainSiteAPIUrl"]);
-				}
+				//}
 				return mainRquestHelper;
 			}
 		}
@@ -37,10 +37,10 @@ namespace TaxiAPI.Controllers
 		{
 			get
 			{
-				if (driverRquestHelper == null)
-				{
+				//if (driverRquestHelper == null)
+				//{
 					driverRquestHelper = new RequestHelper(WebConfigurationManager.AppSettings["DriverAPIUrl"]);
-				}
+				//}
 				return driverRquestHelper;
 			}
 		}
@@ -51,10 +51,10 @@ namespace TaxiAPI.Controllers
 		{
 			get
 			{
-				if (clientRquestHelper == null)
-				{
+				//if (clientRquestHelper == null)
+				//{
 					clientRquestHelper = new RequestHelper(WebConfigurationManager.AppSettings["ClientAPIUrl"]);
-				}
+				//}
 				return clientRquestHelper;
 			}
 		}

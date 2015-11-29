@@ -201,6 +201,15 @@ namespace BAL.Manager
 				.Select(x => x.Sum(y => y.FuelSpent));
 			return fuelConsumption;
 		}
+
+		public IQueryable<DriverRequest> GetDriverRequests()
+		{
+			var driverRequest = from O in uOW.OrderRepo.All.Where(x => x.IsConfirm == 1 && x.DriverId != 0)
+								join P in uOW.PersonRepo.All
+								on O.PersonId equals P.Id
+								select new DriverRequest() { OrderId = O.Id, PeekPlace = O.PeekPlace, DropPlace = O.DropPlace, WaitingTime = O.WaitingTime, DriverId = O.DriverId };
+			return driverRequest;
+		}
 	}
 
 }

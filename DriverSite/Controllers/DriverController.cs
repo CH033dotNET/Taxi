@@ -195,7 +195,7 @@ namespace DriverSite.Controllers
 		}
 
 
-		public ActionResult DriverOrders()
+		/*public ActionResult DriverOrders()
 		{
 			return PartialView();
 		}
@@ -216,7 +216,7 @@ namespace DriverSite.Controllers
 			order.WaitingTime = waitingTime;
             ApiRequestHelper.postData<OrderDTO>(controller, "EditOrder", order);
 			//orderManager.EditOrder(order);
-		}
+		}*/
 
         public ActionResult DriverMap()
         {

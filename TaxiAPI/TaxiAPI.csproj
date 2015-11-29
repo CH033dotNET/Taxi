@@ -211,6 +211,7 @@
     <Compile Include="Controllers\DrivingSimulationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\TarifController.cs" />
     <Compile Include="Controllers\UserController.cs" />

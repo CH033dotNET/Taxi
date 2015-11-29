@@ -21,6 +21,8 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/BootstrapCallout.css")
     @Styles.Render("~/Content/ClientDriveService.css")
+
+
 </head>
 <body style="padding:0">
     <input type="hidden" id="hlat" value="48.309390" />
@@ -93,11 +95,10 @@
                 </p>
             </div>
             <div id="Messages" class="tab-pane fade">
-                <h2>
-                    @Resources.Resource.Messages
-                </h2>
                 <p>
-                    placeHolder3
+                    @{
+                        Html.RenderAction("Index", "Orders");
+                    }
                 </p>
             </div>
             <div id="District" class="tab-pane fade">

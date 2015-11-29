@@ -69,12 +69,24 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -132,18 +144,23 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClientServiceController.cs" />
     <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\DrivingSimulationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\TemporaryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CoordinateMapper.cs" />
+    <Compile Include="Helpers\MessagesHelper.cs" />
     <Compile Include="Hubs\DistrictsHub.cs" />
+    <Compile Include="Hubs\DriverHub.cs" />
     <Compile Include="Hubs\DriverLocationHub.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Tools\PriceCounter.cs" />
@@ -163,6 +180,7 @@
     <Content Include="Content\Picture\Speedometer.jpg" />
     <Content Include="Content\Picture\tablet.png" />
     <Content Include="Content\shop-item.css" />
+    <Content Include="Content\sweetalert2.css" />
     <Content Include="Content\Themes\OfflineJS\offline-language-english.css" />
     <Content Include="Content\Themes\OfflineJS\offline-theme-default.css" />
     <Content Include="favicon.ico" />
@@ -176,7 +194,10 @@
     <Content Include="Scripts\DistrictPartButtonScripts.js" />
     <Content Include="Scripts\DistrictViewer.js" />
     <Content Include="Scripts\DriverLocationHubAndDriverMapScrypts\DriverMapAndHub.js" />
+    <Content Include="Scripts\DriverMessages.js" />
     <Content Include="Scripts\DriveTimer.js" />
+    <Content Include="Scripts\handlebars.js" />
+    <Content Include="Scripts\HandlebarsCustomHelpers.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -191,6 +212,7 @@
     <Content Include="Scripts\offline.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\sweetalert2.min.js" />
     <Content Include="Scripts\TabCorrector.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -213,6 +235,7 @@
     <Content Include="Views\Temporary\Index.cshtml" />
     <Content Include="Views\Driver\_CarNotFoundP.cshtml" />
     <Content Include="Views\Driver\_DriverMap.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

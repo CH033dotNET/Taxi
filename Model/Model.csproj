@@ -64,6 +64,7 @@
     <Compile Include="DTO\DriverDistrictInfoDTO.cs" />
     <Compile Include="DTO\ChartsColumnDTO.cs" />
     <Compile Include="DTO\DriverLocation.cs" />
+    <Compile Include="DTO\DriverRequest.cs" />
     <Compile Include="DTO\LocationDTO.cs" />
     <Compile Include="DTO\OrderDTO.cs" />
     <Compile Include="DTO\Pager.cs" />

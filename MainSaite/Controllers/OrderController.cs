@@ -52,6 +52,8 @@ namespace MainSaite.Controllers
 			}
 
 			order.FirstName = personManager.GetPersons().FirstOrDefault(x => x.Id == order.PersonId).FirstName;
+			//operatorHub.server.orderForDrivers(data); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
+			if (status == 1) ApiRequestHelper.postData<OrderDTO>("Orders", "OrderForDrivers", order);
 			return Json(order, JsonRequestBehavior.AllowGet);
 		}
 
@@ -70,13 +72,13 @@ namespace MainSaite.Controllers
 
 		public JsonResult DriversRequest()
 		{
-			var orders = orderManager.GetOrders().Where(x => x.IsConfirm == 1 && x.DriverId != 0).ToList();
+			/*var orders = orderManager.GetOrders().Where(x => x.IsConfirm == 1 && x.DriverId != 0).ToList();
 			var peoples = personManager.GetPersons().ToList();
 			var driverRequest = from O in orders
 								join P in peoples
 								on O.PersonId equals P.Id
-								select new { OrderId = O.Id, PeekPlace = O.PeekPlace, DropPlace = O.DropPlace, WaitingTime = O.WaitingTime, DriverId = O.DriverId };
-			return Json(driverRequest, JsonRequestBehavior.AllowGet);
+								select new { OrderId = O.Id, PeekPlace = O.PeekPlace, DropPlace = O.DropPlace, WaitingTime = O.WaitingTime, DriverId = O.DriverId };*/
+			return Json(orderManager.GetDriverRequests().ToList(), JsonRequestBehavior.AllowGet);
 		}
 
 		public JsonResult GetWaitingOrders()
@@ -104,10 +106,11 @@ namespace MainSaite.Controllers
 		{
 
 			var order = orderManager.GetOrderByOrderID(orderId);
-			order.DriverId = SessionUser.Id; // 1. dublicate
 			order.WaitingTime = waitingTime;
-			order.DriverId = driverId; // 2. dublicate
-			var driverLocation = locationManager.GetByUserId(SessionUser.Id); // find location by driver id
+			order.DriverId = driverId;
+
+			var driverLocation = locationManager.GetByUserId(driverId); // find location by driver id
+
 			order.DistrictId = driverLocation.DistrictId;
 			order.District = driverLocation.District;
 			var updatedOrder = orderManager.EditOrder(order);
@@ -117,8 +120,27 @@ namespace MainSaite.Controllers
 
 			ClientOrderedDTO currentOrder = new ClientOrderedDTO() { Latitude = driverCoordinates.Latitude, Longitude = driverCoordinates.Longitude, WaitingTime = waitingTime };
 
+			ApiRequestHelper.Get<bool, int>("Orders", "ConfirmRequest", driverId); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
+
 			return Json(currentOrder, JsonRequestBehavior.AllowGet);
 
+		}
+
+		public JsonResult RemoveAwaitOrder(int orderId)
+		{
+			ApiRequestHelper.GetById<bool>("Orders", "RemoveAwaitOrder", orderId); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
+			return Json(true, JsonRequestBehavior.AllowGet);
+		}
+
+		public void DeniedRequest(int DriverId)
+		{
+			ApiRequestHelper.Get<bool, int>("Orders", "DeniedRequest", DriverId); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
+		}
+
+		public JsonResult SendToDrivers(string message)
+		{
+			ApiRequestHelper.Get<bool, string>("Orders", "SendToDrivers", message); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
+			return Json(true, JsonRequestBehavior.AllowGet);
 		}
 
 	}

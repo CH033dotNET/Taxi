@@ -127,23 +127,23 @@ namespace TaxiAPI.Controllers
         {
             return Request.CreateResponse(HttpStatusCode.OK, locationManager.AddLocation(data));
         }
-        [HttpGet]
-        //[Route("api/Driver/GetDriverOrders")]
-        public HttpResponseMessage GetDriverOrders()
-        {
-            return Request.CreateResponse(HttpStatusCode.OK, orderManager.GetDriverOrders());
-        }
-        [HttpGet]
-        //[Route("api/Driver/GetOrderByOrderID")]
-        public HttpResponseMessage GetOrderByOrderID(int? id)
-        {
-            return Request.CreateResponse(HttpStatusCode.OK, orderManager.GetOrderByOrderID(id));
-        }
-        [HttpPost]
-        //[Route("api/Driver/EditOrder")]
-        public HttpResponseMessage EditOrder(OrderDTO data)
-        {
-            return Request.CreateResponse(HttpStatusCode.OK, orderManager.EditOrder(data));
-        }
+		[HttpGet]
+		//[Route("api/Driver/GetDriverOrders")]
+		public HttpResponseMessage GetDriverOrders()
+		{
+			return Request.CreateResponse(HttpStatusCode.OK, orderManager.GetDriverOrders());
+		}
+		[HttpGet]
+		//[Route("api/Driver/GetOrderByOrderID")]
+		public HttpResponseMessage GetOrderByOrderID(int? id)
+		{
+			return Request.CreateResponse(HttpStatusCode.OK, orderManager.GetOrderByOrderID(id));
+		}
+		[HttpPost]
+		//[Route("api/Driver/EditOrder")]
+		public HttpResponseMessage EditOrder(OrderDTO data)
+		{
+			return Request.CreateResponse(HttpStatusCode.OK, orderManager.EditOrder(data));
+		}
     }
 }

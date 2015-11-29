@@ -9,16 +9,22 @@ $(function () {
 
     driverHub = $.connection.DriverHub;
     operatorHub = $.connection.OperatorHub;
+    operatorAPIHub = $.connection.OperatorAPIHub;
+
+    //Show message from Driver (API)
+    driverHub.client.showMessageToOperators = function (message, userName) {
+        // Own function 
+        swal('Message from ' + userName + ':', message, 'success');
+    };
 
     //Show message from Driver
     driverHub.client.showMessage = function (message, userName) {
-    // Own function 
-        swal(LocStrings.message+' '+userName+':', message, 'success');
+        // Own function 
+        swal('Message from ' + userName + ':', message, 'success');
     };
 
-	// function that takes an object as an input parameter from a hub call and appends a waitingOrder table with its data.
-    operatorHub.client.addWaitingOrder = function (newWaitOrder)
-    {
+    // function that takes an object as an input parameter from a hub call and appends a waitingOrder table with its data.
+    operatorHub.client.addWaitingOrder = function (newWaitOrder) {
         var waitingOrders = $('#waitingOrdersContent');
         var source = $('#waitingOrderTemplate').html();
         var template = Handlebars.compile(source);
@@ -32,8 +38,7 @@ $(function () {
     }
 
     // delete order from confirmed table
-    operatorHub.client.deleteDrRequest = function (OrderId)
-    {
+    operatorHub.client.deleteDrRequest = function (OrderId) {
         $('#deniedDrRequest' + OrderId).closest('tr').remove();
     }
 
@@ -90,13 +95,21 @@ $(function () {
         //Broadcast message to all drivers
         $('#showform').click(function () {
             swal({
-                title: LocStrings.InputYourMessage,
+                title: 'Input Your message:',
                 html: '<p><textarea id="input-field" style="width: 100%; height: 75px "> </textarea>',
                 showCancelButton: true,
                 closeOnConfirm: false
             }, function () {
-                operatorHub.server.sendToDrivers($('#input-field').val());
-                swal(LocStrings.MessageHasBeenSent, '', 'success');
+                $.ajax({
+                    url: "/Order/SendToDrivers/",
+                    data: { message: $('#input-field').val() },
+                    dataType: 'json',
+                    success: function ()
+                    { console.log('yyyeah'); },
+                    error: function () { console.log('nooo'); }
+                });
+                operatorHub.server.sendToDrivers($('#input-field').val()); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
+                swal('Your message has been sent', '', 'success');
             });
         })
 
@@ -109,7 +122,7 @@ $(document).on("click", ".ordrerAction", function () {
     var OrderId = $(this).attr('data-orderid');
     var Status = $(this).attr('data-status');
     $.ajax({
-        url: './Order/SetOrderStatus/',
+        url: '/Order/SetOrderStatus/',
         data: {
             orderId: OrderId,
             status: Status
@@ -119,7 +132,7 @@ $(document).on("click", ".ordrerAction", function () {
                 case "1": {
 
                     //Send order to driver's table
-                    operatorHub.server.orderForDrivers(data);
+                    //operatorHub.server.orderForDrivers(data); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
 
                     //send wait order to all operators and delete from newOrdertable
                     operatorHub.server.waitingOrderOp(data);
@@ -138,12 +151,12 @@ $(document).on("click", ".ordrerAction", function () {
 
                 case "4": {
                     //Submit driver request
-                    var goodDriverId = $('#submitDrRequest'+OrderId).parent('td').prev('td').text();
+                    var goodDriverId = $('#submitDrRequest' + OrderId).parent('td').prev('td').text();
                     var waitingTime = $('#submitDrRequest' + OrderId).parent('td').prev('td').prev('td').text();
 
                     //Set order to current driver
                     $.ajax({
-                        url: "./Order/SetOrderToDriver/",
+                        url: "/Order/SetOrderToDriver/",
                         data: { orderId: OrderId, waitingTime: waitingTime, DriverId: goodDriverId },
                         dataType: 'json',
                         success: function (data) {
@@ -152,10 +165,10 @@ $(document).on("click", ".ordrerAction", function () {
                     });
 
                     //send confirmRequest to selected driver
-                    operatorHub.server.confirmRequest(goodDriverId);
+                    //operatorHub.server.confirmRequest(goodDriverId); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
 
                     //remove current order from drivers
-                    operatorHub.server.removeAwaitOrder(OrderId);
+                    //operatorHub.server.removeAwaitOrder(OrderId); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
 
                     //remove current order from operators
                     operatorHub.server.removeAwaitOrderFromOperators(OrderId);
@@ -164,7 +177,7 @@ $(document).on("click", ".ordrerAction", function () {
                     operatorHub.server.removeAwaitOrders(OrderId);
 
                     //deny for others drivers
-                    $('.deny'+OrderId).click();
+                    $('.deny' + OrderId).click();
                     break;
                 }
 
@@ -182,17 +195,28 @@ $(document).on("click", ".ordrerAction", function () {
                     //Remove current order from awaiting table operators
                     operatorHub.server.removeAwaitOrders(OrderId);
 
+                    $.ajax({
+                        url: "/Order/RemoveAwaitOrder/",
+                        data: { orderId: OrderId },
+                        dataType: 'json'
+                    });
                     //Remove current order from table drivers
-                    operatorHub.server.removeAwaitOrder(OrderId);
+                    //operatorHub.server.removeAwaitOrder(OrderId); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
 
                     break;
                 }
 
                 case "6": {
+                    operatorHub.server.deniedRequest(OrderId); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
+
                     driverId = $('#submitDrRequest' + OrderId).parent('td').prev('td').text();
 
+                    $.ajax({
+                        url: "/Order/DeniedRequest/",
+                        data: { DriverId: driverId },
+                        dataType: 'json'
+                    });
                     //deny driver request and delete from confirmed table
-                    operatorHub.server.deniedRequest(driverId, OrderId);
                     break;
                 }
                 default: break;
@@ -207,7 +231,7 @@ function GetOrders() {
     var content = $('#orderContent');
     $.ajax({
         type: 'POST',
-        url: "./Order/OrdersData/",
+        url: "/Order/OrdersData/",
         dataType: 'json',
         success: function (data) {
             var source = $("#orderTemplate").html();
@@ -225,7 +249,7 @@ function GetDrRequest() {
     var content = $('#driverRequest');
     $.ajax({
         type: 'POST',
-        url: "./Order/DriversRequest/",
+        url: "/Order/DriversRequest/",
         dataType: 'json',
         success: function (data) {
             var source = $("#driverRequestTemplate").html();
@@ -241,12 +265,12 @@ function GetAwaitOrders() {
     var waitingOrders = $('#waitingOrdersContent');
     $.ajax({
         type: 'POST',
-        url: "./Order/GetWaitingOrders/",
+        url: "/Order/GetWaitingOrders/",
         dataType: 'json',
         success: function (data) {
             var source = $('#waitingOrderTemplate').html();
             var template = Handlebars.compile(source);
-            var wrapper= { waitingOrders: data };
+            var wrapper = { waitingOrders: data };
             var html = template(wrapper);
             waitingOrders.html(html)
             checkExpiredOrders(data); // check all awating orders wether they are expired (Time now > OrderTime for more tha 5 mins)
@@ -256,98 +280,98 @@ function GetAwaitOrders() {
 
 //function that checks array of awating orders wether they are expired or not.
 function checkExpiredOrders(OrdersList) {
-	var timeNow = moment();
-	var awaitingOrders = OrdersList; // array of awating orders here. Need glodal variable to store current lists
-	for (var i = 0; i < awaitingOrders.length; i++) {
-		if (awaitingOrders[i].OrderTime != timeNow) { // chacking if datetimes are equal or not. If not:
-			var dayDiff = timeNow.diff(awaitingOrders[i].OrderTime, "days"); // checking day difference
-			var hourDiff = timeNow.diff(awaitingOrders[i].OrderTime, "hours"); // checking hour difference
-			var minuteDiff = timeNow.diff(awaitingOrders[i].OrderTime, "minutes"); // checking minute difference
-			var secondDiff = timeNow.diff(awaitingOrders[i].OrderTime, "seconds"); // checking seconds difference
-			if (dayDiff >= 1 || hourDiff >= 1) { // if dateNow hour day or hour value is bigger then order`s
-				applyExpiredClass(awaitingOrders[i].OrderId);
-			}
-			else if (minuteDiff >= 5) { // if dateNow day or hour value is equal to order`s but minutes count is bigger
-				applyExpiredClass(awaitingOrders[i].OrderId);
-			}
-				// if minute difference is less than 5 minutes
-			else if (minuteDiff < 5 && minuteDiff > 0) {
-				applyExpiredClass3(awaitingOrders[i].OrderId, minuteDiff, 0)
-			}
-			else if (secondDiff > 0 && secondDiff < 60) {
-				applyExpiredClass3(awaitingOrders[i].OrderId, 0, secondDiff)
-			}
-			else return false;
-		}
-	}
+    var timeNow = moment();
+    var awaitingOrders = OrdersList; // array of awating orders here. Need glodal variable to store current lists
+    for (var i = 0; i < awaitingOrders.length; i++) {
+        if (awaitingOrders[i].OrderTime != timeNow) { // chacking if datetimes are equal or not. If not:
+            var dayDiff = timeNow.diff(awaitingOrders[i].OrderTime, "days"); // checking day difference
+            var hourDiff = timeNow.diff(awaitingOrders[i].OrderTime, "hours"); // checking hour difference
+            var minuteDiff = timeNow.diff(awaitingOrders[i].OrderTime, "minutes"); // checking minute difference
+            var secondDiff = timeNow.diff(awaitingOrders[i].OrderTime, "seconds"); // checking seconds difference
+            if (dayDiff >= 1 || hourDiff >= 1) { // if dateNow hour day or hour value is bigger then order`s
+                applyExpiredClass(awaitingOrders[i].OrderId);
+            }
+            else if (minuteDiff >= 5) { // if dateNow day or hour value is equal to order`s but minutes count is bigger
+                applyExpiredClass(awaitingOrders[i].OrderId);
+            }
+                // if minute difference is less than 5 minutes
+            else if (minuteDiff < 5 && minuteDiff > 0) {
+                applyExpiredClass3(awaitingOrders[i].OrderId, minuteDiff, 0)
+            }
+            else if (secondDiff > 0 && secondDiff < 60) {
+                applyExpiredClass3(awaitingOrders[i].OrderId, 0, secondDiff)
+            }
+            else return false;
+        }
+    }
 }
 // function that add expired class to those entries that were added less than 5 minutes ago.
 function applyExpiredClass3(id, minutes, seconds) {
-	var rowToPaint = document.getElementById(id);
-	if (minutes > 0 && seconds == 0) {
-		if (rowToPaint.className == null || rowToPaint.className == undefined) {
-			setTimeout(function () {
-				var checkRowAgain = document.getElementById(id); // check again if element is available.
-				if (checkRowAgain == null) { return false }
-				else { rowToPaint.className = "expiredOrderClass"; }
-			}, (5 - minutes) * 60000)
-		}
-		else {
-			setTimeout(function () {
-				var checkRowAgain = document.getElementById(id); // check again if element is available.
-				if (checkRowAgain == null) { return false }
-				else { checkRowAgain.className = rowToPaint.className + " expiredOrderClass"; }
-			}, (5 - minutes) * 60000)
-		}
-	}
-	else if (seconds > 0 && minutes == 0) {
-		if (rowToPaint.className == null || rowToPaint.className == undefined) {
-			setTimeout(function () {
-				var checkRowAgain = document.getElementById(id); // check again if element is available.
-				if (checkRowAgain == null) { return false }
-				else { rowToPaint.className = "expiredOrderClass"; }
-			}, (300 - seconds) * 1000)
-		}
-		else {
-			setTimeout(function () {
-				var checkRowAgain = document.getElementById(id); // check again if element is available.
-				if (checkRowAgain == null) { return false }
-				else { checkRowAgain.className = rowToPaint.className + " expiredOrderClass"; }
-			}, (300 - seconds) * 1000)
-		}
-	}
-	else return false;
+    var rowToPaint = document.getElementById(id);
+    if (minutes > 0 && seconds == 0) {
+        if (rowToPaint.className == null || rowToPaint.className == undefined) {
+            setTimeout(function () {
+                var checkRowAgain = document.getElementById(id); // check again if element is available.
+                if (checkRowAgain == null) { return false }
+                else { rowToPaint.className = "expiredOrderClass"; }
+            }, (5 - minutes) * 60000)
+        }
+        else {
+            setTimeout(function () {
+                var checkRowAgain = document.getElementById(id); // check again if element is available.
+                if (checkRowAgain == null) { return false }
+                else { checkRowAgain.className = rowToPaint.className + " expiredOrderClass"; }
+            }, (5 - minutes) * 60000)
+        }
+    }
+    else if (seconds > 0 && minutes == 0) {
+        if (rowToPaint.className == null || rowToPaint.className == undefined) {
+            setTimeout(function () {
+                var checkRowAgain = document.getElementById(id); // check again if element is available.
+                if (checkRowAgain == null) { return false }
+                else { rowToPaint.className = "expiredOrderClass"; }
+            }, (300 - seconds) * 1000)
+        }
+        else {
+            setTimeout(function () {
+                var checkRowAgain = document.getElementById(id); // check again if element is available.
+                if (checkRowAgain == null) { return false }
+                else { checkRowAgain.className = rowToPaint.className + " expiredOrderClass"; }
+            }, (300 - seconds) * 1000)
+        }
+    }
+    else return false;
 }
 
 // function that takes an awating order id as parameter and mark a row containing this order as expired.
 function setOrderExpired(id) {
-	var rowToPaint = document.getElementById(id);
-	if (rowToPaint.className == null || rowToPaint.className == undefined) {
-		setTimeout(function () {
-			var checkRowAgain = document.getElementById(id); // check again if element is available.
-			if (checkRowAgain == null) { return false }
-			else { rowToPaint.className = "expiredOrderClass"; }
-		}, 300000)
-	}
-	else {
-		setTimeout(function () {
-			var checkRowAgain = document.getElementById(id); // check again if element is available.
-			if (checkRowAgain == null) { return false }
-			else { checkRowAgain.className = rowToPaint.className + " expiredOrderClass"; }
-		}, 300000)
-	}
+    var rowToPaint = document.getElementById(id);
+    if (rowToPaint.className == null || rowToPaint.className == undefined) {
+        setTimeout(function () {
+            var checkRowAgain = document.getElementById(id); // check again if element is available.
+            if (checkRowAgain == null) { return false }
+            else { rowToPaint.className = "expiredOrderClass"; }
+        }, 300000)
+    }
+    else {
+        setTimeout(function () {
+            var checkRowAgain = document.getElementById(id); // check again if element is available.
+            if (checkRowAgain == null) { return false }
+            else { checkRowAgain.className = rowToPaint.className + " expiredOrderClass"; }
+        }, 300000)
+    }
 }
 
 // function that add expired class immediately
 function applyExpiredClass(id) {
-	if (document.readyState == 'complete') {
-		var rowToPaint = document.getElementById(id);
-		if (rowToPaint.className == null || rowToPaint.className == undefined) {
-			rowToPaint.className = "expiredOrderClass";
-		}
-		else {
-			rowToPaint.className = rowToPaint.className + " expiredOrderClass";
-		}
-	}
-	else alert("not ready");
+    if (document.readyState == 'complete') {
+        var rowToPaint = document.getElementById(id);
+        if (rowToPaint.className == null || rowToPaint.className == undefined) {
+            rowToPaint.className = "expiredOrderClass";
+        }
+        else {
+            rowToPaint.className = rowToPaint.className + " expiredOrderClass";
+        }
+    }
+    else alert("not ready");
 }
