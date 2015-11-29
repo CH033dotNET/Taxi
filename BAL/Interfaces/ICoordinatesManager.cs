@@ -11,6 +11,7 @@ namespace BAL.Manager
 		Model.DTO.CoordinatesDTO InitializeCoordinates(string Longitude, string Latitude, string Accuracy, int UserId);
 		System.Collections.Generic.IEnumerable<Model.DB.Coordinates> GetCoordinatesByUserId(int userId);
         List<CoordinatesDTO> AddRangeCoordinates(List<CoordinatesDTO> coordinates, int orderId);
+		Model.DTO.CoordinatesDTO GetCoordinatesByOrdeId(int ordeId);
 		void RemoveToDate(DateTime date);
 	}
 }

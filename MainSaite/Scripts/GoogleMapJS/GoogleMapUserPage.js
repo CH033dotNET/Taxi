@@ -9,6 +9,7 @@ var geocoder = new google.maps.Geocoder();
 var infowindow = new google.maps.InfoWindow;
 var circle;
 var address;
+var counter = 0;
 var markers = new Array();
 
 var myOrderId;
@@ -40,10 +41,11 @@ $(document).ready(function () {
     }
 
     operatorHub.client.waitYourCar = function (waitingTime, lat, lng) {
-        myOrderId = null;
+        whereMyDriver(myOrderId);
         $('#waittime').val(waitingTime);
         $('#orderinfo').modal('toggle');
         setTaxiMarker(lat, lng);
+        myOrderId = null;
     }
 
     $.connection.hub.start().done(function () {
@@ -145,7 +147,6 @@ var setTaxiMarker = function(lt, lg)
     var latlng = { lat: lt, lng: lg };
     markerTaxi.setPosition(latlng);
     markerTaxi.setIcon(picturePath + 'logo_taxi_yellow.png');
-    markerTaxi.setAnimation(google.maps.Animation.BOUNCE);
     markerTaxi.setMap(map);
 }
 
@@ -455,17 +456,37 @@ var setTitle = function (mark) {
     });
 }
 
-var moveMarkerToDestinatio = function (markerSource, markerDestionation) {
 
-    var Srclat = markerSource.getPosition().lat();
-    var Srclng = markerSource.getPosition().lng();
 
-    var Dstlat = markerSource.markerDestionation().lat();
-    var Dstlng = markerSource.markerDestionation().lng();
 
+
+var whereMyDriver = function (OrderId) {
+
+    counter = 0;
+    intervalID = setInterval(function () { runDriver(OrderId) }, 1000);
 }
 
 
-    
+function runDriver(OrderId) {
 
+    if (counter < 15) {
 
+        $.ajax({
+            url: './Order/WhereMyDriver/',
+            data: { orderId: OrderId },
+            type: "POST",
+            success: function (data) {
+                if (data != null) {
+                    markerTaxi.setPosition(new google.maps.LatLng(data.Latitude, data.Longitude));
+                }
+            }
+
+        });
+        counter++;
+    }
+
+    else {
+        markerTaxi.setAnimation(google.maps.Animation.BOUNCE);
+        clearInterval(intervalID);
+    }
+}

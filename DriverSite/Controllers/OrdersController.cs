@@ -45,5 +45,10 @@ namespace DriverSite.Controllers
 			var current = ApiRequestHelper.postData<OrderDTO>(controller, "AssignCurrentOrder", currentOrder).Data;
 			//var currentOrder = orderManager.GetOrderByOrderID(orderId);
 		}
+
+		public void SetCoordinates(CoordinatesDTO dataCoord)
+		{
+			var current = ApiRequestHelper.postData<CoordinatesDTO>(controller, "SetCoordinates", dataCoord).Data;
+		}
 	}
 }

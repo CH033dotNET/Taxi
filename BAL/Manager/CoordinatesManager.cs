@@ -121,5 +121,16 @@ namespace BAL.Manager
 				Where(x => x.UserId == userId).ToList();
 			return userCoordinates;
 		}
+
+		public CoordinatesDTO GetCoordinatesByOrdeId(int ordeId)
+		{
+			var coord = uOW.CoordinatesHistoryRepo.Get().
+				OrderByDescending(x => x.AddedTime).
+				FirstOrDefault(x => x.OrderId == ordeId);
+
+
+			var coordDTO = Mapper.Map<CoordinatesDTO>(coord);
+			return coordDTO;
+		}
 	}
 }

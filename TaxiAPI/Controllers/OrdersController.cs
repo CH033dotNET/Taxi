@@ -13,9 +13,11 @@ namespace TaxiAPI.Controllers
 	public class OrdersController : BaseController
 	{
 		private IOrderManager orderManager;
+		private ICoordinatesManager coordinatesManager;
 
-		public OrdersController(IOrderManager orderManager)
+		public OrdersController(IOrderManager orderManager, ICoordinatesManager coordinatesManager)
 		{
+			this.coordinatesManager = coordinatesManager;
 			this.orderManager = orderManager;
 		}
 		[HttpGet]
@@ -81,6 +83,13 @@ namespace TaxiAPI.Controllers
 		public HttpResponseMessage AssignCurrentOrder(OrderDTO data)
 		{
 			MainSiteRequestHelper.postData<OrderDTO>("OperatorMessagesHub", "assignedOrder", data);
+			return Request.CreateResponse(HttpStatusCode.OK, true);
+		}
+
+		[HttpPost]
+		public HttpResponseMessage SetCoordinates(CoordinatesDTO data)
+		{
+			coordinatesManager.AddCoordinates(data);
 			return Request.CreateResponse(HttpStatusCode.OK, true);
 		}
 	}

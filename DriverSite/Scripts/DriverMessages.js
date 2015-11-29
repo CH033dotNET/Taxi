@@ -4,6 +4,17 @@ var isConfirmIntervalId;
 var isOrdered = false;
 var driverHub;
 var operatorHub;
+var counter;
+
+var fromTo = {
+    CurrentLatitude: 0,
+    CurrentLongitude: 0,
+    OrderId: 0,
+    LatitudePeekPlace: 0,
+    LongitudePeekPlace: 0,
+    LatitudeDropPlace: 0,
+    LongitudeDropPlace: 0
+};
 
 $(function () {
     GetOrders();
@@ -42,7 +53,7 @@ $(function () {
 		if (data == drID)
 		{
 			$('.successDriverOrder').click();
-
+			moveToClient(fromTo);
 		}
     }
 
@@ -136,6 +147,16 @@ $(document).on("click", ".assign", function () {
             dataType: 'json',
             success: function (data) {
 
+                fromTo = {
+                    CurrentLatitude: currentPosition.lat,
+                    CurrentLongitude: currentPosition.lng,
+                    OrderId: data.Id,
+                    LatitudePeekPlace: data.LatitudePeekPlace,
+                    LongitudePeekPlace: data.LongitudePeekPlace,
+                    LatitudeDropPlace: data.LatitudeDropPlace,
+                    LongitudeDropPlace: data.LongitudeDropPlace
+                };
+
                 $(".submitButton").attr("disabled", "disabled");
 
                 data.WaitingTime = time;
@@ -156,3 +177,57 @@ $(document).on("click", ".assign", function () {
         });
     }
 });
+
+
+
+
+function moveToClient(fromTo) {
+
+
+    var Dstlat = fromTo.LatitudePeekPlace;
+    var Dstlng = fromTo.LongitudePeekPlace;
+
+    var Srclat = fromTo.CurrentLatitude;
+    var Srclng = fromTo.CurrentLongitude;
+
+    var stepLat = (Dstlat - Srclat) / 10;
+    var stepLng = (Dstlng - Srclng) / 10;
+
+    counter = 0;
+    intervalId = setInterval(function () { runDriver(stepLat, stepLng) }, 1000);
+}
+
+
+function runDriver(stepLat, stepLng) {
+    if (counter < 10) {
+        fromTo.CurrentLatitude += stepLat;
+        fromTo.CurrentLongitude += stepLng;
+
+        var dataCoord =
+            {
+                Latitude: fromTo.CurrentLatitude,
+                Longitude: fromTo.CurrentLongitude,
+                Accuracy: '10',
+                AddedTime: new Date().toISOString(),
+                OrderId: fromTo.OrderId,
+                UserId: drID,
+                TarifId: '1'
+            }
+
+        counter++;
+
+        $.ajax({
+            url: "/Orders/SetCoordinates/",
+            data: dataCoord,
+            dataType: 'json',
+            success: function () { }
+        });
+    }
+
+
+    else {
+        clearInterval(intervalId);
+        counter = 0;
+    }
+
+}

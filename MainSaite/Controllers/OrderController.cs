@@ -143,6 +143,13 @@ namespace MainSaite.Controllers
 			return Json(true, JsonRequestBehavior.AllowGet);
 		}
 
+
+		public JsonResult WhereMyDriver(int orderId)
+		{
+			var result = coordinatesManager.GetCoordinatesByOrdeId(orderId);
+			return Json(result, JsonRequestBehavior.AllowGet);
+		}
+
 	}
 }
 

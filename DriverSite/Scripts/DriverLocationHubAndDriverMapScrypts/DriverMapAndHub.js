@@ -1,4 +1,7 @@
-﻿        $(function(){
+﻿var currentPosition;
+
+
+$(function () {
             var drivers = new Array();
             var infoWindow;
             var map;
@@ -63,6 +66,7 @@
                         //  infoWindow.setPosition(pos);
 
                         // infoWindow.setContent();
+                        currentPosition = pos;
                         map.setCenter(pos);
                         driverHub.server.addDriver(myId, pos.lat, pos.lng, myName);
                     }, function () {
