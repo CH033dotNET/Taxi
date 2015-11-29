@@ -46,7 +46,7 @@ function mainInit() {
 function checkMainCars() {
 	$.ajax({
 		method: "GET",
-		url: "Driver/CheckDriverMainCar",
+		url: "./Driver/CheckDriverMainCar",
 		dataType: "JSON",
 	}).done(function (response) {
 		if (response.success && response != null) {
@@ -68,7 +68,7 @@ function getNotFoundMessage() {
 function checkstatus() {
 	$.ajax({
 		method: "GET",
-		url: "Driver/GetCurrentDriverStatus",
+		url: "./Driver/GetCurrentDriverStatus",
 		dataType: "JSON",
 	}).done(function (response) {
 		if (response.success && response != null) {
@@ -84,7 +84,7 @@ function workerStatusChange() {
 	var newWorkerStatus = $('#inputDriverStatus').val();
 	$.ajax({
 		method: "POST",
-		url: "Driver/ChangeCurrentDriverStatus",
+		url: "./Driver/ChangeCurrentDriverStatus",
 		data: {status: newWorkerStatus},
 		dataType: "JSON"
 	}).done(function (response) {
@@ -98,7 +98,7 @@ function workerStatusChange() {
 function setDriverStatus(status) {
 	$.ajax({
 		method: "POST",
-		url: "Driver/ChangeCurrentDriverStatus",
+		url: "./Driver/ChangeCurrentDriverStatus",
 		data: { status: status },
 		dataType: "JSON"
 	}).done(function (response) {
