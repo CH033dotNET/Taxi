@@ -25,11 +25,11 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js">
 
 </script>
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 
 <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
 <script src="~/signalr/hubs"></script>
-<script src="~/Scripts/DriverLocationHubAndDriverMapScrypts/DriverMapAndHub.js"></script>
+<script src="~/Scripts/DriverLocationHubAndDriverMapScrypts/DriverMapAndHub.js"></script>*@
 <script>
     var myId = Number(@Html.Raw(Json.Encode((Session["User"] as Model.DTO.UserDTO).Id)));
     var myName =  @Html.Raw(Json.Encode((Session["User"] as Model.DTO.UserDTO).UserName));

@@ -6,10 +6,10 @@
 
     // go to the latest tab, if it exists:
     var lastTab = localStorage.getItem('lastTab');
-    /*if (lastTab) {
+    if (lastTab) {
         $('[href="' + lastTab + '"]').tab('show');
     }
     else {
         $('[href="#Home"]').tab('show');
-    }*/
+    }
 });
