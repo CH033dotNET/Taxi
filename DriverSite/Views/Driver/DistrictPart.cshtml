@@ -5,6 +5,12 @@
 	ViewBag.Title = "DistrictPart";
 }
 
+<script>
+    getCurrentDrvSts = '@Url.Action("GetCurrentDriverStatus", "Driver")';
+    getDistricts = '@Url.Action("GetDistricts", "Driver")';
+
+</script>
+
 @Scripts.Render("~/Scripts/coordinates.js")
 @Scripts.Render("~/Scripts/moment.js")
 @Scripts.Render("~/Scripts/offline.min.js")
@@ -107,4 +113,7 @@
 		</div>
 	</form>
 </div>
-<script type="text/javascript" src="~/Scripts/DistrictPartButtonScripts.js"></script>
+
+
+
+@Scripts.Render("~/Scripts/DistrictPartButtonScripts.js")

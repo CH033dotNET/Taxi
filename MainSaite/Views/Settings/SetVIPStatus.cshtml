@@ -8,6 +8,8 @@
 
 <body>
 
+    
+
     @Scripts.Render("~/Scripts/jquery-1.9.1.min.js")
     @Scripts.Render("~/Scripts/handlebars.min.js")
     @Scripts.Render("~/Scripts/moment.js")
@@ -55,6 +57,12 @@
             {{/each}}
         </script>
     </div>
+
+    <script>
+        getVIPcl = '@Url.Action("GetVipClients", "Settings")';
+        setVIPcl = '@Url.Action("SetClientVip", "Settings")';
+        delVIPcl = '@Url.Action("DelClientVip", "Settings")';
+    </script>
 
 </body>
 </html>

@@ -19,7 +19,7 @@ function hubInit() {
 function mainInit() {
 	$.ajax({
 		type: "POST",
-		url: "Driver/GetDistricts",
+		url: getDistricts,
 		dataType: "json",
 		success: function (data) {
 			for (var i = 0; i < data.length; i++) {
@@ -68,7 +68,7 @@ function getNotFoundMessage() {
 function checkstatus() {
 	$.ajax({
 		method: "GET",
-		url: "./Driver/GetCurrentDriverStatus",
+		url: getCurrentDrvSts,
 		dataType: "JSON",
 	}).done(function (response) {
 		if (response.success && response != null) {

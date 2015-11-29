@@ -1,7 +1,7 @@
 ﻿$(function () {
     var container = $('#content');
     $.ajax({
-        url: '/DriveClientHistory/GetHistory/',
+        url: GetHistory,
         type: 'GET',
         dateType: 'json',
         success: function (data) {

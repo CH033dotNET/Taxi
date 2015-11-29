@@ -16,6 +16,9 @@ var fromTo = {
     LongitudeDropPlace: 0
 };
 
+$(document).on("click", "#double", function () {
+    moveToDestination();
+});
 $(function () {
     GetOrders();
 
@@ -94,7 +97,7 @@ var initHubDriverMessage = function () {
         }, function () {
             $.ajax({
                 type: 'POST',
-                url: "/Orders/SendToOperators/",
+                url: sendToOperators,
                 data: {
                     message: $('#input-field').val(),
                     username: $('#txtUserName').val()
@@ -115,7 +118,7 @@ function GetOrders() {
     var content = $("#DrOrder");
     $.ajax({
         type: 'POST',
-        url: "/Orders/GetDriverOrders/",
+        url: getCurrentDrvOrders,
         dataType: 'json',
         success: function (data) {
             var source = $("#template-article").html();
@@ -142,7 +145,7 @@ $(document).on("click", ".assign", function () {
 
     if (time != "" && time.trim().length != 0) {
         $.ajax({
-            url: "/Orders/GetCurrentOrder/",
+            url: getCurrentOrder,
             data: { orderId: currentOrderId },
             dataType: 'json',
             success: function (data) {
@@ -165,7 +168,7 @@ $(document).on("click", ".assign", function () {
                 isOrdered = true;
 
                 $.ajax({
-                	url: "/Orders/AssignCurrentOrder/",
+                    url: AssignCurrentOrder,
                 	data: data,
                 	dataType: 'json',
                 	success: function () { }
@@ -217,7 +220,58 @@ function runDriver(stepLat, stepLng) {
         counter++;
 
         $.ajax({
-            url: "/Orders/SetCoordinates/",
+            url: SetCoordinates,
+            data: dataCoord,
+            dataType: 'json',
+            success: function () { }
+        });
+    }
+
+
+    else {
+        clearInterval(intervalId);
+        counter = 0;
+    }
+
+}
+
+function moveToDestination() {
+
+
+    var Dstlat = fromTo.LatitudeDropPlace;
+    var Dstlng = fromTo.LongitudeDropPlace;
+
+    var Srclat = fromTo.CurrentLatitude;
+    var Srclng = fromTo.CurrentLongitude;
+
+    var stepLat = (Dstlat - Srclat) / 10;
+    var stepLng = (Dstlng - Srclng) / 10;
+
+    counter = 0;
+    intervalId = setInterval(function () { runDriverToDst(stepLat, stepLng) }, 1000);
+}
+
+
+function runDriverToDst(stepLat, stepLng) {
+    if (counter < 10) {
+        fromTo.CurrentLatitude += stepLat;
+        fromTo.CurrentLongitude += stepLng;
+
+        var dataCoord =
+            {
+                Latitude: fromTo.CurrentLatitude,
+                Longitude: fromTo.CurrentLongitude,
+                Accuracy: '10',
+                AddedTime: new Date().toISOString(),
+                OrderId: fromTo.OrderId,
+                UserId: drID,
+                TarifId: '1'
+            }
+
+        counter++;
+
+        $.ajax({
+            url: SetCoordinates,
             data: dataCoord,
             dataType: 'json',
             success: function () { }

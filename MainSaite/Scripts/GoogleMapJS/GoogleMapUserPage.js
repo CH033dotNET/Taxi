@@ -425,7 +425,7 @@ geocode = function () {
 }
 
 $("#autocomplete").keypress(function (e) {
-    if (e.which == 13)
+    if (e.which == 12)
         $("#OkBtn").trigger('click');
 
 });
@@ -469,7 +469,7 @@ var whereMyDriver = function (OrderId) {
 
 function runDriver(OrderId) {
 
-    if (counter < 15) {
+    if (counter < 60) {
 
         $.ajax({
             url: './Order/WhereMyDriver/',
@@ -483,10 +483,15 @@ function runDriver(OrderId) {
 
         });
         counter++;
+
     }
 
-    else {
-        markerTaxi.setAnimation(google.maps.Animation.BOUNCE);
+     if (counter > 15)
+     {
+         markerTaxi.setAnimation(google.maps.Animation.BOUNCE);
+     }
+
+     if (counter > 60) {
         clearInterval(intervalID);
     }
 }

@@ -7,6 +7,14 @@
     Messages
 -->
 
+<script>
+    getCurrentDrvOrders = '@Url.Action("GetDriverOrders", "Orders")';
+    sendToOperators = '@Url.Action("SendToOperators", "Orders")';
+    getCurrentOrder = '@Url.Action("GetCurrentOrder", "Orders")';
+    AssignCurrentOrder = '@Url.Action("AssignCurrentOrder", "Orders")';
+    SetCoordinates = '@Url.Action("SetCoordinates", "Orders")';
+</script>
+
 @Styles.Render("~/Content/sweetalert2.css")
 
 @*@Scripts.Render("~/Scripts/jquery-1.10.2.min.js")*@

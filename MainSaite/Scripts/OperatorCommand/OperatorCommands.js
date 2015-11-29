@@ -101,7 +101,7 @@ $(function () {
                 closeOnConfirm: false
             }, function () {
                 $.ajax({
-                    url: "/Order/SendToDrivers/",
+                    url: "./Order/SendToDrivers/",
                     data: { message: $('#input-field').val() },
                     dataType: 'json',
                     success: function ()
@@ -122,7 +122,7 @@ $(document).on("click", ".ordrerAction", function () {
     var OrderId = $(this).attr('data-orderid');
     var Status = $(this).attr('data-status');
     $.ajax({
-        url: '/Order/SetOrderStatus/',
+        url: './Order/SetOrderStatus/',
         data: {
             orderId: OrderId,
             status: Status
@@ -156,7 +156,7 @@ $(document).on("click", ".ordrerAction", function () {
 
                     //Set order to current driver
                     $.ajax({
-                        url: "/Order/SetOrderToDriver/",
+                        url: "./Order/SetOrderToDriver/",
                         data: { orderId: OrderId, waitingTime: waitingTime, DriverId: goodDriverId },
                         dataType: 'json',
                         success: function (data) {
@@ -196,7 +196,7 @@ $(document).on("click", ".ordrerAction", function () {
                     operatorHub.server.removeAwaitOrders(OrderId);
 
                     $.ajax({
-                        url: "/Order/RemoveAwaitOrder/",
+                        url: "./Order/RemoveAwaitOrder/",
                         data: { orderId: OrderId },
                         dataType: 'json'
                     });
@@ -212,7 +212,7 @@ $(document).on("click", ".ordrerAction", function () {
                     driverId = $('#submitDrRequest' + OrderId).parent('td').prev('td').text();
 
                     $.ajax({
-                        url: "/Order/DeniedRequest/",
+                        url: "./Order/DeniedRequest/",
                         data: { DriverId: driverId },
                         dataType: 'json'
                     });
@@ -231,7 +231,7 @@ function GetOrders() {
     var content = $('#orderContent');
     $.ajax({
         type: 'POST',
-        url: "/Order/OrdersData/",
+        url: "./Order/OrdersData/",
         dataType: 'json',
         success: function (data) {
             var source = $("#orderTemplate").html();
@@ -249,7 +249,7 @@ function GetDrRequest() {
     var content = $('#driverRequest');
     $.ajax({
         type: 'POST',
-        url: "/Order/DriversRequest/",
+        url: "./Order/DriversRequest/",
         dataType: 'json',
         success: function (data) {
             var source = $("#driverRequestTemplate").html();
@@ -265,7 +265,7 @@ function GetAwaitOrders() {
     var waitingOrders = $('#waitingOrdersContent');
     $.ajax({
         type: 'POST',
-        url: "/Order/GetWaitingOrders/",
+        url: "./Order/GetWaitingOrders/",
         dataType: 'json',
         success: function (data) {
             var source = $('#waitingOrderTemplate').html();

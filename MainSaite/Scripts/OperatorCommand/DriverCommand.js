@@ -79,7 +79,7 @@ function GetOrders() {
     var content = $("#DrOrder");
     $.ajax({
         type: 'POST',
-        url: "/Driver/GetDriverOrders/",
+        url: "./Driver/GetDriverOrders/",
         dataType: 'json',
         success: function (data) {
             var source = $("#template-article").html();
@@ -106,7 +106,7 @@ $(document).on("click", ".assign", function () {
 
     if (time != "" && time.trim().length != 0) {
         $.ajax({
-            url: "/Driver/GetCurrentOrder/",
+            url: "./Driver/GetCurrentOrder/",
             data: { orderId: currentOrderId },
             dataType: 'json',
             success: function (data) {

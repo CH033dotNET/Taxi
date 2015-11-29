@@ -5,7 +5,7 @@
 $(document).on("click", ".set", function () {
     ClientId = $(this).attr('data-idclient');
     $.ajax({
-        url: '/Settings/SetClientVip/',
+        url: setVIPcl,
         data: {
             clientId: ClientId
         },
@@ -20,7 +20,7 @@ $(document).on("click", ".set", function () {
 $(document).on("click", ".del", function () {
     ClientId = $(this).attr('data-idclient');
     $.ajax({
-        url: '/Settings/DelClientVip/',
+        url: delVIPcl,
         data: {
             clientId: ClientId
         },
@@ -35,7 +35,7 @@ $(document).on("click", ".del", function () {
 function getVipClients() {
     $.ajax({
         type: 'POST',
-        url: "/Settings/GetVipClients/",
+        url: getVIPcl,
         dataType: 'json',
         success: function (data) {
             var content = $("#vip");

@@ -13,10 +13,10 @@ $(function () {
             var addDriver = function (id, connId, lat, lng, name) {
                 var image;
                 if (myId == id) {
-                    image = "./Content/DriverIcons/cabRed.png";
+                    image = cabRed;
                 }
                 else
-                    image = "./Content/DriverIcons/cab.png";
+                    image = cab;
 
                 driver = {
                     conId : connId,
