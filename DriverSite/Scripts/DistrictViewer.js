@@ -59,6 +59,8 @@ function checkMainCars() {
 }
 // shows error message if the main car wasn`t found for a specific worker
 function getNotFoundMessage() {
+	//jQuery.noConflict();
+	//(function ($) { $('#get-driver-error-modal').modal('show'); })(jQuery);
 	$('#get-driver-error-modal').modal('show');
 }
 
