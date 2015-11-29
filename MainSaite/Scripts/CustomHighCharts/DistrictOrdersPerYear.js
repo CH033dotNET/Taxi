@@ -5,7 +5,7 @@ var ChartController = {
 		var breaky = "lolololo";
 		var getEverything =
 			$.ajax({
-				url: "./GetDistrictReportsPerYear", // <----------------------------------------------------!!
+				url: "/ReportCharts/GetDistrictReportsPerYear", // <----------------------------------------------------!!
 				method: "GET",
 				dataType: "JSON",
 			}).done(function (result) {
@@ -23,7 +23,7 @@ var ChartController = {
 		var getData = new Array();
 		for (var i = 0; i < e.length; i++) {
 			getData[i] = {
-				name: "District: " + e[i][0].dName, // district name is created here.
+				name: ChartsLocStrings.district + ": " + e[i][0].dName, // district name is created here.
 				y: e[i].length, // percent are evaluated here. 
 				Year: e[i][0].Year // curent orders year is evaluated here.
 			}
@@ -43,7 +43,7 @@ var ChartController = {
 				type: 'pie'
 			},
 			title: {
-				text: 'Orders percentage per District per year, ' + receivedData[0].Year
+				text: ChartsLocStrings.districtHeader + " " + receivedData[0].Year
 			},
 			tooltip: {
 				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -59,7 +59,7 @@ var ChartController = {
 				}
 			},
 			series: [{
-				name: 'Completed orders',
+				name: ChartsLocStrings.completedOrdersN,
 				colorByPoint: true,
 				data: receivedData
 			}]

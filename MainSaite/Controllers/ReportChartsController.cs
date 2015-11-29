@@ -45,7 +45,7 @@ namespace MainSaite.Controllers
 			}
 			var categories = categoriesQueue.ToArray();
 			Highcharts chart = new Highcharts("FuelConsumptionID");
-			chart.SetTitle(new Title() { Text = "Fuel Consumption" });
+			chart.SetTitle(new Title() { Text = Resources.Resource.FuelConsumDorin });
 			var list = orderManager.AnnualFuelConsumption();
 
 			List<object> obList = new List<object>();
@@ -57,13 +57,13 @@ namespace MainSaite.Controllers
 
 			chart.SetYAxis(new YAxis
 			{
-				Title = new YAxisTitle() { Text = "Fuel (l)" },
+				Title = new YAxisTitle() { Text = Resources.Resource.FuleLDorin },
 
 			});
 
 			chart.SetXAxis(new XAxis
 			{
-				Title = new XAxisTitle() { Text = "Month" },
+				Title = new XAxisTitle() { Text = Resources.Resource.FuleMonthDorin },
 				Categories = categories
 			});
 
@@ -72,7 +72,7 @@ namespace MainSaite.Controllers
 			List<Series> series = new List<Series>();
 
 			Series serie = new Series();
-			serie.Name = "liters";
+			serie.Name = Resources.Resource.LetresDorin;
 			serie.Type = ChartTypes.Column;
 			//serie.Data = new Data(serieData.ToArray());
 			serie.Data = new Data(obList.ToArray());
@@ -170,10 +170,10 @@ namespace MainSaite.Controllers
 		public Highcharts GrafickOf10TopClients()
 		{
 			Highcharts chart = new Highcharts("OrdersReport");
-			chart.SetTitle(new Title() { Text = "Order statistic" });
-			chart.SetSubtitle(new Subtitle() { Text = "Top 10 client" });
-			chart.SetYAxis(new YAxis() { Title = new YAxisTitle() { Text = "Income from Orders" } });
-			chart.SetXAxis(new XAxis() { Title = new XAxisTitle() { Text = "Amount of Orders" } });
+			chart.SetTitle(new Title() { Text = Resources.Resource.OrderStatisticMax });
+			chart.SetSubtitle(new Subtitle() { Text = Resources.Resource.To10ClientsMax });
+			chart.SetYAxis(new YAxis() { Title = new YAxisTitle() { Text = Resources.Resource.OrderIncomeMax } });
+			chart.SetXAxis(new XAxis() { Title = new XAxisTitle() { Text = Resources.Resource.AmountOfOrdersMax } });
 			List<Series> series = new List<Series>();
 			List<object[]> data = new List<object[]>();
 			foreach (var client in orderManager.GetTop10())
@@ -205,10 +205,12 @@ namespace MainSaite.Controllers
 			}
 			var categories = categoriesQueue.ToArray();
 			Highcharts chart = new Highcharts("IncomeByMonthes");
+			chart.SetTitle(new Title() { Text = Resources.Resource.AllDriversIncomeHeader });
 			var list = orderManager.YearIncome().ToList();
 			var data = list.Select(x => (object)x).ToArray();
 			chart.SetSeries(new Series()
 			{
+				Name = Resources.Resource.TotalDriversIncomeA,
 				Type = ChartTypes.Column,
 				Data = new Data(data)
 			});
@@ -216,6 +218,7 @@ namespace MainSaite.Controllers
 			{
 				Categories = categories
 			});
+			chart.SetYAxis(new YAxis() { Title = new YAxisTitle() { Text = Resources.Resource.ValuesAsix } });
 			return PartialView(chart);
 		}
 

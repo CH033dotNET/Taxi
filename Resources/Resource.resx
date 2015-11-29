@@ -844,4 +844,52 @@
   <data name="Map" xml:space="preserve">
     <value>Map</value>
   </data>
+  <data name="AllDriversIncomeHeader" xml:space="preserve">
+    <value>All working drivers income per year by month</value>
+  </data>
+  <data name="AllDriversIncomeReport" xml:space="preserve">
+    <value>All drivers income</value>
+  </data>
+  <data name="AmountOfOrdersMax" xml:space="preserve">
+    <value>Amount of Orders</value>
+  </data>
+  <data name="CompletedOrdersChN" xml:space="preserve">
+    <value>Completed orders</value>
+  </data>
+  <data name="DistrictHeaderLocaliseN" xml:space="preserve">
+    <value>Orders percentage per District per year,</value>
+  </data>
+  <data name="DistrictLocaliseN" xml:space="preserve">
+    <value>District</value>
+  </data>
+  <data name="FuelConsumDorin" xml:space="preserve">
+    <value>Fuel Consumption</value>
+  </data>
+  <data name="FuleLDorin" xml:space="preserve">
+    <value>Fuel (l)</value>
+  </data>
+  <data name="FuleMonthDorin" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="LetresDorin" xml:space="preserve">
+    <value>Liters</value>
+  </data>
+  <data name="OrderIncomeMax" xml:space="preserve">
+    <value>Income from Orders</value>
+  </data>
+  <data name="OrderStatisticMax" xml:space="preserve">
+    <value>Order statistics</value>
+  </data>
+  <data name="OurReportsHeader" xml:space="preserve">
+    <value>Our statistics</value>
+  </data>
+  <data name="To10ClientsMax" xml:space="preserve">
+    <value>Top 10 clients</value>
+  </data>
+  <data name="TotalDriversIncomeA" xml:space="preserve">
+    <value>Total income</value>
+  </data>
+  <data name="ValuesAsix" xml:space="preserve">
+    <value>Values</value>
+  </data>
 </root>

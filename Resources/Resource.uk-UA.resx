@@ -849,4 +849,52 @@
   <data name="Map" xml:space="preserve">
     <value>Карта</value>
   </data>
+  <data name="AllDriversIncomeHeader" xml:space="preserve">
+    <value>Дохід усіх працюючих водіїв в цьому році по місяцям.</value>
+  </data>
+  <data name="AllDriversIncomeReport" xml:space="preserve">
+    <value>Загальний заробіток водіїв</value>
+  </data>
+  <data name="AmountOfOrdersMax" xml:space="preserve">
+    <value>Кількість замовленнь</value>
+  </data>
+  <data name="CompletedOrdersChN" xml:space="preserve">
+    <value>Виконані замовлення</value>
+  </data>
+  <data name="DistrictHeaderLocaliseN" xml:space="preserve">
+    <value>Процент виконаних замовленнь по районам за рік,</value>
+  </data>
+  <data name="DistrictLocaliseN" xml:space="preserve">
+    <value>Район</value>
+  </data>
+  <data name="FuelConsumDorin" xml:space="preserve">
+    <value>Споживання палива</value>
+  </data>
+  <data name="FuleLDorin" xml:space="preserve">
+    <value>Паливо (літр)</value>
+  </data>
+  <data name="FuleMonthDorin" xml:space="preserve">
+    <value>Місяць</value>
+  </data>
+  <data name="LetresDorin" xml:space="preserve">
+    <value>Літри</value>
+  </data>
+  <data name="OrderIncomeMax" xml:space="preserve">
+    <value>Дохід від замовленнь</value>
+  </data>
+  <data name="OrderStatisticMax" xml:space="preserve">
+    <value>Статистика замовленнь</value>
+  </data>
+  <data name="OurReportsHeader" xml:space="preserve">
+    <value>Наша статистика</value>
+  </data>
+  <data name="To10ClientsMax" xml:space="preserve">
+    <value>Топ 10 клієнтів</value>
+  </data>
+  <data name="TotalDriversIncomeA" xml:space="preserve">
+    <value>Загальний дохід</value>
+  </data>
+  <data name="ValuesAsix" xml:space="preserve">
+    <value>Значення</value>
+  </data>
 </root>
