@@ -102,6 +102,7 @@
                     getPossition();
                     initHubDriverMessage();
                     updateInterval = setInterval(collServerUpdate, 5000);
+               
                 });
             }
 

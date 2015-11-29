@@ -841,4 +841,7 @@
   <data name="YourAddressHasBeenDeleted" xml:space="preserve">
     <value>Your address has been deleted.</value>
   </data>
+  <data name="Map" xml:space="preserve">
+    <value>Map</value>
+  </data>
 </root>

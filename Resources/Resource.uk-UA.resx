@@ -846,4 +846,7 @@
   <data name="YourAddressHasBeenDeleted" xml:space="preserve">
     <value>Вашу адресу видалено.</value>
   </data>
+  <data name="Map" xml:space="preserve">
+    <value>Карта</value>
+  </data>
 </root>
