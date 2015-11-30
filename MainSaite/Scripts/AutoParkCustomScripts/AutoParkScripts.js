@@ -36,7 +36,7 @@ var carController = {
 		}
 		sortCounter = e;
 		$.ajax({
-			url: "/Cars/SortBy",
+			url: SortCarPath,
 			data: { parameter: e },
 			cache: false,
 			dataType: "JSON",
@@ -64,7 +64,7 @@ var carController = {
 		var newCarManufactureDate = $('#datetimepicker2').val();
 		var newCarState = $('#inputCarState').val();
 		$.ajax({
-			url: "./AddNewCar/", // <----------------------------------------------------!!
+			url: AddCarPath, // <----------------------------------------------------!!
 			data: {
 				UserId: userId,
 				OwnerId: ownerId,
@@ -107,7 +107,7 @@ var carController = {
 		//$('#edit-car-modal').modal('show');
 		var oldCarsId = $(e).attr('data-cars-id'); // take car`s id and send it via ajax
 		$.ajax({
-			url: "./GetCarForEdit/", // <----------------------------------------------------!!
+			url: GetCarEditPath, // <----------------------------------------------------!!
 			data: {
 				Id: oldCarsId,
 			},
@@ -148,7 +148,7 @@ var carController = {
 		var newInCarsMD = $('#datetimepicker1').val();
 		var newInCarsState = $('#newInputCarState').val();
 		$.ajax({
-			url: "./EditCar/", // <----------------------------------------------------!!
+			url: EditCarPath, // <----------------------------------------------------!!
 			data: {
 				Id: newInCarsId,
 				CarName: newInCarsName,
@@ -194,7 +194,7 @@ var carController = {
 
 		$('#car-modal-getMain .btn-ok').off("click.doMainCar").on("click.doMainCar", function () {
 			$.ajax({
-				url: "./SetCarStatus/", // <----------------------------------------------------!!
+				url: SetCarStatusPath, // <----------------------------------------------------!!
 				data: { Id: carsId },
 				method: "POST",
 				dataType: "JSON"
@@ -222,7 +222,7 @@ var carController = {
 
 		$('#car-modal-delete .btn-ok').off("click.deleteCar").on("click.deleteCar", function () {
 			$.ajax({
-				url: "./DeleteCar/", // <----------------------------------------------------!!
+				url: DeleteCarPath, // <----------------------------------------------------!!
 				data: { Id: carsId },
 				method: "POST",
 				dataType: "JSON"
@@ -252,7 +252,7 @@ var carController = {
 			var NewCarUserId = $('#giveAwayCarDrivers').val();
 
 			$.ajax({
-				url: "./GiveCar/", // <----------------------------------------------------!!
+				url: GiveCarPath, // <----------------------------------------------------!!
 				data: { CarId: giftCarsId, DriverId: NewCarUserId },
 				method: "POST",
 				dataType: "JSON"
@@ -281,7 +281,7 @@ var carController = {
 		$('#returnback-car-modal .btn-ok').off("click.returnCar").on("click.returnCar", function () {
 
 			$.ajax({
-				url: "./ReturnCar/", // <----------------------------------------------------!!
+				url: ReturnCarPath, // <----------------------------------------------------!!
 				data: { CarId: BorrowedCarsId, RealOwnerId: BorrowedCarsOwnerId },
 				method: "POST",
 				dataType: "JSON"
@@ -303,7 +303,7 @@ var carController = {
 		var detailCarsId = $(e).attr('data-cars-id');
 
 		$.ajax({
-			url: "./GetCarForEdit/", // <----------------------------------------------------!!
+			url: GetCarEditPath, // <----------------------------------------------------!!
 			data: {
 				Id: detailCarsId,
 			},

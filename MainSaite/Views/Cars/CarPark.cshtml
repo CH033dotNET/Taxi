@@ -114,6 +114,17 @@
 	</div>
 </div>
 <script>
+	//------paths------//
+	var SortCarPath = '@Url.Action("SortBy","Cars")';
+	var AddCarPath = '@Url.Action("AddNewCar","Cars")';
+	var GetCarEditPath = '@Url.Action("GetCarForEdit","Cars")';
+	var EditCarPath = '@Url.Action("EditCar","Cars")';
+	var SetCarStatusPath = '@Url.Action("SetCarStatus","Cars")';
+	var DeleteCarPath = '@Url.Action("DeleteCar","Cars")';
+	var GiveCarPath = '@Url.Action("GiveCar","Cars")';
+	var ReturnCarPath = '@Url.Action("ReturnCar","Cars")';
+
+
 	var encodedCarData;
 	encodedCarData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Cars.ToList()));
 	var userId = @Html.Raw((Session["User"] as Model.DTO.UserDTO).Id);

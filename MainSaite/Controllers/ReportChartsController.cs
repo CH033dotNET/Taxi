@@ -115,10 +115,10 @@ namespace MainSaite.Controllers
         public ActionResult ChartOrders()
         {
             Highcharts orders = new Highcharts("OrderID");
-            orders.SetTitle(new Title() { Text = "Orders" });
+            orders.SetTitle(new Title() { Text = Resources.Resource.OrdersRoma });
             orders.SetYAxis(new YAxis
             {
-                Title = new YAxisTitle() { Text = "Count" },
+				Title = new YAxisTitle() { Text = Resources.Resource.CountRoma },
             });
 
             var ord = orderManager.GetQueryableOrders();

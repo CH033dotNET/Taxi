@@ -909,4 +909,13 @@
   <data name="Cancel" xml:space="preserve">
     <value>Відміна</value>
   </data>
+  <data name="CountRoma" xml:space="preserve">
+    <value>Кількість замовленнь</value>
+  </data>
+  <data name="OrderChartsRoma" xml:space="preserve">
+    <value>Прийняті замовлення</value>
+  </data>
+  <data name="OrdersRoma" xml:space="preserve">
+    <value>Замовлення</value>
+  </data>
 </root>
