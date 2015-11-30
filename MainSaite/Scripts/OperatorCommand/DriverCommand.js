@@ -79,7 +79,7 @@ function GetOrders() {
     var content = $("#DrOrder");
     $.ajax({
         type: 'POST',
-        url: "./Driver/GetDriverOrders/",
+        url: "../Driver/GetDriverOrders/",
         dataType: 'json',
         success: function (data) {
             var source = $("#template-article").html();

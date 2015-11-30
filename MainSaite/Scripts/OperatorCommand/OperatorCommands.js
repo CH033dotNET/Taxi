@@ -212,7 +212,7 @@ $(document).on("click", ".ordrerAction", function () {
                     driverId = $('#submitDrRequest' + OrderId).parent('td').prev('td').text();
 
                     $.ajax({
-                        url: "./Order/DeniedRequest/",
+                        url: DeniedRequest,
                         data: { DriverId: driverId },
                         dataType: 'json'
                     });

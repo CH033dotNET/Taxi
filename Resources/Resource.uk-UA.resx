@@ -897,4 +897,13 @@
   <data name="ValuesAsix" xml:space="preserve">
     <value>Значення</value>
   </data>
+  <data name="CreateTarif" xml:space="preserve">
+    <value>Створити тариф</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>Редагувати користувача</value>
+  </data>
+  <data name="FavAdr" xml:space="preserve">
+    <value>Улюблені адреси</value>
+  </data>
 </root>

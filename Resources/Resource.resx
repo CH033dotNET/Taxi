@@ -892,4 +892,13 @@
   <data name="ValuesAsix" xml:space="preserve">
     <value>Values</value>
   </data>
+  <data name="CreateTarif" xml:space="preserve">
+    <value>Create tarif</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>Edit user</value>
+  </data>
+  <data name="FavAdr" xml:space="preserve">
+    <value>Favorite addresses</value>
+  </data>
 </root>

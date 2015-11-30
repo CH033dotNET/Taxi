@@ -5,7 +5,7 @@ var ChartController = {
 		var breaky = "lolololo";
 		var getEverything =
 			$.ajax({
-				url: "/ReportCharts/GetDistrictReportsPerYear", // <----------------------------------------------------!!
+				url: "./ReportCharts/GetDistrictReportsPerYear", // <----------------------------------------------------!!
 				method: "GET",
 				dataType: "JSON",
 			}).done(function (result) {
