@@ -52,10 +52,10 @@
                     <table>
                         <tr class="form-group">
                             <td>
-                            <label style="font-size:x-large;">@Resources.Resource.TimeFromOrder</label>
+                                <label style="font-size:x-large;">@Resources.Resource.TimeFromOrder</label>
                             </td>
-                            <td> 
-                                <input type="text" style="background-color:lightgray;" id="timetotravel"/>
+                            <td>
+                                <input type="text" style="background-color:lightgray;" id="timetotravel" />
                             </td>
                         </tr>
                      </table>
@@ -129,6 +129,15 @@
         <tbody id="DrOrder"></tbody>
     </table>
 </div>
+
+<script>
+    var LocStrings = {
+        message: '@Resources.Resource.MessageFromOperator',
+        InputYourMessage: '@Resources.Resource.InputYourMessage',
+        MessageHasBeenSent: '@Resources.Resource.MessageHasBeenSent',
+        Cancel : '@Resources.Resource.Cancel'
+    }
+</script>
 
     <input type="text" hidden="hidden" id="currentUserId" value="@User.Id" />
     <button type="button" class="btn successDriverOrder" style="display:none" data-toggle="modal" data-target="#successDriverOrder"></button>

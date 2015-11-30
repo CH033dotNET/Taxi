@@ -13,7 +13,8 @@ var fromTo = {
     LatitudePeekPlace: 0,
     LongitudePeekPlace: 0,
     LatitudeDropPlace: 0,
-    LongitudeDropPlace: 0
+    LongitudeDropPlace: 0,
+    isEnded:0,
 };
 
 $(document).on("click", "#double", function () {
@@ -22,7 +23,6 @@ $(document).on("click", "#double", function () {
 $(function () {
     GetOrders();
 
-   //operatorHub = $.connection.OperatorHub;
 	driverHub = $.connection.DriverHub;
 
 
@@ -30,7 +30,7 @@ $(function () {
    //Show message from operators
 	driverHub.client.showMessage = function (data) {
         // Own function 
-		swal('New message from operator!', data, 'success');
+	    swal(LocStrings.message, data, 'success');
 
     };
    
@@ -90,9 +90,10 @@ var initHubDriverMessage = function () {
     //Send message to operators
     $('#showform').click(function () {
         swal({
-            title: 'Input Your message:',
+            title: LocStrings.InputYourMessage,
             html: '<p><textarea id="input-field" style="width: 100%; height: 75px "> </textarea>',
             showCancelButton: true,
+            cancelButtonText: LocStrings.Cancel,
             closeOnConfirm: false
         }, function () {
             $.ajax({
@@ -103,11 +104,11 @@ var initHubDriverMessage = function () {
                     username: $('#txtUserName').val()
                 },
                 dataType: 'json',
-                success: function () { console.log('yyyeah'); },
-                error: function () { console.log('nooo'); }
+                success: function () {},
+                error: function () {}
             });
             //  driverHub.server.sendToOperators($('#input-field').val(), $('#txtUserName').val()); //////!!!!!
-            swal('Your message has been sent', '', 'success');
+            swal(LocStrings.MessageHasBeenSent, '', 'success');
         });
     })
 }
@@ -186,7 +187,7 @@ $(document).on("click", ".assign", function () {
 
 function moveToClient(fromTo) {
 
-
+    fromTo.isEnded = 1;
     var Dstlat = fromTo.LatitudePeekPlace;
     var Dstlng = fromTo.LongitudePeekPlace;
 
@@ -244,11 +245,16 @@ function moveToDestination() {
     var Srclat = fromTo.CurrentLatitude;
     var Srclng = fromTo.CurrentLongitude;
 
-    var stepLat = (Dstlat - Srclat) / 10;
-    var stepLng = (Dstlng - Srclng) / 10;
+    if (fromTo.isEnded == 1)
+    {
+        fromTo.isEnded = 0;
+        var stepLat = (Dstlat - Srclat) / 10;
+        var stepLng = (Dstlng - Srclng) / 10;
 
-    counter = 0;
-    intervalId = setInterval(function () { runDriverToDst(stepLat, stepLng) }, 1000);
+        counter = 0;
+        intervalId = setInterval(function () { runDriverToDst(stepLat, stepLng) }, 1000);
+    }
+
 }
 
 

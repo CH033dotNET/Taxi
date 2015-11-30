@@ -21,7 +21,7 @@ namespace DriverSite.Helpers
 		public static void ConfirmRequest(int data)
 		{
 			Contest.Clients.All.confirmDrRequest(data);  ////
-			RemoveAwaitOrder(data);
+			Contest.Clients.All.RemoveAwaitOrder(data);
 		}
 
 		public static void RemoveAwaitOrder(int Id)

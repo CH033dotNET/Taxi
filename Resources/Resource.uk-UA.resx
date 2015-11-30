@@ -499,7 +499,7 @@
     <value>Приєднатися</value>
   </data>
   <data name="ClientService" xml:space="preserve">
-    <value>Сервис Клиент</value>
+    <value>Поїздка</value>
   </data>
   <data name="DriverIsHere" xml:space="preserve">
     <value>Ви тут</value>
@@ -709,7 +709,7 @@
     <value>Час замовлення</value>
   </data>
   <data name="min" xml:space="preserve">
-    <value>хв.</value>
+    <value>хв</value>
   </data>
   <data name="TimeFromOrder" xml:space="preserve">
     <value>Час на дорогу до клієнта:</value>
@@ -742,7 +742,7 @@
     <value>Неправильно вибрана назва району. Має містити від 4 до 30 символів (латинські чи кирилиця).</value>
   </data>
   <data name="ConfirmRequest" xml:space="preserve">
-    <value>Заява підтвердженна</value>
+    <value>Запит підтверджено</value>
   </data>
   <data name="ConfirmedByDrivers" xml:space="preserve">
     <value>Підтверджені замовлення</value>
@@ -769,7 +769,7 @@
     <value>Запит відхилено</value>
   </data>
   <data name="Minutes" xml:space="preserve">
-    <value>хвилин</value>
+    <value>хв</value>
   </data>
   <data name="Wait" xml:space="preserve">
     <value>Зачекайте</value>
@@ -905,5 +905,8 @@
   </data>
   <data name="FavAdr" xml:space="preserve">
     <value>Улюблені адреси</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Відміна</value>
   </data>
 </root>

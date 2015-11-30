@@ -14,13 +14,13 @@ $(function () {
     //Show message from Driver (API)
     driverHub.client.showMessageToOperators = function (message, userName) {
         // Own function 
-        swal('Message from ' + userName + ':', message, 'success');
+        swal(LocStrings.message +' '+ userName + ':', message, 'success');
     };
 
     //Show message from Driver
     driverHub.client.showMessage = function (message, userName) {
         // Own function 
-        swal('Message from ' + userName + ':', message, 'success');
+        swal(LocStrings.message +' '+ userName + ':', message, 'success');
     };
 
     // function that takes an object as an input parameter from a hub call and appends a waitingOrder table with its data.
@@ -95,9 +95,10 @@ $(function () {
         //Broadcast message to all drivers
         $('#showform').click(function () {
             swal({
-                title: 'Input Your message:',
+                title: LocStrings.InputYourMessage,
                 html: '<p><textarea id="input-field" style="width: 100%; height: 75px "> </textarea>',
                 showCancelButton: true,
+                cancelButtonText: LocStrings.Cancel,
                 closeOnConfirm: false
             }, function () {
                 $.ajax({
@@ -109,7 +110,7 @@ $(function () {
                     error: function () { console.log('nooo'); }
                 });
                 operatorHub.server.sendToDrivers($('#input-field').val()); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
-                swal('Your message has been sent', '', 'success');
+                swal(LocStrings.MessageHasBeenSent, '', 'success');
             });
         })
 
@@ -121,108 +122,124 @@ $(function () {
 $(document).on("click", ".ordrerAction", function () {
     var OrderId = $(this).attr('data-orderid');
     var Status = $(this).attr('data-status');
-    $.ajax({
-        url: './Order/SetOrderStatus/',
-        data: {
-            orderId: OrderId,
-            status: Status
-        },
-        success: function (data) {
-            switch (Status) {
-                case "1": {
+    
+    if (Status != 6) {
+        $.ajax({
+            url: './Order/SetOrderStatus/',
+            data: {
+                orderId: OrderId,
+                status: Status
+            },
+            success: function (data) {
+                switch (Status) {
+                    case "1": {
 
-                    //Send order to driver's table
-                    //operatorHub.server.orderForDrivers(data); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
+                        //Send order to driver's table
+                        //operatorHub.server.orderForDrivers(data); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
 
-                    //send wait order to all operators and delete from newOrdertable
-                    operatorHub.server.waitingOrderOp(data);
+                        //send wait order to all operators and delete from newOrdertable
+                        operatorHub.server.waitingOrderOp(data);
 
-                    break;
+                        break;
+                    }
+                    case "2": {
+                        //denied Client Order
+                        operatorHub.server.deniedClientOrder(data.Person.UserId);
+
+                        //delete denied order from table
+                        operatorHub.server.deleteDeniedClientOrder(OrderId);
+
+                        break;
+                    }
+
+                    case "4": {
+                        //Submit driver request
+                        var goodDriverId = $('#submitDrRequest' + OrderId).parent('td').prev('td').text();
+                        var waitingTime = $('#submitDrRequest' + OrderId).parent('td').prev('td').prev('td').text();
+
+                        //Set order to current driver
+                        $.ajax({
+                            url: SetOrderToDriver,
+                            data: { orderId: OrderId, waitingTime: waitingTime, driverId: goodDriverId },
+                            dataType: 'json',
+                            success: function (data) {
+                                operatorHub.server.confirmClientOrder(data.WaitingTime, data.Latitude, data.Longitude);
+                                $('.deny' + OrderId).click();
+                            }
+                        });
+
+                        //Remove current order from awaiting table operators
+                        operatorHub.server.removeAwaitOrders(OrderId);
+
+                        $.ajax({
+                            url: "./Order/RemoveAwaitOrder/",
+                            data: { orderId: OrderId },
+                            dataType: 'json'
+                        });
+
+                        //send confirmRequest to selected driver
+                        //operatorHub.server.confirmRequest(goodDriverId); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                        //remove current order from drivers
+                        //operatorHub.server.removeAwaitOrder(OrderId); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                        //remove current order from operators
+                        operatorHub.server.removeAwaitOrderFromOperators(OrderId);
+
+                        //Remove current order from awaiting table operators
+                        operatorHub.server.removeAwaitOrders(OrderId);
+
+                        //deny for others drivers
+                      
+                        break;
+                    }
+
+                    case "5": {
+
+                        //Send message to client "No free Cars"
+                        operatorHub.server.noFreeCarClientOrder(data.Person.UserId);
+
+                        //Show modal window for driver "denied", if he confirmed current order
+                        $('.deny' + OrderId).click();
+
+                        //remove current order from operators (confirmed by drivers)
+                        operatorHub.server.removeAwaitOrderFromOperators(OrderId);
+
+                        //Remove current order from awaiting table operators
+                        operatorHub.server.removeAwaitOrders(OrderId);
+
+                        $.ajax({
+                            url: "./Order/RemoveAwaitOrder/",
+                            data: { orderId: OrderId },
+                            dataType: 'json'
+                        });
+                        //Remove current order from table drivers
+                        //operatorHub.server.removeAwaitOrder(OrderId); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                        break;
+                    }
+
+
+                    default: break;
                 }
-                case "2": {
-                    //denied Client Order
-                    operatorHub.server.deniedClientOrder(data.Person.UserId);
-
-                    //delete denied order from table
-                    operatorHub.server.deleteDeniedClientOrder(OrderId);
-
-                    break;
-                }
-
-                case "4": {
-                    //Submit driver request
-                    var goodDriverId = $('#submitDrRequest' + OrderId).parent('td').prev('td').text();
-                    var waitingTime = $('#submitDrRequest' + OrderId).parent('td').prev('td').prev('td').text();
-
-                    //Set order to current driver
-                    $.ajax({
-                        url: "./Order/SetOrderToDriver/",
-                        data: { orderId: OrderId, waitingTime: waitingTime, DriverId: goodDriverId },
-                        dataType: 'json',
-                        success: function (data) {
-                            operatorHub.server.confirmClientOrder(data.WaitingTime, data.Latitude, data.Longitude);
-                        }
-                    });
-
-                    //send confirmRequest to selected driver
-                    //operatorHub.server.confirmRequest(goodDriverId); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
-
-                    //remove current order from drivers
-                    //operatorHub.server.removeAwaitOrder(OrderId); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
-
-                    //remove current order from operators
-                    operatorHub.server.removeAwaitOrderFromOperators(OrderId);
-
-                    //Remove current order from awaiting table operators
-                    operatorHub.server.removeAwaitOrders(OrderId);
-
-                    //deny for others drivers
-                    $('.deny' + OrderId).click();
-                    break;
-                }
-
-                case "5": {
-
-                    //Send message to client "No free Cars"
-                    operatorHub.server.noFreeCarClientOrder(data.Person.UserId);
-
-                    //Show modal window for driver "denied", if he confirmed current order
-                    $('.deny' + OrderId).click();
-
-                    //remove current order from operators (confirmed by drivers)
-                    operatorHub.server.removeAwaitOrderFromOperators(OrderId);
-
-                    //Remove current order from awaiting table operators
-                    operatorHub.server.removeAwaitOrders(OrderId);
-
-                    $.ajax({
-                        url: "./Order/RemoveAwaitOrder/",
-                        data: { orderId: OrderId },
-                        dataType: 'json'
-                    });
-                    //Remove current order from table drivers
-                    //operatorHub.server.removeAwaitOrder(OrderId); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
-
-                    break;
-                }
-
-                case "6": {
-                    operatorHub.server.deniedRequest(OrderId); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
-
-                    driverId = $('#submitDrRequest' + OrderId).parent('td').prev('td').text();
-
-                    $.ajax({
-                        url: DeniedRequest,
-                        data: { DriverId: driverId },
-                        dataType: 'json'
-                    });
-                    //deny driver request and delete from confirmed table
-                    break;
-                }
-                default: break;
             }
-        }
+        });
+    }
+    
+
+ if (Status == 6) {
+    operatorHub.server.deniedRequest(OrderId); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    driverId = $('#submitDrRequest' + OrderId).parent('td').prev('td').text();
+
+    $.ajax({
+        url: DeniedRequest,
+        data: { DriverId: driverId },
+        dataType: 'json'
     });
+                        //deny driver request and delete from confirmed table
+                    }
+
 });
 
 

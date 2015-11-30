@@ -901,4 +901,7 @@
   <data name="FavAdr" xml:space="preserve">
     <value>Favorite addresses</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
 </root>
