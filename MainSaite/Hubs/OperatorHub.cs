@@ -50,9 +50,9 @@ namespace MainSaite.Hubs
 
 		//Show modal form 'wait taxi' to client
 		[HubMethodName("confirmClientOrder")]
-		public void ConfirmClientOrder(string waitingTime, double lat, double lng)
+		public void ConfirmClientOrder(int orderId, string waitingTime, double lat, double lng)
 		{
-			Clients.Group("Client").waitYourCar(waitingTime, lat, lng);
+			Clients.Group("Client").waitYourCar(orderId, waitingTime, lat, lng);
 		}
 
 

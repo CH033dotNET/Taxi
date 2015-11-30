@@ -40,12 +40,16 @@ $(document).ready(function () {
         $('#nocarorderinfo').modal('toggle');
     }
 
-    operatorHub.client.waitYourCar = function (waitingTime, lat, lng) {
-        whereMyDriver(myOrderId);
-        $('#waittime').val(waitingTime);
-        $('#orderinfo').modal('toggle');
-        setTaxiMarker(lat, lng);
-        myOrderId = null;
+    operatorHub.client.waitYourCar = function (orderId, waitingTime, lat, lng) {
+
+        if (orderId == myOrderId) {
+            whereMyDriver(myOrderId);
+            $('#waittime').val(waitingTime);
+            $('#orderinfo').modal('toggle');
+            setTaxiMarker(lat, lng);
+            myOrderId = null;
+        }
+
     }
 
     $.connection.hub.start().done(function () {

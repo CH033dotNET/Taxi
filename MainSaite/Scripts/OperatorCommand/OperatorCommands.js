@@ -163,7 +163,7 @@ $(document).on("click", ".ordrerAction", function () {
                             data: { orderId: OrderId, waitingTime: waitingTime, driverId: goodDriverId },
                             dataType: 'json',
                             success: function (data) {
-                                operatorHub.server.confirmClientOrder(data.WaitingTime, data.Latitude, data.Longitude);
+                                operatorHub.server.confirmClientOrder(OrderId, data.WaitingTime, data.Latitude, data.Longitude);
                                 $('.deny' + OrderId).click();
                             }
                         });
