@@ -5,32 +5,26 @@
         width:200px;
     }
 </style>
-    <div class="btform bif">
+    <div class="">
         @using (Html.BeginForm("Authentification"))
         {
             <table>
                 @Html.ValidationSummary()
                 <tr>
-                    <td>
-                        @Resources.Resource.log
-                    </td>
-                    <td>@Html.TextBoxFor(x => x.UserName, new { @required = true, @minlength = "4", @maxlength = "16" })
+                    <td>@Html.TextBoxFor(x => x.UserName, new {@class = "form-control input", @required = true, @minlength = "4", @maxlength = "16", @placeholder = Resources.Resource.log })
                         @Html.ValidationMessageFor(x => x.UserName, "", new { @id = "clValidReg", @minlength = "6" })
                     </td>
                  
                 </tr>
                 <tr>
                     <td>
-                        @Resources.Resource.Password
-                    </td>
-                    <td>
-                        @Html.PasswordFor(x => x.Password, new { @required = true, @minlength = "6" })
+                        @Html.PasswordFor(x => x.Password, new {@class = "form-control input", @required = true, @minlength = "6", @placeholder = Resources.Resource.Password})
                         @Html.ValidationMessageFor(x => x.Password, "", new { @id = "clValidReg" })
                     </td>          
                 </tr>
                 <tr>
                     <td colspan="2" class="login-btn" style="text-align:right;">
-                        <input type="submit" value="@Resources.Resource.Login" style="display:inline;" />
+                        <input class="btn btn-success"  type="submit" value="@Resources.Resource.Login" style="display:inline; width:102%" />
                     </td>
                 </tr>
             </table>

@@ -204,7 +204,7 @@ function initMap() {
                         $('<td/>', { text: new Date(+val.startedTime.match(/\d+/)[0]).toLocaleString(), id: 'DriverN' + val.id + 'start' }),
                         $('<td/>', { text: new Date(+val.updateTime.match(/\d+/)[0]).toLocaleString(), id: 'DriverN' + val.id + 'up' }));
                 //tr.marker = adddriver(val.latitude, val.longitude);
-                tr.click(onclic);
+                //tr.click(onclic);
                 var table = $('#DrvsCont').append(
                     tr
                 );
