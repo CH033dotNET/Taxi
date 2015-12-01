@@ -16,7 +16,7 @@ function getBeginCoord(position) {
     dataObj.TimeStart = storage.getItem("StartWorkTime");
 
     $.ajax({
-        url: '/Driver/WorkStateChange',
+        url: './Driver/WorkStateChange',
         method: 'POST',
         data: dataObj,
         success: function (success) {
@@ -43,7 +43,7 @@ function getEndCoord(position) {
     dataObj.TimeStop = storage.getItem("StopWorkTime");
 
     $.ajax({
-        url: '/Driver/WorkStateEnded',
+        url: './Driver/WorkStateEnded',
         method: 'POST',
         data: dataObj,
         success: function (success) {

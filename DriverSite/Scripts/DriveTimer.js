@@ -50,7 +50,7 @@ function CollStartTrip() {
     dataObj.Tarifid = pointTarif;
     dataObj.AddedTime = new Date().toISOString();
     $.ajax({
-        url: "/ClientService/StartTrip",
+        url: "./ClientService/StartTrip",
         method: "POST",
         data: dataObj,
         success: function (result) { }
@@ -75,7 +75,7 @@ function Switch() {
 
 function ButtonStatus() {
     $.ajax({
-        url: "/ClientService/IsInTheWay",
+        url: "./ClientService/IsInTheWay",
         method: "GET",
         success: function (result) {
             if (result === "True") {
@@ -141,7 +141,7 @@ function getBeginCoordinate(position) {
     dataObj.AddedTime = new Date().toISOString();
     CoordinatesJs.push(dataObj);
     $.ajax({
-        url: "/ClientService/DrivingClient",
+        url: "./ClientService/DrivingClient",
         method: "POST",
         data: dataObj,
         success: function (success) {
@@ -201,7 +201,7 @@ function getEndCoordinate(position) {
     dataObj.AddedTime = new Date().toISOString();
 
     $.ajax({
-        url: "/ClientService/DropClient",
+        url: "./ClientService/DropClient",
         method: "POST",
         data: dataObj,
         beforeSend: function () {
