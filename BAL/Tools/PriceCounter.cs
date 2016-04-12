@@ -29,8 +29,8 @@ namespace Common.Tools
 		private const int EARTHRADIUD = 6371;
 		private const int ONEDEGREELATITUDE = 111;
 
-        public PriceCounter()
-        { }
+		public PriceCounter()
+		{ }
 
 		public PriceCounter(List<CoordinatesDTO> coordinatesHistory, List<TarifDTO> tarifes)
 		{
@@ -62,7 +62,7 @@ namespace Common.Tools
 						iterator++;
 						continue;
 					}
-					prevCoordinates = coordinatesHistory[iterator-1];
+					prevCoordinates = coordinatesHistory[iterator - 1];
 					iterator++;
 
 					// distance (km)
@@ -87,9 +87,9 @@ namespace Common.Tools
 						currentPrice += (decimal)(timePeriod * (double)currentTarif.WaitingCost);
 					}
 				}
-			
+
 				return currentPrice;
-				
+
 			}
 			else
 			{
@@ -123,7 +123,7 @@ namespace Common.Tools
 			//the number of kilometres in one degree of Longitude in dependence of Latitude
 			preLongDist = EARTHRADIUD * (Math.PI / 180) * Math.Cos(PreLatitude * Math.PI / 180);
 
-			return Math.Sqrt((Math.Pow(ONEDEGREELATITUDE * Math.Abs(PreLatitude - CurLatitude), 2)) + 
+			return Math.Sqrt((Math.Pow(ONEDEGREELATITUDE * Math.Abs(PreLatitude - CurLatitude), 2)) +
 							 (Math.Pow(preLongDist * Math.Abs(PreLongitude - CurLongitude), 2)));
 		}
 	}

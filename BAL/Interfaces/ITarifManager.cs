@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using Model.DTO;
+
 namespace BAL.Manager
 {
 	public interface ITarifManager
 	{
-		Model.DTO.TarifDTO AddTarif(Model.DTO.TarifDTO tarifDTO);
+		TarifDTO AddTarif(TarifDTO tarifDTO);
 		void DeleteTarif(int tarifId);
-		Model.DTO.TarifDTO GetById(int id);
-		System.Collections.Generic.List<Model.District> getDistrictsList();
-		System.Collections.Generic.IEnumerable<Model.DTO.TarifDTO> GetTarifes();
-		Model.DTO.TarifDTO UpdateTarif(Model.DTO.TarifDTO tarif);
+		TarifDTO GetById(int id);
+		List<Model.District> getDistrictsList();
+		IEnumerable<TarifDTO> GetTarifes();
+		TarifDTO UpdateTarif(TarifDTO tarif);
 	}
 }

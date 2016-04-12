@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Model.DTO
 {
-    public class Pager<T> where T : class
-    {
-        public List<T> Data { get; set; }
-        public int CurrentPage { get; set; }
-        public int PageCount { get; set; }
-    }
+	public class Pager<T> where T : class
+	{
+		public List<T> Data { get; set; }
+
+		public int CurrentPage { get; set; }
+
+		public int PageCount { get; set; }
+	}
 }

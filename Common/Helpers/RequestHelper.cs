@@ -47,7 +47,7 @@ namespace Common.Helpers
 		//!!!
 		public IRestResponse<T> GetById<T>(string controller, string method, int id, string parameter) where T : new()
 		{
-			var request = new RestRequest(string.Format("{0}/{1}",controller, method),Method.GET);
+			var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.GET);
 			request.AddParameter("userid", id);
 			request.AddParameter("parameter", parameter);
 
@@ -71,35 +71,35 @@ namespace Common.Helpers
 			var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.GET);
 			request.AddParameter("param1", param1);
 			request.AddParameter("param2", param2);
-		
+
 			var result = client.Execute<T1>(request);
 
 			return result;
 		}
 
-        public IRestResponse<T> postData<T>(string controller, string method, T data) where T : new()
-        {
-            var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.POST);
-            //request.AddParameter("data", data, ParameterType.GetOrPost);
-            request.RequestFormat = DataFormat.Json;
-            request.AddParameter("Application/Json", JsonConvert.SerializeObject(data), ParameterType.RequestBody);
+		public IRestResponse<T> postData<T>(string controller, string method, T data) where T : new()
+		{
+			var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.POST);
+			//request.AddParameter("data", data, ParameterType.GetOrPost);
+			request.RequestFormat = DataFormat.Json;
+			request.AddParameter("Application/Json", JsonConvert.SerializeObject(data), ParameterType.RequestBody);
 
-            var result = client.Execute<T>(request);
+			var result = client.Execute<T>(request);
 
-            return result;
-        }
+			return result;
+		}
 
-        public IRestResponse<T> postData<T, Tobject>(string controller, string method, Tobject data) where T : new()
-        {
-            var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.POST);
-            //request.AddParameter("data", data, ParameterType.GetOrPost);
-            request.RequestFormat = DataFormat.Json;
-            request.AddParameter("Application/Json", JsonConvert.SerializeObject(data), ParameterType.RequestBody);
+		public IRestResponse<T> postData<T, Tobject>(string controller, string method, Tobject data) where T : new()
+		{
+			var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.POST);
+			//request.AddParameter("data", data, ParameterType.GetOrPost);
+			request.RequestFormat = DataFormat.Json;
+			request.AddParameter("Application/Json", JsonConvert.SerializeObject(data), ParameterType.RequestBody);
 
-            var result = client.Execute<T>(request);
+			var result = client.Execute<T>(request);
 
-            return result;
-        }
+			return result;
+		}
 
 		public IRestResponse<T> postData<T, Tobject>(string controller, string method, T data1, Tobject data2) where T : new()
 		{
@@ -127,14 +127,14 @@ namespace Common.Helpers
 
 		//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        public IRestResponse<List<T>> GetAll<T>(string controller, string method) where T : new()
-        {
-            var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.GET);
+		public IRestResponse<List<T>> GetAll<T>(string controller, string method) where T : new()
+		{
+			var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.GET);
 
-            var result = client.Execute<List<T>>(request);
+			var result = client.Execute<List<T>>(request);
 
-            return result;
-        }
+			return result;
+		}
 		//Put request
 		// api/controller/id
 		public IRestResponse<T> PutById<T>(string controller, string method, int id) where T : new()

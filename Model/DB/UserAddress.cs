@@ -32,6 +32,7 @@ namespace Model.DB
 
 		[ForeignKey("UserId")]
 		public virtual User User { get; set; }
+
 		public int UserId { get; set; }
 	}
 }

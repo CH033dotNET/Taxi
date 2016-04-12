@@ -11,8 +11,11 @@ namespace Model.DTO
 	public class ClientOrderedDTO
 	{
 		public int IsConfirm { get; set; }
+
 		public double Latitude { get; set; }
+
 		public double Longitude { get; set; }
+
 		public string WaitingTime { get; set; }
 	}
 }

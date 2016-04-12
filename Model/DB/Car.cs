@@ -15,17 +15,22 @@ namespace Model.DB
 	{
 		[Key]
 		public int Id { get; set; }
+
 		[Required]
 		[StringLength(20, MinimumLength = 2)]
 		public string CarName { get; set; }
+
 		[Required]
 		[StringLength(10, MinimumLength = 4)]
 		public string CarNumber { get; set; }
+
 		[Required]
 		[Range(2, 20)]
 		public int CarOccupation { get; set; }
+
 		[Required]
 		public CarClassEnum CarClass { get; set; }
+
 		public string CarClassDescription
 		{
 			get
@@ -43,8 +48,10 @@ namespace Model.DB
 				}
 			}
 		}
+
 		[Required]
 		public CarPetrolEnum CarPetrolType { get; set; }
+
 		public string CarPetrolTypeDescription
 		{
 			get
@@ -68,16 +75,20 @@ namespace Model.DB
 				}
 			}
 		}
+
 		[Required]
 		[Range(1, 100)]
 		public int CarPetrolConsumption { get; set; }
+
 		[Required]
 		[DataType(DataType.Date)]
 		[JsonConverter(typeof(CustomDateTimeConverter))]
 		[DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
 		public DateTime CarManufactureDate { get; set; }
+
 		[Required]
 		public CarStateEnum CarState { get; set; }
+
 		public string CarStateDescription
 		{
 			get

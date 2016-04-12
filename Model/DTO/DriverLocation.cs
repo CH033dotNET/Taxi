@@ -8,11 +8,16 @@ namespace Model.DTO
 {
 	public class DriverLocation
 	{
-		public int id{get; set;}
+		public int id { get; set; }
+
 		public double latitude { get; set; }
+
 		public double longitude { get; set; }
+
 		public DateTime updateTime { get; set; }
+
 		public DateTime? startedTime { get; set; }
+
 		public string name { get; set; }
 	}
 }

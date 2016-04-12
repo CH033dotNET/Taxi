@@ -12,15 +12,22 @@ namespace DAL.Interface
 	public interface IUnitOfWork
 	{
 		IGenericRepository<User> UserRepo { get; }
+
 		IGenericRepository<Role> RoleRepo { get; }
+
 		IGenericRepository<District> DistrictRepo { get; }
+
 		IGenericRepository<Car> CarRepo { get; }
+
 		IGenericRepository<UserAddress> AddressRepo { get; }
+
 		IGenericRepository<Person> PersonRepo { get; }
+
 		IGenericRepository<VIPClient> VIPClientRepo { get; }
+
 		IGenericRepository<Location> LocationRepo { get; }
 		IGenericRepository<WorkshiftHistory> WorkshiftHistoryRepo { get; }
-        IGenericRepository<Tarif> TarifRepo { get; }
+		IGenericRepository<Tarif> TarifRepo { get; }
 		IGenericRepository<Coordinates> CoordinatesHistoryRepo { get; }
 		IGenericRepository<Order> OrderRepo { get; }
 		IGenericRepository<WorkerStatus> WorkerStatusRepo { get; }

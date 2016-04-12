@@ -20,6 +20,7 @@ namespace Model.DB
 
 		[ForeignKey("WorkerId")]
 		public virtual User Worker { get; set; }
+
 		public int WorkerId { get; set; }
 	}
 }

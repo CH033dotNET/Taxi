@@ -12,14 +12,13 @@ using BAL.Manager;
 
 namespace BAL.Manager
 {
-    public class AddressManager : BaseManager, IAddressManager
-    {
-		
-        public AddressManager(IUnitOfWork uOW)
-			:base(uOW)
-        {
+	public class AddressManager : BaseManager, IAddressManager
+	{
 
-        }
+		public AddressManager(IUnitOfWork uOW) : base(uOW)
+		{
+
+		}
 
 		public IEnumerable<AddressDTO> GetAddressesEmulation()
 		{
@@ -36,8 +35,8 @@ namespace BAL.Manager
 			return list;
 		}
 
-        public IEnumerable<AddressDTO> GetAddresses()
-        {
+		public IEnumerable<AddressDTO> GetAddresses()
+		{
 			var addressDat = uOW.AddressRepo.Get();
 			if (addressDat != null)
 			{
@@ -50,18 +49,18 @@ namespace BAL.Manager
 							   Number = address.Number,
 							   Comment = address.Comment,
 							   UserId = address.UserId
-							};
+						   };
 				return list;
 			}
-		return null;
-	    }
+			return null;
+		}
 
-        public IEnumerable<AddressDTO> GetAddressesForUser(int id)
-        {
-                var res = uOW.AddressRepo.All.Where(x => x.UserId == id).ToList();
+		public IEnumerable<AddressDTO> GetAddressesForUser(int id)
+		{
+			var res = uOW.AddressRepo.All.Where(x => x.UserId == id).ToList();
 
-                return res.Select(x=> Mapper.Map<AddressDTO>(x)); 
-        }
+			return res.Select(x => Mapper.Map<AddressDTO>(x));
+		}
 
 		public AddressDTO AddAddress(AddressDTO address)
 		{
@@ -78,26 +77,26 @@ namespace BAL.Manager
 
 		}
 
-        public void AddFavoriteAddress(AddressDTO address)
-        {
-            var temp = Mapper.Map<UserAddress>(address);
-            temp.City=address.City.Trim();
-            temp.Street=address.Street.Trim();
-            temp.Number=address.Number.Trim();
-            temp.Comment = address.Comment.Trim();
+		public void AddFavoriteAddress(AddressDTO address)
+		{
+			var temp = Mapper.Map<UserAddress>(address);
+			temp.City = address.City.Trim();
+			temp.Street = address.Street.Trim();
+			temp.Number = address.Number.Trim();
+			temp.Comment = address.Comment.Trim();
 
 			uOW.AddressRepo.Insert(temp);
-            uOW.Save();
-        }
+			uOW.Save();
+		}
 
 
 
-        public void DeleteAddress(int AddressId)
-        {
-            uOW.AddressRepo.Delete(uOW.AddressRepo.GetByID(AddressId));
-            uOW.Save();
-            return;
-        }
+		public void DeleteAddress(int AddressId)
+		{
+			uOW.AddressRepo.Delete(uOW.AddressRepo.GetByID(AddressId));
+			uOW.Save();
+			return;
+		}
 
 		public AddressDTO UpdateAddress(AddressDTO address)
 		{
@@ -117,29 +116,29 @@ namespace BAL.Manager
 			return Mapper.Map<AddressDTO>(temp);
 		}
 
-        public void UpdAddress(AddressDTO address)
-        {
+		public void UpdAddress(AddressDTO address)
+		{
 			var currentAddress = uOW.AddressRepo.Get().FirstOrDefault(u => u.AddressId == address.AddressId);
 
-            uOW.AddressRepo.SetStateModified(currentAddress);
+			uOW.AddressRepo.SetStateModified(currentAddress);
 
-            currentAddress.City = address.City;
-            currentAddress.Street = address.Street;
-            currentAddress.Number = address.Number;
+			currentAddress.City = address.City;
+			currentAddress.Street = address.Street;
+			currentAddress.Number = address.Number;
 			currentAddress.Comment = address.Comment;
-            uOW.Save();
-        }
+			uOW.Save();
+		}
 
-        public AddressDTO GetById(int id)
-        {
-            var item = uOW.AddressRepo.Get().Where(s => s.AddressId == id)
-                .FirstOrDefault();
+		public AddressDTO GetById(int id)
+		{
+			var item = uOW.AddressRepo.Get().Where(s => s.AddressId == id)
+				.FirstOrDefault();
 
-            if (item != null)
-            {
-                return Mapper.Map<AddressDTO>(item);
-            }
-            return null;
-        }
-    }
+			if (item != null)
+			{
+				return Mapper.Map<AddressDTO>(item);
+			}
+			return null;
+		}
+	}
 }

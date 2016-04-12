@@ -12,17 +12,17 @@ namespace MainSaite.Models
 		public new UserDTO User
 		{
 			get
-			{				
-					return HttpContext.Current.Session["User"] as UserDTO;
+			{
+				return HttpContext.Current.Session["User"] as UserDTO;
 			}
 		}
-        public List<TarifDTO> Tarifes
-        {
-            get
-            {
-                return HttpContext.Current.Session["Tarifes"] as List<TarifDTO>;
-            }
-        }
+		public List<TarifDTO> Tarifes
+		{
+			get
+			{
+				return HttpContext.Current.Session["Tarifes"] as List<TarifDTO>;
+			}
+		}
 
 		public List<CoordinatesDTO> Coordinates
 		{
@@ -48,18 +48,18 @@ namespace MainSaite.Models
 		public new UserDTO User
 		{
 			get
-			{			
+			{
 				return HttpContext.Current.Session["User"] as UserDTO;
 			}
 		}
 
-        public List<TarifDTO> Tarifes
-        {
-            get
-            {
-                return HttpContext.Current.Session["Tarifes"] as List<TarifDTO>;
-            }
-        }
+		public List<TarifDTO> Tarifes
+		{
+			get
+			{
+				return HttpContext.Current.Session["Tarifes"] as List<TarifDTO>;
+			}
+		}
 
 		public List<CoordinatesDTO> Coordinates
 		{

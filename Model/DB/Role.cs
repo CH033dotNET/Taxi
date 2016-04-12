@@ -7,22 +7,24 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model
 {
-    public class Role
-    {
-        [Key]
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+	public class Role
+	{
+		[Key]
+		public int Id { get; set; }
 
-        public Role() { }
+		public string Name { get; set; }
 
-        public Role (Role role)
-        {
-            Id = role.Id;
-            Name = role.Name;
-            Description = role.Description;
-            
-        }
+		public string Description { get; set; }
 
-    }
+		public Role() { }
+
+		public Role(Role role)
+		{
+			Id = role.Id;
+			Name = role.Name;
+			Description = role.Description;
+
+		}
+
+	}
 }

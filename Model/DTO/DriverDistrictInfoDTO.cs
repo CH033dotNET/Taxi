@@ -9,8 +9,11 @@ namespace Model.DTO
 	public class DriverDistrictInfoDTO
 	{
 		public int DriverCount { get; set; }
+
 		public string DistrictName { get; set; }
+
 		public int DistrictId { get; set; }
+
 		public bool ThoseDriver { get; set; }
 
 	}

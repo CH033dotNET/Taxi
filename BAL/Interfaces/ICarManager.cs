@@ -1,19 +1,22 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
+using Model.DTO;
+
 namespace BAL.Manager
 {
 	public interface ICarManager
 	{
-		void addCar(Model.DTO.CarDTO car);
+		void addCar(CarDTO car);
 		string deleteCarByID(int id);
-		Model.DTO.CarDTO EditCar(Model.DTO.CarDTO car);
+		CarDTO EditCar(CarDTO car);
 		string EndAllCurrentUserShifts(int id, string timeStop);
 		void EndWorkShiftEvent(int? id);
-		Model.DTO.CarDTO GetCarByCarID(int id);
-		System.Collections.Generic.IEnumerable<Model.DTO.CarDTO> getCars();
-		System.Collections.Generic.IEnumerable<Model.DTO.CarDTO> getCarsByUserID(int? id);
-		System.Collections.Generic.IEnumerable<Model.DTO.CarDTO> getCarsByUserID(int? id, string parameter);
-		System.Collections.Generic.IEnumerable<Model.DTO.WorkshiftHistoryDTO> GetWorkingDrivers();
+		CarDTO GetCarByCarID(int id);
+		IEnumerable<CarDTO> getCars();
+		IEnumerable<CarDTO> getCarsByUserID(int? id);
+		IEnumerable<CarDTO> getCarsByUserID(int? id, string parameter);
+		IEnumerable<WorkshiftHistoryDTO> GetWorkingDrivers();
 		bool GetWorkShiftsByWorkerId(int WorkerId);
 		string GiveAwayCar(int CarId, int NewCarUserId);
 		void StartWorkEvent(int? id, string TimeStart);

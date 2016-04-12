@@ -9,6 +9,7 @@ namespace Model.DTO
 	public class ChartsColumnDTO
 	{
 		public string ColumnName { get; set; }
+
 		public string Value { get; set; }
 	}
 }

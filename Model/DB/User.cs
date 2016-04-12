@@ -9,29 +9,33 @@ using Model.DB;
 
 namespace Model
 {
-    public class User
-    {
-     [Key]
-        public int Id { get; set; }
-        [Required]
-        [MinLength(4, ErrorMessage="Минимальная длинна - 4 символа")]
-        public string UserName { get; set; }
-       [Required]
-      [DataType(DataType.Password)]
-      [MinLength(6,ErrorMessage="Минимальная длинна - 6 символа")]
-      
-        public string Password { get; set; }
-       [Required]
-      [EmailAddress(ErrorMessage = "Invalid Email Address")]
-        public string Email { get; set; }
+	public class User
+	{
+		[Key]
+		public int Id { get; set; }
 
-       [ForeignKey("RoleId")]
-        public virtual Role Role { get; set; }
-        
-        public int RoleId { get; set; }
-        public string Lang { get; set; }
+		[Required]
+		[MinLength(4, ErrorMessage = "Минимальная длинна - 4 символа")]
+		public string UserName { get; set; }
+
+		[Required]
+		[DataType(DataType.Password)]
+		[MinLength(6, ErrorMessage = "Минимальная длинна - 6 символа")]
+		public string Password { get; set; }
+
+		[Required]
+		[EmailAddress(ErrorMessage = "Invalid Email Address")]
+		public string Email { get; set; }
+
+		[ForeignKey("RoleId")]
+		public virtual Role Role { get; set; }
+
+		public int RoleId { get; set; }
+
+		public string Lang { get; set; }
 
 		public List<Car> CarsUser { get; set; }
+
 		public List<Car> CarOwner { get; set; }
-    }
+	}
 }

@@ -22,6 +22,7 @@ namespace Model.DTO
 		public int OrderId { get; set; }
 
 		public int UserId { get; set; }
+
 		public int TarifId { get; set; }
 	}
 }

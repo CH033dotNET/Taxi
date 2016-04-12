@@ -11,78 +11,78 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable
-    {
-        private MainContext context;
+	public class UnitOfWork : IUnitOfWork, IDisposable
+	{
+		private MainContext context;
 
-        #region Private Repositories
+		#region Private Repositories
 
-        private IGenericRepository<User> userRepo;
-        private IGenericRepository<Role> roleRepo;
+		private IGenericRepository<User> userRepo;
+		private IGenericRepository<Role> roleRepo;
 		private IGenericRepository<District> districtRepo;
 		private IGenericRepository<Car> carInfo;
-        private IGenericRepository<UserAddress> addressRepo;
+		private IGenericRepository<UserAddress> addressRepo;
 
-	    private IGenericRepository<Person> personRepo;
+		private IGenericRepository<Person> personRepo;
 
 		private IGenericRepository<VIPClient> vipClientRepo;
-        private IGenericRepository<Location> locationRepo;
+		private IGenericRepository<Location> locationRepo;
 		private IGenericRepository<WorkshiftHistory> workshiftHistoryRepo;
 
-        private IGenericRepository<Tarif> tarifRepo;
+		private IGenericRepository<Tarif> tarifRepo;
 		private IGenericRepository<Coordinates> coordinatesHistoryRepo;
 		private IGenericRepository<Order> orderRepo;
 		private IGenericRepository<WorkerStatus> workerStatusRepo;
-        #endregion
+		#endregion
 
-        public UnitOfWork()
-        {
-            context = new MainContext();
+		public UnitOfWork()
+		{
+			context = new MainContext();
 
-            userRepo = new GenericRepository<User>(context);
-            roleRepo = new GenericRepository<Role>(context);
+			userRepo = new GenericRepository<User>(context);
+			roleRepo = new GenericRepository<Role>(context);
 			districtRepo = new GenericRepository<District>(context);
 			carInfo = new GenericRepository<Car>(context);
-            addressRepo = new GenericRepository<UserAddress>(context);
+			addressRepo = new GenericRepository<UserAddress>(context);
 
 			personRepo = new GenericRepository<Person>(context);
 
 			vipClientRepo = new GenericRepository<VIPClient>(context);
-            locationRepo = new GenericRepository<Location>(context);
+			locationRepo = new GenericRepository<Location>(context);
 
 			workshiftHistoryRepo = new GenericRepository<WorkshiftHistory>(context);
 
-            tarifRepo = new GenericRepository<Tarif>(context);
+			tarifRepo = new GenericRepository<Tarif>(context);
 			coordinatesHistoryRepo = new GenericRepository<Coordinates>(context);
 			orderRepo = new GenericRepository<Order>(context);
 
 			workerStatusRepo = new GenericRepository<WorkerStatus>(context);
-        }
+		}
 
-        public void Save()
-        {
-            context.SaveChanges();
-        }
+		public void Save()
+		{
+			context.SaveChanges();
+		}
 
-        #region Repositories Getters
+		#region Repositories Getters
 
-        public IGenericRepository<User> UserRepo
-        {
-            get
-            {
-                if (userRepo == null) userRepo = new GenericRepository<User>(context);
-                return userRepo;
-            }
-        }
+		public IGenericRepository<User> UserRepo
+		{
+			get
+			{
+				if (userRepo == null) userRepo = new GenericRepository<User>(context);
+				return userRepo;
+			}
+		}
 
-        public IGenericRepository<Role> RoleRepo
-        {
-            get
-            {
-                if (roleRepo == null) roleRepo = new GenericRepository<Role>(context);
-                return roleRepo;
-            }
-        }
+		public IGenericRepository<Role> RoleRepo
+		{
+			get
+			{
+				if (roleRepo == null) roleRepo = new GenericRepository<Role>(context);
+				return roleRepo;
+			}
+		}
 
 		public IGenericRepository<District> DistrictRepo
 		{
@@ -102,14 +102,14 @@ namespace DAL
 			}
 		}
 
-        public IGenericRepository<UserAddress> AddressRepo
-        {
-            get
-            {
-                if (addressRepo == null) addressRepo = new GenericRepository<UserAddress>(context);
-                return addressRepo;
-            }
-        }
+		public IGenericRepository<UserAddress> AddressRepo
+		{
+			get
+			{
+				if (addressRepo == null) addressRepo = new GenericRepository<UserAddress>(context);
+				return addressRepo;
+			}
+		}
 
 
 		public IGenericRepository<Person> PersonRepo
@@ -130,14 +130,14 @@ namespace DAL
 
 			}
 		}
-        public IGenericRepository<Location> LocationRepo
-        {
-            get
-            {
-                if (locationRepo == null) locationRepo = new GenericRepository<Location>(context);
-                return locationRepo;
-            }
-        }
+		public IGenericRepository<Location> LocationRepo
+		{
+			get
+			{
+				if (locationRepo == null) locationRepo = new GenericRepository<Location>(context);
+				return locationRepo;
+			}
+		}
 		public IGenericRepository<WorkshiftHistory> WorkshiftHistoryRepo
 		{
 			get
@@ -147,14 +147,14 @@ namespace DAL
 			}
 		}
 
-        public IGenericRepository<Tarif> TarifRepo
-        {
-            get
-            {
-                if (tarifRepo == null) tarifRepo = new GenericRepository<Tarif>(context);
-                return tarifRepo;
-            }
-        }
+		public IGenericRepository<Tarif> TarifRepo
+		{
+			get
+			{
+				if (tarifRepo == null) tarifRepo = new GenericRepository<Tarif>(context);
+				return tarifRepo;
+			}
+		}
 
 		public IGenericRepository<Coordinates> CoordinatesHistoryRepo
 		{
@@ -189,24 +189,24 @@ namespace DAL
 
 		private bool disposed = false;
 
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    context.Dispose();
-                }
-            }
-            this.disposed = true;
-        }
+		protected virtual void Dispose(bool disposing)
+		{
+			if (!this.disposed)
+			{
+				if (disposing)
+				{
+					context.Dispose();
+				}
+			}
+			this.disposed = true;
+		}
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }

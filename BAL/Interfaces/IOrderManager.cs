@@ -9,10 +9,10 @@ namespace BAL.Manager
 		void DeleteOrderByID(int? id);
 		OrderDTO EditOrder(Model.DTO.OrderDTO order);
 		OrderDTO GetNotStartOrderByDriver(int? id);
-        OrderDTO GetOrderByOrderID(int? id);// GetQueryable
+		OrderDTO GetOrderByOrderID(int? id);// GetQueryable
 		IEnumerable<OrderDTO> GetOrders();
-        IQueryable<Model.DB.Order> GetQueryableOrders();
-        IEnumerable<OrderDTO> GetDriverOrders();
+		IQueryable<Model.DB.Order> GetQueryableOrders();
+		IEnumerable<OrderDTO> GetDriverOrders();
 		IEnumerable<OrderDTO> GetOrdersByPersonId(int? id);
 		IEnumerable<OrderDTO> GetOrdersByUserId(int id);
 		OrderDTO GetStartedOrderByDriver(int? id);
@@ -23,6 +23,6 @@ namespace BAL.Manager
 		float GetFuelConsumption(int DriverId);
 		IQueryable<float> AnnualFuelConsumption();
 		IQueryable<DriverRequest> GetDriverRequests();
-	
+
 	}
 }

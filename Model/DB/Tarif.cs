@@ -8,32 +8,36 @@ using System.Threading.Tasks;
 
 namespace Model.DB
 {
-    public class Tarif
-    {
+	public class Tarif
+	{
+		[Key]
+		public int id { get; set; }
 
-        [Key]
-        public int id { get; set; }
+		[Required]
+		public string Name { get; set; }
 
-        [Required]
-        public string Name { get; set; }
+		[ForeignKey("DistrictId")]
+		public virtual District District { get; set; }
 
-        [ForeignKey("DistrictId")]
-        public virtual District District { get; set; }
+		[Required]
+		public bool IsIntercity { get; set; }
 
-        [Required]
-        public bool IsIntercity { get; set; }
-        [Required]
-        public bool IsStandart { get; set; }
+		[Required]
+		public bool IsStandart { get; set; }
 
-        public int? DistrictId { get; set; }
-        [Required]
-        public decimal MinimalPrice { get; set; }
-        [Required]
-        public decimal StartPrice { get; set; }
-        [Required]
-        public decimal OneMinuteCost { get; set; }
-        [Required]
-        public decimal WaitingCost { get; set; }
+		public int? DistrictId { get; set; }
 
-    }
+		[Required]
+		public decimal MinimalPrice { get; set; }
+
+		[Required]
+		public decimal StartPrice { get; set; }
+
+		[Required]
+		public decimal OneMinuteCost { get; set; }
+
+		[Required]
+		public decimal WaitingCost { get; set; }
+
+	}
 }

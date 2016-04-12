@@ -6,16 +6,22 @@ using System.Threading.Tasks;
 
 namespace DAL.Interface
 {
-    public interface IBaseRepository<TEntity>
-        where TEntity : class
-    {
-        System.Linq.IQueryable<TEntity> All { get; }
-        System.Collections.Generic.IEnumerable<TEntity> Get(
-            System.Linq.Expressions.Expression<Func<TEntity, bool>> filter = null,
-            Func<System.Linq.IQueryable<TEntity>, System.Linq.IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = "");
-        void Insert(TEntity entity);
-        void Update(TEntity entityToUpdate);
-        void SetStateModified(TEntity entity);
-    }
+	public interface IBaseRepository<TEntity>
+		where TEntity : class
+	{
+		IQueryable<TEntity> All { get; }
+
+		IEnumerable<TEntity> Get
+			(
+			System.Linq.Expressions.Expression<Func<TEntity, bool>> filter = null,
+			Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+			string includeProperties = ""
+			);
+
+		void Insert(TEntity entity);
+
+		void Update(TEntity entityToUpdate);
+
+		void SetStateModified(TEntity entity);
+	}
 }
