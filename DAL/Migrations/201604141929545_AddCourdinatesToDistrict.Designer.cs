@@ -13,7 +13,7 @@ namespace DAL.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201604141848351_AddCourdinatesToDistrict"; }
+            get { return "201604141929545_AddCourdinatesToDistrict"; }
         }
         
         string IMigrationMetadata.Source

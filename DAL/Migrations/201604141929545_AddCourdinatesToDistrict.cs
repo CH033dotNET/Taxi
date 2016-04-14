@@ -8,7 +8,7 @@ namespace DAL.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Coordinates",
+                "dbo.DistrictCoordinates",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -24,9 +24,9 @@ namespace DAL.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Coordinates", "District_Id", "dbo.Districts");
-            DropIndex("dbo.Coordinates", new[] { "District_Id" });
-            DropTable("dbo.Coordinates");
+            DropForeignKey("dbo.DistrictCoordinates", "District_Id", "dbo.Districts");
+            DropIndex("dbo.DistrictCoordinates", new[] { "District_Id" });
+            DropTable("dbo.DistrictCoordinates");
         }
     }
 }
