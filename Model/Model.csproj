@@ -47,6 +47,7 @@
     <Compile Include="DB\Car.cs" />
     <Compile Include="DB\Coordinates.cs" />
     <Compile Include="DB\District.cs" />
+    <Compile Include="DB\Coordinate.cs" />
     <Compile Include="DB\Location.cs" />
     <Compile Include="DB\Order.cs" />
     <Compile Include="DB\Person.cs" />
