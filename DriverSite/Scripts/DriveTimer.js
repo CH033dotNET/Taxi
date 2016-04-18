@@ -7,6 +7,7 @@ var Trips = [];
 var startPrice = 0;
 var ToogleConn = null;
 var conExist = true;
+var discount = 1;
 
 
 $(document).ready(function () {
@@ -35,6 +36,13 @@ $(document).ready(function () {
     });
 });
 
+function SetDiscount(order) {
+    if (order.PersonId != null) {
+        discount = 0.95;
+    }
+    
+}
+
 // Local Time
 function ShowDate() {
     $(".timeTable").text(new Date().toDateString().toString() + " " + new Date().toLocaleTimeString().toString());
@@ -53,7 +61,9 @@ function CollStartTrip() {
         url: "./ClientService/StartTrip",
         method: "POST",
         data: dataObj,
-        success: function (result) { }
+        success: function (result) {
+            SetDiscount(result);
+        }
     });
 }
 
@@ -329,6 +339,10 @@ var PriceCounter = {
                 }
 
             }
+
+            // Discount
+            PriceCounter.currentPrice = PriceCounter.currentPrice * discount;
+
             return PriceCounter.currentPrice;
         }
         else

@@ -47,12 +47,22 @@ namespace DriverSite.Controllers
 			decimal currentPrice = price.CalcPrice();
 			if (lastCalc)
 			{
-				float consumption = ApiRequestHelper.Get<float, int>("ClientService", "GetFuelConsumption", SessionUser.Id).Data;
+                decimal discount = 1;
+                float consumption = ApiRequestHelper.Get<float, int>("ClientService", "GetFuelConsumption", SessionUser.Id).Data;
 				float distance = (float)price.finalDistance;
 				OrderDTO order = ApiRequestHelper.Get<OrderDTO, int>("ClientService", "GetOrderById", SessionOrderId).Data;
 				order.FuelSpent = (distance * consumption == 0) ? 12F : distance * consumption;
 				ApiRequestHelper.postData<OrderDTO>(controller, "EditOrder", order);
-			}
+
+                // 5% discount for registered users
+                if (order.Person != null) {
+                    discount = (Decimal)0.95;
+                }
+
+                currentPrice = currentPrice * discount;
+
+
+            }
 			return String.Format("{0:0.00}", currentPrice);
 		}
         
