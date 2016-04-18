@@ -236,6 +236,7 @@
     <Content Include="Content\BootstrapTb\BootstrapTb.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\HighchartsCustomStyles\PageCustomisation.css" />
+    <Content Include="Content\Main.css" />
     <Content Include="Content\Picture\Drawing-layerExport.jpeg" />
     <Content Include="Content\DriverMenu.css" />
     <Content Include="Content\Picture\0-well-traveled-passport-taxi-cab-global-british-american-vietnamese-engagement-wedding-photos-photographer.jpg" />
@@ -248,6 +249,7 @@
     <Content Include="Content\Picture\logo.png" />
     <Content Include="Content\Picture\roteiro.jpg" />
     <Content Include="Content\Picture\SandWatch.jpg" />
+    <Content Include="Content\Picture\sendIcon.png" />
     <Content Include="Content\Picture\Skyline_new_york_city.jpg" />
     <Content Include="Content\Picture\slide-image-1.jpg" />
     <Content Include="Content\Picture\Speedometer.jpg" />
@@ -373,6 +375,7 @@
     <Content Include="Scripts\DriverMap.js" />
     <Content Include="Scripts\DriveTimer.js" />
     <Content Include="Scripts\FavoriteAddresses.js" />
+    <Content Include="Scripts\GeneralScripts.js" />
     <Content Include="Scripts\GoogleMapJS\GoogleMapUserPage.js" />
     <Content Include="Scripts\handlebars.amd.js" />
     <Content Include="Scripts\handlebars.amd.min.js" />

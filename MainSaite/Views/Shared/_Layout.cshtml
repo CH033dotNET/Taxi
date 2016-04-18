@@ -15,7 +15,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <script type="text/javascript" src="~/Scripts/IEValidation.js"></script>
+    <script type="text/javascript" src="~/Scripts/GeneralScripts.js"></script>
     <link href="~/Content/AutoParkCustomStyles.css" rel="stylesheet" />
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/handlebars")
@@ -132,7 +134,7 @@
 					@if (ViewBag.UserRoleId != (int)AvailableRoles.Support && ViewBag.UserRoleId > 0)
 					{
 						<br />
-						<p class="text-center"><a class="helpLink" href="#">@Resources.Resource.Help</a></p>
+						<p class="text-center"><a class="helpLink" href="#" onclick="ShowSupportChat()">@Resources.Resource.Help</a></p>
 					}
                 </div>
             </div>
@@ -144,6 +146,30 @@
             @RenderBody()
         </div>
     </div>
+
+	<div id="chat">
+		<div class="head">
+			<img class="avatar" src="/saha.png">
+			<div class="serviceWorker">
+				<div class="name">Саша</div>
+				<div class="description">Служба підтримки</div>
+			</div>
+			<div class="minimize"></div>
+		</div>
+		<div class="body">
+			<div class="question message">Привіт. Чим я можу тобі допомогти?</div>
+			<div class="answer message">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+			<div class="question message">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+			<div class="answer message">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+			<div class="question message">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+			<div class="question message">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+			<div class="answer message">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
+		</div>
+		<div class="bottom">
+			<textarea class="message" placeholder="Введіть повідомлення"></textarea>
+			<div class="btnSend"><img class="btnSendImage" src="~/Content/Picture/sendIcon.png"></div>
+		</div>
+	</div>
 
     <!-- /.container -->
 
