@@ -37,6 +37,7 @@ namespace MainSaite.Controllers
 				{
 					if (userManager.IsUserNameCorrect(user.UserName))
 					{
+
 						user.Lang = (string)Session["Culture"];
 
 						userManager.InsertUser(user);

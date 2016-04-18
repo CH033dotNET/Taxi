@@ -93,7 +93,7 @@
                         {
 							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.Statistics, "Index", "ReportCharts")</li>
 						}
-						@*All roles maust have my account*@
+						@*All roles must have my account*@
 						@if (ViewBag.UserRoleId == (int)AvailableRoles.ReportViewer 
 							  || ViewBag.UserRoleId == (int)AvailableRoles.Administrator 
 							  || ViewBag.UserRoleId == (int)AvailableRoles.Client 
@@ -127,6 +127,13 @@
                             <li class="list-group-item">@Html.ActionLink(@Resources.Resource.WorkShift, "ViewWorkShifts", "Administration")</li>
                         }
                     </ul>
+
+					<!--All roles except support have this link-->
+					@if (ViewBag.UserRoleId != (int)AvailableRoles.Support && ViewBag.UserRoleId > 0)
+					{
+						<br />
+						<p class="text-center"><a class="helpLink" href="#">@Resources.Resource.Help</a></p>
+					}
                 </div>
             </div>
 

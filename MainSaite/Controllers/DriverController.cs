@@ -40,6 +40,7 @@ namespace MainSaite.Controllers
 
 		public ActionResult Index()
 		{
+
 			if (SessionUser != null && (SessionUser.RoleId == (int)AvailableRoles.Driver || SessionUser.RoleId == (int)AvailableRoles.FreeDriver))
 			{
 				return View();

@@ -439,7 +439,7 @@
     <value>Ваше місцезнаходження</value>
   </data>
   <data name="YourCurrentLocation" xml:space="preserve">
-    <value>Ви зараз знаходитися на </value>
+    <value>Ви зараз знаходитесь на </value>
   </data>
   <data name="ConfirmDeletingAddress" xml:space="preserve">
     <value>Ви впевненні, що бажаєте видалити данну адресу зі списку?</value>
@@ -598,7 +598,7 @@
     <value>Підтвєрдити пароль</value>
   </data>
   <data name="Registration" xml:space="preserve">
-    <value>Реєстрація</value>
+    <value>Регістрація</value>
   </data>
   <data name="LastUpdate" xml:space="preserve">
     <value>Останне оновлення</value>
@@ -918,7 +918,7 @@
   <data name="OrdersRoma" xml:space="preserve">
     <value>Замовлення</value>
   </data>
-  <data name="FreeDriver" xml:space="preserve">
-    <value>Безкоштовний водій</value>
+  <data name="Help" xml:space="preserve">
+    <value>Служба підтримки</value>
   </data>
 </root>

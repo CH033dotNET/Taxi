@@ -318,6 +318,7 @@ namespace BAL.Manager
 
 		public List<UserDTO> GetDrivers()
 		{
+
 			List<User> drivers = uOW.UserRepo.All.Where(x => x.RoleId == (int)AvailableRoles.Driver || x.RoleId == (int)AvailableRoles.FreeDriver).ToList();
 			List<UserDTO> driversDTO = new List<UserDTO>();
 

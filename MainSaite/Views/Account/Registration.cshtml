@@ -45,6 +45,7 @@
 			<tr>
 				<td id="name">@Resources.Resource.Role</td>
 				<td>
+
 					@Html.DropDownListFor(x => x.Role.Name, new SelectList(Enum.GetValues(typeof(Common.Enum.AvailableRolesViaRegistration))).Reverse(), new { style = "width:98%" })
 				</td>
 			</tr>
