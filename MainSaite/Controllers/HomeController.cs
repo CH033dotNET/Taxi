@@ -19,6 +19,7 @@ namespace MainSaite.Controllers
 		
 		public ActionResult Index()
 		{
+			Session["Culture"] = "en-us";
 			return View();
 		}
 

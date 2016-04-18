@@ -2,54 +2,60 @@
 
 <!--script type="text/ng-template" src="~/Content/UserMenu/ClientDriveService.css"></script-->
 
-    <div class="btform" style="/*background-image: url('../../Content/Picture/DriverIcons/Registr1.jpg'); */">  
-    @using (Html.BeginForm("Registration"))
-    {
-        <h2 class="regHead">@Resources.Resource.Registration</h2>
-        @*@Html.ValidationSummary();*@
-        <table class="regTable">
-            <tr>
-                <td id="name">
-                    @Resources.Resource.Login
-                </td>
-                <td>
-                    @Html.TextBoxFor(x => x.UserName, new { @required = true, @minlength = "4", @maxlength = "16", @id = "value"})
-                    @Html.ValidationMessageFor(x => x.UserName, "", new { @id = "clValidReg" })
-                </td>
-            </tr>
-            <tr>
-                <td id="name">
-                    @Resources.Resource.Password
-                </td>
-                <td>
-                    @Html.PasswordFor(x => x.Password, new { @required = true, @minlength = "6", @id = "value" })
-                    @Html.ValidationMessageFor(x => x.Password, "", new { @id = "clValidReg" })
-                </td>
-            </tr>
+<div class="btform" style="/*background-image: url('../../Content/Picture/DriverIcons/Registr1.jpg'); */">
+	@using (Html.BeginForm("Registration"))
+	{
+		<h2 class="regHead">@Resources.Resource.Registration</h2>
+		@*@Html.ValidationSummary();*@
+		<table class="regTable">
+			<tr>
+				<td id="name">
+					@Resources.Resource.Login
+				</td>
+				<td>
+					@Html.TextBoxFor(x => x.UserName, new { @required = true, @minlength = "4", @maxlength = "16", @id = "value" })
+					@Html.ValidationMessageFor(x => x.UserName, "", new { @id = "clValidReg" })
+				</td>
+			</tr>
+			<tr>
+				<td id="name">
+					@Resources.Resource.Password
+				</td>
+				<td>
+					@Html.PasswordFor(x => x.Password, new { @required = true, @minlength = "6", @id = "value" })
+					@Html.ValidationMessageFor(x => x.Password, "", new { @id = "clValidReg" })
+				</td>
+			</tr>
 
-            <tr>
-                <td id="name">
-                   @Resources.Resource.ConfirmPassword
-                </td>
-                <td>
-                    @Html.PasswordFor(x => x.ConfirmPassword, new { @required = true, @minlength = "6", @id = "value" })
-                    @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @id = "clValidReg" })
-                </td>
-            </tr>
-            <tr>
-                <td id="name">
-                    @Resources.Resource.Email
-                </td>
-                <td>  @Html.TextBoxFor(x => x.Email, new { @id = "emailValue" })</td>
-            </tr>
-            <tr>
-                <td colspan="2" class="login-btn" style="text-align:right">
-                    <button type="submit" value="Register" id="reg-btn" style="display:inline">@Resources.Resource.Registration</button>
-                </td>
-            </tr>
+			<tr>
+				<td id="name">
+					@Resources.Resource.ConfirmPassword
+				</td>
+				<td>
+					@Html.PasswordFor(x => x.ConfirmPassword, new { @required = true, @minlength = "6", @id = "value" })
+					@Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @id = "clValidReg" })
+				</td>
+			</tr>
+			<tr>
+				<td id="name">
+					@Resources.Resource.Email
+				</td>
+				<td>  @Html.TextBoxFor(x => x.Email, new { @id = "emailValue" })</td>
+			</tr>
+			<tr>
+				<td id="name">@Resources.Resource.Role</td>
+				<td>
+					@Html.DropDownListFor(x => x.Role.Name, new SelectList(Enum.GetValues(typeof(Common.Enum.AvailableRolesViaRegistration))).Reverse(), new { style = "width:98%" })
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" class="login-btn" style="text-align:right">
+					<button type="submit" value="Register" id="reg-btn" style="display:inline">@Resources.Resource.Registration</button>
+				</td>
+			</tr>
 
-        </table>
-    }
-   
+		</table>
+	}
+
 </div>
 

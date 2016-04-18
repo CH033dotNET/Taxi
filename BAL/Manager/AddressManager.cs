@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using BAL.Manager;
 
-
 namespace BAL.Manager
 {
 	public class AddressManager : BaseManager, IAddressManager

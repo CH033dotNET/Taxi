@@ -598,7 +598,7 @@
     <value>Підтвєрдити пароль</value>
   </data>
   <data name="Registration" xml:space="preserve">
-    <value>Регістрація</value>
+    <value>Реєстрація</value>
   </data>
   <data name="LastUpdate" xml:space="preserve">
     <value>Останне оновлення</value>
@@ -917,5 +917,8 @@
   </data>
   <data name="OrdersRoma" xml:space="preserve">
     <value>Замовлення</value>
+  </data>
+  <data name="FreeDriver" xml:space="preserve">
+    <value>Безкоштовний водій</value>
   </data>
 </root>

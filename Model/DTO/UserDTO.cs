@@ -35,9 +35,9 @@ namespace Model.DTO
 
 		public string Lang { get; set; }
 
-		public UserDTO()
-		{
-			RoleId = (int)AvailableRoles.Client;
-		}
+		//public UserDTO()
+		//{
+		//	RoleId = (int)AvailableRoles.Client;
+		//}
 	}
 }

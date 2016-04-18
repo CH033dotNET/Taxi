@@ -18,14 +18,19 @@
             <td><input type="email" class="form-control input-lg" name="Email" placeholder="@Resources.Resource.Email"></td>
         </tr>
         <tr><td>@Resources.Resource.Role</td>
-            <td>
+
+			<td>
+				@Html.DropDownListFor(x => x.Role.Name, new SelectList(Enum.GetValues(typeof(Common.Enum.AvailableRoles))), new { @class = "form-control input-lg" })
+			</td>
+
+            @*/<td>
                  <select class="form-control input-lg" name="RoleId">
                      @foreach (var pair in EnumHelper.GetRoles())
                       {
                           <option value="@pair.Key">@pair.Value</option>
                       }
                  </select>
-            </td>
+            </td>/*@
         </tr>
     </table>
    <font color="red">@Html.ValidationSummary()</font>

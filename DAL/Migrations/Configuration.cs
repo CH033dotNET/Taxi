@@ -36,10 +36,11 @@ namespace DAL.Migrations
 			var roles = new List<Role> 
 			{
 				new Role() { Name = "Driver", Description = "Driver" },
+				new Role() { Name = "FreeDriver", Description = "Free Driver" },
 				new Role() { Name = "Operator", Description = "Operator" },
 				new Role() { Name = "Client", Description = "Client" },
 				new Role() { Name = "ReportViewer", Description = "Report Viewer" },
-				new Role() { Name = "Administrator", Description = "Administrator" } 
+				new Role() { Name = "Administrator", Description = "Administrator" }
 			};
 
 
@@ -55,7 +56,7 @@ namespace DAL.Migrations
                     UserName = "admin",
                     Password = "password",
                     Email = "admin@gmail.com",
-                    RoleId = 5,
+                    RoleId = 6,
                     Lang = "en-us"
                 },
 				new User()
@@ -66,12 +67,20 @@ namespace DAL.Migrations
 					RoleId = 1,
                     Lang = "en-us"
 				},
+				new User()
+				{
+					UserName = "freedriver",
+					Password = "password",
+					Email = "driver@gmail.com",
+					RoleId = 2,
+					Lang = "en-us"
+				},
                 new User()
                 {
                     UserName = "operator",
                     Password = "password",
                     Email = "operator@gmail.com",
-                    RoleId = 2,
+                    RoleId = 3,
                     Lang = "en-us"
                 },
                 new User()
@@ -79,7 +88,7 @@ namespace DAL.Migrations
                     UserName = "client",
                     Password = "password",
                     Email = "client@gmail.com",
-                    RoleId = 3,
+                    RoleId = 4,
                     Lang = "en-us"
                 },
                 new User()
@@ -87,7 +96,7 @@ namespace DAL.Migrations
                     UserName = "report",
                     Password = "password",
                     Email = "report@gmail.com",
-                    RoleId = 4,
+                    RoleId = 5,
                     Lang = "en-us"
                 },
 				new User()

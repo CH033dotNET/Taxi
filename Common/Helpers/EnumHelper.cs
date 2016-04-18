@@ -54,7 +54,9 @@ namespace Common.Helpers
 					case AvailableRoles.Driver:
 						name = Resources.Resource.Driver;
 						break;
-
+					case AvailableRoles.FreeDriver:
+						name = Resources.Resource.FreeDriver;
+						break;
 					case AvailableRoles.Administrator:
 						name = Resources.Resource.Administrator;
 						break;

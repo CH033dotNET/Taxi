@@ -98,16 +98,17 @@
 							  || ViewBag.UserRoleId == (int)AvailableRoles.Administrator 
 							  || ViewBag.UserRoleId == (int)AvailableRoles.Client 
 							  || ViewBag.UserRoleId == (int)AvailableRoles.Driver 
-							  || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
+							  || ViewBag.UserRoleId == (int)AvailableRoles.Operator
+							  || ViewBag.UserRoleId == (int)AvailableRoles.FreeDriver)
 						{
 							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.MyAccount, "Index", "User")</li>
 						}
 						@*Only driver can have autopark*@
-                        @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver)
+                        @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.FreeDriver)
                         {
                             <li class="list-group-item">@Html.ActionLink(@Resources.Resource.CarEditor, "CarPark", "Cars")</li>}
 						@*Only driver can have personal cabinet*@
-                        @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver)
+                        @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.FreeDriver)
                         {
                             <li class="list-group-item">@Html.ActionLink(Resources.Resource.PersonalCabinet, "Index", "Driver")</li>}
 							
@@ -116,7 +117,7 @@
                         {
                            <li class="list-group-item">@Html.ActionLink(@Resources.Resource.TitleLeftMenuUserAddress, "Index", "Address")</li>
                            <li class="list-group-item">@Html.ActionLink(@Resources.Resource.UserPage, "Index", "UserPage")</li>
-                           <li class="list-group-item">@Html.ActionLink(Resources.Resource.DemoPage,"Iframe","UserPage") </li>
+                           <li class="list-group-item">@Html.ActionLink(@Resources.Resource.DemoPage,"Iframe","UserPage") </li>
                            <li class="list-group-item">@Html.ActionLink(@Resources.Resource.ClientDriveHistory, "ShowHistory", "DriveClientHistory")</li>
                         }
 						@*Operator and admin can have this stuff*@

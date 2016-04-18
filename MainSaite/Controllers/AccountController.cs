@@ -28,7 +28,6 @@ namespace MainSaite.Controllers
             return View();
 			
         }
-
 		[HttpPost]
 		public ActionResult Registration(RegistrationModel user)
 		{
@@ -38,10 +37,14 @@ namespace MainSaite.Controllers
 				{
 					if (userManager.IsUserNameCorrect(user.UserName))
 					{
+						user.Lang = (string)Session["Culture"];
+
 						userManager.InsertUser(user);
 
 						CheckPerson(user);
+
 						Authentification(new LoginModel() {  UserName = user.UserName, Password = user.Password});
+
 						return RedirectToAction("Index", "User");
 					}
 					//else ModelState.AddModelError("", "Login syntax error");
