@@ -7,13 +7,13 @@ namespace DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddCourdinatesToDistrict : IMigrationMetadata
+    public sealed partial class AddCoordinatesToDistrict : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddCourdinatesToDistrict));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddCoordinatesToDistrict));
         
         string IMigrationMetadata.Id
         {
-            get { return "201604141929545_AddCourdinatesToDistrict"; }
+            get { return "201604162255373_AddCoordinatesToDistrict"; }
         }
         
         string IMigrationMetadata.Source

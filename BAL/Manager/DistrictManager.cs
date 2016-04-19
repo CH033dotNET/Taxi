@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL.Interface;
 using Model;
+using System.Data.Entity;
+using Model.DTO;
+using AutoMapper;
 
 namespace BAL.Manager
 {
@@ -13,22 +16,26 @@ namespace BAL.Manager
 		public DistrictManager(IUnitOfWork uOW)
 			: base(uOW)
 		{
-
+			Mapper.CreateMap<Coordinate, CoordinateDTO>();
+			Mapper.CreateMap<District, DistrictDTO>();
+			Mapper.CreateMap<CoordinateDTO, Coordinate>();
+			Mapper.CreateMap<DistrictDTO, District>();
 		}
 		/// <summary>
 		/// Managaer method that adds new district entry to Db
 		/// </summary>
-		/// <param name="dName">parameter that represents a name property of a new object</param>
-		public string addDistrict(string dName)
+		/// <param name="district">parameter that represents a new object</param>
+		public DistrictDTO addDistrict(DistrictDTO district)
 		{
-			District newD = new Model.District { Name = dName };
-			if (uOW.DistrictRepo.All.Where(x => x.Name.Equals(newD.Name, StringComparison.InvariantCultureIgnoreCase)).Count() == 0)
+			if (uOW.DistrictRepo.All.Where(x => x.Name.Equals(district.Name, StringComparison.InvariantCultureIgnoreCase)).Count() == 0)
 			{
-				uOW.DistrictRepo.Insert(newD);
+				var model = Mapper.Map<District>(district);
+				uOW.DistrictRepo.Insert(model);
 				uOW.Save();
-				return "Success";
+				var newDistrict = uOW.DistrictRepo.All.Where(d => d.Name == district.Name).Include(c => c.Coordinates).FirstOrDefault();
+				return Mapper.Map<DistrictDTO>(newDistrict);
 			}
-			else { return "Error"; }
+			else { return null; }
 		}
 		/// <summary>
 		/// Managaer method that deletes a specific district enty with id matching id parameter
@@ -52,89 +59,102 @@ namespace BAL.Manager
 		/// Managaer method that gets new list of avialable district entries. These entries doesnt have Deleted property set to true.
 		/// </summary>
 		/// <returns></returns>
-		public IEnumerable<District> getDistricts()
+		public IEnumerable<DistrictDTO> getDistricts()
 		{
-			var list = uOW.DistrictRepo.Get(s => s.Deleted == false).ToList();
-			return list;
+			var districts = uOW.DistrictRepo.All.Include(c => c.Coordinates).Where(d => d.Deleted == false).ToList();
+			var res = Mapper.Map<IEnumerable<DistrictDTO>>(districts);
+			return res;
 		}
 
-		public IEnumerable<District> GetSortedDistricts(string parameter)
+		public IEnumerable<DistrictDTO> GetSortedDistricts(string parameter)
 		{
+			IOrderedEnumerable<District> districtList = null;
+			var districts = uOW.DistrictRepo.All.Where(x => x.Deleted == false).Include(c => c.Coordinates).ToList();
 			switch (parameter)
 			{
 				case "name":
-					var districtList = uOW.DistrictRepo.All.Where(x => x.Deleted == false).ToList().OrderBy(x => x.Name);
-					return districtList;
+					districtList = districts.OrderBy(x => x.Name);
+					break;
 				case "name_desc":
-					districtList = uOW.DistrictRepo.All.Where(x => x.Deleted == false).ToList().OrderByDescending(x => x.Name);
-					return districtList;
+					districtList = districts.OrderByDescending(x => x.Name);
+					break;
 				default:
-					districtList = uOW.DistrictRepo.All.Where(x => x.Deleted == false).ToList().OrderBy(x => x.Name);
-					return districtList;
+					districtList = districts.OrderBy(x => x.Name);
+					break;
 			}
+			return Mapper.Map<IOrderedEnumerable<DistrictDTO>>(districtList);
 		}
 
-		public IEnumerable<District> GetSortedDeletedDistrictsBy(string parameter)
+		public IEnumerable<DistrictDTO> GetSortedDeletedDistrictsBy(string parameter)
 		{
+			IOrderedEnumerable<District> deletedDistrictList = null;
+			var districts = uOW.DistrictRepo.All.Where(s => s.Deleted == true).Include(c => c.Coordinates).ToList();
 			switch (parameter)
 			{
 				case "name":
-					var deletedDistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == true).ToList().OrderBy(x => x.Name);
-					return deletedDistrictList;
+					deletedDistrictList = districts.OrderBy(x => x.Name);
+					break;
 				case "name_desc":
-					deletedDistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == true).ToList().OrderByDescending(x => x.Name);
-					return deletedDistrictList;
+					deletedDistrictList = districts.OrderByDescending(x => x.Name);
+					break;
 				default:
-					deletedDistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == true).ToList().OrderBy(x => x.Name);
-					return deletedDistrictList;
+					deletedDistrictList = districts.OrderBy(x => x.Name);
+					break;
 			}
+			return Mapper.Map<IOrderedEnumerable<DistrictDTO>>(deletedDistrictList);
 		}
 
-		public IEnumerable<District> searchDistricts(string parameter)
+		public IEnumerable<DistrictDTO> searchDistricts(string parameter)
 		{
 			//students = students.Where(s => s.LastName.Contains(searchString)
 			//				   || s.FirstMidName.Contains(searchString));
-			var result = uOW.DistrictRepo.All.Where(s => s.Deleted == false & (s.Name.StartsWith(parameter) || s.Name.Contains(parameter)));
-			return result;
+			var result = uOW.DistrictRepo.All.Where(s => s.Deleted == false & (s.Name.StartsWith(parameter) || s.Name.Contains(parameter))).Include(c => c.Coordinates);
+			return Mapper.Map<IQueryable<DistrictDTO>>(result);
 		}
 
-		public IEnumerable<District> searchDeletedDistricts(string parameter)
+		public IEnumerable<DistrictDTO> searchDeletedDistricts(string parameter)
 		{
 
-			var result = uOW.DistrictRepo.All.Where(s => s.Deleted == true & (s.Name.StartsWith(parameter) || s.Name.Contains(parameter)));
-			return result;
+			var result = uOW.DistrictRepo.All.Where(s => s.Deleted == true & (s.Name.StartsWith(parameter) || s.Name.Contains(parameter))).Include(c => c.Coordinates);
+			return Mapper.Map<IQueryable<DistrictDTO>>(result);
 		}
 
-		public IEnumerable<District> searchAndSortDistricts(string search, string sort) 
+		public IEnumerable<DistrictDTO> searchAndSortDistricts(string search, string sort)
 		{
+			IOrderedEnumerable<District> DistrictList = null;
+			var districts = uOW.DistrictRepo.All.Where(s => s.Deleted == false & (s.Name.StartsWith(search) || s.Name.Contains(search))).Include(c => c.Coordinates).ToList();
 			switch (sort)
 			{
 				case "name":
-					var DistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == false & (s.Name.StartsWith(search) || s.Name.Contains(search))).ToList().OrderBy(x => x.Name);
-					return DistrictList;
+					DistrictList = districts.OrderBy(x => x.Name);
+					break;
 				case "name_desc":
-					DistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == false & (s.Name.StartsWith(search) || s.Name.Contains(search))).ToList().OrderByDescending(x => x.Name);
-					return DistrictList;
+					DistrictList = districts.OrderByDescending(x => x.Name);
+					break;
 				default:
-					DistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == false & (s.Name.StartsWith(search) || s.Name.Contains(search))).ToList().OrderBy(x => x.Name);
-					return DistrictList;
+					DistrictList = districts.OrderBy(x => x.Name);
+					break;
 			}
+			return Mapper.Map<IOrderedEnumerable<DistrictDTO>>(DistrictList);
 		}
 
-		public IEnumerable<Model.District> searchAndSortDeletedDistricts(string search, string sort)
+		public IEnumerable<DistrictDTO> searchAndSortDeletedDistricts(string search, string sort)
 		{
+			IOrderedEnumerable<District> deletedDistrictList = null;
+			var districts = uOW.DistrictRepo.All.Where(s => s.Deleted == false & (s.Name.StartsWith(search) || s.Name.Contains(search))).Include(c => c.Coordinates).ToList();
 			switch (sort)
 			{
 				case "name":
-					var deletedDistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == true & (s.Name.StartsWith(search) || s.Name.Contains(search))).ToList().OrderBy(x => x.Name);
-					return deletedDistrictList;
+					deletedDistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == true & (s.Name.StartsWith(search) || s.Name.Contains(search))).ToList().OrderBy(x => x.Name);
+					break;
 				case "name_desc":
 					deletedDistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == true & (s.Name.StartsWith(search) || s.Name.Contains(search))).ToList().OrderByDescending(x => x.Name);
-					return deletedDistrictList;
+					break;
 				default:
 					deletedDistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == true & (s.Name.StartsWith(search) || s.Name.Contains(search))).ToList().OrderBy(x => x.Name);
-					return deletedDistrictList;
+					break;
 			}
+			return Mapper.Map<IOrderedEnumerable<DistrictDTO>>(deletedDistrictList);
 		}
 
 		/// <summary>
@@ -142,23 +162,23 @@ namespace BAL.Manager
 		/// </summary>
 		/// <param name="id">Input parameter that represents id property value.</param>
 		/// <returns></returns>
-		public District getById(int id)
+		public DistrictDTO getById(int id)
 		{
 			if (id <= 0) { return null; }
-			return uOW.DistrictRepo.GetByID(id);
+			return Mapper.Map<DistrictDTO>(uOW.DistrictRepo.All.Where(s => s.Id == id).Include(c => c.Coordinates));
 		}
 		/// <summary>
 		/// Managaer method that gets one district entry which id property value matches input parameter.
 		/// </summary>
 		/// <param name="id">Input parameter that represents id property value.</param>
 		/// <returns></returns>
-		public District getOneDistrictByItsID(int id)
+		public DistrictDTO getOneDistrictByItsID(int id)
 		{
 			if (id <= 0) { return null; }
-			var getDistrict = uOW.DistrictRepo.Get(s => s.Id == id).FirstOrDefault();
+			var getDistrict = uOW.DistrictRepo.All.Where(s => s.Id == id).Include(c => c.Coordinates).FirstOrDefault();
 			if (getDistrict != null)
 			{
-				return getDistrict;
+				return Mapper.Map<DistrictDTO>(getDistrict);
 			}
 			return null;
 		}
@@ -167,37 +187,55 @@ namespace BAL.Manager
 		/// </summary>
 		/// <param name="district">Input parameter that represents object of type District </param>
 		/// <returns></returns>
-		public District EditDistrict(District district)
+		public DistrictDTO EditDistrict(DistrictDTO district)
 		{
-			var oldDistrict = uOW.DistrictRepo.Get(s => s.Id == district.Id).FirstOrDefault();
+			var oldDistrict = uOW.DistrictRepo.All.Where(d => d.Id == district.Id).Include(c => c.Coordinates).FirstOrDefault();
 			if (oldDistrict == null)
 			{
 				return null;
 			}
-			var newDistrict = SetDistrictStateModified(oldDistrict, district);
-			return newDistrict;
+			oldDistrict.Name = district.Name;
+			var newCoord = Mapper.Map<List<Coordinate>>(district.Coordinates);
+			foreach (var coord in newCoord)
+			{
+				var editCoord = oldDistrict.Coordinates.Find(c => c.Id == coord.Id);
+				if (editCoord == null)
+				{
+					coord.District = oldDistrict;
+					oldDistrict.Coordinates.Add(coord);
+				}
+				else
+				{
+					editCoord.Latitude = coord.Latitude;
+					editCoord.Longitude = coord.Longitude;
+				}
+			}
+			uOW.DistrictRepo.Update(oldDistrict);
+			uOW.Save();
+			//var newDistrict = SetDistrictStateModified(Mapper.Map<District>(oldDistrict), Mapper.Map<District>(district));
+			return Mapper.Map<DistrictDTO>(uOW.DistrictRepo.All.Where(d => d.Id == district.Id).FirstOrDefault());
 		}
 		/// <summary>
 		///  Managaer method that gets one district entry which name property value matches input parameter.
 		/// </summary>
 		/// <param name="name">Input parameter that represents name property value.</param>
 		/// <returns></returns>
-		public District getByName(string name)
+		public DistrictDTO getByName(string name)
 		{
 			if (name == "") { return null; }
-			return uOW.DistrictRepo.Get(s => s.Name == name).FirstOrDefault();
+			return Mapper.Map<DistrictDTO>(uOW.DistrictRepo.All.Where(s => s.Name == name).Include(c => c.Coordinates).FirstOrDefault());
 		}
 		/// <summary>
 		/// Managaer method that gets new list of deleted district entries. 
 		/// These entries doesnt have Deleted property set to true.
 		/// </summary>
 		/// <returns></returns>
-		public IEnumerable<District> getDeletedDistricts()
+		public IEnumerable<DistrictDTO> getDeletedDistricts()
 		{
-			var deletedDistricts = uOW.DistrictRepo.Get(s => s.Deleted == true).ToList();
+			var deletedDistricts = uOW.DistrictRepo.All.Where(s => s.Deleted == true).Include(c => c.Coordinates).ToList();
 			if (deletedDistricts != null)
 			{
-				return deletedDistricts;
+				return Mapper.Map<List<DistrictDTO>>(deletedDistricts);
 			}
 			return null;
 		}
@@ -207,7 +245,7 @@ namespace BAL.Manager
 		/// </summary>
 		/// <param name="Id">Input parameter that represents id property value.</param>
 		/// <returns></returns>
-		public District RestoreDistrict(int Id)
+		public DistrictDTO RestoreDistrict(int Id)
 		{
 			if (Id <= 0) { return null; }
 			var deletedDistrict = uOW.DistrictRepo.GetByID(Id);
@@ -216,7 +254,7 @@ namespace BAL.Manager
 				return null;
 			}
 			var restoredDistrict = SetStateRestored(deletedDistrict);
-			return restoredDistrict;
+			return Mapper.Map<DistrictDTO>(restoredDistrict);
 		}
 		/// <summary>
 		/// Private managaer method that incapsulates edititng logic. Used by edit method, 
@@ -227,8 +265,9 @@ namespace BAL.Manager
 		/// <returns></returns>
 		private District SetDistrictStateModified(District oldDistrict, District inputDistrict)
 		{
-			uOW.DistrictRepo.SetStateModified(oldDistrict);
 			oldDistrict.Name = inputDistrict.Name;
+			oldDistrict.Coordinates = inputDistrict.Coordinates;
+			uOW.DistrictRepo.SetStateModified(oldDistrict);
 			uOW.Save();
 			return oldDistrict;
 		}
@@ -239,16 +278,16 @@ namespace BAL.Manager
 		/// <param name="Id">Input parameter that represents id property value.</param>
 		/// <param name="Name">Input parameter that represents name property value.</param>
 		/// <returns></returns>
-		public District SetDistrictDeleted(int Id, string Name)
+		public DistrictDTO SetDistrictDeleted(int Id, string Name)
 		{
 			if (Id <= 0 || Name == "") { return null; }
-			var districtToDelete = uOW.DistrictRepo.Get(s => s.Id == Id & s.Name == Name & s.Deleted == false).FirstOrDefault();
+			var districtToDelete = uOW.DistrictRepo.All.Where(s => s.Id == Id & s.Name == Name & s.Deleted == false).Include(c => c.Coordinates).FirstOrDefault();
 			if (districtToDelete == null)
 			{
 				return null;
 			}
 			var deletedDistrict = SetStateDeleted(districtToDelete);
-			return deletedDistrict;
+			return Mapper.Map<DistrictDTO>(deletedDistrict);
 		}
 		/// <summary>
 		/// Private manager method that incapsulates all logic we need to set specific district entry to deleted state.
@@ -276,9 +315,17 @@ namespace BAL.Manager
 			return district;
 		}
 
-		public IQueryable<District> GetIQueryableDistricts()
+		public CoordinateDTO AddNewCoordinate(CoordinateDTO newCoordinate)
 		{
-			return uOW.DistrictRepo.All;
+			uOW.DistrictCoordinatesRepo.Insert(Mapper.Map<Coordinate>(newCoordinate));
+			uOW.Save();
+			var newCoord = uOW.DistrictCoordinatesRepo.All.Where(c => c.Latitude == newCoordinate.Latitude && c.Longitude == newCoordinate.Longitude).FirstOrDefault();
+			return Mapper.Map<CoordinateDTO>(newCoord);
+		}
+
+		public IQueryable<DistrictDTO> GetIQueryableDistricts()
+		{
+			return Mapper.Map<IQueryable<DistrictDTO>>(uOW.DistrictRepo.All);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿@model IList<Model.District>
+﻿@model IList<Model.DTO.DistrictDTO>
 
 <div class="modal fade" id="add-item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -19,7 +19,7 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-warning" data-dismiss="modal">
+				<button type="button" class="btn btn-warning" data-dismiss="modal" id="cencelAddDistrict">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true">&nbsp;</span>@Resources.Resource.cancelButton
 				</button>
 				<button form="add-district-form" role="button" class="btn btn-success" type="button" onclick="validateAddDistrict();">

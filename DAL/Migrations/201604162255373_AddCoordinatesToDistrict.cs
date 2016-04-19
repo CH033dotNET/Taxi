@@ -3,7 +3,7 @@ namespace DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddCourdinatesToDistrict : DbMigration
+    public partial class AddCoordinatesToDistrict : DbMigration
     {
         public override void Up()
         {
@@ -14,18 +14,18 @@ namespace DAL.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Latitude = c.Double(nullable: false),
                         Longitude = c.Double(nullable: false),
-                        District_Id = c.Int(),
+                        DistrictId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Districts", t => t.District_Id)
-                .Index(t => t.District_Id);
+                .ForeignKey("dbo.Districts", t => t.DistrictId, cascadeDelete: true)
+                .Index(t => t.DistrictId);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.DistrictCoordinates", "District_Id", "dbo.Districts");
-            DropIndex("dbo.DistrictCoordinates", new[] { "District_Id" });
+            DropForeignKey("dbo.DistrictCoordinates", "DistrictId", "dbo.Districts");
+            DropIndex("dbo.DistrictCoordinates", new[] { "DistrictId" });
             DropTable("dbo.DistrictCoordinates");
         }
     }
