@@ -913,4 +913,7 @@
   <data name="OrdersRoma" xml:space="preserve">
     <value>Orders</value>
   </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
 </root>

@@ -40,17 +40,14 @@ namespace MainSaite.Controllers
 		{
 			AutoParkViewModel CarsViewModel = new AutoParkViewModel();
 
-			if (SessionUser == null || SessionUser.RoleId != (int)AvailableRoles.Driver)
-			{
-				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
-			}
-			else
+			if (SessionUser != null && (SessionUser.RoleId == (int)AvailableRoles.Driver || SessionUser.RoleId == (int)AvailableRoles.FreeDriver))
 			{
 				int userId = SessionUser.Id;
 				CarsViewModel.Cars = carManager.getCarsByUserID(userId).ToList();
 				CarsViewModel.Drivers = userManager.GetDriversExceptCurrent(userId);
 				return View(CarsViewModel);
 			}
+			else return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 		}
 
 		public JsonResult SortBy(string parameter)

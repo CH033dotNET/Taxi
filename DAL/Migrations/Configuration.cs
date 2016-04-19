@@ -39,68 +39,89 @@ namespace DAL.Migrations
 				new Role() { Name = "Operator", Description = "Operator" },
 				new Role() { Name = "Client", Description = "Client" },
 				new Role() { Name = "ReportViewer", Description = "Report Viewer" },
-				new Role() { Name = "Administrator", Description = "Administrator" } 
+				new Role() { Name = "Administrator", Description = "Administrator" },
+				new Role() { Name = "Supporter", Description = "Support Service"},
+				new Role() { Name = "FreeDriver", Description = "Free Driver" }
 			};
 
-
 			roles.ForEach(s => context.Roles.AddOrUpdate(p => p.Name, s));
-
 			context.SaveChanges();
 
-			if (!context.Users.Any())
+			var users = new List<User>
 			{
-				context.Users.AddOrUpdate(
-                new User()
-                {
-                    UserName = "admin",
-                    Password = "password",
-                    Email = "admin@gmail.com",
-                    RoleId = 5,
-                    Lang = "en-us"
-                },
+				new User()
+				{
+					UserName = "admin",
+					Password = "password",
+					Email = "admin@gmail.com",
+					RoleId = 5,
+					Lang = "en-us"
+				},
 				new User()
 				{
 					UserName = "driver",
 					Password = "password",
 					Email = "driver@gmail.com",
 					RoleId = 1,
-                    Lang = "en-us"
+					Lang = "en-us"
 				},
-                new User()
-                {
-                    UserName = "operator",
-                    Password = "password",
-                    Email = "operator@gmail.com",
-                    RoleId = 2,
-                    Lang = "en-us"
-                },
-                new User()
-                {
-                    UserName = "client",
-                    Password = "password",
-                    Email = "client@gmail.com",
-                    RoleId = 3,
-                    Lang = "en-us"
-                },
-                new User()
-                {
-                    UserName = "report",
-                    Password = "password",
-                    Email = "report@gmail.com",
-                    RoleId = 4,
-                    Lang = "en-us"
-                },
 				new User()
-                {
-                    UserName = "Nickolas",
-                    Password = "password",
-                    Email = "coyotet@gmail.com",
-                    RoleId = 1,
-                    Lang = "en-us"
-                });
-				var users = Angie.Configure<User>().Fill(x => x.UserName).AsTwitterHandle<User>().Fill(x => x.Email).AsEmailAddress<User>()
-                .MakeList<User>(30).Select(x => new User { Password = "123456", RoleId = random.Next(1, 5), Email = x.Email, UserName = x.UserName, Lang = "en-us" });
-				context.Users.AddRange(users);
+				{
+					UserName = "operator",
+					Password = "password",
+					Email = "operator@gmail.com",
+					RoleId = 2,
+					Lang = "en-us"
+				},
+				new User()
+				{
+					UserName = "client",
+					Password = "password",
+					Email = "client@gmail.com",
+					RoleId = 3,
+					Lang = "en-us"
+				},
+				new User()
+				{
+					UserName = "report",
+					Password = "password",
+					Email = "report@gmail.com",
+					RoleId = 4,
+					Lang = "en-us"
+				},
+				new User()
+				{
+					UserName = "Nickolas",
+					Password = "password",
+					Email = "coyotet@gmail.com",
+					RoleId = 1,
+					Lang = "en-us"
+				},
+				new User()
+				{
+					UserName = "support",
+					Password = "password",
+					Email = "support@gmail.com",
+					RoleId = 6,
+					Lang = "en-us"
+				},
+				new User()
+				{
+					UserName = "freedriver",
+					Password = "password",
+					Email = "freedriver@gmail.com",
+					RoleId = 7,
+					Lang = "en-us"
+				}
+			};
+
+			users.ForEach(u => context.Users.AddOrUpdate(p => p.UserName, u));
+
+			if (!context.Users.Any())
+			{
+				var rundomUsers = Angie.Configure<User>().Fill(x => x.UserName).AsTwitterHandle<User>().Fill(x => x.Email).AsEmailAddress<User>()
+				.MakeList<User>(30).Select(x => new User { Password = "123456", RoleId = random.Next(1, 5), Email = x.Email, UserName = x.UserName, Lang = "en-us" });
+				context.Users.AddRange(rundomUsers);
 				context.SaveChanges();
 			}
 			//Addres

@@ -612,29 +612,29 @@ tr.pager td {
         text-align: center;
     }
 
-        #login ul {
-            margin: 5px 0;
-            padding: 0;
-        }
+    #login ul {
+        margin: 5px 0;
+        padding: 0;
+    }
 
-        #login li {
-            display: inline;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
+    #login li {
+        display: inline;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
 
-        #login a {
-            background: none;
-            color: #999;
-            font-weight: 600;
-            margin: 2px;
-            padding: 0;
-        }
+    #login a {
+        background: none;
+        color: #999;
+        font-weight: 600;
+        margin: 2px;
+        padding: 0;
+    }
 
-        #login a:hover {
-            color: #333;
-        }
+    #login a:hover {
+        color: #333;
+    }
 
     /* menu */
     nav {
@@ -647,14 +647,13 @@ tr.pager td {
         text-align: center;
     }
 
-        ul#menu li {
-            margin: 0;
-            padding: 0;
-        }
+    ul#menu li {
+        margin: 0;
+        padding: 0;
+    }
 
 
-    /* main layout
-    ----------------------------------------------------------*/
+    /* main layout ----------------------------------------------------------*/
     .main-content,
     .featured + .main-content {
         background-position: 10px 0;
@@ -681,23 +680,23 @@ tr.pager td {
         padding-left: 0;
     }
 
-        ol.round li {
-            padding-left: 10px;
-            margin: 25px 0;
-        }
+    ol.round li {
+        padding-left: 10px;
+        margin: 25px 0;
+    }
 
-            ol.round li.zero,
-            ol.round li.one,
-            ol.round li.two,
-            ol.round li.three,
-            ol.round li.four,
-            ol.round li.five,
-            ol.round li.six,
-            ol.round li.seven,
-            ol.round li.eight,
-            ol.round li.nine {
-                background: none;
-            }
+    ol.round li.zero,
+    ol.round li.one,
+    ol.round li.two,
+    ol.round li.three,
+    ol.round li.four,
+    ol.round li.five,
+    ol.round li.six,
+    ol.round li.seven,
+    ol.round li.eight,
+    ol.round li.nine {
+        background: none;
+    }
 
      /* features */
      section.feature {
@@ -706,12 +705,12 @@ tr.pager td {
         width: auto;
      }
 
-        section.feature img {
-            color: #999;
-            content: attr(alt);
-            font-size: 1.5em;
-            font-weight: 600;
-        }
+    section.feature img {
+        color: #999;
+        content: attr(alt);
+        font-size: 1.5em;
+        font-weight: 600;
+    }
 
     /* forms */
     input {
@@ -725,10 +724,10 @@ tr.pager td {
         width: auto;
     }
 
-        #loginForm .validation-error {
-            display: block;
-            margin-left: 15px;
-        }
+    #loginForm .validation-error {
+        display: block;
+        margin-left: 15px;
+    }
 
     #socialLoginForm {
         margin-left: 0;
@@ -737,8 +736,7 @@ tr.pager td {
     }
 
 
-    /* footer
-    ----------------------------------------------------------*/
+    /* footer ----------------------------------------------------------*/
     footer .float-left,
     footer .float-right {
         float: none;
@@ -750,19 +748,18 @@ tr.pager td {
         padding: 10px 0;
     }
 
-        footer p {
-            margin: 0;
-        }
+    footer p {
+        margin: 0;
+    }
 }
 
 #clValidReg{
-    color:red;
-
+	color:red;
 }
 
-  .hint {
-    font-family: 'Open Sans Condensed', sans-serif; font-size: 48px; color: #333; margin-top:50px;
-    }
-   .ieDisable {
-  margin-top:50px;
-    }
+.hint {
+	font-family: 'Open Sans Condensed', sans-serif; font-size: 48px; color: #333; margin-top:50px;
+}
+.ieDisable {
+	margin-top:50px;
+}

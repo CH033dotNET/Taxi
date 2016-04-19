@@ -40,14 +40,13 @@ namespace MainSaite.Controllers
 
 		public ActionResult Index()
 		{
-			if (null == Session["User"] || ((UserDTO)Session["User"]).RoleId != (int)AvailableRoles.Driver)
-			{
-				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
-			}
-			else
+
+			if (SessionUser != null && (SessionUser.RoleId == (int)AvailableRoles.Driver || SessionUser.RoleId == (int)AvailableRoles.FreeDriver))
 			{
 				return View();
 			}
+			else
+				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 		}
 		/// <summary>
 		/// Checks if there are uncompleted workshifts for current Driver

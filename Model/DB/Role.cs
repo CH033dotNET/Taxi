@@ -23,7 +23,6 @@ namespace Model
 			Id = role.Id;
 			Name = role.Name;
 			Description = role.Description;
-
 		}
 
 	}

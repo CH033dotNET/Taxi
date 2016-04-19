@@ -15,10 +15,9 @@ namespace Model.DB
 		[Compare("Password")]
 		public string ConfirmPassword { get; set; }
 
-		public RegistrationModel()
-		{
-			RoleId = (int)AvailableRoles.Client;
-		}
-
+		//public RegistrationModel()
+		//{
+		//		RoleId = (int)AvailableRoles.Client;
+		//}
 	}
 }

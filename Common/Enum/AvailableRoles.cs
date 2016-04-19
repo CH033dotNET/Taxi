@@ -12,7 +12,13 @@ namespace Common.Enum
 		Operator		= 2, 
 		Client			= 3,
 		ReportViewer	= 4, 
-		Administrator	= 5
-
-    }
+		Administrator	= 5,
+		Support			= 6,
+		FreeDriver      = 7
+	}
+	public enum AvailableRolesViaRegistration
+	{
+		FreeDriver = 7,
+		Client = 3
+	}
 }

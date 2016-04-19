@@ -156,11 +156,20 @@ namespace BAL.Manager
 
 		public UserDTO InsertUser(UserDTO user)
 		{
+			//var temp = Mapper.Map<User>(user);
+
+			user.UserName = user.UserName.Trim();
+			user.Password = user.Password.Trim();
+	        user.Email = user.Email.Trim();
+
+			var role = GerRoleForUser(user);
+
+			user.Role = role;
+			user.RoleId = role.Id;
+
 			var temp = Mapper.Map<User>(user);
-			user.UserName = temp.UserName.Trim();
-			user.Password = temp.Password.Trim();
-	        user.Email = temp.Email.Trim();
-			uOW.UserRepo.Insert(temp);
+
+			 uOW.UserRepo.Insert(temp);
 			// TODO:
 			//uOW.UserInfoRepo.Insert(new UserInfo { UserId = user.Id });
 			uOW.Save();
@@ -192,11 +201,13 @@ namespace BAL.Manager
 				return null;
 			}*/
 			uOW.UserRepo.SetStateModified(temp);
+
+			temp.Role = user.Role;
 			temp.RoleId = user.RoleId;
 			temp.Email = user.Email;
 			temp.UserName = user.UserName;
             temp.Password = user.Password;
-            temp.Lang = user.Lang;
+            //temp.Lang = user.Lang;
 			uOW.Save();
 			return Mapper.Map<UserDTO>(temp);
 		}
@@ -289,7 +300,7 @@ namespace BAL.Manager
 
 		public Role GerRoleForUser(UserDTO user)
 		{
-			var a = uOW.RoleRepo.All.Where(x => x.Name == user.Role.Name).First();
+     		var a = uOW.RoleRepo.All.Where(x => x.Name == user.Role.Name).First();
 
 			return a;
 		}
@@ -307,7 +318,8 @@ namespace BAL.Manager
 
 		public List<UserDTO> GetDrivers()
 		{
-			List<User> drivers = uOW.UserRepo.All.Where(x => x.RoleId == (int)AvailableRoles.Driver).ToList();
+
+			List<User> drivers = uOW.UserRepo.All.Where(x => x.RoleId == (int)AvailableRoles.Driver || x.RoleId == (int)AvailableRoles.FreeDriver).ToList();
 			List<UserDTO> driversDTO = new List<UserDTO>();
 
 			foreach (var i in drivers)

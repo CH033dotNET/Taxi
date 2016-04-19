@@ -439,7 +439,7 @@
     <value>Ваше місцезнаходження</value>
   </data>
   <data name="YourCurrentLocation" xml:space="preserve">
-    <value>Ви зараз знаходитися на </value>
+    <value>Ви зараз знаходитесь на </value>
   </data>
   <data name="ConfirmDeletingAddress" xml:space="preserve">
     <value>Ви впевненні, що бажаєте видалити данну адресу зі списку?</value>
@@ -917,5 +917,8 @@
   </data>
   <data name="OrdersRoma" xml:space="preserve">
     <value>Замовлення</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Служба підтримки</value>
   </data>
 </root>
