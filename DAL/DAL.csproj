@@ -203,13 +203,17 @@
     <Compile Include="Migrations\201511251127340_UserLang.Designer.cs">
       <DependentUpon>201511251127340_UserLang.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604162255373_AddCoordinatesToDistrict.cs" />
-    <Compile Include="Migrations\201604162255373_AddCoordinatesToDistrict.Designer.cs">
-      <DependentUpon>201604162255373_AddCoordinatesToDistrict.cs</DependentUpon>
+    <Compile Include="Migrations\201604141929545_AddCourdinatesToDistrict.cs" />
+    <Compile Include="Migrations\201604141929545_AddCourdinatesToDistrict.Designer.cs">
+      <DependentUpon>201604141929545_AddCourdinatesToDistrict.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201604171627114_AddedSupportMessage.cs" />
     <Compile Include="Migrations\201604171627114_AddedSupportMessage.Designer.cs">
       <DependentUpon>201604171627114_AddedSupportMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604191354507_FixCoordinate.cs" />
+    <Compile Include="Migrations\201604191354507_FixCoordinate.Designer.cs">
+      <DependentUpon>201604191354507_FixCoordinate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -344,11 +348,14 @@
     <EmbeddedResource Include="Migrations\201511251127340_UserLang.resx">
       <DependentUpon>201511251127340_UserLang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604162255373_AddCoordinatesToDistrict.resx">
-      <DependentUpon>201604162255373_AddCoordinatesToDistrict.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604141929545_AddCourdinatesToDistrict.resx">
+      <DependentUpon>201604141929545_AddCourdinatesToDistrict.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604171627114_AddedSupportMessage.resx">
       <DependentUpon>201604171627114_AddedSupportMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604191354507_FixCoordinate.resx">
+      <DependentUpon>201604191354507_FixCoordinate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
