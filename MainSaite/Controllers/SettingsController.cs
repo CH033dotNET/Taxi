@@ -261,9 +261,7 @@ namespace MainSaite.Controllers
 			if (checkObject == null) { return Json(new { success = false }, JsonRequestBehavior.AllowGet); }
 			else
 			{
-				var deletedDistricts = districtManager.getDeletedDistricts();
-				var workingDistricts = districtManager.getDistricts();
-				return Json(new { success = true, deletedDistricts, workingDistricts }, JsonRequestBehavior.AllowGet);
+				return Json(new { success = true, district = checkObject }, JsonRequestBehavior.AllowGet);
 			}
 		}
 

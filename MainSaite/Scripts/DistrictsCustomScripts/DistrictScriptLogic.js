@@ -7,8 +7,9 @@ var sortDistrictCounter;
 var sortDeletedDistrictCounter;
 
 $(document).ready(function () {
-	//jsController.renderData();
+	jsController.orderAllCoordinates(jsController.data.items);
 });
+
 var jsController = {
 	data: { items: encodedData },
 	deletedData: { deleted: encodedDeleted },
@@ -22,9 +23,10 @@ var jsController = {
 				var path = item.Coordinates.map(function (item) {
 					return {
 						lat: item.Latitude,
-						lng: item.Longitude
+						lng: item.Longitude,
 					}
 				});
+
 				item.Polygon = new google.maps.Polygon({
 					paths: path,
 					map: map,
@@ -47,12 +49,15 @@ var jsController = {
 			cache: false,
 			dataType: "JSON",
 		}).done(function (result) {
+			jsController.clearMap();
 			if (result.success && result != null) {
 				jsController.data.items = result.resultDistricts;
+				jsController.orderAllCoordinates(jsController.data.items);
 				jsController.renderData();
 			}
 			else if (!result.success && result.districts != undefined) {
 				jsController.data.items = result.districts;
+				jsController.orderAllCoordinates(jsController.data.items);
 				jsController.renderData();
 			}
 			else { return false; }
@@ -69,6 +74,7 @@ var jsController = {
 		}).done(function (result) {
 			if (result.success && result != null) {
 				jsController.deletedData.deleted = result.resultDistricts;
+				jsController.orderAllCoordinates(jsController.deletedData.deleted);
 				jsController.renderDeletedData();
 			}
 			else if (!result.success && result.districts != undefined) {
@@ -101,7 +107,9 @@ var jsController = {
 			dataType: "JSON",
 		}).done(function (result) {
 			if (result.success && result != null) {
+				jsController.clearMap();
 				jsController.data.items = result.resultDistricts;
+				jsController.orderAllCoordinates(jsController.data.items);
 				jsController.renderData();
 			}
 			else { return false; }
@@ -139,16 +147,19 @@ var jsController = {
 	renderDeletedData: function () {
 		$('#districtDeletedTable tbody').html(deletedDistrictsTemplate(this.deletedData));
 	},
+
 	//! function that opens basket modal window
 	DistrictBasket: function (e) {
 		$.ajax({
 			url: "./DeletedDistricts", // <----------------------------------------------------!!
 		}).done(function (result) {
 			jsController.deletedData.deleted = result.deletedDistricts;
+			jsController.orderAllCoordinates(jsController.deletedData.deleted);
 			jsController.renderDeletedData();
 			$('#deletedList').modal('show');
 		});
 	},
+
 	//! function that restore distirct form deleted state
 	restoreDistrict: function (e) {
 		var itemId = $(e).attr('data-items-id'); // get model item id from template
@@ -159,21 +170,16 @@ var jsController = {
 			data: { id: itemId }
 		}).done(function (result) {
 			if (result.success && result != null) {
-				jsController.deletedData.deleted = result.deletedDistricts;
-				jsController.data.items = result.workingDistricts;
+				var restored = jsController.deletedData.deleted.find(function (item) {
+					return item.Id == itemId;
+				});
+				jsController.deleteDistrictFromItems(jsController.deletedData.deleted, restored);
+				restored.Deleted = false;
+				jsController.data.items.push(restored);
 				jsController.renderDeletedData();
 				jsController.renderData();
 			}
 			else { jsController.getDistrictErrorMessage(); }
-		});
-	},
-
-	refreshData: function (e) {
-		$.ajax({
-			url: "./GetAvailableDistricts/", // <----------------------------------------------------!!
-		}).done(function (result) {
-			jsController.data.items = result;
-			jsController.renderData();
 		});
 	},
 	//! function for adding new districts. Opens modal window.
@@ -193,7 +199,7 @@ var jsController = {
 		var data = {
 			Name: newDistrictName,
 			Deleted: false,
-			Coordinates: coordinates
+			Coordinates: this.setCoordinatesIndex(coordinates)
 		};
 
 		$.ajax({
@@ -238,7 +244,7 @@ var jsController = {
 				if (result.success && result != null) {
 					del.Marker.setMap(null);
 					del.Polygon.setMap(null);
-					jsController.deleteDistrictFromItems(del);
+					jsController.deleteDistrictFromItems(jsController.data.items, del);
 					jsController.renderData();
 				}
 				else { jsController.getDistrictErrorMessage(); }
@@ -275,14 +281,16 @@ var jsController = {
 				Id: id,
 				Deleted: item.Deleted,
 				Name: name,
-				Coordinates: item.Coordinates
+				Coordinates: this.setCoordinatesIndex(item.Coordinates)
 			}),
 			contentType: "application/json; charset=utf-8",
 			type: "post",
 			dataType: "json",
 		}).done(function (result) {
 			if (result.success && result != null) {
+				item.Name = name;
 				item.Marker.labelContent = name;
+				item.Marker.setMap(map);
 				jsController.renderData();
 				document.getElementById("edit-district-form").reset();
 			}
@@ -300,18 +308,12 @@ var jsController = {
 		$('#get-district-error-modal').modal('show');
 	},
 
-	mapDistricts: function (items) {
-		var newItems = [];
-		items.forEach(function (item) {
-			var d = jsController.getDistrictById(item.Id);
-			if (d) {
-				newItems.push(d)
-			}
-			else {
-				newItems.push(item);
-			}
+	//! set rigth indexes for chenched or added item
+	setCoordinatesIndex: function (items) {
+		items.forEach(function (item, index) {
+			item.Index = index;
 		});
-		this.data.items = newItems;
+		return items;
 	},
 
 	getDistrictById: function (id) {
@@ -321,8 +323,28 @@ var jsController = {
 		});
 	},
 
-	deleteDistrictFromItems: function (item) {
-		jsController.data.items.splice(jsController.data.items.indexOf(item), 1);
+	//! set all coordinates for items in right order 
+	orderAllCoordinates: function (items) {
+		items.forEach(function (item) {
+			var orderedCoords = [];
+			for (var i = 0; i < item.Coordinates.length; i++) {
+				orderedCoords.push(item.Coordinates.find(function (f) { return f.Index == i }));
+			}
+			item.Coordinates = orderedCoords;
+		});
+
+	},
+
+	clearMap: function () {
+		this.data.items.forEach(function (item) {
+			item.Polygon.setMap(null);
+			item.Marker.setMap(null);
+		});
+	},
+
+	//delete item from array of items
+	deleteDistrictFromItems: function (items, item) {
+		items.splice(items.indexOf(item), 1);
 	}
 };
 
@@ -342,7 +364,10 @@ var map;
 var polygonOptions = {
 	strokeWeight: 0,
 	fillOpacity: 0.45,
-	editable: false
+	editable: false,
+	strokeWeight: 2,
+	fillColor: "#FD8E00",
+	strokeColor: "#FD8E00"
 };
 
 
@@ -358,7 +383,7 @@ function initMap() {
 	//set drawing options
 	var drawingManager = new google.maps.drawing.DrawingManager({
 		//allow to edit figures
-		drawingMode: google.maps.drawing.OverlayType.POLYGON,
+		drawingMode: null,
 		drawingControl: true,
 		//add control buttons
 		drawingControlOptions: {
@@ -397,6 +422,7 @@ function initMap() {
 	jsController.renderData();
 }
 
+//events for polygons
 function setEventsForPolygon(shape) {
 	google.maps.event.addListener(shape, 'click', function () {
 		setSelection(shape);
@@ -413,6 +439,8 @@ function setEventsForPolygon(shape) {
 		});
 		google.maps.event.addListener(item, 'set_at', function (number, path) {
 			var edit = district.Coordinates.find(function (i) {
+				var lat = path.lat();
+				var lng = path.lng();
 				if (i.Latitude == path.lat() && i.Longitude == path.lng()) {
 					return true;
 				}
@@ -430,11 +458,12 @@ function setEventsForPolygon(shape) {
 	});
 }
 
+//if don`t press add button
 $('#cencelAddDistrict').click(function () {
 	deleteselectedDistrict();
 });
 
-
+//map coordinates according to DB
 function mapCoordinates(polygon) {
 	return getAllLatLngs(polygon).map(function (item) {
 		return {
@@ -444,6 +473,7 @@ function mapCoordinates(polygon) {
 	});
 }
 
+
 function createMarkerForPolygon(figure, name) {
 	//create label for name
 	var marker = new MarkerWithLabel({
@@ -452,7 +482,7 @@ function createMarkerForPolygon(figure, name) {
 		raiseOnDrag: false,
 		map: map,
 		labelContent: name,
-		labelAnchor: new google.maps.Point(-10, 0),
+		labelAnchor: new google.maps.Point(-20, 0),
 		labelClass: "labels", // the CSS class for the label
 		labelStyle: { opacity: 1.0 },
 		icon: " ", //without icon

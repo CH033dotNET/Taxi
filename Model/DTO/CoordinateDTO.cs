@@ -14,6 +14,8 @@ namespace Model.DTO
 
 		public double Longitude { get; set; }
 
+		public int Index { get; set; }
+
 		public int DistrictId { get; set; }
 	}
 }
