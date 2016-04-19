@@ -38,5 +38,6 @@ namespace DAL
 		public DbSet<Order> Orders { get; set; }
 		public DbSet<WorkerStatus> WorkersStatuses { get; set; }
 		public DbSet<SupportMessage> SupportChat { get; set; }
+		public DbSet<Coordinate> DistrictCoordiantes { get; set; }
 	}
 }

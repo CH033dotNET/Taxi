@@ -86,3 +86,8 @@
 #districtTableResponsive{
 	overflow-x: visible;
 }
+
+#map{
+	width : 100%;
+	height : 500px;
+}

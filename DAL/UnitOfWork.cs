@@ -33,6 +33,8 @@ namespace DAL
 		private IGenericRepository<Coordinates> coordinatesHistoryRepo;
 		private IGenericRepository<Order> orderRepo;
 		private IGenericRepository<WorkerStatus> workerStatusRepo;
+
+		private IGenericRepository<Coordinate> districtCoordinatesRepo;
 		#endregion
 
 		public UnitOfWork()
@@ -57,6 +59,8 @@ namespace DAL
 			orderRepo = new GenericRepository<Order>(context);
 
 			workerStatusRepo = new GenericRepository<WorkerStatus>(context);
+
+			districtCoordinatesRepo = new GenericRepository<Coordinate>(context);
 		}
 
 		public void Save()
@@ -180,6 +184,15 @@ namespace DAL
 			{
 				if (workerStatusRepo == null) workerStatusRepo = new GenericRepository<WorkerStatus>(context);
 				return workerStatusRepo;
+			}
+		}
+
+		public IGenericRepository<Coordinate> DistrictCoordinatesRepo
+		{
+			get
+			{
+				if (districtCoordinatesRepo == null) districtCoordinatesRepo = new GenericRepository<Coordinate>(context);
+				return districtCoordinatesRepo;
 			}
 		}
 		#endregion

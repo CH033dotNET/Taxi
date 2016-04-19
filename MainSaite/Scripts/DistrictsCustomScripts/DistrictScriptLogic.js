@@ -7,7 +7,7 @@ var sortDistrictCounter;
 var sortDeletedDistrictCounter;
 
 $(document).ready(function () {
-	jsController.renderData();
+	//jsController.renderData();
 });
 var jsController = {
 	data: { items: encodedData },
@@ -16,6 +16,26 @@ var jsController = {
 	// render non-deleted districts in template
 	renderData: function () {
 		$('#districtEditTable tbody').html(districtTemplate(this.data));
+		//initialize start data
+		jsController.data.items.forEach(function (item) {
+			if (!item.Polygon) {
+				var path = item.Coordinates.map(function (item) {
+					return {
+						lat: item.Latitude,
+						lng: item.Longitude
+					}
+				});
+				item.Polygon = new google.maps.Polygon({
+					paths: path,
+					map: map,
+				});
+				item.Polygon.setOptions(polygonOptions);
+				item.Marker = createMarkerForPolygon(item.Polygon, item.Name);
+				item.Changed = false;
+				setEventsForPolygon(item.Polygon);
+			}
+		});
+
 	},
 	//! function that is part of dinamic search. Only for searching.
 	searchDistricts: function (e) {
@@ -31,7 +51,7 @@ var jsController = {
 				jsController.data.items = result.resultDistricts;
 				jsController.renderData();
 			}
-			else if (!result.success && result.districts != undefined ) {
+			else if (!result.success && result.districts != undefined) {
 				jsController.data.items = result.districts;
 				jsController.renderData();
 			}
@@ -158,23 +178,41 @@ var jsController = {
 	},
 	//! function for adding new districts. Opens modal window.
 	addDistrict: function () {
-		var a = "breakpoint";
 		$('#add-item').modal('show');
 	},
+
+
+
 	//! function for adding new districts. Gets data and sends it on server via ajax.
 	addDistrictConfirm: function () {
-		var d = "breakpoint!";
 		var newDistrictName = $('#newDistrictName').val();
+		//set map data
+		var district = findDistrict(selectedDistrict);
+		var coordinates = mapCoordinates(district.Polygon);
+		district.Coordinates = coordinates;
+		var data = {
+			Name: newDistrictName,
+			Deleted: false,
+			Coordinates: coordinates
+		};
+
 		$.ajax({
+			contentType: "application/json; charset=utf-8",
+			type: "post",
+			dataType: "json",
 			url: "./AddDistrict", // <----------------------------------------------------!!
-			data: { Name: newDistrictName, Deleted: false }
+			data: JSON.stringify(data)
 		}).done(function (result) {
 			if (result.success && result != null) {
-				jsController.data.items = result.districts;
+				district.Id = result.district.Id;
+				district.Name = newDistrictName;
+				district.Marker = createMarkerForPolygon(district.Polygon, newDistrictName);
+				district.Coordinates = result.district.Coordinates;
 				jsController.renderData();
 				document.getElementById("add-district-form").reset();
 			}
 			else {
+				jsController.data.items.splice(jsController.data.items.indexOf(district), 1);
 				jsController.getDistrictErrorMessage();
 				document.getElementById("add-district-form").reset();
 			}
@@ -187,9 +225,9 @@ var jsController = {
 	deleteItem: function (e) {
 		itemId = $(e).attr('data-items-id');
 		itemName = $(e).attr('data-items-name');
-
 		$('.item-name').html(itemName);
 		$('#confirm-delete').modal('show');
+		var del = jsController.getDistrictById(itemId);
 
 		$('#confirm-delete .btn-ok').off("click.deleteADistrict").on("click.deleteADistrict", function () {
 			var request = $.ajax({
@@ -198,7 +236,9 @@ var jsController = {
 				method: "POST",
 			}).done(function (result) {
 				if (result.success && result != null) {
-					jsController.data.items = result.districts;
+					del.Marker.setMap(null);
+					del.Polygon.setMap(null);
+					jsController.deleteDistrictFromItems(del);
 					jsController.renderData();
 				}
 				else { jsController.getDistrictErrorMessage(); }
@@ -222,17 +262,27 @@ var jsController = {
 	},
 	//! function for editing selected district info. Gathers all data and sends it on server via ajax.
 	editConfirmDistrict: function () {
-		var datId = $('#editInputDistrictId').val();
-		var c = "breakpoint";
-		var newName = $('#newName').val();
+		var id = $('#editInputDistrictId').val();
+		var name = $('#newName').val();
+		this.editDistrict(id, name);
+	},
+
+	editDistrict: function (id, name) {
+		var item = this.getDistrictById(id);
 		$.ajax({
 			url: "./EditDistrict/", // <----------------------------------------------------!!
-			data: { id: datId, name: newName },
-			method: "POST",
-			dataType: "JSON"
+			data: JSON.stringify({
+				Id: id,
+				Deleted: item.Deleted,
+				Name: name,
+				Coordinates: item.Coordinates
+			}),
+			contentType: "application/json; charset=utf-8",
+			type: "post",
+			dataType: "json",
 		}).done(function (result) {
 			if (result.success && result != null) {
-				jsController.data.items = result.districts;
+				item.Marker.labelContent = name;
 				jsController.renderData();
 				document.getElementById("edit-district-form").reset();
 			}
@@ -248,5 +298,222 @@ var jsController = {
 	//! function that opens modal window with error message.
 	getDistrictErrorMessage: function () {
 		$('#get-district-error-modal').modal('show');
+	},
+
+	mapDistricts: function (items) {
+		var newItems = [];
+		items.forEach(function (item) {
+			var d = jsController.getDistrictById(item.Id);
+			if (d) {
+				newItems.push(d)
+			}
+			else {
+				newItems.push(item);
+			}
+		});
+		this.data.items = newItems;
+	},
+
+	getDistrictById: function (id) {
+		return this.data.items.find(function (item) {
+			if (item.Id == id) return true;
+			return false;
+		});
+	},
+
+	deleteDistrictFromItems: function (item) {
+		jsController.data.items.splice(jsController.data.items.indexOf(item), 1);
 	}
 };
+
+
+//
+//Logic for map!!!!!!!!!!
+//
+
+//init map
+google.maps.event.addDomListener(window, 'load', initMap);
+
+
+var selectedDistrict;
+//array for all regions on map
+var figures = [];
+var map;
+var polygonOptions = {
+	strokeWeight: 0,
+	fillOpacity: 0.45,
+	editable: false
+};
+
+
+function initMap() {
+
+	//create new instance of map
+	var mapDiv = document.getElementById('map');
+	map = new google.maps.Map(mapDiv, {
+		center: { lat: 48.2756705, lng: 25.8885469 },
+		zoom: 12
+	});
+
+	//set drawing options
+	var drawingManager = new google.maps.drawing.DrawingManager({
+		//allow to edit figures
+		drawingMode: google.maps.drawing.OverlayType.POLYGON,
+		drawingControl: true,
+		//add control buttons
+		drawingControlOptions: {
+			position: google.maps.ControlPosition.TOP_CENTER,
+			drawingModes: [
+			  google.maps.drawing.OverlayType.POLYGON,
+			]
+		},
+		//optins for drawing objects
+		polygonOptions: polygonOptions,
+	});
+	drawingManager.setMap(map);
+
+	//event on creating new polygon 
+	google.maps.event.addListener(drawingManager, 'polygoncomplete', function (e) {
+		jsController.addDistrict();
+		drawingManager.setDrawingMode(null);
+
+		var newShape = e;
+		jsController.data.items.push({
+			Deleted: false,
+			Polygon: newShape,
+			Name: '',
+			Marker: null,
+			Changed: false
+		});
+		setSelection(newShape);
+		setEventsForPolygon(newShape);
+	})
+
+	//only one figure can be chosen
+	google.maps.event.addListener(drawingManager, 'drawingmode_changed', clearSelection);
+	google.maps.event.addListener(map, 'click', function () {
+		clearSelection();
+	});
+	jsController.renderData();
+}
+
+function setEventsForPolygon(shape) {
+	google.maps.event.addListener(shape, 'click', function () {
+		setSelection(shape);
+	});
+	shape.getPaths().forEach(function (item) {
+		var district = findDistrict(shape);
+		google.maps.event.addListener(item, 'insert_at', function (number) {
+			var newCoord = item.getAt(number);
+			district.Coordinates.splice(number, 0, {
+				Latitude: newCoord.lat(),
+				Longitude: newCoord.lng()
+			});
+			district.Edited = true;
+		});
+		google.maps.event.addListener(item, 'set_at', function (number, path) {
+			var edit = district.Coordinates.find(function (i) {
+				if (i.Latitude == path.lat() && i.Longitude == path.lng()) {
+					return true;
+				}
+				return false;
+			});
+			var el = item.getAt(number);
+			edit.Latitude = el.lat();
+			edit.Longitude = el.lng();
+			district.Edited = true;
+
+		});
+		google.maps.event.addListener(item, 'remove_at', function () {
+			district.Edited = true;
+		});
+	});
+}
+
+$('#cencelAddDistrict').click(function () {
+	deleteselectedDistrict();
+});
+
+
+function mapCoordinates(polygon) {
+	return getAllLatLngs(polygon).map(function (item) {
+		return {
+			Latitude: item.lat(),
+			Longitude: item.lng()
+		}
+	});
+}
+
+function createMarkerForPolygon(figure, name) {
+	//create label for name
+	var marker = new MarkerWithLabel({
+		position: getPolygonCenter(figure),
+		draggable: false,
+		raiseOnDrag: false,
+		map: map,
+		labelContent: name,
+		labelAnchor: new google.maps.Point(-10, 0),
+		labelClass: "labels", // the CSS class for the label
+		labelStyle: { opacity: 1.0 },
+		icon: " ", //without icon
+		visible: false,
+	});
+	//show name when cursor are in figure
+	google.maps.event.addListener(figure, "mousemove", function (event) {
+		marker.setPosition(event.latLng);
+		marker.setVisible(true);
+	});
+	//hide name
+	google.maps.event.addListener(figure, "mouseout", function (event) {
+		marker.setVisible(false);
+	});
+	return marker;
+}
+
+function findDistrict(polygon) {
+	return jsController.data.items.find(function (item) {
+		if (item.Polygon == polygon) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	});
+}
+
+function clearSelection() {
+	if (selectedDistrict) {
+		var edit = findDistrict(selectedDistrict);
+		if (edit.Edited) {
+			jsController.editDistrict(edit.Id, edit.Name);
+		}
+		selectedDistrict.setEditable(false);
+		selectedDistrict = null;
+	}
+}
+
+function setSelection(shape) {
+	clearSelection();
+	selectedDistrict = shape;
+	shape.setEditable(true);
+}
+
+function getAllLatLngs(polygon) {
+	var latLngs = [];
+	var paths = polygon.getPaths();
+	paths.forEach(function (item) {
+		item.forEach(function (ll) {
+			latLngs.push(ll);
+		});
+	});
+	return latLngs;
+}
+
+function getPolygonCenter(poly) {
+	var bounds = new google.maps.LatLngBounds();
+	getAllLatLngs(poly).forEach(function (item) {
+		bounds.extend(item);
+	});
+
+	return bounds.getCenter();
+}

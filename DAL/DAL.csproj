@@ -211,6 +211,14 @@
     <Compile Include="Migrations\201604171627114_AddedSupportMessage.Designer.cs">
       <DependentUpon>201604171627114_AddedSupportMessage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604191354507_FixCoordinate.cs" />
+    <Compile Include="Migrations\201604191354507_FixCoordinate.Designer.cs">
+      <DependentUpon>201604191354507_FixCoordinate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604191411150_AddIndexToCoordinate.cs" />
+    <Compile Include="Migrations\201604191411150_AddIndexToCoordinate.Designer.cs">
+      <DependentUpon>201604191411150_AddIndexToCoordinate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -349,6 +357,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604171627114_AddedSupportMessage.resx">
       <DependentUpon>201604171627114_AddedSupportMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604191354507_FixCoordinate.resx">
+      <DependentUpon>201604191354507_FixCoordinate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604191411150_AddIndexToCoordinate.resx">
+      <DependentUpon>201604191411150_AddIndexToCoordinate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

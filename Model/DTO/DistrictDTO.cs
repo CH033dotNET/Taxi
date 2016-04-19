@@ -1,29 +1,27 @@
-﻿using Model.DB;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model
+namespace Model.DTO
 {
-	public class District
+	public class DistrictDTO
 	{
-		[Key]
 		public int Id { get; set; }
 
 		[Required]
 		[MinLength(4, ErrorMessage = "Минимальная длинна - 4 символа")]
 		public string Name { get; set; }
 
-		public List<Coordinate> Coordinates { get; set; }
+		public List<CoordinateDTO> Coordinates { get; set; }
 
 		public bool Deleted { get; set; }
 
-		public District()
+		public DistrictDTO()
 		{
-			Coordinates = new List<Coordinate>();
+			Coordinates = new List<CoordinateDTO>();
 		}
 	}
 }

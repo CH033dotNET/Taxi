@@ -9,7 +9,7 @@ using DAL;
 
 namespace BAL.Tools
 {
-	public class DistrictModelValidator : AbstractValidator<District>
+	public class DistrictModelValidator : AbstractValidator<Model.DTO.DistrictDTO>
 	{
 		public DistrictModelValidator()
 		{

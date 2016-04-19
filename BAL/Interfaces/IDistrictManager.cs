@@ -1,33 +1,34 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using Model.DTO;
 
 namespace BAL.Manager
 {
 	public interface IDistrictManager
 	{
-		string addDistrict(string dName);
+		DistrictDTO addDistrict(DistrictDTO district);
 		string deleteById(int id);
-		Model.District EditDistrict(Model.District district);
-		Model.District getById(int id);
-		Model.District getByName(string name);
-		IEnumerable<Model.District> getDeletedDistricts();
-		IEnumerable<Model.District> getDistricts();
-		Model.District getOneDistrictByItsID(int id);
-		Model.District RestoreDistrict(int Id);
-		Model.District SetDistrictDeleted(int Id, string Name);
-		IEnumerable<Model.District> GetSortedDistricts(string parameter);
+		DistrictDTO EditDistrict(DistrictDTO district);
+		DistrictDTO getById(int id);
+		DistrictDTO getByName(string name);
+		IEnumerable<DistrictDTO> getDeletedDistricts();
+		IEnumerable<DistrictDTO> getDistricts();
+		DistrictDTO getOneDistrictByItsID(int id);
+		DistrictDTO RestoreDistrict(int Id);
+		DistrictDTO SetDistrictDeleted(int Id, string Name);
+		IEnumerable<DistrictDTO> GetSortedDistricts(string parameter);
 
-		IEnumerable<Model.District> GetSortedDeletedDistrictsBy(string parameter);
+		IEnumerable<DistrictDTO> GetSortedDeletedDistrictsBy(string parameter);
 
-		IEnumerable<Model.District> searchDistricts(string parameter);
+		IEnumerable<DistrictDTO> searchDistricts(string parameter);
 
-		IEnumerable<Model.District> searchAndSortDistricts(string search, string sort);
+		IEnumerable<DistrictDTO> searchAndSortDistricts(string search, string sort);
 
-		IEnumerable<Model.District> searchAndSortDeletedDistricts(string search, string sort);
+		IEnumerable<DistrictDTO> searchAndSortDeletedDistricts(string search, string sort);
 
-		IEnumerable<Model.District> searchDeletedDistricts(string parameter);
+		IEnumerable<DistrictDTO> searchDeletedDistricts(string parameter);
 
-		IQueryable<Model.District> GetIQueryableDistricts();
+		IQueryable<DistrictDTO> GetIQueryableDistricts();
 	}
 }

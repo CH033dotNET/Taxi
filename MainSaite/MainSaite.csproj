@@ -232,6 +232,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\BootstrapCallout.css" />
     <Content Include="Content\ClientDriveService.css" />
+    <Content Include="Content\DistrictStyles\DistrictStyle.css" />
     <Content Include="Content\DrivingSimulation\iframe.css" />
     <Content Include="Content\BootstrapTb\BootstrapTb.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
@@ -370,6 +371,7 @@
     <Content Include="Scripts\coordinates.js" />
     <Content Include="Scripts\CustomHighCharts\DistrictOrdersPerYear.js" />
     <Content Include="Scripts\DistrictPartButtonScripts.js" />
+    <Content Include="Scripts\DistrictsCustomScripts\DistrictMap.js" />
     <Content Include="Scripts\DistrictsCustomScripts\DistrictScriptLogic.js" />
     <Content Include="Scripts\DistrictsCustomScripts\PreValidation.js" />
     <Content Include="Scripts\DriverMap.js" />
