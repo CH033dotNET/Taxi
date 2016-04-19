@@ -83,9 +83,12 @@
                  @*Links menu by users role*@
                     <div class="list-group">
                         <ul class="nav">
+							@if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
+							{
+								<li class="list-group-item">@Html.ActionLink(Resources.Resource.Districts, "DistrictEditor", "Settings")</li>
+							}
                             @if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
                             {
-                            <li class="list-group-item">@Html.ActionLink(Resources.Resource.Districts, "DistrictEditor", "Settings")</li>
                                 <li class="list-group-item">@Html.ActionLink(@Resources.Resource.UserMenu, "UsersMenu", "Settings")</li>
                                 <li class="list-group-item">@Html.ActionLink(@Resources.Resource.Tarifes, "Index", "Tarif")</li>
                                 <li class="list-group-item">@Html.ActionLink(Resources.Resource.Order, "Index", "Order")</li>
