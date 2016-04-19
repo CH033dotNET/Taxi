@@ -16,6 +16,8 @@ namespace Model
 
 		public double Longitude { get; set; }
 
+		public int Index { get; set; }
+
 		public District District { get; set; }
 
 		public int DistrictId { get; set; }
