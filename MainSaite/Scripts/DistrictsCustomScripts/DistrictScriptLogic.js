@@ -438,14 +438,7 @@ function setEventsForPolygon(shape) {
 			district.Edited = true;
 		});
 		google.maps.event.addListener(item, 'set_at', function (number, path) {
-			var edit = district.Coordinates.find(function (i) {
-				var lat = path.lat();
-				var lng = path.lng();
-				if (i.Latitude == path.lat() && i.Longitude == path.lng()) {
-					return true;
-				}
-				return false;
-			});
+			var edit = district.Coordinates[number];
 			var el = item.getAt(number);
 			edit.Latitude = el.lat();
 			edit.Longitude = el.lng();
