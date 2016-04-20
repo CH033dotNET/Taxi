@@ -916,4 +916,10 @@
   <data name="Help" xml:space="preserve">
     <value>Help</value>
   </data>
+  <data name="ClientSupport" xml:space="preserve">
+    <value>Clients support</value>
+  </data>
+  <data name="FreeDriver" xml:space="preserve">
+    <value>Free driver</value>
+  </data>
 </root>

@@ -192,6 +192,7 @@
     <Compile Include="Controllers\OperatorMessagesHubController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ReportChartsController.cs" />
+    <Compile Include="Controllers\SupportController.cs" />
     <Compile Include="Helpers\DriverLocationHelper.cs" />
     <Compile Include="Helpers\IDriverLocationHelper.cs" />
     <Compile Include="Helpers\OperatorMessagesHelper.cs" />
@@ -529,6 +530,7 @@
     <Content Include="Views\ReportCharts\TopOrderingClientsPartial.cshtml" />
     <Content Include="Views\ReportCharts\YearIncome.cshtml" />
     <Content Include="Views\Settings\SetVIPStatus.cshtml" />
+    <Content Include="Views\Support\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -38,7 +38,6 @@
                 <div class="navbar navbar-default">
                     <div class="container">
                         <div class="navbar-header">
-
                             <ul class="nav navbar-nav">
                                 @if (Session["User"] == null)
                                 {
@@ -67,71 +66,68 @@
                         </div>
                     </div>
                 </div>
-                @*Links menu by users role*@
-                <div class="list-group">
-                    <ul class="nav">
-                        @*@if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
-                        {
-                            <li class="list-group-item">@Html.ActionLink("Districts menu", "DistrictEditor", "Settings")</li>
-                            <li class="list-group-item">@Html.ActionLink(@Resources.Resource.UserMenu, "UsersMenu", "Settings")</li>
-                            <li class="list-group-item">@Html.ActionLink(@Resources.Resource.Tarifes, "Index", "Tarif")</li>
-                            <li class="list-group-item">@Html.ActionLink("Orders", "Index", "Order")</li>
-                        }*@
-                        </ul>
-                    </div>
 
                  @*Links menu by users role*@
-                    <div class="list-group">
-                        <ul class="nav">
-							@if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
-							{
-								<li class="list-group-item">@Html.ActionLink(Resources.Resource.Districts, "DistrictEditor", "Settings")</li>
-							}
-                            @if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
-                            {
-                                <li class="list-group-item">@Html.ActionLink(@Resources.Resource.UserMenu, "UsersMenu", "Settings")</li>
-                                <li class="list-group-item">@Html.ActionLink(@Resources.Resource.Tarifes, "Index", "Tarif")</li>
-                                <li class="list-group-item">@Html.ActionLink(Resources.Resource.Order, "Index", "Order")</li>
-                            }
+                <div class="list-group">
+                    <ul class="nav">
+						@if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
+						{
+							<li class="list-group-item">@Html.ActionLink(Resources.Resource.Districts, "DistrictEditor", "Settings")</li>
+						}
+						@if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
+						{
+							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.UserMenu, "UsersMenu", "Settings")</li>
+							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.Tarifes, "Index", "Tarif")</li>
+							<li class="list-group-item">@Html.ActionLink(Resources.Resource.Order, "Index", "Order")</li>
+						}
 						@*Only report Viewer must have charts menu*@
-                        @if (ViewBag.UserRoleId == (int)AvailableRoles.ReportViewer)
-                        {
+						@if (ViewBag.UserRoleId == (int)AvailableRoles.ReportViewer)
+						{
 							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.Statistics, "Index", "ReportCharts")</li>
 						}
 						@*All roles must have my account*@
 						@if (ViewBag.UserRoleId == (int)AvailableRoles.ReportViewer 
-							  || ViewBag.UserRoleId == (int)AvailableRoles.Administrator 
-							  || ViewBag.UserRoleId == (int)AvailableRoles.Client 
-							  || ViewBag.UserRoleId == (int)AvailableRoles.Driver 
-							  || ViewBag.UserRoleId == (int)AvailableRoles.Operator
-							  || ViewBag.UserRoleId == (int)AvailableRoles.FreeDriver)
+								|| ViewBag.UserRoleId == (int)AvailableRoles.Administrator 
+								|| ViewBag.UserRoleId == (int)AvailableRoles.Client 
+								|| ViewBag.UserRoleId == (int)AvailableRoles.Driver 
+								|| ViewBag.UserRoleId == (int)AvailableRoles.Operator
+								|| ViewBag.UserRoleId == (int)AvailableRoles.Support
+								|| ViewBag.UserRoleId == (int)AvailableRoles.FreeDriver)
 						{
 							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.MyAccount, "Index", "User")</li>
 						}
 						@*Only driver can have autopark*@
-                        @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.FreeDriver)
-                        {
-                            <li class="list-group-item">@Html.ActionLink(@Resources.Resource.CarEditor, "CarPark", "Cars")</li>}
+						@if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.FreeDriver)
+						{
+							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.CarEditor, "CarPark", "Cars")</li>
+						}
 						@*Only driver can have personal cabinet*@
-                        @if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.FreeDriver)
-                        {
-                            <li class="list-group-item">@Html.ActionLink(Resources.Resource.PersonalCabinet, "Index", "Driver")</li>}
-							
-						@*Client can have this stuff*@																										
-                        @if (ViewBag.UserRoleId == (int)AvailableRoles.Client)
-                        {
-                           <li class="list-group-item">@Html.ActionLink(@Resources.Resource.TitleLeftMenuUserAddress, "Index", "Address")</li>
-                           <li class="list-group-item">@Html.ActionLink(@Resources.Resource.UserPage, "Index", "UserPage")</li>
-                           <li class="list-group-item">@Html.ActionLink(@Resources.Resource.DemoPage,"Iframe","UserPage") </li>
-                           <li class="list-group-item">@Html.ActionLink(@Resources.Resource.ClientDriveHistory, "ShowHistory", "DriveClientHistory")</li>
-                        }
+						@if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.FreeDriver)
+						{
+							<li class="list-group-item">@Html.ActionLink(Resources.Resource.PersonalCabinet, "Index", "Driver")</li>
+						}
+
+						@*Client can have this stuff*@
+						@if (ViewBag.UserRoleId == (int)AvailableRoles.Client)
+						{
+							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.TitleLeftMenuUserAddress, "Index", "Address")</li>
+							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.UserPage, "Index", "UserPage")</li>
+							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.DemoPage,"Iframe","UserPage") </li>
+							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.ClientDriveHistory, "ShowHistory", "DriveClientHistory")</li>
+						}
 						@*Operator and admin can have this stuff*@
-                        @if (ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
-                        {
-                            <li class="list-group-item">@Html.ActionLink(@Resources.Resource.SetVIPStatusPage, "SetVIPStatus", "Settings")</li>
-                            <li class="list-group-item">@Html.ActionLink(@Resources.Resource.WorkShift, "ViewWorkShifts", "Administration")</li>
-                        }
-                    </ul>
+						@if (ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
+						{
+							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.SetVIPStatusPage, "SetVIPStatus", "Settings")</li>
+							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.WorkShift, "ViewWorkShifts", "Administration")</li>
+						}
+
+						<!--Only support have this link-->
+						@if (ViewBag.UserRoleId == (int)AvailableRoles.Support)
+						{
+							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.ClientSupport, "Index", "Support")</li>
+						}
+					</ul>
 
 					<!--All roles except support have this link-->
 					@if (ViewBag.UserRoleId != (int)AvailableRoles.Support && ViewBag.UserRoleId > 0)
@@ -139,16 +135,14 @@
 						<br />
 						<p class="text-center"><a class="helpLink" href="#" onclick="ShowSupportChat()">@Resources.Resource.Help</a></p>
 					}
-                </div>
-            </div>
+				</div>
+			</div>
+		</div>
 
-
-        </div>
-
-        <div class="col-md-9 col-lg-9 col-sm-9 col-xs-12">
-            @RenderBody()
-        </div>
-    </div>
+		<div class="col-md-9 col-lg-9 col-sm-9 col-xs-12">
+			@RenderBody()
+		</div>
+	</div>
 
 	<div id="chat">
 		<div class="head">
@@ -157,7 +151,7 @@
 				<div class="name">Саша</div>
 				<div class="description">Служба підтримки</div>
 			</div>
-			<div class="minimize"></div>
+			<div class="minimize" onclick="HideSupportChat()"></div>
 		</div>
 		<div class="body">
 			<div class="question message">Привіт. Чим я можу тобі допомогти?</div>
