@@ -219,6 +219,10 @@
     <Compile Include="Migrations\201604191411150_AddIndexToCoordinate.Designer.cs">
       <DependentUpon>201604191411150_AddIndexToCoordinate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604221844299_FixedBuild.cs" />
+    <Compile Include="Migrations\201604221844299_FixedBuild.Designer.cs">
+      <DependentUpon>201604221844299_FixedBuild.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -363,6 +367,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604191411150_AddIndexToCoordinate.resx">
       <DependentUpon>201604191411150_AddIndexToCoordinate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604221844299_FixedBuild.resx">
+      <DependentUpon>201604221844299_FixedBuild.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
