@@ -26,8 +26,12 @@ namespace DriverSite.Controllers
                 SessionUser = ApiRequestHelper.postData<UserDTO, LoginModel>("Account", "getUser", user).Data as UserDTO;
                 if (SessionUser != null)
 				{
-					if (SessionUser.Role.Id == (int)Common.Enum.AvailableRoles.Driver) return RedirectToAction("Index", "Home");
-					else return LogOut();
+                    if ((SessionUser.Role.Id == (int)Common.Enum.AvailableRoles.Driver) ||
+                       (SessionUser.Role.Id == (int)Common.Enum.AvailableRoles.FreeDriver)) {
+                        return RedirectToAction("Index", "Home");
+                    } else {
+                        return LogOut();
+                    }
 				}
 				else ModelState.AddModelError("", "Wrong password or login");
 			}

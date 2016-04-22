@@ -27,7 +27,13 @@ namespace TaxiAPI.Controllers
 			return Request.CreateResponse(HttpStatusCode.OK, orders);
 		}
 
-		[HttpGet]
+        [HttpGet]
+        public HttpResponseMessage GetTodayOrders() {
+            var orders = orderManager.GetOrders().Where(x => x.IsConfirm == 1 && x.DriverId == 0 && x.OrderTime.Date == DateTime.Now.Date).ToList();
+            return Request.CreateResponse(HttpStatusCode.OK, orders);
+        }
+
+        [HttpGet]
 		public HttpResponseMessage GetCurrentOrder(int Id)
 		{
 			var currentOrder = orderManager.GetOrderByOrderID(Id);

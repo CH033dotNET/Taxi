@@ -26,7 +26,12 @@ namespace DriverSite.Controllers
 			return Json(orders, JsonRequestBehavior.AllowGet);
 		}
 
-		public JsonResult GetCurrentOrder(int orderId)
+        public JsonResult GetTodayOrders() {
+            var orders = ApiRequestHelper.Get<List<OrderDTO>>(controller, "GetTodayOrders").Data;
+            return Json(orders, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCurrentOrder(int orderId)
 		{
 			var currentOrder = ApiRequestHelper.GetById<OrderDTO>(controller, "GetCurrentOrder", orderId).Data;
 			//var currentOrder = orderManager.GetOrderByOrderID(orderId);

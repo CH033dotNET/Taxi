@@ -16,9 +16,10 @@ namespace MainSaite.Controllers
 		private IPersonManager personManager;
 		private ICoordinatesManager coordinatesManager;
 		private ILocationManager locationManager;
+        private IUserManager userManager;
 
 
-		public OrderController(IOrderManager orderManager, IPersonManager personManager, ICoordinatesManager coordinatesManager, ILocationManager locationManager)
+        public OrderController(IOrderManager orderManager, IPersonManager personManager, ICoordinatesManager coordinatesManager, ILocationManager locationManager)
 		{
 			this.orderManager = orderManager;
 			this.personManager = personManager;
@@ -104,12 +105,23 @@ namespace MainSaite.Controllers
 		/// <returns></returns>
 		public JsonResult SetOrderToDriver(int orderId, string waitingTime, int driverId)
 		{
+            var FREEDRIVER_TRIAL_DAYS = 15;
+            var FREEDRIVER_ORDER_LIMIT = 5;
 
-			var order = orderManager.GetOrderByOrderID(orderId);
-			order.WaitingTime = waitingTime;
-			order.DriverId = driverId;
+            var driver = userManager.GetById(driverId);
 
-			var driverLocation = locationManager.GetByUserId(driverId); // find location by driver id
+            // check freedriver trial period and today's order limit
+            if ( ((DateTime.Now - driver.RegistrationDate).Days > FREEDRIVER_TRIAL_DAYS) &&
+                (ApiRequestHelper.Get<List<OrderDTO>>("Orders", "GetTodayOrders").Data.Count > FREEDRIVER_ORDER_LIMIT)) {
+                    return Json("error", JsonRequestBehavior.AllowGet);
+                    // here must be message to driver
+            }
+
+            var order = orderManager.GetOrderByOrderID(orderId);
+            order.WaitingTime = waitingTime;
+            order.DriverId = driverId;
+
+            var driverLocation = locationManager.GetByUserId(driverId); // find location by driver id
 
 			order.DistrictId = driverLocation.DistrictId;
 			order.District = driverLocation.District;
