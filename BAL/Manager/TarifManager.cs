@@ -15,33 +15,20 @@ namespace BAL.Manager
     public class TarifManager : BaseManager, ITarifManager
     {
 
-        public TarifManager(IUnitOfWork uOW)
-			:base(uOW)
-        {
+		public TarifManager(IUnitOfWork uOW)
+			: base(uOW)
+		{
+			Mapper.CreateMap<Tarif, TarifDTO>();
+			Mapper.CreateMap<TarifDTO, Tarif>();
+		}
 
-        }
+		public IEnumerable<TarifDTO> GetTarifes()
+		{
+			var list = Mapper.Map<List<TarifDTO>>(uOW.TarifRepo.All.ToList());
+			return list;
+		}
 
-        public IEnumerable<TarifDTO> GetTarifes()
-        {
-            var list = from tarifes in uOW.TarifRepo.All
-                       select new TarifDTO
-                       {
-                           id = tarifes.id,
-                           District = tarifes.District,
-                           DistrictId = tarifes.DistrictId,
-                           IsIntercity = tarifes.IsIntercity,
-                           IsStandart = tarifes.IsStandart,
-                           MinimalPrice = tarifes.MinimalPrice,
-                           Name = tarifes.Name,
-                           OneMinuteCost = tarifes.OneMinuteCost,
-                           StartPrice = tarifes.StartPrice,
-                           WaitingCost = tarifes.WaitingCost
-                       };
-
-            return list.ToList();
-        }
-
-        public TarifDTO AddTarif(TarifDTO tarifDTO)
+		public TarifDTO AddTarif(TarifDTO tarifDTO)
         {
             var temp = Mapper.Map<Tarif>(tarifDTO);
             temp.Name = temp.Name.Trim();

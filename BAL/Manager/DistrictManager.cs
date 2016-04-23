@@ -62,45 +62,48 @@ namespace BAL.Manager
 		public IEnumerable<DistrictDTO> getDistricts()
 		{
 			var districts = uOW.DistrictRepo.All.Include(c => c.Coordinates).Where(d => d.Deleted == false).ToList();
+			SortCoordinates(districts);
 			var res = Mapper.Map<IEnumerable<DistrictDTO>>(districts);
 			return res;
 		}
 
 		public IEnumerable<DistrictDTO> GetSortedDistricts(string parameter)
 		{
-			IOrderedEnumerable<District> districtList = null;
+			List<District> districtList = null;
 			var districts = uOW.DistrictRepo.All.Where(x => x.Deleted == false).Include(c => c.Coordinates).ToList();
 			switch (parameter)
 			{
 				case "name":
-					districtList = districts.OrderBy(x => x.Name);
+					districtList = districts.OrderBy(x => x.Name).ToList();
 					break;
 				case "name_desc":
-					districtList = districts.OrderByDescending(x => x.Name);
+					districtList = districts.OrderByDescending(x => x.Name).ToList();
 					break;
 				default:
-					districtList = districts.OrderBy(x => x.Name);
+					districtList = districts.OrderBy(x => x.Name).ToList();
 					break;
 			}
+			SortCoordinates(districtList);
 			return Mapper.Map<IEnumerable<DistrictDTO>>(districtList);
 		}
 
 		public IEnumerable<DistrictDTO> GetSortedDeletedDistrictsBy(string parameter)
 		{
-			IOrderedEnumerable<District> deletedDistrictList = null;
+			List<District> deletedDistrictList = null;
 			var districts = uOW.DistrictRepo.All.Where(s => s.Deleted == true).Include(c => c.Coordinates).ToList();
 			switch (parameter)
 			{
 				case "name":
-					deletedDistrictList = districts.OrderBy(x => x.Name);
+					deletedDistrictList = districts.OrderBy(x => x.Name).ToList();
 					break;
 				case "name_desc":
-					deletedDistrictList = districts.OrderByDescending(x => x.Name);
+					deletedDistrictList = districts.OrderByDescending(x => x.Name).ToList();
 					break;
 				default:
-					deletedDistrictList = districts.OrderBy(x => x.Name);
+					deletedDistrictList = districts.OrderBy(x => x.Name).ToList();
 					break;
 			}
+			SortCoordinates(deletedDistrictList);
 			return Mapper.Map<IEnumerable<DistrictDTO>>(deletedDistrictList);
 		}
 
@@ -108,53 +111,53 @@ namespace BAL.Manager
 		{
 			//students = students.Where(s => s.LastName.Contains(searchString)
 			//				   || s.FirstMidName.Contains(searchString));
-			var result = uOW.DistrictRepo.All.Where(s => s.Deleted == false & (s.Name.StartsWith(parameter) || s.Name.Contains(parameter))).Include(c => c.Coordinates);
+			var result = uOW.DistrictRepo.All.Where(s => s.Deleted == false & (s.Name.StartsWith(parameter) || s.Name.Contains(parameter))).Include(c => c.Coordinates).ToList();
+			SortCoordinates(result);
 			return Mapper.Map<IEnumerable<DistrictDTO>>(result);
 		}
 
 		public IEnumerable<DistrictDTO> searchDeletedDistricts(string parameter)
 		{
 
-			var result = uOW.DistrictRepo.All.Where(s => s.Deleted == true & (s.Name.StartsWith(parameter) || s.Name.Contains(parameter))).Include(c => c.Coordinates);
+			var result = uOW.DistrictRepo.All.Where(s => s.Deleted == true & (s.Name.StartsWith(parameter) || s.Name.Contains(parameter))).Include(c => c.Coordinates).ToList();
+			SortCoordinates(result);
 			return Mapper.Map<IEnumerable<DistrictDTO>>(result);
 		}
 
 		public IEnumerable<DistrictDTO> searchAndSortDistricts(string search, string sort)
 		{
-			IOrderedEnumerable<District> DistrictList = null;
 			var districts = uOW.DistrictRepo.All.Where(s => s.Deleted == false & (s.Name.StartsWith(search) || s.Name.Contains(search))).Include(c => c.Coordinates).ToList();
 			switch (sort)
 			{
 				case "name":
-					DistrictList = districts.OrderBy(x => x.Name);
+					districts = districts.OrderBy(x => x.Name).ToList();
 					break;
 				case "name_desc":
-					DistrictList = districts.OrderByDescending(x => x.Name);
+					districts = districts.OrderByDescending(x => x.Name).ToList();
 					break;
 				default:
-					DistrictList = districts.OrderBy(x => x.Name);
+					districts = districts.OrderBy(x => x.Name).ToList();
 					break;
-			}
-			return Mapper.Map<IEnumerable<DistrictDTO>>(DistrictList);
+			}SortCoordinates(districts);
+			return Mapper.Map<IEnumerable<DistrictDTO>>(districts);
 		}
 
 		public IEnumerable<DistrictDTO> searchAndSortDeletedDistricts(string search, string sort)
 		{
-			IOrderedEnumerable<District> deletedDistrictList = null;
 			var districts = uOW.DistrictRepo.All.Where(s => s.Deleted == false & (s.Name.StartsWith(search) || s.Name.Contains(search))).Include(c => c.Coordinates).ToList();
 			switch (sort)
 			{
 				case "name":
-					deletedDistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == true & (s.Name.StartsWith(search) || s.Name.Contains(search))).ToList().OrderBy(x => x.Name);
+					districts = uOW.DistrictRepo.All.Where(s => s.Deleted == true & (s.Name.StartsWith(search) || s.Name.Contains(search))).ToList().OrderBy(x => x.Name).ToList();
 					break;
 				case "name_desc":
-					deletedDistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == true & (s.Name.StartsWith(search) || s.Name.Contains(search))).ToList().OrderByDescending(x => x.Name);
+					districts = uOW.DistrictRepo.All.Where(s => s.Deleted == true & (s.Name.StartsWith(search) || s.Name.Contains(search))).ToList().OrderByDescending(x => x.Name).ToList();
 					break;
 				default:
-					deletedDistrictList = uOW.DistrictRepo.All.Where(s => s.Deleted == true & (s.Name.StartsWith(search) || s.Name.Contains(search))).ToList().OrderBy(x => x.Name);
+					districts = uOW.DistrictRepo.All.Where(s => s.Deleted == true & (s.Name.StartsWith(search) || s.Name.Contains(search))).ToList().OrderBy(x => x.Name).ToList();
 					break;
 			}
-			return Mapper.Map<IEnumerable<DistrictDTO>>(deletedDistrictList);
+			return Mapper.Map<IEnumerable<DistrictDTO>>(districts);
 		}
 
 		/// <summary>
@@ -214,8 +217,9 @@ namespace BAL.Manager
 			}
 			uOW.DistrictRepo.Update(oldDistrict);
 			uOW.Save();
-			//var newDistrict = SetDistrictStateModified(Mapper.Map<District>(oldDistrict), Mapper.Map<District>(district));
-			return Mapper.Map<DistrictDTO>(uOW.DistrictRepo.All.Where(d => d.Id == district.Id).FirstOrDefault());
+			var newDistrict = uOW.DistrictRepo.All.Where(d => d.Id == district.Id).FirstOrDefault();
+			SortCoordinates(newDistrict);
+			return Mapper.Map<DistrictDTO>(newDistrict);
 		}
 		/// <summary>
 		///  Managaer method that gets one district entry which name property value matches input parameter.
@@ -237,6 +241,7 @@ namespace BAL.Manager
 			var deletedDistricts = uOW.DistrictRepo.All.Where(s => s.Deleted == true).Include(c => c.Coordinates).ToList();
 			if (deletedDistricts != null)
 			{
+				SortCoordinates(deletedDistricts);
 				return Mapper.Map<List<DistrictDTO>>(deletedDistricts);
 			}
 			return null;
@@ -256,6 +261,7 @@ namespace BAL.Manager
 				return null;
 			}
 			var restoredDistrict = SetStateRestored(deletedDistrict);
+			SortCoordinates(restoredDistrict);
 			return Mapper.Map<DistrictDTO>(restoredDistrict);
 		}
 		/// <summary>
@@ -315,6 +321,15 @@ namespace BAL.Manager
 			district.Deleted = false;
 			uOW.Save();
 			return district;
+		}
+
+		private void SortCoordinates(List<District> districts)
+		{
+			districts.ForEach(d => d.Coordinates = d.Coordinates.OrderBy(c => c.Index).ToList());
+		}
+		private void SortCoordinates(District district)
+		{
+			district.Coordinates = district.Coordinates.OrderBy(c => c.Index).ToList();
 		}
 
 		public IQueryable<DistrictDTO> GetIQueryableDistricts()

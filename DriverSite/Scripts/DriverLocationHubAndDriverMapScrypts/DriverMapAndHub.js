@@ -1,10 +1,10 @@
 ﻿var currentPosition;
-
+var map;
 
 $(function () {
             var drivers = new Array();
             var infoWindow;
-            var map;
+            
             var driverHub;
             var driver;
             var updateInterval;

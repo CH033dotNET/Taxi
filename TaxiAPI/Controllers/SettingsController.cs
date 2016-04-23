@@ -21,5 +21,12 @@ namespace TaxiAPI.Controllers
 			this.districtManager = districtManager;
 			this.carManager = carManager;
 		}
+
+		[HttpGet]
+		public HttpResponseMessage GetDistricts()
+		{
+			var districts = districtManager.getDistricts();
+			return Request.CreateResponse(HttpStatusCode.OK, districts);
+		}
 	}
 }

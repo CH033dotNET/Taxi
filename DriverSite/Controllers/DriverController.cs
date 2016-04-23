@@ -13,12 +13,26 @@ using DriverSite.Helpers;
 
 namespace DriverSite.Controllers
 {
-    public class DriverController :BaseController
-    {
-        readonly string controller = "Driver";
-        public ActionResult DistrictPart()
+	public class DriverController : BaseController
+	{
+		readonly string controller = "Driver";
+		public ActionResult DistrictPart()
 		{
-            return PartialView(ApiRequestHelper.GetById<bool>(controller, "GetWorkShiftsByWorkerId", SessionUser.Id).Data);            //return PartialView(carManager.GetWorkingDrivers());
+			return PartialView(ApiRequestHelper.GetById<bool>(controller, "GetWorkShiftsByWorkerId", SessionUser.Id).Data);            //return PartialView(carManager.GetWorkingDrivers());
+		}
+
+		[HttpPost]
+		public JsonResult GetTarifs()
+		{
+			var tarifs = ApiRequestHelper.GetAll<TarifDTO>("Tarif", "GetTarifs");
+			return Json(new { tarifs = tarifs.Data });
+		}
+
+		[HttpPost]
+		public JsonResult GetFullDistricts()
+		{
+			var districts = ApiRequestHelper.GetAll<DistrictDTO>("Settings", "GetDistricts");
+			return Json(new { districts = districts.Data}, JsonRequestBehavior.AllowGet);
 		}
 
 		public JsonResult GetDistricts()
@@ -45,7 +59,7 @@ namespace DriverSite.Controllers
 		/// <returns></returns>
 		public JsonResult ChangeCurrentDriverStatus(int status)
 		{
-			var result = ApiRequestHelper.Get<bool,int,int>(controller, "UpdateWorkerStatus", SessionUser.Id, status).Data;
+			var result = ApiRequestHelper.Get<bool, int, int>(controller, "UpdateWorkerStatus", SessionUser.Id, status).Data;
 			if (result == false) { return Json(new { success = false }, JsonRequestBehavior.AllowGet); }
 			else
 			{
@@ -73,23 +87,24 @@ namespace DriverSite.Controllers
 				if (Latitude != null && Longitude != null)
 				{
 					CoordinatesDTO coordinates;
-                    coordinates = CoordinateMapper.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
+					coordinates = CoordinateMapper.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
 					//coordinates = coordinatesManager.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
-                    coordinates.TarifId = 1;
-                    ApiRequestHelper.postData<CoordinatesDTO>(controller, "AddCoordinates", coordinates);
+					coordinates.TarifId = 1;
+					ApiRequestHelper.postData<CoordinatesDTO>(controller, "AddCoordinates", coordinates);
 					//coordinatesManager.AddCoordinates(coordinates);
 				}
 
-				ApiRequestHelper.postData<DriverLocation>(controller, "StartWorkEvent", new DriverLocation() {
+				ApiRequestHelper.postData<DriverLocation>(controller, "StartWorkEvent", new DriverLocation()
+				{
 					id = Id,
-					latitude = double.Parse(Latitude, CultureInfo.InvariantCulture), 
-					longitude = double.Parse(Longitude, CultureInfo.InvariantCulture), 
-					startedTime = DateTime.Now, 
+					latitude = double.Parse(Latitude, CultureInfo.InvariantCulture),
+					longitude = double.Parse(Longitude, CultureInfo.InvariantCulture),
+					startedTime = DateTime.Now,
 					updateTime = DateTime.Now,
 					name = SessionUser.UserName
 				});
 				//carManager.StartWorkEvent(Id, TimeStart);
-                //-Hub PROBLEM!!!--------------------------driverLocationHelper.addDriver();
+				//-Hub PROBLEM!!!--------------------------driverLocationHelper.addDriver();
 				return Json(true);
 			}
 			catch (DataException)
@@ -104,21 +119,21 @@ namespace DriverSite.Controllers
 			{
 				if (Latitude != null && Longitude != null)
 				{
-                    CoordinatesDTO coordinates;
-                    coordinates = CoordinateMapper.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
+					CoordinatesDTO coordinates;
+					coordinates = CoordinateMapper.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
 					//coordinates = coordinatesManager.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
-                    coordinates.TarifId = 1;
-                    ApiRequestHelper.postData<CoordinatesDTO>(controller, "AddCoordinates", coordinates);
+					coordinates.TarifId = 1;
+					ApiRequestHelper.postData<CoordinatesDTO>(controller, "AddCoordinates", coordinates);
 					//coordinatesManager.AddCoordinates(coordinates);
 				}
-                ApiRequestHelper.Get<object, int, string>(controller, "EndAllCurrentUserShifts", Id, TimeStop);
+				ApiRequestHelper.Get<object, int, string>(controller, "EndAllCurrentUserShifts", Id, TimeStop);
 				//carManager.EndAllCurrentUserShifts(Id, TimeStop);
 
-                if (ApiRequestHelper.GetById<LocationDTO>(controller, "GetByUserId", Id).Data != null)
-                //if (locationManager.GetByUserId(Id) != null)
-                    ApiRequestHelper.GetById<LocationDTO>(controller, "DeleteLocation", Id);
-                    //locationManager.DeleteLocation(Id);
-                //-Hub PROBLEM!!!-------------------------------driverLocationHelper.removeDriver(Id);
+				if (ApiRequestHelper.GetById<LocationDTO>(controller, "GetByUserId", Id).Data != null)
+					//if (locationManager.GetByUserId(Id) != null)
+					ApiRequestHelper.GetById<LocationDTO>(controller, "DeleteLocation", Id);
+				//locationManager.DeleteLocation(Id);
+				//-Hub PROBLEM!!!-------------------------------driverLocationHelper.removeDriver(Id);
 				return Json(true);
 			}
 			catch (DataException)
@@ -137,11 +152,11 @@ namespace DriverSite.Controllers
 		[HttpPost]
 		public JsonResult JoinToLocation(int Id)
 		{
-            LocationDTO local = ApiRequestHelper.GetById<LocationDTO>(controller, "GetByUserId", SessionUser.Id).Data;
+			LocationDTO local = ApiRequestHelper.GetById<LocationDTO>(controller, "GetByUserId", SessionUser.Id).Data;
 			if (local != null)
 			{
 				local.DistrictId = Id;
-                ApiRequestHelper.postData<LocationDTO>(controller, "UpdateLocation", local);				//locationManager.UpdateLocation(local);
+				ApiRequestHelper.postData<LocationDTO>(controller, "UpdateLocation", local);                //locationManager.UpdateLocation(local);
 				return Json(0);
 			}
 
@@ -153,7 +168,7 @@ namespace DriverSite.Controllers
 					DistrictId = Id
 				};
 
-                ApiRequestHelper.postData<LocationDTO>(controller, "AddLocation", district);
+				ApiRequestHelper.postData<LocationDTO>(controller, "AddLocation", district);
 				//locationManager.AddLocation(district);
 				return Json(0);
 			}
@@ -218,9 +233,9 @@ namespace DriverSite.Controllers
 			//orderManager.EditOrder(order);
 		}*/
 
-        public ActionResult DriverMap()
-        {
-            return PartialView("_DriverMap");
-        }
+		public ActionResult DriverMap()
+		{
+			return PartialView("_DriverMap");
+		}
 	}
 }

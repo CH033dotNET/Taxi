@@ -7,7 +7,7 @@ var sortDistrictCounter;
 var sortDeletedDistrictCounter;
 
 $(document).ready(function () {
-	jsController.orderAllCoordinates(jsController.data.items);
+
 });
 
 var jsController = {
@@ -52,12 +52,10 @@ var jsController = {
 			jsController.clearMap();
 			if (result.success && result != null) {
 				jsController.data.items = result.resultDistricts;
-				jsController.orderAllCoordinates(jsController.data.items);
 				jsController.renderData();
 			}
 			else if (!result.success && result.districts != undefined) {
 				jsController.data.items = result.districts;
-				jsController.orderAllCoordinates(jsController.data.items);
 				jsController.renderData();
 			}
 			else { return false; }
@@ -74,7 +72,6 @@ var jsController = {
 		}).done(function (result) {
 			if (result.success && result != null) {
 				jsController.deletedData.deleted = result.resultDistricts;
-				jsController.orderAllCoordinates(jsController.deletedData.deleted);
 				jsController.renderDeletedData();
 			}
 			else if (!result.success && result.districts != undefined) {
@@ -109,7 +106,6 @@ var jsController = {
 			if (result.success && result != null) {
 				jsController.clearMap();
 				jsController.data.items = result.resultDistricts;
-				jsController.orderAllCoordinates(jsController.data.items);
 				jsController.renderData();
 			}
 			else { return false; }
@@ -154,7 +150,6 @@ var jsController = {
 			url: "./DeletedDistricts", // <----------------------------------------------------!!
 		}).done(function (result) {
 			jsController.deletedData.deleted = result.deletedDistricts;
-			jsController.orderAllCoordinates(jsController.deletedData.deleted);
 			jsController.renderDeletedData();
 			$('#deletedList').modal('show');
 		});
@@ -318,21 +313,8 @@ var jsController = {
 
 	getDistrictById: function (id) {
 		return this.data.items.find(function (item) {
-			if (item.Id == id) return true;
-			return false;
+			return item.Id == id
 		});
-	},
-
-	//! set all coordinates for items in right order 
-	orderAllCoordinates: function (items) {
-		items.forEach(function (item) {
-			var orderedCoords = [];
-			for (var i = 0; i < item.Coordinates.length; i++) {
-				orderedCoords.push(item.Coordinates.find(function (f) { return f.Index == i }));
-			}
-			item.Coordinates = orderedCoords;
-		});
-
 	},
 
 	clearMap: function () {

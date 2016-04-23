@@ -18,5 +18,10 @@ namespace TaxiAPI.Controllers
 		{
 			this.tarifManager = tarifManager;
 		}
+
+		public HttpResponseMessage GetTarifs()
+		{
+			return Request.CreateResponse(HttpStatusCode.OK, tarifManager.GetTarifes());
+		}
 	}
 }

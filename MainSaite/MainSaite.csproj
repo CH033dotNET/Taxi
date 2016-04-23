@@ -371,7 +371,6 @@
     <Content Include="Scripts\coordinates.js" />
     <Content Include="Scripts\CustomHighCharts\DistrictOrdersPerYear.js" />
     <Content Include="Scripts\DistrictPartButtonScripts.js" />
-    <Content Include="Scripts\DistrictsCustomScripts\DistrictMap.js" />
     <Content Include="Scripts\DistrictsCustomScripts\DistrictScriptLogic.js" />
     <Content Include="Scripts\DistrictsCustomScripts\PreValidation.js" />
     <Content Include="Scripts\DriverMap.js" />
