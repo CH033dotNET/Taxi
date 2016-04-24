@@ -3,7 +3,7 @@
 function ShowSupportChat() {
 	//TODO: Don't show dialog before getting supporter data.
 	$('#chat').show(500);
-	//$('#chat').draggable();
+	$('#chat').draggable();
 	intervalId = setInterval(DisplayMessages, 2000);
 }
 
