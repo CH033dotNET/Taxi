@@ -19,9 +19,10 @@ namespace BAL.Manager
 
 		public IEnumerable<SupportMessageDTO> GetMessages(int userId)
 		{
-			var messages = uOW.SupportRepo.Get()
-										//.Where(e => e.Sender.Id == userId || e.Receiver.Id == userId)
-										.Select(s => Mapper.Map<SupportMessageDTO>(s));
+			var messages = uOW.SupportRepo
+							.Get(e => e.Receiver.Id == userId || e.Sender.Id == userId)
+							.Select(s => Mapper.Map<SupportMessageDTO>(s));
+
 			return messages;
 		}
 
