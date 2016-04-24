@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using BAL.Interfaces;
+using Common.Enum;
 using DAL.Interface;
+using Model;
+using Model.DB;
 using Model.DTO;
 using System;
 using System.Collections.Generic;
@@ -20,6 +23,29 @@ namespace BAL.Manager
 										//.Where(e => e.Sender.Id == userId || e.Receiver.Id == userId)
 										.Select(s => Mapper.Map<SupportMessageDTO>(s));
 			return messages;
+		}
+
+		public void SendMessage(string message, int fromUserID, int toUserID = -1)
+		{
+			User receiver;
+			if (toUserID == -1)
+			{
+				receiver = uOW.UserRepo.Get().Where(e => e.RoleId == (int)AvailableRoles.Support).First();
+			} else
+			{
+				receiver = uOW.UserRepo.GetByID(toUserID);
+			}
+
+			var msg = new SupportMessage()
+			{
+				Message = message,
+				Sender = uOW.UserRepo.GetByID(fromUserID),
+				Receiver = receiver,
+				SendTime = DateTime.UtcNow
+			};
+
+			uOW.SupportRepo.Insert(msg);
+			uOW.Save();
 		}
 	}
 }

@@ -27,5 +27,10 @@ namespace MainSaite.Controllers
 			return Json(SupportManager.GetMessages(SessionUser.Id), JsonRequestBehavior.AllowGet);
 		}
 
+		[HttpPost]
+		public void SendMessage(string message)
+		{
+			SupportManager.SendMessage(message, SessionUser.Id);
+		}
 	}
 }

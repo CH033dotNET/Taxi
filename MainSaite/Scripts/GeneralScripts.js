@@ -1,6 +1,7 @@
 ﻿var intervalId;
 
 function ShowSupportChat() {
+	//TODO: Don't show dialog before getting supporter data.
 	$('#chat').show(500);
 	//$('#chat').draggable();
 	intervalId = setInterval(DisplayMessages, 2000);
@@ -11,7 +12,6 @@ function HideSupportChat() {
 	clearInterval(intervalId);
 }
 
-var i = 0;
 function DisplayMessages() {
 	//$('#chat .body').html('');
 	//$('#chat .body').append('<div class="question message">Message '+i+'</div>');
@@ -19,10 +19,7 @@ function DisplayMessages() {
 
 	$.ajax({
 		type: "POST",
-		url: "/Support/GetMessages"//,
-		//data: {
-		//	id: 0
-		//}
+		url: "/Support/GetMessages"
 	}).done(function (messages) {
 		$('#chat .body').html('');
 
@@ -37,5 +34,17 @@ function DisplayMessages() {
 				$('#chat .body').append(message);
 			}
 		}
+	});
+}
+
+function SendMessage() {
+	$.ajax({
+		type: "POST",
+		url: "/Support/SendMessage",
+		data: {
+			message: $('#chat .bottom .message').val()
+		}
+	}).done(function () {
+		$('#chat .bottom .message').val('');
 	});
 }
