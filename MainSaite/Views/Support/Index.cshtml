@@ -1,5 +1,39 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Support";
 }
 
-<h2>Index</h2>
+<script>
+	$(document).ready(function () {
+		setInterval(function () {
+			$.ajax({
+				type: "POST",
+				url: "/Support/GetChatUsers"
+			}).done(function (users) {
+				$('#chats tbody').html('');
+				for (var i in users) {
+					$('#chats tbody').append('<tr><td><img src="/Images/' + users[i].Photo + '" /></td><td>' + users[i].Name + '</td><td><a href="#" onclick="showChat(' + users[i].Id + ')">Show Chat</a></td></tr>');
+				}
+			});
+		}, 2000);
+	});
+
+
+	function showChat(user) {
+		$('#chat').show();
+		$('#chat').data('supportId', user);
+		setInterval(DisplayMessages, 2000);
+	}
+</script>
+
+<table id="chats" class="table">
+	<thead>
+		<tr>
+			<td>Image</td>
+			<td>Name</td>
+			<td></td>
+		<tr>
+	</thead>
+	<tbody>
+
+	</tbody>
+</table>

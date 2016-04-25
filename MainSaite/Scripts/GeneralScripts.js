@@ -46,7 +46,8 @@ function SendMessage() {
 		type: "POST",
 		url: "/Support/SendMessage",
 		data: {
-			message: $('#chat .bottom .message').val()
+			message: $('#chat .bottom .message').val(),
+			toUserID: $('#chat').data('supportId')
 		}
 	}).done(function () {
 		$('#chat .bottom .message').val('');
