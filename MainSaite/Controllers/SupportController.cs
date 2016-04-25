@@ -32,5 +32,11 @@ namespace MainSaite.Controllers
 		{
 			SupportManager.SendMessage(message, SessionUser.Id);
 		}
+
+		[HttpPost]
+		public JsonResult GetSupporter()
+		{
+			return Json(SupportManager.GetSupporter(), JsonRequestBehavior.AllowGet);
+		}
 	}
 }

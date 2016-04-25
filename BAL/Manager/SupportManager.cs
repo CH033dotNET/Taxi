@@ -17,6 +17,21 @@ namespace BAL.Manager
 	{
 		public SupportManager(IUnitOfWork uOW) : base(uOW) { }
 
+		public SupporterInfoDTO GetSupporter()
+		{
+			var user = uOW.UserRepo.Get().Where(e => e.RoleId == (int)AvailableRoles.Support).First();
+			var person = uOW.PersonRepo.Get(e => e.UserId == user.Id).First();
+
+			var info = new SupporterInfoDTO()
+			{
+				Id = user.Id,
+				Name = person.FirstName,
+				Photo = person.ImageName
+			};
+
+			return info;
+		}
+
 		public IEnumerable<SupportMessageDTO> GetMessages(int userId)
 		{
 			var messages = uOW.SupportRepo

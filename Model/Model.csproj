@@ -73,6 +73,7 @@
     <Compile Include="DTO\OrderDTO.cs" />
     <Compile Include="DTO\Pager.cs" />
     <Compile Include="DTO\PersonDTO.cs" />
+    <Compile Include="DTO\SupporterInfoDTO.cs" />
     <Compile Include="DTO\SupportMessageDTO.cs" />
     <Compile Include="DTO\TarifDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />

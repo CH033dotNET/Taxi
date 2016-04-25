@@ -1,10 +1,19 @@
 ﻿var intervalId;
 
 function ShowSupportChat() {
-	//TODO: Don't show dialog before getting supporter data.
-	$('#chat').show(500);
-	$('#chat').draggable();
-	intervalId = setInterval(DisplayMessages, 2000);
+	$.ajax({
+		type: "POST",
+		url: "/Support/GetSupporter"
+	}).done(function (support) {
+		$('#chat .name').html(support.Name);
+		$('#chat .avatar').attr('src', '/Images/' + support.Photo);
+		$('#chat').data('supportId', support.Id);
+
+		$('#chat').show(500);
+		$('#chat').draggable();
+		intervalId = setInterval(DisplayMessages, 2000);
+	});
+	
 }
 
 function HideSupportChat() {
@@ -13,10 +22,6 @@ function HideSupportChat() {
 }
 
 function DisplayMessages() {
-	//$('#chat .body').html('');
-	//$('#chat .body').append('<div class="question message">Message '+i+'</div>');
-	//$('#chat .body').append('<div class="answer message">Message ' + i + '</div>');
-
 	$.ajax({
 		type: "POST",
 		url: "/Support/GetMessages"
@@ -25,8 +30,7 @@ function DisplayMessages() {
 
 		for (var i in messages) {
 			// Append message to end
-
-			if (messages[i].Id % 2 == 0) {
+			if (messages[i].Sender.Id != $('#chat').data('supportId')) {
 				var message = '<div class="question message">' + messages[i].Message + '</div>';
 				$('#chat .body').append(message);
 			} else {
