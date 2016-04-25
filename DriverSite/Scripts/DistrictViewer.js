@@ -1,20 +1,24 @@
 ﻿var currentDistrict = 0;
 var hub;
+
+//object for districts
+var districts = [];
+
 function hubInit() {
 	hub = $.connection.DistrictsHub;//Подключились к хабу
 
-    hub.client.swap = swap;
+	hub.client.swap = swap;
 
 
-    //all hubs work with one connection. this one sould be commented becouse  hub on _DriverMap(path below) starts after
-    //not shure what to do, if you need to add ivent on your "done()", perhapse you sould coll function on my ivent done(...)
+	//all hubs work with one connection. this one sould be commented becouse  hub on _DriverMap(path below) starts after
+	//not shure what to do, if you need to add ivent on your "done()", perhapse you sould coll function on my ivent done(...)
 
-    //-------------------------* path*----------------------------------//
-    ///Scripts/DriverLocationHubAndDriverMapScrypts/DriverMapAndHub.js
+	//-------------------------* path*----------------------------------//
+	///Scripts/DriverLocationHubAndDriverMapScrypts/DriverMapAndHub.js
 
-   /* $.connection.hub.start().done(function () {
-       // hub.server.Hello(); // вызов функции сервера
-    });*/
+	/* $.connection.hub.start().done(function () {
+		// hub.server.Hello(); // вызов функции сервера
+	 });*/
 }
 function mainInit() {
 	$.ajax({
@@ -22,19 +26,19 @@ function mainInit() {
 		url: getDistricts,
 		dataType: "json",
 		success: function (data) {
-			for (var i = 0; i < data.length; i++) {
-				var val = data[i];
+			data.forEach(function (item) {
+				var val = item;
 				var tr = $('<tr/>', { id: 'DistrictN' + val.DistrictId }).append(
-                        $('<td/>', { text: val.DriverCount , class: "count"}),
-                        $('<td/>', { text: val.DistrictName }),
-                        $('<td/>', { text: val.ThoseDriver ? currentLocation : joinToLocation, class: "text"}));
+						$('<td/>', { text: val.DriverCount, class: "count" }),
+						$('<td/>', { text: val.DistrictName }),
+						$('<td/>', { text: val.ThoseDriver ? currentLocation : joinToLocation, class: "text" }));
 				if (val.ThoseDriver)
 					currentDistrict = val.DistrictId;
-				tr.click(changeDistrict);
+				tr.click(function () { changeDistrict(val.DistrictId) });
 				var table = $('#Districts').append(
-                    tr
-                );
-			}
+					tr
+				);
+			});
 		},
 		error: function (error) {
 			alert(error.statusText);
@@ -85,7 +89,7 @@ function workerStatusChange() {
 	$.ajax({
 		method: "POST",
 		url: "./Driver/ChangeCurrentDriverStatus",
-		data: {status: newWorkerStatus},
+		data: { status: newWorkerStatus },
 		dataType: "JSON"
 	}).done(function (response) {
 		if (response.success && response != null) {
@@ -120,24 +124,67 @@ function changeStatusDisplay(e) {
 	}
 }
 
-$(document).ready(
-	mainInit,
-	checkstatus());
+$(document).ready(function () {
+	mainInit();
+	checkstatus();
+	ReadDistricts();
+});
 
-function changeDistrict(data)
-{
-	var newDisrict = +this.id.substr(9);
-	if (newDisrict !== currentDistrict) {
+
+//read all districts from DB
+function ReadDistricts() {
+	$.ajax({
+		type: "POST",
+		url: "./Driver/GetFullDistricts",
+		success: function (data) {
+			districts = data.districts;
+			districts.forEach(function (item) {
+				//map coordinates to paths for google map api
+				var path = item.Coordinates.map(function (item) {
+					return {
+						lat: item.Latitude,
+						lng: item.Longitude,
+					}
+				});
+
+				item.Polygon = new google.maps.Polygon({
+					paths: path
+				});
+			});
+			
+		},
+		error: function (error) {
+		}
+	});
+}
+
+function getDistrictIdByCoordinate(coord) {
+	var district;
+	districts.forEach(function (item) {
+		if (google.maps.geometry.poly.containsLocation(coord, item.Polygon)) {
+			district = item;
+		}
+	})
+	if (district) {
+		return district.Id;
+	}
+	return null;
+}
+
+
+function changeDistrict(id) {
+
+	if (id && id !== currentDistrict) {
 		$.ajax({
 			type: "POST",
 			url: "Driver/JoinToLocation",
 			dataType: "json",
-			data: { "Id": newDisrict },
+			data: { "Id": id },
 			success: function (data) {
-				$('#DistrictN' + newDisrict + ">.text").html(currentLocation);
+				$('#DistrictN' + id + ">.text").html(currentLocation);
 				$('#DistrictN' + currentDistrict + ">.text").html(joinToLocation);
-				hub.server.swap(newDisrict, currentDistrict);
-				currentDistrict = newDisrict;
+				hub.server.swap(id, currentDistrict);
+				currentDistrict = id;
 			},
 			error: function (error) {
 				alert(error.statusText);
@@ -146,17 +193,14 @@ function changeDistrict(data)
 	}
 	else return;
 }
-function swap(newDistrct, oldDistrict)
-{
-	if (newDistrct !== 0)
-	{
+function swap(newDistrct, oldDistrict) {
+	if (newDistrct !== 0) {
 		newDistrct = $('#DistrictN' + newDistrct + ">.count")[0];
 		newDistrct.innerText++;
 	}
-	if (oldDistrict !== 0)
-	{
+	if (oldDistrict !== 0) {
 		oldDistrict = $('#DistrictN' + oldDistrict + ">.count")[0];
 		oldDistrict.innerText--;
 	}
-	
+
 }

@@ -24,9 +24,9 @@
     @Scripts.Render("~/Scripts/Highcharts-4.0.1/js/highcharts.js")
 
 	@Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/Content/handlebars.js")
-
+	@Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/Content/handlebars.js")
+	@Scripts.Render("~/bundles/jqueryui")
   
 </head>
 <body>
@@ -146,7 +146,7 @@
 
 	<div id="chat">
 		<div class="head">
-			<img class="avatar" src="/saha.png">
+			<img class="avatar" src="/Images/item_0_profile.jpg">
 			<div class="serviceWorker">
 				<div class="name">Саша</div>
 				<div class="description">Служба підтримки</div>
@@ -154,17 +154,10 @@
 			<div class="minimize" onclick="HideSupportChat()"></div>
 		</div>
 		<div class="body">
-			<div class="question message">Привіт. Чим я можу тобі допомогти?</div>
-			<div class="answer message">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
-			<div class="question message">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
-			<div class="answer message">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
-			<div class="question message">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
-			<div class="question message">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
-			<div class="answer message">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div>
 		</div>
 		<div class="bottom">
 			<textarea class="message" placeholder="Введіть повідомлення"></textarea>
-			<div class="btnSend"><img class="btnSendImage" src="~/Content/Picture/sendIcon.png"></div>
+			<div class="btnSend"><img class="btnSendImage" src="~/Content/Picture/sendIcon.png" onclick="SendMessage()"></div>
 		</div>
 	</div>
 
@@ -190,9 +183,7 @@
                 </div>
             </div>
         </footer>
-
     </div>
-
 
     @Scripts.Render("~/bundles/inputmask")
 	@Scripts.Render("~/bundles/bootstrap")

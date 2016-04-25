@@ -34,6 +34,8 @@ namespace Common
 			Mapper.CreateMap<OrderDTO, Order>();
 			Mapper.CreateMap<WorkerStatus, WorkerStatusDTO>();
 			Mapper.CreateMap<WorkerStatusDTO, WorkerStatus>();
+			Mapper.CreateMap<SupportMessageDTO, SupportMessage>();
+			Mapper.CreateMap<SupportMessage, SupportMessageDTO>();
 		}
 	}
 }

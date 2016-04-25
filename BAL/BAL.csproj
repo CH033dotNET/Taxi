@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMapperConfig.cs" />
+    <Compile Include="Interfaces\ISupportManager.cs" />
     <Compile Include="Interfaces\IWorkerStatusManager.cs" />
     <Compile Include="Manager\AddressManager.cs" />
     <Compile Include="Manager\BaseManager.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Manager\LocationManager.cs" />
     <Compile Include="Manager\OrderManager.cs" />
     <Compile Include="Manager\PersonManager.cs" />
+    <Compile Include="Manager\SupportManager.cs" />
     <Compile Include="Manager\TarifManager.cs" />
     <Compile Include="Manager\TestManager.cs" />
     <Compile Include="Manager\WorkerStatusManager.cs" />
