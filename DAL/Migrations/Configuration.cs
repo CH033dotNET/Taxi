@@ -55,7 +55,8 @@ namespace DAL.Migrations
 					Password = "password",
 					Email = "admin@gmail.com",
 					RoleId = 5,
-					Lang = "en-us"
+					Lang = "en-us",
+					RegistrationDate = DateTime.Now
 				},
 				new User()
 				{
@@ -63,7 +64,8 @@ namespace DAL.Migrations
 					Password = "password",
 					Email = "driver@gmail.com",
 					RoleId = 1,
-					Lang = "en-us"
+					Lang = "en-us",
+					RegistrationDate = DateTime.Now
 				},
 				new User()
 				{
@@ -71,7 +73,8 @@ namespace DAL.Migrations
 					Password = "password",
 					Email = "operator@gmail.com",
 					RoleId = 2,
-					Lang = "en-us"
+					Lang = "en-us",
+					RegistrationDate = DateTime.Now
 				},
 				new User()
 				{
@@ -79,7 +82,8 @@ namespace DAL.Migrations
 					Password = "password",
 					Email = "client@gmail.com",
 					RoleId = 3,
-					Lang = "en-us"
+					Lang = "en-us",
+					RegistrationDate = DateTime.Now
 				},
 				new User()
 				{
@@ -87,7 +91,8 @@ namespace DAL.Migrations
 					Password = "password",
 					Email = "report@gmail.com",
 					RoleId = 4,
-					Lang = "en-us"
+					Lang = "en-us",
+					RegistrationDate = DateTime.Now
 				},
 				new User()
 				{
@@ -95,7 +100,8 @@ namespace DAL.Migrations
 					Password = "password",
 					Email = "coyotet@gmail.com",
 					RoleId = 1,
-					Lang = "en-us"
+					Lang = "en-us",
+					RegistrationDate = DateTime.Now
 				},
 				new User()
 				{
@@ -103,7 +109,8 @@ namespace DAL.Migrations
 					Password = "password",
 					Email = "support@gmail.com",
 					RoleId = 6,
-					Lang = "en-us"
+					Lang = "en-us",
+					RegistrationDate = DateTime.Now
 				},
 				new User()
 				{
@@ -111,7 +118,8 @@ namespace DAL.Migrations
 					Password = "password",
 					Email = "freedriver@gmail.com",
 					RoleId = 7,
-					Lang = "en-us"
+					Lang = "en-us",
+					RegistrationDate = DateTime.Now
 				}
 			};
 
@@ -120,7 +128,7 @@ namespace DAL.Migrations
 			if (!context.Users.Any())
 			{
 				var rundomUsers = Angie.Configure<User>().Fill(x => x.UserName).AsTwitterHandle<User>().Fill(x => x.Email).AsEmailAddress<User>()
-				.MakeList<User>(30).Select(x => new User { Password = "123456", RoleId = random.Next(1, 5), Email = x.Email, UserName = x.UserName, Lang = "en-us" });
+				.MakeList<User>(30).Select(x => new User { Password = "123456", RoleId = random.Next(1, 5), Email = x.Email, UserName = x.UserName, Lang = "en-us", RegistrationDate = DateTime.Now });
 				context.Users.AddRange(rundomUsers);
 				context.SaveChanges();
 			}

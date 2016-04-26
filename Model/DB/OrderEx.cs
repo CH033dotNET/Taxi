@@ -17,7 +17,8 @@ namespace Model.DB
 
         public OrderStatusEnum Status { get; set; }
 
-        public User Driver { get; set; }
+		public int DriverId { get; set; }
+		public User Driver { get; set; }
 
         public int WaitingTime { get; set; }
     }

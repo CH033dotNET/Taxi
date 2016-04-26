@@ -235,6 +235,14 @@
     <Compile Include="Migrations\201604261411166_OrderStatus.Designer.cs">
       <DependentUpon>201604261411166_OrderStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604261513267_OrderDriverAndWitingTime.cs" />
+    <Compile Include="Migrations\201604261513267_OrderDriverAndWitingTime.Designer.cs">
+      <DependentUpon>201604261513267_OrderDriverAndWitingTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604261939547_AddDriverIdForOrderEx.cs" />
+    <Compile Include="Migrations\201604261939547_AddDriverIdForOrderEx.Designer.cs">
+      <DependentUpon>201604261939547_AddDriverIdForOrderEx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -391,6 +399,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604261411166_OrderStatus.resx">
       <DependentUpon>201604261411166_OrderStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604261513267_OrderDriverAndWitingTime.resx">
+      <DependentUpon>201604261513267_OrderDriverAndWitingTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604261939547_AddDriverIdForOrderEx.resx">
+      <DependentUpon>201604261939547_AddDriverIdForOrderEx.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
