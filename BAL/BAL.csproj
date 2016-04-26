@@ -61,8 +61,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMapperConfig.cs" />
+    <Compile Include="Interfaces\IOrderManagerEx.cs" />
     <Compile Include="Interfaces\ISupportManager.cs" />
     <Compile Include="Interfaces\IWorkerStatusManager.cs" />
+    <Compile Include="Manager\OrderManagerEx.cs" />
     <Compile Include="Manager\AddressManager.cs" />
     <Compile Include="Manager\BaseManager.cs" />
     <Compile Include="Manager\CarManager.cs" />
