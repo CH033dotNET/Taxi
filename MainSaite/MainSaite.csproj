@@ -185,6 +185,7 @@
     <Compile Include="Controllers\CarsController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\DriveClientHistoryController.cs" />
+    <Compile Include="Controllers\DriverExController.cs" />
     <Compile Include="Controllers\DriverLocationHubController.cs" />
     <Compile Include="Controllers\OperatorHubController.cs" />
     <Compile Include="Controllers\OperatorMessagesHubController.cs" />
@@ -510,6 +511,7 @@
     <Content Include="Views\Support\Index.cshtml" />
     <Content Include="Views\OrderEx\Index.cshtml" />
     <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="Views\DriverEx\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

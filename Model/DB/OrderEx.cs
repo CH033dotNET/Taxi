@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Enum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,6 +15,10 @@ namespace Model.DB
 
 		public string Address { get; set; }
 
-        public int Status { get; set; }
+        public OrderStatusEnum Status { get; set; }
+
+        public User Driver { get; set; }
+
+        public int WaitingTime { get; set; }
     }
 }
