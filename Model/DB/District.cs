@@ -20,10 +20,5 @@ namespace Model
 		public List<Coordinate> Coordinates { get; set; }
 
 		public bool Deleted { get; set; }
-
-		public District()
-		{
-			Coordinates = new List<Coordinate>();
-		}
 	}
 }

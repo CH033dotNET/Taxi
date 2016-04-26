@@ -34,7 +34,7 @@ namespace Model
 
 		public string Lang { get; set; }
 
-        public DateTime RegistrationDate { get; set; } = DateTime.Now;
+        public DateTime RegistrationDate { get; set; }
 
         public List<Car> CarsUser { get; set; }
 

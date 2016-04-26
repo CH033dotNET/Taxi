@@ -11,10 +11,6 @@ namespace Model.DB
 {
 	public class Order
 	{
-		public Order()
-		{
-			this.District = null;
-		}
 
 		[Key]
 		public int Id { get; set; }

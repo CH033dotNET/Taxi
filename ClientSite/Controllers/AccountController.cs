@@ -19,7 +19,7 @@ namespace ClientSite.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Registration(RegistrationModel user)
+		public ActionResult Registration(UserDTO user)
 		{
 			if (ModelState.IsValid)
 			{

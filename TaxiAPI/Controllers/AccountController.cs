@@ -80,7 +80,7 @@ namespace TaxiAPI.Controllers
 
 		[HttpPost]
 		[Route("api/Account/InsertUser")]
-		public HttpResponseMessage InsertUser(RegistrationModel data)
+		public HttpResponseMessage InsertUser(RegistrationModelDTO data)
 		{
 			var IsInsert = userManager.InsertUser(data);
 			return Request.CreateResponse(HttpStatusCode.OK, IsInsert);

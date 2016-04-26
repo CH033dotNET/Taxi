@@ -14,7 +14,7 @@ namespace MainSaite.Controllers
 
 		public ActionResult Index()
 		{
-			return View(new List<OrderDTOEx>());
+			return View(new List<OrderExDTO>());
 		}
 
 	}

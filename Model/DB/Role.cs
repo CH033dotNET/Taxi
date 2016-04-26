@@ -16,14 +16,5 @@ namespace Model
 
 		public string Description { get; set; }
 
-		public Role() { }
-
-		public Role(Role role)
-		{
-			Id = role.Id;
-			Name = role.Name;
-			Description = role.Description;
-		}
-
 	}
 }

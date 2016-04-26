@@ -17,12 +17,13 @@ namespace BAL.Manager
 		List<UserDTO> GetDrivers();
 		IQueryable<Model.User> GetQueryableDrivers();
 		List<UserDTO> GetDriversExceptCurrent(int id);
-		Pager<UserDTO> GetUserPage(string searchString, int page, int pageSize, int roleId);
+		PagerDTO<UserDTO> GetUserPage(string searchString, int page, int pageSize, int roleId);
 		IEnumerable<UserDTO> GetUsers();
 		IQueryable<VIPClientDTO> GetVIPClients();
 		bool IfEmailExists(string email);
 		bool IfUserNameExists(string userName);
 		UserDTO InsertUser(UserDTO user);
+		UserDTO AddUser(RegistrationModelDTO user);
 		bool IsAdministratorById(int id);
 		bool IsUserNameCorrect(string name);
 		void SetVIPStatus(int UserId);

@@ -29,7 +29,7 @@ namespace MainSaite.Controllers
 			
         }
 		[HttpPost]
-		public ActionResult Registration(RegistrationModel user)
+		public ActionResult Registration(RegistrationModelDTO user)
 		{
 			if (ModelState.IsValid)
 			{
@@ -40,9 +40,7 @@ namespace MainSaite.Controllers
 
 						user.Lang = (string)Session["Culture"];
 
-						userManager.InsertUser(user);
-
-						CheckPerson(user);
+						userManager.AddUser(user);
 
 						Authentification(new LoginModel() {  UserName = user.UserName, Password = user.Password});
 
@@ -95,7 +93,8 @@ namespace MainSaite.Controllers
 			return View();
 		}
 
-	    private void CheckPerson( UserDTO user)
+
+		private void CheckPerson(UserDTO user)
 	    {
 			var currentUser = userManager.GetByUserName(user.UserName, user.Password);
 			var currentPerson = personManager.GetPersonByUserId(currentUser.Id);

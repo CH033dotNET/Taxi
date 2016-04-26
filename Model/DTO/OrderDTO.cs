@@ -10,10 +10,6 @@ namespace Model.DTO
 {
 	public class OrderDTO
 	{
-		public OrderDTO()
-		{
-			this.District = null;
-		}
 
 		public int Id { get; set; }
 

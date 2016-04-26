@@ -19,10 +19,10 @@ namespace BAL.Manager
 		public UserManager(IUnitOfWork uOW)
 			:base(uOW)
 		{
-
+			Mapper.CreateMap<RegistrationModelDTO, UserDTO>();
 		}
 
-		public Pager<UserDTO> GetUserPage(string searchString, int page, int pageSize, int roleId)
+		public PagerDTO<UserDTO> GetUserPage(string searchString, int page, int pageSize, int roleId)
 		{
 			List<User> users = new List<User>();
 
@@ -46,7 +46,7 @@ namespace BAL.Manager
 
 			var pageCount = (double) users.Count()/pageSize;
 
-			var model = new Pager<UserDTO>
+			var model = new PagerDTO<UserDTO>
 			{
 				CurrentPage = page,
 				PageCount = (int) Math.Ceiling(pageCount)
@@ -152,6 +152,11 @@ namespace BAL.Manager
 				return true;
 			}
 			return false;
+		}
+
+		public UserDTO AddUser(RegistrationModelDTO user)
+		{
+			return InsertUser(Mapper.Map<UserDTO>(user));
 		}
 
 		public UserDTO InsertUser(UserDTO user)
@@ -301,6 +306,13 @@ namespace BAL.Manager
 		public Role GerRoleForUser(UserDTO user)
 		{
      		var a = uOW.RoleRepo.All.Where(x => x.Name == user.Role.Name).First();
+
+			return a;
+		}
+
+		public Role GerRoleForUser(RegistrationModelDTO user)
+		{
+			var a = uOW.RoleRepo.All.Where(x => x.Name == user.Role.Name).First();
 
 			return a;
 		}

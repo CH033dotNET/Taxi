@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model.DTO
 {
-	public class Pager<T> where T : class
+	public class PagerDTO<T> where T : class
 	{
 		public List<T> Data { get; set; }
 

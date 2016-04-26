@@ -52,7 +52,7 @@
     <Compile Include="DB\Order.cs" />
     <Compile Include="DB\OrderEx.cs" />
     <Compile Include="DB\Person.cs" />
-    <Compile Include="DB\RegistrationModel.cs" />
+    <Compile Include="DTO\RegistrationModelDTO.cs" />
     <Compile Include="DB\SupportMessage.cs" />
     <Compile Include="DB\Tarif.cs" />
     <Compile Include="DB\UserAddress.cs" />
@@ -72,8 +72,8 @@
     <Compile Include="DTO\DriverRequest.cs" />
     <Compile Include="DTO\LocationDTO.cs" />
     <Compile Include="DTO\OrderDTO.cs" />
-    <Compile Include="DTO\OrderDTOEx.cs" />
-    <Compile Include="DTO\Pager.cs" />
+    <Compile Include="DTO\OrderExDTO.cs" />
+    <Compile Include="DTO\PagerDTO.cs" />
     <Compile Include="DTO\PersonDTO.cs" />
     <Compile Include="DTO\SupporterInfoDTO.cs" />
     <Compile Include="DTO\SupportMessageDTO.cs" />

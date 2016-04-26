@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model.DTO
 {
-	public class OrderDTOEx
+	public class OrderExDTO
 	{
 		public int Id { get; set; }
 
