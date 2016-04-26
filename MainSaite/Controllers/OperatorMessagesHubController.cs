@@ -24,5 +24,13 @@ namespace MainSaite.Controllers
 			OperatorMessagesHelper.SendToOperators(param1, param2);
 			return Request.CreateResponse(HttpStatusCode.OK, true);
 		}
+		[HttpPost]
+		public HttpResponseMessage SendNewOrderToOperators(OrderDTO data)
+		{
+			//OrderDTO o = order as OrderDTO;
+			//var i = 0;
+			OperatorMessagesHelper.SendNewOrderToOperators(data);
+			return Request.CreateResponse(HttpStatusCode.OK, true);
+		}
 	}
 }

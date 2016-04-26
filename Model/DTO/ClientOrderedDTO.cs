@@ -12,11 +12,15 @@ namespace Model.DTO
 	{
 		public int IsConfirm { get; set; }
 
+		public int userId { get; set; }
+
 		public double Latitude { get; set; }
 
 		public double Longitude { get; set; }
 
 		public string WaitingTime { get; set; }
+
+
 	}
 }
 

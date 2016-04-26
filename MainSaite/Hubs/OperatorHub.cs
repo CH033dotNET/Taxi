@@ -18,6 +18,7 @@ namespace MainSaite.Hubs
 		[HubMethodName("deniedClientOrder")]
 		public void DeniedClientOrder(int clientUserId)
 		{
+			///////////////
 			var clientConnectionId = operatorHubUsers.FirstOrDefault(x => x.UserId == clientUserId).ConnectionId;
 			Clients.Client(clientConnectionId).deniedClientOrder();
 		}
@@ -35,6 +36,7 @@ namespace MainSaite.Hubs
 		[HubMethodName("sendNewOrderToOperators")]
 		public void SendNewOrderToOperators(OrderDTO newOrder)
 		{
+			/////!!!!!!!!!!!!!!!!!!!!!
 			Clients.Group("Operator").newOrderFromClient(newOrder);
 		}
 
@@ -43,6 +45,8 @@ namespace MainSaite.Hubs
 		[HubMethodName("noFreeCarClientOrder")]
 		public void NoFreeCarClientOrder(int clientId)
 		{
+
+			////////
 			var clientConnectionId = operatorHubUsers.FirstOrDefault(x => x.UserId == clientId).ConnectionId;
 			Clients.Client(clientConnectionId).noFreeCar();
 		}
@@ -50,9 +54,13 @@ namespace MainSaite.Hubs
 
 		//Show modal form 'wait taxi' to client
 		[HubMethodName("confirmClientOrder")]
-		public void ConfirmClientOrder(int orderId, string waitingTime, double lat, double lng)
+		public void ConfirmClientOrder(ClientOrderedDTO order)
 		{
-			Clients.Group("Client").waitYourCar(orderId, waitingTime, lat, lng);
+
+			///////
+
+			var clientConnectionId = operatorHubUsers.FirstOrDefault(x => x.UserId == order.userId).ConnectionId;
+			Clients.Client(clientConnectionId).waitYourCar(order.WaitingTime, order.Latitude, order.Longitude);
 		}
 
 
@@ -126,6 +134,7 @@ namespace MainSaite.Hubs
 		public void ConnectUser(int roleId, int userId)
 		{
 			string connectionId = Context.ConnectionId;
+
 			int RoleId = roleId;
 
 			var currentUser = new SignalRUser() { ConnectionId = connectionId, RoleId = roleId, UserId = userId };

@@ -18,7 +18,7 @@ namespace Common.Enum
 	}
 	public enum AvailableRolesViaRegistration
 	{
-		FreeDriver = 7,
-		Client = 3
+		Client = 3,
+		FreeDriver = 7
 	}
 }

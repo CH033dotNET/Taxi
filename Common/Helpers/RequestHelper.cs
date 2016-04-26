@@ -81,9 +81,10 @@ namespace Common.Helpers
 		{
 			var request = new RestRequest(string.Format("{0}/{1}", controller, method), Method.POST);
 			//request.AddParameter("data", data, ParameterType.GetOrPost);
-			request.RequestFormat = DataFormat.Json;
-			request.AddParameter("Application/Json", JsonConvert.SerializeObject(data), ParameterType.RequestBody);
-
+			//request.RequestFormat = DataFormat.Json;
+			//request.AddParameter("data", data,"application/json", ParameterType.RequestBody);
+			//request.AddBody(data);
+			request.AddJsonBody(data);
 			var result = client.Execute<T>(request);
 
 			return result;

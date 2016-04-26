@@ -10,6 +10,7 @@ using Model.DTO;
 
 namespace TaxiAPI.Controllers
 {
+	//Taxi api
 	public class OrdersController : BaseController
 	{
 		private IOrderManager orderManager;
@@ -20,6 +21,7 @@ namespace TaxiAPI.Controllers
 			this.coordinatesManager = coordinatesManager;
 			this.orderManager = orderManager;
 		}
+
 		[HttpGet]
 		public HttpResponseMessage GetOrders()
 		{
@@ -50,6 +52,16 @@ namespace TaxiAPI.Controllers
 			return Request.CreateResponse(HttpStatusCode.OK, sended);
 		}
 		//-------------------------------------------------------------------------------------------------
+		[HttpPost]
+		public HttpResponseMessage SendNewOrderToOperators(OrderDTO data)
+		{
+			//var i = 1;
+			MainSiteRequestHelper.postData<OrderDTO>("OperatorMessagesHub", "SendNewOrderToOperators", data);
+
+			return Request.CreateResponse(HttpStatusCode.OK, true);
+		}
+
+
 		[HttpPost]
 		public HttpResponseMessage OrderForDrivers(OrderDTO data)
 		{
@@ -82,6 +94,25 @@ namespace TaxiAPI.Controllers
 		public HttpResponseMessage SendToDrivers(string data)
 		{
 			DriverRequestHelper.Get<bool, string>("Messages", "SendToDrivers", data);
+			return Request.CreateResponse(HttpStatusCode.OK, true);
+		}
+
+		[HttpGet]
+		public HttpResponseMessage DenyOrder(int data)
+		{
+			ClientRequestHelper.Get<bool, int>("Messages", "DenyOrder", data);
+			return Request.CreateResponse(HttpStatusCode.OK, true);
+		}
+		[HttpGet]
+		public HttpResponseMessage NoFreeCar(int data)
+		{
+			ClientRequestHelper.Get<bool, int>("Messages", "NoFreeCar", data);
+			return Request.CreateResponse(HttpStatusCode.OK, true);
+		}
+		[HttpGet]
+		public HttpResponseMessage WaitYourCar(ClientOrderedDTO data)
+		{
+			ClientRequestHelper.postData<ClientOrderedDTO>("Messages", "WaitYourCar", data);
 			return Request.CreateResponse(HttpStatusCode.OK, true);
 		}
 
