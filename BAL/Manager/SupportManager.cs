@@ -32,6 +32,31 @@ namespace BAL.Manager
 			return info;
 		}
 
+		public List<SupporterInfoDTO> GetChatUsers()
+		{
+			var allSenders = uOW.SupportRepo.Get()
+								//.Get(e => e.SendTime > DateTime.UtcNow.AddMinutes(-30))
+								.OrderBy(e => e.SendTime)
+								.Select(e => e.SenderId)
+								.Distinct();
+
+			List<SupporterInfoDTO> persons = new List<SupporterInfoDTO>();
+			foreach (int senderId in allSenders)
+			{
+				var person = uOW.PersonRepo.Get(e => e.UserId == senderId).First();
+				var info = new SupporterInfoDTO()
+				{
+					Id = senderId,
+					Name = person.FirstName,
+					Photo = person.ImageName
+				};
+
+				persons.Add(info);
+			}
+
+			return persons;
+		}
+
 		public IEnumerable<SupportMessageDTO> GetMessages(int userId)
 		{
 			var messages = uOW.SupportRepo
@@ -41,22 +66,13 @@ namespace BAL.Manager
 			return messages;
 		}
 
-		public void SendMessage(string message, int fromUserID, int toUserID = -1)
+		public void SendMessage(string message, int fromUserID, int toUserID)
 		{
-			User receiver;
-			if (toUserID == -1)
-			{
-				receiver = uOW.UserRepo.Get().Where(e => e.RoleId == (int)AvailableRoles.Support).First();
-			} else
-			{
-				receiver = uOW.UserRepo.GetByID(toUserID);
-			}
-
 			var msg = new SupportMessage()
 			{
 				Message = message,
 				Sender = uOW.UserRepo.GetByID(fromUserID),
-				Receiver = receiver,
+				Receiver = uOW.UserRepo.GetByID(toUserID),
 				SendTime = DateTime.UtcNow
 			};
 

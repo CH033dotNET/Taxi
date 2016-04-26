@@ -28,15 +28,21 @@ namespace MainSaite.Controllers
 		}
 
 		[HttpPost]
-		public void SendMessage(string message)
+		public void SendMessage(string message, int toUserID)
 		{
-			SupportManager.SendMessage(message, SessionUser.Id);
+			SupportManager.SendMessage(message, SessionUser.Id, toUserID);
 		}
 
 		[HttpPost]
 		public JsonResult GetSupporter()
 		{
 			return Json(SupportManager.GetSupporter(), JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpPost]
+		public JsonResult GetChatUsers()
+		{
+			return Json(SupportManager.GetChatUsers(), JsonRequestBehavior.AllowGet);
 		}
 	}
 }

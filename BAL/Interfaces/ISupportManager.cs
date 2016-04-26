@@ -11,6 +11,7 @@ namespace BAL.Interfaces
 	{
 		SupporterInfoDTO GetSupporter();
 		IEnumerable<SupportMessageDTO> GetMessages(int userId);
-		void SendMessage(string message, int fromUserID, int toUserID = -1);
+		void SendMessage(string message, int fromUserID, int toUserID);
+		List<SupporterInfoDTO> GetChatUsers();
 	}
 }
