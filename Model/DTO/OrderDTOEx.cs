@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Model.DTO
 {
-	class OrderDTOEx
+	public class OrderDTOEx
 	{
 		public int Id { get; set; }
 
 		public string Address { get; set; }
-	}
+
+        public int Status { get; set; }
+    }
 }
