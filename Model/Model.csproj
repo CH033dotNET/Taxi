@@ -62,7 +62,9 @@
     <Compile Include="DTO\CarDTO.cs" />
     <Compile Include="DB\LoginModel.cs" />
     <Compile Include="DTO\ClientOrderedDTO.cs" />
+    <Compile Include="DTO\CoordinateDTO.cs" />
     <Compile Include="DTO\CoordinatesDTO.cs" />
+    <Compile Include="DTO\DistrictDTO.cs" />
     <Compile Include="DTO\DriverDistrictInfoDTO.cs" />
     <Compile Include="DTO\ChartsColumnDTO.cs" />
     <Compile Include="DTO\DriverLocation.cs" />
@@ -71,6 +73,8 @@
     <Compile Include="DTO\OrderDTO.cs" />
     <Compile Include="DTO\Pager.cs" />
     <Compile Include="DTO\PersonDTO.cs" />
+    <Compile Include="DTO\SupporterInfoDTO.cs" />
+    <Compile Include="DTO\SupportMessageDTO.cs" />
     <Compile Include="DTO\TarifDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="DTO\VIPClientDTO.cs" />

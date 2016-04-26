@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.DB
+namespace Model
 {
 	[Table("DistrictCoordinates")]
 	public class Coordinate
@@ -14,6 +14,12 @@ namespace Model.DB
 
 		public double Latitude { get; set; }
 
-		public double Longitide { get; set; }
+		public double Longitude { get; set; }
+
+		public int Index { get; set; }
+
+		public District District { get; set; }
+
+		public int DistrictId { get; set; }
 	}
 }

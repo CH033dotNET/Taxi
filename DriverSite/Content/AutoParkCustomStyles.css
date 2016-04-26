@@ -82,6 +82,12 @@
 	font-weight: bold;
 }
 
-#districtTableResponsive{
+#districtTableResponsive {
 	overflow-x: visible;
+}
+
+/*disable choosing tarif*/ 
+#choose-tarif input {
+	pointer-events: none;
+	opacity: 0.4;
 }

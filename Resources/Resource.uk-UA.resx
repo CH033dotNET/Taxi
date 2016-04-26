@@ -921,4 +921,10 @@
   <data name="Help" xml:space="preserve">
     <value>Служба підтримки</value>
   </data>
+  <data name="ClientSupport" xml:space="preserve">
+    <value>Підтримка клієнтів</value>
+  </data>
+  <data name="FreeDriver" xml:space="preserve">
+    <value>Free водій</value>
+  </data>
 </root>

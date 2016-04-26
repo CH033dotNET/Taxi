@@ -22,8 +22,8 @@ namespace DAL
 		private IGenericRepository<District> districtRepo;
 		private IGenericRepository<Car> carInfo;
 		private IGenericRepository<UserAddress> addressRepo;
-
 		private IGenericRepository<Person> personRepo;
+		private IGenericRepository<SupportMessage> supportRepo;
 
 		private IGenericRepository<VIPClient> vipClientRepo;
 		private IGenericRepository<Location> locationRepo;
@@ -33,6 +33,8 @@ namespace DAL
 		private IGenericRepository<Coordinates> coordinatesHistoryRepo;
 		private IGenericRepository<Order> orderRepo;
 		private IGenericRepository<WorkerStatus> workerStatusRepo;
+
+		private IGenericRepository<Coordinate> districtCoordinatesRepo;
 		#endregion
 
 		public UnitOfWork()
@@ -57,6 +59,9 @@ namespace DAL
 			orderRepo = new GenericRepository<Order>(context);
 
 			workerStatusRepo = new GenericRepository<WorkerStatus>(context);
+
+			districtCoordinatesRepo = new GenericRepository<Coordinate>(context);
+			supportRepo = new GenericRepository<SupportMessage>(context);
 		}
 
 		public void Save()
@@ -180,6 +185,24 @@ namespace DAL
 			{
 				if (workerStatusRepo == null) workerStatusRepo = new GenericRepository<WorkerStatus>(context);
 				return workerStatusRepo;
+			}
+		}
+
+		public IGenericRepository<Coordinate> DistrictCoordinatesRepo
+		{
+			get
+			{
+				if (districtCoordinatesRepo == null) districtCoordinatesRepo = new GenericRepository<Coordinate>(context);
+				return districtCoordinatesRepo;
+			}
+		}
+
+		public IGenericRepository<SupportMessage> SupportRepo
+		{
+			get
+			{
+				if (supportRepo == null) supportRepo = new GenericRepository<SupportMessage>(context);
+				return supportRepo;
 			}
 		}
 		#endregion

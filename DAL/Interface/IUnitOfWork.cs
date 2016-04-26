@@ -31,6 +31,8 @@ namespace DAL.Interface
 		IGenericRepository<Coordinates> CoordinatesHistoryRepo { get; }
 		IGenericRepository<Order> OrderRepo { get; }
 		IGenericRepository<WorkerStatus> WorkerStatusRepo { get; }
+		IGenericRepository<Coordinate> DistrictCoordinatesRepo { get; }
+		IGenericRepository<SupportMessage> SupportRepo { get; }
 
 		void Dispose();
 		void Save();

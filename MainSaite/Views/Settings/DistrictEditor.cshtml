@@ -1,4 +1,4 @@
-﻿@model IList<Model.District>
+﻿@model IList<Model.DTO.DistrictDTO>
 @{
 	string username = (Session["user"] as Model.DTO.UserDTO).UserName;
 }
@@ -7,11 +7,12 @@
 	<div class="page-header"><h1>@Resources.Resource.Greeting,<small>@username</small></h1></div>
 	<div class="panel panel-info">
 		<div class="panel-heading"><h3 class="panel-title">@Resources.Resource.Districts</h3></div>
-		<div class="panel-body"><img class="img-thumbnail" src="~/Content/Picture/Skyline_new_york_city.jpg" /></div>
+		<div class="panel-body">
+			<div id="map"></div>
+		</div>
 		<div class="panel-footer">
 			<form id="non-deleted-form" class="form-inline">
 				<div class="form-group">
-					<a class="btn btn-success" onclick="jsController.addDistrict()"><span class="glyphicon glyphicon-plus" aria-hidden="true">&nbsp;</span>@Resources.Resource.addString</a>
 					<a class="btn btn-warning" onclick="jsController.DistrictBasket(this)"><span class="glyphicon glyphicon-th-list" aria-hidden="true">&nbsp;</span>@Resources.Resource.DistrictBasket</a>
 					<input type="text" class="form-control input-sm" placeholder="@Resources.Resource.Search" oninput="jsController.searchDistricts(this.value);" id="searcDhistrictName" value="" />
 				</div>
@@ -59,6 +60,11 @@
 		</div>
 	</div>
 </div>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?libraries=drawing&sensor=false" ></script>
+<script type="text/javascript"  src="http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.5/src/markerwithlabel_packed.js"></script>
+
 <script>
 	var encodedData = @Html.Raw(Json.Encode(Model.ToList()));
 	var encodedDeleted = @Html.Raw(Json.Encode(Model.ToList()));

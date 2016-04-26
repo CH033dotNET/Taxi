@@ -24,7 +24,7 @@ namespace MainSaite.Controllers
 		private IUserManager userManager;
 		private IDistrictManager districtManager;
 		private ICarManager carManager;
-		public SettingsController(IUserManager userManager, IDistrictManager districtManager, ICarManager carManager) 
+		public SettingsController(IUserManager userManager, IDistrictManager districtManager, ICarManager carManager)
 		{
 			this.userManager = userManager;
 			this.districtManager = districtManager;
@@ -37,21 +37,21 @@ namespace MainSaite.Controllers
 		}
 
 
-        public PartialViewResult PartialUsersTable()
-        {
-            var users = userManager.GetUsers();
-            return PartialView("_UserTable", users);
-        }
+		public PartialViewResult PartialUsersTable()
+		{
+			var users = userManager.GetUsers();
+			return PartialView("_UserTable", users);
+		}
 
-        [HttpPost]
-        public PartialViewResult PartialUsersTable(UserDTO user)
-        {
-            ChangeMenu(user);
+		[HttpPost]
+		public PartialViewResult PartialUsersTable(UserDTO user)
+		{
+			ChangeMenu(user);
 
-            var users = userManager.GetUsers();
+			var users = userManager.GetUsers();
 
-            return PartialView("_UserTable", users);
-        }
+			return PartialView("_UserTable", users);
+		}
 
 		public ActionResult UsersMenu()
 		{
@@ -64,7 +64,7 @@ namespace MainSaite.Controllers
 		{
 
 			var user = userManager.GetById(id);
-			return PartialView("_EditUser",user);
+			return PartialView("_EditUser", user);
 		}
 		[HttpPost]
 		public ActionResult ChangeMenu(UserDTO user)
@@ -94,13 +94,13 @@ namespace MainSaite.Controllers
 		{
 			if (!String.IsNullOrEmpty(parameter))
 			{
-				IEnumerable<District> resultDistricts = districtManager.searchDistricts(parameter).ToList();
+				var resultDistricts = districtManager.searchDistricts(parameter).ToList();
 				return Json(new { success = true, resultDistricts }, JsonRequestBehavior.AllowGet);
 			}
-			else 
+			else
 			{
 				var districts = districtManager.getDistricts();
-				return Json(new { success = false, districts }, JsonRequestBehavior.AllowGet); 
+				return Json(new { success = false, districts }, JsonRequestBehavior.AllowGet);
 			}
 		}
 
@@ -108,7 +108,7 @@ namespace MainSaite.Controllers
 		{
 			if (!String.IsNullOrEmpty(parameter))
 			{
-				IEnumerable<District> resultDistricts = districtManager.searchDeletedDistricts(parameter).ToList();
+				var resultDistricts = districtManager.searchDeletedDistricts(parameter).ToList();
 				return Json(new { success = true, resultDistricts }, JsonRequestBehavior.AllowGet);
 			}
 			else
@@ -128,12 +128,12 @@ namespace MainSaite.Controllers
 		{
 			if (!String.IsNullOrEmpty(search))
 			{
-				IEnumerable<District> resultDistricts = districtManager.searchAndSortDistricts(search, sort).ToList();
+				var resultDistricts = districtManager.searchAndSortDistricts(search, sort).ToList();
 				return Json(new { success = true, resultDistricts }, JsonRequestBehavior.AllowGet);
 			}
 			else
 			{
-				IEnumerable<District> resultDistricts = districtManager.GetSortedDistricts(sort).ToList();
+				var resultDistricts = districtManager.GetSortedDistricts(sort).ToList();
 				return Json(new { success = true, resultDistricts }, JsonRequestBehavior.AllowGet);
 			}
 		}
@@ -142,13 +142,12 @@ namespace MainSaite.Controllers
 		{
 			if (!String.IsNullOrEmpty(search))
 			{
-				IEnumerable<District> sortedDeletedDistricts = districtManager.searchAndSortDeletedDistricts(search, sort).ToList();
+				var sortedDeletedDistricts = districtManager.searchAndSortDeletedDistricts(search, sort).ToList();
 				return Json(new { success = true, sortedDeletedDistricts }, JsonRequestBehavior.AllowGet);
 			}
 			else
 			{
-				IEnumerable<District> sortedDeletedDistricts;
-				sortedDeletedDistricts = districtManager.GetSortedDeletedDistrictsBy(sort).ToList();
+				var sortedDeletedDistricts = districtManager.GetSortedDeletedDistrictsBy(sort).ToList();
 				return Json(new { success = true, sortedDeletedDistricts }, JsonRequestBehavior.AllowGet);
 			}
 		}
@@ -186,7 +185,9 @@ namespace MainSaite.Controllers
 		/// </summary>
 		/// <param name="district">new object</param>
 		/// <returns></returns>
-		public JsonResult AddDistrict(District district)
+
+		[HttpPost]
+		public JsonResult AddDistrict(DistrictDTO district)
 		{
 			DistrictModelValidator validator = new DistrictModelValidator();
 			var checkedDistirct = validator.Validate(district, ruleSet: "AddDistrict");
@@ -196,12 +197,11 @@ namespace MainSaite.Controllers
 			}
 			else
 			{
-				string statusMessage = districtManager.addDistrict(district.Name);
-				if (statusMessage == "Error") { return Json(new { success = false }, JsonRequestBehavior.AllowGet); }
+				var newDistrict = districtManager.addDistrict(district);
+				if (newDistrict == null) { return Json(new { success = false }, JsonRequestBehavior.AllowGet); }
 				else
 				{
-					var districts = districtManager.getDistricts();
-					return Json(new { success = true, districts }, JsonRequestBehavior.AllowGet);
+					return Json(new { success = true, district = newDistrict }, JsonRequestBehavior.AllowGet);
 				}
 			}
 		}
@@ -215,8 +215,7 @@ namespace MainSaite.Controllers
 		{
 			var checkObject = districtManager.SetDistrictDeleted(district.Id, district.Name);
 			if (checkObject == null) { return Json(new { success = false }, JsonRequestBehavior.AllowGet); }
-			var districts = districtManager.getDistricts();
-			return Json(new { success = true, districts }, JsonRequestBehavior.AllowGet);
+			return Json(new { success = true }, JsonRequestBehavior.AllowGet);
 		}
 		/// <summary>
 		/// Ajax call from the view sends a data to controller, 
@@ -224,7 +223,8 @@ namespace MainSaite.Controllers
 		/// </summary>
 		/// <param name="district">objects that contains all data needed for editing information</param>
 		/// <returns></returns>
-		public JsonResult EditDistrict(District district)
+		[HttpPost]
+		public JsonResult EditDistrict(DistrictDTO district)
 		{
 			DistrictModelValidator validator = new DistrictModelValidator();
 			var checkedDistirct = validator.Validate(district, ruleSet: "EditDistrict");
@@ -235,8 +235,7 @@ namespace MainSaite.Controllers
 			else
 			{
 				districtManager.EditDistrict(district);
-				var districts = districtManager.getDistricts();
-				return Json(new { success = true, districts }, JsonRequestBehavior.AllowGet);
+				return Json(new { success = true }, JsonRequestBehavior.AllowGet);
 			}
 		}
 		/// <summary>
@@ -261,9 +260,7 @@ namespace MainSaite.Controllers
 			if (checkObject == null) { return Json(new { success = false }, JsonRequestBehavior.AllowGet); }
 			else
 			{
-				var deletedDistricts = districtManager.getDeletedDistricts();
-				var workingDistricts = districtManager.getDistricts();
-				return Json(new { success = true, deletedDistricts, workingDistricts }, JsonRequestBehavior.AllowGet); 
+				return Json(new { success = true, district = checkObject }, JsonRequestBehavior.AllowGet);
 			}
 		}
 

@@ -190,27 +190,56 @@ var carController = {
 		var carsName = $(e).attr('data-cars-name');
 
 		$('#car-modal-getMain .getMainCar-name').html(carsName);
-		$('#car-modal-getMain').modal('show');
+		//$('#car-modal-getMain').modal('show'); // modal window
 
-		$('#car-modal-getMain .btn-ok').off("click.doMainCar").on("click.doMainCar", function () {
-			$.ajax({
-				url: SetCarStatusPath, // <----------------------------------------------------!!
-				data: { Id: carsId },
-				method: "POST",
-				dataType: "JSON"
-			}).done(function (result) {
-				if (result.success && result != null) {
-					carController.carData.cars = result.DriversCars;
-					carController.renderCarData();
-				}
-				else {
-					carController.getCarErrorMessage();
-				}
-			});
-			$('#car-modal-getMain').modal('hide');
-			$('#car-modal-getMain .btn-ok').off("click.doMainCar");
-			return false;
-		});
+		//$('#car-modal-getMain .btn-ok').off("click.doMainCar").on("click.doMainCar", function () {
+		//	$.ajax({
+		//		url: SetCarStatusPath, // <----------------------------------------------------!!
+		//		data: { Id: carsId },
+		//		method: "POST",
+		//		dataType: "JSON"
+		//	}).done(function (result) {
+		//		if (result.success && result != null) {
+		//			carController.carData.cars = result.DriversCars;
+		//			carController.renderCarData();
+		//		}
+		//		else {
+		//			carController.getCarErrorMessage();
+		//		}
+		//	});
+		//	$('#car-modal-getMain').modal('hide'); //modal window
+		//	$('#car-modal-getMain .btn-ok').off("click.doMainCar");
+
+		//	return false;
+	    //});
+
+		    $.ajax({
+		        url: SetCarStatusPath, // <----------------------------------------------------!!
+		        data: { Id: carsId },
+		        method: "POST",
+		        dataType: "JSON"
+		    }).done(function (result) {
+		        if (result.success && result != null) {
+		            carController.carData.cars = result.DriversCars;
+		            carController.renderCarData();
+		        }
+		        else {
+		            carController.getCarErrorMessage();
+		        }
+		    });
+		    $('#car-modal-getMain').modal('hide'); //modal window
+		    $('#car-modal-getMain .btn-ok').off("click.doMainCar");
+		    
+            
+		    if (window.Notification && Notification.permission !== "denied") {
+		        Notification.requestPermission(function (status) {  // status is "granted", if accepted by user
+		            var n = new Notification('Car changed!', {
+		                body: 'Car changed!',
+		            });
+		        });
+		    }
+
+
 	},
 
 	deleteCar: function (e) { //start
