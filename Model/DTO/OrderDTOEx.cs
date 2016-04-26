@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Enum;
 
 namespace Model.DTO
 {
@@ -12,6 +13,10 @@ namespace Model.DTO
 
 		public string Address { get; set; }
 
-        public int Status { get; set; }
+        public OrderStatusEnum Status { get; set; }
+
+        public User Driver { get; set; }
+
+        public int WaitingTime { get; set; }
     }
 }
