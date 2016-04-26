@@ -506,6 +506,8 @@
     <Content Include="Views\ReportCharts\YearIncome.cshtml" />
     <Content Include="Views\Settings\SetVIPStatus.cshtml" />
     <Content Include="Views\Support\Index.cshtml" />
+    <Content Include="Views\OrderEx\Index.cshtml" />
+    <Content Include="Views\Client\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
