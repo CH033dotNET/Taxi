@@ -227,6 +227,10 @@
     <Compile Include="Migrations\201604241910377_FixedSupporterDBModel.Designer.cs">
       <DependentUpon>201604241910377_FixedSupporterDBModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604261343044_AddNewOrders.cs" />
+    <Compile Include="Migrations\201604261343044_AddNewOrders.Designer.cs">
+      <DependentUpon>201604261343044_AddNewOrders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -377,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604241910377_FixedSupporterDBModel.resx">
       <DependentUpon>201604241910377_FixedSupporterDBModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604261343044_AddNewOrders.resx">
+      <DependentUpon>201604261343044_AddNewOrders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
