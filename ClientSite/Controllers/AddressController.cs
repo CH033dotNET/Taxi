@@ -15,6 +15,7 @@ namespace ClientSite.Controllers
         public ActionResult Index()
         {
 			var addressList = ApiRequestHelper.Get<List<AddressDTO>, int>("Address", "GetAddressesForUser", SessionUser.Id);
+
 			if (addressList.StatusCode == HttpStatusCode.OK)
 			{
 				return View(addressList.Data);

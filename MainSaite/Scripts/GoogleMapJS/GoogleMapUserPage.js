@@ -1,16 +1,17 @@
 ﻿// This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
 var map;
-var marker1 = new google.maps.Marker;
-var marker2 = new google.maps.Marker;
+var finishPoint = new google.maps.Marker;
+var startPoint = new google.maps.Marker;
 var markerTaxi = new google.maps.Marker;
 
+var controlUI;
 var geocoder = new google.maps.Geocoder();
 var infowindow = new google.maps.InfoWindow;
 var circle;
 var address;
 var counter = 0;
-var markers = new Array();
+var markers = [];
 
 var myOrderId;
 var intervalID;
@@ -18,6 +19,7 @@ var newOrder;
 var operatorHub;
 
 function hubInit() {
+
     var hub = $.connection.driversLocationHub;//Подключились к хабу
 
     hub.client.locationUpdate = locationUpdate;//присобачили функцию клиента
@@ -31,6 +33,7 @@ $(document).ready(function () {
     operatorHub = $.connection.OperatorHub;
 
     operatorHub.client.deniedClientOrder = function () {
+    	debugger;
         myOrderId = null;
         $('#deniedorderinfo').modal('toggle');
     }
@@ -40,20 +43,18 @@ $(document).ready(function () {
         $('#nocarorderinfo').modal('toggle');
     }
 
-    operatorHub.client.waitYourCar = function (orderId, waitingTime, lat, lng) {
+    operatorHub.client.waitYourCar = function (waitingTime, lat, lng) {
 
-        if (orderId == myOrderId) {
             whereMyDriver(myOrderId);
             $('#waittime').val(waitingTime);
             $('#orderinfo').modal('toggle');
             setTaxiMarker(lat, lng);
             myOrderId = null;
-        }
-
     }
 
     $.connection.hub.start().done(function () {
-        // LogIn
+    	// LogIn
+
         var clientRoleId = 3;
         var clientUserId = $('#currentUserId').val();
 
@@ -68,8 +69,11 @@ $(document).ready(function () {
 
 function CenterControl(controlDiv, map) {
 
-    // Set CSS for the control border.
-    var controlUI = document.createElement('div');
+	// Set CSS for the control border.
+
+	controlUI = document.createElement('div');
+	controlUI.id = "controlOrder";
+
     controlUI.style.backgroundColor = '#5cb85c';
     controlUI.style.border = '2px solid #4cae4c';
     controlUI.style.borderRadius = '3px';
@@ -90,30 +94,48 @@ function CenterControl(controlDiv, map) {
     controlText.style.paddingLeft = '5px';
     controlText.style.paddingRight = '5px';
     controlText.innerHTML = 'Order a Taxi';
+
     controlUI.appendChild(controlText);
+
+    controlUI.style.backgroundColor = 'rgb(123, 123, 123)';
+
+    controlUI.style.border = '2px solid rgb(128, 128, 128)';
 
     // Setup the click event listeners: simply set the map to Chicago.
     controlUI.addEventListener('click', function () {
-        map.setCenter(geocode());
+
+    	//alert("Order");
+
+    	map.setCenter(geocode());
+
+    	if (finishPoint.getTitle() == null) {
+    		$('#noDestPoint').modal('toggle');
+    		return false;
+    	}
+
+
       
-        if (myOrderId == null) {
+    	if (myOrderId == null) {
+    		//debugger;
             var orderObj = {
-                'PeekPlace': marker2.getTitle(),
-                'DropPlace': marker1.getTitle(),
+                'PeekPlace': startPoint.getTitle(),
+                'DropPlace': finishPoint.getTitle(),
                 'OrderTime': new Date().toISOString(),
-                'LatitudeDropPlace': marker1.position.lat(),
-                'LongitudeDropPlace': marker1.position.lng(),
+                'LatitudeDropPlace': finishPoint.position.lat(),
+                'LongitudeDropPlace': finishPoint.position.lng(),
                 'Accuracy': circle.getRadius(),
-                'LatitudePeekPlace': marker2.position.lat(),
-                'LongitudePeekPlace': marker2.position.lng(),
+                'LatitudePeekPlace': startPoint.position.lat(),
+                'LongitudePeekPlace': startPoint.position.lng(),
                 'IsConfirm': 3
             }
+
             $.ajax({
                 url: './Order/NewOrder/',
                 data: orderObj,
                 type: "POST",
                 success: function (data) {
-                    myOrderId = data.Id;
+                	myOrderId = data.Id;
+                	//debugger;
                     operatorHub.server.sendNewOrderToOperators(data);
                 }
             });
@@ -121,6 +143,7 @@ function CenterControl(controlDiv, map) {
 
         else
         {
+        	//debugger;
             $('#hasorder').modal('toggle');
         }
     })
@@ -130,6 +153,7 @@ function CenterControl(controlDiv, map) {
 
 
 var addCircle = function (map, coordinates, accuracy) {
+
     var circleOptions = {
         center: coordinates,
         clickable: false,
@@ -186,9 +210,11 @@ function initMap() {
     });
 
     ShowCurCoord();
+
     var centerControlDiv = document.createElement('div');
     var centerControl = new CenterControl(centerControlDiv, map);
     centerControlDiv.index = 1;
+
     map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
 
     $.ajax({
@@ -261,13 +287,13 @@ var ShowCurCoord = function () {
                 map: map,
                 icon: picturePath + 'logo_client.png'
             });
-            marker2 = test1;
+            startPoint = test1;
 
-            google.maps.event.addListener(marker2, 'dragend', function () { setTitle(marker2); });
+            google.maps.event.addListener(startPoint, 'dragend', function () { setTitle(startPoint); });
         
 
 
-            setTitle(marker2);
+            setTitle(startPoint);
         }, function () {
             // handleLocationError(true, infoWindow, map.getCenter());
         });
@@ -287,7 +313,7 @@ function addOnUserPageDriver(myLat, myLng) {
 var ShowFakeCoord = function (pos) {
             infowindow.setPosition(pos);
             map.setCenter(pos);
-            marker2.setMap(null);
+            startPoint.setMap(null);
             circle.setMap(null);
             circle = addCircle(map, pos, 200);
             test1 = new google.maps.Marker({
@@ -295,8 +321,8 @@ var ShowFakeCoord = function (pos) {
                 map: map,
                 icon: picturePath + 'logo_client.png'
             });
-            marker2 = test1;
-            setTitle(marker2);
+            startPoint = test1;
+            setTitle(startPoint);
 }
 
 
@@ -313,6 +339,8 @@ var componentForm = {
 
 
 function geocodeLatLng(LatLong, geocoder, map, infowindow) {
+
+
     var lon = LatLong.lat();
     var lng = LatLong.lng();
     var latlng = { lat: lon, lng: lng };
@@ -320,8 +348,14 @@ function geocodeLatLng(LatLong, geocoder, map, infowindow) {
         if (status === google.maps.GeocoderStatus.OK) {
             if (results[1]) {
 
+            	//After destination selected enable button
 
-                marker1.setMap(null);
+            	controlUI.style.backgroundColor = '#5cb85c';
+
+            	controlUI.style.border = '2px solid #4cae4c';
+				
+
+                finishPoint.setMap(null);
 
                 var test = new google.maps.Marker({
                     position: latlng,
@@ -331,8 +365,8 @@ function geocodeLatLng(LatLong, geocoder, map, infowindow) {
                 });
 
 
-                marker1 = test;
-                setTitle(marker1);
+                finishPoint = test;
+                setTitle(finishPoint);
                 infowindow.setContent(results[0].formatted_address);
                 
                 document.getElementById('autocomplete').value = results[0].formatted_address;
@@ -409,23 +443,27 @@ function geolocate() {
 
 //Get from input our adress, convert it in coordinate, set point
 geocode = function () {
-    var address = document.getElementById('autocomplete').value;
-    geocoder.geocode({ 'address': address }, function (results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-            marker1.setMap(null);
-            map.setCenter(results[0].geometry.location);
-            marker1 = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location,
-                icon: picturePath + 'logo_destination.png',
-            });
 
-            setTitle(marker1);
-        }
-        else {
-            alert("Geocode was not successful for the following reason: " + status);
-        }
-    });
+	var address = document.getElementById('autocomplete').value;
+
+	if (address != "") {
+		geocoder.geocode({ 'address': address }, function (results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				finishPoint.setMap(null);
+				map.setCenter(results[0].geometry.location);
+				finishPoint = new google.maps.Marker({
+					map: map,
+					position: results[0].geometry.location,
+					icon: picturePath + 'logo_destination.png',
+				});
+
+				setTitle(finishPoint);
+			}
+			else {
+				alert("Geocode was not successful for the following reason: " + status);
+			}
+		});
+	}
 }
 
 $("#autocomplete").keypress(function (e) {
@@ -489,13 +527,11 @@ function runDriver(OrderId) {
         counter++;
 
     }
-
-     if (counter > 15)
-     {
+     if (counter > 15){
          markerTaxi.setAnimation(google.maps.Animation.BOUNCE);
      }
 
      if (counter > 60) {
         clearInterval(intervalID);
-    }
+     }
 }

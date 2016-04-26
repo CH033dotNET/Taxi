@@ -9,7 +9,8 @@
 @section Menu{
     <script src="~/Scripts/handlebars.js"></script>
     <script>    
-        function getCoord() {
+		function getCoord() {
+
             var orderObj = {};
             orderObj.UserId = @User.Id
 
@@ -44,8 +45,6 @@
                     method: 'Get',
                     data: orderObj,
                     success: function(success) {
-        
-
                     } 
                   
                 });
@@ -149,6 +148,19 @@
     </div>
 </div>
 
+<div class="modal fade" id="noDestPoint">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header" style="background-color: #f0ad4e;	border-color: #eea236;	color: white;">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="myModalLabel" style="text-align:center">Set your destination point!</h3>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 <div class="modal fade" id="hasorder">
     <div class="modal-dialog modal-md">
@@ -176,8 +188,9 @@
 
             <div class="tab-content mapContainer">
                 <div id="map" class="tab-pane fade in active">
+                   
 
-                    <button id="OrderTaxi" class="btn btn-primary" onclick="getCoord()">@Resources.Resource.OrderTaxi</button>
+
                 </div>
 
                 <div class="tab-pane fade" id="tab-2">
@@ -213,7 +226,6 @@
 
                         <dd><div class="error" id="error" style="color: red; display: none"> Please upload a picture by jpg, png or gif! </div></dd>
 
-
                         <dt><label for="phone">@Resources.Resource.Phone</label></dt>
                         <dd><input type="tel" class="form-control" name="Phone" value="{{Phone}}" id="phone" required /></dd>
                     </dl>
@@ -233,9 +245,7 @@
 
 
             <script>
-                $(document).ready(function () {
-
-                    
+                $(document).ready(function () {                  
 
                     if ('@Model.person.Phone' === '')
                     {
@@ -246,17 +256,12 @@
                             $('#phone').focus();
                         })
                     }
-
-                   
-
                 });
-
                 var CloseModal = function(data){
                     if (data.success)
                         $('#myModal').modal('hide');
                     else
                         $('#content').html(template(data.person));
-
                 }
             </script>
 }

@@ -10,6 +10,7 @@ using Model;
 
 namespace MainSaite.Controllers
 {
+	//Mainsite orders
 	public class OrderController : BaseController
 	{
 		private IOrderManager orderManager;
@@ -34,7 +35,9 @@ namespace MainSaite.Controllers
 
 		public JsonResult NewOrder(OrderDTO order)
 		{
+
 			order.PersonId = SessionPerson.Id;
+
 			OrderDTO insertedOrder = orderManager.InsertOrder(order);
 
 			insertedOrder.FirstName = personManager.GetPersons().FirstOrDefault(x => x.Id == insertedOrder.PersonId).FirstName;
@@ -140,6 +143,23 @@ namespace MainSaite.Controllers
 		public JsonResult SendToDrivers(string message)
 		{
 			ApiRequestHelper.Get<bool, string>("Orders", "SendToDrivers", message); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
+			return Json(true, JsonRequestBehavior.AllowGet);
+		}
+
+		//Requests to the ClientSite
+		public JsonResult DenyOrder(int data)
+		{
+			ApiRequestHelper.Get<bool, int>("Orders", "DenyOrder", data); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
+			return Json(true, JsonRequestBehavior.AllowGet);
+		}
+		public JsonResult NoFreeCar(int data)
+		{
+			ApiRequestHelper.Get<bool, int>("Orders", "NoFreeCar", data); //////////////////!!!!!!!!!!!!!!!!!!!!!!!!!
+			return Json(true, JsonRequestBehavior.AllowGet);
+		}
+		public JsonResult WaitYourCar(ClientOrderedDTO data)
+		{
+			ApiRequestHelper.Get<bool, ClientOrderedDTO>("Orders", "WaitYourCar", data); 
 			return Json(true, JsonRequestBehavior.AllowGet);
 		}
 

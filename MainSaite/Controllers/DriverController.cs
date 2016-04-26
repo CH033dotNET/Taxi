@@ -7,7 +7,6 @@ using Model.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Net;
@@ -40,7 +39,6 @@ namespace MainSaite.Controllers
 
 		public ActionResult Index()
 		{
-
 			if (SessionUser != null && (SessionUser.RoleId == (int)AvailableRoles.Driver || SessionUser.RoleId == (int)AvailableRoles.FreeDriver))
 			{
 				return View();

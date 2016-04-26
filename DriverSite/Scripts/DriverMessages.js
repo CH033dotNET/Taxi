@@ -2,8 +2,10 @@
 var intervalID;
 var isConfirmIntervalId;
 var isOrdered = false;
+
 var driverHub;
 var operatorHub;
+
 var counter;
 
 var fromTo = {
@@ -18,13 +20,16 @@ var fromTo = {
 };
 
 $(document).on("click", "#double", function () {
-    moveToDestination();
+
+	moveToDestination();
+
 });
+
 $(function () {
+
     GetOrders();
 
 	driverHub = $.connection.DriverHub;
-
 
 
    //Show message from operators
@@ -35,8 +40,7 @@ $(function () {
     };
    
     //Add new order to table
-	driverHub.client.newDriverOrders = function (order)
-    {
+	driverHub.client.newDriverOrders = function (order){
         var content = $("#DrOrder");
         var source = $("#template-article").html();
         var template = Handlebars.compile(source);

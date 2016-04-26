@@ -13,6 +13,7 @@ namespace ClientSite.Controllers
 		public ActionResult Index()
 		{
 			UserPagePhoneModel model = new UserPagePhoneModel();
+
 			if (SessionUser != null)
 			{
 				var addresses = ApiRequestHelper.Get<List<AddressDTO>, int>("UserPage", "GetAddressesForUser", SessionUser.Id).Data as List<AddressDTO>;

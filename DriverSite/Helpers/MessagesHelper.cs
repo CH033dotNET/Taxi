@@ -13,6 +13,9 @@ namespace DriverSite.Helpers
 
 		private static IHubContext Contest = GlobalHost.ConnectionManager.GetHubContext<DriverHub>();
 
+		
+
+
 		public static void OrderForDrivers(OrderDTO order)
 		{
 			Contest.Clients.All.newDriverOrders(order);

@@ -102,29 +102,87 @@
     </div>
 
 
-    <div class="modal fade" id="orderinfo">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">@Resources.Resource.ClientOrderConfirm</h3>
-            </div>
-            <div class="modal-body">
-                <label></label>
-                <input type="text" />
-            </div>
-            <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">OK</button>
-            </div>
-        </div>
-    </div>
+<div class="modal fade" id="orderinfo">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header" style="background-color: #5cb85c; border-color: #4cae4c; color: white; ">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="myModalLabel" style="text-align:center">@Resources.Resource.ClientOrderConfirm</h3>
+			</div>
+			<div class="modal-body" style="text-align: center;">
+				<label><font size="4"> @Resources.Resource.Wait <input type="button" style="border: none; background: transparent" id="waittime" value="" /> @Resources.Resource.Minutes.</font></label>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-success" data-dismiss="modal" aria-hidden="true">OK</button>
+			</div>
+		</div>
+	</div>
 </div>
 
+
+
+<div class="modal fade" id="deniedorderinfo">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header" style="background-color: 	#A52A2A; border-color: #eea236;	color: white;">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="myModalLabel" style="text-align:center">@Resources.Resource.DeniedOrder</h3>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="nocarorderinfo">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header" style="background-color: #f0ad4e;	border-color: #eea236;	color: white;">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="myModalLabel" style="text-align:center">@Resources.Resource.NoCar</h3>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="noDestPoint">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header" style="background-color: #6495ED;	border-color: #eea236;	color: white;">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="myModalLabel" style="text-align:center">Set your destination point!</h3>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="hasorder">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header" style="background-color: #f0ad4e;	border-color: #eea236;	color: white;">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="myModalLabel" style="text-align:center">@Resources.Resource.OrderInProgress</h3>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+ <input type="hidden" id="currentUserId" value="@((Session["User"] as UserDTO).Id)" />
 
             <div class="tab-content mapContainer">
                 <div id="map" class="tab-pane fade in active">
 
-                    <button id="OrderTaxi" class="btn btn-primary" onclick="getCoord()">@Resources.Resource.OrderTaxi</button>
+                    @*/<button id="OrderTaxi" class="btn btn-primary" onclick="getCoord()">@Resources.Resource.OrderTaxi</button>/*@
                 </div>
 
                 <div class="tab-pane fade" id="tab-2">
