@@ -183,11 +183,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SimpleInjectorDependency.cs" />
     <Compile Include="Controllers\CarsController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\DriveClientHistoryController.cs" />
     <Compile Include="Controllers\DriverLocationHubController.cs" />
     <Compile Include="Controllers\OperatorHubController.cs" />
     <Compile Include="Controllers\OperatorMessagesHubController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrderExController.cs" />
     <Compile Include="Controllers\ReportChartsController.cs" />
     <Compile Include="Controllers\SupportController.cs" />
     <Compile Include="Helpers\DriverLocationHelper.cs" />
