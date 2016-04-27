@@ -927,4 +927,82 @@
   <data name="FreeDriver" xml:space="preserve">
     <value>Free водій</value>
   </data>
+  <data name="OrderForm" xml:space="preserve">
+    <value>Замовити таксі</value>
+  </data>
+  <data name="AddAddress" xml:space="preserve">
+    <value>Додати адресу</value>
+  </data>
+  <data name="Additional" xml:space="preserve">
+    <value>Додаткові вимоги</value>
+  </data>
+  <data name="Additionally" xml:space="preserve">
+    <value>Додатково:</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Адреса:</value>
+  </data>
+  <data name="Building" xml:space="preserve">
+    <value>Будинок:</value>
+  </data>
+  <data name="ClassOfCar" xml:space="preserve">
+    <value>Клас автомобіля:</value>
+  </data>
+  <data name="Cost" xml:space="preserve">
+    <value>Вартість:</value>
+  </data>
+  <data name="Entrance" xml:space="preserve">
+    <value>Під'їзд:</value>
+  </data>
+  <data name="MakeAnOrder" xml:space="preserve">
+    <value>ЗРОБИТИ ЗАМОВЛЕННЯ</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Примітка:</value>
+  </data>
+  <data name="Perquisite" xml:space="preserve">
+    <value>Додати до замовлення:</value>
+  </data>
+  <data name="PhoneFormat" xml:space="preserve">
+    <value>у форматі: 380501234567</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Телефон:</value>
+  </data>
+  <data name="PlaceCarSupply" xml:space="preserve">
+    <value>Місце подачі авто</value>
+  </data>
+  <data name="PlaceDelivery" xml:space="preserve">
+    <value>Куди доставити</value>
+  </data>
+  <data name="PreOrder" xml:space="preserve">
+    <value>Попереднє замовлення</value>
+  </data>
+  <data name="Remember" xml:space="preserve">
+    <value>Запам'ятати Ім'я і Телефон</value>
+  </data>
+  <data name="Route" xml:space="preserve">
+    <value>Я не знаю маршрут ("По місту")</value>
+  </data>
+  <data name="UAH" xml:space="preserve">
+    <value>грн</value>
+  </data>
+  <data name="Urgently" xml:space="preserve">
+    <value>Терміново</value>
+  </data>
+  <data name="WhenToGo" xml:space="preserve">
+    <value>Коли їхати:</value>
+  </data>
+  <data name="YourName" xml:space="preserve">
+    <value>Ваше ім'я:</value>
+  </data>
+  <data name="OrderATaxi" xml:space="preserve">
+    <value>Замовити таксі</value>
+  </data>
+  <data name="Taxi" xml:space="preserve">
+    <value>Таксі</value>
+  </data>
+  <data name="Passengers" xml:space="preserve">
+    <value>Кількість пасажирів:</value>
+  </data>
 </root>

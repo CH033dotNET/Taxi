@@ -16,5 +16,9 @@ namespace MainSaite.Controllers
 			return View();
 		}
 
+		public ActionResult OrderForm()
+		{
+			return View();
+		}
 	}
 }
