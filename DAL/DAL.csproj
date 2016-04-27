@@ -243,6 +243,10 @@
     <Compile Include="Migrations\201604261939547_AddDriverIdForOrderEx.Designer.cs">
       <DependentUpon>201604261939547_AddDriverIdForOrderEx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604271208473_FixNewOrder.cs" />
+    <Compile Include="Migrations\201604271208473_FixNewOrder.Designer.cs">
+      <DependentUpon>201604271208473_FixNewOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -405,6 +409,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604261939547_AddDriverIdForOrderEx.resx">
       <DependentUpon>201604261939547_AddDriverIdForOrderEx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604271208473_FixNewOrder.resx">
+      <DependentUpon>201604271208473_FixNewOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -36,6 +36,7 @@ namespace MainSaite.App_Start
 			container.Register<IDriverLocationHelper, DriverLocationHelper>();
 			container.Register<IWorkerStatusManager, WorkerStatusManager>();
 			container.Register<ISupportManager, SupportManager>();
+			container.Register<IOrderManagerEx, OrderManagerEx>();
 			container.Verify();
 
 			DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));

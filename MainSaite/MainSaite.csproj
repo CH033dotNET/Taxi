@@ -197,11 +197,13 @@
     <Compile Include="Helpers\IDriverLocationHelper.cs" />
     <Compile Include="Helpers\OperatorMessagesHelper.cs" />
     <Compile Include="Hubs\DriverHub.cs" />
+    <Compile Include="Hubs\OrderHub.cs" />
     <Compile Include="Hubs\OperatorHub.cs" />
     <Compile Include="Models\AutoParkViewModel.cs" />
     <Compile Include="Models\CarChangeUser.cs" />
     <Compile Include="Models\SignalRGroup.cs" />
     <Compile Include="Models\SignalRUser.cs" />
+    <Compile Include="Models\SignalRUserEx.cs" />
     <Compile Include="Models\UserPagePhoneModel.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -437,6 +439,8 @@
     <Content Include="Scripts\offline.min.js" />
     <Content Include="Scripts\OperatorCommand\DriverCommand.js" />
     <Content Include="Scripts\OperatorCommand\OperatorCommands.js" />
+    <Content Include="Scripts\OrderExLogic\ClientOrder.js" />
+    <Content Include="Scripts\OrderExLogic\OperatorOrder.js" />
     <Content Include="Scripts\sweetalert2.min.js" />
     <Content Include="Scripts\tabCorrector.js" />
     <Content Include="Scripts\Tarif\Tarif.js" />

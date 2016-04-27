@@ -10,5 +10,6 @@ namespace Common.Enum {
         Approved = 1,
         ChoosedByDriver = 2,
         Confirmed = 3,
+		Denied
     }
 }
