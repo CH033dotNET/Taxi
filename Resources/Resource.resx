@@ -922,4 +922,82 @@
   <data name="FreeDriver" xml:space="preserve">
     <value>Free driver</value>
   </data>
+  <data name="OrderForm" xml:space="preserve">
+    <value>Order a taxi</value>
+  </data>
+  <data name="AddAddress" xml:space="preserve">
+    <value>Add address</value>
+  </data>
+  <data name="Additional" xml:space="preserve">
+    <value>Additional requirements</value>
+  </data>
+  <data name="Additionally" xml:space="preserve">
+    <value>Additionally:</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address:</value>
+  </data>
+  <data name="Building" xml:space="preserve">
+    <value>Building:</value>
+  </data>
+  <data name="ClassOfCar" xml:space="preserve">
+    <value>Car class:</value>
+  </data>
+  <data name="Cost" xml:space="preserve">
+    <value>Cost:</value>
+  </data>
+  <data name="Entrance" xml:space="preserve">
+    <value>Entrance:</value>
+  </data>
+  <data name="MakeAnOrder" xml:space="preserve">
+    <value>MAKE AN ORDER</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note:</value>
+  </data>
+  <data name="Perquisite" xml:space="preserve">
+    <value>Perquisite:</value>
+  </data>
+  <data name="PhoneFormat" xml:space="preserve">
+    <value>format: 380501234567</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Phone:</value>
+  </data>
+  <data name="PlaceCarSupply" xml:space="preserve">
+    <value>Place car supply</value>
+  </data>
+  <data name="PlaceDelivery" xml:space="preserve">
+    <value>Where to deliver</value>
+  </data>
+  <data name="PreOrder" xml:space="preserve">
+    <value>Pre-order</value>
+  </data>
+  <data name="Remember" xml:space="preserve">
+    <value>Remember Name and Phone</value>
+  </data>
+  <data name="Route" xml:space="preserve">
+    <value>I do not know the route ("In the city")</value>
+  </data>
+  <data name="UAH" xml:space="preserve">
+    <value>UAH</value>
+  </data>
+  <data name="Urgently" xml:space="preserve">
+    <value>Urgently</value>
+  </data>
+  <data name="WhenToGo" xml:space="preserve">
+    <value>When to go:</value>
+  </data>
+  <data name="YourName" xml:space="preserve">
+    <value>Your name:</value>
+  </data>
+  <data name="OrderATaxi" xml:space="preserve">
+    <value>Order a taxi</value>
+  </data>
+  <data name="Taxi" xml:space="preserve">
+    <value>Taxi</value>
+  </data>
+  <data name="Passengers" xml:space="preserve">
+    <value>Number of passengers:</value>
+  </data>
 </root>

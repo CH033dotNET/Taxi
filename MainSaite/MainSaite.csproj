@@ -240,6 +240,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\HighchartsCustomStyles\PageCustomisation.css" />
     <Content Include="Content\Main.css" />
+    <Content Include="Content\OrderForm.css" />
     <Content Include="Content\Picture\Drawing-layerExport.jpeg" />
     <Content Include="Content\DriverMenu.css" />
     <Content Include="Content\Picture\0-well-traveled-passport-taxi-cab-global-british-american-vietnamese-engagement-wedding-photos-photographer.jpg" />
@@ -250,6 +251,40 @@
     <Content Include="Content\Picture\Iphone.png" />
     <Content Include="Content\Picture\JVDisable.jpg" />
     <Content Include="Content\Picture\logo.png" />
+    <Content Include="Content\Picture\OrderForm\bag-active.png" />
+    <Content Include="Content\Picture\OrderForm\bag-passive.png" />
+    <Content Include="Content\Picture\OrderForm\box-active.png" />
+    <Content Include="Content\Picture\OrderForm\box-passive.png" />
+    <Content Include="Content\Picture\OrderForm\file-active.png" />
+    <Content Include="Content\Picture\OrderForm\file-passive.png" />
+    <Content Include="Content\Picture\OrderForm\flag-active.png" />
+    <Content Include="Content\Picture\OrderForm\flag-passive.png" />
+    <Content Include="Content\Picture\OrderForm\freeze-active.png" />
+    <Content Include="Content\Picture\OrderForm\freeze-passive.png" />
+    <Content Include="Content\Picture\OrderForm\hide.png" />
+    <Content Include="Content\Picture\OrderForm\key-active.png" />
+    <Content Include="Content\Picture\OrderForm\key-passive.png" />
+    <Content Include="Content\Picture\OrderForm\loader.gif" />
+    <Content Include="Content\Picture\OrderForm\loader.png" />
+    <Content Include="Content\Picture\OrderForm\minivan-active.png" />
+    <Content Include="Content\Picture\OrderForm\minivan-passive.png" />
+    <Content Include="Content\Picture\OrderForm\nosmoking-active.png" />
+    <Content Include="Content\Picture\OrderForm\nosmoking-passive.png" />
+    <Content Include="Content\Picture\OrderForm\passenger-active.png" />
+    <Content Include="Content\Picture\OrderForm\passenger-passive.png" />
+    <Content Include="Content\Picture\OrderForm\pet-active.png" />
+    <Content Include="Content\Picture\OrderForm\pet-passive.png" />
+    <Content Include="Content\Picture\OrderForm\process.png" />
+    <Content Include="Content\Picture\OrderForm\sedan-active.png" />
+    <Content Include="Content\Picture\OrderForm\sedan-passive.png" />
+    <Content Include="Content\Picture\OrderForm\show.png" />
+    <Content Include="Content\Picture\OrderForm\smoking-active.png" />
+    <Content Include="Content\Picture\OrderForm\smoking-passive.png" />
+    <Content Include="Content\Picture\OrderForm\star-active.png" />
+    <Content Include="Content\Picture\OrderForm\star-passive.png" />
+    <Content Include="Content\Picture\OrderForm\time.png" />
+    <Content Include="Content\Picture\OrderForm\van-active.png" />
+    <Content Include="Content\Picture\OrderForm\van-passive.png" />
     <Content Include="Content\Picture\roteiro.jpg" />
     <Content Include="Content\Picture\SandWatch.jpg" />
     <Content Include="Content\Picture\sendIcon.png" />
@@ -411,6 +446,7 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-1.9.1-vsdoc.js" />
     <Content Include="Scripts\ClientDrHistory\ClientDrHistory.js" />
+    <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\jquery.inputmask\inputmask.date.extensions.js" />
@@ -441,6 +477,7 @@
     <Content Include="Scripts\OperatorCommand\OperatorCommands.js" />
     <Content Include="Scripts\OrderExLogic\ClientOrder.js" />
     <Content Include="Scripts\OrderExLogic\OperatorOrder.js" />
+    <Content Include="Scripts\OrderForm.js" />
     <Content Include="Scripts\sweetalert2.min.js" />
     <Content Include="Scripts\tabCorrector.js" />
     <Content Include="Scripts\Tarif\Tarif.js" />
@@ -449,6 +486,7 @@
     <Content Include="Scripts\validator.js" />
     <Content Include="Scripts\VipClients.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Client\OrderForm.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
