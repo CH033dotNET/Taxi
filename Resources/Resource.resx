@@ -922,4 +922,10 @@
   <data name="FreeDriver" xml:space="preserve">
     <value>Free driver</value>
   </data>
+  <data name="AdvancedOrder" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
+  <data name="StandartOrder" xml:space="preserve">
+    <value>Standart</value>
+  </data>
 </root>

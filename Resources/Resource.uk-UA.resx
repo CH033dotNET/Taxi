@@ -927,4 +927,10 @@
   <data name="FreeDriver" xml:space="preserve">
     <value>Free водій</value>
   </data>
+  <data name="AdvancedOrder" xml:space="preserve">
+    <value>Розширене</value>
+  </data>
+  <data name="StandartOrder" xml:space="preserve">
+    <value>Звичайне</value>
+  </data>
 </root>

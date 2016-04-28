@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "OrderTaxi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/Main.css")
+<div class="alert alert-warning" id="geoOff">
+	<strong id="geoAlert">GEOLOCATION IS DISABLED</strong>
+</div>
+<div>
+	<input id="autocomplete" placeholder=@Resources.Resource.EnterYourAdress
+		   type="text" />
+</div>
+
+<div>
+	<div class="panel panel-info">
+		<div class="panel-heading"><h3 class="panel-title">Please, point out your position on the map</h3></div>
+		<div class="panel-body">
+			<div id="map">
+			</div>
+			<div id="controlOrder" title="Click to get a taxi">
+				<div id="orderBtn">Order Taxi</div>
+			</div>
+		</div>
+		@*/<div class="panel-footer">
+			<form id="non-deleted-form" class="form-inline">
+				<div class="form-group">
+					<a class="btn btn-success"><span class="glyphicon glyphicon-th-list" aria-hidden="true">&nbsp;</span>@Resources.Resource.OrderTaxi</a>
+				</div>
+			</form>
+		</div>/*@
+	</div>
+</div>
+<script>
+	var picturePath = '@Url.Content("~/Content/Picture/UserMapIcons/")';
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+@Scripts.Render("~/Scripts/GoogleMapJS/GoogleMapTaxiOrder.js")

@@ -32,7 +32,10 @@ namespace MainSaite.Controllers
 			Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
 			return Redirect(returnUrl);
 		}
-
+		public ActionResult OrderTaxi()
+		{
+			return View("OrderTaxi");
+		}
 
 
 	}
