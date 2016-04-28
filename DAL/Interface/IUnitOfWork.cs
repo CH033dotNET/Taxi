@@ -34,6 +34,7 @@ namespace DAL.Interface
 		IGenericRepository<Coordinate> DistrictCoordinatesRepo { get; }
 		IGenericRepository<SupportMessage> SupportRepo { get; }
 		IGenericRepository<OrderEx> OrderExRepo { get; }
+		IGenericRepository<CoordinatesEx> CoordinatesExRepo { get; }
 
 		void Dispose();
 		void Save();

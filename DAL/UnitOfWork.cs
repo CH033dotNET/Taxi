@@ -37,6 +37,8 @@ namespace DAL
 		private IGenericRepository<Coordinate> districtCoordinatesRepo;
 
 		private IGenericRepository<OrderEx> orderExRepo;
+
+		private IGenericRepository<CoordinatesEx> coordinatesExRepo;
 		#endregion
 
 		public UnitOfWork()
@@ -66,6 +68,8 @@ namespace DAL
 			supportRepo = new GenericRepository<SupportMessage>(context);
 
 			orderExRepo = new GenericRepository<OrderEx>(context);
+
+			coordinatesExRepo = new GenericRepository<CoordinatesEx>(context);
 		}
 
 		public void Save()
@@ -219,6 +223,18 @@ namespace DAL
 					orderExRepo = new GenericRepository<OrderEx>(context);
 				}
 				return orderExRepo;
+			}
+		}
+
+		public IGenericRepository<CoordinatesEx> CoordinatesExRepo
+		{
+			get
+			{
+				if (coordinatesExRepo == null)
+				{
+					coordinatesExRepo = new GenericRepository<CoordinatesEx>(context);
+				}
+				return coordinatesExRepo;
 			}
 		}
 		#endregion
