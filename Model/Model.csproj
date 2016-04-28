@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="DB\Car.cs" />
     <Compile Include="DB\Coordinates.cs" />
+    <Compile Include="DB\CoordinatesEx.cs" />
     <Compile Include="DB\District.cs" />
     <Compile Include="DB\Coordinate.cs" />
     <Compile Include="DB\Location.cs" />
