@@ -13,10 +13,12 @@ namespace Model.DTO
 
 		public string Address { get; set; }
 
-        public OrderStatusEnum Status { get; set; }
+		public OrderStatusEnum Status { get; set; }
 
-        public User Driver { get; set; }
+		public int? DriverId { get; set; }
 
-        public int WaitingTime { get; set; }
-    }
+		public User Driver { get; set; }
+
+		public int WaitingTime { get; set; }
+	}
 }

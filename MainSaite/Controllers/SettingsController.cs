@@ -152,32 +152,6 @@ namespace MainSaite.Controllers
 			}
 		}
 
-#if BETA
-		/// <summary>
-		/// Action method that receives parameter from ajax call and uses it for sorting entries
-		/// in non-deleted list
-		/// </summary>
-		/// <param name="parameter">Input parameter taht represents data from ajax call</param>
-		/// <returns></returns>
-		public JsonResult SortDistrictBy(string parameter)
-		{
-			IEnumerable<District> sortedDistricts;
-			sortedDistricts = districtManager.GetSortedDistricts(parameter).ToList();
-			return Json(new { success = true, sortedDistricts }, JsonRequestBehavior.AllowGet);
-		}
-		/// <summary>
-		/// Action method that receives parameter from ajax call and uses it for sorting entries
-		/// in deleted list
-		/// </summary>
-		/// <param name="parameter">Input parameter taht represents data from ajax call</param>
-		/// <returns></returns>
-		public JsonResult SortDeletedDistrictBy(string parameter)
-		{
-			IEnumerable<District> sortedDeletedDistricts;
-			sortedDeletedDistricts = districtManager.GetSortedDeletedDistrictsBy(parameter).ToList();
-			return Json(new { success = true, sortedDeletedDistricts }, JsonRequestBehavior.AllowGet);
-		} 
-#endif
 
 		/// <summary>
 		/// Ajax call from the view sends a data to controller, 

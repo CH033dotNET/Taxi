@@ -1,0 +1,174 @@
+﻿@{
+	ViewBag.Title = Resources.Resource.Taxi;
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/OrderForm.css" rel=stylesheet type="text/css">
+<link href="~/Content/bootstrap-datetimepicker.css" rel=stylesheet type="text/css">
+
+<div id="body">
+	<form role="form">
+		<div class="form-group">
+			<div class="form-group-header">
+				<div class="label-underline underline-blue">
+					<label class="label-title">@Resources.Resource.PlaceCarSupply</label>
+				</div>
+			</div>
+			<div class="form-group-body">
+				<div class="row">
+					<label for="address-from" class="col-sm-2 form-control-label">@Resources.Resource.Address</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="address-from">
+					</div>
+				</div>
+				<div class="row">
+					<label for="building-from" class="col-sm-2 form-control-label">@Resources.Resource.Building</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="building-from">
+					</div>
+					<label for="entrance-from" class="col-sm-2 form-control-label">@Resources.Resource.Entrance</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" id="entrance-from">
+					</div>
+				</div>
+				<div class="row">
+					<label for="note-from" class="col-sm-2 form-control-label">@Resources.Resource.Note</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="note-from">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="form-group-header">
+				<div class="label-underline underline-yellow">
+					<label class="label-title">@Resources.Resource.PlaceDelivery</label>
+				</div>
+				<div class="checkbox-inline align-right">
+					<label class="label-italic"><input type="checkbox" id="route"><span></span>@Resources.Resource.Route</label>
+				</div>
+				<input type="hidden" id="form-count" value="1" />
+			</div>
+			<div class="form-group-body">
+				<div id="form-body">
+					<div class="row">
+						<label for="address-to-1" class="col-sm-2 form-control-label">@Resources.Resource.Address</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="address-to-1">
+						</div>
+					</div>
+					<div class="row">
+						<label for="building-to-1" class="col-sm-2 form-control-label">@Resources.Resource.Building</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="building-to-1">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<label id="add-address">@Resources.Resource.AddAddress</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="form-group-header">
+				<div class="label-underline underline-gray">
+					<label class="label-title">@Resources.Resource.Additional</label>
+				</div>
+				<div class="align-right">
+					<span id="show"></span>
+					<span id="hide"></span>
+				</div>
+			</div>
+			<div class="form-group-body" id="additional">
+				<div class="row">
+					<label class="col-sm-3 form-control-label">@Resources.Resource.WhenToGo</label>
+					<div class="col-sm-9 radio-box form-inline">
+						<label class="radio-inline"><input type="radio" id="urgently" name="urgency" checked><span></span>@Resources.Resource.Urgently</label>
+						<label class="radio-inline"><input type="radio" id="pre-order" name="urgency"><span></span>@Resources.Resource.PreOrder</label>
+						<div class="input-group bootstrap-datetimepicker datetimepicker" id="time-group">
+							<input type="text" id="time" class="form-control" />
+							<span class="input-group-addon">
+								<span class="glyphicon icon-time"></span>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<label class="col-sm-3 form-control-label">@Resources.Resource.ClassOfCar</label>
+					<div class="col-sm-3 button-box">
+						<label class="button-inline"><input type="radio" id="normal" name="car-class" checked><span></span></label>
+						<label class="button-inline"><input type="radio" id="universal" name="car-class"><span></span></label>
+						<label class="button-inline"><input type="radio" id="minivan" name="car-class"><span></span></label>
+						<label class="button-inline"><input type="radio" id="lux" name="car-class"><span></span></label>
+					</div>
+					<label class="col-sm-4 form-control-label">@Resources.Resource.Passengers</label>
+					<div class="col-sm-1">
+						<select class="form-control" id="passengers">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<label class="col-sm-3 form-control-label">@Resources.Resource.Additionally</label>
+					<div class="col-sm-9 button-box">
+						<label class="button-inline"><input type="checkbox" id="courier"><span></span></label>
+						<label class="button-inline"><input type="checkbox" id="with-plate"><span></span></label>
+						<label class="button-inline"><input type="checkbox" id="my-car"><span></span></label>
+						<label class="button-inline"><input type="checkbox" id="pets"><span></span></label>
+						<label class="button-inline"><input type="checkbox" id="bag"><span></span></label>
+						<label class="button-inline"><input type="checkbox" id="conditioner"><span></span></label>
+						<label class="button-inline"><input type="checkbox" id="english"><span></span></label>
+						<label class="button-inline"><input type="checkbox" id="nosmoking"><span></span></label>
+						<label class="button-inline"><input type="checkbox" id="smoking"><span></span></label>
+						<label class="button-inline"><input type="checkbox" id="check"><span></span></label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="cost-group">
+			<label>@Resources.Resource.Cost</label>
+			<div id="cost"><span id="calculate"></span><span id="load"></span></div>
+		</div>
+		<div class="form-group without-header">
+			<div class="form-group-body">
+				<div class="row">
+					<label for="name" class="col-sm-2 form-control-label">@Resources.Resource.YourName</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" id="name">
+					</div>
+					<label for="phone" class="col-sm-2 form-control-label">@Resources.Resource.PhoneNumber</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="phone" placeholder=@Resources.Resource.PhoneFormat maxlength="12">
+					</div>
+				</div>
+				<div class="row form-inline">
+					<div class="col-sm-6">
+						<label for="add" class="form-control-label">@Resources.Resource.Perquisite</label>
+						<input type="text" class="form-control" id="add" maxlength="4" value="0">
+						<label>@Resources.Resource.UAH</label>
+					</div>
+					<div class="col-sm-5 checkbox-inline">
+						<label class="label-italic"><input type="checkbox" id="remember"><span></span>@Resources.Resource.Remember</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="submit">
+			<button type="submit" class="btn .btn-default btn-lg">@Resources.Resource.MakeAnOrder</button>
+		</div>
+	</form>
+</div>
+
+<script src="~/Scripts/jquery-2.2.3.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/moment-with-locales.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/OrderForm.js"></script>

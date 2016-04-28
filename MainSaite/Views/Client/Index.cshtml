@@ -5,7 +5,6 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
 @using (Html.BeginForm())
 {
@@ -24,11 +23,15 @@
 		</div>
 
 		<p>
-			<input type="submit" value="Order" />
+			<input id="order"type="button" value="Order" />
 		</p>
+        <p>
+            @Html.ActionLink("Additionally", "OrderForm", "Client")
+        </p>
 	</fieldset>
 }
-
+<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+<script src="~/Scripts/OrderExLogic/ClientOrder.js"></script>
 
 @section Scripts {
 	@Scripts.Render("~/bundles/jqueryval")
