@@ -356,6 +356,7 @@
     <Content Include="Scripts\DriveTimer.js" />
     <Content Include="Scripts\FavoriteAddresses.js" />
     <Content Include="Scripts\GeneralScripts.js" />
+    <Content Include="Scripts\GoogleMapJS\GoogleMapTaxiOrder.js" />
     <Content Include="Scripts\GoogleMapJS\GoogleMapUserPage.js" />
     <Content Include="Scripts\handlebars.amd.js" />
     <Content Include="Scripts\handlebars.amd.min.js" />
@@ -512,6 +513,7 @@
     <Content Include="Views\OrderEx\Index.cshtml" />
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\DriverEx\Index.cshtml" />
+    <Content Include="Views\Home\OrderTaxi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
