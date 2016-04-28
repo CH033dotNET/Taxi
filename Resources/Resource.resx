@@ -928,7 +928,7 @@
   <data name="StandartOrder" xml:space="preserve">
     <value>Standart</value>
   </data>
-   <data name="OrderForm" xml:space="preserve">
+  <data name="OrderForm" xml:space="preserve">
     <value>Order a taxi</value>
   </data>
   <data name="AddAddress" xml:space="preserve">

@@ -94,15 +94,8 @@
 					</div>
 				</div>
 				<div class="row">
-					<label class="col-sm-3 form-control-label">@Resources.Resource.ClassOfCar</label>
-					<div class="col-sm-3 button-box">
-						<label class="button-inline"><input type="radio" id="normal" name="car-class" checked><span></span></label>
-						<label class="button-inline"><input type="radio" id="universal" name="car-class"><span></span></label>
-						<label class="button-inline"><input type="radio" id="minivan" name="car-class"><span></span></label>
-						<label class="button-inline"><input type="radio" id="lux" name="car-class"><span></span></label>
-					</div>
-					<label class="col-sm-4 form-control-label">@Resources.Resource.Passengers</label>
-					<div class="col-sm-1">
+					<label class="col-sm-4 col-xs-12 form-control-label">@Resources.Resource.Passengers</label>
+					<div class="col-sm-2 col-xs-8">
 						<select class="form-control" id="passengers">
 							<option>1</option>
 							<option>2</option>
@@ -117,8 +110,17 @@
 					</div>
 				</div>
 				<div class="row">
-					<label class="col-sm-3 form-control-label">@Resources.Resource.Additionally</label>
+					<label class="col-sm-3 form-control-label">@Resources.Resource.ClassOfCar</label>
 					<div class="col-sm-9 button-box">
+						<label class="button-inline"><input type="radio" id="normal" name="car-class" checked><span></span></label>
+						<label class="button-inline"><input type="radio" id="universal" name="car-class"><span></span></label>
+						<label class="button-inline"><input type="radio" id="minivan" name="car-class"><span></span></label>
+						<label class="button-inline"><input type="radio" id="lux" name="car-class"><span></span></label>
+					</div>
+				</div>
+				<div class="row">
+					<label class="col-sm-3 form-control-label">@Resources.Resource.Additionally</label>
+					<div class="col-sm-8 button-box">
 						<label class="button-inline"><input type="checkbox" id="courier"><span></span></label>
 						<label class="button-inline"><input type="checkbox" id="with-plate"><span></span></label>
 						<label class="button-inline"><input type="checkbox" id="my-car"><span></span></label>
@@ -146,11 +148,11 @@
 					</div>
 					<label for="phone" class="col-sm-2 form-control-label">@Resources.Resource.PhoneNumber</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="phone" placeholder=@Resources.Resource.PhoneFormat maxlength="12">
+						<input type="text" class="form-control" id="phone" placeholder="@Resources.Resource.PhoneFormat" maxlength="12">
 					</div>
 				</div>
 				<div class="row form-inline">
-					<div class="col-sm-6">
+					<div class="col-sm-6" id="perquisite">
 						<label for="add" class="form-control-label">@Resources.Resource.Perquisite</label>
 						<input type="text" class="form-control" id="add" maxlength="4" value="0">
 						<label>@Resources.Resource.UAH</label>
