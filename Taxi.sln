@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAL", "BAL\BAL.csproj", "{013E37B3-2878-4F25-8D1F-8355BD9FC506}"
 EndProject
@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "Resources\Resources.csproj", "{3B337BCD-A355-4B1E-A377-34515D1ABDCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainSaite", "MainSaite\MainSaite.csproj", "{0F503666-D7D0-4FD0-A31E-D267B3012C4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainSite", "MainSaite\MainSite.csproj", "{0F503666-D7D0-4FD0-A31E-D267B3012C4B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{2FB3FF29-7421-45DB-AF46-F2B3851DC500}"
 EndProject
