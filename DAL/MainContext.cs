@@ -40,5 +40,6 @@ namespace DAL
 		public DbSet<SupportMessage> SupportChat { get; set; }
 		public DbSet<Coordinate> DistrictCoordiantes { get; set; }
 		public DbSet<OrderEx> OrderdsEx { get; set; }
+		public DbSet<CoordinatesEx> CoordinatesEx { get; set; }
 	}
 }
