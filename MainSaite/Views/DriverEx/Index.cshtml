@@ -7,7 +7,7 @@
 
 <h2>Index</h2>
 
-<table>
+<table class="table" id="orders">
 	<tr>
 		<th>
 			@Html.DisplayNameFor(model => model.Address)
@@ -28,11 +28,11 @@
 				@Html.DisplayFor(modelItem => item.Status)
 			</td>
 			<td>
-                <input itemid="@item.Id" type="button" value="Take" class="take btn btn-success" /> |
+                <input itemid="@item.Id" type="button" value="Take" class="take btn btn-success" />
 			</td>
 		</tr>
 	}
 
 </table>
 <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
-<script src="~/Scripts/OrderExLogic/OperatorOrder.js"></script>
+<script src="~/Scripts/OrderExLogic/DriverOrder.js"></script>
