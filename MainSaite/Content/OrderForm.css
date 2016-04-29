@@ -8310,6 +8310,15 @@ button.close {
 	padding-right: 20px;
 }
 
+.required span {
+	color: red;
+	font-size: 120%;
+}
+
+.input-error {
+	border-color: red;
+}
+
 @media (max-width: 767px) {
 	#additional label.radio-inline {
 		padding-left: 20px;
