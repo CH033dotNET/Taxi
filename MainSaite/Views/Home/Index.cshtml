@@ -18,7 +18,7 @@
 				<p id="msger">Something went wrong!<br /> You can still order a Taxi by calling +(038)055-45-54</p>
 			</div>
 		</noscript>
-		<div class="btn-group pull-right btn-group-lg">
+		<div class="btn-group pull-right btn-group-lg" id="orderTaxiBtn">
 			<button class="btn btn-info">
 				@Html.ActionLink(Resources.Resource.OrderTaxi, "OrderTaxi", "Home", new { style = "color: #FFFFFF" })
 			</button>
@@ -28,7 +28,7 @@
 			<ul class="dropdown-menu">
 				<li id="order-dropdown">@Html.ActionLink(Resources.Resource.StandartOrder, "OrderTaxi", "Home")</li>
 				<li class="divider"></li>
-				<li id="order-dropdown">@Html.ActionLink(Resources.Resource.AdvancedOrder, "Index", "Home")</li>
+				<li id="order-dropdown">@Html.ActionLink(Resources.Resource.AdvancedOrder, "OrderForm", "Client")</li>
 			</ul>
 		</div>
 	</div>
