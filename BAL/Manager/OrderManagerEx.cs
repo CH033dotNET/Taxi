@@ -66,6 +66,17 @@ namespace BAL.Interfaces
             return false;
         }
 
+        public bool SetWaitingTime(int id, int WaitingTime) {
+            var order = uOW.OrderExRepo.All.Where(o => o.Id == id).FirstOrDefault();
+            if (order != null) {
+                order.WaitingTime = WaitingTime;
+                uOW.OrderExRepo.Update(order);
+                uOW.Save();
+                return true;
+            }
+            return false;
+        }
+
         public IEnumerable<OrderExDTO> GetNotApprovedOrders()
 		{
 			var orders = uOW.OrderExRepo.All

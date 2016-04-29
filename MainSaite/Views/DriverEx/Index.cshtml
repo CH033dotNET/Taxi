@@ -28,7 +28,12 @@
 				@Html.DisplayFor(modelItem => item.Status)
 			</td>
 			<td>
-                <input itemid="@item.Id" type="button" value="Take" class="take btn btn-success" />
+                <div class="input-group">
+                    <input type="number" class="waiting-time form-control" placeholder="waitnig time...">
+                    <span class="input-group-btn">
+                        <input itemid="@item.Id" type="button" value="Take" class="take btn btn-success" />
+                    </span>
+                </div>
 			</td>
 		</tr>
 	}

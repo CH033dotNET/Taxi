@@ -25,7 +25,8 @@ namespace MainSaite.Controllers
         }
 
         [HttpPost]
-        public JsonResult TakeOrder(int id) {
+        public JsonResult TakeOrder(int id, int WaitingTime) {
+            orderManager.SetWaitingTime(id, WaitingTime);
             return Json(new { success = orderManager.TakeOrder(id) });
         }
     }

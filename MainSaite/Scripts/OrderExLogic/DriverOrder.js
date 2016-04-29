@@ -21,11 +21,16 @@
 		$('.take').click(function (e) {
 			var row = $(this).closest('tr');
 			var id = +$(this).attr('itemId');
+			var waiting_time = row.find('.waiting-time').first().val();
+			console.log(waiting_time);
 			if (id) {
 				$.ajax({
 					type: "post",
 					url: "./DriverEX/TakeOrder/",
-					data: { id : id },
+					data: {
+					    id: id,
+					    WaitingTime: waiting_time
+					},
 					success: function (result) {
 						if (result) {
 							$(row).fadeOut();

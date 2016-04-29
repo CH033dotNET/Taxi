@@ -927,7 +927,7 @@
   <data name="FreeDriver" xml:space="preserve">
     <value>Free водій</value>
   </data>
-    <data name="OrderForm" xml:space="preserve">
+  <data name="OrderForm" xml:space="preserve">
     <value>Замовити таксі</value>
   </data>
   <data name="AddAddress" xml:space="preserve">
@@ -1004,5 +1004,47 @@
   </data>
   <data name="Passengers" xml:space="preserve">
     <value>Кількість пасажирів:</value>
+  </data>
+  <data name="Conditioner" xml:space="preserve">
+    <value>Кондиціонер</value>
+  </data>
+  <data name="Courier" xml:space="preserve">
+    <value>Кур'єр</value>
+  </data>
+  <data name="Lux" xml:space="preserve">
+    <value>Люкс</value>
+  </data>
+  <data name="Minivan" xml:space="preserve">
+    <value>Мікроавтобус</value>
+  </data>
+  <data name="MyCar" xml:space="preserve">
+    <value>Перевезти на моєму автомобілі</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>Звичайний</value>
+  </data>
+  <data name="NoSmoking" xml:space="preserve">
+    <value>Не курити</value>
+  </data>
+  <data name="Smoking" xml:space="preserve">
+    <value>Пасажир курець</value>
+  </data>
+  <data name="Universal" xml:space="preserve">
+    <value>Універсал</value>
+  </data>
+  <data name="WithBaggage" xml:space="preserve">
+    <value>З багажем</value>
+  </data>
+  <data name="WithCheck" xml:space="preserve">
+    <value>Потрібен чек</value>
+  </data>
+  <data name="WithEnglish" xml:space="preserve">
+    <value>Водій володіє англійською</value>
+  </data>
+  <data name="WithPets" xml:space="preserve">
+    <value>З тваринами</value>
+  </data>
+  <data name="WithPlate" xml:space="preserve">
+    <value>Зустріти з табличкою</value>
   </data>
 </root>

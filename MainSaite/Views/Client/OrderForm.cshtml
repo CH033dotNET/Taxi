@@ -7,7 +7,7 @@
 <link href="~/Content/bootstrap-datetimepicker.css" rel=stylesheet type="text/css">
 
 <div id="body">
-	<form role="form">
+	<form role="form" id="form">
 		<div class="form-group">
 			<div class="form-group-header">
 				<div class="label-underline underline-blue">
@@ -16,7 +16,7 @@
 			</div>
 			<div class="form-group-body">
 				<div class="row">
-					<label for="address-from" class="col-sm-2 form-control-label">@Resources.Resource.Address</label>
+					<label for="address-from" class="col-sm-2 form-control-label required">@Resources.Resource.Address<span>*</span></label>
 					<div class="col-sm-8">
 						<input type="text" class="form-control" id="address-from">
 					</div>
@@ -51,16 +51,18 @@
 			</div>
 			<div class="form-group-body">
 				<div id="form-body">
-					<div class="row">
-						<label for="address-to-1" class="col-sm-2 form-control-label">@Resources.Resource.Address</label>
-						<div class="col-sm-8">
-							<input type="text" class="form-control" id="address-to-1">
+					<div class="address-to-group">
+						<div class="row">
+							<label for="address-to-1" class="col-sm-2 form-control-label">@Resources.Resource.Address</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="address-to-1">
+							</div>
 						</div>
-					</div>
-					<div class="row">
-						<label for="building-to-1" class="col-sm-2 form-control-label">@Resources.Resource.Building</label>
-						<div class="col-sm-4">
-							<input type="text" class="form-control" id="building-to-1">
+						<div class="row">
+							<label for="building-to-1" class="col-sm-2 form-control-label">@Resources.Resource.Building</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="building-to-1">
+							</div>
 						</div>
 					</div>
 				</div>
@@ -112,25 +114,25 @@
 				<div class="row">
 					<label class="col-sm-3 form-control-label">@Resources.Resource.ClassOfCar</label>
 					<div class="col-sm-9 button-box">
-						<label class="button-inline"><input type="radio" id="normal" name="car-class" checked><span></span></label>
-						<label class="button-inline"><input type="radio" id="universal" name="car-class"><span></span></label>
-						<label class="button-inline"><input type="radio" id="minivan" name="car-class"><span></span></label>
-						<label class="button-inline"><input type="radio" id="lux" name="car-class"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Normal"><input type="radio" id="normal" name="car-class" checked><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Universal"><input type="radio" id="universal" name="car-class"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Minivan"><input type="radio" id="minivan" name="car-class"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Lux"><input type="radio" id="lux" name="car-class"><span></span></label>
 					</div>
 				</div>
 				<div class="row">
 					<label class="col-sm-3 form-control-label">@Resources.Resource.Additionally</label>
 					<div class="col-sm-8 button-box">
-						<label class="button-inline"><input type="checkbox" id="courier"><span></span></label>
-						<label class="button-inline"><input type="checkbox" id="with-plate"><span></span></label>
-						<label class="button-inline"><input type="checkbox" id="my-car"><span></span></label>
-						<label class="button-inline"><input type="checkbox" id="pets"><span></span></label>
-						<label class="button-inline"><input type="checkbox" id="bag"><span></span></label>
-						<label class="button-inline"><input type="checkbox" id="conditioner"><span></span></label>
-						<label class="button-inline"><input type="checkbox" id="english"><span></span></label>
-						<label class="button-inline"><input type="checkbox" id="nosmoking"><span></span></label>
-						<label class="button-inline"><input type="checkbox" id="smoking"><span></span></label>
-						<label class="button-inline"><input type="checkbox" id="check"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Courier"><input type="checkbox" id="courier"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithPlate"><input type="checkbox" id="with-plate"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.MyCar"><input type="checkbox" id="my-car"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithPets"><input type="checkbox" id="pets"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithBaggage"><input type="checkbox" id="bag"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Conditioner"><input type="checkbox" id="conditioner"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithEnglish"><input type="checkbox" id="english"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.NoSmoking"><input type="checkbox" id="nosmoking"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Smoking"><input type="checkbox" id="smoking"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithCheck"><input type="checkbox" id="check"><span></span></label>
 					</div>
 				</div>
 			</div>
@@ -164,7 +166,7 @@
 			</div>
 		</div>
 		<div id="submit">
-			<button type="submit" class="btn .btn-default btn-lg">@Resources.Resource.MakeAnOrder</button>
+			<button type="button" class="btn .btn-default btn-lg">@Resources.Resource.MakeAnOrder</button>
 		</div>
 	</form>
 </div>

@@ -1,125 +1,130 @@
 ﻿@using Common.Enum
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
-    <meta charset="utf-8" />
-    <title>@ViewBag.Title - EasyTaxi</title>
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <meta name="viewport" content="width=device-width" />
-    
+	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+	<meta charset="utf-8" />
+	<title>@ViewBag.Title - EasyTaxi</title>
+	<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<meta name="viewport" content="width=device-width" />
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <script type="text/javascript" src="~/Scripts/IEValidation.js"></script>
-    <script type="text/javascript" src="~/Scripts/GeneralScripts.js"></script>
-    <link href="~/Content/AutoParkCustomStyles.css" rel="stylesheet" />
 
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/handlebars")
-    @Scripts.Render("~/Scripts/Highcharts-4.0.1/js/highcharts.js")
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<script type="text/javascript" src="~/Scripts/IEValidation.js"></script>
+	<script type="text/javascript" src="~/Scripts/GeneralScripts.js"></script>
+	<link href="~/Content/AutoParkCustomStyles.css" rel="stylesheet" />
+
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+	@Scripts.Render("~/bundles/handlebars")
+	@Scripts.Render("~/Scripts/Highcharts-4.0.1/js/highcharts.js")
 
 	@Scripts.Render("~/bundles/bootstrap")
 	@Scripts.Render("~/bundles/jqueryval")
 	@Scripts.Render("~/Content/handlebars.js")
 	@Scripts.Render("~/bundles/jqueryui")
-    @Scripts.Render("~/Content/Main.css")
+	@Scripts.Render("~/Content/Main.css")
 </head>
 <body>
-    
-    <div class="row">
-        <div class="col-lg-2 col-lg-offset-1 col-md-3 col-sm-3 col-xs-12">
 
-            <div class="left-menu">
-                <div class="navbar navbar-default">
-                    <div class="container">
-                        <div class="navbar-header">
-                            <ul class="nav navbar-nav">
-                                @if (Session["User"] == null)
-                                {
-                                    <li>
-                                        @Html.ActionLink(Resources.Resource.Login, "Authentification", "Account")
-                                    </li>
-                                    <li>
-                                        @Html.ActionLink(Resources.Resource.SingUp, "Registration", "Account")
-                                    </li>
-                                }
-                                else
-                                {
-                                    string q = ((Model.DTO.UserDTO)Session["User"]).UserName;
+	<div class="row">
+		<div class="col-lg-2 col-lg-offset-1 col-md-3 col-sm-3 col-xs-12">
 
-                                    <li>
-                                        <a href="/Home/Index"> <img src="~/Images/@ViewBag.ImageName" data-toggle="tooltip" title="@q" class="img-rounded" style="max-width: 40px; max-height: 40px; " /></a>
+			<div class="left-menu">
+				<div class="navbar navbar-default">
+					<div class="container">
+						<div class="navbar-header">
+							<ul class="nav navbar-nav">
+								@if (Session["User"] == null)
+								{
+									<li id="logInBtn">
+										@Html.ActionLink(Resources.Resource.Login, "Authentification", "Account")
+									</li>
+									<li id="registrBtn">
+										@Html.ActionLink(Resources.Resource.SingUp, "Registration", "Account")
+									</li>
+								}
+								else
+								{
+									string q = ((Model.DTO.UserDTO)Session["User"]).UserName;
+									<li>
+										<a href="/Home/Index"> <img src="~/Images/@ViewBag.ImageName" data-toggle="tooltip" title="@q" class="img-rounded" style="max-width: 40px; max-height: 40px; " /></a>
+									</li>
+									<li>
+										@Html.ActionLink(Resources.Resource.LogOut, "LogOut", "Account")
+									</li>
+								}
 
-                                    </li>
+							</ul>
+						</div>
+					</div>
+				</div>
 
-                                    <li>
-                                        @Html.ActionLink(Resources.Resource.LogOut, "LogOut", "Account")
-                                    </li>
-                                }
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                 @*Links menu by users role*@
-                <div class="list-group">
-                    <ul class="nav">
+				<button class="navbar-toggle " data-toggle="collapse" data-target=".dropdownMenu" id="dropdownMenuBtn">
+					<span class="icon-bar" id="dashBtnIcon"></span>
+					<span class="icon-bar" id="dashBtnIcon"></span>
+					<span class="icon-bar" id="dashBtnIcon"></span>
+				</button>
+				@*Links menu by users role*@
+				<div class="list-group collapse navbar-collapse dropdownMenu">
+					<ul class="nav">
 						@if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
 						{
-							<li class="list-group-item">@Html.ActionLink(Resources.Resource.Districts, "DistrictEditor", "Settings")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.Districts, "DistrictEditor", "Settings")</li>
 						}
 						@if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
 						{
-							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.UserMenu, "UsersMenu", "Settings")</li>
-							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.Tarifes, "Index", "Tarif")</li>
-							<li class="list-group-item">@Html.ActionLink(Resources.Resource.Order, "Index", "Order")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.UserMenu, "UsersMenu", "Settings")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.Tarifes, "Index", "Tarif")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.Order, "Index", "Order")</li>
 						}
 						@*Only report Viewer must have charts menu*@
 						@if (ViewBag.UserRoleId == (int)AvailableRoles.ReportViewer)
 						{
-							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.Statistics, "Index", "ReportCharts")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.Statistics, "Index", "ReportCharts")</li>
 						}
 						@*All roles must have my account*@
-						@if (ViewBag.UserRoleId == (int)AvailableRoles.ReportViewer 
-								|| ViewBag.UserRoleId == (int)AvailableRoles.Administrator 
-								|| ViewBag.UserRoleId == (int)AvailableRoles.Client 
-								|| ViewBag.UserRoleId == (int)AvailableRoles.Driver 
+						@if (ViewBag.UserRoleId == (int)AvailableRoles.ReportViewer
+								|| ViewBag.UserRoleId == (int)AvailableRoles.Administrator
+								|| ViewBag.UserRoleId == (int)AvailableRoles.Client
+								|| ViewBag.UserRoleId == (int)AvailableRoles.Driver
 								|| ViewBag.UserRoleId == (int)AvailableRoles.Operator
 								|| ViewBag.UserRoleId == (int)AvailableRoles.Support
 								|| ViewBag.UserRoleId == (int)AvailableRoles.FreeDriver)
 						{
-							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.MyAccount, "Index", "User")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.MyAccount, "Index", "User")</li>
 						}
 						@*Only driver can have autopark*@
 						@if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.FreeDriver)
 						{
-							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.CarEditor, "CarPark", "Cars")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.CarEditor, "CarPark", "Cars")</li>
 						}
 						@*Only driver can have personal cabinet*@
 						@if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.FreeDriver)
 						{
-							<li class="list-group-item">@Html.ActionLink(Resources.Resource.PersonalCabinet, "Index", "Driver")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.PersonalCabinet, "Index", "Driver")</li>
 						}
 
 						@*Client can have this stuff*@
 						@if (ViewBag.UserRoleId == (int)AvailableRoles.Client)
 						{
-							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.TitleLeftMenuUserAddress, "Index", "Address")</li>
-							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.UserPage, "Index", "UserPage")</li>
-							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.DemoPage,"Iframe","UserPage") </li>
-							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.ClientDriveHistory, "ShowHistory", "DriveClientHistory")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.TitleLeftMenuUserAddress, "Index", "Address")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.UserPage, "Index", "UserPage")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.DemoPage, "Iframe", "UserPage") </li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.ClientDriveHistory, "ShowHistory", "DriveClientHistory")</li>
 						}
 						@*Operator and admin can have this stuff*@
 						@if (ViewBag.UserRoleId == (int)AvailableRoles.Operator || ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
 						{
-							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.SetVIPStatusPage, "SetVIPStatus", "Settings")</li>
-							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.WorkShift, "ViewWorkShifts", "Administration")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.SetVIPStatusPage, "SetVIPStatus", "Settings")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.WorkShift, "ViewWorkShifts", "Administration")</li>
 						}
 
 						<!--Only support have this link-->
@@ -127,15 +132,15 @@
 						{
 							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.ClientSupport, "Index", "Support")</li>
 						}
-						<li class="list-group-item">@Html.ActionLink("Make order", "Index", "Client")</li>
-						<li class="list-group-item">@Html.ActionLink("Viev orders", "Index", "OrderEx")</li>
+						    @*<li class="list-group-item" id="sideMenu">@Html.ActionLink("Make order", "Index", "Client")</li>*@
+						    <li class="list-group-item" id="sideMenu">@Html.ActionLink("View orders", "Index", "OrderEx")</li>
 					</ul>
 
 					<!--All roles except support have this link-->
 					@if (ViewBag.UserRoleId != (int)AvailableRoles.Support && ViewBag.UserRoleId > 0)
 					{
 						<br />
-						<p class="text-center"><a class="helpLink" href="#" onclick="ShowSupportChat()">@Resources.Resource.Help</a></p>
+						<p class="text-center" id="sideMenu"><a class="helpLink" href="#" onclick="ShowSupportChat()">@Resources.Resource.Help</a></p>
 					}
 				</div>
 			</div>
@@ -163,37 +168,37 @@
 		</div>
 	</div>
 
-    <!-- /.container -->
+	<!-- /.container -->
 
-    <div class="container">
+	<div class="container">
 
-        <hr>
+		<hr>
 
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-
-
-                  <div class="lang">
-                   <ul class="nav navbar-nav">
-                       @Html.Partial("_Language")
-                  </ul>
-                </div>
+		<!-- Footer -->
+		<footer>
+			<div class="row">
+				<div class="col-lg-12">
 
 
-                </div>
-            </div>
-        </footer>
-    </div>
+					<div class="lang">
+						<ul class="nav navbar-nav">
+							@Html.Partial("_Language")
+						</ul>
+					</div>
 
-    @Scripts.Render("~/bundles/inputmask")
+
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	@Scripts.Render("~/bundles/inputmask")
 	@Scripts.Render("~/bundles/bootstrap")
 	@Scripts.Render("~/bundles/datetime")
-    @RenderSection("scripts", required: false)
-    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
-    <script src="~/signalr/hubs"></script>
-   
+	@RenderSection("scripts", required: false)
+	<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+	<script src="~/signalr/hubs"></script>
+
 </body>
 
 </html>

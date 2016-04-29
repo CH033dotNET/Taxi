@@ -7,11 +7,11 @@
 		orderHub.server.connect("Client");
 
 		//add order to db
-		$('#order').click(function () {
+		$('#orderBtn').click(function () {
 			var order = {};
-			order.Address = $('#Address').val();
+			order.Address = $('#autocomplete').val();
 			$.ajax({
-				url: './Client/AddOrder/',
+				url: '/Client/AddOrder/',
 				data: order,
 				type: "POST",
 				success: function (data) {
