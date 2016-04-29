@@ -20,8 +20,13 @@ namespace MainSaite.Hubs
 			Clients.Group("Operator").addOrder(order);
 		}
 
+        [HubMethodName("OrderApproved")]
+        public void OrderApproved(OrderExDTO order) {
+            Clients.Group("Driver").OrderApproved(order);
+        }
 
-		[HubMethodName("connect")]
+
+        [HubMethodName("connect")]
 		public void Connect(string group)
 		{
 			string connectionId = Context.ConnectionId;

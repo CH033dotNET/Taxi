@@ -15,6 +15,10 @@ namespace BAL.Interfaces
 
 		bool DenyOrder(int id);
 
-		IEnumerable<OrderExDTO> GetNotApprovedOrders();
-	}
+        bool TakeOrder(int id);
+
+        IEnumerable<OrderExDTO> GetNotApprovedOrders();
+
+        IEnumerable<OrderExDTO> GetApprovedOrders();
+    }
 }

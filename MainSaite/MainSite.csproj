@@ -477,6 +477,7 @@
     <Content Include="Scripts\OperatorCommand\DriverCommand.js" />
     <Content Include="Scripts\OperatorCommand\OperatorCommands.js" />
     <Content Include="Scripts\OrderExLogic\ClientOrder.js" />
+    <Content Include="Scripts\OrderExLogic\DriverOrder.js" />
     <Content Include="Scripts\OrderExLogic\OperatorOrder.js" />
     <Content Include="Scripts\OrderForm.js" />
     <Content Include="Scripts\sweetalert2.min.js" />

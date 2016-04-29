@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Model.DTO.OrderDTOEx>
+﻿@model IEnumerable<Model.DTO.OrderExDTO>
 
 @{
 	ViewBag.Title = "Driver Interface";
@@ -28,9 +28,11 @@
 				@Html.DisplayFor(modelItem => item.Status)
 			</td>
 			<td>
-				@Html.ActionLink("Take", "TakeOrder", new { id = item.Id }) |
+                <input itemid="@item.Id" type="button" value="Take" class="take btn btn-success" /> |
 			</td>
 		</tr>
 	}
 
 </table>
+<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+<script src="~/Scripts/OrderExLogic/OperatorOrder.js"></script>
