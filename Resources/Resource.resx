@@ -1048,4 +1048,7 @@
   <data name="WithPlate" xml:space="preserve">
     <value>Meet with a plate</value>
   </data>
+  <data name="AdBlockWarning" xml:space="preserve">
+    <value>AddBlock detected. Some options can work wrong.</value>
+  </data>
 </root>

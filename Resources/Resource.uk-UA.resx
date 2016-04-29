@@ -1047,4 +1047,7 @@
   <data name="WithPlate" xml:space="preserve">
     <value>Зустріти з табличкою</value>
   </data>
+  <data name="AdBlockWarning" xml:space="preserve">
+    <value>AdBlock знайдено. Деякі опції можуть працювати некоректно.</value>
+  </data>
 </root>

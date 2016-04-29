@@ -483,6 +483,7 @@
     <Content Include="Scripts\sweetalert2.min.js" />
     <Content Include="Scripts\tabCorrector.js" />
     <Content Include="Scripts\Tarif\Tarif.js" />
+    <Content Include="Scripts\Tools\AddBlockChecker.js" />
     <Content Include="Scripts\UserMenuScripts\ModalJs.js" />
     <Content Include="Scripts\UserScript.js" />
     <Content Include="Scripts\validator.js" />

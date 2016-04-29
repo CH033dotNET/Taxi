@@ -35,6 +35,11 @@
 <body>
 
 	<div class="row">
+		<div id="adblock-warning" class="panel panel-warning col-lg-offset-1 col-xs-10">
+			<div class="panel-heading">
+				@Resources.Resource.AdBlockWarning
+			</div>
+		</div>
 		<div class="col-lg-2 col-lg-offset-1 col-md-3 col-sm-3 col-xs-12">
 
 			<div class="left-menu">
@@ -198,6 +203,7 @@
 	@RenderSection("scripts", required: false)
 	<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
 	<script src="~/signalr/hubs"></script>
+	<script src="~/Scripts/Tools/AddBlockChecker.js"></script>
 
 </body>
 

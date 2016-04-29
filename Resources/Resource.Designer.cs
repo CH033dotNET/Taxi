@@ -88,6 +88,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AddBlock detected. Some options can work wrong..
+        /// </summary>
+        public static string AdBlockWarning {
+            get {
+                return ResourceManager.GetString("AdBlockWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add address.
         /// </summary>
         public static string AddAddress {
