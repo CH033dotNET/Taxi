@@ -21,18 +21,14 @@
 				<div id="orderBtn">Order Taxi</div>
 			</div>
 		</div>
-		@*/<div class="panel-footer">
-			<form id="non-deleted-form" class="form-inline">
-				<div class="form-group">
-					<a class="btn btn-success"><span class="glyphicon glyphicon-th-list" aria-hidden="true">&nbsp;</span>@Resources.Resource.OrderTaxi</a>
-				</div>
-			</form>
-		</div>/*@
 	</div>
 </div>
 <script>
 	var picturePath = '@Url.Content("~/Content/Picture/UserMapIcons/")';
 </script>
 
+<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+<script src="~/Scripts/OrderExLogic/ClientOrder.js"></script>
+
 @Scripts.Render("~/Scripts/GoogleMapJS/GoogleMapTaxiOrder.js")

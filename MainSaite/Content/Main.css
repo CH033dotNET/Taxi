@@ -220,3 +220,32 @@
 	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 	transition-duration: 0.3s;
 }
+@media (max-width: 768px) {
+	body{	
+     background-color: #3e4649;
+	}
+	#registrBtn{
+		display:none;
+	}
+	#logInBtn{
+		width:50%;
+	}
+	#dropdownMenuBtn{
+		width: 100%;
+        margin: auto;
+        padding-bottom: 11px;
+        background-color: #22a86d;
+		border-radius:0px;
+	}
+	#sideMenu{
+		background-color: #2e2f31;
+        border: none;
+	}
+	#dashBtnIcon{
+		background-color: white;
+        
+	}
+	#orderTaxiBtn{
+		display:none;
+	}
+}
