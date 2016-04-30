@@ -17,6 +17,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
+	<script src="~/Scripts/jquery-2.2.3.js"></script>
 	<script type="text/javascript" src="~/Scripts/IEValidation.js"></script>
 	<script type="text/javascript" src="~/Scripts/GeneralScripts.js"></script>
 	<link href="~/Content/AutoParkCustomStyles.css" rel="stylesheet" />
@@ -38,22 +39,23 @@
 		<div class="col-lg-2 col-lg-offset-1 col-md-3 col-sm-3 col-xs-12">
 
 			<div class="left-menu">
-				<div class="navbar navbar-default">
+				<div class="navbar navbar-default" id="desktopNavBar">
 					<div class="container">
 						<div class="navbar-header">
 							<ul class="nav navbar-nav">
 								@if (Session["User"] == null)
 								{
-									<li id="logInBtn">
+									<li>
 										@Html.ActionLink(Resources.Resource.Login, "Authentification", "Account")
 									</li>
-									<li id="registrBtn">
+									<li>
 										@Html.ActionLink(Resources.Resource.SingUp, "Registration", "Account")
 									</li>
+
 								}
-								else
-								{
-									string q = ((Model.DTO.UserDTO)Session["User"]).UserName;
+		                        else
+		                         {
+			                        string q = ((Model.DTO.UserDTO)Session["User"]).UserName;
 									<li>
 										<a href="/Home/Index"> <img src="~/Images/@ViewBag.ImageName" data-toggle="tooltip" title="@q" class="img-rounded" style="max-width: 40px; max-height: 40px; " /></a>
 									</li>
@@ -67,14 +69,24 @@
 					</div>
 				</div>
 
+				<div class="btn-group btn-group-justified" id="mobileBtnsList">
+					<a href="/Account/Authentification" class="btn btn-primary" id="mainBtns"><img src="~/Content/Picture/SmartPhonePictures/userLogo.png" id="menuImage" /></a>
+					<a href="/Home/OrderTaxi" class="btn btn-primary" id="mainBtns"><img src="~/Content/Picture/SmartPhonePictures/taxiLogo.png" id="menuImage" /></a>
+				</div>
+
+
+
 				<button class="navbar-toggle " data-toggle="collapse" data-target=".dropdownMenu" id="dropdownMenuBtn">
-					<span class="icon-bar" id="dashBtnIcon"></span>
-					<span class="icon-bar" id="dashBtnIcon"></span>
-					<span class="icon-bar" id="dashBtnIcon"></span>
+					<a href="/Home/Index"> <img src="@Url.Content("~/Content/Picture/SmartPhonePictures/SiteLogo.png")" id="siteLogoImage"/> </a>
+					<div id="dashes">
+						<span class="icon-bar" id="dashBtnIcon"></span>
+						<span class="icon-bar" id="dashBtnIcon"></span>
+						<span class="icon-bar" id="dashBtnIcon"></span>
+					</div>
 				</button>
 				@*Links menu by users role*@
-				<div class="list-group collapse navbar-collapse dropdownMenu">
-					<ul class="nav">
+				<div class="list-group collapse navbar-collapse dropdownMenu" id="droppedDownList">
+					<ul class="nav" id="mainMenu">
 						@if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
 						{
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.Districts, "DistrictEditor", "Settings")</li>
@@ -132,73 +144,74 @@
 						{
 							<li class="list-group-item">@Html.ActionLink(@Resources.Resource.ClientSupport, "Index", "Support")</li>
 						}
-						    @*<li class="list-group-item" id="sideMenu">@Html.ActionLink("Make order", "Index", "Client")</li>*@
-						    <li class="list-group-item" id="sideMenu">@Html.ActionLink("View orders", "Index", "OrderEx")</li>
-					</ul>
-
-					<!--All roles except support have this link-->
-					@if (ViewBag.UserRoleId != (int)AvailableRoles.Support && ViewBag.UserRoleId > 0)
-					{
-						<br />
-						<p class="text-center" id="sideMenu"><a class="helpLink" href="#" onclick="ShowSupportChat()">@Resources.Resource.Help</a></p>
-					}
-				</div>
-			</div>
-		</div>
-
-		<div class="col-md-9 col-lg-9 col-sm-9 col-xs-12">
-			@RenderBody()
-		</div>
-	</div>
-
-	<div id="chat">
-		<div class="head">
-			<img class="avatar" src="/Images/item_0_profile.jpg">
-			<div class="serviceWorker">
-				<div class="name">Саша</div>
-				<div class="description">Служба підтримки</div>
-			</div>
-			<div class="minimize" onclick="HideSupportChat()"></div>
-		</div>
-		<div class="body">
-		</div>
-		<div class="bottom">
-			<textarea class="message" placeholder="Введіть повідомлення"></textarea>
-			<div class="btnSend"><img class="btnSendImage" src="~/Content/Picture/sendIcon.png" onclick="SendMessage()"></div>
-		</div>
-	</div>
-
-	<!-- /.container -->
-
-	<div class="container">
-
-		<hr>
-
-		<!-- Footer -->
-		<footer>
-			<div class="row">
-				<div class="col-lg-12">
-
-
-					<div class="lang">
-						<ul class="nav navbar-nav">
-							@Html.Partial("_Language")
+						    @*/*<li class="list-group-item" id="sideMenu">@Html.ActionLink("Make order", "Index", "Client")</li>/*@
+						   @*/* <li class="list-group-item" id="sideMenu">@Html.ActionLink("View orders", "Index", "OrderEx")</li>/*@
 						</ul>
+
+						<!--All roles except support have this link-->
+						@if (ViewBag.UserRoleId != (int)AvailableRoles.Support && ViewBag.UserRoleId > 0)
+						{
+							<br />
+							<p class="text-center" id="sideMenu"><a class="helpLink" href="#" onclick="ShowSupportChat()">@Resources.Resource.Help</a></p>
+						}
 					</div>
-
-
 				</div>
 			</div>
-		</footer>
-	</div>
 
-	@Scripts.Render("~/bundles/inputmask")
-	@Scripts.Render("~/bundles/bootstrap")
-	@Scripts.Render("~/bundles/datetime")
-	@RenderSection("scripts", required: false)
-	<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
-	<script src="~/signalr/hubs"></script>
+			<div class="col-md-9 col-lg-9 col-sm-9 col-xs-12">
+				<hr>
+				@RenderBody()
+			</div>
+		</div>
 
-</body>
+		<div id="chat">
+			<div class="head">
+				<img class="avatar" src="/Images/item_0_profile.jpg">
+				<div class="serviceWorker">
+					<div class="name">Саша</div>
+					<div class="description">Служба підтримки</div>
+				</div>
+				<div class="minimize" onclick="HideSupportChat()"></div>
+			</div>
+			<div class="body">
+			</div>
+			<div class="bottom">
+				<textarea class="message" placeholder="Введіть повідомлення"></textarea>
+				<div class="btnSend"><img class="btnSendImage" src="~/Content/Picture/sendIcon.png" onclick="SendMessage()"></div>
+			</div>
+		</div>
 
-</html>
+		<!-- /.container -->
+
+		<div class="container">
+
+			<hr>
+
+			<!-- Footer -->
+			<footer>
+				<div class="row">
+					<div class="col-lg-12">
+
+
+						<div class="lang">
+							<ul class="nav navbar-nav">
+								@Html.Partial("_Language")
+							</ul>
+						</div>
+
+
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		@Scripts.Render("~/bundles/inputmask")
+		@Scripts.Render("~/bundles/bootstrap")
+		@Scripts.Render("~/bundles/datetime")
+		@RenderSection("scripts", required: false)
+		<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+		<script src="~/signalr/hubs"></script>
+
+	</body>
+
+	</html>

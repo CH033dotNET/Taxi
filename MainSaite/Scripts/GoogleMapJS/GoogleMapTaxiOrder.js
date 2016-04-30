@@ -27,8 +27,6 @@ var operatorHub;
 
 $(document).ready(function () {
 
-	$("#geoOff").hide();
-
 	initialize();
 
 	//operatorHub = $.connection.OperatorHub;

@@ -559,7 +559,7 @@
     <value>Повернути цей автомобіль його власнику?</value>
   </data>
   <data name="EnterYourAdress" xml:space="preserve">
-    <value>Ведіть ваш адрес</value>
+    <value>Введіть вашу адресу</value>
   </data>
   <data name="IsIntercity" xml:space="preserve">
     <value>Чи міжміський</value>
@@ -927,7 +927,7 @@
   <data name="FreeDriver" xml:space="preserve">
     <value>Free водій</value>
   </data>
-    <data name="OrderForm" xml:space="preserve">
+  <data name="OrderForm" xml:space="preserve">
     <value>Замовити таксі</value>
   </data>
   <data name="AddAddress" xml:space="preserve">
@@ -1004,5 +1004,11 @@
   </data>
   <data name="Passengers" xml:space="preserve">
     <value>Кількість пасажирів:</value>
+  </data>
+  <data name="NoGeoLocation" xml:space="preserve">
+    <value>Неможливо встановити місцеположення</value>
+  </data>
+  <data name="SetYourPosition" xml:space="preserve">
+    <value>Вкажіть ваше положення на карті</value>
   </data>
 </root>

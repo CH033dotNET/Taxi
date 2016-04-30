@@ -1006,4 +1006,10 @@
   <data name="Passengers" xml:space="preserve">
     <value>Number of passengers:</value>
   </data>
+  <data name="NoGeoLocation" xml:space="preserve">
+    <value>Geolocation is disabled</value>
+  </data>
+  <data name="SetYourPosition" xml:space="preserve">
+    <value>Please, point out your position on the map</value>
+  </data>
 </root>

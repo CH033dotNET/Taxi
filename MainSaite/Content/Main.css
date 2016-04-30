@@ -152,12 +152,12 @@
 }
 
 .panel-info {
-	background-color: rgba(76, 175, 80, 0.57);
+	background-color: darkturquoise;
 	color: white;
 	border-radius: 2px;
 	text-align: center;
 	border-color: none;
-	border-color: rgba(76, 175, 80, 0.57);
+	border-color: rgb(62, 70, 73);
 }
 
 .panel-title {
@@ -176,11 +176,16 @@
 
 #geoOff {
 	text-align: center;
+	display:none;
+    background-color: rgb(188, 103, 43);
+    border: none;
+    border-radius: 0px;
+	    margin: 10px;
 }
 
 .alert-warning {
 	background-color: rgba(29, 46, 125, 0.32);
-	border-color: none !important;
+	border-color: none;
 }
 
 #geoAlert {
@@ -191,7 +196,7 @@
 }
 
 #controlOrder {
-	border: 1px  outset white;
+	border: 1px  solid rgb(76, 175, 80);
 	border-radius: 1px;
 	box-shadow: rgba(0, 0, 0, 0.73) 0px 2px 6px;
 	cursor: pointer;
@@ -220,32 +225,93 @@
 	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 	transition-duration: 0.3s;
 }
+@media (min-width: 768px) {
+	#mobileBtnsList{
+	   display:none;
+
+	}
+}
 @media (max-width: 768px) {
 	body{	
      background-color: #3e4649;
 	}
-	#registrBtn{
+	#desktopNavBar{
 		display:none;
-	}
-	#logInBtn{
-		width:50%;
 	}
 	#dropdownMenuBtn{
 		width: 100%;
-        margin: auto;
+        margin: 0 auto;
         padding-bottom: 11px;
         background-color: #22a86d;
 		border-radius:0px;
+	    padding: 0px 0px 0px 0px;
+		display:none;
 	}
 	#sideMenu{
 		background-color: #2e2f31;
         border: none;
+		border-radius: 0px;
+	}
+	#sideMenu>a{
+		color: white;
+        font-size: 20px;
+        font-weight: bold;
+
 	}
 	#dashBtnIcon{
 		background-color: white;
-        
 	}
-	#orderTaxiBtn{
+	#dashes{
+		float:right;
+		padding: 4% 10px 10px 10px;
+	}
+	#orderTaxiBtn, .slider-controls{
 		display:none;
 	}
+	#siteLogoImage{
+		    width: 17%;
+            float: left;
+		    
+	}
+	#droppedDownList{
+		padding-right: 1px;
+	}
+	#mobileBtns{
+		width: 100%;
+        text-align: center;
+	}
+	body{
+		padding-top:2px;
+	}
+	#mainBtns{
+		background-color: #FFD700;
+        border-radius: 0px;
+		border:none;
+		  box-shadow: 0 5px #999;
+	}
+	#mainBtns:hover{
+		background-color: lightgray;
+	}
+	#mainBtns:active {
+		background-color: grey;
+		box-shadow: 0 2px #666;
+		transform: translateY(3px);
+	}
+	#mobileBtnsList{
+	   padding-bottom: 10px;
+	   display:block;
+
+	}
+	#menuImage{
+		height: 33%;
+	}
+	#authTable{
+		margin:0 auto;
+	}
+	#mapContainer{
+		padding:10px;
+	}
+	#controlOrder {
+	border: 10px solid rgb(76, 175, 80);
+}
 }
