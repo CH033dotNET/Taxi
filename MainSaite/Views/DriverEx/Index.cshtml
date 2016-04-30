@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Model.DTO.OrderDTOEx>
+﻿@model IEnumerable<Model.DTO.OrderExDTO>
 
 @{
 	ViewBag.Title = "Driver Interface";
@@ -7,7 +7,7 @@
 
 <h2>Index</h2>
 
-<table>
+<table class="table" id="orders">
 	<tr>
 		<th>
 			@Html.DisplayNameFor(model => model.Address)
@@ -28,9 +28,16 @@
 				@Html.DisplayFor(modelItem => item.Status)
 			</td>
 			<td>
-				@Html.ActionLink("Take", "TakeOrder", new { id = item.Id }) |
+                <div class="input-group">
+                    <input type="number" class="waiting-time form-control" placeholder="waitnig time...">
+                    <span class="input-group-btn">
+                        <input itemid="@item.Id" type="button" value="Take" class="take btn btn-success" />
+                    </span>
+                </div>
 			</td>
 		</tr>
 	}
 
 </table>
+<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+<script src="~/Scripts/OrderExLogic/DriverOrder.js"></script>

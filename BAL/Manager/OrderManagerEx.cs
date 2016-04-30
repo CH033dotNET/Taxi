@@ -55,7 +55,29 @@ namespace BAL.Interfaces
 			return false;
 		}
 
-		public IEnumerable<OrderExDTO> GetNotApprovedOrders()
+        public bool TakeOrder(int id) {
+            var order = uOW.OrderExRepo.All.Where(o => o.Id == id).FirstOrDefault();
+            if (order != null) {
+                order.Status = OrderStatusEnum.Confirmed;
+                uOW.OrderExRepo.Update(order);
+                uOW.Save();
+                return true;
+            }
+            return false;
+        }
+
+        public bool SetWaitingTime(int id, int WaitingTime) {
+            var order = uOW.OrderExRepo.All.Where(o => o.Id == id).FirstOrDefault();
+            if (order != null) {
+                order.WaitingTime = WaitingTime;
+                uOW.OrderExRepo.Update(order);
+                uOW.Save();
+                return true;
+            }
+            return false;
+        }
+
+        public IEnumerable<OrderExDTO> GetNotApprovedOrders()
 		{
 			var orders = uOW.OrderExRepo.All
 				.Where(o => o.Status == OrderStatusEnum.NotApproved)
@@ -63,5 +85,12 @@ namespace BAL.Interfaces
 			return Mapper.Map<List<OrderExDTO>>(orders);
 		}
 
-	}
+        public IEnumerable<OrderExDTO> GetApprovedOrders() {
+            var orders = uOW.OrderExRepo.All
+                .Where(o => o.Status == OrderStatusEnum.Approved)
+                .ToList();
+            return Mapper.Map<List<OrderExDTO>>(orders);
+        }
+
+    }
 }

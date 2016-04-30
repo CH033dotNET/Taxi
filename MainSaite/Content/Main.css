@@ -315,3 +315,13 @@
 	border: 10px solid rgb(76, 175, 80);
 }
 }
+
+
+/*  Adblock message  */
+#adblock-warning {
+	display: none;
+	padding: 0;
+	margin-left:135px;
+	font-size: 1.5em;
+	text-align:center;
+}

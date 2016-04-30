@@ -1006,10 +1006,49 @@
   <data name="Passengers" xml:space="preserve">
     <value>Number of passengers:</value>
   </data>
-  <data name="NoGeoLocation" xml:space="preserve">
-    <value>Geolocation is disabled</value>
+  <data name="Conditioner" xml:space="preserve">
+    <value>Conditioner</value>
   </data>
-  <data name="SetYourPosition" xml:space="preserve">
-    <value>Please, point out your position on the map</value>
+  <data name="Courier" xml:space="preserve">
+    <value>Courier</value>
+  </data>
+  <data name="Lux" xml:space="preserve">
+    <value>Lux</value>
+  </data>
+  <data name="Minivan" xml:space="preserve">
+    <value>Minivan</value>
+  </data>
+  <data name="MyCar" xml:space="preserve">
+    <value>Transport on my car</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="NoSmoking" xml:space="preserve">
+    <value>No smoking</value>
+  </data>
+  <data name="Smoking" xml:space="preserve">
+    <value>Passenger is a smoker</value>
+  </data>
+  <data name="Universal" xml:space="preserve">
+    <value>Universal</value>
+  </data>
+  <data name="WithBaggage" xml:space="preserve">
+    <value>With baggage</value>
+  </data>
+  <data name="WithCheck" xml:space="preserve">
+    <value>Check needed</value>
+  </data>
+  <data name="WithEnglish" xml:space="preserve">
+    <value>Driver speaks English</value>
+  </data>
+  <data name="WithPets" xml:space="preserve">
+    <value>With pets</value>
+  </data>
+  <data name="WithPlate" xml:space="preserve">
+    <value>Meet with a plate</value>
+  </data>
+  <data name="AdBlockWarning" xml:space="preserve">
+    <value>AddBlock detected. Some options can work wrong.</value>
   </data>
 </root>

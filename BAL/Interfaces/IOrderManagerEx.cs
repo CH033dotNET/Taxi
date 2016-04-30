@@ -15,6 +15,12 @@ namespace BAL.Interfaces
 
 		bool DenyOrder(int id);
 
-		IEnumerable<OrderExDTO> GetNotApprovedOrders();
-	}
+        bool TakeOrder(int id);
+
+        bool SetWaitingTime(int id, int WaitingTime);
+
+        IEnumerable<OrderExDTO> GetNotApprovedOrders();
+
+        IEnumerable<OrderExDTO> GetApprovedOrders();
+    }
 }
