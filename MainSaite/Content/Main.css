@@ -152,12 +152,11 @@
 }
 
 .panel-info {
-	background-color: darkturquoise;
-	color: white;
+	background-color: rgba(85, 143, 216, 0.34);
+	
 	border-radius: 2px;
 	text-align: center;
-	border-color: none;
-	border-color: rgb(62, 70, 73);
+	border-color: #CDCDCD;
 }
 
 .panel-title {
@@ -170,7 +169,7 @@
 
 .panel-info > .panel-heading {
 	color: white;
-	background-color: rgba(76, 175, 80, 0.57);
+	background-color: rgba(28, 44, 208, 0.76);
 	border-color: rgba(76, 175, 80, 0.57);
 }
 
@@ -228,7 +227,9 @@
 @media (min-width: 768px) {
 	#mobileBtnsList{
 	   display:none;
-
+	}
+		#siteLogoImage{
+		    display:none;
 	}
 }
 @media (max-width: 768px) {
@@ -271,7 +272,7 @@
 	#siteLogoImage{
 		    width: 17%;
             float: left;
-		    
+		    display:block;
 	}
 	#droppedDownList{
 		padding-right: 1px;

@@ -187,7 +187,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Advanced.
+        ///   Looks up a localized string similar to Advanced order.
         /// </summary>
         public static string AdvancedOrder {
             get {
@@ -2465,7 +2465,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Standart.
+        ///   Looks up a localized string similar to Standart order.
         /// </summary>
         public static string StandartOrder {
             get {

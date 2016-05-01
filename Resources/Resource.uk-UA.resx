@@ -1056,4 +1056,10 @@
   <data name="SetYourPosition" xml:space="preserve">
     <value>Вкажіть своє положення на карті</value>
   </data>
+  <data name="AdvancedOrder" xml:space="preserve">
+    <value>Розширене замовлення</value>
+  </data>
+  <data name="StandartOrder" xml:space="preserve">
+    <value>Стандартне замовлення</value>
+  </data>
 </root>

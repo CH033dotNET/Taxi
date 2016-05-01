@@ -923,10 +923,10 @@
     <value>Free driver</value>
   </data>
   <data name="AdvancedOrder" xml:space="preserve">
-    <value>Advanced</value>
+    <value>Advanced order</value>
   </data>
   <data name="StandartOrder" xml:space="preserve">
-    <value>Standart</value>
+    <value>Standart order</value>
   </data>
   <data name="OrderForm" xml:space="preserve">
     <value>Order a taxi</value>

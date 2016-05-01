@@ -112,47 +112,11 @@ function CenterControl(controlDiv, map) {
 	// Setup the click event listeners: simply set the map to Chicago.
 	$('#controlOrder').on('click', function () {
 
-		//alert("Order");
-
-		map.setCenter(geocode());
-
-		//if (finishPoint.getTitle() == null) {
-		//	$('#noDestPoint').modal('toggle');
-		//	return false;
-		//}
-
-
-
-		if (myOrderId == null) {
-			//debugger;
-			var orderObj = {
-				'PeekPlace': startPoint.getTitle(),
-				'DropPlace': finishPoint.getTitle(),
-				'OrderTime': new Date().toISOString(),
-				'LatitudeDropPlace': finishPoint.position.lat(),
-				'LongitudeDropPlace': finishPoint.position.lng(),
-				'Accuracy': circle.getRadius(),
-				'LatitudePeekPlace': startPoint.position.lat(),
-				'LongitudePeekPlace': startPoint.position.lng(),
-				'IsConfirm': 3
-			}
-
-			$.ajax({
-				url: './Order/NewOrder/',
-				data: orderObj,
-				type: "POST",
-				success: function (data) {
-					myOrderId = data.Id;
-					//debugger;
-					operatorHub.server.sendNewOrderToOperators(data);
-				}
-			});
+		var pos = {
+			'LatitudePeekPlace': startPoint.position.lat(),
+			'LongitudePeekPlace': startPoint.position.lng()
 		}
 
-		else {
-			//debugger;
-			$('#hasorder').modal('toggle');
-		}
 	})
 
 }
