@@ -25,7 +25,7 @@
 			if (id) {
 				$.ajax({
 					type: "post",
-					url: "./OrderEx/ApproveOrder/",
+					url: "/OrderEx/ApproveOrder/",
 					data: { id : id },
 					success: function (result) {
 						if (result) {
@@ -46,7 +46,7 @@
 			if (id) {
 				$.ajax({
 					type: "post",
-					url: "./OrderEx/DenyOrder/",
+					url: "/OrderEx/DenyOrder/",
 					data: { id: id },
 					success: function (result) {
 						if (result) {

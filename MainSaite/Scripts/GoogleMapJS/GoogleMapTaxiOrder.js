@@ -3,7 +3,7 @@
 var map;
 //var finishPoint = new google.maps.Marker;
 var startPoint = new google.maps.Marker;
-//var markerTaxi = new google.maps.Marker;
+var markerTaxi = new google.maps.Marker;
 
 var geocoder = new google.maps.Geocoder();
 var infowindow = new google.maps.InfoWindow;
@@ -140,7 +140,7 @@ function CenterControl(controlDiv, map) {
 //	return circle;
 //};
 
-var setTaxiMarker = function (lt, lg) {
+function setTaxiMarker(lt, lg) {
 
 	var latlng = { lat: lt, lng: lg };
 	markerTaxi.setPosition(latlng);

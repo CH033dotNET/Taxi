@@ -1,10 +1,15 @@
 ﻿$(function(){
 	var orderHub = $.connection.OrderHub;
 
-	$.connection.hub.start().done(function () {
+	orderHub.client.notifyDriverCoordinate = function (coordinate) {
+		setTaxiMarker(coordinate.Latitude, coordinate.Longitude);
+	}
 
+	$.connection.hub.start().done(function () {
 		//connect to hub group
 		orderHub.server.connect("Client");
+
+		
 
 		//add order to db
 		$('#orderBtn').click(function () {
@@ -16,13 +21,12 @@
 				type: "POST",
 				success: function (data) {
 					//send order
-					orderHub.server.addOrder(order);
+					orderHub.server.addOrder(data);
 					alert("You order id = " + data.Id);
 				}
 			});
 			
 		});
 	});
-
 
 })

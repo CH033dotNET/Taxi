@@ -20,7 +20,7 @@ namespace Model.DB
 
 		public DateTime AddedTime { get; set; }
 
-		public int OrderId { get; set; }
+		public int? OrderId { get; set; }
 
 		public OrderEx Order { get; set; }
 

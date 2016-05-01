@@ -251,6 +251,10 @@
     <Compile Include="Migrations\201604281453366_AddCoordinatesExModel.Designer.cs">
       <DependentUpon>201604281453366_AddCoordinatesExModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605012015482_FixCoordinatesModel.cs" />
+    <Compile Include="Migrations\201605012015482_FixCoordinatesModel.Designer.cs">
+      <DependentUpon>201605012015482_FixCoordinatesModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -419,6 +423,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604281453366_AddCoordinatesExModel.resx">
       <DependentUpon>201604281453366_AddCoordinatesExModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605012015482_FixCoordinatesModel.resx">
+      <DependentUpon>201605012015482_FixCoordinatesModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

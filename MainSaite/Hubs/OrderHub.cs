@@ -17,21 +17,35 @@ namespace MainSaite.Hubs
 		[HubMethodName("addOrder")]
 		public void AddOrder(OrderExDTO order)
 		{
+			var currentUser = orderHubUsers.FirstOrDefault(u => u.ConnectionId == Context.ConnectionId);
+			currentUser.OrderId = order.Id;
 			Clients.Group("Operator").addOrder(order);
 		}
 
-        [HubMethodName("OrderApproved")]
-        public void OrderApproved(OrderExDTO order) {
-            Clients.Group("Driver").OrderApproved(order);
-        }
 
 
-        [HubMethodName("connect")]
+		[HubMethodName("OrderApproved")]
+		public void OrderApproved(OrderExDTO order)
+		{
+			Clients.Group("Driver").OrderApproved(order);
+		}
+
+		[HubMethodName("notifyDriverCoordinate")]
+		public void NotifyDriverCoordinate(CoordinatesExDTO coordinate)
+		{
+			var client = orderHubUsers.FirstOrDefault(u => u.OrderId == coordinate.OrderId);
+			if (client != null)
+			{
+				Clients.Client(client.ConnectionId).notifyDriverCoordinate(coordinate);
+			}
+		}
+
+		[HubMethodName("connect")]
 		public void Connect(string group)
 		{
 			string connectionId = Context.ConnectionId;
 
-			var currentUser = new SignalRUserEx() { ConnectionId = connectionId, Group = group};
+			var currentUser = new SignalRUserEx() { ConnectionId = connectionId, Group = group };
 			if (!orderHubUsers.Any(x => x.ConnectionId == connectionId))
 			{
 				Groups.Add(Context.ConnectionId, group);
