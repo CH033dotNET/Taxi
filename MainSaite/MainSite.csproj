@@ -193,6 +193,7 @@
     <Compile Include="Controllers\OrderExController.cs" />
     <Compile Include="Controllers\ReportChartsController.cs" />
     <Compile Include="Controllers\SupportController.cs" />
+    <Compile Include="Controllers\TariffExController.cs" />
     <Compile Include="Helpers\DriverLocationHelper.cs" />
     <Compile Include="Helpers\IDriverLocationHelper.cs" />
     <Compile Include="Helpers\OperatorMessagesHelper.cs" />
@@ -558,6 +559,7 @@
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\DriverEx\Index.cshtml" />
     <Content Include="Views\Home\OrderTaxi.cshtml" />
+    <Content Include="Views\TariffEx\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

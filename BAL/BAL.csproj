@@ -64,6 +64,7 @@
     <Compile Include="Interfaces\IDriverExManager.cs" />
     <Compile Include="Interfaces\IOrderManagerEx.cs" />
     <Compile Include="Interfaces\ISupportManager.cs" />
+    <Compile Include="Interfaces\ITariffExManager.cs" />
     <Compile Include="Interfaces\IWorkerStatusManager.cs" />
     <Compile Include="Manager\DriverExManager.cs" />
     <Compile Include="Manager\OrderManagerEx.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Manager\OrderManager.cs" />
     <Compile Include="Manager\PersonManager.cs" />
     <Compile Include="Manager\SupportManager.cs" />
+    <Compile Include="Manager\TariffExManager.cs" />
     <Compile Include="Manager\TarifManager.cs" />
     <Compile Include="Manager\TestManager.cs" />
     <Compile Include="Manager\WorkerStatusManager.cs" />
