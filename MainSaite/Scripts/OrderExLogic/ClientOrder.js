@@ -1,4 +1,4 @@
-﻿$(function(){
+﻿$(document).ready(function () {
 	var orderHub = $.connection.OrderHub;
 
 	orderHub.client.notifyDriverCoordinate = function (coordinate) {
@@ -9,10 +9,10 @@
 		//connect to hub group
 		orderHub.server.connect("Client");
 
-		
+
 
 		//add order to db
-		$('#orderBtn').click(function () {
+		$(document).on('click', '#orderBtn', function () {
 			var order = {};
 			order.Address = $('#textField').val();
 			$.ajax({
@@ -25,8 +25,8 @@
 					alert("You order id = " + data.Id);
 				}
 			});
-			
+
 		});
 	});
 
-})
+});

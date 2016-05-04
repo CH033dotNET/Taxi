@@ -158,15 +158,28 @@ namespace DAL.Migrations
 				context.Persons.AddRange(persons);
 				context.SaveChanges();
 			}
-			//Tarif
-			if (!context.Tarifes.Any())
+			//Tariff
+			if (!context.TariffsEx.Any())
 			{
-				Tarif[] tarifs = new Tarif[]{
-				new Tarif() { Name = "Standart", MinimalPrice = 12.50M, OneMinuteCost = 1M, StartPrice = 5M, WaitingCost = 0.5M, IsStandart=true },
-				new Tarif() { Name = "Region", MinimalPrice = 15.40M, OneMinuteCost = 1.4M, StartPrice = 8M, WaitingCost = 0.8M, IsIntercity = true },
-				new Tarif() { Name ="Personal Driver", MinimalPrice = 40M, OneMinuteCost = 1.5M, StartPrice = 16M, WaitingCost =0.5M}
-				};
-				context.Tarifes.AddRange(tarifs);
+				TariffEx tariff = new TariffEx() {
+						Name = "Standart",
+						Description = "Standart tariff",
+
+						PriceOutCity = 5,
+						PriceInCity = 2.5M,
+						PriceClientCarOption = 5,
+
+						PriceRegularCar = 0,
+						PriceMinivanCar = 15,
+						PriceLuxCar = 40,
+
+						PriceCourierOption = 15,
+						PricePassengerSmokerOption = 20,
+						PricePlateOption = 5,
+						PricePreOrder = 10,
+						PriceSpeakEnglishOption = 20
+					};
+				context.TariffsEx.Add(tariff);
 				context.SaveChanges();
 			}
 			// Cars

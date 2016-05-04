@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Model.DTO.TariffExDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriceInCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriceOutCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PricePreOrder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriceRegularCar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriceMinivanCar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriceLuxCar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriceCourierOption)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PricePlateOption)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriceClientCarOption)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriceSpeakEnglishOption)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PricePassengerSmokerOption)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriceInCity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriceOutCity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PricePreOrder)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriceRegularCar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriceMinivanCar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriceLuxCar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriceCourierOption)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PricePlateOption)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriceClientCarOption)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriceSpeakEnglishOption)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PricePassengerSmokerOption)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
