@@ -53,6 +53,7 @@
     <Compile Include="DB\Order.cs" />
     <Compile Include="DB\OrderEx.cs" />
     <Compile Include="DB\Person.cs" />
+    <Compile Include="DB\TariffEx.cs" />
     <Compile Include="DTO\CoordinatesExDTO.cs" />
     <Compile Include="DTO\RegistrationModelDTO.cs" />
     <Compile Include="DB\SupportMessage.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="DTO\SupporterInfoDTO.cs" />
     <Compile Include="DTO\SupportMessageDTO.cs" />
     <Compile Include="DTO\TarifDTO.cs" />
+    <Compile Include="DTO\TariffExDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="DTO\VIPClientDTO.cs" />
     <Compile Include="DTO\WorkerStatusDTO.cs" />

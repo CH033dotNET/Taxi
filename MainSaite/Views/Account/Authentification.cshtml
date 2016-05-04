@@ -1,5 +1,8 @@
 ﻿@model Model.DTO.LoginModel
-
+@{
+	ViewBag.Title = "LogIn";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <style>
     .bif input{
         width:200px;
@@ -8,7 +11,7 @@
     <div class="">
         @using (Html.BeginForm("Authentification"))
         {
-            <table>
+            <table id="authTable">
                 @Html.ValidationSummary()
                 <tr>
                     <td>@Html.TextBoxFor(x => x.UserName, new {@class = "form-control input", @required = true, @minlength = "4", @maxlength = "16", @placeholder = Resources.Resource.log })

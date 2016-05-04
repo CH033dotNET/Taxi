@@ -773,7 +773,7 @@
     <value>Waiting orders</value>
   </data>
   <data name="NoCar" xml:space="preserve">
-    <value>Unfortunatly there is no float car right now</value>
+    <value>Unfortunatly there is no float car right now </value>
   </data>
   <data name="OrderDiagrama" xml:space="preserve">
     <value>Diagrama of orders</value>
@@ -923,10 +923,10 @@
     <value>Free driver</value>
   </data>
   <data name="AdvancedOrder" xml:space="preserve">
-    <value>Advanced</value>
+    <value>Advanced order</value>
   </data>
   <data name="StandartOrder" xml:space="preserve">
-    <value>Standart</value>
+    <value>Standart order</value>
   </data>
   <data name="OrderForm" xml:space="preserve">
     <value>Order a taxi</value>
@@ -1047,5 +1047,14 @@
   </data>
   <data name="WithPlate" xml:space="preserve">
     <value>Meet with a plate</value>
+  </data>
+  <data name="AdBlockWarning" xml:space="preserve">
+    <value>AddBlock detected. Some options can work wrong.</value>
+  </data>
+  <data name="NoGeoLocation" xml:space="preserve">
+    <value>Geolocation is disabled</value>
+  </data>
+  <data name="SetYourPosition" xml:space="preserve">
+    <value>Please, point out your position on the map</value>
   </data>
 </root>

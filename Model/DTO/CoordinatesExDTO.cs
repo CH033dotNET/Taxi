@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model.DTO
 {
-	class CoordinatesExDTO
+	public class CoordinatesExDTO
 	{
 		public int Id { get; set; }
 

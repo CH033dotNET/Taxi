@@ -1,24 +1,18 @@
-﻿$(function(){
-    var orderHub = $.connection.OrderHub;
+﻿$(document).ready(function () {
+	var orderHub = $.connection.OrderHub;
 
-    orderHub.client.OrderConfirmed = function (order) {
-        $('#orders').append("<tr>\
-			<td>"
-			+ order.Address +
-			"</td>\
-			<td>\
-				<input itemid=" + order.Id + " type=\"button\" value=\"Take\" class=\"take btn btn-success\" />\
-			</td>\
-		</tr>")
-    };
+	orderHub.client.notifyDriverCoordinate = function (coordinate) {
+		setTaxiMarker(coordinate.Latitude, coordinate.Longitude);
+	}
 
 	$.connection.hub.start().done(function () {
-
 		//connect to hub group
 		orderHub.server.connect("Client");
 
+
+
 		//add order to db
-		$('#orderBtn').click(function () {
+		$(document).on('click', '#orderBtn', function () {
 			var order = {};
 			order.Address = $('#autocomplete').val();
 			$.ajax({
@@ -27,13 +21,12 @@
 				type: "POST",
 				success: function (data) {
 					//send order
-					orderHub.server.addOrder(order);
+					orderHub.server.addOrder(data);
 					alert("You order id = " + data.Id);
 				}
 			});
-			
+
 		});
 	});
 
-
-})
+});

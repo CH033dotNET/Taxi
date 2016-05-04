@@ -18,9 +18,7 @@
 
 @Scripts.Render("~/Scripts/DriverMap.js")
 <div>
-		<div class="page-header">
-			<h1>@Resources.Resource.Greeting,<small></small></h1>
-		</div>
+		
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<h3 class="panel-title">@Resources.Resource.WorkShift</h3>
@@ -34,15 +32,15 @@
 					<table class="table table-striped" id="DrvsTable">
 						<thead>
 							<tr class="info">
-								<th>
+								<th style="text-align: center">
 									@Resources.Resource.Driver
 								</th>
-								<th>
+								<th style ="text-align: center">
 									@Resources.Resource.WorkStarted
 								</th>
-                                <th>
-                                    @Resources.Resource.LastUpdate
-                                </th>
+								<th style="text-align: center">
+									@Resources.Resource.LastUpdate
+								</th>
 							</tr>
 						</thead>
 						<tbody id="DrvsCont">

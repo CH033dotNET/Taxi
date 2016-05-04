@@ -1,4 +1,4 @@
-﻿$(function () {
+﻿$(document).ready(function () {
 	var orderHub = $.connection.OrderHub;
 
 	orderHub.client.addOrder = function (order) {
@@ -19,14 +19,14 @@
 		orderHub.server.connect("Operator");
 
 		//approve order
-		$('.approve').click(function (e) {
+		$(document).on('click', '.approve', function (e) {
 			var row = $(this).closest('tr');
 			var id = +$(this).attr('itemId');
 			if (id) {
 				$.ajax({
 					type: "post",
-					url: "./OrderEx/ApproveOrder/",
-					data: { id : id },
+					url: "/OrderEx/ApproveOrder/",
+					data: { id: id },
 					success: function (result) {
 						if (result) {
 							$(row).fadeOut();
@@ -40,13 +40,13 @@
 		});
 
 		//deny order
-		$('.deny').click(function (e) {
+		$(document).on('click', '.deny', function (e) {
 			var row = $(this).closest('tr');
 			var id = +$(this).attr('itemId');
 			if (id) {
 				$.ajax({
 					type: "post",
-					url: "./OrderEx/DenyOrder/",
+					url: "/OrderEx/DenyOrder/",
 					data: { id: id },
 					success: function (result) {
 						if (result) {
@@ -61,4 +61,4 @@
 		});
 
 	});
-})
+});

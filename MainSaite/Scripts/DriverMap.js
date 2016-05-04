@@ -1,10 +1,19 @@
 ﻿var map;
 var myLatLng = { lat: 48.3214409, lng: 25.9638791 };
-var markers = new Array();
-var dimine = function () {
-    alert("GOGOGOG");
-}
+var markers = [];
+
 var Redcar;
+
+var pos;
+
+
+$(document).ready(function () {
+
+	ShowCurCoord();
+
+	mainInit();
+
+});
 function mapInit() {
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 48.3214409, lng: 25.8638791 },
@@ -13,6 +22,7 @@ function mapInit() {
 }
 
 function hubInit() {
+
     var hub = $.connection.driversLocationHub;//Подключились к хабу
 
     hub.client.locationUpdate = locationUpdate;//присобачили функцию клиента
@@ -23,33 +33,60 @@ function hubInit() {
        // hub.server.Hello(); // вызов функции сервера
     });
 }
+//test -----
+var ShowCurCoord = function () {
 
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(function (position) {
+			 pos = {
+				lat: position.coords.latitude,
+				lng: position.coords.longitude,
+			 };
+			 var k = 0;
+		}, function () {
+
+		});
+	}
+}
+
+//test--------
 
 function mainInit() {
     mapInit();
     $.ajax({
-        type: "POST",
-        url: "GetLoc",
+        type: "GET",
+        url: '/Administration/GetLoc/',
         dataType: "json",
         success: function (data) {
-            for (var i = 0; i < data.length; i++) {
-                var val = data[i];
-                markers['DriverN'+val.id] = adddriver(val.latitude, val.longitude);
-                var tr = $('<tr/>', {id:'DriverN'+val.id }).append(
-                        $('<td/>', { text: val.name }),
-                        $('<td/>', { text: new Date(+val.startedTime.match(/\d+/)[0]).toLocaleString(), id: 'DriverN' + val.id + 'start' }),
-                        $('<td/>', { text: new Date(+val.updateTime.match(/\d+/)[0]).toLocaleString(), id: 'DriverN' + val.id + 'up'}));
-                //tr.marker = adddriver(val.latitude, val.longitude);
-                tr.click(onclic);
-                var table = $('#DrvsCont').append(
-                    tr
-                );
-                
-                /*var td = tr.append(
-                        $('<td/>', { text: val.name })
-                );*/
-                //td.hover(inhov, outhov);
-            }
+
+        	//test -- 
+
+        	var testObj = {
+        		name: "Jack",
+        		id: 1,
+        		startedTime: data,
+        		updateTime: data,
+        		latitude: 48.2760595,
+        		longitude: 25.9490
+        	};
+        	AddDriverToTheTable(testObj);
+
+        	var testObj1 = {
+        		name: "Nick",
+        		id: 2,
+        		startedTime: data,
+        		updateTime: data,
+        		latitude: 48.2547794,
+        		longitude: 25.9373924
+        	};
+        	AddDriverToTheTable(testObj1);
+
+			//test -- 
+
+
+        	//for (var i = 0; i < data.length; i++) {
+        	//	AddDriverToTheTable(data[i]);
+            //}
         },
         error: function (error) {
         	alert(error.statusText);
@@ -58,9 +95,21 @@ function mainInit() {
     hubInit();
 }
 
-$(document).ready(mainInit);
-///hub
-//using to ...
+function AddDriverToTheTable(value)
+{
+	markers['DriverN' + value.id] = AddDriver(value.name, value.latitude, value.longitude);
+	var tableRow = $('<tr/>', { id: 'DriverN' + value.id }).append(
+			$('<td/>', { text: value.name }),
+			$('<td/>', { text: value.startedTime, id: 'DriverN' + value.id + 'start' }),
+			$('<td/>', { text: value.updateTime, id: 'DriverN' + value.id + 'up' }));
+			//$('<td/>', { text: new Date(+value.startedTime.match(/\d+/)[0]).toLocaleString(), id: 'DriverN' + value.id + 'start' }),
+			//$('<td/>', { text: new Date(+value.updateTime.match(/\d+/)[0]).toLocaleString(), id: 'DriverN' + value.id + 'up' }));
+	tableRow.click(onClick);
+	var table = $('#DrvsCont').append(
+		tableRow
+	);
+}
+
 function locationUpdate(Lat, Lng, Time, ID)
 {
     if(markers['DriverN'+ID] !== undefined)
@@ -74,12 +123,12 @@ function driverStart(val)
 {
     if (markers['DriverN' + val.id] === undefined)
     {
-        markers['DriverN' + val.id] = adddriver(val.latitude, val.longitude);
+        markers['DriverN' + val.id] = AddDriver(val.id, val.latitude, val.longitude);
         var tr = $('<tr/>', { id: 'DriverN' + val.id }).append(
                 $('<td/>', { text: val.name }),
                 $('<td/>', { text: new Date(val.startedTime).toLocaleString(), id: 'DriverN' + val.id + 'start' }),
                 $('<td/>', { text: new Date(val.updateTime).toLocaleString(), id: 'DriverN' + val.id + 'up' }));
-        tr.click(onclic);
+        tr.click(onClick);
         var table = $('#DrvsCont').append(tr);
     }
     else
@@ -97,8 +146,11 @@ function driverFinish(ID)
 
 }
 ///end hub
-function onclic(data)
+function onClick(data)
 {
+	for (var key in markers) {
+		markers[key].setAnimation(null);
+	}
     if ($(this).hasClass('bold')) {
         markers[(this).id].setIcon(imagePath + '/cab.png');
         $(this).removeClass('bold');
@@ -111,16 +163,17 @@ function onclic(data)
             markers[Redcar.attr('id')].setIcon(imagePath + '/cab.png');
         }
         markers[(this).id].setIcon(imagePath + '/cabRed.png');
+        markers[(this).id].setAnimation(google.maps.Animation.BOUNCE);
         $(this).addClass('bold');
         Redcar = $(this);
     }
 }
 
-function adddriver(myLat, myLng) {
+function AddDriver(name, myLat, myLng) {
     return marker = new google.maps.Marker({
         position: { lat: myLat, lng: myLng },
         map: map,
-        title: 'Hello World!',
+        title: 'Driver: ' + name,
         icon: {
             url: imagePath+'/cab.png'
         }

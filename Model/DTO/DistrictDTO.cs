@@ -17,6 +17,10 @@ namespace Model.DTO
 
 		public List<CoordinateDTO> Coordinates { get; set; }
 
+		public bool IsFolder { get; set; }
+
+		public int? ParentId { get; set; }
+
 		public bool Deleted { get; set; }
 
 		public DistrictDTO()

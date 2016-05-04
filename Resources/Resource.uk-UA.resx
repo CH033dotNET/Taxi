@@ -478,7 +478,7 @@
     <value>Райони міста</value>
   </data>
   <data name="Action" xml:space="preserve">
-    <value>Дія</value>
+    <value>Дія   </value>
   </data>
   <data name="DistrictEditor" xml:space="preserve">
     <value>Редактор районів</value>
@@ -1046,5 +1046,20 @@
   </data>
   <data name="WithPlate" xml:space="preserve">
     <value>Зустріти з табличкою</value>
+  </data>
+  <data name="AdBlockWarning" xml:space="preserve">
+    <value>AdBlock знайдено. Деякі опції можуть працювати некоректно.</value>
+  </data>
+  <data name="NoGeoLocation" xml:space="preserve">
+    <value>Неможливо визначити місцеположення</value>
+  </data>
+  <data name="SetYourPosition" xml:space="preserve">
+    <value>Вкажіть своє положення на карті</value>
+  </data>
+  <data name="AdvancedOrder" xml:space="preserve">
+    <value>Розширене замовлення</value>
+  </data>
+  <data name="StandartOrder" xml:space="preserve">
+    <value>Стандартне замовлення</value>
   </data>
 </root>
