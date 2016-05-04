@@ -41,5 +41,6 @@ namespace DAL
 		public DbSet<Coordinate> DistrictCoordiantes { get; set; }
 		public DbSet<OrderEx> OrderdsEx { get; set; }
 		public DbSet<CoordinatesEx> CoordinatesEx { get; set; }
+		public DbSet<TariffEx> TariffsEx { get; set; }
 	}
 }

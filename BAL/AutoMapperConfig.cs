@@ -36,6 +36,8 @@ namespace Common
 			Mapper.CreateMap<WorkerStatusDTO, WorkerStatus>();
 			Mapper.CreateMap<SupportMessageDTO, SupportMessage>();
 			Mapper.CreateMap<SupportMessage, SupportMessageDTO>();
+			Mapper.CreateMap<TariffExDTO, TariffEx>();
+			Mapper.CreateMap<TariffEx, TariffExDTO>();
 		}
 	}
 }
