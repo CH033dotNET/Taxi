@@ -389,6 +389,7 @@
     <Content Include="Scripts\DistrictPartButtonScripts.js" />
     <Content Include="Scripts\DistrictsCustomScripts\DistrictScriptLogic.js" />
     <Content Include="Scripts\DistrictsCustomScripts\PreValidation.js" />
+    <Content Include="Scripts\DriverEx\DriverLocation.js" />
     <Content Include="Scripts\DriverMap.js" />
     <Content Include="Scripts\DriveTimer.js" />
     <Content Include="Scripts\FavoriteAddresses.js" />

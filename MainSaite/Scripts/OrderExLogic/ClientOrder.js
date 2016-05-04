@@ -14,7 +14,7 @@
 		//add order to db
 		$('#orderBtn').click(function () {
 			var order = {};
-			order.Address = $('#autocomplete').val();
+			order.Address = $('#textField').val();
 			$.ajax({
 				url: '/Client/AddOrder/',
 				data: order,

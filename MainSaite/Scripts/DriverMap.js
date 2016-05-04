@@ -1,5 +1,4 @@
 ﻿var map;
-var myLatLng = { lat: 48.3214409, lng: 25.9638791 };
 var markers = [];
 
 var Redcar;
@@ -9,7 +8,7 @@ var pos;
 
 $(document).ready(function () {
 
-	ShowCurCoord();
+	//ShowCurCoord();
 
 	mainInit();
 
@@ -23,14 +22,14 @@ function mapInit() {
 
 function hubInit() {
 
-    var hub = $.connection.driversLocationHub;//Подключились к хабу
+    var hub = $.connection.driversLocationHub;
 
-    hub.client.locationUpdate = locationUpdate;//присобачили функцию клиента
+    hub.client.locationUpdate = locationUpdate;
     hub.client.driverStart = driverStart;
     hub.client.driverFinish = driverFinish;
 
     $.connection.hub.start().done(function () {
-       // hub.server.Hello(); // вызов функции сервера
+       
     });
 }
 //test -----
@@ -70,7 +69,6 @@ function mainInit() {
         		longitude: 25.9490
         	};
         	AddDriverToTheTable(testObj);
-
         	var testObj1 = {
         		name: "Nick",
         		id: 2,
@@ -95,15 +93,13 @@ function mainInit() {
     hubInit();
 }
 
-function AddDriverToTheTable(value)
+function AddDriverToTheTable(driver)
 {
-	markers['DriverN' + value.id] = AddDriver(value.name, value.latitude, value.longitude);
-	var tableRow = $('<tr/>', { id: 'DriverN' + value.id }).append(
-			$('<td/>', { text: value.name }),
-			$('<td/>', { text: value.startedTime, id: 'DriverN' + value.id + 'start' }),
-			$('<td/>', { text: value.updateTime, id: 'DriverN' + value.id + 'up' }));
-			//$('<td/>', { text: new Date(+value.startedTime.match(/\d+/)[0]).toLocaleString(), id: 'DriverN' + value.id + 'start' }),
-			//$('<td/>', { text: new Date(+value.updateTime.match(/\d+/)[0]).toLocaleString(), id: 'DriverN' + value.id + 'up' }));
+	markers['DriverN' + driver.id] = AddDriver(driver.name, driver.latitude, driver.longitude);
+	var tableRow = $('<tr/>', { id: 'DriverN' + driver.id }).append(
+			$('<td/>', { text: driver.name }),
+			$('<td/>', { text: driver.startedTime, id: 'DriverN' + driver.id + 'start' }),
+			$('<td/>', { text: driver.updateTime, id: 'DriverN' + driver.id + 'up' }));
 	tableRow.click(onClick);
 	var table = $('#DrvsCont').append(
 		tableRow
