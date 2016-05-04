@@ -1,5 +1,16 @@
 ﻿$(function(){
-	var orderHub = $.connection.OrderHub;
+    var orderHub = $.connection.OrderHub;
+
+    orderHub.client.OrderConfirmed = function (order) {
+        $('#orders').append("<tr>\
+			<td>"
+			+ order.Address +
+			"</td>\
+			<td>\
+				<input itemid=" + order.Id + " type=\"button\" value=\"Take\" class=\"take btn btn-success\" />\
+			</td>\
+		</tr>")
+    };
 
 	$.connection.hub.start().done(function () {
 

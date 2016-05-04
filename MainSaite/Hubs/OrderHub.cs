@@ -25,6 +25,12 @@ namespace MainSaite.Hubs
             Clients.Group("Driver").OrderApproved(order);
         }
 
+        [HubMethodName("OrderConfirmed")]
+        public void OrderConfirmed(OrderExDTO order) {
+           // var user = orderHubUsers.FirstOrDefault(x=> x. == );
+          //  Clients.
+        }
+
 
         [HubMethodName("connect")]
 		public void Connect(string group)
