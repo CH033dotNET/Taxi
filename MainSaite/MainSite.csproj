@@ -194,9 +194,11 @@
     <Compile Include="Controllers\ReportChartsController.cs" />
     <Compile Include="Controllers\SupportController.cs" />
     <Compile Include="Controllers\TariffExController.cs" />
+    <Compile Include="Helpers\CoordinateMapper.cs" />
     <Compile Include="Helpers\DriverLocationHelper.cs" />
     <Compile Include="Helpers\IDriverLocationHelper.cs" />
     <Compile Include="Helpers\OperatorMessagesHelper.cs" />
+    <Compile Include="Hubs\DistrictsHub.cs" />
     <Compile Include="Hubs\DriverHub.cs" />
     <Compile Include="Hubs\OrderHub.cs" />
     <Compile Include="Hubs\OperatorHub.cs" />
@@ -385,12 +387,15 @@
     <Content Include="Scripts\bootstrap-filestyle.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\coordinates.js" />
+    <Content Include="Scripts\DriverEx\DriverCoordinates.js" />
     <Content Include="Scripts\CustomHighCharts\DistrictOrdersPerYear.js" />
     <Content Include="Scripts\DistrictPartButtonScripts.js" />
     <Content Include="Scripts\DistrictsCustomScripts\DistrictScriptLogic.js" />
     <Content Include="Scripts\DistrictsCustomScripts\PreValidation.js" />
+    <Content Include="Scripts\DriverEx\DistrictPartButtonScripts.js" />
+    <Content Include="Scripts\DriverEx\DistrictViewer.js" />
     <Content Include="Scripts\DriverEx\DriverLocation.js" />
+    <Content Include="Scripts\DriverEx\DriverMapAndHub.js" />
     <Content Include="Scripts\DriverMap.js" />
     <Content Include="Scripts\DriveTimer.js" />
     <Content Include="Scripts\FavoriteAddresses.js" />
@@ -561,6 +566,7 @@
     <Content Include="Views\DriverEx\Index.cshtml" />
     <Content Include="Views\Home\OrderTaxi.cshtml" />
     <Content Include="Views\TariffEx\Index.cshtml" />
+    <Content Include="Views\Driver\DistrictPart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

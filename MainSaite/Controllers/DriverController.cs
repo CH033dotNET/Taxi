@@ -1,6 +1,8 @@
-﻿using BAL.Manager;
+﻿using BAL.Interfaces;
+using BAL.Manager;
 using Common.Enum;
 using DAL;
+using DriverSite.Helpers;
 using MainSaite.Helpers;
 using Model;
 using Model.DTO;
@@ -25,16 +27,20 @@ namespace MainSaite.Controllers
 		private IDriverLocationHelper driverLocationHelper;
 		private IOrderManager orderManager;
         private ITarifManager tarifManager;
-		public DriverController(ILocationManager locationManager, ICarManager carManager, ICoordinatesManager coordinatesManager, IUserManager userManager, IDriverLocationHelper driverLocationHelper, IOrderManager orderManager,ITarifManager tarifManager) 
+		private IWorkerStatusManager workerStatusManager;
+		private IDistrictManager districtManager;
+		public DriverController(ILocationManager locationManager, ICarManager carManager, ICoordinatesManager coordinatesManager, IUserManager userManager, IDriverLocationHelper driverLocationHelper, IOrderManager orderManager,ITarifManager tarifManager, IWorkerStatusManager workerStatusManager, IDistrictManager districtManager) 
 		{
 			this.locationManager = locationManager;
 			this.carManager = carManager;
 			this.coordinatesManager = coordinatesManager;
 			this.userManager = userManager;
 			this.driverLocationHelper = driverLocationHelper;
-			//this.coordinatesManager.addedCoords += this.driverLocationHelper.addedLocation;
+			this.coordinatesManager.addedCoords += coordinates => DriverLocationHelper.addedLocation(coordinates);
 			this.orderManager = orderManager;
             this.tarifManager = tarifManager;
+			this.workerStatusManager = workerStatusManager;
+			this.districtManager = districtManager;
 		}
 
 		public ActionResult Index()
@@ -58,51 +64,9 @@ namespace MainSaite.Controllers
 			return Json(uncompletedShifts, JsonRequestBehavior.AllowGet);
 		}
 
-
-		public JsonResult WorkStateChange(int Id, string Latitude, string Longitude, string Accuracy, string TimeStart)
+		public ActionResult DistrictPart()
 		{
-			try
-			{
-				if (Latitude != null && Longitude != null)
-				{
-					CoordinatesDTO coordinates;
-					coordinates = coordinatesManager.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
-					coordinates.TarifId = 1;
-					coordinatesManager.AddCoordinates(coordinates);
-				}
-				carManager.StartWorkEvent(Id, TimeStart);
-                //driverLocationHelper.addDriver(Id, double.Parse(Latitude, CultureInfo.InvariantCulture), double.Parse(Longitude, CultureInfo.InvariantCulture), DateTime.Now, userManager.GetById(Id).UserName);
-				return Json(true);
-			}
-			catch (DataException)
-			{
-				ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-			}
-			return Json(false);
-		}
-		public JsonResult WorkStateEnded(int Id, string Latitude, string Longitude, string Accuracy, string TimeStop)
-		{
-			try
-			{
-				if (Latitude != null && Longitude != null)
-				{
-					CoordinatesDTO coordinates;
-					coordinates = coordinatesManager.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
-					coordinates.TarifId = 1;
-					coordinatesManager.AddCoordinates(coordinates);
-				}
-				carManager.EndAllCurrentUserShifts(Id, TimeStop);
-				//carManager.EndWorkShiftEvent(user.Id);
-				if (locationManager.GetByUserId(Id) != null)
-                    locationManager.DeleteLocation(Id);
-                //driverLocationHelper.removeDriver(Id);
-				return Json(true);
-			}
-			catch (DataException)
-			{
-				ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-			}
-			return Json(false);
+			return PartialView(carManager.GetWorkShiftsByWorkerId(SessionUser.Id));            //return PartialView(carManager.GetWorkingDrivers());
 		}
 		/// <summary>
 		/// Action method used to add location info (district) for current driver. If user is unauthorized it redirects it to home page.
@@ -196,6 +160,132 @@ namespace MainSaite.Controllers
 		}
 
 
+		public JsonResult GetDistricts()
+		{
+			return Json(locationManager.GetDriverDistrictInfo(SessionUser.Id), JsonRequestBehavior.AllowGet);
+		}
 
+		public JsonResult CheckDriverMainCar()
+		{
+			var result = carManager.FindMainCar(SessionUser.Id);
+			if (!result) { return Json(new { success = false }, JsonRequestBehavior.AllowGet); }
+			else
+			{
+				return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+			}
+		}
+		public JsonResult GetCurrentDriverStatus()
+		{
+			var result = workerStatusManager.ShowStatus(SessionUser.Id);
+
+			if (result == null) { return Json(new { success = false }, JsonRequestBehavior.AllowGet); }
+			else
+			{
+				return Json(new { success = true, result.WorkingStatus }, JsonRequestBehavior.AllowGet);
+			}
+		}
+		public JsonResult ChangeCurrentDriverStatus(int status)
+		{
+			try
+			{
+				workerStatusManager.ChangeWorkerStatus(SessionUser.Id, status.ToString());
+			}
+			catch (Exception)
+			{
+				return Json( false, JsonRequestBehavior.AllowGet);
+			}
+
+				return Json(true, JsonRequestBehavior.AllowGet);
+		}
+		[HttpPost]
+		public JsonResult GetFullDistricts()
+		{
+			var districts = districtManager.getDistricts();
+			return Json(new { districts = districts}, JsonRequestBehavior.AllowGet);
+		}
+		[HttpPost]
+		public JsonResult JoinDriverToLocation(int Id)
+		{
+			LocationDTO local = locationManager.GetByUserId(Id);
+			if (local != null)
+			{
+				local.DistrictId = Id;
+				locationManager.UpdateLocation(local);                //locationManager.UpdateLocation(local);
+				return Json(0);
+			}
+
+			else
+			{
+				LocationDTO district = new LocationDTO()
+				{
+					UserId = SessionUser.Id,
+					DistrictId = Id
+				};
+
+				locationManager.AddLocation(district);
+				return Json(0);
+			}
+		}
+		public JsonResult WorkStateChange(int Id, string Latitude, string Longitude, string Accuracy, string TimeStart)
+		{
+			try
+			{
+				if (Latitude != null && Longitude != null)
+				{
+					CoordinatesDTO coordinates;
+					coordinates = coordinatesManager.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
+					coordinates.TarifId = 1;
+					coordinatesManager.AddCoordinates(coordinates);
+				}
+
+				carManager.StartWorkEvent(Id, DateTime.Now.ToString());
+				DriverLocation driverLocation = new DriverLocation()
+				{
+					id = Id,
+					latitude = double.Parse(Latitude, CultureInfo.InvariantCulture),
+					longitude = double.Parse(Longitude, CultureInfo.InvariantCulture),
+					startedTime = DateTime.Now,
+					updateTime = DateTime.Now,
+					name = SessionUser.UserName
+				};
+
+				DriverLocationHelper.addDriver(driverLocation);
+
+
+				return Json(true);
+			}
+			catch (DataException)
+			{
+				ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+			}
+			return Json(false);
+		}
+
+		public JsonResult WorkStateEnded(int Id, string Latitude, string Longitude, string Accuracy, string TimeStop)
+		{
+			try
+			{
+				if (Latitude != null && Longitude != null)
+				{
+					CoordinatesDTO coordinates;
+					coordinates = CoordinateMapper.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
+					coordinates.TarifId = 1;
+					coordinatesManager.AddCoordinates(coordinates);
+				}
+				carManager.EndAllCurrentUserShifts(Id, TimeStop);
+
+				DriverLocationHelper.removeDriver(Id);
+
+
+				if (locationManager.GetByUserId(Id)!= null)
+					locationManager.DeleteLocation(Id);
+				return Json(true);
+			}
+			catch (DataException)
+			{
+				ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+			}
+			return Json(false);
+		}
 	}
 }

@@ -1,0 +1,127 @@
+﻿@model bool
+@using Common.Helpers
+
+@{
+	ViewBag.Title = "DistrictPart";
+}
+
+<script>
+	getCurrentDrvSts = '@Url.Action("GetCurrentDriverStatus", "Driver")';
+	getDistricts = '@Url.Action("GetDistricts", "Driver")';
+
+</script>
+
+@Scripts.Render("~/Scripts/DriverEx/DriverCoordinates.js")
+@Scripts.Render("~/Scripts/moment.js")
+@Scripts.Render("~/Scripts/offline.min.js")
+@Scripts.Render("~/Scripts/DriverEx/DistrictViewer.js")
+
+<link rel="stylesheet" href="~/Content/AutoParkCustomStyles.css" type="text/css" />
+
+<script>
+	var WorkerId = @User.Id;
+	var joinToLocation = "@Resources.Resource.Join";
+	var currentLocation = "@Resources.Resource.DriverIsHere";
+</script>
+
+<div>
+	<form method="post" class="form-inline">
+		<div class="nonopage-header">
+			<h1>@Resources.Resource.Greeting,<small>@User.UserName</small></h1>
+		</div>
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">@Resources.Resource.WorkShift</h3>
+			</div>
+
+			<div class="panel-footer">
+				<div class="form-group">
+					<input type="hidden" id="Id" value="@User.Id" />
+					@{
+						if (Model)
+						{
+							<input type="button" class="btn btn-warning" id="workshift-button" change-btn-id="work_end" value="End workshift" onclick="buttonChangeOnClick()" />
+						}
+						else
+						{
+							<input type="button" class="btn btn-success" id="workshift-button" change-btn-id="work_start" value="Start workshift" onclick="checkMainCars()" />
+						}
+					}
+				</div>
+				@{
+					if (Model)
+					{
+						<div id="worker-status-group" style="display:inline">
+							<div class="form-group">
+								<select class="form-control input-sm" name="driverStatus" id="inputDriverStatus" onchange="workerStatusChange()">
+									@foreach (var status in Common.Helpers.EnumHelper.GetWorkerStatus())
+									{
+										<option value="@status.Key">@status.Value</option>
+									}
+								</select>
+							</div>
+						</div>
+					}
+					else
+					{
+						<div id="worker-status-group" style="display:none">
+							<div class="form-group">
+								<select class="form-control input-sm" name="driverStatus" id="inputDriverStatus" onchange="workerStatusChange()">
+									@foreach (var status in Common.Helpers.EnumHelper.GetWorkerStatus())
+									{
+										<option value="@status.Key">@status.Value</option>
+									}
+								</select>
+							</div>
+						</div>
+					}
+				}
+				<div>
+					<div class="modal fade" id="get-driver-error-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header modal-header-danger">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+									</button>
+									<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-fire" aria-hidden="true">&nbsp;</span>@Resources.Resource.ServerErrorHeader</h4>
+								</div>
+								<div class="modal-body">
+									<p>@Resources.Resource.CarNotFoundError</p>
+								</div>
+								<div class="modal-footer">
+									<a class="btn btn-danger" data-dismiss="modal">
+										<span class="glyphicon glyphicon-ok" aria-hidden="true">&nbsp;</span>@Resources.Resource.okString
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="panel-heading">
+				<h3 class="panel-title"> @Resources.Resource.DriversActivity</h3>
+			</div>
+
+			<table class="table" id="Districts">
+
+				<tr>
+					<th>
+						@Resources.Resource.Active
+					</th>
+					<th>
+						@Resources.Resource.DistrictName
+					</th>
+					<th>
+						@Resources.Resource.Action
+					</th>
+				</tr>
+			</table>
+		</div>
+	</form>
+</div>
+
+
+
+@Scripts.Render("~/Scripts/DriverEx/DistrictPartButtonScripts.js")

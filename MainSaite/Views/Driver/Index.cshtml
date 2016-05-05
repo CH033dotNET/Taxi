@@ -23,9 +23,10 @@
     @Styles.Render("~/Content/ClientDriveService.css")
 
 	<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+	<script src="~/signalr/hubs"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
 	@Scripts.Render("~/Scripts/DriverEx/DriverLocation.js")
-
+	<script src="~/Scripts/DriverEx/DriverMapAndHub.js"></script>
 </head>
 <body style="padding:0">
     <input type="hidden" id="hlat" value="48.309390" />
@@ -96,9 +97,9 @@
                     @Resources.Resource.District
                 </h2>
                 <p>
-                    
-                        Html.RenderAction("DistrictPart", "Driver");
-                   
+                   @{
+					   Html.RenderAction("DistrictPart", "Driver");
+					}
                 </p>
             </div>
             <div id="ClientService" class="tab-pane fade">
