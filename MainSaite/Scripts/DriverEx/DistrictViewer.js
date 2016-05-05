@@ -19,7 +19,7 @@ function mainInit() {
 				var tr = $('<tr/>', { id: 'DistrictN' + val.DistrictId }).append(
 						$('<td/>', { text: val.DriverCount, class: "count" }),
 						$('<td/>', { text: val.DistrictName }),
-						$('<td/>', { text: val.ThoseDriver ? currentLocation : joinToLocation, class: "text" }));
+						$('<td><button type="button" class="btn btn-warning">'+(val.ThoseDriver ? currentLocation : joinToLocation)+'</button></td>'));
 				if (val.ThoseDriver)
 					currentDistrict = val.DistrictId;
 				tr.click(function () { changeDistrict(val.DistrictId) });

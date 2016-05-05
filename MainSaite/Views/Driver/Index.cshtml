@@ -26,9 +26,9 @@
 	<script src="~/signalr/hubs"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
 	@Scripts.Render("~/Scripts/DriverEx/DriverLocation.js")
-	<script src="~/Scripts/DriverEx/DriverMapAndHub.js"></script>
 </head>
 <body style="padding:0">
+	<input id="currentUserName" type="hidden" value="@User.UserName" />
     <input type="hidden" id="hlat" value="48.309390" />
     <input type="hidden" id="hlong" value="25.943524" />
     <div id="driver-bootstrap-menu" class="navbar navbar-default navbar-static-top" role="navigation">
@@ -93,9 +93,6 @@
                 </p>
             </div>
             <div id="District" class="tab-pane fade">
-                <h2>
-                    @Resources.Resource.District
-                </h2>
                 <p>
                    @{
 					   Html.RenderAction("DistrictPart", "Driver");

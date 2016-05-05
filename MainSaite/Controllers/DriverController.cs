@@ -232,6 +232,18 @@ namespace MainSaite.Controllers
 			{
 				if (Latitude != null && Longitude != null)
 				{
+					DriverLocation driverLocation = new DriverLocation()
+					{
+						id = Id,
+						latitude = double.Parse(Latitude, CultureInfo.InvariantCulture),
+						longitude = double.Parse(Longitude, CultureInfo.InvariantCulture),
+						startedTime = DateTime.Now,
+						updateTime = DateTime.Now,
+						name = SessionUser.UserName
+					};
+
+					DriverLocationHelper.addDriver(driverLocation);
+
 					CoordinatesDTO coordinates;
 					coordinates = coordinatesManager.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
 					coordinates.TarifId = 1;
@@ -239,17 +251,6 @@ namespace MainSaite.Controllers
 				}
 
 				carManager.StartWorkEvent(Id, DateTime.Now.ToString());
-				DriverLocation driverLocation = new DriverLocation()
-				{
-					id = Id,
-					latitude = double.Parse(Latitude, CultureInfo.InvariantCulture),
-					longitude = double.Parse(Longitude, CultureInfo.InvariantCulture),
-					startedTime = DateTime.Now,
-					updateTime = DateTime.Now,
-					name = SessionUser.UserName
-				};
-
-				DriverLocationHelper.addDriver(driverLocation);
 
 
 				return Json(true);
@@ -267,14 +268,14 @@ namespace MainSaite.Controllers
 			{
 				if (Latitude != null && Longitude != null)
 				{
+					DriverLocationHelper.removeDriver(Id);
+
 					CoordinatesDTO coordinates;
 					coordinates = CoordinateMapper.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
 					coordinates.TarifId = 1;
 					coordinatesManager.AddCoordinates(coordinates);
 				}
 				carManager.EndAllCurrentUserShifts(Id, TimeStop);
-
-				DriverLocationHelper.removeDriver(Id);
 
 
 				if (locationManager.GetByUserId(Id)!= null)

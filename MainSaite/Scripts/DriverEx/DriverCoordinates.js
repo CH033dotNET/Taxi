@@ -10,8 +10,6 @@ function getBeginCoord(position) {
 	dataObj.Id = document.getElementById('Id').value;
 	dataObj.Latitude = position.coords.latitude;
 	dataObj.Longitude = position.coords.longitude;
-	//dataObj.Latitude = document.getElementById('hlat').value;
-	//dataObj.Longitude = document.getElementById('hlong').value;
 
 	//getDistrictIdByCoordinate is in DistrictViewer.js 
 	var district = getDistrictIdByCoordinate(new google.maps.LatLng(dataObj.Latitude, dataObj.Longitude));
@@ -24,8 +22,6 @@ function getBeginCoord(position) {
 		data: dataObj,
 		success: function (success) {
 			storage.removeItem("StartWorkTime");
-			//location.reload(true);
-			$.ajax
 		}
 
 	});
@@ -45,8 +41,6 @@ function getEndCoord(position) {
 	dataObj.Id = document.getElementById('Id').value;
 	dataObj.Latitude = position.coords.latitude;
 	dataObj.Longitude = position.coords.longitude;
-	//dataObj.Latitude = document.getElementById('hlat').value;
-	//dataObj.Longitude = document.getElementById('hlong').value;
 	dataObj.Accuracy = position.coords.accuracy;
 	dataObj.TimeStop = storage.getItem("StopWorkTime");
 
@@ -56,7 +50,6 @@ function getEndCoord(position) {
 		data: dataObj,
 		success: function (success) {
 			storage.removeItem("StopWorkTime");
-			//location.reload(true);
 			$('#DistrictN' + currentDistrict + ">.text").html(joinToLocation);
 			hub.server.swap(0, currentDistrict);
 			currentDistrict = 0;

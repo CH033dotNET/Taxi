@@ -395,7 +395,6 @@
     <Content Include="Scripts\DriverEx\DistrictPartButtonScripts.js" />
     <Content Include="Scripts\DriverEx\DistrictViewer.js" />
     <Content Include="Scripts\DriverEx\DriverLocation.js" />
-    <Content Include="Scripts\DriverEx\DriverMapAndHub.js" />
     <Content Include="Scripts\DriverMap.js" />
     <Content Include="Scripts\DriveTimer.js" />
     <Content Include="Scripts\FavoriteAddresses.js" />

@@ -7,19 +7,23 @@
 		Longitude: null
 	};
 	var driverId;
-
+	var driverName;
 	$.connection.hub.start().done(function () {
 
 		driverId = $('#currentUserId').val();
-		driverLocationHub.server.connect("Driver", driverId);
-
+		driverLocationHub.server.connectUser("Driver");
+	    driverName = $('#currentUserName').val();
 	});
 
 	function checkPosition(position) {
 
-		if (currentPosition.Latitude != position.coords.latitude && currentPosition.Longitude != position.coords.longitude) {
+		if (currentPosition.Latitude != position.coords.latitude || currentPosition.Longitude != position.coords.longitude) {
 
-			driverLocationHub.server.updateDriverPosition(position);
+
+			driverLocationHub.server.updateDriverPosition(driverId, position.coords.latitude, position.coords.longitude, timeNow, driverName);
+
+			currentPosition.Latitude = position.coords.latitude;
+			currentPosition.Longitude = position.coords.longitude;
 
 		}
 	}
