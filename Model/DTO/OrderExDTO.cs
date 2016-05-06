@@ -20,5 +20,7 @@ namespace Model.DTO
 		public User Driver { get; set; }
 
 		public int WaitingTime { get; set; }
-	}
+
+        public DateTime OrderTime { get; set; }
+    }
 }
