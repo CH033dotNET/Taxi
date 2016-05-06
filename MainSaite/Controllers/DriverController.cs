@@ -2,7 +2,6 @@
 using BAL.Manager;
 using Common.Enum;
 using DAL;
-using DriverSite.Helpers;
 using MainSaite.Helpers;
 using Model;
 using Model.DTO;
@@ -271,9 +270,9 @@ namespace MainSaite.Controllers
 					DriverLocationHelper.removeDriver(Id);
 
 					CoordinatesDTO coordinates;
-					coordinates = CoordinateMapper.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
-					coordinates.TarifId = 1;
-					coordinatesManager.AddCoordinates(coordinates);
+					//coordinates = CoordinateMapper.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
+					//coordinates.TarifId = 1;
+					//coordinatesManager.AddCoordinates(coordinates);
 				}
 				carManager.EndAllCurrentUserShifts(Id, TimeStop);
 
