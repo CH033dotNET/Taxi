@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Model.DTO.OrderExDTO>
+
+@{
+	ViewBag.Title = "Driver History";
+}
+
+<h2>@Resources.Resource.OrdersHistory</h2>
+
+<table class="table" id="orders">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.Address)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.OrderTime)
+		</th>
+	</tr>
+
+	@foreach (var item in Model) {
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Address)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.OrderTime)
+			</td>
+		</tr>
+	}
+
+</table>
+<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>

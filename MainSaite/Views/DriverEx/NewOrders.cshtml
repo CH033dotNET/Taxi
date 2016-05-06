@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Model.DTO.OrderExDTO>
+
+@{
+	ViewBag.Title = "Driver Interface";
+}
+
+<h2>@Resources.Resource.NewOrders</h2>
+
+<table class="table" id="orders">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.Address)
+		</th>
+		<th></th>
+		<th></th>
+	</tr>
+
+	@foreach (var item in Model) {
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Address)
+			</td>
+			<td>
+				<div class="input-group">
+					<input type="number" class="waiting-time form-control" placeholder="waitnig time...">
+					<span class="input-group-btn">
+						<input itemid="@item.Id" type="button" value="Take" class="take btn btn-success" />
+					</span>
+				</div>
+			</td>
+		</tr>
+	}
+
+</table>
+<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+<script src="~/Scripts/OrderExLogic/DriverOrder.js"></script>

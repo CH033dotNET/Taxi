@@ -22,7 +22,16 @@ namespace MainSaite.Controllers
 
 		public ActionResult Index()
 		{
-			return View(orderManager.GetApprovedOrders());
+			return View();
+		}
+
+		public ActionResult NewOrders() {
+			return PartialView(orderManager.GetApprovedOrders());
+		}
+
+		public ActionResult OrdersHistory() {
+			var driver = (Session["User"] as UserDTO);
+			return PartialView(orderManager.GetOrdersByDriver(driver));
 		}
 
 		[HttpPost]
