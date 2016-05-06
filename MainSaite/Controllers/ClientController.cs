@@ -17,7 +17,7 @@ namespace MainSaite.Controllers
 		private static IHubContext Context = GlobalHost.ConnectionManager.GetHubContext<OrderHub>();
 
 		public ClientController(IOrderManagerEx orderManager)
-	{
+		{
 			this.orderManager = orderManager;
 		}
 
@@ -32,6 +32,7 @@ namespace MainSaite.Controllers
 			var newOrder = orderManager.AddOrder(order);
 			return Json(newOrder);
 		}
+
 		public ActionResult OrderForm()
 		{
 			return View();

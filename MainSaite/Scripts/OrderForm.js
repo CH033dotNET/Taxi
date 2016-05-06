@@ -53,7 +53,10 @@ $(function () {
 	});
 
 	$('input[name="urgency"]').change(function () {
-	    $('#time-group').toggle();
+		if ($('#pre-order').prop('checked'))
+			$('#time-group').show();
+		else
+			$('#time-group').hide();
 	});
 
 	$('#time-group').datetimepicker({
@@ -68,6 +71,48 @@ $(function () {
 		}
 	});
 
+	function getAddressFrom() {
+		return {
+			Address: $('#address-from').val(),
+			Building: $('#building-from').val(),
+			Entrance: $('#entrance-from').val(),
+			Note: $('#note-from').val()
+		}
+	}
+
+	function getAddressTo() {
+		var address = [];
+		$('.address-to-group').each(function (index) {
+			address.push({
+				Address: $('#address-to-' + (index + 1)).val(),
+				Building: $('#building-to-' + (index + 1)).val()
+			});
+		});
+		return {
+			Address: address,
+			Route: $('#route').prop('checked')
+		}
+	}
+
+	function getAdditionally() {
+		return {
+			Urgently: $('#urgently').prop('checked'),
+			Time: $('#time').val(),
+			Passengers: $('#passengers').val(),
+			Car: $('input[name="car-class"]:checked').attr('id'),
+			Courier: $('#courier').prop('checked'),
+			WithPlate: $('#with-plate').prop('checked'),
+			MyCar: $('#my-car').prop('checked'),
+			Pets: $('#pets').prop('checked'),
+			Bag: $('#bag').prop('checked'),
+			Conditioner: $('#conditioner').prop('checked'),
+			English: $('#english').prop('checked'),
+			noSmoking: $('#nosmoking').prop('checked'),
+			Smoking: $('#smoking').prop('checked'),
+			Check: $('#check').prop('checked')
+		}
+	}
+
 	$('#submit').click(function () {
 		if ($('#address-from').val() == "") {
 			if ($('.ActivLang').html() == 'En')
@@ -78,26 +123,27 @@ $(function () {
 			$('#address-from').attr('placeholder', inputRequired);
 			return;
 		}
-
-		var address = [];
-		$('.address-to-group').each(function (index) {
-			address.push({
-				address: $('#address-to-' + (index + 1)).val(),
-				building: $('#building-to-' + (index + 1)).val()
-			});
+		var order = {
+			AddressFrom: getAddressFrom(),
+			AddressTo: getAddressTo(),
+			Additionally: getAdditionally(),
+			Name: $('#name').val(),
+			Phone: $('#phone').val(),
+			Perquisite: $('#perquisite').val(),
+			Remember: $('#remember').prop('checked')
+		}
+		var orderHub = $.connection.OrderHub;
+		$.connection.hub.start().done(function () {
+			orderHub.server.connect("Client");
+			$.post(
+				'/Client/AddOrder',
+				order,
+				function (data) {
+					orderHub.server.addOrder(data);
+					alert("You order id = " + data.Id);
+				}
+			);
 		});
-
-		var addressFrom = {
-			address: $('#address-from').val(),
-			building: $('#building-from').val(),
-			entrance: $('#entrance-from').val(),
-			note: $('#note-from').val()
-		}
-
-		var addressTo = {
-			address: address,
-			route: $('#route').prop('checked')
-		}
 	});
 	
 });
