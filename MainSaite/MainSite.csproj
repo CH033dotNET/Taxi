@@ -558,6 +558,8 @@
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\DriverEx\Index.cshtml" />
     <Content Include="Views\Home\OrderTaxi.cshtml" />
+    <Content Include="Views\DriverEx\NewOrders.cshtml" />
+    <Content Include="Views\DriverEx\OrdersHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

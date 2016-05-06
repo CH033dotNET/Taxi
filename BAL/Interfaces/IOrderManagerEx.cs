@@ -17,12 +17,14 @@ namespace BAL.Interfaces
 
 		bool DenyOrder(int id);
 
-        bool TakeOrder(int id);
+        bool TakeOrder(int id, int DriverId);
 
         bool SetWaitingTime(int id, int WaitingTime);
 
         IEnumerable<OrderExDTO> GetNotApprovedOrders();
 
         IEnumerable<OrderExDTO> GetApprovedOrders();
-    }
+
+		IEnumerable<OrderExDTO> GetOrdersByDriver(UserDTO Driver);
+	}
 }

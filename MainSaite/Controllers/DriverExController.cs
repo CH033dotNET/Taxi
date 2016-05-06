@@ -38,7 +38,8 @@ namespace MainSaite.Controllers
 		public JsonResult TakeOrder(int id, int WaitingTime)
 		{
 			orderManager.SetWaitingTime(id, WaitingTime);
-			return Json(new { success = orderManager.TakeOrder(id) });
+			var DriverId = (Session["User"] as UserDTO).Id;
+			return Json(new { success = orderManager.TakeOrder(id, DriverId) });
 		}
 
 		[HttpPost]
