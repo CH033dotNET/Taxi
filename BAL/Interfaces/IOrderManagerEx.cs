@@ -11,6 +11,8 @@ namespace BAL.Interfaces
 	{
 		OrderExDTO AddOrder(OrderExDTO order);
 
+		OrderExDTO GetById(int id);
+
 		bool ApproveOrder(int id);
 
 		bool DenyOrder(int id);

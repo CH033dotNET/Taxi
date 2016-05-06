@@ -23,10 +23,16 @@ namespace BAL.Interfaces
 		public OrderExDTO AddOrder(OrderExDTO order)
 		{
 			var newOrder = Mapper.Map<OrderEx>(order);
+            newOrder.OrderTime = DateTime.Now;
 			newOrder.Status = OrderStatusEnum.NotApproved;
 			uOW.OrderExRepo.Insert(newOrder);
 			uOW.Save();
 			return Mapper.Map<OrderExDTO>(newOrder);
+		}
+
+		public OrderExDTO GetById(int id) {
+			var order = uOW.OrderExRepo.All.Where(o => o.Id == id).FirstOrDefault();
+			return Mapper.Map<OrderExDTO>(order);
 		}
 
 		public bool ApproveOrder(int id)

@@ -1,4 +1,5 @@
-﻿using MainSaite.Models;
+﻿using BAL.Interfaces;
+using MainSaite.Models;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using Model.DTO;
@@ -24,16 +25,18 @@ namespace MainSaite.Hubs
 
 
         [HubMethodName("OrderConfirmed")]
-        public void OrderConfirmed(OrderExDTO order) {
-           // var user = orderHubUsers.FirstOrDefault(x=> x. == );
-          //  Clients.
+        public void OrderConfirmed(int OrderId, int WaitingTime) {
+            var client = orderHubUsers.FirstOrDefault(u => u.OrderId == OrderId);
+            if (client != null) {
+                Clients.Client(client.ConnectionId).OrderConfirmed(WaitingTime);
+            }
         }
 
 
 		[HubMethodName("OrderApproved")]
-		public void OrderApproved(OrderExDTO order)
+		public void OrderApproved(int id)
 		{
-			Clients.Group("Driver").OrderApproved(order);
+			Clients.Group("Driver").OrderApproved(id);
 		}
 
 		[HubMethodName("notifyDriverCoordinate")]
