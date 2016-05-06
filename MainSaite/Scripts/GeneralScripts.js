@@ -60,14 +60,17 @@ function SendMessage() {
 $(document).ready(function () {
 
 	var menuTabs = $("#mainMenu").children().length;
-	//var title = $(document).find("title").text().split('-')[0];
-
-	//$('a#mainBtns').trigger('click');
 
 	if(menuTabs>0)
 	{
 		$("#dropdownMenuBtn").css("display", "block");
 	}
+
+	$(document).on('click', '#showChat', function () {
+
+		ShowSupportChat();
+
+	});
 
 
 })

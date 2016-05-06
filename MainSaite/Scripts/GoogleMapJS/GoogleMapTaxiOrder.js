@@ -183,7 +183,7 @@ function geocodeLatLng(LatLong, geocoder, map, infowindow) {
 
 				infowindow.setContent(results[0].formatted_address);
 
-				document.getElementById('autocomplete').value = results[0].formatted_address;
+				document.getElementById('textField').value = results[0].formatted_address;
 
 			} else {
 				window.alert('No results found');
@@ -199,7 +199,7 @@ function initialize() {
 	// to geographical location types.
 	initMap();
 	autocomplete = new google.maps.places.Autocomplete(
-        /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
+        /** @type {HTMLInputElement} */(document.getElementById('textField')),
         { types: ['geocode'] });
 }
 
@@ -227,7 +227,7 @@ function geolocate() {
 //Get from input our adress, convert it in coordinate, set point
 geocode = function () {
 
-	var addressLabel = document.getElementById('autocomplete').value;
+	var addressLabel = document.getElementById('textField').value;
 
 	if (addressLabel != "") {
 		mapInfo.geocoder.geocode({ 'address': addressLabel }, function (results, status) {
@@ -249,7 +249,7 @@ geocode = function () {
 	}
 }
 
-$("#autocomplete").keypress(function (e) {
+$("#textField").keypress(function (e) {
 	if (e.which == 13)
 		geocode();
 
@@ -272,7 +272,7 @@ var setTitle = function (mark) {
 		if (status === google.maps.GeocoderStatus.OK) {
 			if (results[1]) {
 				mark.setTitle(results[0].formatted_address);
-				document.getElementById('autocomplete').value = mapInfo.startPoint.getTitle();
+				document.getElementById('textField').value = mapInfo.startPoint.getTitle();
 
 			} else {
 				console.log('No results found');

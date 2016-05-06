@@ -133,20 +133,23 @@
 	padding: 7px;
 }
 
-#autocomplete {
+#textField {
 	z-index: 0;
-	position: absolute;
 	left: 125px;
 	top: 0px;
-	width: 80%;
-	margin: 10px;
+	width: 100%;
+    padding: 10px;
 	font-size: 21px;
-	background-color: rgba(255, 255, 255, 0.91);
+	background-color: rgba(210, 210, 210, 0.52);
 	border: none;
 	color: black;
 	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.41);
 }
-
+#addressInput{
+	padding:10px;
+	margin-bottom:0px;
+	margin-top: -25px
+}
 .panel-body {
 	padding: 0px;
 }
@@ -266,6 +269,10 @@
 		float:right;
 		padding: 4% 10px 10px 10px;
 	}
+	#textField{
+		background-color: rgba(255, 255, 255, 0.92);
+		    font-size: 15px;
+	}
 	#orderTaxiBtn, .slider-controls{
 		display:none;
 	}
@@ -322,7 +329,6 @@
 #adblock-warning {
 	display: none;
 	padding: 0;
-	margin-left:135px;
 	font-size: 1.5em;
 	text-align:center;
 }

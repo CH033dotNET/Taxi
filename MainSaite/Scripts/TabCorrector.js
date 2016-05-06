@@ -10,6 +10,6 @@
         $('[href="' + lastTab + '"]').tab('show');
     }
     else {
-        $('[href="#Home"]').tab('show');
+       // $('[href="#Home"]').tab('show');
     }
 });
