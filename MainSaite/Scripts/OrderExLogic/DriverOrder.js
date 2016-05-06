@@ -6,15 +6,33 @@
 	};
 	var currentOrderId;
 
-	orderHub.client.OrderApproved = function (order) {
-		$('#orders').append("<tr>\
-			<td>"
-			+ order.Address +
-			"</td>\
-			<td>\
-				<input itemid=" + order.Id + " type=\"button\" value=\"Take\" class=\"take btn btn-success\" />\
-			</td>\
-		</tr>")
+	orderHub.client.OrderApproved = function (id) {
+		$.ajax({
+			url: '/OrderEx/GetOrder/',
+			data: {
+				id:id,
+			},
+			type: "POST",
+			success: function (order) {
+
+				var orderblock="";
+				orderblock += "<tr>";
+				orderblock += "    <td>";
+				orderblock += order.success.Address;
+				orderblock += "    <\/td>";
+				orderblock += "    <td>";
+				orderblock += "        <div class=\"input-group\">";
+				orderblock += "            <input type=\"number\" class=\"waiting-time form-control\" placeholder=\"waitnig time...\">";
+				orderblock += "            <span class=\"input-group-btn\">";
+				orderblock += "                <input itemid=\"" + order.success.Id + "\" type=\"button\" value=\"Take\" class=\"take btn btn-success\" \/>";
+				orderblock += "            <\/span>";
+				orderblock += "        <\/div>";
+				orderblock += "    <\/td>";
+				orderblock += "<\/tr>";
+
+				$('#orders').append(orderblock)
+			}
+		});
 	};
 
 	$.connection.hub.start().done(function () {
@@ -39,6 +57,7 @@
 					success: function (result) {
 						if (result) {
 							$(row).fadeOut();
+							orderHub.server.OrderConfirmed(currentOrderId, waiting_time);
 						}
 						else {
 							alert("something wrong");
@@ -49,7 +68,6 @@
 		});
 
 	});
-
 
 
 	function sentCoord(position) {

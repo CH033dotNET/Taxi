@@ -1,43 +1,79 @@
-﻿@model IEnumerable<Model.DTO.OrderExDTO>
-
-@{
-	ViewBag.Title = "Driver Interface";
-	Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@{
+	Layout = null;
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>@Resources.Resource.PersonalCabinet</title>
+	<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<meta name="viewport" content="width=device-width" />
 
-<h2>Index</h2>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-<table class="table" id="orders">
-	<tr>
-		<th>
-			@Html.DisplayNameFor(model => model.Address)
-		</th>
-		<th>
-			@Html.DisplayNameFor(model => model.Status)
-		</th>
-		<th></th>
-	</tr>
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@Scripts.Render("~/bundles/tabHelper")
 
-	@foreach (var item in Model)
-	{
-		<tr>
-			<td>
-				@Html.DisplayFor(modelItem => item.Address)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Status)
-			</td>
-			<td>
-                <div class="input-group">
-                    <input type="number" class="waiting-time form-control" placeholder="waitnig time...">
-                    <span class="input-group-btn">
-                        <input itemid="@item.Id" type="button" value="Take" class="take btn btn-success" />
-                    </span>
-                </div>
-			</td>
-		</tr>
-	}
+	@Styles.Render("~/Content/css")
+	@Styles.Render("~/Content/BootstrapCallout.css")
+	@Styles.Render("~/Content/ClientDriveService.css")
 
-</table>
-<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
-<script src="~/Scripts/OrderExLogic/DriverOrder.js"></script>
+</head>
+<body style="padding:0">
+	<input type="hidden" id="hlat" value="48.309390" />
+	<input type="hidden" id="hlong" value="25.943524" />
+	<div id="driver-bootstrap-menu" class="navbar navbar-default navbar-static-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Logo</a>
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse navbar-menubuilder">
+				<ul class="nav navbar-nav navbar-left">
+					<li>
+						@Html.ActionLink(Resources.Resource.MainLink, "Index", "Home")
+					</li>
+					<li>
+						<a data-toggle="tab" href="#Home">@Resources.Resource.Home</a>
+					</li>
+					<li>
+						<a data-toggle="tab" href="#NewOrders">@Resources.Resource.NewOrders</a>
+					</li>
+					<li>
+						<a data-toggle="tab" href="#OrdersHistory">@Resources.Resource.OrdersHistory</a>
+					</li>
+					
+				</ul>
+
+			</div>
+		</div>
+	</div>
+	<div>
+		<div id="driver-content" class="tab-content">
+			<div id="NewOrders" class="tab-pane fade">
+				@{
+					Html.RenderAction("NewOrders", "DriverEx");
+				}
+			</div>
+			<div id="OrdersHistory" class="tab-pane fade">
+				@{
+					Html.RenderAction("OrdersHistory", "DriverEx");
+				}
+			</div>
+		</div>
+	</div>
+
+	<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+	<script src="~/signalr/hubs"></script>
+
+</body>
+</html>

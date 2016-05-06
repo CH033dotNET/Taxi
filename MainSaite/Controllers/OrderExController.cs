@@ -39,5 +39,10 @@ namespace MainSaite.Controllers
 			return Json(new { success = orderManager.DenyOrder(id) });
 		}
 
+		[HttpPost]
+		public JsonResult GetOrder(int id) {
+			return Json(new { success = orderManager.GetById(id) });
+		}
+
 	}
 }

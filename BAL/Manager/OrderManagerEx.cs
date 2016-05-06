@@ -9,6 +9,7 @@ using Model.DB;
 using Model.DTO;
 using AutoMapper;
 using Common.Enum;
+using Model;
 
 namespace BAL.Interfaces
 {
@@ -23,10 +24,16 @@ namespace BAL.Interfaces
 		public OrderExDTO AddOrder(OrderExDTO order)
 		{
 			var newOrder = Mapper.Map<OrderEx>(order);
+            newOrder.OrderTime = DateTime.Now;
 			newOrder.Status = OrderStatusEnum.NotApproved;
 			uOW.OrderExRepo.Insert(newOrder);
 			uOW.Save();
 			return Mapper.Map<OrderExDTO>(newOrder);
+		}
+
+		public OrderExDTO GetById(int id) {
+			var order = uOW.OrderExRepo.All.Where(o => o.Id == id).FirstOrDefault();
+			return Mapper.Map<OrderExDTO>(order);
 		}
 
 		public bool ApproveOrder(int id)
@@ -55,12 +62,16 @@ namespace BAL.Interfaces
 			return false;
 		}
 
-		public bool TakeOrder(int id)
+		public bool TakeOrder(int id, int DriverId)
 		{
 			var order = uOW.OrderExRepo.All.Where(o => o.Id == id).FirstOrDefault();
 			if (order != null)
 			{
 				order.Status = OrderStatusEnum.Confirmed;
+
+				var driver = uOW.UserRepo.All.Where(u => u.Id == DriverId).FirstOrDefault();
+				order.Driver = driver;
+
 				uOW.OrderExRepo.Update(order);
 				uOW.Save();
 				return true;
@@ -93,6 +104,14 @@ namespace BAL.Interfaces
 		{
 			var orders = uOW.OrderExRepo.All
 				.Where(o => o.Status == OrderStatusEnum.Approved)
+				.ToList();
+			return Mapper.Map<List<OrderExDTO>>(orders);
+		}
+
+		public IEnumerable<OrderExDTO> GetOrdersByDriver(UserDTO Driver) {
+			var driver = Mapper.Map<User>(Driver);
+			var orders = uOW.OrderExRepo.All
+				.Where(o => o.Driver.Id == driver.Id)
 				.ToList();
 			return Mapper.Map<List<OrderExDTO>>(orders);
 		}
