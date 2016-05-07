@@ -2,6 +2,7 @@
 using BAL.Manager;
 using Common.Enum;
 using DAL;
+using DriverSite.Helpers;
 using MainSaite.Helpers;
 using Model;
 using Model.DTO;
@@ -25,10 +26,10 @@ namespace MainSaite.Controllers
 		private IUserManager userManager;
 		private IDriverLocationHelper driverLocationHelper;
 		private IOrderManager orderManager;
-        private ITarifManager tarifManager;
+		private ITarifManager tarifManager;
 		private IWorkerStatusManager workerStatusManager;
 		private IDistrictManager districtManager;
-		public DriverController(ILocationManager locationManager, ICarManager carManager, ICoordinatesManager coordinatesManager, IUserManager userManager, IDriverLocationHelper driverLocationHelper, IOrderManager orderManager,ITarifManager tarifManager, IWorkerStatusManager workerStatusManager, IDistrictManager districtManager) 
+		public DriverController(ILocationManager locationManager, ICarManager carManager, ICoordinatesManager coordinatesManager, IUserManager userManager, IDriverLocationHelper driverLocationHelper, IOrderManager orderManager, ITarifManager tarifManager, IWorkerStatusManager workerStatusManager, IDistrictManager districtManager)
 		{
 			this.locationManager = locationManager;
 			this.carManager = carManager;
@@ -37,7 +38,7 @@ namespace MainSaite.Controllers
 			this.driverLocationHelper = driverLocationHelper;
 			this.coordinatesManager.addedCoords += coordinates => DriverLocationHelper.addedLocation(coordinates);
 			this.orderManager = orderManager;
-            this.tarifManager = tarifManager;
+			this.tarifManager = tarifManager;
 			this.workerStatusManager = workerStatusManager;
 			this.districtManager = districtManager;
 		}
@@ -59,7 +60,7 @@ namespace MainSaite.Controllers
 		public JsonResult CheckWorkShifts(int Id)
 		{
 			bool uncompletedShifts = carManager.GetWorkShiftsByWorkerId(Id);
-            Tarifes = tarifManager.GetTarifes().ToList();
+			Tarifes = tarifManager.GetTarifes().ToList();
 			return Json(uncompletedShifts, JsonRequestBehavior.AllowGet);
 		}
 
@@ -191,16 +192,16 @@ namespace MainSaite.Controllers
 			}
 			catch (Exception)
 			{
-				return Json( false, JsonRequestBehavior.AllowGet);
+				return Json(false, JsonRequestBehavior.AllowGet);
 			}
 
-				return Json(true, JsonRequestBehavior.AllowGet);
+			return Json(true, JsonRequestBehavior.AllowGet);
 		}
 		[HttpPost]
 		public JsonResult GetFullDistricts()
 		{
 			var districts = districtManager.getDistricts();
-			return Json(new { districts = districts}, JsonRequestBehavior.AllowGet);
+			return Json(new { districts = districts }, JsonRequestBehavior.AllowGet);
 		}
 		[HttpPost]
 		public JsonResult JoinDriverToLocation(int Id)
@@ -271,12 +272,12 @@ namespace MainSaite.Controllers
 					DriverLocationHelper.removeDriver(Id);
 
 					CoordinatesDTO coordinates;
-					//coordinates = CoordinateMapper.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
-					//coordinates.TarifId = 1;
-					//coordinatesManager.AddCoordinates(coordinates);
+					coordinates = CoordinateMapper.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
+					coordinates.TarifId = 1;
+					coordinatesManager.AddCoordinates(coordinates);
 				}
-				
-				if (locationManager.GetByUserId(Id)!= null)
+
+				if (locationManager.GetByUserId(Id) != null)
 					locationManager.DeleteLocation(Id);
 				return Json(true);
 			}
