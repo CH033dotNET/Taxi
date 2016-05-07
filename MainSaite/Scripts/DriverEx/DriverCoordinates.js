@@ -36,7 +36,7 @@ function getEndCoord(position) {
 	timeNow = moment().format('YYYY/MM/DD HH:mm:ss');
 	if (storage.getItem("StopWorkTime") === null)
 		storage.setItem("StopWorkTime", timeNow);
-
+	timeNow = undefined;
 	var dataObj = {};
 	dataObj.Id = document.getElementById('Id').value;
 	dataObj.Latitude = position.coords.latitude;

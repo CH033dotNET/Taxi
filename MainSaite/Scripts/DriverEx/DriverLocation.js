@@ -11,8 +11,14 @@
 	$.connection.hub.start().done(function () {
 
 		driverId = $('#currentUserId').val();
-		driverLocationHub.server.connectUser("Driver");
-	    driverName = $('#currentUserName').val();
+		driverLocationHub.server.connectUser("Driver", driverId);
+		driverName = $('#currentUserName').val();
+
+		setTimeout(function invoke() {
+			navigator.geolocation.getCurrentPosition(checkPosition);
+			setTimeout(invoke, 3000);
+		}, 3000);
+
 	});
 
 	function checkPosition(position) {
@@ -27,14 +33,4 @@
 
 		}
 	}
-
-	$(document).ready(function () {
-
-		setTimeout(function invoke() {
-			navigator.geolocation.getCurrentPosition(checkPosition);
-			setTimeout(invoke, 3000);
-		}, 3000);
-	});
-
-
 });

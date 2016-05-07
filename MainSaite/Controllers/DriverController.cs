@@ -242,6 +242,8 @@ namespace MainSaite.Controllers
 						name = SessionUser.UserName
 					};
 
+					carManager.StartWorkEvent(Id, DateTime.Now.ToString());
+
 					DriverLocationHelper.addDriver(driverLocation);
 
 					CoordinatesDTO coordinates;
@@ -250,12 +252,9 @@ namespace MainSaite.Controllers
 					coordinatesManager.AddCoordinates(coordinates);
 				}
 
-				carManager.StartWorkEvent(Id, DateTime.Now.ToString());
-
-
 				return Json(true);
 			}
-			catch (DataException)
+			catch (Exception e)
 			{
 				ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
 			}
@@ -268,6 +267,8 @@ namespace MainSaite.Controllers
 			{
 				if (Latitude != null && Longitude != null)
 				{
+					carManager.EndAllCurrentUserShifts(Id, TimeStop);
+
 					DriverLocationHelper.removeDriver(Id);
 
 					CoordinatesDTO coordinates;
@@ -275,14 +276,12 @@ namespace MainSaite.Controllers
 					coordinates.TarifId = 1;
 					coordinatesManager.AddCoordinates(coordinates);
 				}
-				carManager.EndAllCurrentUserShifts(Id, TimeStop);
-
-
+				
 				if (locationManager.GetByUserId(Id)!= null)
 					locationManager.DeleteLocation(Id);
 				return Json(true);
 			}
-			catch (DataException)
+			catch (Exception e)
 			{
 				ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
 			}

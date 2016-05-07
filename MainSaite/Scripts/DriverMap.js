@@ -8,8 +8,6 @@ var pos;
 
 $(document).ready(function () {
 
-	//ShowCurCoord();
-
 	mainInit();
 
 });
@@ -27,9 +25,8 @@ function hubInit() {
 	hub.client.locationUpdate = locationUpdate;
 	hub.client.driverStart = driverStart;
 	hub.client.driverFinish = driverFinish;
-
 	$.connection.hub.start().done(function () {
-		hub.server.connectUser("Operator");
+		hub.server.connectUser("Operator", $('#currentUserId').val());
 	});
 }
 //test -----
@@ -72,7 +69,7 @@ function mainInit() {
 
 
 			for (var i = 0; i < data.length; i++) {
-				AddDriverToTheTable(data[i]);
+				AddDriverToTheTable(data[i].latitude, data[i].longitude, data[i].updateTime, data[i].startedTime, data[i].id, data[i].name);
 			}
 		},
 		error: function (error) {
@@ -82,13 +79,13 @@ function mainInit() {
 	hubInit();
 }
 
-function AddDriverToTheTable(driver) {
-	markers['DriverN' + driver.id] = AddDriver(driver.name, driver.latitude, driver.longitude);
+function AddDriverToTheTable(latitude, longitude, updateTime, startedTime, id, name ) {
+	markers['DriverN' +  id] = AddDriver( name,  latitude,  longitude);
 
-	var tableRow = $('<tr/>', { id: 'DriverN' + driver.id }).append(
-			$('<td/>', { text: driver.name }),
-			$('<td/>', { text: driver.startedTime, id: 'DriverN' + driver.id + 'start' }),
-			$('<td/>', { text: driver.updateTime, id: 'DriverN' + driver.id + 'up' }));
+	var tableRow = $('<tr/>', { id: 'DriverN' +  id }).append(
+			$('<td/>', { text:  name }),
+			$('<td/>', { text: new Date( startedTime).toLocaleString(), id: 'DriverN' +  id + 'start' }),
+			$('<td/>', { text: new Date( updateTime).toLocaleString(), id: 'DriverN' +  id + 'up' }));
 	tableRow.click(onClick);
 	var table = $('#DrvsCont').append(
 		tableRow
@@ -102,25 +99,13 @@ function locationUpdate(Lat, Lng, Time, startTime, ID, name) {
 		$('#DriverN' + ID + 'up').html(new Date(Time).toLocaleString());
 	}
 	else {
-		markers['DriverN' + ID] = AddDriver(name, Lat, Lng);
-		var tr = $('<tr/>', { id: 'DriverN' + ID }).append(
-              $('<td/>', { text: name }),
-             $('<td/>', { text: new Date(startTime).toLocaleString(), id: 'DriverN' + ID + 'start' }),
-               $('<td/>', { text: new Date(Time).toLocaleString(), id: 'DriverN' + ID + 'up' }));
-		tr.click(onClick);
-		var table = $('#DrvsCont').append(tr);
+		AddDriverToTheTable(Lat, Lng, Time, startTime, ID, name);
 	}
 }
 
 function driverStart(val) {
 	if (markers['DriverN' + val.id] === undefined) {
-		markers['DriverN' + val.id] = AddDriver(val.id, val.latitude, val.longitude);
-		var tr = $('<tr/>', { id: 'DriverN' + val.id }).append(
-                $('<td/>', { text: val.name }),
-                $('<td/>', { text: new Date(val.startedTime).toLocaleString(), id: 'DriverN' + val.id + 'start' }),
-                $('<td/>', { text: new Date(val.updateTime).toLocaleString(), id: 'DriverN' + val.id + 'up' }));
-		tr.click(onClick);
-		var table = $('#DrvsCont').append(tr);
+		AddDriverToTheTable(val.latitude, val.longitude, val.updateTime, val.startedTime, val.id, val.name);
 	}
 	else {
 		locationUpdate(val.latitude, val.longitude, val.updateTime, val.id);
@@ -135,7 +120,7 @@ function driverFinish(ID) {
 		markers['DriverN' + ID] = undefined;
 	}
 }
-///end hub
+
 function onClick(data) {
 	for (var key in markers) {
 		markers[key].setAnimation(null);
