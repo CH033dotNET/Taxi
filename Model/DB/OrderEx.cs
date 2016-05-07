@@ -22,5 +22,8 @@ namespace Model.DB
 		public User Driver { get; set; }
 
 		public int WaitingTime { get; set; }
+
+        //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh-mm-ss}", ApplyFormatInEditMode = true)]
+        public DateTime OrderTime { get; set; }
 	}
 }
