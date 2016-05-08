@@ -564,14 +564,11 @@
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\DriverEx\Index.cshtml" />
     <Content Include="Views\Home\OrderTaxi.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\TariffEx\Index.cshtml" />
     <Content Include="Views\Settings\_AddGroup.cshtml" />
-=======
     <Content Include="Views\DriverEx\NewOrders.cshtml" />
     <Content Include="Views\DriverEx\OrdersHistory.cshtml" />
     <Content Include="Views\Driver\DistrictPart.cshtml" />
->>>>>>> origin/master
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
