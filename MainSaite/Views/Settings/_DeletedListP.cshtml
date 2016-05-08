@@ -12,7 +12,7 @@
 			<div class="modal-body">
 				<form id="deleted-form" class="form-inline">
 					<div class="form-group">
-						<input type="text" class="form-control input-sm" placeholder="@Resources.Resource.Search" oninput="jsController.searchDeletedDistricts(this.value);" id="searchDeletedDistrictName" value="" />
+						<input type="text" class="form-control input-sm" placeholder="@Resources.Resource.Search" id="searchDeletedDistrictName" value="" />
 					</div>
 				</form>
 				<hr>
@@ -22,7 +22,7 @@
 							<thead>
 								<tr class="info">
 									<th>
-										<a href="#" class="btn-link" onclick="jsController.sortDeletedDistrictBy('name')">@Resources.Resource.District</a>
+										<a id="sort-deleted-district" href="#" class="btn-link">@Resources.Resource.District</a>
 									</th>
 									<th>
 										@Resources.Resource.Action
@@ -31,13 +31,13 @@
 							</thead>
 							<tbody>
 								<script id="dsDeletedRow" type="text/x-handlebars-template">
-									{{#each deleted}}
+									{{#each deletedData}}
 									<tr>
 										<td>
 											{{Name}}
 										</td>
 										<td>
-											<a class="btn btn-success" href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.restoreDistrict(this)">
+											<a id="restore-district" class="btn btn-success" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button">
 												<span class="glyphicon glyphicon-plus" aria-hidden="true">&nbsp;</span>@Resources.Resource.RestoreDistrict
 											</a>
 										</td>

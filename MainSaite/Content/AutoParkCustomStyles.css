@@ -83,9 +83,6 @@
 	font-weight: bold;
 }
 
-#districtTableResponsive {
-	overflow-x: visible;
-}
 
 #map {
 	width: 100%;
@@ -94,5 +91,50 @@
 
 .labels {
 	font-size: 20px;
-	font-weight:bold;
+	font-weight: bold;
+}
+
+#districtEditTable {
+	text-align: left;
+	background-color: white;
+}
+
+.districtItem {
+	display: inline-block;
+	font-size: 20px;
+	width: 100%;
+	padding: 5px;
+	background-color: rgba(79, 221, 79, 0.1);
+	border-radius: 3px;
+	cursor: pointer;
+	margin: 0px 0px;
+	border: 1px solid rgba(7, 246, 7, 0.61) 
+}
+.folder{
+	background-color:rgba(82, 203, 82, 0.35);
+}
+#content ol{
+	display:none;
+}
+
+
+#action-buttons {
+	display: inline-block;
+	float: right;
+	clear: both;
+}
+
+#content{
+	padding-left:0px;
+}
+
+ol{
+	list-style-type:none;
+	padding-left:20px;
+}
+
+.ui-state-highlight{
+	background-color:rgba(130, 251, 36, 0.51);
+	border:2px dashed rgba(7, 246, 7, 0.61);
+	height:45px;
 }

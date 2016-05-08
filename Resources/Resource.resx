@@ -1057,4 +1057,16 @@
   <data name="SetYourPosition" xml:space="preserve">
     <value>Please, point out your position on the map</value>
   </data>
+  <data name="AddDistrictGroup" xml:space="preserve">
+    <value>Add group</value>
+  </data>
+  <data name="AddNewDistrictGroup" xml:space="preserve">
+    <value>Add new group</value>
+  </data>
+  <data name="DistrictGroupName" xml:space="preserve">
+    <value>Group name</value>
+  </data>
+  <data name="ShowDistricts" xml:space="preserve">
+    <value>Show district(group)</value>
+  </data>
 </root>

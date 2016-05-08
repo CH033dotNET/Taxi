@@ -238,6 +238,12 @@ namespace MainSaite.Controllers
 			}
 		}
 
+		[HttpPost]
+		public JsonResult SetParent(int id, int? parentId)
+		{
+			return Json(new { success = districtManager.SetParent(id, parentId) }); 
+		}
+
 		public JsonResult GetAvailableDistricts()
 		{
 			var districts = districtManager.getDistricts();

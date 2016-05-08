@@ -13,56 +13,71 @@
 		<div class="panel-footer">
 			<form id="non-deleted-form" class="form-inline">
 				<div class="form-group">
-					<a class="btn btn-warning" onclick="jsController.DistrictBasket(this)"><span class="glyphicon glyphicon-th-list" aria-hidden="true">&nbsp;</span>@Resources.Resource.DistrictBasket</a>
-					<input type="text" class="form-control input-sm" placeholder="@Resources.Resource.Search" oninput="jsController.searchDistricts(this.value);" id="searcDhistrictName" value="" />
+					<a class="btn btn-warning" id="basket"><span class="glyphicon glyphicon-th-list">&nbsp;</span>@Resources.Resource.DistrictBasket</a>
+					<a class="btn btn-primary" id="add-group"><span class="glyphicon glyphicon-folder-open">&nbsp;</span>@Resources.Resource.AddDistrictGroup</a>
+					<input type="text" class="form-control input-sm" placeholder="@Resources.Resource.Search" id="searcDhistrictName" value="" />
 				</div>
 			</form>
 		</div>
-		<div class="table-list">
-			<div id="districtTableResponsive" class="table-responsive">
-				<table class="table table-striped" id="districtEditTable">
-					<thead>
-						<tr class="info">
-							<th><a id="carlink" href="#" class="btn-link" onclick="jsController.sortDistrictBy('name')">@Resources.Resource.District</a></th>
-							<th>@Resources.Resource.Action</th>
-						</tr>
-					</thead>
-					<tbody>
-						<script id="dsEditRow" type="text/x-handlebars-template">
-							{{#each items}}
-							<tr>
-								<td>{{Name}}</td>
-								<td>
-									<div class="btn-group">
-										<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Resources.Resource.ActionsColumn <span class="caret"></span></button>
-										<ul class="dropdown-menu">
-											<li>
-												<a href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.editItem(this)"><span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString</a>
-											</li>
-											<li role="separator" class="divider"></li>
-											<li>
-												<a href="#" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button" onclick="jsController.deleteItem(this)"><span class="glyphicon glyphicon-trash" aria-hidden="true">&nbsp;</span>@Resources.Resource.deleteString</a>
-											</li>
-										</ul>
+		
+			<div id="districtTableResponsive" >
+				<div id="districtEditTable">
+					<div id="tableHeader">
+						<a id="carlink" class="btn-link btn btn-default"><span class="glyphicon glyphicon-sort"></span> @Resources.Resource.District</a>
+					</div>
+					<ol id="content" class="">
+						<script id="dsEditRow" type="text/x-handlebars-template" class="ui-state-default">
+							{{#each data}}
+							<li data-id="{{Id}}" parent-id="{{ParentId}}">
+								<div class="districtItem {{#if IsFolder}}folder{{/if}}">
+									<div class="itemText">
+										{{#if IsFolder}}
+										<span class="glyphicon glyphicon-folder-close"></span>
+										{{else}}
+										<span class="glyphicon glyphicon-file"></span>
+										{{/if}}
+
+										<a>{{Name}}</a>
+
+
+										<div id="action-buttons" class="btn-group ">
+											<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Resources.Resource.ActionsColumn <span class="caret"></span></button>
+											<ul class="dropdown-menu">
+												<li>
+													<a id="show-button" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button"><span class="glyphicon glyphicon-map-marker" aria-hidden="true">&nbsp;</span>@Resources.Resource.ShowDistricts</a>
+												</li>
+												<li role="separator" class="divider"></li>
+												<li>
+													<a id="edit-button" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button"><span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString</a>
+												</li>
+												<li role="separator" class="divider"></li>
+												<li>
+													<a id="delete-button" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button"><span class="glyphicon glyphicon-trash" aria-hidden="true">&nbsp;</span>@Resources.Resource.deleteString</a>
+												</li>
+											</ul>
+										</div>
 									</div>
-								</td>
-							</tr>
+								</div>
+							</li>
 							{{/each}}
+							{{checkParent data}}
 						</script>
-					</tbody>
-				</table>
+					</ol>
+				</div>
 				@Html.Partial("_DeleteDistrictP", Model)
 				@Html.Partial("_EditDistrictP", Model)
 				@Html.Partial("_AddDistrictP", Model)
 				@Html.Partial("_DeletedListP", Model)
 				@Html.Partial("_ErrorDistrictPartial", Model)
+				@Html.Partial("_AddGroup", Model)
 			</div>
-		</div>
+		
 	</div>
 </div>
 
 
 <script src="https://maps.googleapis.com/maps/api/js?libraries=drawing&sensor=false" ></script>
+<script src="~/Scripts/jquery.mjs.nestedSortable.js"></script>
 <script type="text/javascript"  src="http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.5/src/markerwithlabel_packed.js"></script>
 
 <script>

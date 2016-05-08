@@ -16,7 +16,7 @@ function validateAddDistrict() {
 	if (!isNameOK) return false;
 	var validThisData = $('#add-district-form').validator('validate');
 	if (validThisData.valid()) {
-		jsController.addDistrictConfirm();
+		addDistrictConfirm();
 	}
 	else return false;
 }
@@ -26,7 +26,7 @@ function validateEditDistrict() {
 	if (!isNewNameOK) return false;
 	var validThisData = $('#edit-district-form').validator('validate');
 	if (validThisData.valid()) {
-		jsController.editConfirmDistrict();
+		editConfirmDistrict();
 	}
 	else return false;
 }

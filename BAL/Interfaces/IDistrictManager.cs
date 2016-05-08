@@ -30,5 +30,7 @@ namespace BAL.Manager
 		IEnumerable<DistrictDTO> searchDeletedDistricts(string parameter);
 
 		IQueryable<DistrictDTO> GetIQueryableDistricts();
+
+		bool SetParent(int id, int? parentId);
 	}
 }

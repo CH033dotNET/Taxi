@@ -1062,4 +1062,16 @@
   <data name="StandartOrder" xml:space="preserve">
     <value>Стандартне замовлення</value>
   </data>
+  <data name="AddDistrictGroup" xml:space="preserve">
+    <value>Додати групу</value>
+  </data>
+  <data name="AddNewDistrictGroup" xml:space="preserve">
+    <value>Додати нову групу</value>
+  </data>
+  <data name="DistrictGroupName" xml:space="preserve">
+    <value>Назва групи</value>
+  </data>
+  <data name="ShowDistricts" xml:space="preserve">
+    <value>Показати район(групу)</value>
+  </data>
 </root>

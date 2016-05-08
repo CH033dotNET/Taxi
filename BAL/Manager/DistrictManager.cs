@@ -124,6 +124,15 @@ namespace BAL.Manager
 			return Mapper.Map<IEnumerable<DistrictDTO>>(result);
 		}
 
+		public bool SetParent(int id, int? parentId)
+		{
+			var district = uOW.DistrictRepo.GetByID(id);
+			district.ParentId = parentId;
+			uOW.DistrictRepo.Update(district);
+			uOW.Save();
+			return true;
+		}
+
 		public IEnumerable<DistrictDTO> searchAndSortDistricts(string search, string sort)
 		{
 			var districts = uOW.DistrictRepo.All.Where(s => s.Deleted == false & (s.Name.StartsWith(search) || s.Name.Contains(search))).Include(c => c.Coordinates).ToList();
@@ -306,6 +315,7 @@ namespace BAL.Manager
 		{
 			uOW.DistrictRepo.SetStateModified(district);
 			district.Deleted = true;
+			district.ParentId = null;
 			uOW.Save();
 			return district;
 		}
