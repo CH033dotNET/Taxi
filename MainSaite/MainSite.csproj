@@ -197,6 +197,7 @@
     <Compile Include="Helpers\DriverLocationHelper.cs" />
     <Compile Include="Helpers\IDriverLocationHelper.cs" />
     <Compile Include="Helpers\OperatorMessagesHelper.cs" />
+    <Compile Include="Hubs\DistrictsHub.cs" />
     <Compile Include="Hubs\DriverHub.cs" />
     <Compile Include="Hubs\OrderHub.cs" />
     <Compile Include="Hubs\OperatorHub.cs" />

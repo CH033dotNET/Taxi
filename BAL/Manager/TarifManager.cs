@@ -80,11 +80,11 @@ namespace BAL.Manager
 			if (a != null)
 			{
 				var cordinates = uOW.CoordinatesHistoryRepo.All.Where(x => x.TarifId == tarifId);
-				foreach(var item in cordinates)
+				foreach (var item in cordinates)
 					uOW.CoordinatesHistoryRepo.Delete(item);
-				
+
 				uOW.TarifRepo.Delete(a);
-				
+
 				uOW.Save();
 			}
 

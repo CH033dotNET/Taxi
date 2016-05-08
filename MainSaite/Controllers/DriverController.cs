@@ -36,7 +36,7 @@ namespace MainSaite.Controllers
 			this.coordinatesManager = coordinatesManager;
 			this.userManager = userManager;
 			this.driverLocationHelper = driverLocationHelper;
-			this.coordinatesManager.addedCoords += coordinates => DriverLocationHelper.addedLocation(coordinates);
+			//this.coordinatesManager.addedCoords += coordinates => DriverLocationHelper.addedLocation(coordinates);
 			this.orderManager = orderManager;
 			this.tarifManager = tarifManager;
 			this.workerStatusManager = workerStatusManager;
@@ -246,10 +246,10 @@ namespace MainSaite.Controllers
 
 					DriverLocationHelper.addDriver(driverLocation);
 
-					CoordinatesDTO coordinates;
-					coordinates = coordinatesManager.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
-					coordinates.TarifId = 1;
-					coordinatesManager.AddCoordinates(coordinates);
+					//CoordinatesDTO coordinates;
+					//coordinates = CoordinateMapper.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
+					//coordinates.TarifId = 1;
+					//coordinatesManager.AddCoordinates(coordinates);
 				}
 
 				return Json(true);
@@ -271,10 +271,10 @@ namespace MainSaite.Controllers
 
 					DriverLocationHelper.removeDriver(Id);
 
-					CoordinatesDTO coordinates;
-					coordinates = CoordinateMapper.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
-					coordinates.TarifId = 1;
-					coordinatesManager.AddCoordinates(coordinates);
+					//CoordinatesDTO coordinates;
+					//coordinates = CoordinateMapper.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
+					//coordinates.TarifId = 1;
+					//coordinatesManager.AddCoordinates(coordinates);
 				}
 
 				if (locationManager.GetByUserId(Id) != null)

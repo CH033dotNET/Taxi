@@ -92,14 +92,14 @@ function AddDriverToTheTable(latitude, longitude, updateTime, startedTime, id, n
 	);
 }
 
-function locationUpdate(Lat, Lng, Time, startTime, ID, name) {
+function locationUpdate(Lat, Lng, Time, ID, name) {
 
 	if (markers['DriverN' + ID] !== undefined) {
 		markers['DriverN' + ID].setPosition(new google.maps.LatLng(Lat, Lng));
 		$('#DriverN' + ID + 'up').html(new Date(Time).toLocaleString());
 	}
 	else {
-		AddDriverToTheTable(Lat, Lng, Time, startTime, ID, name);
+		AddDriverToTheTable(Lat, Lng, Time, moment().format('YYYY/MM/DD HH:mm:ss'), ID, name);
 	}
 }
 

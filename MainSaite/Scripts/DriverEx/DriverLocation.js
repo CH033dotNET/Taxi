@@ -26,7 +26,7 @@
 		if (currentPosition.Latitude != position.coords.latitude || currentPosition.Longitude != position.coords.longitude) {
 
 
-			driverLocationHub.server.updateDriverPosition(driverId, position.coords.latitude, position.coords.longitude, timeNow, driverName);
+			driverLocationHub.server.updateDriverPosition(driverId, position.coords.latitude, position.coords.longitude, driverName);
 
 			currentPosition.Latitude = position.coords.latitude;
 			currentPosition.Longitude = position.coords.longitude;

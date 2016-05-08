@@ -12,7 +12,7 @@ namespace DAL
 	public class MainContext : DbContext
 	{
 		public MainContext()
-			: base("Taxi")
+			: base("dbTaxi")
 		{
 			this.Configuration.LazyLoadingEnabled = true;
 

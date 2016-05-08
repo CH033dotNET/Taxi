@@ -84,8 +84,11 @@
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.UserMenu, "UsersMenu", "Settings")</li>
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.Tarifes, "Index", "Tarif")</li>
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.Order, "Index", "OrderEx")</li>
-						}
-							if (ViewBag.UserRoleId == (int)AvailableRoles.ReportViewer){
+	<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.SetVIPStatusPage, "SetVIPStatus", "Settings")</li>
+	<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.WorkShift, "ViewWorkShifts", "Administration")</li>
+							}
+							if (ViewBag.UserRoleId == (int)AvailableRoles.ReportViewer)
+							{
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.Statistics, "Index", "ReportCharts")</li>
 						}
 							if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.FreeDriver){

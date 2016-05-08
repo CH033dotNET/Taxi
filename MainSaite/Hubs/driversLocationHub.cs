@@ -14,9 +14,9 @@ namespace MainSaite.Hubs
 		static ICollection<SignalRUser> driverLocationHubUsers = new List<SignalRUser>();
 
 		[HubMethodName("updateDriverPosition")]
-		public void updateDriverPosition(int id, double lat, double lng, DateTime startTime, string name)
+		public void updateDriverPosition(int id, double lat, double lng, string name)
 		{
-			Clients.Group("Operator").locationUpdate(lat, lng, DateTime.Now, startTime, id, name);
+			Clients.Group("Operator").locationUpdate(lat, lng, DateTime.Now, id, name);
 		}
 
 		[HubMethodName("connectUser")]

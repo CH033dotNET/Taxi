@@ -45,8 +45,11 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public void SetCoordinate(CoordinatesExDTO coordinate)
 		{
-			coordinate.DriverId = (Session["User"] as UserDTO).Id;
-			driverManager.AddDriverLocation(coordinate);
+			if (Session["User"] != null)
+			{
+				coordinate.DriverId = (Session["User"] as UserDTO).Id;
+				driverManager.AddDriverLocation(coordinate);
+			}
 		}
 	}
 }

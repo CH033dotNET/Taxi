@@ -24,6 +24,8 @@
 
 </head>
 <body style="padding:0">
+	<input id="currentUserId" type="hidden" value="@User.Id" />
+	<input id="currentUserName" type="hidden" value="@User.UserName" />
 	<input type="hidden" id="hlat" value="48.309390" />
 	<input type="hidden" id="hlong" value="25.943524" />
 	<div id="driver-bootstrap-menu" class="navbar navbar-default navbar-static-top" role="navigation">
@@ -46,6 +48,9 @@
 						<a data-toggle="tab" href="#Home">@Resources.Resource.Home</a>
 					</li>
 					<li>
+						<a data-toggle="tab" href="#District">@Resources.Resource.WorkShift</a>
+					</li>
+					<li>
 						<a data-toggle="tab" href="#NewOrders">@Resources.Resource.NewOrders</a>
 					</li>
 					<li>
@@ -59,6 +64,11 @@
 	</div>
 	<div>
 		<div id="driver-content" class="tab-content">
+			<div id="District" class="tab-pane fade">
+					@{
+						Html.RenderAction("DistrictPart", "Driver");
+					}
+			</div>
 			<div id="NewOrders" class="tab-pane fade">
 				@{
 					Html.RenderAction("NewOrders", "DriverEx");
@@ -74,6 +84,7 @@
 
 	<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
 	<script src="~/signalr/hubs"></script>
-
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+	@Scripts.Render("~/Scripts/DriverEx/DriverLocation.js")
 </body>
 </html>
