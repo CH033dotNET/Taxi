@@ -13,41 +13,28 @@ namespace MainSaite.Hubs
 	{
 		static ICollection<SignalRUser> driverLocationHubUsers = new List<SignalRUser>();
 
-
-		//[HubMethodName("sendToOperators")]
-		//public void SendToOperators(string message, string userName)
-		//{
-		//	Clients.Group("Operator").showMessage(message, userName);
-		//}
-
-
-		////Assign order to driver
-		//[HubMethodName("assignedOrder")]
-		//public void AssignedOrder(OrderDTO order)
-		//{
-		//	Clients.Group("Operator").assignedDrOrder(order);
-		//}
+		[HubMethodName("updateDriverPosition")]
+		public void updateDriverPosition(int id, double lat, double lng, string name)
+		{
+			Clients.Group("Operator").locationUpdate(lat, lng, DateTime.Now, id, name);
+		}
 
 		[HubMethodName("connectUser")]
-		public void ConnectUser(int roleId, int userId)
+		public void ConnectUser(string role, int id)
 		{
 			string connectionId = Context.ConnectionId;
-			int RoleId = roleId;
-			var currentUser = new SignalRUser() { ConnectionId = connectionId, RoleId = roleId, UserId = userId };
-			if (!driverLocationHubUsers.Any(x => x.ConnectionId == connectionId))
+
+			var currentUser = new SignalRUser() { ConnectionId = connectionId, UserId = id };
+			if (!driverLocationHubUsers.Any(x => x.UserId == id))
 			{
-				if (roleId == 1)
-				{
-					currentUser.Group = "Driver";
+				if (role == "Driver"){
 					Groups.Add(Context.ConnectionId, "Driver");
 				}
-				if (roleId == 2)
-				{
-					currentUser.Group = "Operator";
+				if (role == "Operator"){
 					Groups.Add(Context.ConnectionId, "Operator");
 				}
 				driverLocationHubUsers.Add(currentUser);
-			}
+		    }
 		}
 
 		public override System.Threading.Tasks.Task OnDisconnected(bool stopCalled)
@@ -55,9 +42,10 @@ namespace MainSaite.Hubs
 			var item = driverLocationHubUsers.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
 			if (item != null)
 			{
-				Clients.All.driverFinish();
+				Clients.Group("Operator").driverFinish(item.UserId);
 				driverLocationHubUsers.Remove(item);
 			}
+				//driverLocationHubUsers.Remove(item);
 			return base.OnDisconnected(stopCalled);
 		}
 	}

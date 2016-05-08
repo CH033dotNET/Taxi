@@ -1916,7 +1916,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New orders.
+        ///   Looks up a localized string similar to New Orders.
         /// </summary>
         public static string NewOrders {
             get {
@@ -2092,6 +2092,15 @@ namespace Resources {
         public static string OrderInProgress {
             get {
                 return ResourceManager.GetString("OrderInProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to History.
+        /// </summary>
+        public static string OrdersHistory {
+            get {
+                return ResourceManager.GetString("OrdersHistory", resourceCulture);
             }
         }
         

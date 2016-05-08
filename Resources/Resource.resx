@@ -752,7 +752,7 @@
     <value>My account</value>
   </data>
   <data name="NewOrders" xml:space="preserve">
-    <value>New orders</value>
+    <value>New Orders</value>
   </data>
   <data name="Order" xml:space="preserve">
     <value>Order</value>
@@ -1056,6 +1056,9 @@
   </data>
   <data name="SetYourPosition" xml:space="preserve">
     <value>Please, point out your position on the map</value>
+  </data>
+  <data name="OrdersHistory" xml:space="preserve">
+    <value>History</value>
   </data>
   <data name="AddDistrictGroup" xml:space="preserve">
     <value>Add group</value>

@@ -30,6 +30,7 @@
 					success: function (result) {
 						if (result) {
 							$(row).fadeOut();
+							orderHub.server.OrderApproved(id);
 						}
 						else {
 							alert("something wrong");

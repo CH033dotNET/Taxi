@@ -20,12 +20,13 @@ namespace MainSaite.Controllers
         private IUserManager userManager;
 
 
-        public OrderController(IOrderManager orderManager, IPersonManager personManager, ICoordinatesManager coordinatesManager, ILocationManager locationManager)
+        public OrderController(IOrderManager orderManager, IPersonManager personManager, ICoordinatesManager coordinatesManager, ILocationManager locationManager, IUserManager userManager)
 		{
 			this.orderManager = orderManager;
 			this.personManager = personManager;
 			this.coordinatesManager = coordinatesManager;
 			this.locationManager = locationManager;
+			this.userManager = userManager;
 		}
 
 		public ActionResult Index()

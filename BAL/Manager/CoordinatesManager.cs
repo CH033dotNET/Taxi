@@ -25,11 +25,14 @@ namespace BAL.Manager
 		public CoordinatesDTO AddCoordinates(CoordinatesDTO coordinates)
 		{
 			var coord = Mapper.Map<Coordinates>(coordinates);
+			if (addedCoords != null) addedCoords(coordinates);
+
+
+			//coord.Tarif = uOW.TariffExRepo.All.Where(t => t.Id == coord.TarifId).First();
+			coord.User = uOW.UserRepo.All.Where(u => u.Id == coord.UserId).First();
 			uOW.CoordinatesHistoryRepo.Insert(coord);
 			uOW.Save();
-			var coords = Mapper.Map<CoordinatesDTO>(coord);
-			if (addedCoords != null) addedCoords(coords);
-			return coords;
+			return coordinates;
 		}
 
 		public List<CoordinatesDTO> AddRangeCoordinates(List<CoordinatesDTO> coordinates, int orderId)
@@ -72,47 +75,10 @@ namespace BAL.Manager
 				uOW.CoordinatesHistoryRepo.Delete(coordinates.Id);
 			}
 		}
-		/// <summary>
-		/// Initialize CoordinatesDTO from string parameters
-		/// </summary>
-		/// <param name="Longitude"></param>
-		/// <param name="Latitude"></param>
-		/// <param name="Accuracy"></param>
-		/// <param name="UserId"></param>
-		/// <returns>CoordinatesDTO</returns>
+
 		public CoordinatesDTO InitializeCoordinates(string Longitude, string Latitude, string Accuracy, int UserId)
 		{
-			CoordinatesDTO coordinates = new CoordinatesDTO();
-			try
-			{
-				coordinates.Latitude = double.Parse(Latitude);
-				coordinates.Longitude = double.Parse(Longitude);
-				coordinates.Accuracy = double.Parse(Accuracy);
-			}
-			catch (FormatException)
-			{
-				try
-				{
-					Latitude = Latitude.Replace('.', ',');
-					Longitude = Longitude.Replace('.', ',');
-					Accuracy = Accuracy.Replace('.', ',');
-					coordinates.Latitude = double.Parse(Latitude);
-					coordinates.Longitude = double.Parse(Longitude);
-					coordinates.Accuracy = double.Parse(Accuracy);
-				}
-				catch (FormatException)
-				{
-					Latitude = Latitude.Replace(',', '.');
-					Longitude = Longitude.Replace(',', '.');
-					Accuracy = Accuracy.Replace(',', '.');
-					coordinates.Latitude = double.Parse(Latitude);
-					coordinates.Longitude = double.Parse(Longitude);
-					coordinates.Accuracy = double.Parse(Accuracy);
-				}
-			}
-			coordinates.UserId = UserId;
-			coordinates.AddedTime = DateTime.Now;
-			return coordinates;
+			return null;
 		}
 
 		public IEnumerable<Coordinates> GetCoordinatesByUserId(int userId)

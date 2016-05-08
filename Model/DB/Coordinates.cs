@@ -29,7 +29,13 @@ namespace Model.DB
 		public virtual User User { get; set; }
 
 		public int TarifId { get; set; }
+
 		[ForeignKey("TarifId")]
-		public virtual Tarif Tarif { get; set; }
+		public Tarif Tarif { get; set; }
+
+		//public int TarifId { get; set; }
+
+		//[ForeignKey("TarifId")]
+		//public virtual TariffEx TariffEx { get; set; }
 	}
 }

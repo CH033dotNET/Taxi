@@ -22,21 +22,34 @@ namespace MainSaite.Controllers
 
 		public ActionResult Index()
 		{
-			return View(orderManager.GetApprovedOrders());
+			return View();
+		}
+
+		public ActionResult NewOrders() {
+			return PartialView(orderManager.GetApprovedOrders());
+		}
+
+		public ActionResult OrdersHistory() {
+			var driver = (Session["User"] as UserDTO);
+			return PartialView(orderManager.GetOrdersByDriver(driver));
 		}
 
 		[HttpPost]
 		public JsonResult TakeOrder(int id, int WaitingTime)
 		{
 			orderManager.SetWaitingTime(id, WaitingTime);
-			return Json(new { success = orderManager.TakeOrder(id) });
+			var DriverId = (Session["User"] as UserDTO).Id;
+			return Json(new { success = orderManager.TakeOrder(id, DriverId) });
 		}
 
 		[HttpPost]
 		public void SetCoordinate(CoordinatesExDTO coordinate)
 		{
-			coordinate.DriverId = (Session["User"] as UserDTO).Id;
-			driverManager.AddDriverLocation(coordinate);
+			if (Session["User"] != null)
+			{
+				coordinate.DriverId = (Session["User"] as UserDTO).Id;
+				driverManager.AddDriverLocation(coordinate);
+			}
 		}
 	}
 }
