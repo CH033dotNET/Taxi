@@ -44,6 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DB\AdditionallyRequirements.cs" />
+    <Compile Include="DB\AddressFrom.cs" />
+    <Compile Include="DB\AddressTo.cs" />
     <Compile Include="DB\Car.cs" />
     <Compile Include="DB\Coordinates.cs" />
     <Compile Include="DB\CoordinatesEx.cs" />
@@ -54,6 +57,9 @@
     <Compile Include="DB\OrderEx.cs" />
     <Compile Include="DB\Person.cs" />
     <Compile Include="DB\TariffEx.cs" />
+    <Compile Include="DTO\AdditionallyRequirementsDTO.cs" />
+    <Compile Include="DTO\AddressFromDTO.cs" />
+    <Compile Include="DTO\AddressToDTO.cs" />
     <Compile Include="DTO\CoordinatesExDTO.cs" />
     <Compile Include="DTO\RegistrationModelDTO.cs" />
     <Compile Include="DB\SupportMessage.cs" />

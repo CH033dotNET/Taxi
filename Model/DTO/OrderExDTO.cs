@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Common.Enum;
+using Model.DB;
 
 namespace Model.DTO
 {
@@ -22,5 +20,21 @@ namespace Model.DTO
 		public int WaitingTime { get; set; }
 
         public DateTime OrderTime { get; set; }
-    }
+
+		public AddressFrom AddressFrom { get; set; }
+
+		public ICollection<AddressTo> AddressesTo { get; set; }
+
+		public AdditionallyRequirements AdditionallyRequirements { get; set; }
+
+		public bool Route { get; set; }
+
+		public int? UserId { get; set; }
+
+		public string Name { get; set; }
+
+		public string Phone { get; set; }
+
+		public int Perquisite { get; set; }
+	}
 }

@@ -106,15 +106,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add group.
-        /// </summary>
-        public static string AddDistrictGroup {
-            get {
-                return ResourceManager.GetString("AddDistrictGroup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Additional requirements.
         /// </summary>
         public static string Additional {
@@ -147,15 +138,6 @@ namespace Resources {
         public static string addNewDistrict {
             get {
                 return ResourceManager.GetString("addNewDistrict", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add new group.
-        /// </summary>
-        public static string AddNewDistrictGroup {
-            get {
-                return ResourceManager.GetString("AddNewDistrictGroup", resourceCulture);
             }
         }
         
@@ -295,38 +277,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Econom class.
-        /// </summary>
-        public static string CarClassEconom {
-            get {
-                return ResourceManager.GetString("CarClassEconom", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Invalid Class.
         /// </summary>
         public static string CarClassError {
             get {
                 return ResourceManager.GetString("CarClassError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to General class.
-        /// </summary>
-        public static string CarClassGeneral {
-            get {
-                return ResourceManager.GetString("CarClassGeneral", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Premium class.
-        /// </summary>
-        public static string CarClassPremium {
-            get {
-                return ResourceManager.GetString("CarClassPremium", resourceCulture);
             }
         }
         
@@ -1137,15 +1092,6 @@ namespace Resources {
         public static string DistrictEditor {
             get {
                 return ResourceManager.GetString("DistrictEditor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Group name.
-        /// </summary>
-        public static string DistrictGroupName {
-            get {
-                return ResourceManager.GetString("DistrictGroupName", resourceCulture);
             }
         }
         
@@ -2096,15 +2042,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to History.
-        /// </summary>
-        public static string OrdersHistory {
-            get {
-                return ResourceManager.GetString("OrdersHistory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Orders per district.
         /// </summary>
         public static string OrdersPerDistrictStat {
@@ -2479,15 +2416,6 @@ namespace Resources {
         public static string ShortUserName {
             get {
                 return ResourceManager.GetString("ShortUserName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show district(group).
-        /// </summary>
-        public static string ShowDistricts {
-            get {
-                return ResourceManager.GetString("ShowDistricts", resourceCulture);
             }
         }
         
