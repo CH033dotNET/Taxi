@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model.DB
 {
@@ -25,5 +22,21 @@ namespace Model.DB
 
         //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh-mm-ss}", ApplyFormatInEditMode = true)]
         public DateTime OrderTime { get; set; }
+
+		public AddressFrom AddressFrom { get; set; }
+
+		public List<AddressTo> AddressesTo { get; set; }
+
+		public AdditionallyRequirements AdditionallyRequirements { get; set; }
+
+		public bool Route { get; set; }
+
+		public int? UserId { get; set; }
+
+		public string Name { get; set; }
+
+		public string Phone { get; set; }
+
+		public int Perquisite { get; set; }
 	}
 }

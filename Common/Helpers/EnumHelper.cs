@@ -86,14 +86,17 @@ namespace Common.Helpers
 				string className = "";
 				switch ((CarClassEnum)classValue)
 				{
-					case CarClassEnum.Econom:
-						className = Resources.Resource.CarClassEconom;
+					case CarClassEnum.Normal:
+						className = Resources.Resource.Normal;
 						break;
-					case CarClassEnum.General:
-						className = Resources.Resource.CarClassGeneral;
+					case CarClassEnum.Universal:
+						className = Resources.Resource.Universal;
 						break;
-					case CarClassEnum.Premium:
-						className = Resources.Resource.CarClassPremium;
+					case CarClassEnum.Minivan:
+						className = Resources.Resource.Minivan;
+						break;
+					case CarClassEnum.Lux:
+						className = Resources.Resource.Lux;
 						break;
 				}
 				result.Add((int)classValue, className);
@@ -155,12 +158,14 @@ namespace Common.Helpers
 		{
 			switch (carClass)
 			{
-				case CarClassEnum.Econom:
-					return Resources.Resource.CarClassEconom;
-				case CarClassEnum.General:
-					return Resources.Resource.CarClassGeneral;
-				case CarClassEnum.Premium:
-					return Resources.Resource.CarClassPremium;
+				case CarClassEnum.Normal:
+					return Resources.Resource.Normal;
+				case CarClassEnum.Universal:
+					return Resources.Resource.Universal;
+				case CarClassEnum.Minivan:
+					return Resources.Resource.Minivan;
+				case CarClassEnum.Lux:
+					return Resources.Resource.Lux;
 				default:
 					return "";
 			}

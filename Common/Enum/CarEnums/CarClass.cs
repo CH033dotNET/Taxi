@@ -9,8 +9,9 @@ namespace Common.Enum.CarEnums
 {
 	public enum CarClassEnum
 	{
-		Premium = 1,
-		General = 2,
-		Econom = 3
+		Normal = 1,
+		Universal = 2,
+		Minivan = 3,
+		Lux = 4
 	}
 }

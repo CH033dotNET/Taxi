@@ -80,21 +80,18 @@ $(function () {
 		}
 	}
 
-	function getAddressTo() {
-		var address = [];
+	function getAddressesTo() {
+		var addresses = [];
 		$('.address-to-group').each(function (index) {
-			address.push({
+			addresses.push({
 				Address: $('#address-to-' + (index + 1)).val(),
 				Building: $('#building-to-' + (index + 1)).val()
 			});
 		});
-		return {
-			Address: address,
-			Route: $('#route').prop('checked')
-		}
+		return addresses;
 	}
 
-	function getAdditionally() {
+	function getAdditionallyRequirements() {
 		return {
 			Urgently: $('#urgently').prop('checked'),
 			Time: $('#time').val(),
@@ -107,7 +104,7 @@ $(function () {
 			Bag: $('#bag').prop('checked'),
 			Conditioner: $('#conditioner').prop('checked'),
 			English: $('#english').prop('checked'),
-			noSmoking: $('#nosmoking').prop('checked'),
+			NoSmoking: $('#nosmoking').prop('checked'),
 			Smoking: $('#smoking').prop('checked'),
 			Check: $('#check').prop('checked')
 		}
@@ -125,24 +122,28 @@ $(function () {
 		}
 		var order = {
 			AddressFrom: getAddressFrom(),
-			AddressTo: getAddressTo(),
-			Additionally: getAdditionally(),
+			AddressesTo: getAddressesTo(),
+			AdditionallyRequirements: getAdditionallyRequirements(),
+			Route: $('#route').prop('checked'),
+			UserId: $('#userId').val(),
 			Name: $('#name').val(),
 			Phone: $('#phone').val(),
-			Perquisite: $('#perquisite').val(),
-			Remember: $('#remember').prop('checked')
+			Perquisite: $('#perquisite').val()
 		}
 		var orderHub = $.connection.OrderHub;
 		$.connection.hub.start().done(function () {
 			orderHub.server.connect("Client");
-			$.post(
-				'/Client/AddOrder',
-				order,
-				function (data) {
+			$.ajax({
+				url: '/Client/AddOrder',
+				contentType: "application/json; charset=utf-8",
+				type: "post",
+				dataType: "json",
+				data: JSON.stringify(order),
+				success: function (data) {
 					orderHub.server.addOrder(data);
 					alert("You order id = " + data.Id);
 				}
-			);
+			});
 		});
 	});
 	

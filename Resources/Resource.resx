@@ -168,15 +168,6 @@
   <data name="CarClass" xml:space="preserve">
     <value>Car Class</value>
   </data>
-  <data name="CarClassEconom" xml:space="preserve">
-    <value>Econom class</value>
-  </data>
-  <data name="CarClassGeneral" xml:space="preserve">
-    <value>General class</value>
-  </data>
-  <data name="CarClassPremium" xml:space="preserve">
-    <value>Premium class</value>
-  </data>
   <data name="CarManufactureDate" xml:space="preserve">
     <value>Car manufacture Date</value>
   </data>

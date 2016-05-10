@@ -168,15 +168,6 @@
   <data name="CarClass" xml:space="preserve">
     <value>Класс машини</value>
   </data>
-  <data name="CarClassEconom" xml:space="preserve">
-    <value>Економ класс</value>
-  </data>
-  <data name="CarClassGeneral" xml:space="preserve">
-    <value>Звичайний класс</value>
-  </data>
-  <data name="CarClassPremium" xml:space="preserve">
-    <value>Преміум класс</value>
-  </data>
   <data name="CarManufactureDate" xml:space="preserve">
     <value>Дата виготовлення машини</value>
   </data>

@@ -286,38 +286,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Econom class.
-        /// </summary>
-        public static string CarClassEconom {
-            get {
-                return ResourceManager.GetString("CarClassEconom", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Invalid Class.
         /// </summary>
         public static string CarClassError {
             get {
                 return ResourceManager.GetString("CarClassError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to General class.
-        /// </summary>
-        public static string CarClassGeneral {
-            get {
-                return ResourceManager.GetString("CarClassGeneral", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Premium class.
-        /// </summary>
-        public static string CarClassPremium {
-            get {
-                return ResourceManager.GetString("CarClassPremium", resourceCulture);
             }
         }
         
@@ -2084,6 +2057,9 @@ namespace Resources {
             get {
                 return ResourceManager.GetString("OrderInProgress", resourceCulture);
             }
+        }
+        
+        /// <summary>
         }
         
         /// <summary>
