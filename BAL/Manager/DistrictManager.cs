@@ -295,16 +295,19 @@ namespace BAL.Manager
 		/// <param name="Id">Input parameter that represents id property value.</param>
 		/// <param name="Name">Input parameter that represents name property value.</param>
 		/// <returns></returns>
-		public DistrictDTO SetDistrictDeleted(int Id, string Name)
+		public bool SetDistrictDeleted(int id)
 		{
-			if (Id <= 0 || Name == "") { return null; }
-			var districtToDelete = uOW.DistrictRepo.All.Where(s => s.Id == Id & s.Name == Name & s.Deleted == false).Include(c => c.Coordinates).FirstOrDefault();
-			if (districtToDelete == null)
+			var districtToDelete = GetAllChildren(id);
+			if (districtToDelete.Count == 0)
 			{
-				return null;
+				return false;
 			}
-			var deletedDistrict = SetStateDeleted(districtToDelete);
-			return Mapper.Map<DistrictDTO>(deletedDistrict);
+			foreach(var district in districtToDelete)
+			{
+				SetStateDeleted(district);
+			}
+
+			return true;
 		}
 		/// <summary>
 		/// Private manager method that incapsulates all logic we need to set specific district entry to deleted state.
@@ -345,6 +348,26 @@ namespace BAL.Manager
 		public IQueryable<DistrictDTO> GetIQueryableDistricts()
 		{
 			return Mapper.Map<IQueryable<DistrictDTO>>(uOW.DistrictRepo.All);
+		}
+
+		private List<District> GetAllChildren(int id)
+		{
+			var children = new List<District>();
+			var current = uOW.DistrictRepo.GetByID(id);
+			if (current.IsFolder)
+			{
+				var currentChildren = uOW.DistrictRepo.All.Where(d => d.ParentId == id).ToList();
+				foreach(var child in currentChildren)
+				{
+					children.AddRange(GetAllChildren(child.Id));
+				}
+				children.Add(current);
+			}
+			else
+			{
+				children.Add(current);
+			}
+			return children;
 		}
 	}
 }

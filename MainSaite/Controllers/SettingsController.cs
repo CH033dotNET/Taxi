@@ -185,11 +185,10 @@ namespace MainSaite.Controllers
 		/// </summary>
 		/// <param name="Id">represents an id  of an entry which need to be deleted</param>
 		/// <returns></returns>
-		public JsonResult DeleteDistrict(District district)
+		public JsonResult DeleteDistrict(int id)
 		{
-			var checkObject = districtManager.SetDistrictDeleted(district.Id, district.Name);
-			if (checkObject == null) { return Json(new { success = false }, JsonRequestBehavior.AllowGet); }
-			return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+			var result = districtManager.SetDistrictDeleted(id);
+			return Json(new { success = result }, JsonRequestBehavior.AllowGet);
 		}
 		/// <summary>
 		/// Ajax call from the view sends a data to controller, 

@@ -1,10 +1,5 @@
 ﻿$(document).ready(function () {
 
-	//handlebars initialization
-	Handlebars.registerHelper("checkParent", function () {
-		
-	});
-
 	var districtTemplate = Handlebars.compile($("#dsEditRow").html());
 	var deletedDistrictsTemplate = Handlebars.compile($("#dsDeletedRow").html());
 
@@ -21,11 +16,11 @@
 	$('#content').nestedSortable({
 		handle: '.districtItem',
 		items: 'li',
-		doNotClear:true,
+		doNotClear: true,
 		placeholder: "ui-state-highlight",
 		stop: function (event, ui) {
 			var parent = ui.item.parent();
-			if (!parent.prev().hasClass('folder') && !$(parent).id=='content') {
+			if (!parent.prev().hasClass('folder') && !$(parent).id == 'content') {
 				$('#content').nestedSortable('cancel');
 			}
 			else {
@@ -46,7 +41,7 @@
 	$(document).on('click', '.folder', function (e) {
 		$(this).siblings('ol').fadeToggle('fast');
 		var icon = $(this).find('.glyphicon').first();
-		if(icon.hasClass('glyphicon-folder-close')){
+		if (icon.hasClass('glyphicon-folder-close')) {
 			icon.switchClass('glyphicon-folder-close', 'glyphicon-folder-open', 1000);
 		}
 		else {
@@ -74,7 +69,7 @@
 	});
 
 	$(document).on('click', '#delete-button', function (e) {
-		deleteItem(this);
+		deleteDistrict(this);
 		e.stopPropagation();
 	});
 
@@ -260,33 +255,34 @@
 	}
 
 	//! function for deleting selected district.
-	function deleteItem(e) {
+	function deleteDistrict(e) {
 		var itemId = $(e).attr('data-items-id');
-		var itemName = $(e).attr('data-items-name');
-		$('.item-name').html(itemName);
+		var items = getAllChildren(itemId);
 		$('#confirm-delete').modal('show');
-		var del = getAllChildren(itemId);
-
 		$('#confirm-delete .btn-ok').off("click.deleteADistrict").on("click.deleteADistrict", function () {
-			del.forEach(function (item) {
-				var request = $.ajax({
-					url: "./DeleteDistrict/", // <----------------------------------------------------!!
-					data: { Id: itemId, Name: itemName },
-					method: "POST",
-				}).done(function (result) {
-					if (result.success && result != null) {
-						item.Marker.setMap(null);
-						item.Polygon.setMap(null);
+
+			var request = $.ajax({
+				url: "./DeleteDistrict/", // <----------------------------------------------------!!
+				data: { Id: itemId },
+				method: "POST",
+			}).done(function (result) {
+				if (result.success) {
+					items.forEach(function (item) {
+						if (item.Polygon) {
+							item.Marker.setMap(null);
+							item.Polygon.setMap(null);
+						}
 						item.ParentId = null;
 						deleteDistrictFromItems(data, item);
-						renderData();
-					}
-					else { getDistrictErrorMessage(); }
-				});
-				$('#confirm-delete').modal('hide');
-				$('#confirm-delete .btn-ok').off("click.deleteADistrict");
-				return false;
+					});
+					renderData();
+				}
+				else { getDistrictErrorMessage(); }
+
+
 			});
+			$('#confirm-delete').modal('hide');
+			$('#confirm-delete .btn-ok').off("click.deleteADistrict");
 		});
 	};
 
@@ -519,7 +515,7 @@
 			}
 		}).done(function (result) {
 			if (result.success) {
-				
+
 			}
 			else {
 				getDistrictErrorMessage();
@@ -527,19 +523,25 @@
 		})
 	}
 
+	//return all subgroup and childs for group with current id
 	function getAllChildren(id) {
 		var district = getDistrictById(id);
 		var districts = [];
-		data.forEach(function (item) {
-			if (item.ParentId == district.Id) {
-				districts.push(item);
-			}
-		});
-		districts.forEach(function (item) {
-			var test = getAllChildren(item.Id);
-			districts = districts.concat(test);
-		});
-		//districts.push(district);
+		var directChilds = [];
+		if (district.IsFolder) {
+			data.forEach(function (item) {
+				if (item.ParentId == district.Id) {
+					directChilds.push(item);
+				}
+			});
+			directChilds.forEach(function (item) {
+				district.concat(getAllChildren(item.Id));
+			});
+			districts.push(district);
+		}
+		else {
+			districts.push(district);
+		}
 		return districts;
 	}
 

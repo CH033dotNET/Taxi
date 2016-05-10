@@ -151,15 +151,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add new group.
-        /// </summary>
-        public static string AddNewDistrictGroup {
-            get {
-                return ResourceManager.GetString("AddNewDistrictGroup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Add new user.
         /// </summary>
         public static string AddNewUser {
@@ -2096,15 +2087,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to History.
-        /// </summary>
-        public static string OrdersHistory {
-            get {
-                return ResourceManager.GetString("OrdersHistory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Orders per district.
         /// </summary>
         public static string OrdersPerDistrictStat {
@@ -2483,7 +2465,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show district(group).
+        ///   Looks up a localized string similar to Show districts.
         /// </summary>
         public static string ShowDistricts {
             get {

@@ -532,9 +532,6 @@
   <data name="deleteConfirm" xml:space="preserve">
     <value>Delete Confirmation</value>
   </data>
-  <data name="DistrictBasket" xml:space="preserve">
-    <value>Basket</value>
-  </data>
   <data name="RestoreDistrict" xml:space="preserve">
     <value>Restore</value>
   </data>
@@ -1056,5 +1053,17 @@
   </data>
   <data name="SetYourPosition" xml:space="preserve">
     <value>Please, point out your position on the map</value>
+  </data>
+  <data name="AddDistrictGroup" xml:space="preserve">
+    <value>Add group</value>
+  </data>
+  <data name="DistrictBasket" xml:space="preserve">
+    <value>Basket</value>
+  </data>
+  <data name="DistrictGroupName" xml:space="preserve">
+    <value>Group name</value>
+  </data>
+  <data name="ShowDistricts" xml:space="preserve">
+    <value>Show districts</value>
   </data>
 </root>

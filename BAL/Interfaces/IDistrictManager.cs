@@ -16,7 +16,7 @@ namespace BAL.Manager
 		IEnumerable<DistrictDTO> getDistricts();
 		DistrictDTO getOneDistrictByItsID(int id);
 		DistrictDTO RestoreDistrict(int Id);
-		DistrictDTO SetDistrictDeleted(int Id, string Name);
+		bool SetDistrictDeleted(int id);
 		IEnumerable<DistrictDTO> GetSortedDistricts(string parameter);
 
 		IEnumerable<DistrictDTO> GetSortedDeletedDistrictsBy(string parameter);

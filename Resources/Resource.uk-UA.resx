@@ -1065,9 +1065,6 @@
   <data name="AddDistrictGroup" xml:space="preserve">
     <value>Додати групу</value>
   </data>
-  <data name="AddNewDistrictGroup" xml:space="preserve">
-    <value>Додати нову групу</value>
-  </data>
   <data name="DistrictGroupName" xml:space="preserve">
     <value>Назва групи</value>
   </data>
