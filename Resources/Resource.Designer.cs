@@ -2060,6 +2060,12 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Orders history.
+        /// </summary>
+        public static string OrdersHistory {
+            get {
+                return ResourceManager.GetString("OrdersHistory", resourceCulture);
+            }
         }
         
         /// <summary>

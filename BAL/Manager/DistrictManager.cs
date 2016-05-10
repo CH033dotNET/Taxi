@@ -369,5 +369,14 @@ namespace BAL.Manager
 			}
 			return children;
 		}
+
+		public IEnumerable<DistrictDTO> GetFilesDistricts()
+		{
+			return Mapper.Map<List<DistrictDTO>>(uOW.DistrictRepo
+																.All.
+																Where(d => d.Deleted == false && d.IsFolder == false).
+																Include(d => d.Coordinates).
+																ToList());
+;		}
 	}
 }

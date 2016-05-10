@@ -1,4 +1,5 @@
 ﻿using BAL.Interfaces;
+using BAL.Manager;
 using Microsoft.AspNet.SignalR;
 using Model.DTO;
 using System;
@@ -13,11 +14,13 @@ namespace MainSaite.Controllers
 	{
 		private IOrderManagerEx orderManager;
 		private IDriverExManager driverManager;
+		private IDistrictManager districtManager;
 
-		public DriverExController(IOrderManagerEx orderManager, IDriverExManager driverManager)
+		public DriverExController(IOrderManagerEx orderManager, IDriverExManager driverManager, IDistrictManager districtManager)
 		{
 			this.orderManager = orderManager;
 			this.driverManager = driverManager;
+			this.districtManager = districtManager;
 		}
 
 		public ActionResult Index()
@@ -27,6 +30,11 @@ namespace MainSaite.Controllers
 
 		public ActionResult NewOrders() {
 			return PartialView(orderManager.GetApprovedOrders());
+		}
+
+		public ActionResult Districts()
+		{
+			return PartialView(districtManager.GetFilesDistricts());
 		}
 
 		public ActionResult OrdersHistory() {

@@ -14,6 +14,7 @@ namespace BAL.Manager
 		DistrictDTO getByName(string name);
 		IEnumerable<DistrictDTO> getDeletedDistricts();
 		IEnumerable<DistrictDTO> getDistricts();
+		IEnumerable<DistrictDTO> GetFilesDistricts();
 		DistrictDTO getOneDistrictByItsID(int id);
 		DistrictDTO RestoreDistrict(int Id);
 		bool SetDistrictDeleted(int id);

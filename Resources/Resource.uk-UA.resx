@@ -1062,4 +1062,7 @@
   <data name="ShowDistricts" xml:space="preserve">
     <value>Показати район(групу)</value>
   </data>
+  <data name="OrdersHistory" xml:space="preserve">
+    <value>Історія замовлень</value>
+  </data>
 </root>
