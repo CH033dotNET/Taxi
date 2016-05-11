@@ -1060,4 +1060,7 @@
   <data name="OrdersHistory" xml:space="preserve">
     <value>Orders history</value>
   </data>
+  <data name="AutoDistrict" xml:space="preserve">
+    <value>Automatic district selection</value>
+  </data>
 </root>

@@ -199,10 +199,12 @@
     <Compile Include="Helpers\OperatorMessagesHelper.cs" />
     <Compile Include="Hubs\DistrictsHub.cs" />
     <Compile Include="Hubs\DriverHub.cs" />
+    <Compile Include="Hubs\DriverDistrictHub.cs" />
     <Compile Include="Hubs\OrderHub.cs" />
     <Compile Include="Hubs\OperatorHub.cs" />
     <Compile Include="Models\AutoParkViewModel.cs" />
     <Compile Include="Models\CarChangeUser.cs" />
+    <Compile Include="Models\DistrictCount.cs" />
     <Compile Include="Models\SignalRGroup.cs" />
     <Compile Include="Models\SignalRUser.cs" />
     <Compile Include="Models\SignalRUserEx.cs" />
@@ -237,6 +239,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\BootstrapCallout.css" />
     <Content Include="Content\ClientDriveService.css" />
+    <Content Include="Content\DriverEx.css" />
     <Content Include="Content\DrivingSimulation\iframe.css" />
     <Content Include="Content\BootstrapTb\BootstrapTb.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
@@ -393,6 +396,7 @@
     <Content Include="Scripts\DriverEx\DistrictPartButtonScripts.js" />
     <Content Include="Scripts\DriverEx\DistrictViewer.js" />
     <Content Include="Scripts\DriverEx\DriverCoordinates.js" />
+    <Content Include="Scripts\DriverEx\DriverExDistrict.js" />
     <Content Include="Scripts\DriverEx\DriverLocation.js" />
     <Content Include="Scripts\DriverMap.js" />
     <Content Include="Scripts\DriveTimer.js" />

@@ -1065,4 +1065,7 @@
   <data name="OrdersHistory" xml:space="preserve">
     <value>Історія замовлень</value>
   </data>
+  <data name="AutoDistrict" xml:space="preserve">
+    <value>Автоматичний вибір району</value>
+  </data>
 </root>

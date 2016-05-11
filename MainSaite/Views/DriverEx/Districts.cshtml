@@ -3,24 +3,43 @@
 @{
 	ViewBag.Title = "Choose district";
 }
+<div class="row">
+	<div class="col-xs-12">
+		
+		<label class="switch">
+			<input type="checkbox">
+			<div class="slider"></div>
+		</label>
+		<span class="autoSelectText">@Resources.Resource.AutoDistrict</span>
+	</div>
+	
+</div>
 <table class="table">
 	<tr>
 		<th>
-			@Html.DisplayNameFor(model => model.Name)
+			Driver count
 		</th>
-		<th></th>
+		<th class="nameCell">
+			@Resources.Resource.Districts
+		</th>
+		<th class="tableJoin"></th>
 	</tr>
 
 	@foreach (var item in Model)
 	{
 		<tr>
 			<td>
+				<span class="count">0</span>
+			</td>
+			<td>
 				@Html.DisplayFor(modelItem => item.Name)
 			</td>
 			<td>
-				<span class="btn btn-warning">Join</span>
+				<span class="joinButton btn btn-warning" data-id="@item.Id"><span class="">Join</span><span class="hidenText">You are here</span></span>
 			</td>
 		</tr>
 	}
-
 </table>
+<script>
+	var districts = @Html.Raw(Json.Encode(Model.ToList()))
+</script>

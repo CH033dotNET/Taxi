@@ -241,6 +241,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatic district selection.
+        /// </summary>
+        public static string AutoDistrict {
+            get {
+                return ResourceManager.GetString("AutoDistrict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Awaiting order.
         /// </summary>
         public static string AwaitingOrder {
