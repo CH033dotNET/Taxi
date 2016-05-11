@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Model.DTO;
 using Model.DB;
+using BAL.Interfaces;
 
 namespace TaxiAPI.Controllers
 {

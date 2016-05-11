@@ -6,6 +6,22 @@ $(function () {
 	$('#time-group').hide();
 	$('[data-toggle="tooltip"]').tooltip();
 
+	if ($('#userId').length) {
+		var userId = {
+			id: $('#userId').val()
+		}
+		$.ajax({
+			url: '/Client/GetPerson',
+			type: "post",
+			data: userId,
+			success: function (data) {
+				$('#name').val(data.FirstName);
+				$('#phone').val(data.Phone);
+				$('#remember').prop('checked', true);
+			}
+		});
+	}
+
 	$('#add-address').click(function () {
 		var address, building;
 		if ($('.ActivLang').html() == 'En') {
@@ -135,13 +151,12 @@ $(function () {
 			orderHub.server.connect("Client");
 			$.ajax({
 				url: '/Client/AddOrder',
-				contentType: "application/json; charset=utf-8",
+				contentType: "application/json",
 				type: "post",
-				dataType: "json",
 				data: JSON.stringify(order),
-				success: function (data) {
+				complete: function (data) {
+					alert('succes');
 					orderHub.server.addOrder(data);
-					alert("You order id = " + data.Id);
 				}
 			});
 		});

@@ -7,6 +7,7 @@ using Model.DB;
 using BAL.Manager;
 using Model.DTO;
 using Model;
+using BAL.Interfaces;
 
 namespace MainSaite.Controllers
 {

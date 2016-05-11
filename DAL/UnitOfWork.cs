@@ -40,6 +40,10 @@ namespace DAL
 
 		private IGenericRepository<CoordinatesEx> coordinatesExRepo;
 		private IGenericRepository<TariffEx> tariffExRepo;
+
+		private IGenericRepository<AdditionallyRequirements> additionallyRequirementsRepo;
+		private IGenericRepository<AddressFrom> addressFromRepo;
+		private IGenericRepository<AddressTo> addressToRepo;
 		#endregion
 
 		public UnitOfWork()
@@ -72,6 +76,10 @@ namespace DAL
 
 			coordinatesExRepo = new GenericRepository<CoordinatesEx>(context);
 			tariffExRepo = new GenericRepository<TariffEx>(context);
+
+			additionallyRequirementsRepo = new GenericRepository<AdditionallyRequirements>(context);
+			addressFromRepo = new GenericRepository<AddressFrom>(context);
+			addressToRepo = new GenericRepository<AddressTo>(context);
 		}
 
 		public void Save()
@@ -249,6 +257,42 @@ namespace DAL
 					tariffExRepo = new GenericRepository<TariffEx>(context);
 				}
 				return tariffExRepo;
+			}
+		}
+
+		public IGenericRepository<AdditionallyRequirements> AdditionallyRequirementsRepo
+		{
+			get
+			{
+				if (additionallyRequirementsRepo == null)
+				{
+					additionallyRequirementsRepo = new GenericRepository<AdditionallyRequirements>(context);
+				}
+				return additionallyRequirementsRepo;
+			}
+		}
+
+		public IGenericRepository<AddressFrom> AddressFromRepo
+		{
+			get
+			{
+				if (addressFromRepo == null)
+				{
+					addressFromRepo = new GenericRepository<AddressFrom>(context);
+				}
+				return addressFromRepo;
+			}
+		}
+
+		public IGenericRepository<AddressTo> AddressToRepo
+		{
+			get
+			{
+				if (addressToRepo == null)
+				{
+					addressToRepo = new GenericRepository<AddressTo>(context);
+				}
+				return addressToRepo;
 			}
 		}
 		#endregion
