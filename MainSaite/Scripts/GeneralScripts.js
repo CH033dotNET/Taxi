@@ -72,5 +72,7 @@ $(document).ready(function () {
 
 	});
 
+	$("#passwordInput").val("password");
+
 
 })

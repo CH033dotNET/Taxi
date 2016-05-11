@@ -4,10 +4,10 @@ var markers = [];
 var Redcar;
 
 var pos;
-
+var geocoder;
 
 $(document).ready(function () {
-
+	geocoder = new google.maps.Geocoder();
 	mainInit();
 
 });
@@ -55,19 +55,6 @@ function mainInit() {
 		dataType: "json",
 		success: function (data) {
 
-			//test -- 
-
-			//var testObj = {
-			//	name: "Jack",
-			//	id: 1,
-			//	startedTime: data,
-			//	updateTime: data,
-			//	latitude: 48.2760595,
-			//	longitude: 25.9490
-			//};
-			//AddDriverToTheTable(testObj);
-
-
 			for (var i = 0; i < data.length; i++) {
 				AddDriverToTheTable(data[i].latitude, data[i].longitude, data[i].updateTime, data[i].startedTime, data[i].id, data[i].name);
 			}
@@ -80,12 +67,15 @@ function mainInit() {
 }
 
 function AddDriverToTheTable(latitude, longitude, updateTime, startedTime, id, name ) {
-	markers['DriverN' +  id] = AddDriver( name,  latitude,  longitude);
+	markers['DriverN' + id] = AddDriver(name, latitude, longitude);
+
+	//new Date(parseInt(startedTime.replace(/\/Date\((-?\d+)\)\//, '$1')))
 
 	var tableRow = $('<tr/>', { id: 'DriverN' +  id }).append(
 			$('<td/>', { text:  name }),
 			$('<td/>', { text: new Date( startedTime).toLocaleString(), id: 'DriverN' +  id + 'start' }),
 			$('<td/>', { text: new Date( updateTime).toLocaleString(), id: 'DriverN' +  id + 'up' }));
+	//$('<td/>', { text: GetAddressByCoordinates(latitude, longitude) }));
 	tableRow.click(onClick);
 	var table = $('#DrvsCont').append(
 		tableRow
@@ -149,6 +139,24 @@ function AddDriver(name, myLat, myLng) {
 		title: 'Driver: ' + name,
 		icon: {
 			url: imagePath + '/cab.png'
+		}
+	});
+}
+function GetAddressByCoordinates(lat, lng) {
+
+	var latlng = new google.maps.LatLng(lat, lng);
+	var latlng = { lat: lat, lng: lng };
+	geocoder.geocode({
+		'latLng': latlng
+	}, function (results, status) {
+		if (status === google.maps.GeocoderStatus.OK) {
+			if (results[1]) {
+				return results[1];
+			} else {
+				return "Unknown street";
+			}
+		} else {
+			return "Unknown street";
 		}
 	});
 }

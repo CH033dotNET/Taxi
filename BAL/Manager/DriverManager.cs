@@ -19,11 +19,11 @@ namespace BAL.Manager
         }
         public DriverLocation[] GetFullLocations()
         {
-            return uOW.CoordinatesHistoryRepo.All //all coordinates
-                .GroupBy(coordinates => coordinates.UserId) //grouping all coordinates for each user
+            return uOW.CoordinatesExRepo.All //all coordinates
+                .GroupBy(coordinates => coordinates.DriverId) //grouping all coordinates for each driver
                 .Select(group => group.OrderByDescending(coordinates => coordinates.AddedTime).FirstOrDefault()) //select Latest coordinates from each group
                 .Join(uOW.UserRepo.All, //add user data to coordinates
-                coordinates => coordinates.UserId, user => user.Id,
+                coordinates => coordinates.DriverId, user => user.Id,
                 (coordinates, user) => new //create new model whith nesessary field
                 {
                     id = user.Id,
