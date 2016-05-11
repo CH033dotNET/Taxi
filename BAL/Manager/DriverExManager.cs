@@ -13,6 +13,8 @@ namespace BAL.Manager
 {
 	public class DriverExManager : BaseManager, IDriverExManager
 	{
+		public event Action<CoordinatesExDTO> onCoordsAdded;
+
 		public DriverExManager(IUnitOfWork uOW) : base(uOW)
 		{
 			Mapper.CreateMap<CoordinatesEx, CoordinatesExDTO>();
@@ -28,6 +30,10 @@ namespace BAL.Manager
 			}
 			uOW.CoordinatesExRepo.Insert(location);
 			uOW.Save();
+
+			if (onCoordsAdded != null){
+				onCoordsAdded(coordinate);
+			}
 		}
 	}
 }

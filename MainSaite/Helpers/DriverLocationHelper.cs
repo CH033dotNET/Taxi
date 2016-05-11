@@ -12,9 +12,9 @@ namespace MainSaite.Helpers
     {
         private static IHubContext Contest = GlobalHost.ConnectionManager.GetHubContext<DriversLocationHub>();
 
-		public static void addedLocation(Model.DTO.CoordinatesDTO coords)
+		public static void addedLocation(Model.DTO.CoordinatesExDTO coords)
         {
-            Contest.Clients.All.locationUpdate(coords.Latitude, coords.Longitude, coords.AddedTime, coords.UserId);
+            Contest.Clients.All.locationUpdate(coords.Latitude, coords.Longitude, coords.AddedTime, coords.DriverId);
         }
 
 		public static void removeDriver(int id)

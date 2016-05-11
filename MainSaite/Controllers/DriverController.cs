@@ -29,7 +29,8 @@ namespace MainSaite.Controllers
 		private ITarifManager tarifManager;
 		private IWorkerStatusManager workerStatusManager;
 		private IDistrictManager districtManager;
-		public DriverController(ILocationManager locationManager, ICarManager carManager, ICoordinatesManager coordinatesManager, IUserManager userManager, IDriverLocationHelper driverLocationHelper, IOrderManager orderManager, ITarifManager tarifManager, IWorkerStatusManager workerStatusManager, IDistrictManager districtManager)
+		private IDriverExManager driverExManager;
+		public DriverController(ILocationManager locationManager, ICarManager carManager, ICoordinatesManager coordinatesManager, IUserManager userManager, IDriverLocationHelper driverLocationHelper, IOrderManager orderManager, ITarifManager tarifManager, IWorkerStatusManager workerStatusManager, IDistrictManager districtManager, IDriverExManager driverManager)
 		{
 			this.locationManager = locationManager;
 			this.carManager = carManager;
@@ -41,6 +42,8 @@ namespace MainSaite.Controllers
 			this.tarifManager = tarifManager;
 			this.workerStatusManager = workerStatusManager;
 			this.districtManager = districtManager;
+			this.driverExManager = driverManager;
+			this.driverExManager.onCoordsAdded += DriverLocationHelper.addedLocation;
 		}
 
 		public ActionResult Index()
@@ -246,10 +249,17 @@ namespace MainSaite.Controllers
 
 					DriverLocationHelper.addDriver(driverLocation);
 
-					//CoordinatesDTO coordinates;
-					//coordinates = CoordinateMapper.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
-					//coordinates.TarifId = 1;
-					//coordinatesManager.AddCoordinates(coordinates);
+					CoordinatesExDTO coordinates = new CoordinatesExDTO
+					{
+						DriverId = Id,
+						Latitude = double.Parse(Latitude, CultureInfo.InvariantCulture),
+						Longitude = double.Parse(Longitude, CultureInfo.InvariantCulture),
+						Accuracy = double.Parse(Accuracy, CultureInfo.InvariantCulture),
+						AddedTime = DateTime.Parse(TimeStart)
+					};
+
+					driverExManager.AddDriverLocation(coordinates);
+
 				}
 
 				return Json(true);
@@ -271,10 +281,16 @@ namespace MainSaite.Controllers
 
 					DriverLocationHelper.removeDriver(Id);
 
-					//CoordinatesDTO coordinates;
-					//coordinates = CoordinateMapper.InitializeCoordinates(Longitude, Latitude, Accuracy, Id);
-					//coordinates.TarifId = 1;
-					//coordinatesManager.AddCoordinates(coordinates);
+					CoordinatesExDTO coordinates = new CoordinatesExDTO
+					{
+						DriverId = Id,
+						Latitude = double.Parse(Latitude, CultureInfo.InvariantCulture),
+						Longitude = double.Parse(Longitude, CultureInfo.InvariantCulture),
+						Accuracy = double.Parse(Accuracy, CultureInfo.InvariantCulture),
+						AddedTime = DateTime.Parse(TimeStop)
+					};
+
+					driverExManager.AddDriverLocation(coordinates);
 				}
 
 				if (locationManager.GetByUserId(Id) != null)

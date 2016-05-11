@@ -9,6 +9,7 @@ namespace BAL.Interfaces
 {
 	public interface IDriverExManager
 	{
+		event Action<CoordinatesExDTO> onCoordsAdded;
 		void AddDriverLocation(CoordinatesExDTO coordinate);
 	}
 }
