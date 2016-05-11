@@ -7,6 +7,7 @@ using AutoMapper;
 using DAL.Interface;
 using Model.DB;
 using Model.DTO;
+using BAL.Interfaces;
 
 namespace BAL.Manager
 {

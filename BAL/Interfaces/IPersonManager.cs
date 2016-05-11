@@ -1,7 +1,7 @@
 ﻿using System;
 using Model.DTO;
 
-namespace BAL.Manager
+namespace BAL.Interfaces
 {
 	 public interface IPersonManager
 	{

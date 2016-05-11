@@ -67,7 +67,8 @@ namespace MainSaite.Controllers
 		public JsonResult GetLoc()
 		{
 			//return Json(DateTime.Now.ToString("HH:mm/dd.MM"), JsonRequestBehavior.AllowGet);
-            return Json(driverManager.GetFullLocations(), JsonRequestBehavior.AllowGet);
+			var array = driverManager.GetFullLocations();
+            return Json(array, JsonRequestBehavior.AllowGet);
 		}
 	}
 }

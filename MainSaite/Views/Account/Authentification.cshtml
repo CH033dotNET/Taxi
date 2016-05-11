@@ -21,7 +21,7 @@
                 </tr>
                 <tr>
                     <td>
-                        @Html.PasswordFor(x => x.Password, new {@class = "form-control input", @required = true, @minlength = "6", @placeholder = Resources.Resource.Password})
+                        @Html.PasswordFor(x => x.Password, new {@class = "form-control input", @required = true, @minlength = "6",@id = "passwordInput", @placeholder = Resources.Resource.Password})
                         @Html.ValidationMessageFor(x => x.Password, "", new { @id = "clValidReg" })
                     </td>          
                 </tr>

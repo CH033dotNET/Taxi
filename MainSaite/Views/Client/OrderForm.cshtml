@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Model.DTO
+
+@{
 	ViewBag.Title = Resources.Resource.Taxi;
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -8,7 +10,9 @@
 
 <div id="body">
 	<form role="form" id="form">
-		<input type="hidden" id="userId" />
+		@if (Session["User"] != null) {
+			<input type="hidden" id="userId" value="@(((UserDTO)Session["User"]).Id)"/>
+		}
 		<div class="form-group">
 			<div class="form-group-header">
 				<div class="label-underline underline-blue">

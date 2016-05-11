@@ -13,12 +13,14 @@ namespace MainSaite.Controllers
 	public class ClientController : BaseController
 	{
 		private IOrderManagerEx orderManager;
+		private IPersonManager personManager;
 
 		private static IHubContext Context = GlobalHost.ConnectionManager.GetHubContext<OrderHub>();
 
-		public ClientController(IOrderManagerEx orderManager)
+		public ClientController(IOrderManagerEx orderManager, IPersonManager personManager)
 		{
 			this.orderManager = orderManager;
+			this.personManager = personManager;
 		}
 
 		public ActionResult Index()
@@ -31,11 +33,17 @@ namespace MainSaite.Controllers
 		{
 			var newOrder = orderManager.AddOrder(order);
 			return Json(newOrder);
-		}
+        }
 
 		public ActionResult OrderForm()
 		{
 			return View();
+		}
+
+		[HttpPost]
+		public JsonResult GetPerson(int id)
+		{
+			return Json(personManager.GetPersonByUserId(id));
 		}
 	}
 }

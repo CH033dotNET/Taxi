@@ -9,7 +9,7 @@ using RestSharp;
 using Model.DTO;
 using Common.Helpers;
 using Model.DB;
-
+using BAL.Interfaces;
 
 namespace TaxiAPI.Controllers
 {
