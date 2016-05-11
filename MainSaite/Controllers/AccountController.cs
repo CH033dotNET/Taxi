@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Model.DTO;
 using Model.DB;
 using BAL.Manager;
+using BAL.Interfaces;
 
 namespace MainSaite.Controllers
 {

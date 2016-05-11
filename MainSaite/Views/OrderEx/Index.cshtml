@@ -16,7 +16,12 @@
 	{
 		<tr>
 			<td>
-				@Html.DisplayFor(modelItem => item.Address)
+				@if (item.Address != null) {
+					@Html.DisplayFor(modelItem => item.Address)
+				}
+				else {
+					@Html.DisplayFor(modelItem => item.AddressFrom.Address)
+				}
 			</td>
 			<td>
 				<input itemid="@item.Id" type="button" value="Approve" class="approve btn btn-success" /> |
