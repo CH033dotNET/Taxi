@@ -37,13 +37,11 @@ namespace MainSaite.Controllers
 			this.coordinatesManager = coordinatesManager;
 			this.userManager = userManager;
 			this.driverLocationHelper = driverLocationHelper;
-			//this.coordinatesManager.addedCoords += coordinates => DriverLocationHelper.addedLocation(coordinates);
 			this.orderManager = orderManager;
 			this.tarifManager = tarifManager;
 			this.workerStatusManager = workerStatusManager;
 			this.districtManager = districtManager;
 			this.driverExManager = driverManager;
-			this.driverExManager.onCoordsAdded += DriverLocationHelper.addedLocation;
 		}
 
 		public ActionResult Index()
@@ -229,6 +227,7 @@ namespace MainSaite.Controllers
 				return Json(0);
 			}
 		}
+
 		public JsonResult WorkStateChange(int Id, string Latitude, string Longitude, string Accuracy, string TimeStart)
 		{
 			try
@@ -302,6 +301,11 @@ namespace MainSaite.Controllers
 				ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
 			}
 			return Json(false);
+		}
+		[HttpPost]
+		public void UpdateCoords(CoordinatesExDTO coordinate)
+		{
+			DriverLocationHelper.addedLocation(coordinate);
 		}
 	}
 }

@@ -30,7 +30,7 @@ namespace MainSaite.Controllers
 			return Request.CreateResponse(HttpStatusCode.OK, true);
 		}
 		[HttpPost]
-		public HttpResponseMessage AddedLocation(CoordinatesDTO data)
+		public HttpResponseMessage AddedLocation(CoordinatesExDTO data)
 		{
 			DriverLocationHelper.addedLocation(data);
 			return Request.CreateResponse(HttpStatusCode.OK, true);
