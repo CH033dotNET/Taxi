@@ -31,9 +31,8 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public JsonResult AddOrder(OrderExDTO order)
 		{
-			var newOrder = orderManager.AddOrder(order);
-			return Json(newOrder);
-        }
+			return Json(orderManager.AddOrder(order));
+		}
 
 		public ActionResult OrderForm()
 		{
@@ -44,6 +43,17 @@ namespace MainSaite.Controllers
 		public JsonResult GetPerson(int id)
 		{
 			return Json(personManager.GetPersonByUserId(id));
+		}
+
+		public ActionResult DriveHistory()
+		{
+			return View(orderManager.GetOrdersByUserId(SessionUser.Id));
+		}
+
+		public JsonResult UpdateOrder(OrderExDTO order)
+		{
+			orderManager.UpdateOrder(order);
+			return Json(orderManager.GetById(order.Id));
 		}
 	}
 }

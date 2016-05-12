@@ -31,6 +31,13 @@ namespace BAL.Interfaces
 			return Mapper.Map<OrderExDTO>(newOrder);
 		}
 
+		public void UpdateOrder(OrderExDTO order)
+		{
+			var newOrder = Mapper.Map<OrderEx>(order);
+			uOW.OrderExRepo.Update(newOrder);
+			uOW.Save();
+		}
+
 		public OrderExDTO GetById(int id) {
 			var order = uOW.OrderExRepo.All.Where(o => o.Id == id).FirstOrDefault();
 			return Mapper.Map<OrderExDTO>(order);
@@ -108,7 +115,8 @@ namespace BAL.Interfaces
 			return Mapper.Map<List<OrderExDTO>>(orders);
 		}
 
-		public IEnumerable<OrderExDTO> GetOrdersByDriver(UserDTO Driver) {
+		public IEnumerable<OrderExDTO> GetOrdersByDriver(UserDTO Driver)
+		{
 			var driver = Mapper.Map<User>(Driver);
 			var orders = uOW.OrderExRepo.All
 				.Where(o => o.Driver.Id == driver.Id)
@@ -116,5 +124,12 @@ namespace BAL.Interfaces
 			return Mapper.Map<List<OrderExDTO>>(orders);
 		}
 
+		public IEnumerable<OrderExDTO> GetOrdersByUserId(int id)
+		{
+			var orders = uOW.OrderExRepo.All
+				.Where(o => o.UserId == id)
+				.ToList();
+			return Mapper.Map<List<OrderExDTO>>(orders);
+		}
 	}
 }

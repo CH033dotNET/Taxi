@@ -943,6 +943,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date and time.
+        /// </summary>
+        public static string DateTime {
+            get {
+                return ResourceManager.GetString("DateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chernivtsi.
         /// </summary>
         public static string DefaultValueOfCity {
@@ -2150,15 +2159,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Peec place.
-        /// </summary>
-        public static string PeekPlace {
-            get {
-                return ResourceManager.GetString("PeekPlace", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Perquisite:.
         /// </summary>
         public static string Perquisite {
@@ -2200,6 +2200,15 @@ namespace Resources {
         public static string PhoneNumber {
             get {
                 return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pick place.
+        /// </summary>
+        public static string PickPlace {
+            get {
+                return ResourceManager.GetString("PickPlace", resourceCulture);
             }
         }
         

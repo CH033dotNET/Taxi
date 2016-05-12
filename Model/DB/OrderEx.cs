@@ -18,6 +18,10 @@ namespace Model.DB
 
 		public User Driver { get; set; }
 
+		public int? CarId { get; set; }
+
+		public Car Car { get; set; }
+
 		public int WaitingTime { get; set; }
 
         //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh-mm-ss}", ApplyFormatInEditMode = true)]
@@ -38,5 +42,9 @@ namespace Model.DB
 		public string Phone { get; set; }
 
 		public int Perquisite { get; set; }
+
+		public string Feedback { get; set; }
+
+		public RatingEnum Rating { get; set; }
 	}
 }

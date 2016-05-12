@@ -631,8 +631,8 @@
   <data name="DropPlace" xml:space="preserve">
     <value>Drop place</value>
   </data>
-  <data name="PeekPlace" xml:space="preserve">
-    <value>Peec place</value>
+  <data name="PickPlace" xml:space="preserve">
+    <value>Pick place</value>
   </data>
   <data name="Price" xml:space="preserve">
     <value>Price</value>
@@ -1062,5 +1062,8 @@
   </data>
   <data name="AutoDistrict" xml:space="preserve">
     <value>Automatic district selection</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>Date and time</value>
   </data>
 </root>
