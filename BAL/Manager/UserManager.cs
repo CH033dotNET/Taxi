@@ -207,7 +207,6 @@ namespace BAL.Manager
 			}*/
 			uOW.UserRepo.SetStateModified(temp);
 
-			temp.Role = user.Role;
 			temp.RoleId = user.RoleId;
 			temp.Email = user.Email;
 			temp.UserName = user.UserName;

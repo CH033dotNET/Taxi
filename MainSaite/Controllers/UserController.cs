@@ -81,12 +81,6 @@ namespace MainSaite.Controllers
 					continue;
 				if (file.ContentLength > 0)
 				{
-					// width + height will force size, care for distortion
-					//Exmaple: ImageUpload imageUpload = new ImageUpload { Width = 800, Height = 700 };
-
-					// height will increase the width proportionally
-					//Example: ImageUpload imageUpload = new ImageUpload { Height= 600 };
-
 					// width will increase the height proportionally
 					ImageUpload imageUpload = new ImageUpload { Width = 200 };
 					string mapImage = Server.MapPath(@"~\Images\") + person.ImageName;
