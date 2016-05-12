@@ -84,8 +84,8 @@
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.UserMenu, "UsersMenu", "Settings")</li>
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.Tarifes, "Index", "Tarif")</li>
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.Order, "Index", "OrderEx")</li>
-	<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.SetVIPStatusPage, "SetVIPStatus", "Settings")</li>
-	<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.WorkShift, "ViewWorkShifts", "Administration")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.SetVIPStatusPage, "SetVIPStatus", "Settings")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.WorkShift, "ViewWorkShifts", "Administration")</li>
 							}
 							if (ViewBag.UserRoleId == (int)AvailableRoles.ReportViewer)
 							{
@@ -103,14 +103,14 @@
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.TitleLeftMenuUserAddress, "Index", "Address")</li>
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.UserPage, "Index", "UserPage")</li>
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.DemoPage, "Iframe", "UserPage") </li>
-							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.ClientDriveHistory, "ShowHistory", "DriveClientHistory")</li>
-						}
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.ClientDriveHistory, "DriveHistory", "Client")</li>
+							}
 							if (ViewBag.UserRoleId == (int)AvailableRoles.Support){
 								<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.ClientSupport, "Index", "Support")</li>
 							}
 							else{
 								<li class="list-group-item" id="sideMenu"><a id="showChat">@Resources.Resource.Help</a></li>
-						}
+							}
 						}
 					</ul>
 				</div>

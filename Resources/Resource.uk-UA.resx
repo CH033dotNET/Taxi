@@ -175,7 +175,7 @@
     <value>Марка машини</value>
   </data>
   <data name="CarNumber" xml:space="preserve">
-    <value>Номер машини</value>
+    <value>Номер автомобіля</value>
   </data>
   <data name="CarOccupation" xml:space="preserve">
     <value>Вмістимість машини</value>
@@ -633,7 +633,7 @@
   <data name="DropPlace" xml:space="preserve">
     <value>Місце висадки</value>
   </data>
-  <data name="PeekPlace" xml:space="preserve">
+  <data name="PickPlace" xml:space="preserve">
     <value>Місце посадки</value>
   </data>
   <data name="Price" xml:space="preserve">
@@ -1067,5 +1067,8 @@
   </data>
   <data name="AutoDistrict" xml:space="preserve">
     <value>Автоматичний вибір району</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>Дата і час</value>
   </data>
 </root>

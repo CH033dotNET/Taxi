@@ -275,6 +275,14 @@
     <Compile Include="Migrations\201605101547396_OrderEx-expanded-2.Designer.cs">
       <DependentUpon>201605101547396_OrderEx-expanded-2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605121508006_OrderEx-rating.cs" />
+    <Compile Include="Migrations\201605121508006_OrderEx-rating.Designer.cs">
+      <DependentUpon>201605121508006_OrderEx-rating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605121644184_OrderEx-expanded-3.cs" />
+    <Compile Include="Migrations\201605121644184_OrderEx-expanded-3.Designer.cs">
+      <DependentUpon>201605121644184_OrderEx-expanded-3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -461,6 +469,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605101547396_OrderEx-expanded-2.resx">
       <DependentUpon>201605101547396_OrderEx-expanded-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605121508006_OrderEx-rating.resx">
+      <DependentUpon>201605121508006_OrderEx-rating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605121644184_OrderEx-expanded-3.resx">
+      <DependentUpon>201605121644184_OrderEx-expanded-3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

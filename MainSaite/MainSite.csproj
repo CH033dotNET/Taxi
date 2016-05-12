@@ -184,7 +184,6 @@
     <Compile Include="App_Start\SimpleInjectorDependency.cs" />
     <Compile Include="Controllers\CarsController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
-    <Compile Include="Controllers\DriveClientHistoryController.cs" />
     <Compile Include="Controllers\DriverExController.cs" />
     <Compile Include="Controllers\DriverLocationHubController.cs" />
     <Compile Include="Controllers\OperatorHubController.cs" />
@@ -239,6 +238,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\BootstrapCallout.css" />
     <Content Include="Content\ClientDriveService.css" />
+    <Content Include="Content\DriveHistory.css" />
     <Content Include="Content\DriverEx.css" />
     <Content Include="Content\DrivingSimulation\iframe.css" />
     <Content Include="Content\BootstrapTb\BootstrapTb.css" />
@@ -499,7 +499,7 @@
     <Content Include="Scripts\validator.js" />
     <Content Include="Scripts\VipClients.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Client\OrderForm.cshtml" />
+    <Content Include="Views\Home\OrderForm.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -552,7 +552,7 @@
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\User\_EditPersonInfo.cshtml" />
     <Content Include="Views\Shared\_AjaxEditPersonInfo.cshtml" />
-    <Content Include="Views\DriveClientHistory\ShowHistory.cshtml" />
+    <Content Include="Views\Client\DriveHistory.cshtml" />
     <Content Include="Views\Cars\_GetErrorMessage.cshtml" />
     <Content Include="Views\Cars\_GetMainCarPartial.cshtml" />
     <Content Include="Views\Driver\DriverOrders.cshtml" />
