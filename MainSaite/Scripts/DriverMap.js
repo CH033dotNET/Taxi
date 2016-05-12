@@ -4,7 +4,6 @@ var markers = [];
 var Redcar;
 
 var pos;
-var geocoder;
 
 $(document).ready(function () {
 	geocoder = new google.maps.Geocoder();
@@ -26,7 +25,7 @@ function hubInit() {
 	hub.client.driverStart = driverStart;
 	hub.client.driverFinish = driverFinish;
 	$.connection.hub.start().done(function () {
-		hub.server.connectUser("Operator", $('#currentUserId').val());
+		//hub.server.connectUser("Operator", $('#currentUserId').val());
 	});
 }
 //test -----
@@ -70,6 +69,10 @@ function AddDriverToTheTable(latitude, longitude, updateTime, startedTime, id, n
 	markers['DriverN' + id] = AddDriver(name, latitude, longitude);
 
 	//new Date(parseInt(startedTime.replace(/\/Date\((-?\d+)\)\//, '$1')))
+	if (startedTime.indexOf("Date") > -1) {
+		startedTime = new Date(+startedTime.match(/\d+/)[0]);
+		updateTime = new Date(+updateTime.match(/\d+/)[0]);
+	}
 
 	var tableRow = $('<tr/>', { id: 'DriverN' +  id }).append(
 			$('<td/>', { text:  name }),
@@ -142,21 +145,21 @@ function AddDriver(name, myLat, myLng) {
 		}
 	});
 }
-function GetAddressByCoordinates(lat, lng) {
+//function GetAddressByCoordinates(lat, lng) {
 
-	var latlng = new google.maps.LatLng(lat, lng);
-	var latlng = { lat: lat, lng: lng };
-	geocoder.geocode({
-		'latLng': latlng
-	}, function (results, status) {
-		if (status === google.maps.GeocoderStatus.OK) {
-			if (results[1]) {
-				return results[1];
-			} else {
-				return "Unknown street";
-			}
-		} else {
-			return "Unknown street";
-		}
-	});
-}
+//	var latlng = new google.maps.LatLng(lat, lng);
+//	var latlng = { lat: lat, lng: lng };
+//	geocoder.geocode({
+//		'latLng': latlng
+//	}, function (results, status) {
+	//	if (status === google.maps.GeocoderStatus.OK) {
+	//		if (results[1]) {
+	//			return results[1];
+	//		} else {
+	//			return "Unknown street";
+	//		}
+	//	} else {
+	//		return "Unknown street";
+	//	}
+	//});
+//}
