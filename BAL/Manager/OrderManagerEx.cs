@@ -126,7 +126,7 @@ namespace BAL.Interfaces
 
 		public IEnumerable<OrderExDTO> GetOrdersByUserId(int id)
 		{
-			var orders = uOW.OrderExRepo.All
+			var orders = uOW.OrderExRepo.Get(null, null, "AdditionallyRequirements, AddressFrom, AddressesTo, Car")
 				.Where(o => o.UserId == id)
 				.ToList();
 			return Mapper.Map<List<OrderExDTO>>(orders);

@@ -11,5 +11,13 @@ namespace Model.DTO
 		public string Building { get; set; }
 
 		public virtual OrderEx OrderEx { get; set; }
+
+		public string FullAddresses
+		{
+			get
+			{
+				return this.Address + ", " + this.Building;
+			}
+		}
 	}
 }

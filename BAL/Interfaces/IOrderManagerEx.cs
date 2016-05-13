@@ -28,6 +28,7 @@ namespace BAL.Interfaces
 		IEnumerable<OrderExDTO> GetOrdersByDriver(UserDTO Driver);
 
 		IEnumerable<OrderExDTO> GetOrdersByUserId(int id);
+
 		void UpdateOrder(OrderExDTO order);
 	}
 }

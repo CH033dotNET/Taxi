@@ -628,8 +628,8 @@
   <data name="Data" xml:space="preserve">
     <value>Data</value>
   </data>
-  <data name="DropPlace" xml:space="preserve">
-    <value>Drop place</value>
+  <data name="DropPlaces" xml:space="preserve">
+    <value>Drop places</value>
   </data>
   <data name="PickPlace" xml:space="preserve">
     <value>Pick place</value>
@@ -1065,5 +1065,11 @@
   </data>
   <data name="DateTime" xml:space="preserve">
     <value>Date and time</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Rating</value>
   </data>
 </root>

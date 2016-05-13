@@ -630,8 +630,8 @@
   <data name="Data" xml:space="preserve">
     <value>Дата</value>
   </data>
-  <data name="DropPlace" xml:space="preserve">
-    <value>Місце висадки</value>
+  <data name="DropPlaces" xml:space="preserve">
+    <value>Місця висадки</value>
   </data>
   <data name="PickPlace" xml:space="preserve">
     <value>Місце посадки</value>
@@ -1070,5 +1070,11 @@
   </data>
   <data name="DateTime" xml:space="preserve">
     <value>Дата і час</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>Відгук</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Оцінка</value>
   </data>
 </root>

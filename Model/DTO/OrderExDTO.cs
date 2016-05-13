@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Common.Enum;
 using Model.DB;
+using System.ComponentModel.DataAnnotations;
 
 namespace Model.DTO
 {
@@ -23,7 +24,8 @@ namespace Model.DTO
 
 		public int WaitingTime { get; set; }
 
-        public DateTime OrderTime { get; set; }
+		[DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yy HH':'mm}", ApplyFormatInEditMode = true)]
+		public DateTime OrderTime { get; set; }
 
 		public AddressFrom AddressFrom { get; set; }
 
@@ -44,5 +46,13 @@ namespace Model.DTO
 		public string Feedback { get; set; }
 
 		public RatingEnum Rating { get; set; }
+
+		public string FullAddressFrom
+		{
+			get
+			{
+				return this.AddressFrom.Address + ", " + this.AddressFrom.Building;
+			}
+		}
 	}
 }
