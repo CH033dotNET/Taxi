@@ -172,8 +172,8 @@
 
 .panel-info > .panel-heading {
 	color: white;
-	background-color: rgba(28, 44, 208, 0.76);
-	border-color: rgba(76, 175, 80, 0.57);
+	background-color: hsl(50, 78%, 49%);
+	border-color: rgba(175, 167, 76, 0.57);
 }
 
 #geoOff {
