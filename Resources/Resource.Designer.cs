@@ -1286,11 +1286,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Drop place.
+        ///   Looks up a localized string similar to Drop places.
         /// </summary>
-        public static string DropPlace {
+        public static string DropPlaces {
             get {
-                return ResourceManager.GetString("DropPlace", resourceCulture);
+                return ResourceManager.GetString("DropPlaces", resourceCulture);
             }
         }
         
@@ -1444,6 +1444,15 @@ namespace Resources {
         public static string FavAdr {
             get {
                 return ResourceManager.GetString("FavAdr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feedback.
+        /// </summary>
+        public static string Feedback {
+            get {
+                return ResourceManager.GetString("Feedback", resourceCulture);
             }
         }
         
@@ -2245,6 +2254,15 @@ namespace Resources {
         public static string Price {
             get {
                 return ResourceManager.GetString("Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rating.
+        /// </summary>
+        public static string Rating {
+            get {
+                return ResourceManager.GetString("Rating", resourceCulture);
             }
         }
         

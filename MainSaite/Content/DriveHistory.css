@@ -1,6 +1,7 @@
-﻿body {
+﻿th, td {
+	text-align: center;
 }
 
-.title {
-	text-align: center;
+#dateTime {
+	width: 120px;
 }

@@ -34,11 +34,6 @@ namespace MainSaite.Controllers
 			return Json(orderManager.AddOrder(order));
 		}
 
-		public ActionResult OrderForm()
-		{
-			return View();
-		}
-
 		[HttpPost]
 		public JsonResult GetPerson(int id)
 		{
