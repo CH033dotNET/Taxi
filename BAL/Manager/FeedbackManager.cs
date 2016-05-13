@@ -39,7 +39,7 @@ namespace BAL.Manager
 			return Mapper.Map<FeedbackDTO>(uOW.FeedbackRepo.GetByID(id));
 		}
 
-		public FeedbackDTO UpdateAddress(FeedbackDTO feedback)
+		public FeedbackDTO UpdateFeedback(FeedbackDTO feedback)
 		{
 			var update = Mapper.Map<Feedback>(feedback);
 			uOW.FeedbackRepo.Update(update);

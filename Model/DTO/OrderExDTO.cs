@@ -41,8 +41,12 @@ namespace Model.DTO
 
 		public int Perquisite { get; set; }
 
-		public string Feedback { get; set; }
+		public int? ClientFeedbackId { get; set; }
 
-		public RatingEnum Rating { get; set; }
+		public Feedback ClientFeedback { get; set; }
+
+		public int? DriverFeedbackId { get; set; }
+
+		public Feedback DriverFeedback { get; set; }
 	}
 }

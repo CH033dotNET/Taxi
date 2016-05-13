@@ -15,12 +15,14 @@ namespace MainSaite.Controllers
 		private IOrderManagerEx orderManager;
 		private IDriverExManager driverManager;
 		private IDistrictManager districtManager;
+		private IFeedbackManager feedbackManager;
 
-		public DriverExController(IOrderManagerEx orderManager, IDriverExManager driverManager, IDistrictManager districtManager)
+		public DriverExController(IFeedbackManager feedbackManager, IOrderManagerEx orderManager, IDriverExManager driverManager, IDistrictManager districtManager)
 		{
 			this.orderManager = orderManager;
 			this.driverManager = driverManager;
 			this.districtManager = districtManager;
+			this.feedbackManager = feedbackManager;
 		}
 
 		public ActionResult Index()
@@ -58,6 +60,30 @@ namespace MainSaite.Controllers
 				coordinate.DriverId = (Session["User"] as UserDTO).Id;
 				driverManager.AddDriverLocation(coordinate);
 			}
+		}
+
+		[HttpPost]
+		public JsonResult GetFeedback(int id)
+		{
+			return Json(feedbackManager.GetById(id));
+		}
+
+		[HttpPost]
+		public JsonResult AddFeedback(FeedbackDTO feedback)
+		{
+			return Json(feedbackManager.AddFeedback(feedback));
+		}
+
+		[HttpPost]
+		public JsonResult UpdateFeedback(FeedbackDTO feedback)
+		{
+			return Json(feedbackManager.UpdateFeedback(feedback));
+		}
+
+		[HttpPost]
+		public void SetDriverFeedback(int orderId, int feedbackId)
+		{
+			orderManager.SetDriverFeedback(orderId, feedbackId);
 		}
 	}
 }

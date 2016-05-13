@@ -131,5 +131,13 @@ namespace BAL.Interfaces
 				.ToList();
 			return Mapper.Map<List<OrderExDTO>>(orders);
 		}
+
+		public void SetDriverFeedback(int orderId, int feedbackId)
+		{
+			var order = uOW.OrderExRepo.GetByID(orderId);
+			order.DriverFeedbackId = feedbackId;
+			uOW.OrderExRepo.Update(order);
+			uOW.Save();
+		}
 	}
 }

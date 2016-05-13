@@ -39,6 +39,7 @@ namespace MainSaite.App_Start
 			container.Register<IOrderManagerEx, OrderManagerEx>();
 			container.Register<IDriverExManager, DriverExManager>();
 			container.Register<ITariffExManager, TariffExManager>();
+			container.Register<IFeedbackManager, FeedbackManager>();
 			container.Verify();
 
 			DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));

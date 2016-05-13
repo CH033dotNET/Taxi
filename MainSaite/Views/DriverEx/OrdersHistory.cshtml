@@ -14,6 +14,9 @@
 		<th>
 			@Html.DisplayNameFor(model => model.OrderTime)
 		</th>
+		<th>
+
+		</th>
 	</tr>
 
 	@foreach (var item in Model) {
@@ -24,8 +27,13 @@
 			<td>
 				@Html.DisplayFor(modelItem => item.OrderTime)
 			</td>
+			<td>
+				<button data-feedbackId="@item.DriverFeedbackId" data-orderId="@item.Id" id="addFeedbackButton" type="button" class="btn btn-warning" data-toggle="modal">Add feedback</button>
+			</td>
 		</tr>
 	}
 
 </table>
+@Html.Partial("DriverFeedback")
 <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+<script src="~/Scripts/DriverEx/DriverFeedback.js"></script>

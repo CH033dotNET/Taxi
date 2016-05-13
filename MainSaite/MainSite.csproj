@@ -396,6 +396,7 @@
     <Content Include="Scripts\DriverEx\DistrictPartButtonScripts.js" />
     <Content Include="Scripts\DriverEx\DistrictViewer.js" />
     <Content Include="Scripts\DriverEx\DriverCoordinates.js" />
+    <Content Include="Scripts\DriverEx\DriverFeedback.js" />
     <Content Include="Scripts\DriverEx\DriverLocation.js" />
     <Content Include="Scripts\DriverMap.js" />
     <Content Include="Scripts\DriveTimer.js" />
@@ -573,6 +574,7 @@
     <Content Include="Views\DriverEx\OrdersHistory.cshtml" />
     <Content Include="Views\Driver\DistrictPart.cshtml" />
     <Content Include="Views\DriverEx\Districts.cshtml" />
+    <Content Include="Views\DriverEx\DriverFeedback.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
