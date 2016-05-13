@@ -4,35 +4,35 @@ var hub;
 var districts = [];
 
 function hubInit() {
-	hub = $.connection.DistrictsHub;
 
+	hub = $.connection.DistrictsHub;
 	hub.client.swap = swap;
 }
 function mainInit() {
-	$.ajax({
-		type: "POST",
-		url: "./Driver/GetDistricts",
-		dataType: "json",
-		success: function (data) {
-			data.forEach(function (item) {
-				var val = item;
-				var tr = $('<tr/>', { id: 'DistrictN' + val.DistrictId }).append(
-						$('<td/>', { text: val.DriverCount, class: "count" }),
-						$('<td/>', { text: val.DistrictName }),
-						$('<td><button type="button" class="btn btn-warning">'+(val.ThoseDriver ? currentLocation : joinToLocation)+'</button></td>'));
-				if (val.ThoseDriver)
-					currentDistrict = val.DistrictId;
-				tr.click(function () { changeDistrict(val.DistrictId) });
-				var table = $('#Districts').append(
-					tr
-				);
-			});
-		},
-		error: function (error) {
-			alert(error.statusText);
-		}
-	});
 	hubInit();
+}
+function ChangeBtnProperties(status) {
+	if (status == 0) {
+		$("#workshift-button").attr("change-btn-id", "work_start"); // changing custom attribute value
+		$("#workshift-button").attr('class', 'btn btn-success'); // changing custom attribute value
+		$("#workshift-button").prop('value', 'Start workshift'); // changing buttons text
+		document.getElementById('workshift-button').onclick = function () { checkMainCars(); }; // changing onclick property value
+		setEndlocation();
+		setDriverStatus(0);
+		changeStatusDisplay(0);
+		$("worker-status-group").css('display', 'none');
+	}
+	else {
+		$("#workshift-button").attr("change-btn-id", "work_end"); // changing custom attribute value
+		$("#workshift-button").attr('class', 'btn btn-warning'); // changing buttons class
+		$("#workshift-button").prop('value', 'End workshift'); // changing buttons text
+		document.getElementById('workshift-button').onclick = function () { ChangeBtnProperties(0); }; // changing onclick property value
+		setBeginlocation();
+		setDriverStatus(3);
+		changeStatusDisplay(1);
+		$("worker-status-group").css('display', 'inline');
+	}
+
 }
 // function that check if a worker has main car available
 function checkMainCars() {
@@ -42,7 +42,7 @@ function checkMainCars() {
 		dataType: "JSON",
 	}).done(function (response) {
 		if (response.success && response != null) {
-			buttonChangeOnClick();
+			ChangeBtnProperties(1);
 		}
 		else {
 			getNotFoundMessage();
@@ -65,6 +65,7 @@ function checkstatus() {
 	}).done(function (response) {
 		if (response.success && response != null) {
 			$('#inputDriverStatus').val(response.WorkingStatus);
+			ChangeBtnProperties(response.WorkingStatus);
 		}
 		else {
 			alert("Error");
@@ -113,6 +114,7 @@ function changeStatusDisplay(e) {
 }
 
 $(document).ready(function () {
+
 	mainInit();
 	checkstatus();
 	ReadDistricts();
