@@ -45,5 +45,6 @@ namespace DAL
 		public DbSet<AdditionallyRequirements> AdditionallyRequirements { get; set; }
 		public DbSet<AddressFrom> AddressesFrom { get; set; }
 		public DbSet<AddressTo> AddressesTo { get; set; }
+		public DbSet<Feedback> FeedBacks { get; set; }
 	}
 }

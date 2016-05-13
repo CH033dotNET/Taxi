@@ -17,7 +17,7 @@ namespace BAL.Manager
         {
 
         }
-        public DriverLocation[] GetFullLocations()
+        public DriverLocationDTO[] GetFullLocations()
         {
             return uOW.CoordinatesExRepo.All //all coordinates
                 .GroupBy(coordinates => coordinates.DriverId) //grouping all coordinates for each driver
@@ -34,7 +34,7 @@ namespace BAL.Manager
                 })
                 .Join(uOW.WorkshiftHistoryRepo.All//join shifts
                 .Where(shift => shift.WorkStarted != null & shift.WorkEnded == null)//select only current shifts
-                , driver => driver.id, shift => shift.DriverId, (driver, shift) => new DriverLocation()
+                , driver => driver.id, shift => shift.DriverId, (driver, shift) => new DriverLocationDTO()
                 {
                     id = driver.id,
                     updateTime = driver.addedtime,

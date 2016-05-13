@@ -52,6 +52,7 @@
     <Compile Include="DB\CoordinatesEx.cs" />
     <Compile Include="DB\District.cs" />
     <Compile Include="DB\Coordinate.cs" />
+    <Compile Include="DB\Feedback.cs" />
     <Compile Include="DB\Location.cs" />
     <Compile Include="DB\Order.cs" />
     <Compile Include="DB\OrderEx.cs" />
@@ -61,6 +62,9 @@
     <Compile Include="DTO\AddressFromDTO.cs" />
     <Compile Include="DTO\AddressToDTO.cs" />
     <Compile Include="DTO\CoordinatesExDTO.cs" />
+    <Compile Include="DTO\DriverLocationDTO.cs" />
+    <Compile Include="DTO\DriverRequestDTO.cs" />
+    <Compile Include="DTO\FeedbackDTO.cs" />
     <Compile Include="DTO\RegistrationModelDTO.cs" />
     <Compile Include="DB\SupportMessage.cs" />
     <Compile Include="DB\Tarif.cs" />
@@ -77,8 +81,6 @@
     <Compile Include="DTO\DistrictDTO.cs" />
     <Compile Include="DTO\DriverDistrictInfoDTO.cs" />
     <Compile Include="DTO\ChartsColumnDTO.cs" />
-    <Compile Include="DTO\DriverLocation.cs" />
-    <Compile Include="DTO\DriverRequest.cs" />
     <Compile Include="DTO\LocationDTO.cs" />
     <Compile Include="DTO\OrderDTO.cs" />
     <Compile Include="DTO\OrderExDTO.cs" />

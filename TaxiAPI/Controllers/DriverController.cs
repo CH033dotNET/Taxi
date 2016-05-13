@@ -88,10 +88,10 @@ namespace TaxiAPI.Controllers
         }
         [HttpPost]
         //[Route("api/Driver/StartWorkEvent")]
-        public HttpResponseMessage StartWorkEvent(DriverLocation data)
+        public HttpResponseMessage StartWorkEvent(DriverLocationDTO data)
         {
             carManager.StartWorkEvent(data.id, data.startedTime.ToString());
-			MainSiteRequestHelper.postData<bool, DriverLocation>("OperatorHub", "AddDriver", data);
+			MainSiteRequestHelper.postData<bool, DriverLocationDTO>("OperatorHub", "AddDriver", data);
             return Request.CreateResponse(HttpStatusCode.OK);
         }
         [HttpGet]

@@ -94,7 +94,7 @@ namespace DriverSite.Controllers
 					//coordinatesManager.AddCoordinates(coordinates);
 				}
 
-				ApiRequestHelper.postData<DriverLocation>(controller, "StartWorkEvent", new DriverLocation()
+				ApiRequestHelper.postData<DriverLocationDTO>(controller, "StartWorkEvent", new DriverLocationDTO()
 				{
 					id = Id,
 					latitude = double.Parse(Latitude, CultureInfo.InvariantCulture),

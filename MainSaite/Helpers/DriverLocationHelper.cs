@@ -22,7 +22,7 @@ namespace MainSaite.Helpers
 			Contest.Clients.All.driverFinish(id);
 		}
 
-		public static void addDriver(DriverLocation data)
+		public static void addDriver(DriverLocationDTO data)
 		{
 			Contest.Clients.All.driverStart(data);
 		}

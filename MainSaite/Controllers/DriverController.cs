@@ -234,7 +234,7 @@ namespace MainSaite.Controllers
 			{
 				if (Latitude != null && Longitude != null)
 				{
-					DriverLocation driverLocation = new DriverLocation()
+					DriverLocationDTO driverLocation = new DriverLocationDTO()
 					{
 						id = Id,
 						latitude = double.Parse(Latitude, CultureInfo.InvariantCulture),

@@ -141,13 +141,6 @@ namespace DAL.Migrations
 				context.Addresses.AddRange(addres);
 				context.SaveChanges();
 			}
-			// District
-			if (!context.Districts.Any())
-			{
-				var districts = Angie.Configure<District>().Fill(x => x.Name).AsCanadianProvince().MakeList<District>(6).Select(x => new District { Name = x.Name });
-				context.Districts.AddRange(districts);
-				context.SaveChanges();
-			}
 			//Person
 			if (!context.Persons.Any())
 			{
@@ -267,7 +260,7 @@ namespace DAL.Migrations
 					NewOrders.Add(new Order()
 						{
 							Accuracy = random.Next(1,11),
-							DistrictId = random.Next(1, 7),
+							DistrictId = null,
 							DriverId = r[random.Next(0, r.Length)],
 							PeekPlace = string.Format("some place {0}", i),
 							DropPlace = string.Format("some other place {0}", i),

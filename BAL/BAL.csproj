@@ -62,11 +62,13 @@
   <ItemGroup>
     <Compile Include="AutoMapperConfig.cs" />
     <Compile Include="Interfaces\IDriverExManager.cs" />
+    <Compile Include="Interfaces\IFeedbackManager.cs" />
     <Compile Include="Interfaces\IOrderManagerEx.cs" />
     <Compile Include="Interfaces\ISupportManager.cs" />
     <Compile Include="Interfaces\ITariffExManager.cs" />
     <Compile Include="Interfaces\IWorkerStatusManager.cs" />
     <Compile Include="Manager\DriverExManager.cs" />
+    <Compile Include="Manager\FeedbackManager.cs" />
     <Compile Include="Manager\OrderManagerEx.cs" />
     <Compile Include="Manager\AddressManager.cs" />
     <Compile Include="Manager\BaseManager.cs" />

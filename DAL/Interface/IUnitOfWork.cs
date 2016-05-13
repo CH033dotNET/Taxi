@@ -36,6 +36,7 @@ namespace DAL.Interface
 		IGenericRepository<OrderEx> OrderExRepo { get; }
 		IGenericRepository<CoordinatesEx> CoordinatesExRepo { get; }
 		IGenericRepository<TariffEx> TariffExRepo { get; }
+		IGenericRepository<Feedback> FeedbackRepo { get; }
 
 		void Dispose();
 		void Save();

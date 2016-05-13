@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model.DTO
 {
-	public class DriverLocation
+	public class DriverLocationDTO
 	{
 		public int id { get; set; }
 

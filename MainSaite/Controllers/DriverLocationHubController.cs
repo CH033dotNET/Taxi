@@ -18,7 +18,7 @@ namespace MainSaite.Controllers
 		//void addDriver(int Id, double Latitude, double Longitude, DateTime time, string username);
 		[HttpPost]
 		/*[Route("api/Driver/GetDriverDistrictInfo")]*/
-		public HttpResponseMessage AddDriver(DriverLocation data)
+		public HttpResponseMessage AddDriver(DriverLocationDTO data)
 		{
 			DriverLocationHelper.addDriver(data);
 			return Request.CreateResponse(HttpStatusCode.OK, true);
