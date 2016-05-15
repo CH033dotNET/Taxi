@@ -571,8 +571,8 @@
   <data name="StartPrice" xml:space="preserve">
     <value>Start price</value>
   </data>
-  <data name="Tarifes" xml:space="preserve">
-    <value>Tarifes</value>
+  <data name="Tariffs" xml:space="preserve">
+    <value>Tariffs</value>
   </data>
   <data name="WaitingCost" xml:space="preserve">
     <value>Waiting cost</value>

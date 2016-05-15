@@ -573,7 +573,7 @@
   <data name="StartPrice" xml:space="preserve">
     <value>Початкова ціна</value>
   </data>
-  <data name="Tarifes" xml:space="preserve">
+  <data name="Tariffs" xml:space="preserve">
     <value>Тарифи</value>
   </data>
   <data name="WaitingCost" xml:space="preserve">

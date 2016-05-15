@@ -22,5 +22,11 @@ namespace BAL.Manager
 			var tariffs = uOW.TariffExRepo.All.ToList();
 			return tariffs.Select(x => Mapper.Map<TariffExDTO>(x));
 		}
+
+		public TariffExDTO GetTariffData(int id)
+		{
+			var tariff = uOW.TariffExRepo.GetByID(id);
+			return Mapper.Map<TariffExDTO>(tariff);
+		}
 	}
 }

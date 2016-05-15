@@ -1,105 +1,136 @@
 ﻿@model IEnumerable<Model.DTO.TariffExDTO>
 
 @{
-    ViewBag.Title = "Index";
+	ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+	@Html.ActionLink("Create New", "Create")
 </p>
 <table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PriceInCity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PriceOutCity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PricePreOrder)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PriceRegularCar)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PriceMinivanCar)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PriceLuxCar)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PriceCourierOption)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PricePlateOption)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PriceClientCarOption)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PriceSpeakEnglishOption)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PricePassengerSmokerOption)
-        </th>
-        <th></th>
-    </tr>
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.Name)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Description)
+		</th>
+		<th></th>
+	</tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PriceInCity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PriceOutCity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PricePreOrder)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PriceRegularCar)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PriceMinivanCar)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PriceLuxCar)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PriceCourierOption)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PricePlateOption)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PriceClientCarOption)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PriceSpeakEnglishOption)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PricePassengerSmokerOption)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Name)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Description)
+			</td>
+
+			<td>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tariffDetailsModal" onclick="GetTariffData(@item.Id)">Edit</button>
+			</td>
+		</tr>
+	}
 
 </table>
+
+<script type="text/javascript">
+	function GetTariffData(id) {
+		$.ajax({
+			type: "POST",
+			url: "/TariffEx/GetTariffData",
+			data: {
+				id: id
+			}
+		}).done(function (tariff) {
+			$('#Name').val(tariff.Name);
+			$('#Description').val(tariff.Description);
+			$('#PriceInCity').val(tariff.PriceInCity);
+			$('#PriceOutCity').val(tariff.PriceOutCity);
+			$('#PricePreOrder').val(tariff.PricePreOrder);
+			$('#PriceRegularCar').val(tariff.PriceRegularCar);
+			$('#PriceMinivanCar').val(tariff.PriceMinivanCar);
+			$('#PriceLuxCar').val(tariff.PriceLuxCar);
+			$('#PriceCourierOption').val(tariff.PriceCourierOption);
+			$('#PricePlateOption').val(tariff.PricePlateOption);
+			$('#PriceClientCarOption').val(tariff.PriceClientCarOption);
+			$('#PriceSpeakEnglishOption').val(tariff.PriceSpeakEnglishOption);
+			$('#PricePassengerSmokerOption').val(tariff.PricePassengerSmokerOption);
+		});
+	}
+</script>
+
+<div class="modal fade" id="tariffDetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="exampleModalLabel">New message</h4>
+			</div>
+			<div class="modal-body">
+				<table>
+					<tr>
+						<td><label for="Name" class="control-label">Name</label></td>
+						<td><input type="text" class="form-control" id="Name" placeholder="Name"></td>
+					</tr>
+					<tr>
+						<td><label for="Description" class="control-label">Description</label></td>
+						<td><input type="text" class="form-control" id="Description" placeholder="Description"></td>
+					</tr>
+					<tr>
+						<td><label for="PriceInCity" class="control-label">In city</label></td>
+						<td><input type="number" class="form-control" id="PriceInCity" placeholder="In city"></td>
+					</tr>
+					<tr>
+						<td><label for="PriceOutCity" class="control-label">Out city</label></td>
+						<td><input type="number" class="form-control" id="PriceOutCity" placeholder="Out city"></td>
+					</tr>
+					<tr>
+						<td><label for="PricePreOrder" class="control-label">Pre Order</label></td>
+						<td><input type="number" class="form-control" id="PricePreOrder" placeholder="Pre Order"></td>
+					</tr>
+					<tr>
+						<td><label for="PriceRegularCar" class="control-label">Regular Car</label></td>
+						<td><input type="number" class="form-control" id="PriceRegularCar" placeholder="Regular Car"></td>
+					</tr>
+					<tr>
+						<td><label for="PriceMinivanCar" class="control-label">Minivan Car</label></td>
+						<td><input type="number" class="form-control" id="PriceMinivanCar" placeholder="Minivan Car"></td>
+					</tr>
+					<tr>
+						<td><label for="PriceLuxCar" class="control-label">Lux Car</label></td>
+						<td><input type="number" class="form-control" id="PriceLuxCar" placeholder="Lux Car"></td>
+					</tr>
+					<tr>
+						<td><label for="PriceCourierOption" class="control-label">Courier Option</label></td>
+						<td><input type="number" class="form-control" id="PriceCourierOption" placeholder="Courier Option"></td>
+					</tr>
+					<tr>
+						<td><label for="PricePlateOption" class="control-label">Plate Option</label></td>
+						<td><input type="number" class="form-control" id="PricePlateOption" placeholder="Plate Option"></td>
+					</tr>
+					<tr>
+						<td><label for="PriceClientCarOption" class="control-label">Client Car Option</label></td>
+						<td><input type="number" class="form-control" id="PriceClientCarOption" placeholder="Client Car Option"></td>
+					</tr>
+					<tr>
+						<td><label for="PriceSpeakEnglishOption" class="control-label">Speak English Option</label></td>
+						<td><input type="number" class="form-control" id="PriceSpeakEnglishOption" placeholder="Speak English Option"></td>
+					</tr>
+					<tr>
+						<td><label for="PricePassengerSmokerOption" class="control-label">Passenger Smoker Option</label></td>
+						<td><input type="number" class="form-control" id="PricePassengerSmokerOption" placeholder="Passenger Smoker Option"></td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Send message</button>
+			</div>
+		</div>
+	</div>
+</div>

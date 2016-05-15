@@ -10,5 +10,6 @@ namespace BAL.Interfaces
 	public interface ITariffExManager
 	{
 		IEnumerable<TariffExDTO> GetAllTariffs();
+		TariffExDTO GetTariffData(int id);
 	}
 }

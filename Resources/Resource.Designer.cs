@@ -2555,11 +2555,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tarifes.
+        ///   Looks up a localized string similar to Tariffs.
         /// </summary>
-        public static string Tarifes {
+        public static string Tariffs {
             get {
-                return ResourceManager.GetString("Tarifes", resourceCulture);
+                return ResourceManager.GetString("Tariffs", resourceCulture);
             }
         }
         

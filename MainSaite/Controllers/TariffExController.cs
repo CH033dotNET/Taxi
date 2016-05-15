@@ -7,8 +7,8 @@ using System.Web.Mvc;
 
 namespace MainSaite.Controllers
 {
-    public class TariffExController : Controller
-    {
+	public class TariffExController : BaseController
+	{
 		private ITariffExManager TariffExManager;
 
 		public TariffExController(ITariffExManager manager)
@@ -20,9 +20,14 @@ namespace MainSaite.Controllers
 		// GET: /TariffEx/
 
 		public ActionResult Index()
-        {
-            return View(TariffExManager.GetAllTariffs());
-        }
+		{
+			return View(TariffExManager.GetAllTariffs());
+		}
 
-    }
+		public JsonResult GetTariffData(int id)
+		{
+			return Json(TariffExManager.GetTariffData(id), JsonRequestBehavior.AllowGet);
+		}
+
+	}
 }
