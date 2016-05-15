@@ -22,18 +22,22 @@
 
 	@foreach (var item in Model)
 	{
-		<tr>
-			<td>
-				@Html.DisplayFor(modelItem => item.Name)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Description)
-			</td>
+		if (item.Status == Common.Enum.TariffExStatus.Active)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Description)
+				</td>
 
-			<td>
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tariffDetailsModal" onclick="GetTariffData(@item.Id)">Edit</button>
-			</td>
-		</tr>
+				<td>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tariffDetailsModal" onclick="GetTariffData(@item.Id)">Edit</button>
+					<button type="button" class="btn btn-primary" onclick="DeleteTariff(@item.Id)">Delete</button>
+				</td>
+			</tr>
+		}
 	}
 
 </table>

@@ -58,6 +58,7 @@
     <Compile Include="Enum\DriverEnum\DriverWorkingStatus.cs" />
     <Compile Include="Enum\OrderStatusEnum.cs" />
     <Compile Include="Enum\RatingEnum.cs" />
+    <Compile Include="Enum\TariffExStatus.cs" />
     <Compile Include="Helpers\CustomDateTimeConverter.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\RequestHelper.cs" />

@@ -151,6 +151,18 @@ function SaveTariff() {
 	});
 }
 
+function DeleteTariff(id) {
+	$.ajax({
+		type: "POST",
+		url: "/TariffEx/DeleteTariff",
+		data: {
+			id: id
+		}
+	}).done(function () {
+		location.reload();
+	});
+}
+
 //////////////////////////////
 /// Tariffs page - END
 //////////////////////////////

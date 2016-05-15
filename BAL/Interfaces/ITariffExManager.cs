@@ -12,5 +12,6 @@ namespace BAL.Interfaces
 		IEnumerable<TariffExDTO> GetAllTariffs();
 		TariffExDTO GetTariffData(int id);
 		bool SaveTariff(TariffExDTO tariff);
+		bool DeleteTariff(int id);
 	}
 }

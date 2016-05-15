@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,5 +23,6 @@ namespace Model.DB
 		public decimal PriceClientCarOption { get; set; }
 		public decimal PriceSpeakEnglishOption { get; set; }
 		public decimal PricePassengerSmokerOption { get; set; }
+		public TariffExStatus Status { get; set; }
 	}
 }

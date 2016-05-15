@@ -65,5 +65,19 @@ namespace BAL.Manager
 				return false;
 			}
 		}
+
+		public bool DeleteTariff(int id)
+		{
+			try
+			{
+				var tariffDb = uOW.TariffExRepo.GetByID(id);
+				tariffDb.Status = Common.Enum.TariffExStatus.Deleted;
+				uOW.Save();
+				return true;
+			} catch (Exception ex)
+			{
+				return false;
+			}
+		}
 	}
 }

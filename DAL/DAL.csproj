@@ -287,6 +287,10 @@
     <Compile Include="Migrations\201605131326385_AddFeedbackModel.Designer.cs">
       <DependentUpon>201605131326385_AddFeedbackModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605151943358_AddedTariffStatus.cs" />
+    <Compile Include="Migrations\201605151943358_AddedTariffStatus.Designer.cs">
+      <DependentUpon>201605151943358_AddedTariffStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -482,6 +486,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605131326385_AddFeedbackModel.resx">
       <DependentUpon>201605131326385_AddFeedbackModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605151943358_AddedTariffStatus.resx">
+      <DependentUpon>201605151943358_AddedTariffStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
