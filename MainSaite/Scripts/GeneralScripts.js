@@ -61,8 +61,7 @@ $(document).ready(function () {
 
 	var menuTabs = $("#mainMenu").children().length;
 
-	if(menuTabs>0)
-	{
+	if (menuTabs > 0) {
 		$("#dropdownMenuBtn").css("display", "block");
 	}
 
@@ -75,4 +74,64 @@ $(document).ready(function () {
 	$("#passwordInput").val("password");
 
 
-})
+});
+
+//////////////////////////////
+/// Tariffs page - START
+//////////////////////////////
+
+function GetTariffData(id) {
+	$.ajax({
+		type: "POST",
+		url: "/TariffEx/GetTariffData",
+		data: {
+			id: id
+		}
+	}).done(function (tariff) {
+		$('#Id').val(tariff.Id);
+		$('#Name').val(tariff.Name);
+		$('#Description').val(tariff.Description);
+		$('#PriceInCity').val(tariff.PriceInCity);
+		$('#PriceOutCity').val(tariff.PriceOutCity);
+		$('#PricePreOrder').val(tariff.PricePreOrder);
+		$('#PriceRegularCar').val(tariff.PriceRegularCar);
+		$('#PriceMinivanCar').val(tariff.PriceMinivanCar);
+		$('#PriceLuxCar').val(tariff.PriceLuxCar);
+		$('#PriceCourierOption').val(tariff.PriceCourierOption);
+		$('#PricePlateOption').val(tariff.PricePlateOption);
+		$('#PriceClientCarOption').val(tariff.PriceClientCarOption);
+		$('#PriceSpeakEnglishOption').val(tariff.PriceSpeakEnglishOption);
+		$('#PricePassengerSmokerOption').val(tariff.PricePassengerSmokerOption);
+
+		$('#exampleModalLabel').html(tariff.Name);
+	});
+}
+
+function SaveTariff() {
+	$.ajax({
+		type: "POST",
+		url: "/TariffEx/SaveTariff",
+		data: {
+			Id: $('#Id').val(),
+			Name: $('#Name').val(),
+			Description: $('#Description').val(),
+			PriceInCity: $('#PriceInCity').val(),
+			PriceOutCity: $('#PriceOutCity').val(),
+			PricePreOrder: $('#PricePreOrder').val(),
+			PriceRegularCar: $('#PriceRegularCar').val(),
+			PriceMinivanCar: $('#PriceMinivanCar').val(),
+			PriceLuxCar: $('#PriceLuxCar').val(),
+			PriceCourierOption: $('#PriceCourierOption').val(),
+			PricePlateOption: $('#PricePlateOption').val(),
+			PriceClientCarOption: $('#PriceClientCarOption').val(),
+			PriceSpeakEnglishOption: $('#PriceSpeakEnglishOption').val(),
+			PricePassengerSmokerOption: $('#PricePassengerSmokerOption').val()
+		}
+	}).done(function () {
+		location.reload();
+	});
+}
+
+//////////////////////////////
+/// Tariffs page - END
+//////////////////////////////

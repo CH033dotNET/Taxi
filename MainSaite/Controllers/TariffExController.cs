@@ -1,4 +1,6 @@
 ﻿using BAL.Interfaces;
+using Model.DB;
+using Model.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +29,11 @@ namespace MainSaite.Controllers
 		public JsonResult GetTariffData(int id)
 		{
 			return Json(TariffExManager.GetTariffData(id), JsonRequestBehavior.AllowGet);
+		}
+
+		public bool SaveTariff(TariffExDTO tariff)
+		{
+			return TariffExManager.SaveTariff(tariff);
 		}
 
 	}
