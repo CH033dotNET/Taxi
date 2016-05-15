@@ -34,21 +34,29 @@ namespace BAL.Manager
 		{
 			try
 			{
-				var tariffDb = uOW.TariffExRepo.GetByID(tariff.Id);
+				if (tariff.Id == -1)
+				{
+					var newTariff = Mapper.Map<TariffEx>(tariff);
+					uOW.TariffExRepo.Insert(newTariff);
+				}
+				else
+				{
+					var tariffDb = uOW.TariffExRepo.GetByID(tariff.Id);
 
-				tariffDb.Name = tariff.Name;
-				tariffDb.Description = tariff.Description;
-				tariffDb.PriceInCity = tariff.PriceInCity;
-				tariffDb.PriceOutCity = tariff.PriceOutCity;
-				tariffDb.PricePreOrder = tariff.PricePreOrder;
-				tariffDb.PriceRegularCar = tariff.PriceRegularCar;
-				tariffDb.PriceMinivanCar = tariff.PriceMinivanCar;
-				tariffDb.PriceLuxCar = tariff.PriceLuxCar;
-				tariffDb.PriceCourierOption = tariff.PriceCourierOption;
-				tariffDb.PricePlateOption = tariff.PricePlateOption;
-				tariffDb.PriceClientCarOption = tariff.PriceClientCarOption;
-				tariffDb.PriceSpeakEnglishOption = tariff.PriceSpeakEnglishOption;
-				tariffDb.PricePassengerSmokerOption = tariff.PricePassengerSmokerOption;
+					tariffDb.Name = tariff.Name;
+					tariffDb.Description = tariff.Description;
+					tariffDb.PriceInCity = tariff.PriceInCity;
+					tariffDb.PriceOutCity = tariff.PriceOutCity;
+					tariffDb.PricePreOrder = tariff.PricePreOrder;
+					tariffDb.PriceRegularCar = tariff.PriceRegularCar;
+					tariffDb.PriceMinivanCar = tariff.PriceMinivanCar;
+					tariffDb.PriceLuxCar = tariff.PriceLuxCar;
+					tariffDb.PriceCourierOption = tariff.PriceCourierOption;
+					tariffDb.PricePlateOption = tariff.PricePlateOption;
+					tariffDb.PriceClientCarOption = tariff.PriceClientCarOption;
+					tariffDb.PriceSpeakEnglishOption = tariff.PriceSpeakEnglishOption;
+					tariffDb.PricePassengerSmokerOption = tariff.PricePassengerSmokerOption;
+				}
 
 				uOW.Save();
 				return true;

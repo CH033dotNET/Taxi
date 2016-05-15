@@ -80,6 +80,25 @@ $(document).ready(function () {
 /// Tariffs page - START
 //////////////////////////////
 
+function CreateNewTariff() {
+	$('#exampleModalLabel').html('New tariff');
+
+	$('#Id').val(-1);
+	$('#Name').val('');
+	$('#Description').val('');
+	$('#PriceInCity').val('');
+	$('#PriceOutCity').val('');
+	$('#PricePreOrder').val('');
+	$('#PriceRegularCar').val('');
+	$('#PriceMinivanCar').val('');
+	$('#PriceLuxCar').val('');
+	$('#PriceCourierOption').val('');
+	$('#PricePlateOption').val('');
+	$('#PriceClientCarOption').val('');
+	$('#PriceSpeakEnglishOption').val('');
+	$('#PricePassengerSmokerOption').val('');
+}
+
 function GetTariffData(id) {
 	$.ajax({
 		type: "POST",
