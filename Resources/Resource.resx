@@ -1072,4 +1072,16 @@
   <data name="Rating" xml:space="preserve">
     <value>Rating</value>
   </data>
+  <data name="AddFeedback" xml:space="preserve">
+    <value>Add feedback</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="FeedbackComment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="SaveFeedback" xml:space="preserve">
+    <value>Save feedback</value>
+  </data>
 </root>

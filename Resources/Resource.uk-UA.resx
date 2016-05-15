@@ -1077,4 +1077,16 @@
   <data name="Rating" xml:space="preserve">
     <value>Оцінка</value>
   </data>
+  <data name="AddFeedback" xml:space="preserve">
+    <value>Додати відгук</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Закрити</value>
+  </data>
+  <data name="FeedbackComment" xml:space="preserve">
+    <value>Коментар</value>
+  </data>
+  <data name="SaveFeedback" xml:space="preserve">
+    <value>Зберегти відгук</value>
+  </data>
 </root>

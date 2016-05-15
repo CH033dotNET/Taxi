@@ -146,7 +146,6 @@
 				$(newElement).append(el);
 				var find = $("li[data-id=" + "'" + parentId + "']");
 				find.append(newElement);
-				//el.remove();
 			}
 		});
 
@@ -535,7 +534,8 @@
 				}
 			});
 			directChilds.forEach(function (item) {
-				district.concat(getAllChildren(item.Id));
+
+				districts = districts.concat(getAllChildren(item.Id));
 			});
 			districts.push(district);
 		}

@@ -134,7 +134,7 @@ ol{
 }
 
 .ui-state-highlight{
-	background-color:rgba(130, 251, 36, 0.51);
-	border:2px dashed rgba(7, 246, 7, 0.61);
+	background-color:rgba(241, 211, 35, 0.50);
+	border:2px dashed rgba(250, 194, 13, 0.61);
 	height:45px;
 }
