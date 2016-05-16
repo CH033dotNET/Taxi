@@ -106,7 +106,22 @@
 		if (document.getElementById('with-plate').checked) {
 			startPrice += tariffs[selectedTariffIndex].PricePlateOption;
 		}
-		
+
+		// ClientCar
+		if (document.getElementById('my-car').checked) {
+			startPrice += tariffs[selectedTariffIndex].PriceClientCarOption;
+		}
+
+		//SpeakEnglish
+		if (document.getElementById('english').checked) {
+			startPrice += tariffs[selectedTariffIndex].PriceSpeakEnglishOption;
+		}
+
+		//PassengerSmoker
+		if (document.getElementById('smoking').checked) {
+			startPrice += tariffs[selectedTariffIndex].PricePassengerSmokerOption;
+		}
+
 		$('#cost').html(startPrice);
 	}
 </script>
