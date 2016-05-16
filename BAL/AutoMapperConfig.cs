@@ -18,15 +18,15 @@ namespace Common
 			Mapper.CreateMap<UserDTO, User>();
 			Mapper.CreateMap<Car, CarDTO>();
 			Mapper.CreateMap<CarDTO, Car>();
-            Mapper.CreateMap<AddressDTO, UserAddress>();
-            Mapper.CreateMap<UserAddress, AddressDTO>();
+			Mapper.CreateMap<AddressDTO, UserAddress>();
+			Mapper.CreateMap<UserAddress, AddressDTO>();
 			Mapper.CreateMap<Person, PersonDTO>();
 			Mapper.CreateMap<PersonDTO, Person>();
-            Mapper.CreateMap<Location, LocationDTO>();
-            Mapper.CreateMap<LocationDTO, Location>();
+			Mapper.CreateMap<Location, LocationDTO>();
+			Mapper.CreateMap<LocationDTO, Location>();
 			Mapper.CreateMap<WorkshiftHistory, WorkshiftHistoryDTO>();
 			Mapper.CreateMap<WorkshiftHistoryDTO, WorkshiftHistory>();
-            Mapper.CreateMap<TarifDTO, Tarif>();
+			Mapper.CreateMap<TarifDTO, Tarif>();
 			Mapper.CreateMap<Tarif, TarifDTO>();
 			Mapper.CreateMap<CoordinatesDTO, Coordinates>();
 			Mapper.CreateMap<Coordinates, CoordinatesDTO>();
@@ -38,6 +38,19 @@ namespace Common
 			Mapper.CreateMap<SupportMessage, SupportMessageDTO>();
 			Mapper.CreateMap<TariffExDTO, TariffEx>();
 			Mapper.CreateMap<TariffEx, TariffExDTO>();
+			Mapper.CreateMap<Coordinate, CoordinateDTO>();
+			Mapper.CreateMap<District, DistrictDTO>();
+			Mapper.CreateMap<CoordinateDTO, Coordinate>();
+			Mapper.CreateMap<DistrictDTO, District>();
+			Mapper.CreateMap<CoordinatesEx, CoordinatesExDTO>();
+			Mapper.CreateMap<CoordinatesExDTO, CoordinatesEx>();
+			Mapper.CreateMap<FeedbackDTO, Feedback>();
+			Mapper.CreateMap<Feedback, FeedbackDTO>();
+			Mapper.CreateMap<OrderEx, OrderExDTO>();
+			Mapper.CreateMap<OrderExDTO, OrderEx>();
+			Mapper.CreateMap<Tarif, TarifDTO>();
+			Mapper.CreateMap<TarifDTO, Tarif>();
+			Mapper.CreateMap<RegistrationModelDTO, UserDTO>();
 		}
 	}
 }

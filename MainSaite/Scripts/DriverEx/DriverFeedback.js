@@ -7,7 +7,7 @@
 		Rating: 0
 	};
 
-	$(document).on('click', '#addFeedbackButton', function () {
+	$(document).on('click', '.addFeedbackButton', function () {
 		orderId = +$(this).attr('data-orderId');
 		feedback.Id = +$(this).attr('data-feedbackId');
 		if (feedback.Id) {

@@ -18,8 +18,7 @@ namespace BAL.Manager
 		public TarifManager(IUnitOfWork uOW)
 			: base(uOW)
 		{
-			Mapper.CreateMap<Tarif, TarifDTO>();
-			Mapper.CreateMap<TarifDTO, Tarif>();
+			
 		}
 
 		public IEnumerable<TarifDTO> GetTarifes()
