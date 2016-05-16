@@ -44,6 +44,11 @@ namespace MainSaite.Controllers
 			return PartialView(orderManager.GetOrdersByDriver(driver));
 		}
 
+		public ActionResult MyOrder()
+		{
+			return PartialView();
+		}
+
 		[HttpPost]
 		public JsonResult TakeOrder(int id, int WaitingTime)
 		{

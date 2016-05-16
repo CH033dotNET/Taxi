@@ -26,6 +26,11 @@ namespace MainSaite.Controllers
 			return View(TariffExManager.GetAllTariffs());
 		}
 
+		public JsonResult GetAllActiveTariffs()
+		{
+			return Json(TariffExManager.GetAllTariffs().Where(e => e.Status == Common.Enum.TariffExStatus.Active).ToList(), JsonRequestBehavior.AllowGet);
+		}
+
 		public JsonResult GetTariffData(int id)
 		{
 			return Json(TariffExManager.GetTariffData(id), JsonRequestBehavior.AllowGet);

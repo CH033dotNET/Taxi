@@ -575,6 +575,7 @@
     <Content Include="Views\Driver\DistrictPart.cshtml" />
     <Content Include="Views\DriverEx\Districts.cshtml" />
     <Content Include="Views\DriverEx\DriverFeedback.cshtml" />
+    <Content Include="Views\DriverEx\MyOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
