@@ -251,6 +251,12 @@
 	    padding: 0px 0px 0px 0px;
 		display:none;
 	}
+	#sideMenu.active{
+		background: gold;		
+    }
+	#sideMenu.active a{
+		color:black;		
+    }
 	#sideMenu{
 		background-color: #2e2f31;
         border: none;
@@ -260,8 +266,8 @@
 		color: white;
         font-size: 20px;
         font-weight: bold;
-
 	}
+
 	#dashBtnIcon{
 		background-color: white;
 	}

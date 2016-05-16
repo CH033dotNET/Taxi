@@ -89,6 +89,9 @@ function locationUpdate(Lat, Lng, Time, ID, name) {
 
 	if (markers['DriverN' + ID] !== undefined) {
 		markers['DriverN' + ID].setPosition(new google.maps.LatLng(Lat, Lng));
+		//"2016-05-16T13:42:00"
+		//var k = new Date(+time.match(/\d+/)[0]).toLocaleString();
+		var n = new Date(Time).toLocaleString();
 		$('#DriverN' + ID + 'up').html(new Date(Time).toLocaleString());
 	}
 	else {

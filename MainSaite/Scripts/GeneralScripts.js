@@ -74,6 +74,11 @@ $(document).ready(function () {
 	$("#passwordInput").val("password");
 
 
+	if ($(window).width() <= 768) {
+		var url = window.location.pathname;
+		$('ul.nav a[href="' + url + '"]').parent().addClass('active');
+	}
+
 });
 
 //////////////////////////////
