@@ -24,6 +24,9 @@ namespace Model.DTO
 
 		public int WaitingTime { get; set; }
 
+		[DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
+		public decimal Price { get; set; }
+
 		[DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yy HH':'mm}", ApplyFormatInEditMode = true)]
         public DateTime OrderTime { get; set; }
 
@@ -50,5 +53,38 @@ namespace Model.DTO
 		public int? DriverFeedbackId { get; set; }
 
 		public Feedback DriverFeedback { get; set; }
+
+		public string FullAddressFrom
+		{
+			get
+			{
+				var address = this.AddressFrom.Address;
+				if (this.AddressFrom.Building != null)
+					address += ", " + this.AddressFrom.Building;
+				return address;
+			}
+		}
+
+		public string FullAddressesTo
+		{
+			get
+			{
+				var address = "";
+				foreach (var place in this.AddressesTo)
+				{
+					if (place.Address != null)
+					{
+						address += place.Address;
+						if (place.Building != null)
+							address += ", " + place.Building;
+						address += "\n";
+					}
+					else
+						if (place.Building != null)
+							address += place.Building + "\n";
+				}
+				return address;
+			}
+		}
 	}
 }

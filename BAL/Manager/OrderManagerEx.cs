@@ -139,5 +139,13 @@ namespace BAL.Interfaces
 			uOW.OrderExRepo.Update(order);
 			uOW.Save();
 		}
+
+		public void SetClientFeedback(int orderId, int feedbackId)
+		{
+			var order = uOW.OrderExRepo.GetByID(orderId);
+			order.ClientFeedbackId = feedbackId;
+			uOW.OrderExRepo.Update(order);
+			uOW.Save();
+		}
 	}
 }
