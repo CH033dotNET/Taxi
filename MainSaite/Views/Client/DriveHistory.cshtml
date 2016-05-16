@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Model.DTO.OrderExDTO>
+
+@using Model.DTO;
+
+@{
+	ViewBag.Title = Resources.Resource.ClientDriveHistory;
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/DriveHistory.css" type="text/css" rel="stylesheet" />
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<center><h2>@Resources.Resource.ClientDriveHistory</h2></center>
+	</div>
+	<div class="panel-body">
+		<table class="table" id="orders">
+		<tr>
+			<th id="dateTime">
+				@Resources.Resource.DateTime
+			</th>
+			<th id="pickPlace">
+				@Resources.Resource.PickPlace
+			</th>
+			<th id="dropPlace">
+				@Resources.Resource.DropPlaces
+			</th>
+			<th id="carNumber">
+				@Resources.Resource.CarNumber
+			</th>
+			<th id="price">
+				@Resources.Resource.Price
+			</th>
+			<th id="feedback">
+				@Resources.Resource.Feedback
+			</th>
+		</tr>
+		@foreach (var item in Model)
+		{
+			<tr class="order">
+				<td>
+					@Html.DisplayFor(modelItem => item.OrderTime)
+				</td>
+				<td>
+					@if (item.Address != null)
+					{
+						@Html.DisplayFor(modelItem => item.Address)
+					}
+					else
+					{
+						@Html.DisplayFor(modelItem => item.FullAddressFrom);
+					}
+                </td>
+                <td>
+					@Html.DisplayFor(modelItem => item.FullAddressesTo)
+				</td>
+                <td>
+					@Html.DisplayFor(modelItem => item.Car.CarNumber)
+				</td>
+                <td>
+					@Html.DisplayFor(modelItem => item.Price)
+				</td>
+                <td>
+					<button data-orderId="@item.Id" data-feedbackId="@item.ClientFeedbackId" type="button" class="btn btn-primary addFeedback" data-toggle="modal">@Resources.Resource.AddFeedback</button>
+				</td>
+            </tr>
+        }
+		</table>
+	</div>
+</div>
+
+@Html.Partial("ClientFeedback")
+
+<script src="~/Scripts/Client/ClientFeedback.js"></script>

@@ -126,7 +126,7 @@ $(function () {
 		}
 	}
 
-	$('#submit').click(function () {
+	$('#submit button').click(function () {
 		if ($('#address-from').val() == "") {
 			if ($('.ActivLang').html() == 'En')
 				var inputRequired = 'this field is required';

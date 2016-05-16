@@ -28,7 +28,7 @@
 				@Html.DisplayFor(modelItem => item.OrderTime)
 			</td>
 			<td>
-				<button data-feedbackId="@item.DriverFeedbackId" data-orderId="@item.Id" id="addFeedbackButton" type="button" class="btn btn-warning" data-toggle="modal">@Resources.Resource.AddFeedback</button>
+				<button data-feedbackId="@item.DriverFeedbackId" data-orderId="@item.Id" type="button" class="btn btn-warning addFeedbackButton" data-toggle="modal">@Resources.Resource.AddFeedback</button>
 			</td>
 		</tr>
 	}

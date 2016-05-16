@@ -1,7 +1,24 @@
-﻿th, td {
+﻿#orders {
+	margin-bottom: 0px;
+}
+
+#orders th, #orders td {
 	text-align: center;
+	vertical-align: middle;
 }
 
 #dateTime {
 	width: 120px;
+}
+
+#feedback {
+	width: 140px;
+}
+
+#price {
+	width: 100px;
+}
+
+#carNumber {
+	width: 150px;
 }

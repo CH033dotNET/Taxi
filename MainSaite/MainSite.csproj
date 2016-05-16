@@ -390,6 +390,7 @@
     <Content Include="Scripts\bootstrap-filestyle.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Client\ClientFeedback.js" />
     <Content Include="Scripts\CustomHighCharts\DistrictOrdersPerYear.js" />
     <Content Include="Scripts\DistrictPartButtonScripts.js" />
     <Content Include="Scripts\DistrictsCustomScripts\DistrictScriptLogic.js" />
@@ -455,7 +456,6 @@
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-1.9.1-vsdoc.js" />
-    <Content Include="Scripts\ClientDrHistory\ClientDrHistory.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
@@ -576,6 +576,7 @@
     <Content Include="Views\DriverEx\Districts.cshtml" />
     <Content Include="Views\DriverEx\DriverFeedback.cshtml" />
     <Content Include="Views\DriverEx\MyOrder.cshtml" />
+    <Content Include="Views\Client\ClientFeedback.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

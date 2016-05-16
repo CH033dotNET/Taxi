@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿$(function () {
 
 	var orderId;
 	var feedback = {
@@ -7,95 +7,94 @@
 		Rating: 0
 	};
 
-	$(document).on('click', '.addFeedbackButton', function () {
-		orderId = +$(this).attr('data-orderId');
-		feedback.Id = +$(this).attr('data-feedbackId');
+	$('.addFeedback').click(function () {
+		$('#comment').val('');
+		fillStars(0);
+		orderId = $(this).attr('data-orderId');
+		feedback.Id = $(this).attr('data-feedbackId');
 		if (feedback.Id) {
 			$.ajax({
-				url: "DriverEx/GetFeedback",
+				url: "GetFeedback",
 				method: 'post',
 				data: {
 					id: feedback.Id
 				},
 				success: function (result) {
-					if (result) {
-						feedback = result;
-					}
+					if (result) feedback = result;
 					$('#comment').val(feedback.Comment);
-					fillStars(feedback.Rating - 1);
+					fillStars(feedback.Rating);
 				}
 			});
 		}
-		$('#driverFeedbackModal').modal('show');
-		
-		
+		else {
+			feedback.Id = 0;
+			feedback.Comment = "";
+			feedback.Rating = 0;
+		}
+		$('#clientFeedbackModal').modal('show');
 	});
 
-	$(document).on('click', '#feedbackConfirm', function () {
+	$('#feedbackConfirm').click(function () {
 		var comment = $('#comment').val();
-		if (feedback.Rating > 0 && comment.length > 0) {
+		if (feedback.Rating > 0 || comment.length > 0) {
 			feedback.Comment = comment;
 			if (feedback.Id) {
 				$.ajax({
-					url: "DriverEx/UpdateFeedback",
+					url: "UpdateFeedback",
 					method: 'post',
 					data: feedback,
-					success: function (result) {
-						$('#driverFeedbackModal').modal('hide');
-					}
+					success: function (result) { }
 				});
 			}
 			else {
 				$.ajax({
-					url: "DriverEx/AddFeedback",
+					url: "AddFeedback",
 					method: 'post',
 					data: feedback,
 					success: function (result) {
 						feedback = result;
 						$.ajax({
-							url: "DriverEx/SetDriverFeedback",
+							url: "SetClientFeedback",
 							method: 'post',
 							data: {
 								orderId: orderId,
 								feedbackId: result.Id
 							},
 							success: function () {
-								$('#addFeedbackButton[data-orderId="' + orderId + '"]').attr('data-feedbackId', feedback.Id);
-								$('#driverFeedbackModal').modal('hide');
+								$('button[data-orderId="' + orderId + '"]').attr('data-feedbackId', feedback.Id);
 							}
 						});
 					}
 				});
 			}
 		}
+		$('#clientFeedbackModal').modal('hide');
 	});
-
 
 	//functionw for drawing stars
 	$('#rating .glyphicon')
 		.hover(function () {
 			var stars = $('#rating .glyphicon');
 			var rate = stars.index(this);
-			fillStars(rate);
+			fillStars(rate + 1);
 		})
 		.click(function () {
 			var stars = $('#rating .glyphicon');
-			feedback.Rating = stars.index(this)+1;
-			fillStars(feedback.Rating-1);
+			feedback.Rating = stars.index(this) + 1;
+			fillStars(feedback.Rating);
 		})
 		.mouseout(function () {
-			fillStars(feedback.Rating-1);
+			fillStars(feedback.Rating);
 		});
 
 	function fillStars(count) {
 		var stars = $('#rating .glyphicon');
 		stars.addClass('glyphicon-star-empty').removeClass('glyphicon-star');
 		stars.each(function (index, elem) {
-			if (index <= count) {
+			if (index <= count - 1) {
 				$(elem).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
 			}
 		});
 	}
-	
 
 });
