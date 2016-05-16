@@ -32,5 +32,6 @@ namespace BAL.Interfaces
 		void UpdateOrder(OrderExDTO order);
 
 		void SetDriverFeedback(int orderId, int feedbackId);
+		void SetClientFeedback(int orderId, int feedbackId);
 	}
 }

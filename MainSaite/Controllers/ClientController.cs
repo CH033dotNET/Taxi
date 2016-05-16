@@ -14,13 +14,15 @@ namespace MainSaite.Controllers
 	{
 		private IOrderManagerEx orderManager;
 		private IPersonManager personManager;
+		private IFeedbackManager feedbackManager;
 
 		private static IHubContext Context = GlobalHost.ConnectionManager.GetHubContext<OrderHub>();
 
-		public ClientController(IOrderManagerEx orderManager, IPersonManager personManager)
+		public ClientController(IOrderManagerEx orderManager, IPersonManager personManager, IFeedbackManager feedbackManager)
 		{
 			this.orderManager = orderManager;
 			this.personManager = personManager;
+			this.feedbackManager = feedbackManager;
 		}
 
 		public ActionResult Index()
@@ -49,6 +51,30 @@ namespace MainSaite.Controllers
 		{
 			orderManager.UpdateOrder(order);
 			return Json(orderManager.GetById(order.Id));
+		}
+
+		[HttpPost]
+		public JsonResult GetFeedback(int id)
+		{
+			return Json(feedbackManager.GetById(id));
+		}
+
+		[HttpPost]
+		public JsonResult UpdateFeedback(FeedbackDTO feedback)
+		{
+			return Json(feedbackManager.UpdateFeedback(feedback));
+		}
+
+		[HttpPost]
+		public JsonResult AddFeedback(FeedbackDTO feedback)
+		{
+			return Json(feedbackManager.AddFeedback(feedback));
+		}
+
+		[HttpPost]
+		public void SetClientFeedback(int orderId, int feedbackId)
+		{
+			orderManager.SetClientFeedback(orderId, feedbackId);
 		}
 	}
 }

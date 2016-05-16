@@ -24,8 +24,10 @@ namespace Model.DB
 
 		public int WaitingTime { get; set; }
 
-        //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh-mm-ss}", ApplyFormatInEditMode = true)]
-        public DateTime OrderTime { get; set; }
+		public decimal Price { get; set; }
+
+		//[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy hh-mm-ss}", ApplyFormatInEditMode = true)]
+		public DateTime OrderTime { get; set; }
 
 		public AddressFrom AddressFrom { get; set; }
 
