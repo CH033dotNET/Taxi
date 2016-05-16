@@ -35,13 +35,44 @@
 		});
 	};
 
+	orderHub.client.OrderTaken = function (id) {
+		$.ajax({
+			url: '/OrderEx/GetOrder/',
+			data: {
+				id: id,
+			},
+			type: "POST",
+			success: function (order) {
+				
+				var orderblock = "";
+				orderblock += "<tr>";
+				orderblock += "    <td>";
+				orderblock += order.success.Address;
+				orderblock += "    <\/td>";
+				orderblock += "    <td>";
+				orderblock += order.success.OrderTime;
+				orderblock += "    <\/td>";
+				orderblock += "    <td>";
+				orderblock += "        <div class=\"input-group\">";
+				orderblock += "            <span class=\"input-group-btn\">";
+				orderblock += "                <button data-feedbackId=\"" + order.success.Id + "\" data-orderId=\"" + order.success.Id +"\" type=\"button\" class=\"btn btn-warning addFeedbackButton\" data-toggle=\"modal\">Add Feedback</button>";
+				orderblock += "            <\/span>";
+				orderblock += "        <\/div>";
+				orderblock += "    <\/td>";
+				orderblock += "<\/tr>";
+
+				$('#orders_history').append(orderblock)
+			}
+		});
+	};
+
 	$.connection.hub.start().done(function () {
 
 		//connect to hub group
 		orderHub.server.connect("Driver");
 
 		//take order
-		$('.take').click(function (e) {
+		$(document).on('click','.take', function (e) {
 			var row = $(this).closest('tr');
 			currentOrderId = +$(this).attr('itemId');
 			var waiting_time = row.find('.waiting-time').first().val();
@@ -58,6 +89,7 @@
 						if (result) {
 							$(row).fadeOut();
 							orderHub.server.OrderConfirmed(currentOrderId, waiting_time);
+							orderHub.client.OrderTaken(currentOrderId)
 						}
 						else {
 							alert("something wrong");
