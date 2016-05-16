@@ -60,18 +60,19 @@
 					<li>
 						<a data-toggle="tab" href="#OrdersHistory">@Resources.Resource.OrdersHistory</a>
 					</li>
-					
+					<li>
+						<a data-toggle="tab" href="#MyOrder">My Order</a>
+					</li>
 				</ul>
-
 			</div>
 		</div>
 	</div>
 	<div>
 		<div id="driver-content" class="tab-content">
 			<div id="District" class="tab-pane fade">
-					@{
-						Html.RenderAction("DistrictPart", "Driver");
-					}
+				@{
+					Html.RenderAction("DistrictPart", "Driver");
+				}
 			</div>
 			<div id="DistrictChooser" class="tab-pane fade">
 				@{
@@ -86,6 +87,11 @@
 			<div id="OrdersHistory" class="tab-pane fade">
 				@{
 					Html.RenderAction("OrdersHistory", "DriverEx");
+				}
+			</div>
+			<div id="MyOrder" class="tab-pane fade">
+				@{
+					Html.RenderAction("MyOrder", "DriverEx");
 				}
 			</div>
 		</div>

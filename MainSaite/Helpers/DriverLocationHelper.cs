@@ -14,7 +14,7 @@ namespace MainSaite.Helpers
 
 		public static void addedLocation(Model.DTO.CoordinatesExDTO coords)
         {
-            Contest.Clients.All.locationUpdate(coords.Latitude, coords.Longitude, coords.AddedTime, coords.DriverId);
+			Contest.Clients.All.locationUpdate(coords.Latitude, coords.Longitude,coords.AddedTime, coords.DriverId);
         }
 
 		public static void removeDriver(int id)

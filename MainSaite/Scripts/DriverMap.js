@@ -89,7 +89,15 @@ function locationUpdate(Lat, Lng, Time, ID, name) {
 
 	if (markers['DriverN' + ID] !== undefined) {
 		markers['DriverN' + ID].setPosition(new google.maps.LatLng(Lat, Lng));
-		$('#DriverN' + ID + 'up').html(new Date(Time).toLocaleString());
+		//"2016-05-16T13:42:00"
+		//var k = new Date(+time.match(/\d+/)[0]).toLocaleString();
+
+		var n = new Date(Time);
+		n.setMinutes(n.getMinutes() + n.getTimezoneOffset());
+
+		//var n = new Date(Time).toLocaleString();
+
+		$('#DriverN' + ID + 'up').html(n.toLocaleString());
 	}
 	else {
 		AddDriverToTheTable(Lat, Lng, Time, moment().format('YYYY/MM/DD HH:mm:ss'), ID, name);
