@@ -16,8 +16,6 @@ namespace BAL.Manager
 		public FeedbackManager(IUnitOfWork uOW)
 			: base(uOW)
 		{
-			Mapper.CreateMap<FeedbackDTO, Feedback>();
-			Mapper.CreateMap<Feedback, FeedbackDTO>();
 
 		}
 		public FeedbackDTO AddFeedback(FeedbackDTO feedback)

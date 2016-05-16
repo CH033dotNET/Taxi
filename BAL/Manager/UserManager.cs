@@ -19,7 +19,7 @@ namespace BAL.Manager
 		public UserManager(IUnitOfWork uOW)
 			:base(uOW)
 		{
-			Mapper.CreateMap<RegistrationModelDTO, UserDTO>();
+			
 		}
 
 		public PagerDTO<UserDTO> GetUserPage(string searchString, int page, int pageSize, int roleId)

@@ -16,8 +16,7 @@ namespace BAL.Manager
 
 		public DriverExManager(IUnitOfWork uOW) : base(uOW)
 		{
-			Mapper.CreateMap<CoordinatesEx, CoordinatesExDTO>();
-			Mapper.CreateMap<CoordinatesExDTO, CoordinatesEx>();
+
 		}
 
 		public void AddDriverLocation(CoordinatesExDTO coordinate)

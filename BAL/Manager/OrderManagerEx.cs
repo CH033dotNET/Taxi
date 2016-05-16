@@ -17,8 +17,7 @@ namespace BAL.Interfaces
 	{
 		public OrderManagerEx(IUnitOfWork uOW) : base(uOW)
 		{
-			Mapper.CreateMap<OrderEx, OrderExDTO>();
-			Mapper.CreateMap<OrderExDTO, OrderEx>();
+
 		}
 
 		public OrderExDTO AddOrder(OrderExDTO order)

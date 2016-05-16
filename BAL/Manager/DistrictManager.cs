@@ -16,10 +16,7 @@ namespace BAL.Manager
 		public DistrictManager(IUnitOfWork uOW)
 			: base(uOW)
 		{
-			Mapper.CreateMap<Coordinate, CoordinateDTO>();
-			Mapper.CreateMap<District, DistrictDTO>();
-			Mapper.CreateMap<CoordinateDTO, Coordinate>();
-			Mapper.CreateMap<DistrictDTO, District>();
+			
 		}
 		/// <summary>
 		/// Managaer method that adds new district entry to Db
