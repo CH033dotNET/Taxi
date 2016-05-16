@@ -1089,4 +1089,7 @@
   <data name="SaveFeedback" xml:space="preserve">
     <value>Зберегти відгук</value>
   </data>
+  <data name="WaitingMessage" xml:space="preserve">
+    <value>Будь ласка очікуйте, Ваше замовлення перевіряється оператором</value>
+  </data>
 </root>

@@ -58,10 +58,14 @@ namespace Model.DTO
 		{
 			get
 			{
-				var address = this.AddressFrom.Address;
-				if (this.AddressFrom.Building != null)
-					address += ", " + this.AddressFrom.Building;
-				return address;
+				if (this.AddressFrom != null)
+				{
+					var address = this.AddressFrom.Address;
+					if (this.AddressFrom.Building != null)
+						address += ", " + this.AddressFrom.Building;
+					return address;
+				}
+				return null;
 			}
 		}
 
@@ -69,21 +73,25 @@ namespace Model.DTO
 		{
 			get
 			{
-				var address = "";
-				foreach (var place in this.AddressesTo)
+				if (this.AddressesTo != null)
 				{
-					if (place.Address != null)
+					var address = "";
+					foreach (var place in this.AddressesTo)
 					{
-						address += place.Address;
-						if (place.Building != null)
-							address += ", " + place.Building;
-						address += "\n";
-					}
-					else
-						if (place.Building != null)
+						if (place.Address != null)
+						{
+							address += place.Address;
+							if (place.Building != null)
+								address += ", " + place.Building;
+							address += "\n";
+						}
+						else
+							if (place.Building != null)
 							address += place.Building + "\n";
+					}
+					return address;
 				}
-				return address;
+				return null;
 			}
 		}
 	}

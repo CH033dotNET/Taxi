@@ -78,6 +78,7 @@ namespace BAL.Interfaces
 
 				var driver = uOW.UserRepo.All.Where(u => u.Id == DriverId).FirstOrDefault();
 				order.Driver = driver;
+				order.Car = uOW.CarRepo.All.Where(c => c.UserId == driver.Id && c.isMain).FirstOrDefault();
 
 				uOW.OrderExRepo.Update(order);
 				uOW.Save();
@@ -127,7 +128,7 @@ namespace BAL.Interfaces
 		public IEnumerable<OrderExDTO> GetOrdersByUserId(int id)
 		{
 			var orders = uOW.OrderExRepo.Get(null, null, "AdditionallyRequirements, AddressFrom, AddressesTo, Car")
-				.Where(o => o.UserId == id)
+				.Where(o => o.UserId == id && o.Status == OrderStatusEnum.Confirmed)
 				.ToList();
 			return Mapper.Map<List<OrderExDTO>>(orders);
 		}

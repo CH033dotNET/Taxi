@@ -8319,6 +8319,16 @@ button.close {
 	border-color: red;
 }
 
+#waiting-message {
+	margin-top: 15px;
+	width: auto;
+}
+
+.panel-heading {
+	font-size: 120%;
+	text-align: center;
+}
+
 @media (max-width: 767px) {
 	#additional label.radio-inline {
 		padding-left: 20px;

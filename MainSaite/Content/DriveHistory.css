@@ -22,3 +22,9 @@
 #carNumber {
 	width: 150px;
 }
+
+#rating span {
+ 	font-size: 30px;
+ 	color: #FFED00;
+ 	margin: -2px;
+ }

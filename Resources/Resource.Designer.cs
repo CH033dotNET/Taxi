@@ -2816,6 +2816,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please wait, your order is verified by the operator.
+        /// </summary>
+        public static string WaitingMessage {
+            get {
+                return ResourceManager.GetString("WaitingMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Waiting orders.
         /// </summary>
         public static string WaitingOrders {

@@ -4,6 +4,7 @@ $(function () {
 	$('#hide').hide();
 	$('#load').hide();
 	$('#time-group').hide();
+	$('#waiting-message').hide();
 	$('[data-toggle="tooltip"]').tooltip();
 
 	if ($('#userId').length) {
@@ -155,8 +156,9 @@ $(function () {
 				type: "post",
 				data: JSON.stringify(order),
 				complete: function (data) {
-					alert('succes');
 					orderHub.server.addOrder(data);
+					$('#form').trigger("reset");
+					$('#waiting-message').slideDown(200);
 				}
 			});
 		});
