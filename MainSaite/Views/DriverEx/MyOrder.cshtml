@@ -68,6 +68,10 @@
 <script>
 	var tariffs;
 	var calculatorIntervalId;
+	var prevLatitude = null;
+	var prevLongitude = null;
+	var distancePrice = 0;
+	var PERIOD = 5000;
 
 	$(document).ready(function () {
 		$.ajax({
@@ -84,7 +88,12 @@
 	function StartOrder() {
 		$('#btnStart').hide();
 		$('#btnStop').show();
-		calculatorIntervalId = setInterval(CalculatePrice, 1500);
+
+		var prevLatitude = null;
+		var prevLongitude = null;
+		var distancePrice = 0;
+
+		calculatorIntervalId = setInterval(CalculatePrice, PERIOD);
 	}
 
 	function StopOrder() {
@@ -98,31 +107,53 @@
 		var startPrice = 0;
 
 		// Courier
-		if (document.getElementById('courier').checked) {
-			startPrice += tariffs[selectedTariffIndex].PriceCourierOption;
-		}
+		if (document.getElementById('courier').checked) startPrice += tariffs[selectedTariffIndex].PriceCourierOption;
 
 		// Plate
-		if (document.getElementById('with-plate').checked) {
-			startPrice += tariffs[selectedTariffIndex].PricePlateOption;
-		}
+		if (document.getElementById('with-plate').checked) startPrice += tariffs[selectedTariffIndex].PricePlateOption;
 
 		// ClientCar
-		if (document.getElementById('my-car').checked) {
-			startPrice += tariffs[selectedTariffIndex].PriceClientCarOption;
-		}
+		if (document.getElementById('my-car').checked) startPrice += tariffs[selectedTariffIndex].PriceClientCarOption;
 
 		//SpeakEnglish
-		if (document.getElementById('english').checked) {
-			startPrice += tariffs[selectedTariffIndex].PriceSpeakEnglishOption;
-		}
+		if (document.getElementById('english').checked) startPrice += tariffs[selectedTariffIndex].PriceSpeakEnglishOption;
 
 		//PassengerSmoker
-		if (document.getElementById('smoking').checked) {
-			startPrice += tariffs[selectedTariffIndex].PricePassengerSmokerOption;
-		}
+		if (document.getElementById('smoking').checked) startPrice += tariffs[selectedTariffIndex].PricePassengerSmokerOption;
 
-		$('#cost').html(startPrice);
+		// Pre Order
+		if (document.getElementById('pre-order').checked) startPrice += tariffs[selectedTariffIndex].PricePreOrder;
+
+		// Regular Car
+		if (document.getElementById('normal').checked) startPrice += tariffs[selectedTariffIndex].PriceRegularCar;
+
+		// Universal Car
+		if (document.getElementById('universal').checked) startPrice += tariffs[selectedTariffIndex].PriceRegularCar;
+
+		// Minivan Car
+		if (document.getElementById('minivan').checked) startPrice += tariffs[selectedTariffIndex].PriceMinivanCar;
+
+		// Lux Car
+		if (document.getElementById('lux').checked) startPrice += tariffs[selectedTariffIndex].PriceLuxCar;
+
+		navigator.geolocation.getCurrentPosition(function (position) {
+			if (prevLatitude != null && prevLongitude != null) {
+				var x1 = prevLatitude;
+				var x2 = position.coords.latitude;
+				var y1 = prevLongitude;
+				var y2 = position.coords.longitude;
+				var distance = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+
+				if (distance != 0) {
+					distancePrice += distance * tariffs[selectedTariffIndex].PriceInCity * PERIOD / 60000;
+				}
+			}
+
+			prevLatitude = position.coords.latitude;
+			prevLongitude = position.coords.longitude;
+		});
+
+		$('#cost').html((startPrice + distancePrice).toFixed(2));
 	}
 </script>
 <script src="~/Scripts/moment.js"></script>
