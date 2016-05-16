@@ -200,6 +200,7 @@
     <Compile Include="Hubs\DistrictsHub.cs" />
     <Compile Include="Hubs\DriverHub.cs" />
     <Compile Include="Hubs\DriverDistrictHub.cs" />
+    <Compile Include="Hubs\AdminHub.cs" />
     <Compile Include="Hubs\OrderHub.cs" />
     <Compile Include="Hubs\OperatorHub.cs" />
     <Compile Include="Models\AutoParkViewModel.cs" />
@@ -400,6 +401,7 @@
     <Content Include="Scripts\DriverEx\DriverFeedback.js" />
     <Content Include="Scripts\DriverEx\DriverLocation.js" />
     <Content Include="Scripts\DriverMap.js" />
+    <Content Include="Scripts\AdminSendMessage.js" />
     <Content Include="Scripts\DriveTimer.js" />
     <Content Include="Scripts\FavoriteAddresses.js" />
     <Content Include="Scripts\GeneralScripts.js" />
@@ -577,6 +579,7 @@
     <Content Include="Views\DriverEx\DriverFeedback.cshtml" />
     <Content Include="Views\DriverEx\MyOrder.cshtml" />
     <Content Include="Views\Client\ClientFeedback.cshtml" />
+    <Content Include="Views\Administration\SendMessagesToDrivers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

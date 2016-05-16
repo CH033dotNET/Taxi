@@ -1087,4 +1087,7 @@
   <data name="WaitingMessage" xml:space="preserve">
     <value>Please wait, your order is verified by the operator</value>
   </data>
+  <data name="SendMessagesToDrivers" xml:space="preserve">
+    <value>Message to Drivers</value>
+  </data>
 </root>

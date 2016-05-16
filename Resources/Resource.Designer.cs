@@ -2438,6 +2438,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Message to Drivers.
+        /// </summary>
+        public static string SendMessagesToDrivers {
+            get {
+                return ResourceManager.GetString("SendMessagesToDrivers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Oops, something went wrong....
         /// </summary>
         public static string ServerErrorHeader {

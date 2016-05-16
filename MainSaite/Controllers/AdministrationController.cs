@@ -63,6 +63,10 @@ namespace MainSaite.Controllers
 			return View();
 		}
 
+		public ActionResult SendMessagesToDrivers() {
+			return View();
+		}
+
 
 		public JsonResult GetLoc()
 		{

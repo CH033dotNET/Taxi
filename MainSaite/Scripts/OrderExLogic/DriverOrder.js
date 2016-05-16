@@ -66,6 +66,16 @@
 		});
 	};
 
+	orderHub.client.MessageFromAdministrator = function (message) {
+		if (window.Notification && Notification.permission !== "denied") {
+			Notification.requestPermission(function (status) {  // status is "granted", if accepted by user
+				var n = new Notification('Message from Administrator', {
+					body: message,
+				});
+			});
+		}
+	}
+
 	$.connection.hub.start().done(function () {
 
 		//connect to hub group
