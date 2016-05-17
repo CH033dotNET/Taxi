@@ -66,17 +66,16 @@ $(document).ready(function () {
 	}
 
 	$(document).on('click', '#showChat', function () {
-
 		ShowSupportChat();
-
 	});
 
 	$("#passwordInput").val("password");
 
-
 	if ($(window).width() <= 768) {
 		var url = window.location.pathname;
 		$('ul.nav a[href="' + url + '"]').parent().addClass('active');
+
+		$('#mobileBtnsList a[href="' + url + '"]').addClass('active');
 	}
 
 });
