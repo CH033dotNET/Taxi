@@ -93,7 +93,6 @@
     <Compile Include="Manager\SupportManager.cs" />
     <Compile Include="Manager\TariffExManager.cs" />
     <Compile Include="Manager\TarifManager.cs" />
-    <Compile Include="Manager\TestManager.cs" />
     <Compile Include="Manager\WorkerStatusManager.cs" />
     <Compile Include="Tools\CarModelValidator.cs" />
     <Compile Include="Tools\DistrictModelValidator.cs" />

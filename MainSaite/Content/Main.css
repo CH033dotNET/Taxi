@@ -140,6 +140,7 @@
 	width: 100%;
     padding: 10px;
 	font-size: 21px;
+	margin: 0px;
 	background-color: rgba(210, 210, 210, 0.52);
 	border: none;
 	color: black;
@@ -253,6 +254,10 @@
 	}
 	#sideMenu.active{
 		background: gold;		
+    }
+	#mainBtns.active{
+		background-color: grey;
+		box-shadow: 0 2px #666;
     }
 	#sideMenu.active a{
 		color:black;		
