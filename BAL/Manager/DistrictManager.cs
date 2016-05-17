@@ -106,9 +106,30 @@ namespace BAL.Manager
 
 		public IEnumerable<DistrictDTO> searchDistricts(string parameter)
 		{
-			//students = students.Where(s => s.LastName.Contains(searchString)
-			//				   || s.FirstMidName.Contains(searchString));
 			var result = uOW.DistrictRepo.All.Where(s => s.Deleted == false & (s.Name.StartsWith(parameter) || s.Name.Contains(parameter))).Include(c => c.Coordinates).ToList();
+			var additional = new List<District>();
+			foreach (var district in result)
+			{
+				var parentId = district.ParentId;
+				var children = GetAllChildren(district.Id);
+				foreach (var child in children)
+				{
+					if (!additional.Contains(child) && !result.Contains(child))
+					{
+						additional.Add(child);
+					}
+				}
+				while (parentId != null)
+				{
+					var parent = uOW.DistrictRepo.All.Where(d => d.Id == parentId && d.Deleted==false).Include(d=>d.Coordinates).FirstOrDefault();
+					parentId = parent.ParentId;
+					if (!additional.Contains(parent) && !result.Contains(parent))
+					{
+						additional.Add(parent);
+					}
+				}
+			}
+			result.AddRange(additional);
 			SortCoordinates(result);
 			return Mapper.Map<IEnumerable<DistrictDTO>>(result);
 		}
@@ -350,10 +371,10 @@ namespace BAL.Manager
 		private List<District> GetAllChildren(int id)
 		{
 			var children = new List<District>();
-			var current = uOW.DistrictRepo.GetByID(id);
+			var current = uOW.DistrictRepo.All.Where(d => d.Id == id).Include(d => d.Coordinates).FirstOrDefault();
 			if (current.IsFolder)
 			{
-				var currentChildren = uOW.DistrictRepo.All.Where(d => d.ParentId == id).ToList();
+				var currentChildren = uOW.DistrictRepo.All.Where(d => d.ParentId == id).Include(d=>d.Coordinates).ToList();
 				foreach(var child in currentChildren)
 				{
 					children.AddRange(GetAllChildren(child.Id));
