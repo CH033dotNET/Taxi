@@ -30,9 +30,11 @@
 </head>
 <body>
 	<div class="row">
-		<div id="adblock-warning" class="panel panel-warning col-lg-offset-1 col-lg-10 col-sm-offset-1 col-sm-10 ">
-			<div class="panel-heading">
-				@Resources.Resource.AdBlockWarning
+		<div class="adblockWraper">
+			<div id="adblock-warning" class="panel panel-warning col-lg-offset-1 col-lg-10 col-sm-12 ">
+				<div class="panel-heading">
+					@Resources.Resource.AdBlockWarning
+				</div>
 			</div>
 		</div>
 	</div>
@@ -129,7 +131,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-9 col-lg-9 col-sm-9 col-xs-12">
+		<div class="col-md-9 col-lg-8 col-sm-9 col-xs-12">
 			<hr>
 			@RenderBody()
 		</div>
