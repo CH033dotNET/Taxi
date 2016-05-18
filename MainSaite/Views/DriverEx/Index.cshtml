@@ -101,5 +101,13 @@
 	<script src="~/signalr/hubs"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
 	@Scripts.Render("~/Scripts/DriverEx/DriverLocation.js")
+
+	<script>
+	var Resources = {
+		TakeOrder:	 "@Resources.Resource.TakeOrder",
+		WaitingTime: "@Resources.Resource.WaitingTime",
+		AddFeedback: "@Resources.Resource.AddFeedback",
+	};
+	</script>
 </body>
 </html>
