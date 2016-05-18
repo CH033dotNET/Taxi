@@ -200,8 +200,7 @@
     <Compile Include="Hubs\DistrictsHub.cs" />
     <Compile Include="Hubs\DriverHub.cs" />
     <Compile Include="Hubs\DriverDistrictHub.cs" />
-    <Compile Include="Hubs\AdminHub.cs" />
-    <Compile Include="Hubs\OrderHub.cs" />
+    <Compile Include="Hubs\MainHub.cs" />
     <Compile Include="Hubs\OperatorHub.cs" />
     <Compile Include="Models\AutoParkViewModel.cs" />
     <Compile Include="Models\CarChangeUser.cs" />
@@ -297,6 +296,10 @@
     <Content Include="Content\Picture\sendIcon.png" />
     <Content Include="Content\Picture\Skyline_new_york_city.jpg" />
     <Content Include="Content\Picture\slide-image-1.jpg" />
+    <Content Include="Content\Picture\SmartPhonePictures\SiteLogo.png" />
+    <Content Include="Content\Picture\SmartPhonePictures\taxiLogo.png" />
+    <Content Include="Content\Picture\SmartPhonePictures\userLogo.png" />
+    <Content Include="Content\Picture\SmartPhonePictures\userLogOutLogo.png" />
     <Content Include="Content\Picture\Speedometer.jpg" />
     <Content Include="Content\Picture\streets_cars_traffic.jpg" />
     <Content Include="Content\Picture\tablet.png" />

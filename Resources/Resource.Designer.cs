@@ -2060,6 +2060,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Order Address.
+        /// </summary>
+        public static string OrderAddress {
+            get {
+                return ResourceManager.GetString("OrderAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order a taxi.
         /// </summary>
         public static string OrderATaxi {
@@ -2159,7 +2168,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OrderTime.
+        ///   Looks up a localized string similar to Order Time.
         /// </summary>
         public static string OrderTime {
             get {
@@ -2564,6 +2573,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        public static string Start {
+            get {
+                return ResourceManager.GetString("Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start price.
         /// </summary>
         public static string StartPrice {
@@ -2578,6 +2596,15 @@ namespace Resources {
         public static string Statistics {
             get {
                 return ResourceManager.GetString("Statistics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop.
+        /// </summary>
+        public static string Stop {
+            get {
+                return ResourceManager.GetString("Stop", resourceCulture);
             }
         }
         

@@ -9,11 +9,9 @@
 @Styles.Render("~/Content/bootstrap-datetimepicker.css")
 @Styles.Render("~/Content/AutoParkCustomStyles.css")
 <div>
-    <div class="page-header"><h1>@Resources.Resource.Greeting,<small>@username</small></h1></div>
     <div class="panel-group">
         <div id="overpanel" class="panel panel-info">
             <div class="panel-heading"><h3 class="panel-title">@Resources.Resource.Garage</h3></div>
-            <div class="panel-body"><img class="img-thumbnail" src="~/Content/Picture/streets_cars_traffic.jpg" /></div>
             <div class="panel-footer"><a class="btn btn-success" role="button" onclick="carController.addNewCar()"><span class="glyphicon glyphicon-th-list" aria-hidden="true">&nbsp;</span>@Resources.Resource.AddNewCar</a></div>
             <div class="table-list">
                 <div id="carTableResponsive" class="table-responsive">

@@ -1,5 +1,5 @@
 ﻿$(function () {
-	var adminHub = $.connection.AdminHub;
+	var adminHub = $.connection.MainHub;
 
 	adminHub.client.MessageFromAdministrator2 = function (message) {
 		if (window.Notification && Notification.permission !== "denied") {

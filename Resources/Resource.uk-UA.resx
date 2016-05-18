@@ -1092,4 +1092,13 @@
   <data name="WaitingMessage" xml:space="preserve">
     <value>Будь ласка очікуйте, Ваше замовлення перевіряється оператором</value>
   </data>
+  <data name="Start" xml:space="preserve">
+    <value>Старт</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>Стоп</value>
+  </data>
+  <data name="OrderAddress" xml:space="preserve">
+    <value>Адреса замовлення</value>
+  </data>
 </root>
