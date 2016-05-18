@@ -16,7 +16,7 @@ namespace MainSaite.Controllers
 		private IPersonManager personManager;
 		private IFeedbackManager feedbackManager;
 
-		private static IHubContext Context = GlobalHost.ConnectionManager.GetHubContext<OrderHub>();
+		private static IHubContext Context = GlobalHost.ConnectionManager.GetHubContext<MainHub>();
 
 		public ClientController(IOrderManagerEx orderManager, IPersonManager personManager, IFeedbackManager feedbackManager)
 		{

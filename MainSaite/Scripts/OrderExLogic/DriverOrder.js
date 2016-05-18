@@ -1,5 +1,5 @@
 ﻿$(function () {
-	var orderHub = $.connection.OrderHub;
+	var orderHub = $.connection.MainHub;
 	var prevCoord = {
 		Latitude: null,
 		Longitude: null

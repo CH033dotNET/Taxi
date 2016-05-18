@@ -10,8 +10,8 @@ using System.Web;
 
 namespace MainSaite.Hubs
 {
-	[HubName("OrderHub")]
-	public class OrderHub : Hub
+	[HubName("MainHub")]
+	public class MainHub : Hub
 	{
 		static ICollection<SignalRUserEx> orderHubUsers = new List<SignalRUserEx>();
 
@@ -37,6 +37,11 @@ namespace MainSaite.Hubs
 		public void OrderApproved(int id)
 		{
 			Clients.Group("Driver").OrderApproved(id);
+		}
+
+		[HubMethodName("MessageFromAdministrator")]
+		public void MessageFromAdministrator(String message) {
+			Clients.Group("Driver").MessageFromAdministrator(message);
 		}
 
 		[HubMethodName("notifyDriverCoordinate")]

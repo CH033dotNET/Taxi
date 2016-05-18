@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-	var orderHub = $.connection.OrderHub;
+	var orderHub = $.connection.MainHub;
 
 	orderHub.client.addOrder = function (order) {
 		$('#orders').append("<tr>\

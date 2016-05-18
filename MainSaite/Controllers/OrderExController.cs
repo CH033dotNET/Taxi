@@ -15,7 +15,7 @@ namespace MainSaite.Controllers
 
 		private IOrderManagerEx orderManager;
 
-		private static IHubContext Context = GlobalHost.ConnectionManager.GetHubContext<OrderHub>();
+		private static IHubContext Context = GlobalHost.ConnectionManager.GetHubContext<MainHub>();
 
 		public OrderExController(IOrderManagerEx orderManager)
 		{

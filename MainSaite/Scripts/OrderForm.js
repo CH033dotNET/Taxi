@@ -147,7 +147,7 @@ $(function () {
 			Phone: $('#phone').val(),
 			Perquisite: $('#perquisite').val()
 		}
-		var orderHub = $.connection.OrderHub;
+		var orderHub = $.connection.MainHub;
 		$.connection.hub.start().done(function () {
 			orderHub.server.connect("Client");
 			$.ajax({
