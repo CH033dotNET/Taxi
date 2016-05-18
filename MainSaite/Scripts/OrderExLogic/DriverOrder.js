@@ -22,9 +22,9 @@
 				orderblock += "    <\/td>";
 				orderblock += "    <td>";
 				orderblock += "        <div class=\"input-group\">";
-				orderblock += "            <input type=\"number\" class=\"waiting-time form-control\" placeholder=\"waitnig time...\">";
+				orderblock += "            <input type=\"number\" class=\"waiting-time form-control\" placeholder=\"" + Resources.WaitingTime + "\">";
 				orderblock += "            <span class=\"input-group-btn\">";
-				orderblock += "                <input itemid=\"" + order.success.Id + "\" type=\"button\" value=\"Take\" class=\"take btn btn-success\" \/>";
+				orderblock += "                <input itemid=\"" + order.success.Id + "\" type=\"button\" value=\"" + Resources.TakeOrder + "\" class=\"take btn btn-success\" \/>";
 				orderblock += "            <\/span>";
 				orderblock += "        <\/div>";
 				orderblock += "    <\/td>";
@@ -43,17 +43,19 @@
 			},
 			type: "POST",
 			success: function (order) {
-				
+
 				var orderblock = "";
 				orderblock += "<tr>";
 				orderblock += "    <td>";
 				orderblock += order.success.Address;
 				orderblock += "    <\/td>";
 				orderblock += "    <td>";
-				orderblock += order.success.OrderTime;
+				orderblock += moment(order.success.OrderTime).format('DD/MM/YY HH:mm');
 				orderblock += "    <\/td>";
 				orderblock += "    <td>";
-				orderblock += "      <button data-feedbackId=\"" + order.success.Id + "\" data-orderId=\"" + order.success.Id +"\" type=\"button\" class=\"btn btn-warning addFeedbackButton\" data-toggle=\"modal\">Add Feedback</button>";
+				orderblock += "        <div class=\"input-group\">";
+				orderblock += "                <button data-feedbackId=\"" + order.success.Id + "\" data-orderId=\"" + order.success.Id + "\" type=\"button\" class=\"btn btn-warning addFeedbackButton\" data-toggle=\"modal\">" + Resources.AddFeedback + "</button>";
+				orderblock += "        <\/div>";
 				orderblock += "    <\/td>";
 				orderblock += "<\/tr>";
 
