@@ -695,7 +695,7 @@
     <value>Update</value>
   </data>
   <data name="OrderTime" xml:space="preserve">
-    <value>OrderTime</value>
+    <value>Order Time</value>
   </data>
   <data name="TakeOrder" xml:space="preserve">
     <value>Take order</value>
@@ -1095,5 +1095,8 @@
   </data>
   <data name="Stop" xml:space="preserve">
     <value>Stop</value>
+  </data>
+  <data name="OrderAddress" xml:space="preserve">
+    <value>Order Address</value>
   </data>
 </root>

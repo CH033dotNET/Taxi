@@ -2060,6 +2060,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Order Address.
+        /// </summary>
+        public static string OrderAddress {
+            get {
+                return ResourceManager.GetString("OrderAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order a taxi.
         /// </summary>
         public static string OrderATaxi {
@@ -2159,7 +2168,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OrderTime.
+        ///   Looks up a localized string similar to Order Time.
         /// </summary>
         public static string OrderTime {
             get {
