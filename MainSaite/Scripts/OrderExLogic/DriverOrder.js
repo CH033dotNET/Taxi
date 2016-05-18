@@ -53,11 +53,7 @@
 				orderblock += order.success.OrderTime;
 				orderblock += "    <\/td>";
 				orderblock += "    <td>";
-				orderblock += "        <div class=\"input-group\">";
-				orderblock += "            <span class=\"input-group-btn\">";
-				orderblock += "                <button data-feedbackId=\"" + order.success.Id + "\" data-orderId=\"" + order.success.Id +"\" type=\"button\" class=\"btn btn-warning addFeedbackButton\" data-toggle=\"modal\">Add Feedback</button>";
-				orderblock += "            <\/span>";
-				orderblock += "        <\/div>";
+				orderblock += "      <button data-feedbackId=\"" + order.success.Id + "\" data-orderId=\"" + order.success.Id +"\" type=\"button\" class=\"btn btn-warning addFeedbackButton\" data-toggle=\"modal\">Add Feedback</button>";
 				orderblock += "    <\/td>";
 				orderblock += "<\/tr>";
 

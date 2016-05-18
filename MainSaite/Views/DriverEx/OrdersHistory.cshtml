@@ -28,12 +28,11 @@
 				@Html.DisplayFor(modelItem => item.OrderTime)
 			</td>
 			<td>
-				<button data-feedbackId="@item.DriverFeedbackId" data-orderId="@item.Id" type="button" class="btn btn-warning addFeedbackButton" data-toggle="modal">@Resources.Resource.AddFeedback</button>
+				<button data-feedbackId="@item.DriverFeedbackId" data-orderId="@item.Id" type="button" class="btn btn-warning addFeedbackButton" data-target="#driverFeedbackModal" data-toggle="modal">@Resources.Resource.AddFeedback</button>
 			</td>
 		</tr>
 	}
 
 </table>
-@Html.Partial("DriverFeedback")
 <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
 <script src="~/Scripts/DriverEx/DriverFeedback.js"></script>
