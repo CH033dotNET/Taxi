@@ -297,6 +297,10 @@
     <Content Include="Content\Picture\sendIcon.png" />
     <Content Include="Content\Picture\Skyline_new_york_city.jpg" />
     <Content Include="Content\Picture\slide-image-1.jpg" />
+    <Content Include="Content\Picture\SmartPhonePictures\SiteLogo.png" />
+    <Content Include="Content\Picture\SmartPhonePictures\taxiLogo.png" />
+    <Content Include="Content\Picture\SmartPhonePictures\userLogo.png" />
+    <Content Include="Content\Picture\SmartPhonePictures\userLogOutLogo.png" />
     <Content Include="Content\Picture\Speedometer.jpg" />
     <Content Include="Content\Picture\streets_cars_traffic.jpg" />
     <Content Include="Content\Picture\tablet.png" />

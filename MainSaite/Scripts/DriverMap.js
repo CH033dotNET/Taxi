@@ -138,6 +138,9 @@ function onClick(data) {
 		}
 		markers[(this).id].setIcon(imagePath + '/cabRed.png');
 		markers[(this).id].setAnimation(google.maps.Animation.BOUNCE);
+
+		map.setCenter(markers[(this).id].getPosition());
+		map.setZoom(13);
 		$(this).addClass('bold');
 		Redcar = $(this);
 	}
