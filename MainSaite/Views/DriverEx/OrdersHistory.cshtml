@@ -22,7 +22,14 @@
 	@foreach (var item in Model) {
 		<tr>
 			<td>
-				@Html.DisplayFor(modelItem => item.Address)
+				@if (item.Address != null)
+				{
+					@Html.DisplayFor(modelItem => item.Address)
+				}
+				else
+				{
+					@Html.DisplayFor(modelItem => item.FullAddressFrom);
+				}
 			</td>
 			<td>
 				@Html.DisplayFor(modelItem => item.OrderTime)
