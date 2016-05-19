@@ -2,37 +2,7 @@
 @using Common.Enum
 
 
-<div class="row">
-	<noscript class="noscript">
-		<img src="~/Content/Picture/JVDisable.jpg" alt="" id="alert" />
-	</noscript>
-	<div class="col-lg-6 col-md-6 col-sm-8 col-xs-8">
-		<a href="#"> <img src="~/Content/Picture/SmartPhonePictures/SiteLogo.png" class="topLogo pull-right" style="border-bottom:inherit; width:146px; height:87px;" id="mainLogo" /> </a>
-	</div>
-	<div class="col-lg-6 col-md-6 ">
-		<noscript class="noscript">
-			<div id="div100">
-				<p id="msger">Something went wrong!<br /> You can still order a Taxi by calling +(038)055-45-54</p>
-			</div>
-		</noscript>
-		@if (Session["User"] == null || ViewBag.UserRoleId == (int)AvailableRoles.Client)
-		{
-			<div class="btn-group pull-right btn-group-lg" id="orderTaxiBtn">
-				<button class="btn btn-info">
-					@Html.ActionLink(Resources.Resource.OrderTaxi, "OrderTaxi", "Home", new { style = "color: #FFFFFF" })
-				</button>
-				<button class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-					<i class="fa fa-car"></i>
-				</button>
-				<ul class="dropdown-menu">
-					<li id="order-dropdown">@Html.ActionLink(Resources.Resource.StandartOrder, "OrderTaxi", "Home")</li>
-					<li class="divider"></li>
-					<li id="order-dropdown">@Html.ActionLink(Resources.Resource.AdvancedOrder, "OrderForm", "Home")</li>
-				</ul>
-			</div>
-		}
-	</div>
-</div>
+
 
     @*Our Img Slidding*@
     <div id="carousel" class="carousel slide">
