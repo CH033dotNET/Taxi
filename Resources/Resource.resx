@@ -1099,4 +1099,7 @@
   <data name="OrderAddress" xml:space="preserve">
     <value>Order Address</value>
   </data>
+  <data name="DriversCount" xml:space="preserve">
+    <value>Drivers count</value>
+  </data>
 </root>

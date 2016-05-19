@@ -17,7 +17,7 @@
 <table class="table">
 	<tr>
 		<th>
-			Driver count
+			@Resources.Resource.DriversCount
 		</th>
 		<th class="nameCell">
 			@Resources.Resource.Districts
@@ -35,7 +35,7 @@
 				@Html.DisplayFor(modelItem => item.Name)
 			</td>
 			<td>
-				<span class="joinButton btn btn-warning" data-id="@item.Id"><span class="">Join</span><span class="hidenText">You are here</span></span>
+				<span class="joinButton btn btn-warning" data-id="@item.Id"><span class="">@Resources.Resource.Join</span><span class="hidenText">@Resources.Resource.DriverIsHere</span></span>
 			</td>
 		</tr>
 	}
