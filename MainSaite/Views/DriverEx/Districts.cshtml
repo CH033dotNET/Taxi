@@ -29,7 +29,7 @@
 	{
 		<tr>
 			<td>
-				<span class="count">0</span>
+				<span class="count" id="@item.Id">0</span>
 			</td>
 			<td>
 				@Html.DisplayFor(modelItem => item.Name)
@@ -43,3 +43,4 @@
 <script>
 	var districts = @Html.Raw(Json.Encode(Model.ToList()))
 </script>
+<script src="~/Scripts/countUp.min.js"></script>

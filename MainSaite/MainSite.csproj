@@ -395,6 +395,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Client\ClientFeedback.js" />
+    <Content Include="Scripts\countUp.min.js" />
     <Content Include="Scripts\CustomHighCharts\DistrictOrdersPerYear.js" />
     <Content Include="Scripts\DistrictPartButtonScripts.js" />
     <Content Include="Scripts\DistrictsCustomScripts\DistrictScriptLogic.js" />
