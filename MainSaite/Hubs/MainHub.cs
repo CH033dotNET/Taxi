@@ -15,6 +15,8 @@ namespace MainSaite.Hubs
 	{
 		static ICollection<SignalRUserEx> orderHubUsers = new List<SignalRUserEx>();
 
+		static Dictionary<int, List<string>> DistrictMap = new Dictionary<int, List<string>>();
+
 		[HubMethodName("addOrder")]
 		public void AddOrder(OrderExDTO order)
 		{
@@ -66,9 +68,40 @@ namespace MainSaite.Hubs
 				orderHubUsers.Add(currentUser);
 			}
 		}
+		// methods for districts 
+
+		[HubMethodName("joinDistrict")]
+		public void JoinDistrict(int id)
+		{
+			if (!DistrictMap.Keys.Contains(id))
+			{
+				DistrictMap.Add(id, new List<string>());
+			}
+			DistrictMap[id].Add(Context.ConnectionId);
+			Clients.Group("Driver").addDriverToDistrict(id);
+		}
+
+		[HubMethodName("leaveDistrict")]
+		public void LeaveDistrict(int id)
+		{
+			if (DistrictMap.Keys.Contains(id))
+			{
+				DistrictMap[id].Remove(Context.ConnectionId);
+			}
+			
+			Clients.Group("Driver").subtractDriverFromDistrict(id);
+		}
+
+		[HubMethodName("getDriversCount")]
+		public List<DistrictCount> GetDriversCount()
+		{
+			return DistrictMap.Select(c => new DistrictCount() { Id = c.Key, Count = c.Value.Count }).ToList();
+		}
 
 		public override System.Threading.Tasks.Task OnDisconnected(bool stopCalled)
 		{
+			var current = DistrictMap.Where(c => c.Value.Contains(Context.ConnectionId)).FirstOrDefault().Key;
+			LeaveDistrict(current);
 			var item = orderHubUsers.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
 			if (item != null)
 			{

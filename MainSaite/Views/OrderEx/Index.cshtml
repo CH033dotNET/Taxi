@@ -16,11 +16,13 @@
 	{
 		<tr>
 			<td>
-				@if (item.Address != null) {
+				@if (item.Address != null)
+				{
 					@Html.DisplayFor(modelItem => item.Address)
 				}
-				else {
-					@Html.DisplayFor(modelItem => item.AddressFrom.Address)
+				else
+				{
+					@Html.DisplayFor(modelItem => item.FullAddressFrom);
 				}
 			</td>
 			<td>

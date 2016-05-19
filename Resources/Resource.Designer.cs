@@ -1295,6 +1295,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Drivers count.
+        /// </summary>
+        public static string DriversCount {
+            get {
+                return ResourceManager.GetString("DriversCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drivers income.
         /// </summary>
         public static string DriversIncome {

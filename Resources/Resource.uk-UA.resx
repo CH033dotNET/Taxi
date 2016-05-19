@@ -1101,4 +1101,7 @@
   <data name="OrderAddress" xml:space="preserve">
     <value>Адреса замовлення</value>
   </data>
+  <data name="DriversCount" xml:space="preserve">
+    <value>Кільксть водіїв</value>
+  </data>
 </root>

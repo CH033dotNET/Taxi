@@ -1,7 +1,7 @@
 ﻿$(function () {
 
 	//var driverLocationHub = $.connection.driverLocationHub;
-	var driverDistrictHub = $.connection.DriverDistrictHub;
+	var mainHub = $.connection.MainHub;
 
 	var currentPosition = {
 		Latitude: null,
@@ -11,12 +11,7 @@
 	var driverName;
 	var currentDistrict = null;
 	var districtChecker = null;
-
-	$(window).on("beforeunload", function () {
-		if (currentDistrict) {
-			driverDistrictHub.server.leaveDistrict(currentDistrict.Id);
-		}
-	})
+	var counts = [];
 
 	//initialize districts polygons
 	districts.forEach(function (item) {
@@ -32,81 +27,99 @@
 		});
 	});
 
-	//check count of drivers in each district
-	setTimeout(function checkDistricts() {
-		{
-			driverDistrictHub.server.getDriversCount().done(function (result) {
-				fillDriversCount(result);
-			});
-		}
-		setTimeout(checkDistricts, 5000);
-	}, 5000);
+	//initialize counters
+	$(".count").each(function (index, item) {
+		var count = new CountUp(item.id, 0, 0, 0, 3);
+		count.start();
+		counts.push(count);
+	});
+
+
 
 	function fillDriversCount(items) {
 		items.forEach(function (item) {
-			var t = $('tr').has(".joinButton[data-id='" + item.Id + "']");
-			//t = t.parentsUntil('tbody');
-			t = t.find('.count');
-			t= t.html(item.Count);
+			var find = counts.find(function (count) {
+				return count.d.id == (item.Id);
+			});
+			find.update(item.Count)
 		});
 	}
 
-	//auto select for districts
-	$(document).on('click', '.slider', function (e) {
-		if (districtChecker) {
-			clearTimeout(districtChecker);
-			districtChecker = null;
-			$('.joinButton').removeClass('disabled');
-		}
-		else {
-			$('.joinButton').addClass('disabled');
-			districtChecker = setTimeout(function checkDistrict() {
-				if (currentPosition.Latitude && currentPosition.Longitude) {
-					var newDistrict = districts.find(function (item) {
-						return google.maps.geometry.poly.containsLocation({
-							lat: function () { return currentPosition.Latitude },
-							lng: function () { return currentPosition.Longitude }
-						}, item.Polygon)
-					});
-					if (!newDistrict) {
-						driverDistrictHub.server.leaveDistrict(currentDistrict.Id);
-					}
-					currentDistrict = newDistrict;
-					setCurrentDistrict(currentDistrict);
+	//client hub methods
+	mainHub.client.addDriverToDistrict = function (id) {
+		var find = counts.find(function (item) {
+			return item.d.id == id;
+		});
+		find.update(++find.endVal);
+	}
 
-				}
-				districtChecker = setTimeout(checkDistrict, 5000);
-			}, 5000);
-		}
-		e.stopPropagation();
-	});
-
-	//manual district control
-	$(document).on('click', '.joinButton', function () {
-		if ($(this).hasClass('active')) {
-			driverDistrictHub.server.leaveDistrict(currentDistrict.Id);
-			currentDistrict = null;
-			$(this).removeClass('active');
-			$(this).children('span').toggleClass('hidenText');
-
-		}
-		else {
-			var id = $(this).attr('data-id');
-			if (currentDistrict) {
-				driverDistrictHub.server.leaveDistrict(currentDistrict.Id);
-			}
-			driverDistrictHub.server.joinDistrict(id);
-			currentDistrict = districts.find(function (item) {
-				return item.Id == id;
-			});
-			$('.joinButton.active').removeClass('active').children('span').toggleClass('hidenText');
-			$(this).addClass('active');
-			$(this).children('span').toggleClass('hidenText');
-		}
-	});
-
+	mainHub.client.subtractDriverFromDistrict = function (id) {
+		var find = counts.find(function (item) {
+			return item.d.id == id;
+		});
+		find.update(--find.endVal);
+	}
 
 	$.connection.hub.start().done(function () {
+
+		//check count of drivers in each district
+		mainHub.server.getDriversCount().done(function (result) {
+			fillDriversCount(result);
+		});
+
+		//auto select for districts
+		$(document).on('click', '.slider', function (e) {
+			if (districtChecker) {
+				clearTimeout(districtChecker);
+				districtChecker = null;
+				$('.joinButton').removeClass('disabled');
+			}
+			else {
+				$('.joinButton').addClass('disabled');
+				districtChecker = setTimeout(function checkDistrict() {
+					if (currentPosition.Latitude && currentPosition.Longitude) {
+						var newDistrict = districts.find(function (item) {
+							return google.maps.geometry.poly.containsLocation({
+								lat: function () { return currentPosition.Latitude },
+								lng: function () { return currentPosition.Longitude }
+							}, item.Polygon)
+						});
+						if (!newDistrict && currentDistrict) {
+							mainHub.server.leaveDistrict(currentDistrict.Id);
+						}
+						currentDistrict = newDistrict;
+						setCurrentDistrict(currentDistrict);
+
+					}
+					districtChecker = setTimeout(checkDistrict, 5000);
+				}, 5000);
+			}
+			e.stopPropagation();
+		});
+
+		//manual district control
+		$(document).on('click', '.joinButton', function () {
+			if ($(this).hasClass('active')) {
+				mainHub.server.leaveDistrict(currentDistrict.Id);
+				currentDistrict = null;
+				$(this).removeClass('active');
+				$(this).children('span').toggleClass('hidenText');
+
+			}
+			else {
+				var id = $(this).attr('data-id');
+				if (currentDistrict) {
+					mainHub.server.leaveDistrict(currentDistrict.Id);
+				}
+				mainHub.server.joinDistrict(id);
+				currentDistrict = districts.find(function (item) {
+					return item.Id == id;
+				});
+				$('.joinButton.active').removeClass('active').children('span').toggleClass('hidenText');
+				$(this).addClass('active');
+				$(this).children('span').toggleClass('hidenText');
+			}
+		});
 
 		driverId = $('#currentUserId').val();
 		//driverLocationHub.server.connectUser("Driver", driverId);
@@ -114,8 +127,8 @@
 
 		setTimeout(function invoke() {
 			navigator.geolocation.getCurrentPosition(checkPosition);
-			setTimeout(invoke, 15000);
-		}, 15000);
+			setTimeout(invoke, 5000);
+		}, 5000);
 
 	});
 
@@ -123,7 +136,7 @@
 		var current = $('.joinButton.active');
 		if (district) {
 			if (current.attr('data-id') != district.Id) {
-				driverDistrictHub.server.joinDistrict(district.Id);
+				mainHub.server.joinDistrict(district.Id);
 				current.removeClass('active').children('span').toggleClass('hidenText');
 				$(".joinButton[data-id='" + district.Id + "']").addClass('active').children('span').toggleClass('hidenText');
 			}
@@ -144,12 +157,12 @@
 			data.Accuracy = position.coords.accuracy;
 			data.AddedTime = moment().format('YYYY/MM/DD HH:mm:ss');
 			data.driverId = driverId;
-				prevCoord = data;
-				$.ajax({
-					url: '/Driver/UpdateCoords',
-					method: 'POST',
-					data: data
-				});
+			prevCoord = data;
+			$.ajax({
+				url: '/Driver/UpdateCoords',
+				method: 'POST',
+				data: data
+			});
 			currentPosition.Latitude = position.coords.latitude;
 			currentPosition.Longitude = position.coords.longitude;
 

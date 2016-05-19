@@ -21,13 +21,20 @@
 
 	@foreach (var item in Model) {
 		<tr>
-			<td>
+			<td class="col-md-8">
+				@if (item.Address != null)
+				{
 				@Html.DisplayFor(modelItem => item.Address)
+				}
+				else
+				{
+					@Html.DisplayFor(modelItem => item.FullAddressFrom);
+				}
 			</td>
-			<td>
+			<td class="col-md-2">
 				@Html.DisplayFor(modelItem => item.OrderTime)
 			</td>
-			<td>
+			<td class="col-md-2">
 				<button data-feedbackId="@item.DriverFeedbackId" data-orderId="@item.Id" type="button" class="btn btn-warning addFeedbackButton" data-toggle="modal">@Resources.Resource.AddFeedback</button>
 			</td>
 		</tr>
