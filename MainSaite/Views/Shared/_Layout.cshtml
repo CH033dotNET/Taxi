@@ -31,7 +31,7 @@
 <body>
 	<div class="row">
 		<div class="adblockWraper">
-			<div id="adblock-warning" class="panel panel-warning col-lg-offset-1 col-lg-10 col-sm-12 ">
+			<div id="adblock-warning" class="panel panel-warning col-lg-offset-1 col-lg-10 col-sm-10 col-sm-offset-1  col-xs-12">
 				<div class="panel-heading">
 					@Resources.Resource.AdBlockWarning
 				</div>
@@ -44,9 +44,9 @@
 			<p id="navPhone">Call us: (800) 123-3542</p>
 			<div class="left-menu">
 				<div class="navbar navbar-default" id="desktopNavBar">
-						<div>
-							<a href="#"> <img src="~/Content/Picture/SmartPhonePictures/SiteLogo.png" class="topLogo" style="border-bottom:inherit; width:85px; height:51px;" id="mainLogo" /> </a>
-						</div>
+					<div>
+						<a href="#"> <img src="~/Content/Picture/SmartPhonePictures/SiteLogo.png" class="topLogo" style="border-bottom:inherit; width:85px; height:51px;" id="mainLogo" /> </a>
+					</div>
 					<div class="container" id="navContainer">
 						<div class="navbar-header" id="navHeader">
 							<ul class="nav navbar-nav">
@@ -71,8 +71,10 @@
 								else
 								{
 									string q = ((Model.DTO.UserDTO)Session["User"]).UserName;
-									<li><a href="/Home/Index"> <img src="~/Images/@ViewBag.ImageName" data-toggle="tooltip" title="@q" class="img-rounded" style="max-width: 40px; max-height: 40px; display:none " /></a></li>
-									<li id="navBarBtn">@Html.ActionLink(Resources.Resource.LogOut, "LogOut", "Account")</li>
+									<li id="navBarBtn" style="display: inline-flex;">
+										@Html.ActionLink(Resources.Resource.LogOut, "LogOut", "Account")
+										<img src="~/Images/@ViewBag.ImageName" data-toggle="tooltip" title="@q" class="img-rounded" style="max-width: 50px; max-height: 50px; border-radius:0px;" />
+									</li>
 								}
 							</ul>
 						</div>
@@ -81,81 +83,81 @@
 				@*mobile inputs*@
 			</div>
 		</div>
-</div>
+	</div>
 	<div class="row">
 		<div class="col-md-1 col-lg-1 col-sm-1 col-xs-12" style="padding: 0px">
 
-		<div class=" btn-group btn-group-justified" id="mobileBtnsList">
-			<a href="/Account/Authentification" class="btn btn-primary" id="mainBtns"><img src="~/Content/Picture/SmartPhonePictures/userLogo.png" id="menuImage" /></a>
-			<a href="/Home/OrderTaxi" class="btn btn-primary" id="mainBtns"><img src="~/Content/Picture/SmartPhonePictures/taxiLogo.png" id="menuImage" /></a>
-		</div>
-		<button class="navbar-toggle " data-toggle="collapse" data-target=".dropdownMenu" id="dropdownMenuBtn">
-			<a href="/Home/Index"> <img src="@Url.Content("~/Content/Picture/SmartPhonePictures/SiteLogo.png")" id="siteLogoImage" /> </a>
-			<div id="dashes">
-				<span class="icon-bar" id="dashBtnIcon"></span>
-				<span class="icon-bar" id="dashBtnIcon"></span>
-				<span class="icon-bar" id="dashBtnIcon"></span>
+			<div class=" btn-group btn-group-justified" id="mobileBtnsList">
+				<a href="/Account/Authentification" class="btn btn-primary" id="mainBtns"><img src="~/Content/Picture/SmartPhonePictures/userLogo.png" id="menuImage" /></a>
+				<a href="/Home/OrderTaxi" class="btn btn-primary" id="mainBtns"><img src="~/Content/Picture/SmartPhonePictures/taxiLogo.png" id="menuImage" /></a>
 			</div>
-		</button>
-		@*Links menu by users role*@
-		<div class="list-group collapse navbar-collapse dropdownMenu" id="droppedDownList">
-			<ul class="nav" id="mainMenu">
-				@if (Session["User"] != null)
-				{
-					<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.MyAccount, "Index", "User")</li>
-
-					if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
+			<button class="navbar-toggle " data-toggle="collapse" data-target=".dropdownMenu" id="dropdownMenuBtn">
+				<a href="/Home/Index"> <img src="@Url.Content("~/Content/Picture/SmartPhonePictures/SiteLogo.png")" id="siteLogoImage" /> </a>
+				<div id="dashes">
+					<span class="icon-bar" id="dashBtnIcon"></span>
+					<span class="icon-bar" id="dashBtnIcon"></span>
+					<span class="icon-bar" id="dashBtnIcon"></span>
+				</div>
+			</button>
+			@*Links menu by users role*@
+			<div class="list-group collapse navbar-collapse dropdownMenu" id="droppedDownList">
+				<ul class="nav" id="mainMenu">
+					@if (Session["User"] != null)
 					{
+						<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.MyAccount, "Index", "User")</li>
 
-						if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
+						if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
 						{
-							<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.Districts, "DistrictEditor", "Settings")</li>
+
+							if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
+							{
+								<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.Districts, "DistrictEditor", "Settings")</li>
+							}
+
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.UserMenu, "UsersMenu", "Settings")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.Tariffs, "Index", "TariffEx")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.Order, "Index", "OrderEx")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.SetVIPStatusPage, "SetVIPStatus", "Settings")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.WorkShift, "ViewWorkShifts", "Administration")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.SendMessagesToDrivers, "SendMessagesToDrivers", "Administration")</li>
 						}
 
-						<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.UserMenu, "UsersMenu", "Settings")</li>
-						<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.Tariffs, "Index", "TariffEx")</li>
-						<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.Order, "Index", "OrderEx")</li>
-						<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.SetVIPStatusPage, "SetVIPStatus", "Settings")</li>
-						<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.WorkShift, "ViewWorkShifts", "Administration")</li>
-						<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.SendMessagesToDrivers, "SendMessagesToDrivers", "Administration")</li>
-					}
+						if (ViewBag.UserRoleId == (int)AvailableRoles.ReportViewer)
+						{
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.Statistics, "Index", "ReportCharts")</li>
+						}
 
-					if (ViewBag.UserRoleId == (int)AvailableRoles.ReportViewer)
-					{
-						<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.Statistics, "Index", "ReportCharts")</li>
-					}
+						if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.FreeDriver)
+						{
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.CarEditor, "CarPark", "Cars")</li>
+						}
 
-					if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.FreeDriver)
-					{
-						<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.CarEditor, "CarPark", "Cars")</li>
-					}
+						@*Only driver can have personal cabinet*@
+						if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.FreeDriver)
+						{
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.PersonalCabinet, "Index", "DriverEx")</li>
+						}
 
-					@*Only driver can have personal cabinet*@
-					if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.FreeDriver)
-					{
-						<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.PersonalCabinet, "Index", "DriverEx")</li>
-					}
+						if (ViewBag.UserRoleId == (int)AvailableRoles.Client)
+						{
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.TitleLeftMenuUserAddress, "Index", "Address")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.UserPage, "Index", "UserPage")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.DemoPage, "Iframe", "UserPage") </li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.ClientDriveHistory, "DriveHistory", "Client")</li>
+						}
 
-					if (ViewBag.UserRoleId == (int)AvailableRoles.Client)
-					{
-						<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.TitleLeftMenuUserAddress, "Index", "Address")</li>
-						<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.UserPage, "Index", "UserPage")</li>
-						<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.DemoPage, "Iframe", "UserPage") </li>
-						<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.ClientDriveHistory, "DriveHistory", "Client")</li>
+						if (ViewBag.UserRoleId == (int)AvailableRoles.Support)
+						{
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.ClientSupport, "Index", "Support")</li>
+						}
+						else
+						{
+							<li class="list-group-item" id="sideMenu"><a id="showChat">@Resources.Resource.Help</a></li>
+						}
 					}
-
-					if (ViewBag.UserRoleId == (int)AvailableRoles.Support)
-					{
-						<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.ClientSupport, "Index", "Support")</li>
-					}
-					else
-					{
-						<li class="list-group-item" id="sideMenu"><a id="showChat">@Resources.Resource.Help</a></li>
-					}
-				}
-			</ul>
+				</ul>
+			</div>
 		</div>
-	</div>
 		<div class="col-md-10 col-lg-10 col-sm-10 col-xs-12 " id="mainContainer">
 			@RenderBody()
 		</div>

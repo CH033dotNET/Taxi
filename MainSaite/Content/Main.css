@@ -159,7 +159,7 @@
 
 .panel-info {
 	background-color: rgba(85, 143, 216, 0.34);
-	border-radius: 2px;
+	border:none;
 	text-align: center;
 	border-color: #CDCDCD;
 }
@@ -175,7 +175,7 @@
 .panel-info > .panel-heading {
 	color: white;
 	background-color: hsl(50, 78%, 49%);
-	border-color: rgba(175, 167, 76, 0.57);
+	
 }
 
 #geoOff {
@@ -232,6 +232,9 @@
 	}
 
 @media (min-width: 768px) {
+	h1,h2,h3,label,td, legend{
+		color:white;
+	}
 	#mobileBtnsList {
 		display: none;
 	}
@@ -244,7 +247,6 @@
 	}
 	#body{
 		max-width:none;
-
 	}
 	body {
 		background-image: url("/Content/Picture/Redesign/background.jpg");
@@ -258,7 +260,10 @@
 		display:block;
         overflow:auto;
 	}
-
+	#mainMenu{
+		padding-left:0px;
+		margin-left:10px;
+	}
 	#footerContainer {
 		background-color: #0d0e10;
 	}
@@ -274,11 +279,33 @@
 		border:0px;
 		background-color:transparent;
 	}
-
+	#dropdownMenuBtn{
+		display:none;
+	}
 	#navBar {
 		padding: 0px;
 	}
-
+	#sideMenu{
+		border-radius:0px;
+		padding: 13px;
+        text-align: center;
+		background: linear-gradient(gold, #ffc030);
+		border:none;
+	}
+	#sideMenu a{
+		padding:0px;
+		font-size:1.1vw;
+		font-weight: 600;
+		font-family: "Blogger sans";
+		color:black;
+	}
+	#sideMenu:hover{
+		height:60px;
+		background:linear-gradient(rgb(183, 183, 183), #0d0e10);
+	}
+	#sideMenu:hover a{
+		color:#e6bf2d;
+	}
 	#navContainer {
 		width: 100%;
 		padding-right:0px;
@@ -305,8 +332,8 @@
 		background: linear-gradient(gold, #ffc030);
 		border-style: none solid;
         border-width: 0.1px;
-		    margin: 0 -1px;
-    border-color: rgb(195, 159, 35);
+		margin: 0 -1px;
+        border-color: rgb(195, 159, 35);
 	}
 	#navBarBtn:hover{
 		background:linear-gradient(rgb(183, 183, 183), #0d0e10);
@@ -334,7 +361,7 @@
 		background-color: #22a86d;
 		border-radius: 0px;
 		padding: 0px 0px 0px 0px;
-		display: none;
+		display: block;
 	}
 
 	#sideMenu.active {
