@@ -25,6 +25,10 @@ namespace BAL.Interfaces
 
 		IEnumerable<OrderExDTO> GetApprovedOrders();
 
+		IEnumerable<OrderExDTO> GetLastDeniedOrders();
+
+		IEnumerable<OrderExDTO> GetInProgressOrders();
+
 		IEnumerable<OrderExDTO> GetOrdersByDriver(UserDTO Driver);
 
 		IEnumerable<OrderExDTO> GetOrdersByUserId(int id);

@@ -245,6 +245,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\HighchartsCustomStyles\PageCustomisation.css" />
     <Content Include="Content\Main.css" />
+    <Content Include="Content\OperatorOrder.css" />
     <Content Include="Content\OrderForm.css" />
     <Content Include="Content\Picture\Drawing-layerExport.jpeg" />
     <Content Include="Content\DriverMenu.css" />

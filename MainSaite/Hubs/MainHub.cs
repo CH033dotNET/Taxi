@@ -26,23 +26,34 @@ namespace MainSaite.Hubs
 		}
 
 
-        [HubMethodName("OrderConfirmed")]
-        public void OrderConfirmed(int OrderId, int WaitingTime) {
-            var client = orderHubUsers.FirstOrDefault(u => u.OrderId == OrderId);
-            if (client != null) {
-                Clients.Client(client.ConnectionId).OrderConfirmed(WaitingTime);
-            }
-        }
+		[HubMethodName("OrderConfirmed")]
+		public void OrderConfirmed(int OrderId, int WaitingTime)
+		{
+			var client = orderHubUsers.FirstOrDefault(u => u.OrderId == OrderId);
+			if (client != null)
+			{
+				Clients.Client(client.ConnectionId).OrderConfirmed(WaitingTime);
+			}
+			Clients.Group("Operator").confirmOrder(OrderId);
+		}
 
 
 		[HubMethodName("OrderApproved")]
 		public void OrderApproved(int id)
 		{
 			Clients.Group("Driver").OrderApproved(id);
+			Clients.OthersInGroup("Operator").approveOrder(id);
+		}
+
+		[HubMethodName("denyOrder")]
+		public void DenyOrder(int id)
+		{
+			Clients.OthersInGroup("Operator").denyOrder(id);
 		}
 
 		[HubMethodName("MessageFromAdministrator")]
-		public void MessageFromAdministrator(String message) {
+		public void MessageFromAdministrator(String message)
+		{
 			Clients.Group("Driver").MessageFromAdministrator(message);
 		}
 
@@ -88,7 +99,7 @@ namespace MainSaite.Hubs
 			{
 				DistrictMap[id].Remove(Context.ConnectionId);
 			}
-			
+
 			Clients.Group("Driver").subtractDriverFromDistrict(id);
 		}
 

@@ -24,13 +24,13 @@ namespace MainSaite.Controllers
 
 		public ActionResult Index()
 		{
-			return View(orderManager.GetNotApprovedOrders());
+			return View();
 		}
 
 		[HttpPost]
 		public JsonResult ApproveOrder(int id)
 		{
-			return Json( new { success = orderManager.ApproveOrder(id) });
+			return Json(new { success = orderManager.ApproveOrder(id) });
 		}
 
 		[HttpPost]
@@ -40,8 +40,21 @@ namespace MainSaite.Controllers
 		}
 
 		[HttpPost]
-		public JsonResult GetOrder(int id) {
+		public JsonResult GetOrder(int id)
+		{
 			return Json(new { success = orderManager.GetById(id) });
+		}
+
+		[HttpPost]
+		public JsonResult GetOperatorOrders()
+		{
+			return Json(new
+			{
+				NewOrders = orderManager.GetNotApprovedOrders(),
+				ApprovedOrders = orderManager.GetApprovedOrders(),
+				DeniedOrders = orderManager.GetLastDeniedOrders(),
+				InProgressOrders = orderManager.GetInProgressOrders()
+			});
 		}
 
 	}
