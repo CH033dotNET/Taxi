@@ -752,7 +752,7 @@
     <value>Denied request</value>
   </data>
   <data name="Minutes" xml:space="preserve">
-    <value>minutes</value>
+    <value> minutes</value>
   </data>
   <data name="Wait" xml:space="preserve">
     <value>Wait</value>
@@ -1101,5 +1101,20 @@
   </data>
   <data name="DriversCount" xml:space="preserve">
     <value>Drivers count</value>
+  </data>
+  <data name="ApprovedMessage" xml:space="preserve">
+    <value>Your order is accepted! Please wait until we find a car for you</value>
+  </data>
+  <data name="Car_Number" xml:space="preserve">
+    <value>Car number: </value>
+  </data>
+  <data name="DeniedMessage" xml:space="preserve">
+    <value>Your order was denied. Please check your entries and try again</value>
+  </data>
+  <data name="PleasantTrip" xml:space="preserve">
+    <value>Pleasant trip!</value>
+  </data>
+  <data name="WaitingTimeMessage" xml:space="preserve">
+    <value>Your taxi will be in </value>
   </data>
 </root>

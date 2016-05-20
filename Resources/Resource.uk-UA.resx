@@ -760,7 +760,7 @@
     <value>Запит відхилено</value>
   </data>
   <data name="Minutes" xml:space="preserve">
-    <value>хв</value>
+    <value> хвилин</value>
   </data>
   <data name="Wait" xml:space="preserve">
     <value>Зачекайте</value>
@@ -1103,5 +1103,20 @@
   </data>
   <data name="DriversCount" xml:space="preserve">
     <value>Кільксть водіїв</value>
+  </data>
+  <data name="ApprovedMessage" xml:space="preserve">
+    <value>Ваше замовлення прийнято! Будь ласка, дочекайтесь поки ми знайдемо для Вас автомобіль</value>
+  </data>
+  <data name="Car_Number" xml:space="preserve">
+    <value>Номер авто: </value>
+  </data>
+  <data name="DeniedMessage" xml:space="preserve">
+    <value>Ваше замовлення відхилено. Будь ласка, перевірте введені дані і спробуйте ще раз </value>
+  </data>
+  <data name="PleasantTrip" xml:space="preserve">
+    <value>Приємної поїздки!</value>
+  </data>
+  <data name="WaitingTimeMessage" xml:space="preserve">
+    <value>Ваше таксі буде за </value>
   </data>
 </root>
