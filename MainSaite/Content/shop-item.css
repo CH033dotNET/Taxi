@@ -27,20 +27,16 @@ body {
     color: #333;
 }
 
-footer {
-    margin: 50px 0;
-}
+
 
 
 .lang {
  height: auto;
      width: 50%;
-    margin: 0 auto;
+    
 }
 
-    .lang > ul{
-     margin-left: 35%;       
-    }
+    
 
     .lang > ul > li {
      
@@ -58,8 +54,12 @@ margin: 0 auto;
 }
 
 .ActivLang{
-    color:black;
+    color: black;
     font-weight:bold;
+	background-color:#ffd101;
+	border-radius:50%;
+	width: 105%;
+    text-align: center;
 }
 
 .qwert img{

@@ -64,7 +64,9 @@ $(document).ready(function () {
 
 
 	if (menuTabs > 0) {
-		$("#dropdownMenuBtn").css("display", "block");
+		if ($(window).width() <= 768) {
+			$("#dropdownMenuBtn").css("display", "block");
+		}
 
 		$('#mobileBtnsList a[href="/Account/Authentification"] img').attr("src", "/Content/Picture/SmartPhonePictures/userLogOutLogo.png");
 

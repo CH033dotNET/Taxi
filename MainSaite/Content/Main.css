@@ -138,7 +138,7 @@
 	left: 125px;
 	top: 0px;
 	width: 100%;
-    padding: 10px;
+	padding: 10px;
 	font-size: 21px;
 	margin: 0px;
 	background-color: rgba(210, 210, 210, 0.52);
@@ -146,19 +146,20 @@
 	color: black;
 	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.41);
 }
-#addressInput{
-	padding:10px;
-	margin-bottom:0px;
-	margin-top: -25px
+
+#addressInput {
+	padding: 10px;
+	margin-bottom: 0px;
+	margin-top: -25px;
 }
+
 .panel-body {
 	padding: 0px;
 }
 
 .panel-info {
 	background-color: rgba(85, 143, 216, 0.34);
-	
-	border-radius: 2px;
+	border:none;
 	text-align: center;
 	border-color: #CDCDCD;
 }
@@ -174,16 +175,16 @@
 .panel-info > .panel-heading {
 	color: white;
 	background-color: hsl(50, 78%, 49%);
-	border-color: rgba(175, 167, 76, 0.57);
+	
 }
 
 #geoOff {
 	text-align: center;
-	display:none;
-    background-color: rgb(188, 103, 43);
-    border: none;
-    border-radius: 0px;
-	    margin: 10px;
+	display: none;
+	background-color: rgb(188, 103, 43);
+	border: none;
+	border-radius: 0px;
+	margin: 10px;
 }
 
 .alert-warning {
@@ -199,7 +200,7 @@
 }
 
 #controlOrder {
-	border: 1px  solid rgb(76, 175, 80);
+	border: 1px solid rgb(76, 175, 80);
 	border-radius: 1px;
 	box-shadow: rgba(0, 0, 0, 0.73) 0px 2px 6px;
 	cursor: pointer;
@@ -217,123 +218,257 @@
 	background-color: #4CAF50;
 	font-weight: bold;
 }
-#orderBtn:hover{
-	color: #4CAF50;
-	font-family: Roboto, Arial, sans-serif;
-	font-size: 20px;
-	line-height: 38px;
-	padding-left: 5px;
-	padding-right: 5px;
-	background-color:white;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-	transition-duration: 0.3s;
-}
-@media (min-width: 768px) {
-	#mobileBtnsList{
-	   display:none;
-	}
-		#siteLogoImage{
-		    display:none;
-	}
 
-}
-@media (max-width: 768px) {
-	body{	
-     background-color: #6f6f6f;
-	}
-	#desktopNavBar{
-		display:none;
-	}
-	#dropdownMenuBtn{
-		width: 100%;
-        margin: 0 auto;
-        padding-bottom: 11px;
-        background-color: #22a86d;
-		border-radius:0px;
-	    padding: 0px 0px 0px 0px;
-		display:none;
-	}
-	#sideMenu.active{
-		background: gold;		
-    }
-	#mainBtns.active{
-		background-color: grey;
-		box-shadow: 0 2px #666;
-    }
-	#sideMenu.active a{
-		color:black;		
-    }
-	#sideMenu{
-		background-color: #2e2f31;
-        border: none;
-		border-radius: 0px;
-	}
-	#sideMenu>a{
-		color: white;
-        font-size: 20px;
-        font-weight: bold;
-	}
-
-	#dashBtnIcon{
+	#orderBtn:hover {
+		color: #4CAF50;
+		font-family: Roboto, Arial, sans-serif;
+		font-size: 20px;
+		line-height: 38px;
+		padding-left: 5px;
+		padding-right: 5px;
 		background-color: white;
+		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+		transition-duration: 0.3s;
 	}
-	#dashes{
-		float:right;
-		padding: 4% 10px 10px 10px;
+
+@media (min-width: 768px) {
+	h1,h2,h3,label,td, legend{
+		color:white;
 	}
-	#textField{
-		background-color: rgba(255, 255, 255, 0.92);
-		    font-size: 15px;
+	#mobileBtnsList {
+		display: none;
 	}
-	#orderTaxiBtn, .slider-controls{
-		display:none;
+	#mainLogo{
+		margin:0px;
+		float: left;
 	}
-	#siteLogoImage{
-		    width: 17%;
-            float: left;
-		    display:block;
+	#siteLogoImage {
+		display: none;
+	}
+	#body{
+		max-width:none;
+	}
+	body {
+		background-image: url("/Content/Picture/Redesign/background.jpg");
+		background-size: 100%;
+	}
+
+	#mainContainer {
+		background-color: #16171a;
+		padding-top: 40px;
+		min-height:100vh;
+		display:block;
+        overflow:auto;
+	}
+	#mainMenu{
+		padding-left:0px;
+		margin-left:10px;
+	}
+	#footerContainer {
+		background-color: #0d0e10;
+	}
+
+	#droppedDownList, #desktopNavBar {
+		margin-bottom: 0px;
 	}
 	#droppedDownList{
-		padding-right: 1px;
+		padding:0px;
 	}
-	#mobileBtns{
-		width: 100%;
+	#desktopNavBar {
+		border-radius: 0px;
+		border:0px;
+		background-color:transparent;
+	}
+	#dropdownMenuBtn{
+		display:none;
+	}
+	#navBar {
+		padding: 0px;
+	}
+	#sideMenu{
+		border-radius:0px;
+		padding: 13px;
         text-align: center;
-	}
-	body{
-		padding-top:2px;
-	}
-	#mainBtns{
-		background-color: #FFD700;
-        border-radius: 0px;
+		background: linear-gradient(gold, #ffc030);
 		border:none;
-		  box-shadow: 0 5px #999;
 	}
-	#mainBtns:hover{
-		background-color: lightgray;
+	#sideMenu a{
+		padding:0px;
+		font-size:1.1vw;
+		font-weight: 600;
+		font-family: "Blogger sans";
+		color:black;
 	}
-	#mainBtns:active {
+	#sideMenu:hover{
+		height:60px;
+		background:linear-gradient(rgb(183, 183, 183), #0d0e10);
+	}
+	#sideMenu:hover a{
+		color:#e6bf2d;
+	}
+	#navContainer {
+		width: 100%;
+		padding-right:0px;
+	}
+
+	#navHeader {
+		float: right;
+	}
+
+	#navPhone {
+		color: white;
+		text-align: end;
+		font-family: "Blogger sans";
+		font-weight: bolder;
+		font-style: oblique;
+		font-size: x-large;
+		margin-bottom: 0px;
+	}
+
+	#navBarBtn {
+		font-size: 2vw;
+        font-weight: 600;
+		font-family: "Blogger sans";
+		background: linear-gradient(gold, #ffc030);
+		border-style: none solid;
+        border-width: 0.1px;
+		margin: 0 -1px;
+        border-color: rgb(195, 159, 35);
+	}
+	#navBarBtn:hover{
+		background:linear-gradient(rgb(183, 183, 183), #0d0e10);
+	}
+	#navBarBtn a{
+		  color:black;
+	}
+	#navBarBtn a:hover{
+		  color:#e6bf2d;
+	}
+}
+
+@media (max-width: 768px) {
+	body {
+		background-color: #6f6f6f;
+	}
+	#desktopNavBar {
+		display: none;
+	}
+
+	#dropdownMenuBtn {
+		width: 100%;
+		margin: 0 auto;
+		padding-bottom: 11px;
+		background-color: #22a86d;
+		border-radius: 0px;
+		padding: 0px 0px 0px 0px;
+		display: block;
+	}
+
+	#sideMenu.active {
+		background: gold;
+	}
+
+	#mainBtns.active {
 		background-color: grey;
 		box-shadow: 0 2px #666;
-		transform: translateY(3px);
 	}
-	#mobileBtnsList{
-	   padding-bottom: 10px;
-	   display:block;
 
+	#sideMenu.active a {
+		color: black;
 	}
-	#menuImage{
+
+	#sideMenu {
+		background-color: #2e2f31;
+		border: none;
+		border-radius: 0px;
+		padding:0px;
+	}
+
+		#sideMenu > a {
+			color: white;
+			font-size: 20px;
+			font-weight: bold;
+		}
+
+	#dashBtnIcon {
+		background-color: white;
+	}
+
+	#dashes {
+		float: right;
+		padding: 4% 10px 10px 10px;
+	}
+
+	#textField {
+		background-color: rgba(255, 255, 255, 0.92);
+		font-size: 15px;
+	}
+
+	#orderTaxiBtn, .slider-controls {
+		display: none;
+	}
+
+	#siteLogoImage {
+		width: 17%;
+		float: left;
+		display: block;
+	}
+
+	#droppedDownList {
+		padding-right: 1px;
+	}
+
+	#mobileBtns {
+		width: 100%;
+		text-align: center;
+	}
+
+	body {
+		padding-top: 2px;
+	}
+
+	#mainBtns {
+		background-color: #FFD700;
+		border-radius: 0px;
+		border: none;
+		box-shadow: 0 5px #999;
+	}
+
+		#mainBtns:hover {
+			background-color: lightgray;
+		}
+
+		#mainBtns:active {
+			background-color: grey;
+			box-shadow: 0 2px #666;
+			transform: translateY(3px);
+		}
+
+	#mobileBtnsList {
+		padding-bottom: 10px;
+		display: block;
+	}
+	#mainContainer{
+		padding-top:30px;
+	}
+	#menuImage {
 		height: 33%;
 	}
-	#authTable{
-		margin:0 auto;
+
+	#authTable {
+		margin: 0 auto;
 	}
-	#mapContainer{
-		padding:10px;
+
+	#mapContainer {
+		padding: 10px;
 	}
+
 	#controlOrder {
-	border: 10px solid rgb(76, 175, 80);
-}
+		border: 10px solid rgb(76, 175, 80);
+	}
+	#navPhone{
+		display:none;
+	}
 }
 
 
@@ -342,10 +477,11 @@
 	display: none;
 	padding: 0;
 	font-size: 1.5em;
-	text-align:center;
+	text-align: center;
 }
+
 @media (min-width: 1200px) {
 	.adblockWraper {
-		padding:0px 18px;
+		padding: 0px 18px;
 	}
 }
