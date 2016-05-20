@@ -78,25 +78,25 @@
 
 	//interface functions
 	$(window).on('load resize', function () {
-		$('#orderBoard').height($(this).height() - 200);
-		$('.content').height($(this).height() - 270);
+		$('#orderBoard').height($(this).height() -50);
+		$('.content').height($(this).height() - 120);
 	});
 
 
 	$('.header').hover(function () {
 		$(this).animate({
-			color: 'black'
+			color: 'white'
 		},100);
 		$(this).parent().css({
-			'border': '1px solid rgba(0, 0, 0, 0.20)',
+			'border': '2px solid rgba(255, 255, 255, 0.20)',
 		});
 	},
 	function () {
 		$(this).animate({
-			color: 'rgba(0, 0, 0, 0.5)'
+			color: 'rgba(255, 255, 255, 0.8)'
 		}, 100);
 		$(this).parent().css({
-			'border': '1px solid transparent',
+			'border': '2px solid transparent',
 		});
 	});
 
