@@ -61,6 +61,15 @@ margin: 0 auto;
 	width: 105%;
     text-align: center;
 }
+.UnActivLang{
+    color: white;
+    font-weight:bold;
+	background-color:#0d0e10;
+	border-radius:50%;
+	width: 105%;
+    text-align: center;
+}
+
 
 .qwert img{
 width:100%;

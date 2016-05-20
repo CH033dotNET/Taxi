@@ -250,7 +250,8 @@
 	}
 	body {
 		background-image: url("/Content/Picture/Redesign/background.jpg");
-		background-size: 100%;
+		background-size: cover;
+		overflow-x:hidden;
 	}
 
 	#mainContainer {
@@ -296,11 +297,11 @@
 		padding:0px;
 		font-size:1.1vw;
 		font-weight: 600;
-		font-family: "Blogger sans";
+		font-family: 'Droid Sans', sans-serif;
 		color:black;
 	}
 	#sideMenu:hover{
-		height:60px;
+		
 		background:linear-gradient(rgb(183, 183, 183), #0d0e10);
 	}
 	#sideMenu:hover a{
@@ -318,9 +319,9 @@
 	#navPhone {
 		color: white;
 		text-align: end;
-		font-family: "Blogger sans";
+		font-family: 'Droid Sans', sans-serif;
 		font-weight: bolder;
-		font-style: oblique;
+		font-style: italic;
 		font-size: x-large;
 		margin-bottom: 0px;
 	}
@@ -328,7 +329,7 @@
 	#navBarBtn {
 		font-size: 2vw;
         font-weight: 600;
-		font-family: "Blogger sans";
+		font-family: 'Droid Sans', sans-serif;
 		background: linear-gradient(gold, #ffc030);
 		border-style: none solid;
         border-width: 0.1px;
