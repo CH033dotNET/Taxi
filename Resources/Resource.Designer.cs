@@ -241,6 +241,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your order is accepted! Please wait until we find a car for you.
+        /// </summary>
+        public static string ApprovedMessage {
+            get {
+                return ResourceManager.GetString("ApprovedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure?.
         /// </summary>
         public static string AreYouSure {
@@ -291,6 +300,15 @@ namespace Resources {
         public static string cancelButton {
             get {
                 return ResourceManager.GetString("cancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Car number: .
+        /// </summary>
+        public static string Car_Number {
+            get {
+                return ResourceManager.GetString("Car_Number", resourceCulture);
             }
         }
         
@@ -1056,6 +1074,15 @@ namespace Resources {
         public static string Denied {
             get {
                 return ResourceManager.GetString("Denied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your order was denied. Please check your entries and try again.
+        /// </summary>
+        public static string DeniedMessage {
+            get {
+                return ResourceManager.GetString("DeniedMessage", resourceCulture);
             }
         }
         
@@ -1898,7 +1925,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to minutes.
+        ///   Looks up a localized string similar to  minutes.
         /// </summary>
         public static string Minutes {
             get {
@@ -2281,6 +2308,15 @@ namespace Resources {
         public static string PlaceDelivery {
             get {
                 return ResourceManager.GetString("PlaceDelivery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pleasant trip!.
+        /// </summary>
+        public static string PleasantTrip {
+            get {
+                return ResourceManager.GetString("PleasantTrip", resourceCulture);
             }
         }
         
@@ -2884,6 +2920,15 @@ namespace Resources {
         public static string WaitingTime {
             get {
                 return ResourceManager.GetString("WaitingTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your taxi will be in .
+        /// </summary>
+        public static string WaitingTimeMessage {
+            get {
+                return ResourceManager.GetString("WaitingTimeMessage", resourceCulture);
             }
         }
         

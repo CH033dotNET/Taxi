@@ -290,6 +290,7 @@
     <Content Include="Content\Picture\OrderForm\time.png" />
     <Content Include="Content\Picture\OrderForm\van-active.png" />
     <Content Include="Content\Picture\OrderForm\van-passive.png" />
+    <Content Include="Content\Picture\OrderForm\waiting-animation.gif" />
     <Content Include="Content\Picture\Redesign\background.jpg" />
     <Content Include="Content\Picture\roteiro.jpg" />
     <Content Include="Content\Picture\SandWatch.jpg" />
