@@ -10,6 +10,7 @@ using Model.DTO;
 using AutoMapper;
 using Common.Enum;
 using Model;
+using BAL.Tools;
 
 namespace BAL.Interfaces
 {
@@ -146,6 +147,23 @@ namespace BAL.Interfaces
 			order.ClientFeedbackId = feedbackId;
 			uOW.OrderExRepo.Update(order);
 			uOW.Save();
+		}
+
+		public IEnumerable<OrderExDTO> GetLastDeniedOrders()
+		{
+			var orders = uOW.OrderExRepo.All
+				.Where(o => o.Status == OrderStatusEnum.Denied)
+				.TakeLast(50)
+				.ToList();
+			return Mapper.Map<List<OrderExDTO>>(orders);
+		}
+
+		public IEnumerable<OrderExDTO> GetInProgressOrders()
+		{
+			var orders = uOW.OrderExRepo.All
+				.Where(o => o.Status == OrderStatusEnum.Confirmed)
+				.ToList();
+			return Mapper.Map<List<OrderExDTO>>(orders);
 		}
 	}
 }
