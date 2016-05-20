@@ -288,10 +288,10 @@
 	}
 	#sideMenu{
 		border-radius:0px;
-		padding: 13px;
         text-align: center;
 		background: linear-gradient(gold, #ffc030);
 		border:none;
+		padding:0px;
 	}
 	#sideMenu a{
 		padding:0px;
@@ -299,13 +299,17 @@
 		font-weight: 600;
 		font-family: 'Droid Sans', sans-serif;
 		color:black;
+		padding:12px;
 	}
 	#sideMenu:hover{
-		
+		min-height:60px;
 		background:linear-gradient(rgb(183, 183, 183), #0d0e10);
 	}
 	#sideMenu:hover a{
 		color:#e6bf2d;
+	}
+	#sideMenu a:hover{
+		background-color:transparent;
 	}
 	#navContainer {
 		width: 100%;
