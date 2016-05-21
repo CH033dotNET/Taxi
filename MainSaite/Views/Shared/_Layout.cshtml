@@ -33,7 +33,7 @@
 	<div class="row">
 		<div class="adblockWraper">
 			<div id="adblock-warning" class="panel panel-warning col-lg-offset-1 col-lg-10 col-sm-10 col-sm-offset-1  col-xs-12">
-				<div class="panel-heading">
+				<div class="panel-heading" id="AdBlockPanel">
 					@Resources.Resource.AdBlockWarning
 				</div>
 			</div>
@@ -45,8 +45,8 @@
 			<p id="navPhone">Call us: (800) 123-3542</p>
 			<div class="left-menu">
 				<div class="navbar navbar-default" id="desktopNavBar">
-					<div>
-						<a href="#"> <img src="~/Content/Picture/SmartPhonePictures/SiteLogo.png" class="topLogo" style="border-bottom:inherit; width:85px; height:51px;" id="mainLogo" /> </a>
+					<div id="mainLogoContainer">
+						<a href="/Home/Index"> <img src="~/Content/Picture/SmartPhonePictures/SiteLogo.png" class="topLogo" id="mainLogo" /> </a>
 					</div>
 					<div class="container" id="navContainer">
 						<div class="navbar-header" id="navHeader">
