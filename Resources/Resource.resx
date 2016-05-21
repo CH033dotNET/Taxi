@@ -740,7 +740,7 @@
     <value>My account</value>
   </data>
   <data name="NewOrders" xml:space="preserve">
-    <value>New Orders</value>
+    <value>New orders</value>
   </data>
   <data name="Order" xml:space="preserve">
     <value>Order</value>
@@ -1116,5 +1116,17 @@
   </data>
   <data name="WaitingTimeMessage" xml:space="preserve">
     <value>Your taxi will be in </value>
+  </data>
+  <data name="ApprovedOrders" xml:space="preserve">
+    <value>Approved orders</value>
+  </data>
+  <data name="DeniedOrders" xml:space="preserve">
+    <value>Denied orders</value>
+  </data>
+  <data name="FinishedOrders" xml:space="preserve">
+    <value>Finished orders</value>
+  </data>
+  <data name="InProgressOrders" xml:space="preserve">
+    <value>In progress</value>
   </data>
 </root>

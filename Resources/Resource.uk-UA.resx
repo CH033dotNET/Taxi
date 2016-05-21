@@ -1119,4 +1119,16 @@
   <data name="WaitingTimeMessage" xml:space="preserve">
     <value>Ваше таксі буде за </value>
   </data>
+  <data name="ApprovedOrders" xml:space="preserve">
+    <value>Підтвержені замовлення</value>
+  </data>
+  <data name="DeniedOrders" xml:space="preserve">
+    <value>Відхилені замовлення</value>
+  </data>
+  <data name="FinishedOrders" xml:space="preserve">
+    <value>Завершені замовлення</value>
+  </data>
+  <data name="InProgressOrders" xml:space="preserve">
+    <value>Виконуються</value>
+  </data>
 </root>

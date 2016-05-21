@@ -7,6 +7,7 @@ using Model.DTO;
 using BAL.Interfaces;
 using Microsoft.AspNet.SignalR;
 using MainSaite.Hubs;
+using BAL.Manager;
 
 namespace MainSaite.Controllers
 {
@@ -14,12 +15,12 @@ namespace MainSaite.Controllers
 	{
 
 		private IOrderManagerEx orderManager;
+		private IDistrictManager districtManager;
 
-		private static IHubContext Context = GlobalHost.ConnectionManager.GetHubContext<MainHub>();
-
-		public OrderExController(IOrderManagerEx orderManager)
+		public OrderExController(IOrderManagerEx orderManager, IDistrictManager districtManager)
 		{
 			this.orderManager = orderManager;
+			this.districtManager = districtManager;
 		}
 
 		public ActionResult Index()
@@ -55,6 +56,12 @@ namespace MainSaite.Controllers
 				DeniedOrders = orderManager.GetLastDeniedOrders(),
 				InProgressOrders = orderManager.GetInProgressOrders()
 			});
+		}
+
+		[HttpPost]
+		public JsonResult GetDistricts()
+		{
+			return Json(new { districts = districtManager.GetFilesDistricts() });
 		}
 
 	}

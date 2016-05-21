@@ -250,6 +250,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Approved orders.
+        /// </summary>
+        public static string ApprovedOrders {
+            get {
+                return ResourceManager.GetString("ApprovedOrders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure?.
         /// </summary>
         public static string AreYouSure {
@@ -1096,6 +1105,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Denied orders.
+        /// </summary>
+        public static string DeniedOrders {
+            get {
+                return ResourceManager.GetString("DeniedOrders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Denied request.
         /// </summary>
         public static string DeniedToDriver {
@@ -1520,6 +1538,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Finished orders.
+        /// </summary>
+        public static string FinishedOrders {
+            get {
+                return ResourceManager.GetString("FinishedOrders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First name.
         /// </summary>
         public static string FirstName {
@@ -1696,6 +1723,15 @@ namespace Resources {
         public static string Info {
             get {
                 return ResourceManager.GetString("Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In progress.
+        /// </summary>
+        public static string InProgressOrders {
+            get {
+                return ResourceManager.GetString("InProgressOrders", resourceCulture);
             }
         }
         
@@ -1970,7 +2006,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Orders.
+        ///   Looks up a localized string similar to New orders.
         /// </summary>
         public static string NewOrders {
             get {

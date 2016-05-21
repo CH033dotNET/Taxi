@@ -6,7 +6,7 @@ var districts = [];
 function hubInit() {
 
 	hub = $.connection.DistrictsHub;
-	hub.client.swap = swap;
+	//hub.client.swap = swap;
 }
 function mainInit() {
 	hubInit();
@@ -173,7 +173,7 @@ function changeDistrict(id) {
 			success: function (data) {
 				$('#DistrictN' + id + ">.text").html(currentLocation);
 				$('#DistrictN' + currentDistrict + ">.text").html(joinToLocation);
-				hub.server.swap(id, currentDistrict);
+				//hub.server.swap(id, currentDistrict);
 				currentDistrict = id;
 			},
 			error: function (error) {

@@ -6,7 +6,7 @@
 <div id="orderBoard">
 	<div class="col">
 		<div class="header">
-			[New orders]
+			@Resources.Resource.NewOrders
 		</div>
 		<div id="newOrder" class="content">
 		</div>
@@ -14,7 +14,7 @@
 	
 	<div class="col">
 		<div class="header">
-			[Approved orders]
+			@Resources.Resource.ApprovedOrders
 		</div>
 		<div id="approvedOrder" class="content">
 			
@@ -23,7 +23,7 @@
 
 	<div class="col">
 		<div class="header">
-			[Denied orders]
+			@Resources.Resource.DeniedOrders
 		</div>
 		<div id="deniedOrder" class="content">
 		</div>
@@ -31,7 +31,7 @@
 
 	<div class="col">
 		<div class="header">
-			[In-progress orders]
+			@Resources.Resource.InProgressOrders
 		</div>
 		<div id="inProgressOrder" class="content">
 		</div>
@@ -39,7 +39,7 @@
 
 	<div class="col">
 		<div class="header">
-			[Done orders]
+			@Resources.Resource.FinishedOrders
 		</div>
 		<div id="doneOrder" class="content">
 
@@ -48,4 +48,5 @@
 </div>
 <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
 <script src="~/Scripts/OrderExLogic/OperatorOrder.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?libraries=geometry"></script>
 <link href="~/Content/OperatorOrder.css" rel="stylesheet" />
