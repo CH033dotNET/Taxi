@@ -1037,7 +1037,7 @@
     <value>Meet with a plate</value>
   </data>
   <data name="AdBlockWarning" xml:space="preserve">
-    <value>AddBlock detected. Some options can work wrong.</value>
+    <value>AdBlock detected. Some options can work wrong.</value>
   </data>
   <data name="NoGeoLocation" xml:space="preserve">
     <value>Geolocation is disabled</value>

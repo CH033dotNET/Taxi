@@ -62,7 +62,6 @@ $(document).ready(function () {
 	var url = window.location.pathname;
 	var menuTabs = $("#mainMenu").children().length;
 
-
 	if (menuTabs > 0) {
 		if ($(window).width() <= 768) {
 			$("#dropdownMenuBtn").css("display", "block");

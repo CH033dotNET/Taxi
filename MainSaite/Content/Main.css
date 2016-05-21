@@ -174,8 +174,9 @@
 
 .panel-info > .panel-heading {
 	color: white;
-	background-color: hsl(50, 78%, 49%);
-	
+    background-color: hsl(48, 100%, 53%);
+	border-radius: 0px;
+	text-shadow: 0 1px 0 #292929;
 }
 
 #geoOff {
@@ -235,12 +236,23 @@
 	h1,h2,h3,label,td, legend{
 		color:white;
 	}
+	.row{
+		margin:0px;
+	}
+	.container-fluid{
+		padding:0px;
+	}
 	#mobileBtnsList {
 		display: none;
 	}
 	#mainLogo{
 		margin:0px;
 		float: left;
+		width:130px;
+	}
+	#mainLogoContainer{
+		position: absolute;
+        top: -21px;
 	}
 	#siteLogoImage {
 		display: none;
@@ -251,7 +263,6 @@
 	body {
 		background-image: url("/Content/Picture/Redesign/background.jpg");
 		background-size: cover;
-		overflow-x:hidden;
 	}
 
 	#mainContainer {
@@ -285,6 +296,7 @@
 	}
 	#navBar {
 		padding: 0px;
+		margin:-1px;
 	}
 	#sideMenu{
 		border-radius:0px;
@@ -303,10 +315,11 @@
 	}
 	#sideMenu:hover{
 		min-height:60px;
-		background:linear-gradient(rgb(183, 183, 183), #0d0e10);
+		background: linear-gradient(rgb(204, 204, 204), #8C8C8C);
 	}
 	#sideMenu:hover a{
-		color:#e6bf2d;
+		color:white;
+	    text-shadow: 0 1px 0 #292929;
 	}
 	#sideMenu a:hover{
 		background-color:transparent;
@@ -341,19 +354,22 @@
         border-color: rgb(195, 159, 35);
 	}
 	#navBarBtn:hover{
-		background:linear-gradient(rgb(183, 183, 183), #0d0e10);
+		background: linear-gradient(rgb(204, 204, 204), #8C8C8C);
+		border-color: rgb(113, 113, 113);
 	}
 	#navBarBtn a{
 		  color:black;
 	}
 	#navBarBtn a:hover{
-		  color:#e6bf2d;
+		  color:white;
+		  text-shadow: 0 1px 0 #292929;
 	}
 }
 
 @media (max-width: 768px) {
 	body {
 		background-color: #6f6f6f;
+		margin: 0px 15px;
 	}
 	#desktopNavBar {
 		display: none;
@@ -366,7 +382,7 @@
 		background-color: #22a86d;
 		border-radius: 0px;
 		padding: 0px 0px 0px 0px;
-		display: block;
+		display:none;
 	}
 
 	#sideMenu.active {
@@ -483,6 +499,15 @@
 	padding: 0;
 	font-size: 1.5em;
 	text-align: center;
+	border: none;
+    border-radius: 0px;
+}
+#AdBlockPanel{
+	background: linear-gradient(gold, #ffc030);
+    color: white;
+    font-family: 'Droid Sans', sans-serif;
+    text-shadow: 0 1px 0 #292929;
+	border:none;
 }
 
 @media (min-width: 1200px) {
