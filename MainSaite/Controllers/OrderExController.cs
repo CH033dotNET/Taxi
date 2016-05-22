@@ -58,6 +58,20 @@ namespace MainSaite.Controllers
 			});
 		}
 
+		public PartialViewResult GetOrderById(int id = 0)
+		{
+			var order = orderManager.GetById(id);
+			return PartialView("_EditOrder", order);
+		}
+
+		[HttpPost]
+		public JsonResult EditOrder(OrderExDTO order)
+		{
+			orderManager.UpdateOrder(order);
+			//var users = userManager.GetUsers();
+			//return PartialView("_UserTable", users);
+			return Json(true);
+		}
 		[HttpPost]
 		public JsonResult GetDistricts()
 		{

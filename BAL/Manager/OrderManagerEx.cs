@@ -33,9 +33,25 @@ namespace BAL.Interfaces
 
 		public void UpdateOrder(OrderExDTO order)
 		{
-			var newOrder = Mapper.Map<OrderEx>(order);
-			uOW.OrderExRepo.Update(newOrder);
-			uOW.Save();
+			var result = uOW.OrderExRepo.All.SingleOrDefault(o=>o.Id == order.Id);
+
+			if (result != null)
+			{
+				result.Address = order.Address;
+				result.Status = order.Status;
+
+				uOW.Save();
+			}
+			//var newOrder = Mapper.Map<OrderEx>(order);
+			//uOW.OrderExRepo.Update(newOrder);
+			//try
+			//{
+			//	uOW.Save();
+			//}
+			//catch(Exception e)
+			//{
+
+			//}
 		}
 
 		public OrderExDTO GetById(int id) {

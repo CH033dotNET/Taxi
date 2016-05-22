@@ -1,5 +1,7 @@
 ﻿/* CHAT START */
-
+*{
+	font-family: 'Droid Sans', sans-serif;
+}
 #chat {
 	display: none;
 	position: absolute;
@@ -143,14 +145,15 @@
 	margin: 0px;
 	background-color: rgba(210, 210, 210, 0.52);
 	border: none;
-	color: black;
+	color: #e0e0e0;
 	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.41);
+	text-shadow: 0 1px 0 #292929;
 }
 
 #addressInput {
 	padding: 10px;
 	margin-bottom: 0px;
-	margin-top: -25px;
+	margin-top: -9px;
 }
 
 .panel-body {
@@ -233,6 +236,42 @@
 	}
 
 @media (min-width: 768px) {
+	#modalBody, #modalFooter{
+		background: rgba(0, 0, 0, 0.96);
+	}
+	#modalHeader{
+		background:linear-gradient(gold, #ffc030);
+				  text-shadow: 0 1px 0 #292929;
+				  border:none;
+	}
+    /*#ModalContent tr td{
+		width: 20%;
+    }*/
+	input{
+	background: rgba(255, 255, 255, 0.18);
+    border: none;
+    border-bottom: 2px solid #FFCA1C;
+    width: 100%;
+	color:white;
+	    text-indent: 5px;
+	}
+	.btn-success{
+	border-radius: 0px;
+    border: none;
+    color: black;
+    background: linear-gradient(gold, #ffc030);
+    text-shadow: rgb(134, 134, 134) 0px 1px 0px;
+	font-weight: bolder;
+    box-shadow: 0px 0px 6px #FFD308;
+	font-size: 1.5vw;
+    text-transform: uppercase; 
+	min-width: 100px;
+    text-align: center;
+	}
+	.btn-success:hover{
+		background:linear-gradient(rgb(204, 204, 204), #8C8C8C);
+		box-shadow: 0px 0px 6px #8C8C8C;
+	}
 	h1,h2,h3,label,td, legend{
 		color:white;
 	}
@@ -241,6 +280,9 @@
 	}
 	.container-fluid{
 		padding:0px;
+	}
+	#loading{
+		color: #FFCF12;
 	}
 	#mobileBtnsList {
 		display: none;

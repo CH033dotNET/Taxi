@@ -586,6 +586,8 @@
     <Content Include="Views\DriverEx\MyOrder.cshtml" />
     <Content Include="Views\Client\ClientFeedback.cshtml" />
     <Content Include="Views\Administration\SendMessagesToDrivers.cshtml" />
+    <Content Include="Views\OrderEx\EditOrderPartial.cshtml" />
+    <Content Include="Views\OrderEx\_EditOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

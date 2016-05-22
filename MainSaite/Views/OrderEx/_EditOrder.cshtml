@@ -1,0 +1,78 @@
+﻿@model Model.DTO.OrderExDTO
+
+
+<tr>
+	<td>
+		
+	</td>
+	<td>
+		@Html.HiddenFor(x => Model.Id)
+	</td>
+</tr>
+<tr>
+	<td>
+		@Html.Label("[Address]")
+	</td>
+	<td>
+		@Html.TextBoxFor(x => Model.Address, new { @required = true, @minlength = "4" })
+		@Html.ValidationMessageFor(x => x.Address)
+	</td>
+</tr>
+<tr>
+	<td>
+		@Html.Label("[Waiting Time]")
+	</td>
+	<td>
+		@Html.TextBoxFor(x => Model.WaitingTime, new { @required = true, @minlength = "1" })
+		@Html.ValidationMessageFor(x => x.WaitingTime)
+	</td>
+</tr>
+<tr>
+	<td>
+		@Html.Label("[Price]")
+	</td>
+	<td>
+		@Html.TextBoxFor(x => Model.Price, new { @required = true, @minlength = "2" })
+		@Html.ValidationMessageFor(x => x.Price)
+	</td>
+</tr>
+<tr>
+	<td>
+		@Html.Label("[Driver]")
+	</td>
+	<td>
+		@Html.TextBoxFor(x => Model.DriverId, new { @required = true, @minlength = "0" })
+		@Html.ValidationMessageFor(x => x.DriverId)
+	</td>
+</tr>
+@*<tr>
+	<td>@Html.Label("[Order status]")</td>
+	<td>
+		@Html.DropDownListFor(x => Model.Status,
+			new SelectList(Enum.GetValues(typeof(Common.Enum.OrderStatusEnum))))
+	</td>
+</tr>*@
+@*<tr>
+	<td>@Html.Label(Resources.Resource.UserName)</td>
+
+	<td>
+		@Html.TextBoxFor(x => Model.UserName, new { @required = true, @minlength = "4" })
+		@Html.ValidationMessageFor(x => x.UserName)
+	</td>
+</tr>
+
+<tr>
+	<td>@Html.Label(Resources.Resource.Password)</td>
+	<td>
+		@Html.PasswordFor(x => x.Password, new { @minlength = "6", @value = Model.Password, @required = true })
+		@Html.ValidationMessageFor(x => x.Password)
+	</td>
+</tr>
+
+<tr>
+	<td>@Html.Label(Resources.Resource.Email)</td>
+	<td>
+		@Html.TextBoxFor(x => Model.Email, new { @type = "email", required = true })
+		@Html.ValidationMessageFor(x => x.Email)
+	</td>
+</tr>*@

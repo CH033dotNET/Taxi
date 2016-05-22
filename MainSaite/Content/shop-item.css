@@ -126,7 +126,7 @@ input{
 }
 
 
-.btform input{
+/*.btform input{
     -webkit-appearance: none;
 -webkit-rtl-ordering: logical;
 -webkit-user-select: text;
@@ -188,14 +188,14 @@ transition-timing-function: ease-in-out, ease-in-out;
 word-spacing: 0px;
 writing-mode: lr-tb;
 -webkit-writing-mode: horizontal-tb;
-}
+}*/
 .btform select{
-    -webkit-appearance: menulist-button;
+-webkit-appearance: menulist-button;
 -webkit-rtl-ordering: logical;
 -webkit-user-select: text;
-background-color: rgb(255, 255, 255);
+background-color: #363636;
 background-image: none;
-border-bottom-color: rgb(204, 204, 204);
+/*border-bottom-color: rgb(204, 204, 204);
 border-bottom-left-radius: 6px;
 border-bottom-right-radius: 6px;
 border-bottom-style: solid;
@@ -216,10 +216,14 @@ border-top-color: rgb(204, 204, 204);
 border-top-left-radius: 6px;
 border-top-right-radius: 6px;
 border-top-style: solid;
-border-top-width: 1px;
+border-top-width: 1px;*/
+	border-radius: 0px;
+    border-color: #FFCA1C;
+    border: none;
+    border-bottom: 2px solid #FFCA1C;
 box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
 box-sizing: border-box;
-color: rgb(0, 0, 0);
+color: white;
 cursor: auto;
 display: block;
 font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -253,7 +257,7 @@ word-spacing: 0px;
 writing-mode: lr-tb;
 -webkit-writing-mode: horizontal-tb;
 }
-.btform input[type="submit"], .btform button
+/*.btform input[type="submit"], .btform button
 {
     -webkit-appearance: none;
 -webkit-rtl-ordering: logical;
@@ -315,7 +319,7 @@ word-spacing: 0px;
 writing-mode: lr-tb;
 -webkit-writing-mode: horizontal-tb;
 
-}
+}*/
 
 #loading {
 margin-left:46%;
