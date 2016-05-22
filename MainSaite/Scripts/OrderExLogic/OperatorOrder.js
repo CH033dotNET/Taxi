@@ -6,6 +6,14 @@
 	var deniedOrders = [];
 	var inProgressOrders = [];
 
+	$(document).on("dblclick", ".order", function () {
+		$('#myModal').modal('toggle');
+		var id = $(this).data("id");
+
+		$("#EditOrderA").attr("href", "/OrderEx/GetOrderById/" + id);
+
+		$('#EditOrderA').trigger('click');
+	});
 	//init jqueryUI
 	$('#newOrder').sortable({
 		connectWith: '#approvedOrder, #deniedOrder',
@@ -102,20 +110,21 @@
 
 	//functions for feeling orders
 
-	$.ajax({
-		method: 'POST',
-		url: '/OrderEx/GetOperatorOrders',
-		success: function(data){
-			newOrders = data.NewOrders;
-			approvedOrders = data.ApprovedOrders;
-			deniedOrders = data.DeniedOrders;
-			inProgressOrders = data.InProgressOrders;
-			addOrdersTo(newOrders, $('#newOrder'));
-			addOrdersTo(approvedOrders, $('#approvedOrder'));
-			addOrdersTo(deniedOrders, $('#deniedOrder'));
-			addOrdersTo(inProgressOrders, $('#inProgressOrder'));
-		}
-	});
+	
+		$.ajax({
+			method: 'POST',
+			url: '/OrderEx/GetOperatorOrders',
+			success: function (data) {
+				newOrders = data.NewOrders;
+				approvedOrders = data.ApprovedOrders;
+				deniedOrders = data.DeniedOrders;
+				inProgressOrders = data.InProgressOrders;
+				addOrdersTo(newOrders, $('#newOrder'));
+				addOrdersTo(approvedOrders, $('#approvedOrder'));
+				addOrdersTo(deniedOrders, $('#deniedOrder'));
+				addOrdersTo(inProgressOrders, $('#inProgressOrder'));
+			}
+		});
 
 	function addOrdersTo(orders, elementTo) {
 		orders.forEach(function (item) {
@@ -132,6 +141,7 @@
 		$(address).append(order.Address)
 		$(orderElement).append(address);
 		$(element).append(orderElement);
+		
 	}
 
 	function checkCount(element, count) {
@@ -139,7 +149,6 @@
 			element
 		}
 	}
-
 	//client hub functions
 	mainHub.client.addOrder = function (order) {
 		newOrders.push(order);
@@ -188,3 +197,7 @@
 
 	});
 });
+function UpdateOrders() {
+	$('#myModal').modal('toggle');
+	location.reload();
+}
