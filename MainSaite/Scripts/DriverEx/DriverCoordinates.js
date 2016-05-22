@@ -51,7 +51,7 @@ function getEndCoord(position) {
 		success: function (success) {
 			storage.removeItem("StopWorkTime");
 			$('#DistrictN' + currentDistrict + ">.text").html(joinToLocation);
-			hub.server.swap(0, currentDistrict);
+			//hub.server.swap(0, currentDistrict);
 			currentDistrict = 0;
 		}
 

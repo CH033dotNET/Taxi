@@ -1,6 +1,9 @@
 ﻿$(document).ready(function () {
 	var mainHub = $.connection.MainHub;
 
+	var districts = [];
+	var geocoder = new google.maps.Geocoder();
+
 	var newOrders = [];
 	var approvedOrders = [];
 	var deniedOrders = [];
@@ -32,13 +35,18 @@
 		},
 		receive: function (e, ui) {
 			var id = ui.item.attr('data-id');
+			var order = newOrders.find(function (item) {
+				return item.Id == id;
+			});
 			$.ajax({
 				type: "POST",
 				url: "/OrderEx/ApproveOrder/",
 				data: { id: id },
 				success: function (result) {
 					if (result) {
-						mainHub.server.OrderApproved(id);
+						newOrders.splice(newOrders.indexOf(order), 1);
+						approvedOrders.push(order);
+						checkDistrict(order);
 					}
 					else {
 						alert("something wrong");
@@ -55,6 +63,9 @@
 			ui.placeholder.width(ui.item.width() + 17);
 		},
 		receive: function (e, ui) {
+			var order = newOrders.find(function (item) {
+				return item.Id == id;
+			});
 			var id = ui.item.attr('data-id');
 			$.ajax({
 				type: "POST",
@@ -62,6 +73,8 @@
 				data: { id: id },
 				success: function (result) {
 					if (result) {
+						newOrders.splice(newOrders.indexOf(order), 1);
+						deniedOrders.push(order);
 						mainHub.server.denyOrder(id);
 					}
 					else {
@@ -107,6 +120,45 @@
 			'border': '2px solid transparent',
 		});
 	});
+
+	//district logic
+
+	$.ajax({
+		method: 'POST',
+		url: '/OrderEx/GetDistricts',
+		success: function (result) {
+			districts = result.districts;
+			districts.forEach(function (item) {
+				var path = item.Coordinates.map(function (item) {
+					return {
+						lat: item.Latitude,
+						lng: item.Longitude
+					}
+				});
+
+				item.Polygon = new google.maps.Polygon({
+					paths: path
+				});
+			});
+		}
+	});
+
+
+	function checkDistrict(order) {
+		geocoder.geocode({ 'address': order.Address }, function (results, status) {
+			if (status === google.maps.GeocoderStatus.OK) {
+				var district = districts.find(function (item) {
+					return google.maps.geometry.poly.containsLocation(results[0].geometry.location, item.Polygon)
+				 });
+				 if (!district) {
+				 	mainHub.server.OrderApproved(order.Id);
+				 }
+				 else {
+				 	mainHub.server.OrderApproved(order.Id, district.Id);
+				 }
+			}
+		});
+	}
 
 	//functions for feeling orders
 

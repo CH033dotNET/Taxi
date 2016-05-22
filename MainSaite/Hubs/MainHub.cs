@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Threading.Tasks;
 
 namespace MainSaite.Hubs
 {
@@ -15,7 +16,7 @@ namespace MainSaite.Hubs
 	{
 		static ICollection<SignalRUserEx> orderHubUsers = new List<SignalRUserEx>();
 
-		static Dictionary<int, List<string>> DistrictMap = new Dictionary<int, List<string>>();
+		static Dictionary<int, List<string>> districtMap = new Dictionary<int, List<string>>();
 
 		[HubMethodName("addOrder")]
 		public void AddOrder(OrderExDTO order)
@@ -39,10 +40,34 @@ namespace MainSaite.Hubs
 
 
 		[HubMethodName("OrderApproved")]
+		public void OrderApproved(int id, int districtId)
+		{
+			Clients.OthersInGroup("Operator").approveOrder(id);
+			new Task(() => {
+				if (districtMap.Keys.Contains(districtId))
+				{
+					var firstDrivers = districtMap[(int)districtId].Take(6).ToArray();
+					//var others = orderHubUsers.Where(u => u.Group == "Driver").ToList();
+					foreach (var driver in firstDrivers)
+					{
+						Clients.Client(driver).OrderApproved(id);
+						//others.Remove(others.Find(c => c.ConnectionId == driver));
+						Task.Delay(10000).Wait();
+					}
+					Clients.Group("Driver", firstDrivers).OrderApproved(id);
+				}
+				else
+				{
+					Clients.Group("Driver").OrderApproved(id);
+				}
+			}).Start();
+			
+		}
+
+		[HubMethodName("OrderApproved")]
 		public void OrderApproved(int id)
 		{
 			Clients.Group("Driver").OrderApproved(id);
-			Clients.OthersInGroup("Operator").approveOrder(id);
 		}
 
 		[HubMethodName("denyOrder")]
@@ -84,20 +109,20 @@ namespace MainSaite.Hubs
 		[HubMethodName("joinDistrict")]
 		public void JoinDistrict(int id)
 		{
-			if (!DistrictMap.Keys.Contains(id))
+			if (!districtMap.Keys.Contains(id))
 			{
-				DistrictMap.Add(id, new List<string>());
+				districtMap.Add(id, new List<string>());
 			}
-			DistrictMap[id].Add(Context.ConnectionId);
+			districtMap[id].Add(Context.ConnectionId);
 			Clients.Group("Driver").addDriverToDistrict(id);
 		}
 
 		[HubMethodName("leaveDistrict")]
 		public void LeaveDistrict(int id)
 		{
-			if (DistrictMap.Keys.Contains(id))
+			if (districtMap.Keys.Contains(id))
 			{
-				DistrictMap[id].Remove(Context.ConnectionId);
+				districtMap[id].Remove(Context.ConnectionId);
 			}
 
 			Clients.Group("Driver").subtractDriverFromDistrict(id);
@@ -106,12 +131,12 @@ namespace MainSaite.Hubs
 		[HubMethodName("getDriversCount")]
 		public List<DistrictCount> GetDriversCount()
 		{
-			return DistrictMap.Select(c => new DistrictCount() { Id = c.Key, Count = c.Value.Count }).ToList();
+			return districtMap.Select(c => new DistrictCount() { Id = c.Key, Count = c.Value.Count }).ToList();
 		}
 
 		public override System.Threading.Tasks.Task OnDisconnected(bool stopCalled)
 		{
-			var current = DistrictMap.Where(c => c.Value.Contains(Context.ConnectionId)).FirstOrDefault().Key;
+			var current = districtMap.Where(c => c.Value.Contains(Context.ConnectionId)).FirstOrDefault().Key;
 			LeaveDistrict(current);
 			var item = orderHubUsers.FirstOrDefault(x => x.ConnectionId == Context.ConnectionId);
 			if (item != null)
