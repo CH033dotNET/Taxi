@@ -47,11 +47,9 @@ namespace MainSaite.Hubs
 				if (districtMap.Keys.Contains(districtId))
 				{
 					var firstDrivers = districtMap[(int)districtId].Take(6).ToArray();
-					//var others = orderHubUsers.Where(u => u.Group == "Driver").ToList();
 					foreach (var driver in firstDrivers)
 					{
 						Clients.Client(driver).OrderApproved(id);
-						//others.Remove(others.Find(c => c.ConnectionId == driver));
 						Task.Delay(10000).Wait();
 					}
 					Clients.Group("Driver", firstDrivers).OrderApproved(id);

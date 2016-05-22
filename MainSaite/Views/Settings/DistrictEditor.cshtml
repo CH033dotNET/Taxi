@@ -1,87 +1,78 @@
 ﻿@model IList<Model.DTO.DistrictDTO>
-@{
-	string username = (Session["user"] as Model.DTO.UserDTO).UserName;
-}
-@Styles.Render("~/Content/AutoParkCustomStyles.css")
-<div>
-	<div class="panel panel-info">
-		<div class="panel-heading"><h3 class="panel-title">@Resources.Resource.Districts</h3></div>
-		<div class="panel-body">
+	@Styles.Render("~/Content/AutoParkCustomStyles.css")
+
+	<div class="row">
+		<div class="col-lg-12">
+
+		</div>
+		<div class="col-lg-8 offPadding" >
 			<div id="map"></div>
 		</div>
-		<div class="panel-footer">
-			<form id="non-deleted-form" class="form-inline">
-				<div class="form-group">
-					<a class="btn btn-warning" id="basket"><span class="glyphicon glyphicon-th-list">&nbsp;</span>@Resources.Resource.DistrictBasket</a>
-					<a class="btn btn-primary" id="add-group"><span class="glyphicon glyphicon-folder-open">&nbsp;</span>@Resources.Resource.AddDistrictGroup</a>
-					<input type="text" class="form-control input-sm" placeholder="@Resources.Resource.Search" id="searcDhistrictName" value="" />
-				</div>
-			</form>
-		</div>
-		
-			<div id="districtTableResponsive" >
-				<div id="districtEditTable">
-					<div id="tableHeader">
-						<a id="carlink" class="btn-link btn btn-default"><span class="glyphicon glyphicon-sort"></span> @Resources.Resource.District</a>
-					</div>
-					<ol id="content" class="">
-						<script id="dsEditRow" type="text/x-handlebars-template" class="ui-state-default">
-							{{#each data}}
-							<li data-id="{{Id}}" parent-id="{{ParentId}}">
-								<div class="districtItem {{#if IsFolder}}folder{{/if}}">
-									<div class="itemText">
-										{{#if IsFolder}}
-										<span class="glyphicon glyphicon-folder-close"></span>
-										{{else}}
-										<span class="glyphicon glyphicon-file"></span>
-										{{/if}}
-
-										<a>{{Name}}</a>
 
 
-										<div id="action-buttons" class="btn-group ">
-											<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Resources.Resource.ActionsColumn <span class="caret"></span></button>
-											<ul class="dropdown-menu">
-												<li>
-													<a id="show-button" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button"><span class="glyphicon glyphicon-map-marker" aria-hidden="true">&nbsp;</span>@Resources.Resource.ShowDistricts</a>
-												</li>
-												<li role="separator" class="divider"></li>
-												<li>
-													<a id="edit-button" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button"><span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString</a>
-												</li>
-												<li role="separator" class="divider"></li>
-												<li>
-													<a id="delete-button" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button"><span class="glyphicon glyphicon-trash" aria-hidden="true">&nbsp;</span>@Resources.Resource.deleteString</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</li>
-							{{/each}}
-						</script>
-					</ol>
-				</div>
-				@Html.Partial("_DeleteDistrictP", Model)
-				@Html.Partial("_EditDistrictP", Model)
-				@Html.Partial("_AddDistrictP", Model)
-				@Html.Partial("_DeletedListP", Model)
-				@Html.Partial("_ErrorDistrictPartial", Model)
-				@Html.Partial("_AddGroup", Model)
+		<div id="districtList" class="col-lg-4 offPadding">
+			<div id="bthGroup">
+				<a id="basket"><span class="glyphicon glyphicon-th-list">&nbsp;</span>@Resources.Resource.DistrictBasket</a>
+				<a id="add-group"><span class="glyphicon glyphicon-folder-open">&nbsp;</span>@Resources.Resource.AddDistrictGroup</a>
 			</div>
-		
+				<input type="text" class="input-sm" placeholder="@Resources.Resource.Search" id="searcDhistrictName" value="" />
+
+			<ol id="content" class="">
+				<script id="dsEditRow" type="text/x-handlebars-template" class="ui-state-default">
+					{{#each data}}
+					<li data-id="{{Id}}" parent-id="{{ParentId}}">
+						<div class="districtItem {{#if IsFolder}}folder{{/if}}">
+							<div class="itemText">
+								{{#if IsFolder}}
+								<span class="glyphicon glyphicon-folder-close"></span>
+								{{else}}
+								<span class="glyphicon glyphicon-file"></span>
+								{{/if}}
+
+								<a>{{Name}}</a>
+
+
+								<div id="action-buttons" class="btn-group ">
+									<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+									<ul class="dropdown-menu dropdown-menu-right">
+										<li>
+											<a id="show-button" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button"><span class="glyphicon glyphicon-map-marker" aria-hidden="true">&nbsp;</span>@Resources.Resource.ShowDistricts</a>
+										</li>
+										<li role="separator" class="divider"></li>
+										<li>
+											<a id="edit-button" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button"><span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString</a>
+										</li>
+										<li role="separator" class="divider"></li>
+										<li>
+											<a id="delete-button" data-items-id="{{Id}}" data-items-name="{{Name}}" role="button"><span class="glyphicon glyphicon-trash" aria-hidden="true">&nbsp;</span>@Resources.Resource.deleteString</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</li>
+					{{/each}}
+				</script>
+			</ol>
+			@Html.Partial("_DeleteDistrictP", Model)
+			@Html.Partial("_EditDistrictP", Model)
+			@Html.Partial("_AddDistrictP", Model)
+			@Html.Partial("_DeletedListP", Model)
+			@Html.Partial("_ErrorDistrictPartial", Model)
+			@Html.Partial("_AddGroup", Model)
+		</div>
+
 	</div>
-</div>
 
 
-<script src="https://maps.googleapis.com/maps/api/js?libraries=drawing&sensor=false" ></script>
-<script src="~/Scripts/jquery.mjs.nestedSortable.js"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?libraries=drawing&sensor=false"></script>
+	<script src="~/Scripts/jquery.mjs.nestedSortable.js"></script>
+	<script type="text/javascript" src="https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js"></script>
 
-<script>
-	var encodedData = @Html.Raw(Json.Encode(Model.ToList()));
-	var encodedDeleted = @Html.Raw(Json.Encode(Model.ToList()));
-</script>
-@Scripts.Render("~/bundles/DistrictCustomScripts")
+	<script>
+		var encodedData = @Html.Raw(Json.Encode(Model.ToList()));
+		var encodedDeleted = @Html.Raw(Json.Encode(Model.ToList()));
+	</script>
+	@Scripts.Render("~/bundles/DistrictCustomScripts")
 
 
