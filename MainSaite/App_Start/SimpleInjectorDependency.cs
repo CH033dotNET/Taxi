@@ -27,7 +27,6 @@ namespace MainSaite.App_Start
 			container.Register<ICarManager, CarManager>();
 			container.Register<ICoordinatesManager, CoordinatesManager>();
 			container.Register<IDistrictManager, DistrictManager>();
-			container.Register<IDriverManager, DriverManager>();
 			container.Register<ILocationManager, LocationManager>();
 			container.Register<IPersonManager, PersonManager>();
 			container.Register<ITarifManager, TarifManager>();

@@ -75,12 +75,10 @@
     <Compile Include="Manager\CarManager.cs" />
     <Compile Include="Manager\CoordinatesManager.cs" />
     <Compile Include="Manager\DistrictManager.cs" />
-    <Compile Include="Manager\DriverManager.cs" />
     <Compile Include="Interfaces\IAddressManager.cs" />
     <Compile Include="Interfaces\ICarManager.cs" />
     <Compile Include="Interfaces\ICoordinatesManager.cs" />
     <Compile Include="Interfaces\IDistrictManager.cs" />
-    <Compile Include="Interfaces\IDriverManager.cs" />
     <Compile Include="Interfaces\ILocationManager.cs" />
     <Compile Include="Manager\ImageUpload.cs" />
     <Compile Include="Interfaces\ITarifManager.cs" />
