@@ -6,7 +6,7 @@ function ChangeBtnProperties(status) {
 		$("#workshift-button").prop('value', 'Start workshift'); // changing buttons text
 		document.getElementById('workshift-button').onclick = function () { checkMainCars(); }; // changing onclick property value
 		setEndlocation();
-		setDriverStatus(0);
+		//setDriverStatus(0);
 		changeStatusDisplay(0);
 		$("worker-status-group").css('display', 'none');
 	}
@@ -16,7 +16,7 @@ function ChangeBtnProperties(status) {
 		$("#workshift-button").prop('value', 'End workshift'); // changing buttons text
 		document.getElementById('workshift-button').onclick = function () { ChangeBtnProperties(0); }; // changing onclick property value
 		setBeginlocation();
-		setDriverStatus(3);
+		//setDriverStatus(3);
 		changeStatusDisplay(1);
 		$("worker-status-group").css('display', 'inline');
 	}

@@ -10,6 +10,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Common.Enum.DriverEnum;
+using Common.Enum;
 
 namespace MainSaite.Controllers
 {
@@ -64,17 +66,19 @@ namespace MainSaite.Controllers
 			var FREEDRIVER_ORDER_LIMIT = 5;
 
 			var driver = (Session["User"] as UserDTO);
-			var driverStatus = workerStatusManager.ShowStatus(driver.Id).WorkingStatus;
+			var driverStatus = workerStatusManager.GetStatus(driver).WorkingStatus;
 
 			// check freedriver trial period and today's order limit
-			if (((Session["User"] as UserDTO).RoleId == (int)Common.Enum.AvailableRoles.FreeDriver) &&
+			if (((Session["User"] as UserDTO).RoleId == (int)AvailableRoles.FreeDriver) &&
 				((DateTime.Now - driver.RegistrationDate).Days > FREEDRIVER_TRIAL_DAYS ) &&
 				(orderManager.GetDriversTodayOrders(driver).Count > FREEDRIVER_ORDER_LIMIT )) {
 
 				Response.StatusCode = (int)HttpStatusCode.Forbidden;
-				return Json(new { error = Resources.Resource.FreeDriverOverlimitError });
+				return Json(new {
+					errorHeader = Resources.Resource.ErrorHeader,
+					errorMessage = Resources.Resource.FreeDriverOverlimitError });
 
-			} else if (driverStatus == Common.Enum.DriverEnum.DriverWorkingStatusEnum.DoingOrder) {
+			} else if (driverStatus == DriverWorkingStatusEnum.DoingOrder) {
 
 				Response.StatusCode = (int)HttpStatusCode.Forbidden;
 				return Json(new {
@@ -84,7 +88,7 @@ namespace MainSaite.Controllers
 
 			} else {
 
-				//workerStatusManager.ChangeWorkerStatus()
+				workerStatusManager.ChangeStatus(driver, DriverWorkingStatusEnum.DoingOrder);
 				orderManager.SetWaitingTime(id, WaitingTime);
 				return Json(new { success = orderManager.TakeOrder(id, driver.Id) });
 
@@ -139,7 +143,7 @@ namespace MainSaite.Controllers
 		}
 		public JsonResult GetCurrentDriverStatus()
 		{
-			var result = workerStatusManager.ShowStatus(((Session["User"] as UserDTO).Id));
+			var result = workerStatusManager.GetStatus((Session["User"] as UserDTO));
 
 			if (result == null) { return Json(new { success = false }, JsonRequestBehavior.AllowGet); }
 			else
@@ -151,7 +155,7 @@ namespace MainSaite.Controllers
 		{
 			try
 			{
-				workerStatusManager.ChangeWorkerStatus(((Session["User"] as UserDTO).Id), status.ToString());
+				workerStatusManager.ChangeStatus((Session["User"] as UserDTO), (DriverWorkingStatusEnum)status);
 			}
 			catch (Exception)
 			{

@@ -8,10 +8,7 @@ namespace Common.Enum.DriverEnum
 {
 	public enum DriverWorkingStatusEnum
 	{
-		NoStatus = 0,
-		HasOrder = 1,
-		DoingOrder = 2,
-		AwaitingOrder = 3,
-		Resting = 4
+		AwaitingOrder = 0,
+		DoingOrder = 1,
 	}
 }
