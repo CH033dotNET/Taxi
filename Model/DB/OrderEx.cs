@@ -10,8 +10,6 @@ namespace Model.DB
 		[Key]
 		public int Id { get; set; }
 
-		public string Address { get; set; }
-
 		public OrderStatusEnum Status { get; set; }
 
 		public int? DriverId { get; set; }

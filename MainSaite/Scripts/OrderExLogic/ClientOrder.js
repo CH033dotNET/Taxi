@@ -5,7 +5,7 @@
 		setTaxiMarker(coordinate.Latitude, coordinate.Longitude);
 	}
 
-	orderHub.client.OrderConfirmed = function (WaitingTime) {
+	orderHub.client.OrderConfirmed = function (OrderId, WaitingTime) {
 		if (window.Notification && Notification.permission !== "denied") {
 			Notification.requestPermission(function (status) {  // status is "granted", if accepted by user
 				var n = new Notification('Waiting Time', {
@@ -23,10 +23,13 @@
 		//add order to db
 		$(document).on('click', '#orderBtn', function () {
 			var order = {};
-			order.Address = $('#textField').val();
+			order.AddressFrom = {};
+			order.AddressFrom.Address = $('#locality').val();
+			order.AddressFrom.Building = $('#street-number').val();
 			$.ajax({
 				url: '/Client/AddOrder/',
-				data: order,
+				contentType: "application/json",
+				data: JSON.stringify(order),
 				type: "POST",
 				success: function (data) {
 					//send order

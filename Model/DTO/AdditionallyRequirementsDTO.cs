@@ -33,7 +33,5 @@ namespace Model.DTO
 		public bool Smoking { get; set; }
 
 		public bool Check { get; set; }
-
-		public virtual OrderEx OrderEx { get; set; }
 	}
 }

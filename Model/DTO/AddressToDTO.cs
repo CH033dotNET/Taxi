@@ -9,7 +9,5 @@ namespace Model.DTO
 		public string Address { get; set; }
 
 		public string Building { get; set; }
-
-		public virtual OrderEx OrderEx { get; set; }
 	}
 }

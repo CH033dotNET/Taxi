@@ -37,13 +37,22 @@ $(function () {
 		$('#denied-message').show();
 	}
 
-	orderHub.client.OrderConfirmed = function (data) {
+	orderHub.client.OrderConfirmed = function (orderId, waitingTime) {
 		$('#waiting-message').hide();
 		$('#approved-message').hide();
 		$('#denied-message').hide();
 		$('#submit button').prop('disabled', false);
-		$('#waiting-time').html(data.time);
-		$('#car-number').html(data.carNumber);
+		$('#waiting-time').html(waitingTime);
+		$.ajax({
+			url: '/Client/GetOrder',
+			type: "POST",
+			data: {
+				id: orderId
+			},
+			success: function (data) {
+				$('#car-number').html(data.Car.CarNumber);
+			}
+		});
 		$('#modal-message').modal('show');
 	}
 
@@ -138,12 +147,16 @@ $(function () {
 			$.ajax({
 				url: '/Client/AddOrder',
 				contentType: "application/json",
-				type: "post",
+				type: "POST",
 				data: JSON.stringify(order),
-				complete: function (data) {
+				success: function (data) {
+					alert('success');
 					orderHub.server.addOrder(data);
 					$('#form').trigger("reset");
 					$('#waiting-message').slideDown(200);
+				},
+				error: function (error) {
+					alert('error');
 				}
 			});
 		});

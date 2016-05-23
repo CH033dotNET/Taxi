@@ -34,11 +34,11 @@ namespace BAL.Interfaces
 
 		public void UpdateOrder(OrderExDTO order)
 		{
-			var result = uOW.OrderExRepo.All.SingleOrDefault(o=>o.Id == order.Id);
+			var result = uOW.OrderExRepo.All.Include(o => o.AddressFrom).SingleOrDefault(o=>o.Id == order.Id);
 
 			if (result != null)
 			{
-				result.Address = order.Address;
+				result.AddressFrom.Address = order.AddressFrom.Address;
 				result.Status = order.Status;
 
 				uOW.Save();
@@ -46,7 +46,7 @@ namespace BAL.Interfaces
 		}
 
 		public OrderExDTO GetById(int id) {
-			var order = uOW.OrderExRepo.All.Include(o => o.AddressFrom).Include(o=>o.AddressesTo).Where(o => o.Id == id).FirstOrDefault();
+			var order = uOW.OrderExRepo.All.Include(o => o.AddressFrom).Include(o=>o.AddressesTo).Include(o => o.Car).Where(o => o.Id == id).FirstOrDefault();
 
 			return Mapper.Map<OrderExDTO>(order);
 		}
@@ -110,7 +110,7 @@ namespace BAL.Interfaces
 
 		public IEnumerable<OrderExDTO> GetNotApprovedOrders()
 		{
-			var orders = uOW.OrderExRepo.All
+			var orders = uOW.OrderExRepo.All.Include(o => o.AddressFrom)
 				.Where(o => o.Status == OrderStatusEnum.NotApproved)
 				.ToList();
 			return Mapper.Map<List<OrderExDTO>>(orders);
@@ -118,7 +118,7 @@ namespace BAL.Interfaces
 
 		public IEnumerable<OrderExDTO> GetApprovedOrders()
 		{
-			var orders = uOW.OrderExRepo.All
+			var orders = uOW.OrderExRepo.All.Include(o => o.AddressFrom)
 				.Where(o => o.Status == OrderStatusEnum.Approved)
 				.ToList();
 			return Mapper.Map<List<OrderExDTO>>(orders);
@@ -127,7 +127,7 @@ namespace BAL.Interfaces
 		public IEnumerable<OrderExDTO> GetOrdersByDriver(UserDTO Driver)
 		{
 			var driver = Mapper.Map<User>(Driver);
-			var orders = uOW.OrderExRepo.All
+			var orders = uOW.OrderExRepo.All.Include(o => o.AddressFrom)
 				.Where(o => o.Driver.Id == driver.Id)
 				.ToList();
 			return Mapper.Map<List<OrderExDTO>>(orders);
@@ -135,7 +135,7 @@ namespace BAL.Interfaces
 
 		public IEnumerable<OrderExDTO> GetOrdersByUserId(int id)
 		{
-			var orders = uOW.OrderExRepo.Get(null, null, "AdditionallyRequirements, AddressFrom, AddressesTo, Car")
+			var orders = uOW.OrderExRepo.All.Include(o => o.AddressFrom)
 				.Where(o => o.UserId == id && o.Status == OrderStatusEnum.Confirmed)
 				.ToList();
 			return Mapper.Map<List<OrderExDTO>>(orders);
@@ -159,7 +159,7 @@ namespace BAL.Interfaces
 
 		public IEnumerable<OrderExDTO> GetLastDeniedOrders()
 		{
-			var orders = uOW.OrderExRepo.All
+			var orders = uOW.OrderExRepo.All.Include(o => o.AddressFrom)
 				.Where(o => o.Status == OrderStatusEnum.Denied)
 				.TakeLast(50)
 				.ToList();
@@ -168,7 +168,7 @@ namespace BAL.Interfaces
 
 		public IEnumerable<OrderExDTO> GetInProgressOrders()
 		{
-			var orders = uOW.OrderExRepo.All
+			var orders = uOW.OrderExRepo.All.Include(o => o.AddressFrom)
 				.Where(o => o.Status == OrderStatusEnum.Confirmed)
 				.ToList();
 			return Mapper.Map<List<OrderExDTO>>(orders);

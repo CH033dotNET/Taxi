@@ -50,6 +50,12 @@ namespace Common
 				.ForMember(o => o.FullAddressFrom, m => m.ResolveUsing<AddressFromResolver>().FromMember(t => t.AddressFrom))
 				.ForMember(o => o.FullAddressTo, m => m.ResolveUsing<AddressesToResolver>().FromMember(t => t.AddressesTo));
 			Mapper.CreateMap<OrderExDTO, OrderEx>();
+			Mapper.CreateMap<AdditionallyRequirements, AdditionallyRequirementsDTO>();
+			Mapper.CreateMap<AdditionallyRequirementsDTO, AdditionallyRequirements>();
+			Mapper.CreateMap<AddressFrom, AddressFromDTO>();
+			Mapper.CreateMap<AddressFromDTO, AddressFrom>();
+			Mapper.CreateMap<AddressTo, AddressToDTO>();
+			Mapper.CreateMap<AddressToDTO, AddressTo>();
 			Mapper.CreateMap<Tarif, TarifDTO>();
 			Mapper.CreateMap<TarifDTO, Tarif>();
 			Mapper.CreateMap<RegistrationModelDTO, UserDTO>();

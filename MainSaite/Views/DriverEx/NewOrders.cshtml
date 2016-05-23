@@ -17,14 +17,7 @@
 	@foreach (var item in Model) {
 		<tr>
 			<td class="col-md-9">
-				@if (item.Address != null)
-				{
-				@Html.DisplayFor(modelItem => item.Address)
-				}
-				else
-				{
-					@Html.DisplayFor(modelItem => item.FullAddressFrom);
-				}
+				@Html.DisplayFor(modelItem => item.FullAddressFrom);
 			</td>
 			<td class="col-md-3">
 				<div class="input-group">

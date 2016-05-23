@@ -158,7 +158,7 @@
 
 
 	function checkDistrict(order) {
-		geocoder.geocode({ 'address': order.Address }, function (results, status) {
+		geocoder.geocode({ 'address': order.FullAddressFrom }, function (results, status) {
 			if (status === google.maps.GeocoderStatus.OK) {
 				var district = districts.find(function (item) {
 					return google.maps.geometry.poly.containsLocation(results[0].geometry.location, item.Polygon)
@@ -203,7 +203,7 @@
 		$(orderElement).attr('data-id', order.Id);
 		var address = document.createElement('span');
 		$(address).addClass('orderAddress');
-		$(address).append(order.Address)
+		$(address).append(order.FullAddressFrom);
 		$(orderElement).append(address);
 		$(element).append(orderElement);
 		

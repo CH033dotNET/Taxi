@@ -1,6 +1,4 @@
-﻿using Model.DB;
-
-namespace Model.DTO
+﻿namespace Model.DTO
 {
 	public class AddressFromDTO
 	{
@@ -13,7 +11,5 @@ namespace Model.DTO
 		public string Entrance { get; set; }
 
 		public string Note { get; set; }
-
-		public virtual OrderEx OrderEx { get; set; }
 	}
 }

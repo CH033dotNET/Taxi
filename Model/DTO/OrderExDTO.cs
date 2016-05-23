@@ -10,8 +10,6 @@ namespace Model.DTO
 	{
 		public int Id { get; set; }
 
-		public string Address { get; set; }
-
 		public OrderStatusEnum Status { get; set; }
 
 		public int? DriverId { get; set; }
@@ -30,11 +28,11 @@ namespace Model.DTO
 		[DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yy HH':'mm}", ApplyFormatInEditMode = true)]
         public DateTime OrderTime { get; set; }
 
-		public AddressFrom AddressFrom { get; set; }
+		public AddressFromDTO AddressFrom { get; set; }
 
-		public ICollection<AddressTo> AddressesTo { get; set; }
+		public List<AddressToDTO> AddressesTo { get; set; }
 
-		public AdditionallyRequirements AdditionallyRequirements { get; set; }
+		public AdditionallyRequirementsDTO AdditionallyRequirements { get; set; }
 
 		public bool Route { get; set; }
 

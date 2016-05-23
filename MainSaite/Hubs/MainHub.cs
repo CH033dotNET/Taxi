@@ -26,18 +26,14 @@ namespace MainSaite.Hubs
 			Clients.Group("Operator").addOrder(order);
 		}
 
-
 		[HubMethodName("OrderConfirmed")]
 		public void OrderConfirmed(int OrderId, int WaitingTime)
 		{
 			var client = orderHubUsers.FirstOrDefault(u => u.OrderId == OrderId);
 			if (client != null)
-			{
-				Clients.Client(client.ConnectionId).OrderConfirmed(WaitingTime);
-			}
+				Clients.Client(client.ConnectionId).OrderConfirmed(OrderId, WaitingTime);
 			Clients.Group("Operator").confirmOrder(OrderId);
 		}
-
 
 		[HubMethodName("OrderApproved")]
 		public void OrderApproved(int id, int districtId)
@@ -65,6 +61,9 @@ namespace MainSaite.Hubs
 		[HubMethodName("OrderApproved")]
 		public void OrderApproved(int id)
 		{
+			var client = orderHubUsers.FirstOrDefault(u => u.OrderId == id);
+			if (client != null)
+				Clients.Client(client.ConnectionId).OrderApproved();
 			Clients.Group("Driver").OrderApproved(id);
 		}
 

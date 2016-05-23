@@ -33,7 +33,13 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public JsonResult AddOrder(OrderExDTO order)
 		{
-			return Json(orderManager.AddOrder(order));
+            return Json(orderManager.AddOrder(order));
+		}
+
+		[HttpPost]
+		public JsonResult GetOrder(int id)
+		{
+			return Json(orderManager.GetById(id));
 		}
 
 		[HttpPost]

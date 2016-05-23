@@ -42,14 +42,7 @@
 					@Html.DisplayFor(modelItem => item.OrderTime)
 				</td>
 				<td>
-					@if (item.Address != null)
-					{
-						@Html.DisplayFor(modelItem => item.Address)
-					}
-					else
-					{
-						@Html.DisplayFor(modelItem => item.FullAddressFrom);
-					}
+					@Html.DisplayFor(modelItem => item.FullAddressFrom);
                 </td>
                 <td>
 					@Html.DisplayFor(modelItem => item.FullAddressTo)
