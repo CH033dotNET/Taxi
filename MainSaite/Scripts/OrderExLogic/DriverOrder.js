@@ -236,7 +236,7 @@
 						}
 					},
 					error: function (result) {
-						Notify(result.errorHeader, result.errorMessage);
+						Notify(result.responseJSON.errorHeader, result.responseJSON.errorMessage);
 					}
 				});
 			}
