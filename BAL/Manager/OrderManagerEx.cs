@@ -141,6 +141,14 @@ namespace BAL.Interfaces
 			return Mapper.Map<List<OrderExDTO>>(orders);
 		}
 
+		public IEnumerable<OrderExDTO> GetDriversTodayOrders(UserDTO Driver) {
+			var driver = Mapper.Map<User>(Driver);
+			var orders = uOW.OrderExRepo.All
+				.Where(o => o.Driver.Id == driver.Id && o.OrderTime.Date == DateTime.Now.Date)
+				.ToList();
+			return Mapper.Map<List<OrderExDTO>>(orders);
+		}
+
 		public void SetDriverFeedback(int orderId, int feedbackId)
 		{
 			var order = uOW.OrderExRepo.GetByID(orderId);

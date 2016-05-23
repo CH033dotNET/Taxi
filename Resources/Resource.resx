@@ -1129,4 +1129,7 @@
   <data name="InProgressOrders" xml:space="preserve">
     <value>In progress</value>
   </data>
+  <data name="FreeDriverOverlimitError" xml:space="preserve">
+    <value>Reached limit of orders for freedriver</value>
+  </data>
 </root>

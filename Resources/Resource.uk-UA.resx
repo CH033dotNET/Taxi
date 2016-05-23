@@ -1131,4 +1131,7 @@
   <data name="InProgressOrders" xml:space="preserve">
     <value>Виконуються</value>
   </data>
+  <data name="FreeDriverOverlimitError" xml:space="preserve">
+    <value>Досягнуто ліміт замовлень для вільного водія</value>
+  </data>
 </root>

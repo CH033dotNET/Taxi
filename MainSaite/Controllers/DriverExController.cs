@@ -53,22 +53,21 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public JsonResult TakeOrder(int id, int WaitingTime)
 		{
-			var FREEDRIVER_TRIAL_DAYS = 15;
-			var FREEDRIVER_ORDER_LIMIT = 5;
+			var FREEDRIVER_TRIAL_DAYS = 0;
+			var FREEDRIVER_ORDER_LIMIT = 0;
 
 			var DriverId = (Session["User"] as UserDTO).Id;
-			var driver = userManager.GetById(driverId);
+			var driver = userManager.GetById(DriverId);
 
 			// check freedriver trial period and today's order limit
-			if (((DateTime.Now - driver.RegistrationDate).Days > FREEDRIVER_TRIAL_DAYS) &&
-			//	(ApiRequestHelper.Get<List<OrderDTO>>("Orders", "GetTodayOrders").Data.Count > FREEDRIVER_ORDER_LIMIT)) {
-			//	return Json("error", JsonRequestBehavior.AllowGet);
-			//	// here must be message to driver
-			//}
-
-			orderManager.SetWaitingTime(id, WaitingTime);
-			
-			return Json(new { success = orderManager.TakeOrder(id, DriverId) });
+			if (((Session["User"] as UserDTO).RoleId == (int)Common.Enum.AvailableRoles.FreeDriver) &&
+				((DateTime.Now - driver.RegistrationDate).Days > FREEDRIVER_TRIAL_DAYS ) &&
+				(orderManager.GetDriversTodayOrders(driver).Count() > FREEDRIVER_ORDER_LIMIT )) {
+				return Json(new { error = Resources.Resource.FreeDriverOverlimitError });
+			} else {
+				orderManager.SetWaitingTime(id, WaitingTime);
+				return Json(new { success = orderManager.TakeOrder(id, DriverId) });
+			}
 		}
 
 		[HttpPost]
