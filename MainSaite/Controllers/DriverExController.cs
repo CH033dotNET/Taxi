@@ -16,6 +16,7 @@ namespace MainSaite.Controllers
 		private IDriverExManager driverManager;
 		private IDistrictManager districtManager;
 		private IFeedbackManager feedbackManager;
+		private IUserManager userManager;
 
 		public DriverExController(IFeedbackManager feedbackManager, IOrderManagerEx orderManager, IDriverExManager driverManager, IDistrictManager districtManager)
 		{
@@ -52,8 +53,21 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public JsonResult TakeOrder(int id, int WaitingTime)
 		{
-			orderManager.SetWaitingTime(id, WaitingTime);
+			var FREEDRIVER_TRIAL_DAYS = 15;
+			var FREEDRIVER_ORDER_LIMIT = 5;
+
 			var DriverId = (Session["User"] as UserDTO).Id;
+			var driver = userManager.GetById(driverId);
+
+			// check freedriver trial period and today's order limit
+			if (((DateTime.Now - driver.RegistrationDate).Days > FREEDRIVER_TRIAL_DAYS) &&
+			//	(ApiRequestHelper.Get<List<OrderDTO>>("Orders", "GetTodayOrders").Data.Count > FREEDRIVER_ORDER_LIMIT)) {
+			//	return Json("error", JsonRequestBehavior.AllowGet);
+			//	// here must be message to driver
+			//}
+
+			orderManager.SetWaitingTime(id, WaitingTime);
+			
 			return Json(new { success = orderManager.TakeOrder(id, DriverId) });
 		}
 
