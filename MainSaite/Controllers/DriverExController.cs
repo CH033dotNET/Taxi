@@ -21,7 +21,6 @@ namespace MainSaite.Controllers
 		private IFeedbackManager feedbackManager;
 		private ICarManager carManager;
 		private IWorkerStatusManager workerStatusManager;
-		public DriverExController(IFeedbackManager feedbackManager, IOrderManagerEx orderManager, IDriverExManager driverManager, IDistrictManager districtManager, ICarManager carManager, IWorkerStatusManager workerStatusManager)
 		private IUserManager userManager;
 
 		public DriverExController(IFeedbackManager feedbackManager, IOrderManagerEx orderManager, IDriverExManager driverManager, IDistrictManager districtManager)
