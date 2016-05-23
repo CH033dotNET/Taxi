@@ -23,7 +23,7 @@ namespace MainSaite.Controllers
 		private IWorkerStatusManager workerStatusManager;
 		private IUserManager userManager;
 
-		public DriverExController(IFeedbackManager feedbackManager, IOrderManagerEx orderManager, IDriverExManager driverManager, IDistrictManager districtManager)
+		public DriverExController(IFeedbackManager feedbackManager, IOrderManagerEx orderManager, IDriverExManager driverManager, IDistrictManager districtManager, ICarManager carManager, IWorkerStatusManager workerStatusManager)
 		{
 			this.orderManager = orderManager;
 			this.driverManager = driverManager;
