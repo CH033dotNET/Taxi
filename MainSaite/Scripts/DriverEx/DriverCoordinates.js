@@ -30,7 +30,7 @@ function setBeginlocation() {
 }
 function setEndlocation() {
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(function () {
+		navigator.geolocation.getCurrentPosition(function (position) {
 			timeNow = moment().format('YYYY/MM/DD HH:mm:ss');
 			if (storage.getItem("StopWorkTime") === null)
 				storage.setItem("StopWorkTime", timeNow);
