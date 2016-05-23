@@ -1138,4 +1138,10 @@
   <data name="LimitErrorHeader" xml:space="preserve">
     <value>Limit reached</value>
   </data>
+  <data name="DriverHasOrderError" xml:space="preserve">
+    <value>You must finish order to take new one</value>
+  </data>
+  <data name="ErrorHeader" xml:space="preserve">
+    <value>Error</value>
+  </data>
 </root>

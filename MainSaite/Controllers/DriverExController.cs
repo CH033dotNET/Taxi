@@ -63,21 +63,31 @@ namespace MainSaite.Controllers
 			var FREEDRIVER_TRIAL_DAYS = 15;
 			var FREEDRIVER_ORDER_LIMIT = 5;
 
-			//var DriverId = (Session["User"] as UserDTO).Id;
-			//var driver = userManager.GetById(DriverId);
-
-
 			var driver = (Session["User"] as UserDTO);
+			var driverStatus = workerStatusManager.ShowStatus(driver.Id).WorkingStatus;
 
 			// check freedriver trial period and today's order limit
 			if (((Session["User"] as UserDTO).RoleId == (int)Common.Enum.AvailableRoles.FreeDriver) &&
 				((DateTime.Now - driver.RegistrationDate).Days > FREEDRIVER_TRIAL_DAYS ) &&
 				(orderManager.GetDriversTodayOrders(driver).Count > FREEDRIVER_ORDER_LIMIT )) {
+
 				Response.StatusCode = (int)HttpStatusCode.Forbidden;
 				return Json(new { error = Resources.Resource.FreeDriverOverlimitError });
+
+			} else if (driverStatus == Common.Enum.DriverEnum.DriverWorkingStatusEnum.DoingOrder) {
+
+				Response.StatusCode = (int)HttpStatusCode.Forbidden;
+				return Json(new {
+					errorHeader = Resources.Resource.ErrorHeader,
+					errorMessage = Resources.Resource.DriverHasOrderError
+				});
+
 			} else {
-			orderManager.SetWaitingTime(id, WaitingTime);
+
+				//workerStatusManager.ChangeWorkerStatus()
+				orderManager.SetWaitingTime(id, WaitingTime);
 				return Json(new { success = orderManager.TakeOrder(id, driver.Id) });
+
 			}
 		}
 

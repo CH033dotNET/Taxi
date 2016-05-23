@@ -1140,4 +1140,10 @@
   <data name="LimitErrorHeader" xml:space="preserve">
     <value>Ліміт замовлень</value>
   </data>
+  <data name="DriverHasOrderError" xml:space="preserve">
+    <value>Ви повинні завершити замовленя перж ніж взяти нове</value>
+  </data>
+  <data name="ErrorHeader" xml:space="preserve">
+    <value>Помилка</value>
+  </data>
 </root>

@@ -236,7 +236,7 @@
 						}
 					},
 					error: function (result) {
-						Notify(Resources.LimitErrorHeader, result.responseText);
+						Notify(result.errorHeader, result.errorMessage);
 					}
 				});
 			}

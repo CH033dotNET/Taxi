@@ -1313,6 +1313,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must finish order to take new one.
+        /// </summary>
+        public static string DriverHasOrderError {
+            get {
+                return ResourceManager.GetString("DriverHasOrderError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You are here.
         /// </summary>
         public static string DriverIsHere {
@@ -1516,6 +1525,15 @@ namespace Resources {
         public static string Entrance {
             get {
                 return ResourceManager.GetString("Entrance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string ErrorHeader {
+            get {
+                return ResourceManager.GetString("ErrorHeader", resourceCulture);
             }
         }
         
