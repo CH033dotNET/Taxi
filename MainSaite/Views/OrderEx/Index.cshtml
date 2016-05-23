@@ -1,35 +1,53 @@
-﻿@model IEnumerable<Model.DTO.OrderExDTO>
-
-@{
+﻿@{
 	ViewBag.Title = "Orders";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<table class="table" id="orders">
-	<tr>
-		<th>
-			@Html.DisplayNameFor(model => model.Address)
-		</th>
-		<th></th>
-	</tr>
 
-	@foreach (var item in Model)
-	{
-		<tr>
-			<td>
-				@if (item.Address != null) {
-					@Html.DisplayFor(modelItem => item.Address)
-				}
-				else {
-					@Html.DisplayFor(modelItem => item.AddressFrom.Address)
-				}
-			</td>
-			<td>
-				<input itemid="@item.Id" type="button" value="Approve" class="approve btn btn-success" /> |
-				<input itemid="@item.Id" type="button" value="Deny" class="deny btn btn-danger" />
-			</td>
-		</tr>
-	}
+<div id="orderBoard">
+	<div class="col">
+		<div class="header">
+			@Resources.Resource.NewOrders
+		</div>
+		<div id="newOrder" class="content">
+		</div>
+	</div>
+	
+	<div class="col">
+		<div class="header">
+			@Resources.Resource.ApprovedOrders
+		</div>
+		<div id="approvedOrder" class="content">
+			
+		</div>
+	</div>
 
-</table>
+	<div class="col">
+		<div class="header">
+			@Resources.Resource.DeniedOrders
+		</div>
+		<div id="deniedOrder" class="content">
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="header">
+			@Resources.Resource.InProgressOrders
+		</div>
+		<div id="inProgressOrder" class="content">
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="header">
+			@Resources.Resource.FinishedOrders
+		</div>
+		<div id="doneOrder" class="content">
+
+		</div>
+	</div>
+</div>
+@Html.Partial("EditOrderPartial")
 <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
 <script src="~/Scripts/OrderExLogic/OperatorOrder.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?libraries=geometry"></script>
+<link href="~/Content/OperatorOrder.css" rel="stylesheet" />

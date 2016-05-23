@@ -17,7 +17,7 @@
 <table class="table">
 	<tr>
 		<th>
-			Driver count
+			@Resources.Resource.DriversCount
 		</th>
 		<th class="nameCell">
 			@Resources.Resource.Districts
@@ -29,13 +29,13 @@
 	{
 		<tr>
 			<td>
-				<span class="count">0</span>
+				<span class="count" id="@item.Id">0</span>
 			</td>
 			<td>
 				@Html.DisplayFor(modelItem => item.Name)
 			</td>
 			<td>
-				<span class="joinButton btn btn-warning" data-id="@item.Id"><span class="">Join</span><span class="hidenText">You are here</span></span>
+				<span class="joinButton btn btn-warning" data-id="@item.Id"><span class="">@Resources.Resource.Join</span><span class="hidenText">@Resources.Resource.DriverIsHere</span></span>
 			</td>
 		</tr>
 	}
@@ -43,3 +43,4 @@
 <script>
 	var districts = @Html.Raw(Json.Encode(Model.ToList()))
 </script>
+<script src="~/Scripts/countUp.min.js"></script>

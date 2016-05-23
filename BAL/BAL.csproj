@@ -96,6 +96,7 @@
     <Compile Include="Manager\WorkerStatusManager.cs" />
     <Compile Include="Tools\CarModelValidator.cs" />
     <Compile Include="Tools\DistrictModelValidator.cs" />
+    <Compile Include="Tools\Extention.cs" />
     <Compile Include="Tools\FuelConsumption.cs" />
     <Compile Include="Tools\PriceCounter.cs" />
     <Compile Include="Manager\UserManager.cs" />

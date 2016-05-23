@@ -24,7 +24,8 @@
 	@Styles.Render("~/Content/DriverEx.css")
 
 </head>
-<body style="padding:0">
+<body style="padding:0; background-color: #0d0e10; background-image: none;">
+
 	<input id="currentUserId" type="hidden" value="@User.Id" />
 	<input id="currentUserName" type="hidden" value="@User.UserName" />
 	<input type="hidden" id="hlat" value="48.309390" />
@@ -99,6 +100,7 @@
 	@Html.Partial("DriverFeedback")
 	<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
 	<script src="~/signalr/hubs"></script>
+	<script src="~/Scripts/OrderExLogic/DriverOrder.js" ></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
 	@Scripts.Render("~/Scripts/DriverEx/DriverLocation.js")
 

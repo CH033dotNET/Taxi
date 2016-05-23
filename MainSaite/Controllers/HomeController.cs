@@ -13,13 +13,12 @@ using System.Web.Mvc;
 namespace MainSaite.Controllers
 {
 	public class HomeController : BaseController
-	{
-		//
-		// GET: /Home/
-		
+	{		
 		public ActionResult Index()
 		{
-			Session["Culture"] = "en-us";
+			if(Session["Culture"]==null)
+			   Session["Culture"] = "en-us";
+
 			return View();
 		}
 

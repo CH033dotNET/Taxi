@@ -11,6 +11,12 @@
 	var sortDistrictType;
 	var sortDeletedDistrictType;
 
+	//resize windows by height
+	$(window).on('load resize', function () {
+		$('#map').height($(this).height() - 48);
+		$('#content').height($(this).height() - 120);
+	});
+
 	//Jquery UI and nested sortable
 
 	$('#content').nestedSortable({
@@ -56,11 +62,6 @@
 	$(document).on('input', '#searcDhistrictName', function (e) {
 
 		searchDistricts($(this).val());
-	});
-
-	$(document).on('click', '#carlink', function (e) {
-		e.preventDefault();
-		sortDistrictBy('name');
 	});
 
 	$(document).on('click', '#edit-button', function (e) {
@@ -300,35 +301,6 @@
 	function getDistrictErrorMessage() {
 		$('#get-district-error-modal').modal('show');
 	}
-
-	//! function that is part of sorting non-deleted entries logic. Affected by search input value.
-	function sortDistrictBy(e) {
-		var searchDString = $('#searcDhistrictName').val();
-		switch (sortDistrictType) {
-			case "name":
-				if (e == "name") {
-					e = "name_desc";
-					break;
-				}
-				else { break; }
-			default:
-				break;
-		}
-		sortDistrictType = e;
-		$.ajax({
-			url: "/Settings/SearchAndSort",
-			data: { search: searchDString, sort: e },
-			cache: false,
-			dataType: "JSON",
-		}).done(function (result) {
-			if (result.success && result != null) {
-				clearMap();
-				data = result.resultDistricts;
-				renderData();
-			}
-			else { return false; }
-		});
-	};
 
 	//! function that is part of sorting deleted entries logic. Affected by search input value.
 	function sortDeletedDistrictBy(e) {

@@ -199,7 +199,6 @@
     <Compile Include="Helpers\OperatorMessagesHelper.cs" />
     <Compile Include="Hubs\DistrictsHub.cs" />
     <Compile Include="Hubs\DriverHub.cs" />
-    <Compile Include="Hubs\DriverDistrictHub.cs" />
     <Compile Include="Hubs\MainHub.cs" />
     <Compile Include="Hubs\OperatorHub.cs" />
     <Compile Include="Models\AutoParkViewModel.cs" />
@@ -246,6 +245,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\HighchartsCustomStyles\PageCustomisation.css" />
     <Content Include="Content\Main.css" />
+    <Content Include="Content\OperatorOrder.css" />
     <Content Include="Content\OrderForm.css" />
     <Content Include="Content\Picture\Drawing-layerExport.jpeg" />
     <Content Include="Content\DriverMenu.css" />
@@ -291,6 +291,8 @@
     <Content Include="Content\Picture\OrderForm\time.png" />
     <Content Include="Content\Picture\OrderForm\van-active.png" />
     <Content Include="Content\Picture\OrderForm\van-passive.png" />
+    <Content Include="Content\Picture\OrderForm\waiting-animation.gif" />
+    <Content Include="Content\Picture\Redesign\background.jpg" />
     <Content Include="Content\Picture\roteiro.jpg" />
     <Content Include="Content\Picture\SandWatch.jpg" />
     <Content Include="Content\Picture\sendIcon.png" />
@@ -395,6 +397,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Client\ClientFeedback.js" />
+    <Content Include="Scripts\countUp.min.js" />
     <Content Include="Scripts\CustomHighCharts\DistrictOrdersPerYear.js" />
     <Content Include="Scripts\DistrictPartButtonScripts.js" />
     <Content Include="Scripts\DistrictsCustomScripts\DistrictScriptLogic.js" />
@@ -583,6 +586,8 @@
     <Content Include="Views\DriverEx\MyOrder.cshtml" />
     <Content Include="Views\Client\ClientFeedback.cshtml" />
     <Content Include="Views\Administration\SendMessagesToDrivers.cshtml" />
+    <Content Include="Views\OrderEx\EditOrderPartial.cshtml" />
+    <Content Include="Views\OrderEx\_EditOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

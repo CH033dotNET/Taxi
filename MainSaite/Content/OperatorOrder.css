@@ -1,0 +1,79 @@
+﻿*, span {
+	font-family: 'Droid Sans', sans-serif;
+}
+
+#orderBoard {
+	overflow-x: auto;
+	overflow-y: hidden;
+	white-space: nowrap;
+}
+
+.col {
+	display: inline-block;
+	min-width: 300px;
+	max-width: 800px;
+	width: 19%;
+	vertical-align: top;
+	max-height: inherit;
+	border-radius: 5px;
+	margin: 2px;
+	padding: 2px;
+	border: 2px solid transparent;
+	white-space: normal;
+}
+
+.header {
+	color: rgba(255, 255, 255, 0.8);
+	cursor: pointer;
+	margin: 5px 5px;
+	font-size: 25px;
+}
+
+
+.content {
+	min-height: 20px;
+	overflow-y: auto;
+	max-height: inherit;
+}
+
+.order {
+	background: linear-gradient(gold, #ffc030);
+	border-radius: 5px;
+	padding: 10px;
+	cursor: pointer;
+	margin: 15px 5px;
+	box-shadow: 0 3px 6px 0 rgba(255, 215, 0, 0.15), 0 5px 8px 0 rgba(255, 215, 0, 0.10);
+}
+
+.placeholder {
+	border: 1px dashed #7e7e7e;
+	margin: 15px 5px 5px 5px;
+}
+
+.hor-placeholder {
+	border: 1px dashed #7e7e7e;
+	display: inline-block;
+	margin: 5px;
+}
+
+.orderAddress {
+	width: inherit;
+}
+
+#orderBoard::-webkit-scrollbar-track, .content::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 5px;
+	background-color: #F5F5F5;
+}
+
+#orderBoard::-webkit-scrollbar, .content::-webkit-scrollbar {
+	width: 7px;
+	height: 7px;
+	background-color: rgba(0,0,0,0);
+}
+
+#orderBoard::-webkit-scrollbar-thumb, .content::-webkit-scrollbar-thumb {
+	border-radius: 5px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #FD8E00;
+}

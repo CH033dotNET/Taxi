@@ -1,0 +1,44 @@
+﻿@model Model.DTO.OrderExDTO
+
+<div style="display:none">
+	@Ajax.ActionLink("GetOrder", "GetOrderById", new { id = 0 },
+		 new AjaxOptions
+		 {
+			 HttpMethod = "POST",
+			 UpdateTargetId = "ModalContent",
+			 InsertionMode = InsertionMode.Replace,
+			 LoadingElementId = "loading"
+		 }, new { @id = "EditOrderA" }
+		)
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+		<div class="modal-content">
+			<div class="modal-header modal-header-info" id="modalHeader">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">[Edit order]</h4>
+			</div>
+			<div class="modal-body" id="modalBody">
+				<div id="loading">
+					<i class="fa fa-refresh fa-spin fa-5x"></i>
+				</div>
+				<div class="btform">
+					@using (Ajax.BeginForm("EditOrder", new { controller = "OrderEx", action = "EditOrder" }, new AjaxOptions{ HttpMethod = "POST",
+						}, new { @id = "ChangeForm" }))
+					{
+		                
+						<div id="ModalContent">
+
+						</div>
+	                    <input type="submit" id="mdal-submit" class="btn btn-success" name="Ok" value="Ok" />
+					}
+				</div>
+			</div>
+			<div class="modal-footer" id="modalFooter">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+
+	</div>
+</div>

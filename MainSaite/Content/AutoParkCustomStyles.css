@@ -94,27 +94,29 @@
 	font-weight: bold;
 }
 
-#districtEditTable {
-	text-align: left;
-	background-color: white;
-}
 
 .districtItem {
 	display: inline-block;
 	font-size: 20px;
 	width: 100%;
 	padding: 5px;
-	background-color: rgba(255, 237, 0, 0.30);
-	border-radius: 3px;
+	background: linear-gradient(rgba(255, 215, 0, 0.8), rgba(255, 192, 48, 0.8));
 	cursor: pointer;
-	margin: 0px 0px;
+	margin: 0px;
 	border: 1px solid #FD8E00;
+	color:black;
 }
-.folder{
-	background-color:rgba(253, 142, 0, 0.5);
+
+.districtItem a{
+	color:inherit;
 }
-#content ol{
-	display:none;
+
+.folder {
+	background: linear-gradient(gold, rgb(255, 192, 48));
+}
+
+#content ol {
+	display: none;
 }
 
 
@@ -124,17 +126,79 @@
 	clear: both;
 }
 
-#content{
-	padding-left:0px;
+#content {
+	padding-left: 0px;
+	overflow-y:auto;
+	overflow-x:visible;
 }
 
-ol{
-	list-style-type:none;
-	padding-left:20px;
+ol {
+	list-style-type: none;
+	padding-left: 20px;
 }
 
-.ui-state-highlight{
-	background-color:rgba(241, 211, 35, 0.50);
-	border:2px dashed rgba(250, 194, 13, 0.61);
-	height:45px;
+.ui-state-highlight {
+	background-color: rgba(241, 211, 35, 0.50);
+	border: 2px dashed rgba(250, 194, 13, 0.61);
+	height: 45px;
+}
+
+#searcDhistrictName{
+	margin:0;
+	height:35px;
+	width:100%;
+	border-radius:0;
+}
+
+.offPadding{
+	padding:0;
+}
+
+#basket{
+	border-right:solid 2px black;
+}
+
+#add-group{
+	border-top-right-radius:3px;
+}
+
+#bthGroup {
+	width: 100%;
+	height: 100%;
+	display: table;
+}
+
+	#bthGroup a {
+		display: table;
+		float: left;
+		text-align: center;
+		width: 50%;
+		padding: 5px 3px;
+		font-size: 19px;
+		color: black;
+		background: linear-gradient(gold, rgb(255, 192, 48));
+		cursor:pointer;
+	}
+	#bthGroup a:hover{
+		background: linear-gradient(rgb(204, 204, 204), #8C8C8C);
+		color: white;
+	}
+
+
+#content::-webkit-scrollbar-track, .content::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 5px;
+	background-color: #F5F5F5;
+}
+
+#content::-webkit-scrollbar, .content::-webkit-scrollbar {
+	width: 7px;
+	height: 7px;
+	background-color: rgba(0,0,0,0);
+}
+
+#content::-webkit-scrollbar-thumb, .content::-webkit-scrollbar-thumb {
+	border-radius: 5px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #FD8E00;
 }

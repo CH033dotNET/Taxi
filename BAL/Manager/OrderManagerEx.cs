@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Interface;
@@ -10,6 +11,7 @@ using Model.DTO;
 using AutoMapper;
 using Common.Enum;
 using Model;
+using BAL.Tools;
 
 namespace BAL.Interfaces
 {
@@ -32,13 +34,20 @@ namespace BAL.Interfaces
 
 		public void UpdateOrder(OrderExDTO order)
 		{
-			var newOrder = Mapper.Map<OrderEx>(order);
-			uOW.OrderExRepo.Update(newOrder);
-			uOW.Save();
+			var result = uOW.OrderExRepo.All.SingleOrDefault(o=>o.Id == order.Id);
+
+			if (result != null)
+			{
+				result.Address = order.Address;
+				result.Status = order.Status;
+
+				uOW.Save();
+			}
 		}
 
 		public OrderExDTO GetById(int id) {
-			var order = uOW.OrderExRepo.All.Where(o => o.Id == id).FirstOrDefault();
+			var order = uOW.OrderExRepo.All.Include(o => o.AddressFrom).Include(o=>o.AddressesTo).Where(o => o.Id == id).FirstOrDefault();
+
 			return Mapper.Map<OrderExDTO>(order);
 		}
 
@@ -146,6 +155,23 @@ namespace BAL.Interfaces
 			order.ClientFeedbackId = feedbackId;
 			uOW.OrderExRepo.Update(order);
 			uOW.Save();
+		}
+
+		public IEnumerable<OrderExDTO> GetLastDeniedOrders()
+		{
+			var orders = uOW.OrderExRepo.All
+				.Where(o => o.Status == OrderStatusEnum.Denied)
+				.TakeLast(50)
+				.ToList();
+			return Mapper.Map<List<OrderExDTO>>(orders);
+		}
+
+		public IEnumerable<OrderExDTO> GetInProgressOrders()
+		{
+			var orders = uOW.OrderExRepo.All
+				.Where(o => o.Status == OrderStatusEnum.Confirmed)
+				.ToList();
+			return Mapper.Map<List<OrderExDTO>>(orders);
 		}
 	}
 }

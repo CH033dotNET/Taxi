@@ -46,11 +46,57 @@ namespace Common
 			Mapper.CreateMap<CoordinatesExDTO, CoordinatesEx>();
 			Mapper.CreateMap<FeedbackDTO, Feedback>();
 			Mapper.CreateMap<Feedback, FeedbackDTO>();
-			Mapper.CreateMap<OrderEx, OrderExDTO>();
+			Mapper.CreateMap<OrderEx, OrderExDTO>()
+				.ForMember(o => o.FullAddressFrom, m => m.ResolveUsing<AddressFromResolver>().FromMember(t => t.AddressFrom))
+				.ForMember(o => o.FullAddressTo, m => m.ResolveUsing<AddressesToResolver>().FromMember(t => t.AddressesTo));
 			Mapper.CreateMap<OrderExDTO, OrderEx>();
 			Mapper.CreateMap<Tarif, TarifDTO>();
 			Mapper.CreateMap<TarifDTO, Tarif>();
 			Mapper.CreateMap<RegistrationModelDTO, UserDTO>();
+		}
+	}
+
+	class AddressFromResolver : ValueResolver<AddressFrom, string>
+	{
+		protected override string ResolveCore(AddressFrom source)
+		{
+			if (source != null)
+			{
+				var address = source.Address;
+				if (source.Building != null)
+					address += ", " + source.Building;
+				return address;
+			}
+			return "";
+		}
+	}
+
+	class AddressesToResolver : ValueResolver<List<AddressTo>, string>
+	{
+		protected override string ResolveCore(List<AddressTo> source)
+		{
+			if (source != null)
+			{
+				var address = "";
+				foreach (var place in source)
+					if (place.Address != null)
+					{
+						if (address != "")
+							address += "; ";
+						address += place.Address;
+						if (place.Building != null)
+							address += ", " + place.Building;
+					}
+					else
+					{
+						if (address != "")
+							address += "; ";
+						if (place.Building != null)
+							address += place.Building;
+					}
+				return address;
+			}
+			return "";
 		}
 	}
 }

@@ -171,15 +171,37 @@
 			</div>
 		</div>
 		<div id="submit">
-			<button type="button" class="btn .btn-default btn-lg">@Resources.Resource.MakeAnOrder</button>
+			<button type="button" class="btn btn-default btn-lg">@Resources.Resource.MakeAnOrder</button>
 		</div>
-		<div class="panel panel-success" id="waiting-message">
-			<div class="panel-heading">
-				<span class="glyphicon glyphicon-ok"></span>
-				@Resources.Resource.WaitingMessage
-			</div>
+		<div class="panel panel-warning" id="waiting-message">
+			<div class="panel-heading">@Resources.Resource.WaitingMessage<p><img src="~/Content/Picture/OrderForm/waiting-animation.gif" /></p></div>
+		</div>
+		<div class="panel panel-success" id="approved-message">
+			<div class="panel-heading"><span class="glyphicon glyphicon-ok"></span>@Resources.Resource.ApprovedMessage</div>
+		</div>
+		<div class="panel panel-danger" id="denied-message">
+			<div class="panel-heading"><span class="glyphicon glyphicon-remove"></span>@Resources.Resource.DeniedMessage</div>
 		</div>
 	</form>
+</div>
+
+<div class="modal fade" id="modal-message" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<img src="~/Content/Picture/SmartPhonePictures/SiteLogo.png" />
+			</div>
+			<div class="modal-body">
+				<h4>@Resources.Resource.WaitingTimeMessage<span id="waiting-time"></span>@Resources.Resource.Minutes</h4>
+				<h4>@Resources.Resource.Car_Number<span id="car-number"></span></h4>
+				<h3>@Resources.Resource.PleasantTrip</h3>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
 </div>
 
 <script src="~/Scripts/jquery-2.2.3.js"></script>

@@ -64,26 +64,6 @@ namespace BAL.Manager
 			return res;
 		}
 
-		public IEnumerable<DistrictDTO> GetSortedDistricts(string parameter)
-		{
-			List<District> districtList = null;
-			var districts = uOW.DistrictRepo.All.Where(x => x.Deleted == false).Include(c => c.Coordinates).ToList();
-			switch (parameter)
-			{
-				case "name":
-					districtList = districts.OrderBy(x => x.Name).ToList();
-					break;
-				case "name_desc":
-					districtList = districts.OrderByDescending(x => x.Name).ToList();
-					break;
-				default:
-					districtList = districts.OrderBy(x => x.Name).ToList();
-					break;
-			}
-			SortCoordinates(districtList);
-			return Mapper.Map<IEnumerable<DistrictDTO>>(districtList);
-		}
-
 		public IEnumerable<DistrictDTO> GetSortedDeletedDistrictsBy(string parameter)
 		{
 			List<District> deletedDistrictList = null;
@@ -151,24 +131,6 @@ namespace BAL.Manager
 			return true;
 		}
 
-		public IEnumerable<DistrictDTO> searchAndSortDistricts(string search, string sort)
-		{
-			var districts = uOW.DistrictRepo.All.Where(s => s.Deleted == false & (s.Name.StartsWith(search) || s.Name.Contains(search))).Include(c => c.Coordinates).ToList();
-			switch (sort)
-			{
-				case "name":
-					districts = districts.OrderBy(x => x.Name).ToList();
-					break;
-				case "name_desc":
-					districts = districts.OrderByDescending(x => x.Name).ToList();
-					break;
-				default:
-					districts = districts.OrderBy(x => x.Name).ToList();
-					break;
-			}SortCoordinates(districts);
-			return Mapper.Map<IEnumerable<DistrictDTO>>(districts);
-		}
-
 		public IEnumerable<DistrictDTO> searchAndSortDeletedDistricts(string search, string sort)
 		{
 			var districts = uOW.DistrictRepo.All.Where(s => s.Deleted == false & (s.Name.StartsWith(search) || s.Name.Contains(search))).Include(c => c.Coordinates).ToList();
@@ -196,21 +158,6 @@ namespace BAL.Manager
 		{
 			if (id <= 0) { return null; }
 			return Mapper.Map<DistrictDTO>(uOW.DistrictRepo.All.Where(s => s.Id == id).Include(c => c.Coordinates));
-		}
-		/// <summary>
-		/// Managaer method that gets one district entry which id property value matches input parameter.
-		/// </summary>
-		/// <param name="id">Input parameter that represents id property value.</param>
-		/// <returns></returns>
-		public DistrictDTO getOneDistrictByItsID(int id)
-		{
-			if (id <= 0) { return null; }
-			var getDistrict = uOW.DistrictRepo.All.Where(s => s.Id == id).Include(c => c.Coordinates).FirstOrDefault();
-			if (getDistrict != null)
-			{
-				return Mapper.Map<DistrictDTO>(getDistrict);
-			}
-			return null;
 		}
 		/// <summary>
 		/// Manager method that edits specific district entry which id property value matches input parameters id property value
@@ -247,16 +194,6 @@ namespace BAL.Manager
 			var newDistrict = uOW.DistrictRepo.All.Where(d => d.Id == district.Id).FirstOrDefault();
 			SortCoordinates(newDistrict);
 			return Mapper.Map<DistrictDTO>(newDistrict);
-		}
-		/// <summary>
-		///  Managaer method that gets one district entry which name property value matches input parameter.
-		/// </summary>
-		/// <param name="name">Input parameter that represents name property value.</param>
-		/// <returns></returns>
-		public DistrictDTO getByName(string name)
-		{
-			if (name == "") { return null; }
-			return Mapper.Map<DistrictDTO>(uOW.DistrictRepo.All.Where(s => s.Name == name).Include(c => c.Coordinates).FirstOrDefault());
 		}
 		/// <summary>
 		/// Managaer method that gets new list of deleted district entries. 

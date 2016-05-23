@@ -740,7 +740,7 @@
     <value>My account</value>
   </data>
   <data name="NewOrders" xml:space="preserve">
-    <value>New Orders</value>
+    <value>New orders</value>
   </data>
   <data name="Order" xml:space="preserve">
     <value>Order</value>
@@ -752,7 +752,7 @@
     <value>Denied request</value>
   </data>
   <data name="Minutes" xml:space="preserve">
-    <value>minutes</value>
+    <value> minutes</value>
   </data>
   <data name="Wait" xml:space="preserve">
     <value>Wait</value>
@@ -1037,7 +1037,7 @@
     <value>Meet with a plate</value>
   </data>
   <data name="AdBlockWarning" xml:space="preserve">
-    <value>AddBlock detected. Some options can work wrong.</value>
+    <value>AdBlock detected. Some options can work wrong.</value>
   </data>
   <data name="NoGeoLocation" xml:space="preserve">
     <value>Geolocation is disabled</value>
@@ -1098,5 +1098,35 @@
   </data>
   <data name="OrderAddress" xml:space="preserve">
     <value>Order Address</value>
+  </data>
+  <data name="DriversCount" xml:space="preserve">
+    <value>Drivers count</value>
+  </data>
+  <data name="ApprovedMessage" xml:space="preserve">
+    <value>Your order is accepted! Please wait until we find a car for you</value>
+  </data>
+  <data name="Car_Number" xml:space="preserve">
+    <value>Car number: </value>
+  </data>
+  <data name="DeniedMessage" xml:space="preserve">
+    <value>Your order was denied. Please check your entries and try again</value>
+  </data>
+  <data name="PleasantTrip" xml:space="preserve">
+    <value>Pleasant trip!</value>
+  </data>
+  <data name="WaitingTimeMessage" xml:space="preserve">
+    <value>Your taxi will be in </value>
+  </data>
+  <data name="ApprovedOrders" xml:space="preserve">
+    <value>Approved orders</value>
+  </data>
+  <data name="DeniedOrders" xml:space="preserve">
+    <value>Denied orders</value>
+  </data>
+  <data name="FinishedOrders" xml:space="preserve">
+    <value>Finished orders</value>
+  </data>
+  <data name="InProgressOrders" xml:space="preserve">
+    <value>In progress</value>
   </data>
 </root>

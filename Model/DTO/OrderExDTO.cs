@@ -54,45 +54,8 @@ namespace Model.DTO
 
 		public Feedback DriverFeedback { get; set; }
 
-		public string FullAddressFrom
-		{
-			get
-			{
-				if (this.AddressFrom != null)
-				{
-					var address = this.AddressFrom.Address;
-					if (this.AddressFrom.Building != null)
-						address += ", " + this.AddressFrom.Building;
-					return address;
-				}
-				return null;
-			}
-		}
+		public string FullAddressFrom { get; set; }
 
-		public string FullAddressesTo
-		{
-			get
-			{
-				if (this.AddressesTo != null)
-				{
-					var address = "";
-					foreach (var place in this.AddressesTo)
-					{
-						if (place.Address != null)
-						{
-							address += place.Address;
-							if (place.Building != null)
-								address += ", " + place.Building;
-							address += "\n";
-						}
-						else
-							if (place.Building != null)
-							address += place.Building + "\n";
-					}
-					return address;
-				}
-				return null;
-			}
-		}
+		public string FullAddressTo { get; set; }
 	}
 }

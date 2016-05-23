@@ -117,26 +117,6 @@ namespace MainSaite.Controllers
 				return Json(new { success = false, districts }, JsonRequestBehavior.AllowGet);
 			}
 		}
-		/// <summary>
-		/// Action method that receives parameter from ajax call and uses it for searching 
-		/// and sorting result entries. Is used solely for non-deleted districts.
-		/// </summary>
-		/// <param name="search"></param>
-		/// <param name="sort"></param>
-		/// <returns></returns>
-		public JsonResult SearchAndSort(string search, string sort)
-		{
-			if (!String.IsNullOrEmpty(search))
-			{
-				var resultDistricts = districtManager.searchAndSortDistricts(search, sort).ToList();
-				return Json(new { success = true, resultDistricts }, JsonRequestBehavior.AllowGet);
-			}
-			else
-			{
-				var resultDistricts = districtManager.GetSortedDistricts(sort).ToList();
-				return Json(new { success = true, resultDistricts }, JsonRequestBehavior.AllowGet);
-			}
-		}
 
 		public JsonResult DeletedSearchAndSort(string search, string sort)
 		{
