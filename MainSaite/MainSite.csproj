@@ -188,7 +188,6 @@
     <Compile Include="Controllers\DriverLocationHubController.cs" />
     <Compile Include="Controllers\OperatorHubController.cs" />
     <Compile Include="Controllers\OperatorMessagesHubController.cs" />
-    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OrderExController.cs" />
     <Compile Include="Controllers\ReportChartsController.cs" />
     <Compile Include="Controllers\SupportController.cs" />
@@ -211,15 +210,12 @@
     <Compile Include="Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\TarifController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Controllers\UserPageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -412,7 +408,6 @@
     <Content Include="Scripts\FavoriteAddresses.js" />
     <Content Include="Scripts\GeneralScripts.js" />
     <Content Include="Scripts\GoogleMapJS\GoogleMapTaxiOrder.js" />
-    <Content Include="Scripts\GoogleMapJS\GoogleMapUserPage.js" />
     <Content Include="Scripts\handlebars.amd.js" />
     <Content Include="Scripts\handlebars.amd.min.js" />
     <Content Include="Scripts\handlebars.js" />
@@ -498,7 +493,6 @@
     <Content Include="Scripts\OrderExLogic\DriverOrder.js" />
     <Content Include="Scripts\OrderExLogic\OperatorOrder.js" />
     <Content Include="Scripts\OrderForm.js" />
-    <Content Include="Scripts\sweetalert2.min.js" />
     <Content Include="Scripts\tabCorrector.js" />
     <Content Include="Scripts\Tarif\Tarif.js" />
     <Content Include="Scripts\Tools\AddBlockChecker.js" />
@@ -533,15 +527,11 @@
     <Content Include="Views\Settings\DistrictEditor.cshtml" />
     <Content Include="Views\Administration\AddUser.cshtml" />
     <Content Include="Views\Shared\_Language.cshtml" />
-    <Content Include="Views\Address\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\Driver\Index.cshtml" />
     <Content Include="Views\Tarif\Index.cshtml" />
     <Content Include="Views\Tarif\Create.cshtml" />
     <Content Include="Views\Tarif\Edit.cshtml" />
     <Content Include="Views\Administration\ViewWorkShifts.cshtml" />
-    <Content Include="Views\Shared\_UserPageLayout.cshtml" />
-    <Content Include="Views\UserPage\Index.cshtml" />
     <Content Include="Views\Settings\_UserTable.cshtml" />
     <Content Include="Views\Tarif\_ShowTarifTable.cshtml" />
     <Content Include="Views\Account\IEDisable.cshtml" />
@@ -549,7 +539,6 @@
     <Content Include="Views\Settings\_EditDistrictP.cshtml" />
     <Content Include="Views\Settings\_AddDistrictP.cshtml" />
     <Content Include="Views\Settings\_DeletedListP.cshtml" />
-    <Content Include="Views\UserPage\Iframe.cshtml" />
     <Content Include="Views\Cars\CarPark.cshtml" />
     <Content Include="Views\Cars\_DeleteCarPartial.cshtml" />
     <Content Include="Views\Cars\_EditCarPartial.cshtml" />
@@ -557,13 +546,11 @@
     <Content Include="Views\Cars\_CarDetails.cshtml" />
     <Content Include="Views\Cars\_GiveCarPartial.cshtml" />
     <Content Include="Views\Cars\_ReturnCarPartial.cshtml" />
-    <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\User\_EditPersonInfo.cshtml" />
     <Content Include="Views\Shared\_AjaxEditPersonInfo.cshtml" />
     <Content Include="Views\Client\DriveHistory.cshtml" />
     <Content Include="Views\Cars\_GetErrorMessage.cshtml" />
     <Content Include="Views\Cars\_GetMainCarPartial.cshtml" />
-    <Content Include="Views\Driver\DriverOrders.cshtml" />
     <Content Include="Views\Settings\_ErrorDistrictPartial.cshtml" />
     <Content Include="Views\ReportCharts\Index.cshtml" />
     <Content Include="Views\ReportCharts\DistrictReportsPerYear.cshtml" />

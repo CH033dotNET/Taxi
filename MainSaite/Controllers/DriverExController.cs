@@ -7,8 +7,11 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Common.Enum.DriverEnum;
+using Common.Enum;
 
 namespace MainSaite.Controllers
 {
@@ -20,6 +23,8 @@ namespace MainSaite.Controllers
 		private IFeedbackManager feedbackManager;
 		private ICarManager carManager;
 		private IWorkerStatusManager workerStatusManager;
+		private IUserManager userManager;
+
 		public DriverExController(IFeedbackManager feedbackManager, IOrderManagerEx orderManager, IDriverExManager driverManager, IDistrictManager districtManager, ICarManager carManager, IWorkerStatusManager workerStatusManager)
 		{
 			this.orderManager = orderManager;
@@ -57,9 +62,37 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public JsonResult TakeOrder(int id, int WaitingTime)
 		{
-			orderManager.SetWaitingTime(id, WaitingTime);
-			var DriverId = (Session["User"] as UserDTO).Id;
-			return Json(new { success = orderManager.TakeOrder(id, DriverId) });
+			var FREEDRIVER_TRIAL_DAYS = 15;
+			var FREEDRIVER_ORDER_LIMIT = 5;
+
+			var driver = (Session["User"] as UserDTO);
+			var driverStatus = workerStatusManager.GetStatus(driver).WorkingStatus;
+
+			// check freedriver trial period and today's order limit
+			if (((Session["User"] as UserDTO).RoleId == (int)AvailableRoles.FreeDriver) &&
+				((DateTime.Now - driver.RegistrationDate).Days > FREEDRIVER_TRIAL_DAYS ) &&
+				(orderManager.GetDriversTodayOrders(driver).Count > FREEDRIVER_ORDER_LIMIT )) {
+
+				Response.StatusCode = (int)HttpStatusCode.Forbidden;
+				return Json(new {
+					errorHeader = Resources.Resource.ErrorHeader,
+					errorMessage = Resources.Resource.FreeDriverOverlimitError });
+
+			} else if (driverStatus == DriverWorkingStatusEnum.DoingOrder) {
+
+				Response.StatusCode = (int)HttpStatusCode.Forbidden;
+				return Json(new {
+					errorHeader = Resources.Resource.ErrorHeader,
+					errorMessage = Resources.Resource.DriverHasOrderError
+				});
+
+			} else {
+
+				workerStatusManager.ChangeStatus(driver, DriverWorkingStatusEnum.DoingOrder);
+				orderManager.SetWaitingTime(id, WaitingTime);
+				return Json(new { success = orderManager.TakeOrder(id, driver.Id) });
+
+			}
 		}
 
 		[HttpPost]
@@ -110,7 +143,7 @@ namespace MainSaite.Controllers
 		}
 		public JsonResult GetCurrentDriverStatus()
 		{
-			var result = workerStatusManager.ShowStatus(((Session["User"] as UserDTO).Id));
+			var result = workerStatusManager.GetStatus((Session["User"] as UserDTO));
 
 			if (result == null) { return Json(new { success = false }, JsonRequestBehavior.AllowGet); }
 			else
@@ -122,7 +155,7 @@ namespace MainSaite.Controllers
 		{
 			try
 			{
-				workerStatusManager.ChangeWorkerStatus(((Session["User"] as UserDTO).Id), status.ToString());
+				workerStatusManager.ChangeStatus((Session["User"] as UserDTO), (DriverWorkingStatusEnum)status);
 			}
 			catch (Exception)
 			{

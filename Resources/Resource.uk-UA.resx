@@ -1131,4 +1131,19 @@
   <data name="InProgressOrders" xml:space="preserve">
     <value>Виконуються</value>
   </data>
+  <data name="FreeDriverOverlimitError" xml:space="preserve">
+    <value>Досягнуто ліміт замовлень для вільного водія</value>
+  </data>
+  <data name="AdminMessageHeader" xml:space="preserve">
+    <value>Повідомлення від адміністратора</value>
+  </data>
+  <data name="LimitErrorHeader" xml:space="preserve">
+    <value>Ліміт замовлень</value>
+  </data>
+  <data name="DriverHasOrderError" xml:space="preserve">
+    <value>Ви повинні завершити замовленя перж ніж взяти нове</value>
+  </data>
+  <data name="ErrorHeader" xml:space="preserve">
+    <value>Помилка</value>
+  </data>
 </root>

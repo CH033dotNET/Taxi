@@ -12,6 +12,7 @@ using AutoMapper;
 using Common.Enum;
 using Model;
 using BAL.Tools;
+using System.Data.Entity.Core.Objects;
 
 namespace BAL.Interfaces
 {
@@ -140,6 +141,17 @@ namespace BAL.Interfaces
 		{
 			var orders = uOW.OrderExRepo.Get(null, null, "AdditionallyRequirements, AddressFrom, AddressesTo, Car")
 				.Where(o => o.UserId == id && o.Status == OrderStatusEnum.Confirmed)
+				.ToList();
+			return Mapper.Map<List<OrderExDTO>>(orders);
+		}
+
+		public IList<OrderExDTO> GetDriversTodayOrders(UserDTO Driver) {
+			var driver = Mapper.Map<User>(Driver);
+			var orders = uOW.OrderExRepo.All
+				.Where(o => o.Driver.Id == driver.Id 
+				&& o.OrderTime.Day == DateTime.Now.Day
+				&& o.OrderTime.Month == DateTime.Now.Month
+				&& o.OrderTime.Year == DateTime.Now.Year)
 				.ToList();
 			return Mapper.Map<List<OrderExDTO>>(orders);
 		}

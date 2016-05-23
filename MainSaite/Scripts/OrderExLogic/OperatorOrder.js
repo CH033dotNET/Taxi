@@ -272,6 +272,34 @@
 		$('#inProgressOrder').append(orderElement);
 	};
 
+	mainHub.client.cencelOrder = function(id){
+		var order = newOrders.find(function (item) {
+			return item.Id == id;
+		});
+		if (!order) {
+			newOrders.splice(newOrders.indexOf(order), 1);
+		}
+		else {
+			var order = approvedOrders.find(function (item) {
+				return item.Id == id;
+			});
+			if (!order) {
+				approvedOrders.splice(newOrders.indexOf(order), 1);
+			}
+			else {
+				var order = inProgressOrders.find(function (item) {
+					return item.Id == id;
+				});
+				if (!order) {
+					inProgressOrders.splice(newOrders.indexOf(order), 1);
+				}
+			}
+		}
+
+		var orderElement = $('[data-id = "' + id + '"]');
+		orderElement.parent().remove(orderElement);
+		
+	}
 
 	$.connection.hub.start().done(function () {
 
