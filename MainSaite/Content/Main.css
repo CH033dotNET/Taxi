@@ -272,6 +272,26 @@
 		background:linear-gradient(rgb(204, 204, 204), #8C8C8C);
 		box-shadow: 0px 0px 6px #8C8C8C;
 	}
+	#EditOrderTable tr td{
+		border:none;
+		padding:0px;
+	}
+	#EditOrderTable tr td:nth-child(1){
+		width:20%;    
+	}
+	#paragraph{
+	text-transform: uppercase;
+    color: white;
+    border-bottom: 2px solid #FFCA1C;
+	}
+	#EditOrderTable caption{
+	text-transform: uppercase;
+    color: white;
+    border-bottom: 2px solid #FFCA1C;
+    margin-bottom: 5px;
+    padding-bottom: 2px;
+	    margin-top: -15px;
+	}
 	h1,h2,h3,label,td, legend{
 		color:white;
 	}

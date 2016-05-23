@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Interface;
@@ -42,20 +43,11 @@ namespace BAL.Interfaces
 
 				uOW.Save();
 			}
-			//var newOrder = Mapper.Map<OrderEx>(order);
-			//uOW.OrderExRepo.Update(newOrder);
-			//try
-			//{
-			//	uOW.Save();
-			//}
-			//catch(Exception e)
-			//{
-
-			//}
 		}
 
 		public OrderExDTO GetById(int id) {
-			var order = uOW.OrderExRepo.All.Where(o => o.Id == id).FirstOrDefault();
+			var order = uOW.OrderExRepo.All.Include(o => o.AddressFrom).Include(o=>o.AddressesTo).Where(o => o.Id == id).FirstOrDefault();
+
 			return Mapper.Map<OrderExDTO>(order);
 		}
 
