@@ -13,12 +13,10 @@ namespace MainSaite.Controllers
 	public class AdministrationController : BaseController
 	{
 		private IUserManager userManager;
-		private IDriverManager driverManager;
 
-		public AdministrationController(IUserManager userManager, IDriverManager driverManager)
+		public AdministrationController(IUserManager userManager)
 		{
 			this.userManager = userManager;
-			this.driverManager = driverManager;
 		}
 		public ActionResult AddUser()
 		{
@@ -67,12 +65,5 @@ namespace MainSaite.Controllers
 			return View();
 		}
 
-
-		public JsonResult GetLoc()
-		{
-			//return Json(DateTime.Now.ToString("HH:mm/dd.MM"), JsonRequestBehavior.AllowGet);
-			var array = driverManager.GetFullLocations();
-            return Json(array, JsonRequestBehavior.AllowGet);
-		}
 	}
 }

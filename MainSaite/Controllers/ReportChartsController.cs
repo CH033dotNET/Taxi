@@ -17,11 +17,10 @@ namespace MainSaite.Controllers
     public class ReportChartsController : BaseController
     {
 		IDistrictManager districtManager;
-        IOrderManager orderManager;
+        //IOrderManager orderManager;
         IUserManager userManager;
-		public ReportChartsController(IOrderManager orderManager, IUserManager userManager, IDistrictManager districtManager)
+		public ReportChartsController (IUserManager userManager, IDistrictManager districtManager)
         {
-            this.orderManager = orderManager;
             this.userManager = userManager;
 			this.districtManager = districtManager;
         }
@@ -46,14 +45,14 @@ namespace MainSaite.Controllers
 			var categories = categoriesQueue.ToArray();
 			Highcharts chart = new Highcharts("FuelConsumptionID");
 			chart.SetTitle(new Title() { Text = Resources.Resource.FuelConsumDorin });
-			var list = orderManager.AnnualFuelConsumption();
+			///var list = orderManager.AnnualFuelConsumption();
 
 			List<object> obList = new List<object>();
-			foreach (var item in list)
+			/*foreach (var item in list)
 			{
 				var iut = (int)item;
 				obList.Add((object)iut);
-			}
+			}*/
 
 			chart.SetYAxis(new YAxis
 			{
@@ -105,11 +104,12 @@ namespace MainSaite.Controllers
 
 		public JsonResult GetDistrictReportsPerYear()
 		{
-			var allOrders = orderManager.GetQueryableOrders().Where(x => x.District != null && x.DistrictId != 0 && x.DriverId != 0 && x.OrderTime.Year == DateTime.Now.Year);
+			//var allOrders = orderManager.GetQueryableOrders().Where(x => x.District != null && x.DistrictId != 0 && x.DriverId != 0 && x.OrderTime.Year == DateTime.Now.Year);
 			//var allCompletedOrders = orderManager.GetQueryableOrders().Where(x => x.isFinishedProperty?)
 			var allDistricts = districtManager.GetIQueryableDistricts();
-			var OrdersPerDistrict = allOrders.Join(allDistricts, x => x.DistrictId, y => y.Id, (x, y) => new { dName = y.Name, ordersSum = 1, Year = x.OrderTime.Year }).GroupBy(x => x.dName).ToList();
-			return Json(OrdersPerDistrict, JsonRequestBehavior.AllowGet);
+			//var OrdersPerDistrict = allOrders.Join(allDistricts, x => x.DistrictId, y => y.Id, (x, y) => new { dName = y.Name, ordersSum = 1, Year = x.OrderTime.Year }).GroupBy(x => x.dName).ToList();
+			//return Json(OrdersPerDistrict, JsonRequestBehavior.AllowGet);
+			return Json("");
 		}
 
         public ActionResult ChartOrders()
@@ -121,10 +121,10 @@ namespace MainSaite.Controllers
 				Title = new YAxisTitle() { Text = Resources.Resource.CountRoma },
             });
 
-            var ord = orderManager.GetQueryableOrders();
+            //var ord = orderManager.GetQueryableOrders();
             var drivers = userManager.GetQueryableDrivers();
 
-            var res = ord.Join(drivers, x => x.DriverId, y => y.Id, (x, y) => new { Name = y.UserName, Orders = 1 }).GroupBy(x=>x.Name).ToList();
+            //var res = ord.Join(drivers, x => x.DriverId, y => y.Id, (x, y) => new { Name = y.UserName, Orders = 1 }).GroupBy(x=>x.Name).ToList();
 
 
 			
@@ -132,7 +132,7 @@ namespace MainSaite.Controllers
             List<Series> series = new List<Series>();
             List<object> serieData = new List<object>();
 
-            foreach (var i in res)
+            /*foreach (var i in res)
             {
 
                 Series serie = new Series();
@@ -143,7 +143,7 @@ namespace MainSaite.Controllers
                 serie.Data = new Data(serieData.ToArray());
                 series.Add(serie);
 
-            }
+            }*/
 
 
             orders.SetSeries(series.ToArray());
@@ -176,7 +176,7 @@ namespace MainSaite.Controllers
 			chart.SetXAxis(new XAxis() { Title = new XAxisTitle() { Text = Resources.Resource.AmountOfOrdersMax } });
 			List<Series> series = new List<Series>();
 			List<object[]> data = new List<object[]>();
-			foreach (var client in orderManager.GetTop10())
+			/*foreach (var client in orderManager.GetTop10())
 			{
 				Series serie = serie = new Series();
 				serie.Type = ChartTypes.Column;
@@ -192,7 +192,7 @@ namespace MainSaite.Controllers
 				Align = HorizontalAligns.Right,
 				Layout = Layouts.Vertical,
 				VerticalAlign = VerticalAligns.Top
-			});
+			});*/
 
 			return chart;
 		}
@@ -206,14 +206,14 @@ namespace MainSaite.Controllers
 			var categories = categoriesQueue.ToArray();
 			Highcharts chart = new Highcharts("IncomeByMonthes");
 			chart.SetTitle(new Title() { Text = Resources.Resource.AllDriversIncomeHeader });
-			var list = orderManager.YearIncome().ToList();
-			var data = list.Select(x => (object)x).ToArray();
+			//var list = orderManager.YearIncome().ToList();
+			/*var data = list.Select(x => (object)x).ToArray();
 			chart.SetSeries(new Series()
 			{
 				Name = Resources.Resource.TotalDriversIncomeA,
 				Type = ChartTypes.Column,
 				Data = new Data(data)
-			});
+			});*/
 			chart.SetXAxis(new XAxis()
 			{
 				Categories = categories
@@ -224,7 +224,7 @@ namespace MainSaite.Controllers
 
 		public void DriversIncome()
 		{
-			var DriversInc = orderManager.GetDriversIncome();
+			//var DriversInc = orderManager.GetDriversIncome();
 
 			Highcharts driversIncomeChart = new Highcharts("driversChartId");
 
@@ -242,7 +242,7 @@ namespace MainSaite.Controllers
 
 			Series serie = new Series();
 
-			foreach (ChartsColumnDTO item in DriversInc)
+			/*foreach (ChartsColumnDTO item in DriversInc)
 			{
 				serie = new Series();
 				serie.Name = item.ColumnName;
@@ -252,7 +252,7 @@ namespace MainSaite.Controllers
 				serie.Data = new Data(serieData.ToArray());
 				series.Add(serie);
 
-			};
+			};*/
 
 			driversIncomeChart.SetSeries(series.ToArray());
 

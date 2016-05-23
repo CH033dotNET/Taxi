@@ -29,7 +29,6 @@ namespace MainSaite.App_Start
 			container.Register<IDistrictManager, DistrictManager>();
 			container.Register<IDriverManager, DriverManager>();
 			container.Register<ILocationManager, LocationManager>();
-			container.Register<IOrderManager, OrderManager>();
 			container.Register<IPersonManager, PersonManager>();
 			container.Register<ITarifManager, TarifManager>();
 			container.Register<IUserManager, UserManager>();
