@@ -39,7 +39,7 @@
 			data.driverId = driverId;
 			prevCoord = data;
 			$.ajax({
-				url: '/Driver/UpdateCoords',
+				url: './DriverEx/UpdateCoords',
 				method: 'POST',
 				data: data
 			});
