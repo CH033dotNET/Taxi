@@ -367,6 +367,7 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\UserMenu\iframe.css" />
     <Content Include="Content\UserMenu\UserMenuMaps.css" />
+    <Content Include="Content\WaitingMessages.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -500,6 +501,7 @@
     <Content Include="Scripts\UserScript.js" />
     <Content Include="Scripts\validator.js" />
     <Content Include="Scripts\VipClients.js" />
+    <Content Include="Scripts\WaitingMessages.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Home\OrderForm.cshtml" />
     <Content Include="Web.config">

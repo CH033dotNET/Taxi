@@ -385,11 +385,6 @@
 	border-color: red;
 }
 
-.panel-heading {
-	font-size: 120%;
-	text-align: center;
-}
-
 label {
 	font-weight: normal;
 }
@@ -398,25 +393,8 @@ label {
 	padding-top: 8px;
 }
 
-.panel span {
-	padding-right: 5px;
-}
-
-#modal-message img {
-	width: 20%;
-	height: 20%;
-}
-
 .panel p {
 	margin-bottom: 0px;
-}
-
-h4 span {
-	font-size: 130%;
-}
-
-.modal-body {
-	text-align: center;
 }
 
 @media (max-width: 767px) {

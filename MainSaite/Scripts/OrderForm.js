@@ -4,9 +4,6 @@ $(function () {
 	$('#hide').hide();
 	$('#load').hide();
 	$('#time-group').hide();
-	$('#waiting-message').hide();
-	$('#approved-message').hide();
-	$('#denied-message').hide();
 	$('[data-toggle="tooltip"]').tooltip();
 
 	if ($('#userId').length) {
@@ -23,37 +20,6 @@ $(function () {
 				$('#remember').prop('checked', true);
 			}
 		});
-	}
-
-	var orderHub = $.connection.MainHub;
-
-	orderHub.client.OrderApproved = function () {
-		$('#waiting-message').hide();
-		$('#approved-message').show();
-	}
-
-	orderHub.client.OrderDenied = function () {
-		$('#waiting-message').hide();
-		$('#denied-message').show();
-	}
-
-	orderHub.client.OrderConfirmed = function (orderId, waitingTime) {
-		$('#waiting-message').hide();
-		$('#approved-message').hide();
-		$('#denied-message').hide();
-		$('#submit button').prop('disabled', false);
-		$('#waiting-time').html(waitingTime);
-		$.ajax({
-			url: '/Client/GetOrder',
-			type: "POST",
-			data: {
-				id: orderId
-			},
-			success: function (data) {
-				$('#car-number').html(data.Car.CarNumber);
-			}
-		});
-		$('#modal-message').modal('show');
 	}
 
 	$('#add-address').click(function () {
@@ -142,6 +108,7 @@ $(function () {
 			Phone: $('#phone').val(),
 			Perquisite: $('#perquisite').val()
 		}
+		var orderHub = $.connection.MainHub;
 		$.connection.hub.start().done(function () {
 			orderHub.server.connect("Client");
 			$.ajax({
@@ -150,13 +117,11 @@ $(function () {
 				type: "POST",
 				data: JSON.stringify(order),
 				success: function (data) {
-					alert('success');
 					orderHub.server.addOrder(data);
 					$('#form').trigger("reset");
+					$('#denied-message').hide();
+					$('#approved-message').hide();
 					$('#waiting-message').slideDown(200);
-				},
-				error: function (error) {
-					alert('error');
 				}
 			});
 		});

@@ -6,6 +6,7 @@
 }
 
 <link href="~/Content/OrderForm.css" rel=stylesheet type="text/css">
+<link href="~/Content/WaitingMessages.css" rel=stylesheet type="text/css">
 <link href="~/Content/bootstrap-datetimepicker.css" rel=stylesheet type="text/css">
 
 <div id="body">
@@ -174,13 +175,13 @@
 			<button type="button" class="btn btn-default btn-lg">@Resources.Resource.MakeAnOrder</button>
 		</div>
 		<div class="panel panel-warning" id="waiting-message">
-			<div class="panel-heading">@Resources.Resource.WaitingMessage<p><img src="~/Content/Picture/OrderForm/waiting-animation.gif" /></p></div>
+			<div class="panel-heading heading">@Resources.Resource.WaitingMessage<p><img src="~/Content/Picture/OrderForm/waiting-animation.gif" /></p></div>
 		</div>
 		<div class="panel panel-success" id="approved-message">
-			<div class="panel-heading"><span class="glyphicon glyphicon-ok"></span>@Resources.Resource.ApprovedMessage</div>
+			<div class="panel-heading heading"><span class="glyphicon glyphicon-ok"></span>@Resources.Resource.ApprovedMessage</div>
 		</div>
 		<div class="panel panel-danger" id="denied-message">
-			<div class="panel-heading"><span class="glyphicon glyphicon-remove"></span>@Resources.Resource.DeniedMessage</div>
+			<div class="panel-heading heading"><span class="glyphicon glyphicon-remove"></span>@Resources.Resource.DeniedMessage</div>
 		</div>
 	</form>
 </div>
@@ -195,7 +196,7 @@
 			<div class="modal-body">
 				<h4>@Resources.Resource.WaitingTimeMessage<span id="waiting-time"></span>@Resources.Resource.Minutes</h4>
 				<h4>@Resources.Resource.Car_Number<span id="car-number"></span></h4>
-				<h3>@Resources.Resource.PleasantTrip</h3>
+				<h4 id="pleasantTrip">@Resources.Resource.PleasantTrip</h4>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
@@ -209,3 +210,4 @@
 <script src="~/Scripts/moment-with-locales.js"></script>
 <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
 <script src="~/Scripts/OrderForm.js"></script>
+<script src="~/Scripts/WaitingMessages.js"></script>

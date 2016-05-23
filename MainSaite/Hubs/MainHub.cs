@@ -81,8 +81,12 @@ namespace MainSaite.Hubs
 		[HubMethodName("denyOrder")]
 		public void DenyOrder(int id)
 		{
+			var client = orderHubUsers.FirstOrDefault(u => u.OrderId == id);
+			if (client != null)
+				Clients.Client(client.ConnectionId).OrderDenied();
 			Clients.OthersInGroup("Operator").denyOrder(id);
 		}
+
 		[HubMethodName("updateOrder")]
 		public void UpdateOrder(int id)
 		{

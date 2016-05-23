@@ -2,6 +2,9 @@
     ViewBag.Title = "OrderTaxi";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<link href="~/Content/WaitingMessages.css" rel=stylesheet type="text/css">
+
 <div class="alert alert-warning" id="geoOff">
 	<strong id="geoAlert">@Resources.Resource.NoGeoLocation</strong>
 </div>
@@ -18,12 +21,41 @@
 		<div class="panel-body">
 			<div id="map">
 			</div>
-			<div id="controlOrder" title="Click to get a taxi">
-				<div id="orderBtn">@Resources.Resource.OrderTaxi.ToUpper()</div>
+			<div id="controlOrder" title="Click to get a taxi" class="activeBtn">
+				<button type="button" id="orderBtn">@Resources.Resource.OrderTaxi.ToUpper()</button>
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-warning" id="waiting-message">
+		<div class="panel-heading heading">@Resources.Resource.WaitingMessage<p><img src="~/Content/Picture/OrderForm/waiting-animation.gif" /></p></div>
+	</div>
+	<div class="panel panel-success" id="approved-message">
+		<div class="panel-heading heading"><span class="glyphicon glyphicon-ok"></span>@Resources.Resource.ApprovedMessage</div>
+	</div>
+	<div class="panel panel-danger" id="denied-message">
+		<div class="panel-heading heading"><span class="glyphicon glyphicon-remove"></span>@Resources.Resource.DeniedMessage</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modal-message" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<img src="~/Content/Picture/SmartPhonePictures/SiteLogo.png" />
+			</div>
+			<div class="modal-body">
+				<h4>@Resources.Resource.WaitingTimeMessage<span id="waiting-time"></span>@Resources.Resource.Minutes</h4>
+				<h4>@Resources.Resource.Car_Number<span id="car-number"></span></h4>
+				<h4 id="pleasantTrip">@Resources.Resource.PleasantTrip</h4>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
 </div>
+
 <script>
 	var picturePath = '@Url.Content("~/Content/Picture/UserMapIcons/")';
 </script>
@@ -31,5 +63,6 @@
 <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
 <script src="~/Scripts/OrderExLogic/ClientOrder.js"></script>
+<script src="~/Scripts/WaitingMessages.js"></script>
 
 @Scripts.Render("~/Scripts/GoogleMapJS/GoogleMapTaxiOrder.js")
