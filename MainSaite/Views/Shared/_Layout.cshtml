@@ -51,9 +51,8 @@
 					<div class="container" id="navContainer">
 						<div class="navbar-header" id="navHeader">
 							<ul class="nav navbar-nav">
-								@if (Session["User"] == null)
-								{
-									<li id="navBarBtn">@Html.ActionLink("[HOME]", "Index", "Home")</li>
+								@if (Session["User"] == null || ViewBag.UserRoleId == (int)AvailableRoles.Client)
+		{
 									<li id="navBarBtn" class="dropdown">
 
 										<a class="dropdown-toggle" data-toggle="dropdown" href="#">@Resources.Resource.OrderTaxi.ToUpper()<span class="caret"></span></a>
@@ -64,19 +63,24 @@
 											<li id="order-dropdown">@Html.ActionLink(Resources.Resource.AdvancedOrder, "OrderForm", "Home")</li>
 										</ul>
 									</li>
-									<li id="navBarBtn">@Html.ActionLink("[ABOUT US]", "Index", "Home")</li>
-									<li id="navBarBtn">@Html.ActionLink(Resources.Resource.Login.ToUpper(), "Authentification", "Account")</li>
-									<li id="navBarBtn">@Html.ActionLink(Resources.Resource.SingUp.ToUpper(), "Registration", "Account")</li>
+			if (Session["User"] == null)
+			{ 
 
-								}
-								else
-								{
-									string q = ((Model.DTO.UserDTO)Session["User"]).UserName;
+									<li id="navBarBtn">@Html.ActionLink("[HOME]", "Index", "Home")</li>
+									
+									<li id="navBarBtn">@Html.ActionLink("[ABOUT US]", "Index", "Home")</li>
+									<li id="navBarBtn">@Html.ActionLink(Resources.Resource.SingUp.ToUpper(), "Registration", "Account")</li>
+	                                <li id="navBarBtn">@Html.ActionLink(Resources.Resource.Login.ToUpper(), "Authentification", "Account")</li>
+			}
+		}
+		@if(Session["User"] != null)
+		{
+			string q = ((Model.DTO.UserDTO)Session["User"]).UserName;
 									<li id="navBarBtn" style="display: inline-flex;">
 										@Html.ActionLink(Resources.Resource.LogOut, "LogOut", "Account")
 										<img src="~/Images/@ViewBag.ImageName" data-toggle="tooltip" title="@q" class="img-rounded" style="max-width: 50px; max-height: 50px; border-radius:0px;" />
 									</li>
-								}
+		}
 							</ul>
 						</div>
 					</div>

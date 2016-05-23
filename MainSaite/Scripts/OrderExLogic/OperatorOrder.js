@@ -8,7 +8,7 @@
 	var approvedOrders = [];
 	var deniedOrders = [];
 	var inProgressOrders = [];
-
+	//Edit order window
 	$(document).on("dblclick", ".order", function () {
 		$('#myModal').modal('toggle');
 		var id = $(this).data("id");
@@ -16,6 +16,19 @@
 		$("#EditOrderA").attr("href", "/OrderEx/GetOrderById/" + id);
 
 		$('#EditOrderA').trigger('click');
+	});
+
+	$(document).on("click", "#paragraph", function () {
+		var cls = $('#paragraph span').attr('class');
+		if(cls.indexOf("down")>-1 ){
+			$('#AddressesTable').slideDown(200);
+			$('#paragraph span').attr('class','glyphicon glyphicon-chevron-up');
+		}
+		if (cls.indexOf("up") > -1) {
+			$('#AddressesTable').slideUp(200);
+			$('#paragraph span').attr('class', 'glyphicon glyphicon-chevron-down');
+		}
+
 	});
 	//init jqueryUI
 	$('#newOrder').sortable({

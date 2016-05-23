@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.Interface;
@@ -11,6 +12,7 @@ using AutoMapper;
 using Common.Enum;
 using Model;
 using BAL.Tools;
+using System.Data.Entity.Core.Objects;
 
 namespace BAL.Interfaces
 {
@@ -42,20 +44,11 @@ namespace BAL.Interfaces
 
 				uOW.Save();
 			}
-			//var newOrder = Mapper.Map<OrderEx>(order);
-			//uOW.OrderExRepo.Update(newOrder);
-			//try
-			//{
-			//	uOW.Save();
-			//}
-			//catch(Exception e)
-			//{
-
-			//}
 		}
 
 		public OrderExDTO GetById(int id) {
-			var order = uOW.OrderExRepo.All.Where(o => o.Id == id).FirstOrDefault();
+			var order = uOW.OrderExRepo.All.Include(o => o.AddressFrom).Include(o=>o.AddressesTo).Where(o => o.Id == id).FirstOrDefault();
+
 			return Mapper.Map<OrderExDTO>(order);
 		}
 
@@ -145,6 +138,17 @@ namespace BAL.Interfaces
 		{
 			var orders = uOW.OrderExRepo.Get(null, null, "AdditionallyRequirements, AddressFrom, AddressesTo, Car")
 				.Where(o => o.UserId == id && o.Status == OrderStatusEnum.Confirmed)
+				.ToList();
+			return Mapper.Map<List<OrderExDTO>>(orders);
+		}
+
+		public IList<OrderExDTO> GetDriversTodayOrders(UserDTO Driver) {
+			var driver = Mapper.Map<User>(Driver);
+			var orders = uOW.OrderExRepo.All
+				.Where(o => o.Driver.Id == driver.Id 
+				&& o.OrderTime.Day == DateTime.Now.Day
+				&& o.OrderTime.Month == DateTime.Now.Month
+				&& o.OrderTime.Year == DateTime.Now.Year)
 				.ToList();
 			return Mapper.Map<List<OrderExDTO>>(orders);
 		}

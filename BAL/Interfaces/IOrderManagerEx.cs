@@ -33,6 +33,8 @@ namespace BAL.Interfaces
 
 		IEnumerable<OrderExDTO> GetOrdersByUserId(int id);
 
+		IList<OrderExDTO> GetDriversTodayOrders(UserDTO Driver);
+
 		void UpdateOrder(OrderExDTO order);
 
 		void SetDriverFeedback(int orderId, int feedbackId);

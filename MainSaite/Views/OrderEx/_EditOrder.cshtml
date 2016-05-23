@@ -1,78 +1,207 @@
 ﻿@model Model.DTO.OrderExDTO
 
+<table class="table" id="EditOrderTable">
+	<caption>[ORDER INFO]</caption>
+	<tr>
+		<td></td>
+		<td>
+			@Html.HiddenFor(x => Model.Id)
+		</td>
+	</tr>
+	<tr>
+		<td>
+			@Html.Label("[OrderTime]")
+		</td>
+		<td>
+			@Html.TextBoxFor(x => Model.OrderTime, new { @required = true, @minlength = "4" })
+			@Html.ValidationMessageFor(x => x.OrderTime)
+		</td>
+	</tr>
+	@if (Model.Address != null)
+	{
+		<tr>
+			<td>
+				@Html.Label("[Address]")
+			</td>
+			<td>
+				@Html.TextBoxFor(x => Model.Address, new { @required = true, @minlength = "4" })
+				@Html.ValidationMessageFor(x => x.Address)
+			</td>
+		</tr>
+	}
+	else if (Model.AddressFrom != null)
+	{
+		<tr>
+			<td>
+				@Html.Label("[AddressFrom]")
+			</td>
+			<td>
+				@Html.TextBoxFor(x => Model.AddressFrom.Address, new { @required = true, @minlength = "4" })
+				@Html.ValidationMessageFor(x => x.AddressFrom.Address)
+			</td>
+		</tr>
+		<tr>
+			<td>
+				@Html.Label("[Building]")
+			</td>
+			<td>
+				@Html.TextBoxFor(x => Model.AddressFrom.Building, new { @required = true, @minlength = "1" })
+				@Html.ValidationMessageFor(x => x.AddressFrom.Building)
+			</td>
+		</tr>
+		<tr>
+			<td>
+				@Html.Label("[Entrance]")
+			</td>
+			<td>
+				@Html.TextBoxFor(x => Model.AddressFrom.Entrance, new { @required = true, @minlength = "4" })
+				@Html.ValidationMessageFor(x => x.AddressFrom.Entrance)
+			</td>
+		</tr>
+		<tr>
+			<td>
+				@Html.Label("[Note]")
+			</td>
+			<td>
+				@Html.DisplayFor(x => Model.AddressFrom.Note, new { @required = true, @minlength = "4" })
+			</td>
+		</tr>
+	}
+</table>
+@if (Model.AddressesTo.Count > 0)
+{
+	<div>
+		<p id="paragraph">Deliver Addresses <span class="glyphicon glyphicon-chevron-up" style="float:right;"></span></p>
+	</div>
+	<div id="AddressesTable">
+		<table class="table" id="EditOrderTable">
+			@foreach (var address in Model.AddressesTo)
+			{
+				int i = 1;
+				<tr>
+					<td>
+						@Html.Label("Address: " + i)
+					</td>
+					<td>
+						@Html.TextBoxFor(x => address.Address, new { @required = true, @minlength = "0" })
+						@Html.TextBoxFor(x => address.Building, new { @required = true, @minlength = "0" })
+					</td>
+				</tr>
+				i++;
+			}
+		</table>
+	</div>
+}
+@if (!string.IsNullOrEmpty(Model.Name))
+{
+	<table class="table" id="EditOrderTable">
+		<caption>[Client Info]</caption>
+		<tr>
+			<td>
+				@Html.Label("[UserName]")
+			</td>
+			<td>
+				@Html.TextBoxFor(x => Model.Name, new { @required = true, @minlength = "2" })
+				@Html.ValidationMessageFor(x => x.Name)
+			</td>
+		</tr>
+		<tr>
+			<td>
+				@Html.Label("[Phone]")
+			</td>
+			<td>
+				@Html.TextBoxFor(x => Model.Phone, new { @required = true, @minlength = "10" })
+				@Html.ValidationMessageFor(x => x.Phone)
+			</td>
+		</tr>
+	</table>
+}
+@if (Model.DriverId != null)
+{
+	<table class="table" id="EditOrderTable">
+		<caption>[DRIVER INFO]</caption>
+		<tr>
+			<td>
+				@Html.Label("[Driver]")
+			</td>
+			<td>
+				@Html.TextBoxFor(x => Model.DriverId, new { @required = true, @minlength = "1" })
+				@Html.ValidationMessageFor(x => x.DriverId)
+			</td>
+		</tr>
+		@if (Model.CarId != null)
+		{
+			<tr>
+				<td>
+					@Html.Label("[CarID]")
+				</td>
+				<td>
+					@Html.TextBoxFor(x => Model.CarId, new { @required = true, @minlength = "1" })
+					@Html.ValidationMessageFor(x => x.CarId)
+				</td>
+			</tr>
+		}
+	</table>
+}
+<table class="table" id="EditOrderTable">
+	<caption>[TRIP INFO]</caption>
+	<tr>
+		<td>
+			@Html.Label("[Waiting Time]")
+		</td>
+		<td>
+			@Html.TextBoxFor(x => Model.WaitingTime, new { @required = true, @minlength = "1" })
+			@Html.ValidationMessageFor(x => x.WaitingTime)
+		</td>
+	</tr>
+	<tr>
+		<td>
+			@Html.Label("[Price]")
+		</td>
+		<td>
+			@Html.TextBoxFor(x => Model.Price, new { @required = true, @minlength = "2" })
+			@Html.ValidationMessageFor(x => x.Price)
+		</td>
+	</tr>
+	<tr>
+		<td>
+			@Html.Label("[Perquisite]")
+		</td>
+		<td>
+			@Html.TextBoxFor(x => Model.Perquisite, new { @required = true, @minlength = "1" })
+			@Html.ValidationMessageFor(x => x.Perquisite)
+		</td>
+	</tr>
+</table>
 
-<tr>
-	<td>
-		
-	</td>
-	<td>
-		@Html.HiddenFor(x => Model.Id)
-	</td>
-</tr>
-<tr>
-	<td>
-		@Html.Label("[Address]")
-	</td>
-	<td>
-		@Html.TextBoxFor(x => Model.Address, new { @required = true, @minlength = "4" })
-		@Html.ValidationMessageFor(x => x.Address)
-	</td>
-</tr>
-<tr>
-	<td>
-		@Html.Label("[Waiting Time]")
-	</td>
-	<td>
-		@Html.TextBoxFor(x => Model.WaitingTime, new { @required = true, @minlength = "1" })
-		@Html.ValidationMessageFor(x => x.WaitingTime)
-	</td>
-</tr>
-<tr>
-	<td>
-		@Html.Label("[Price]")
-	</td>
-	<td>
-		@Html.TextBoxFor(x => Model.Price, new { @required = true, @minlength = "2" })
-		@Html.ValidationMessageFor(x => x.Price)
-	</td>
-</tr>
-<tr>
-	<td>
-		@Html.Label("[Driver]")
-	</td>
-	<td>
-		@Html.TextBoxFor(x => Model.DriverId, new { @required = true, @minlength = "0" })
-		@Html.ValidationMessageFor(x => x.DriverId)
-	</td>
-</tr>
 @*<tr>
-	<td>@Html.Label("[Order status]")</td>
-	<td>
-		@Html.DropDownListFor(x => Model.Status,
-			new SelectList(Enum.GetValues(typeof(Common.Enum.OrderStatusEnum))))
-	</td>
-</tr>*@
+		<td>@Html.Label("[Order status]")</td>
+		<td>
+			@Html.DropDownListFor(x => Model.Status,
+				new SelectList(Enum.GetValues(typeof(Common.Enum.OrderStatusEnum))))
+		</td>
+	</tr>*@
 @*<tr>
-	<td>@Html.Label(Resources.Resource.UserName)</td>
+		<td>@Html.Label(Resources.Resource.UserName)</td>
 
-	<td>
-		@Html.TextBoxFor(x => Model.UserName, new { @required = true, @minlength = "4" })
-		@Html.ValidationMessageFor(x => x.UserName)
-	</td>
-</tr>
+		<td>
+			@Html.TextBoxFor(x => Model.UserName, new { @required = true, @minlength = "4" })
+			@Html.ValidationMessageFor(x => x.UserName)
+		</td>
+	</tr>
 
-<tr>
-	<td>@Html.Label(Resources.Resource.Password)</td>
-	<td>
-		@Html.PasswordFor(x => x.Password, new { @minlength = "6", @value = Model.Password, @required = true })
-		@Html.ValidationMessageFor(x => x.Password)
-	</td>
-</tr>
+	<tr>
+		<td>@Html.Label(Resources.Resource.Password)</td>
+		<td>
+			@Html.PasswordFor(x => x.Password, new { @minlength = "6", @value = Model.Password, @required = true })
+			@Html.ValidationMessageFor(x => x.Password)
+		</td>
+	</tr>
 
-<tr>
-	<td>@Html.Label(Resources.Resource.Email)</td>
-	<td>
-		@Html.TextBoxFor(x => Model.Email, new { @type = "email", required = true })
-		@Html.ValidationMessageFor(x => x.Email)
-	</td>
-</tr>*@
+	<tr>
+		<td>@Html.Label(Resources.Resource.Email)</td>
+		<td>
+			@Html.TextBoxFor(x => Model.Email, new { @type = "email", required = true })
+			@Html.ValidationMessageFor(x => x.Email)
+		</td>
+	</tr>*@

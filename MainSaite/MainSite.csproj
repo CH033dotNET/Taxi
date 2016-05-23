@@ -580,7 +580,6 @@
     <Content Include="Views\Settings\_AddGroup.cshtml" />
     <Content Include="Views\DriverEx\NewOrders.cshtml" />
     <Content Include="Views\DriverEx\OrdersHistory.cshtml" />
-    <Content Include="Views\Driver\DistrictPart.cshtml" />
     <Content Include="Views\DriverEx\Districts.cshtml" />
     <Content Include="Views\DriverEx\DriverFeedback.cshtml" />
     <Content Include="Views\DriverEx\MyOrder.cshtml" />
@@ -588,6 +587,7 @@
     <Content Include="Views\Administration\SendMessagesToDrivers.cshtml" />
     <Content Include="Views\OrderEx\EditOrderPartial.cshtml" />
     <Content Include="Views\OrderEx\_EditOrder.cshtml" />
+    <Content Include="Views\DriverEx\WorkShift.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

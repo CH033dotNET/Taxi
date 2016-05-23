@@ -24,10 +24,13 @@
 					<i class="fa fa-refresh fa-spin fa-5x"></i>
 				</div>
 				<div class="btform">
-					@using (Ajax.BeginForm("EditOrder", new { controller = "OrderEx", action = "EditOrder" }, new AjaxOptions{ HttpMethod = "POST", OnSuccess = "UpdateOrders",
+					@using (Ajax.BeginForm("EditOrder", new { controller = "OrderEx", action = "EditOrder" }, new AjaxOptions{ HttpMethod = "POST",
 						}, new { @id = "ChangeForm" }))
 					{
-						<table class="table" id="ModalContent"></table>
+		                
+						<div id="ModalContent">
+
+						</div>
 	                    <input type="submit" id="mdal-submit" class="btn btn-success" name="Ok" value="Ok" />
 					}
 				</div>
