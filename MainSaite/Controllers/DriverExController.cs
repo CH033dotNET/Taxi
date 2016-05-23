@@ -54,8 +54,8 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public JsonResult TakeOrder(int id, int WaitingTime)
 		{
-			var FREEDRIVER_TRIAL_DAYS = 0;
-			var FREEDRIVER_ORDER_LIMIT = 0;
+			var FREEDRIVER_TRIAL_DAYS = 15;
+			var FREEDRIVER_ORDER_LIMIT = 5;
 
 			//var DriverId = (Session["User"] as UserDTO).Id;
 			//var driver = userManager.GetById(DriverId);
