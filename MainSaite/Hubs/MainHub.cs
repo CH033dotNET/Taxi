@@ -26,6 +26,16 @@ namespace MainSaite.Hubs
 			Clients.Group("Operator").addOrder(order);
 		}
 
+		[HubMethodName("cancelOrder")]
+		public void CancelOrder(int id)
+		{
+			Clients.Group("Operator").cancelOrder(id);
+			var driver = orderHubUsers.FirstOrDefault(u => u.OrderId == id);
+			if (driver !=null)
+			{
+				Clients.Client(driver.ConnectionId).cancelOrder(id);
+			}
+		}
 
 		[HubMethodName("OrderConfirmed")]
 		public void OrderConfirmed(int OrderId, int WaitingTime)
