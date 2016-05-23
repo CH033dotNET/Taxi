@@ -205,6 +205,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Message from Admin.
+        /// </summary>
+        public static string AdminMessageHeader {
+            get {
+                return ResourceManager.GetString("AdminMessageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Advanced order.
         /// </summary>
         public static string AdvancedOrder {
@@ -1813,6 +1822,15 @@ namespace Resources {
         public static string LetresDorin {
             get {
                 return ResourceManager.GetString("LetresDorin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Limit reached.
+        /// </summary>
+        public static string LimitErrorHeader {
+            get {
+                return ResourceManager.GetString("LimitErrorHeader", resourceCulture);
             }
         }
         

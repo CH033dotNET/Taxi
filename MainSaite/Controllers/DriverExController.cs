@@ -5,6 +5,7 @@ using Model.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -56,17 +57,21 @@ namespace MainSaite.Controllers
 			var FREEDRIVER_TRIAL_DAYS = 0;
 			var FREEDRIVER_ORDER_LIMIT = 0;
 
-			var DriverId = (Session["User"] as UserDTO).Id;
-			var driver = userManager.GetById(DriverId);
+			//var DriverId = (Session["User"] as UserDTO).Id;
+			//var driver = userManager.GetById(DriverId);
+
+
+			var driver = (Session["User"] as UserDTO);
 
 			// check freedriver trial period and today's order limit
 			if (((Session["User"] as UserDTO).RoleId == (int)Common.Enum.AvailableRoles.FreeDriver) &&
 				((DateTime.Now - driver.RegistrationDate).Days > FREEDRIVER_TRIAL_DAYS ) &&
-				(orderManager.GetDriversTodayOrders(driver).Count() > FREEDRIVER_ORDER_LIMIT )) {
+				(orderManager.GetDriversTodayOrders(driver).Count > FREEDRIVER_ORDER_LIMIT )) {
+				Response.StatusCode = (int)HttpStatusCode.Forbidden;
 				return Json(new { error = Resources.Resource.FreeDriverOverlimitError });
 			} else {
 				orderManager.SetWaitingTime(id, WaitingTime);
-				return Json(new { success = orderManager.TakeOrder(id, DriverId) });
+				return Json(new { success = orderManager.TakeOrder(id, driver.Id) });
 			}
 		}
 

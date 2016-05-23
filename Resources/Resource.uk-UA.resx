@@ -1134,4 +1134,10 @@
   <data name="FreeDriverOverlimitError" xml:space="preserve">
     <value>Досягнуто ліміт замовлень для вільного водія</value>
   </data>
+  <data name="AdminMessageHeader" xml:space="preserve">
+    <value>Повідомлення від адміністратора</value>
+  </data>
+  <data name="LimitErrorHeader" xml:space="preserve">
+    <value>Ліміт замовлень</value>
+  </data>
 </root>
