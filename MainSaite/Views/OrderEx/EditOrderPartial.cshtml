@@ -24,7 +24,10 @@
 					<i class="fa fa-refresh fa-spin fa-5x"></i>
 				</div>
 				<div class="btform">
-					@using (Ajax.BeginForm("EditOrder", new { controller = "OrderEx", action = "EditOrder" }, new AjaxOptions{ HttpMethod = "POST",
+					@using (Ajax.BeginForm("EditOrder", new { controller = "OrderEx", action = "EditOrder" }, new AjaxOptions
+	                {
+		                HttpMethod = "POST",
+		                OnSuccess = "updateOrderInfo()",
 						}, new { @id = "ChangeForm" }))
 					{
 		                

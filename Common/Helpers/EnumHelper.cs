@@ -28,16 +28,10 @@ namespace Common.Helpers
 		{
 			switch (status)
 			{
-				case DriverWorkingStatusEnum.NoStatus:
-					return Resources.Resource.NoStatus;
-				case DriverWorkingStatusEnum.HasOrder:
-					return Resources.Resource.HasOrder;
 				case DriverWorkingStatusEnum.DoingOrder:
 					return Resources.Resource.DoingOrder;
 				case DriverWorkingStatusEnum.AwaitingOrder:
 					return Resources.Resource.AwaitingOrder;
-				case DriverWorkingStatusEnum.Resting:
-					return Resources.Resource.Resting;
 				default:
 					return "";
 			}

@@ -18,10 +18,6 @@ namespace MainSaite
 			bundles.Add(new StyleBundle("~/Content/sweetalert2").Include(
 			"~/Content/sweetalert2.css"));
 
-			//GoogleMapUserPage.js
-			//--------------UserPage---------------------------------
-			bundles.Add(new ScriptBundle("~/bundles/GoogleMapJS/GoogleMapUserPage").Include(
-						"~/Scripts/GoogleMapJS/GoogleMapUserPage.js"));
 			bundles.Add(new StyleBundle("~/Content/UserMenu/UserMenuMaps").Include(
 						"~/Content/UserMenu/UserMenuMaps.css"));
 			//-------------------------------------------------------

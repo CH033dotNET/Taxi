@@ -11,6 +11,16 @@
 	var districtChecker = null;
 	var counts = [];
 
+	Notify = function (header, message) {
+		if (window.Notification && Notification.permission !== "denied") {
+			Notification.requestPermission(function (status) {  // status is "granted", if accepted by user
+				var n = new Notification(header, {
+					body: message,
+				});
+			});
+		}
+	}
+
 	//initialize districts polygons
 	districts.forEach(function (item) {
 		var path = item.Coordinates.map(function (item) {
@@ -119,13 +129,7 @@
 	};
 
 	mainHub.client.MessageFromAdministrator = function (message) {
-		if (window.Notification && Notification.permission !== "denied") {
-			Notification.requestPermission(function (status) {  // status is "granted", if accepted by user
-				var n = new Notification('Message from Administrator', {
-					body: message,
-				});
-			});
-		}
+		Notify(Resources.AdminMessageHeader, message);
 	}
 
 	$.connection.hub.start().done(function () {
@@ -230,6 +234,9 @@
 						else {
 							alert("something wrong");
 						}
+					},
+					error: function (result) {
+						Notify(result.responseJSON.errorHeader, result.responseJSON.errorMessage);
 					}
 				});
 			}

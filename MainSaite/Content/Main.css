@@ -279,7 +279,7 @@
 	#EditOrderTable tr td:nth-child(1){
 		width:20%;    
 	}
-	#paragraph{
+	.paragraph{
 	text-transform: uppercase;
     color: white;
     border-bottom: 2px solid #FFCA1C;

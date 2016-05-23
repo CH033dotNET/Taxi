@@ -68,9 +68,16 @@ namespace MainSaite.Controllers
 		public JsonResult EditOrder(OrderExDTO order)
 		{
 			orderManager.UpdateOrder(order);
-			//var users = userManager.GetUsers();
-			//return PartialView("_UserTable", users);
 			return Json(true);
+		}
+		[HttpPost]
+		public JsonResult GetOrderAddressByID(int id = 0)
+		{
+			string address = orderManager.GetById(id).Address;
+			return Json(new
+			{
+				address
+			});
 		}
 		[HttpPost]
 		public JsonResult GetDistricts()

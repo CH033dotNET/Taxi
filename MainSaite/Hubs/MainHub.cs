@@ -26,6 +26,17 @@ namespace MainSaite.Hubs
 			Clients.Group("Operator").addOrder(order);
 		}
 
+		[HubMethodName("cancelOrder")]
+		public void CancelOrder(int id)
+		{
+			Clients.Group("Operator").cancelOrder(id);
+			var driver = orderHubUsers.FirstOrDefault(u => u.OrderId == id);
+			if (driver !=null)
+			{
+				Clients.Client(driver.ConnectionId).cancelOrder(id);
+			}
+		}
+
 		[HubMethodName("OrderConfirmed")]
 		public void OrderConfirmed(int OrderId, int WaitingTime)
 		{
@@ -71,6 +82,11 @@ namespace MainSaite.Hubs
 		public void DenyOrder(int id)
 		{
 			Clients.OthersInGroup("Operator").denyOrder(id);
+		}
+		[HubMethodName("updateOrder")]
+		public void UpdateOrder(int id)
+		{
+			Clients.Group("Operator").orderUpdated(id);
 		}
 
 		[HubMethodName("MessageFromAdministrator")]

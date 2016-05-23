@@ -54,7 +54,7 @@
 				@Html.Label("[Entrance]")
 			</td>
 			<td>
-				@Html.TextBoxFor(x => Model.AddressFrom.Entrance, new { @required = true, @minlength = "4" })
+				@Html.TextBoxFor(x => Model.AddressFrom.Entrance, new { @required = true, @minlength = "1" })
 				@Html.ValidationMessageFor(x => x.AddressFrom.Entrance)
 			</td>
 		</tr>
@@ -63,34 +63,51 @@
 				@Html.Label("[Note]")
 			</td>
 			<td>
-				@Html.DisplayFor(x => Model.AddressFrom.Note, new { @required = true, @minlength = "4" })
+				@Html.DisplayFor(x => Model.AddressFrom.Note, new { @required = true, @minlength = "2" })
 			</td>
 		</tr>
 	}
 </table>
-@if (Model.AddressesTo.Count > 0)
-{
+@if (Model.AddressesTo.Count > 0) {
 	<div>
-		<p id="paragraph">Deliver Addresses <span class="glyphicon glyphicon-chevron-up" style="float:right;"></span></p>
+		<p class="paragraph">Deliver Addresses <span class="glyphicon glyphicon-chevron-up" style="float:right;"></span></p>
 	</div>
 	<div id="AddressesTable">
 		<table class="table" id="EditOrderTable">
-			@foreach (var address in Model.AddressesTo)
-			{
-				int i = 1;
+			@{
+				for(int i=0; i<Model.AddressesTo.Count; i++) {
 				<tr>
 					<td>
-						@Html.Label("Address: " + i)
+						@Html.Label("Address: " + (i+1))
 					</td>
 					<td>
-						@Html.TextBoxFor(x => address.Address, new { @required = true, @minlength = "0" })
-						@Html.TextBoxFor(x => address.Building, new { @required = true, @minlength = "0" })
+						@Html.TextBoxFor(x => Model.AddressesTo.ToList()[i].Address, new { @required = true, @minlength = "0" })
+						@Html.TextBoxFor(x => Model.AddressesTo.ToList()[i].Building, new { @required = true, @minlength = "0" })
 					</td>
 				</tr>
-				i++;
+	     		}
 			}
 		</table>
 	</div>
+}
+@if (Model.AdditionallyRequirements!=null)
+{
+    <div>
+	   <p class="paragraph">Additional Requirements<span class="glyphicon glyphicon-chevron-up" style="float:right;"></span></p>
+	</div>
+	<div id="RequirementsTable">
+	<table class="table" id="EditOrderTable">
+		<tr>
+			<td>
+				@Html.Label("[Passengers]")
+			</td>
+			<td>
+				@Html.TextBoxFor(x => Model.AdditionallyRequirements.Passengers, new { @required = true, @minlength = "0" })
+				@Html.ValidationMessageFor(x => Model.AdditionallyRequirements.Passengers)
+			</td>
+		</tr>
+	</table>
+</div>
 }
 @if (!string.IsNullOrEmpty(Model.Name))
 {
