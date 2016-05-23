@@ -73,7 +73,7 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public JsonResult GetOrderAddressByID(int id = 0)
 		{
-			string address = orderManager.GetById(id).Address;
+			string address = orderManager.GetById(id).FullAddressFrom;
 			return Json(new
 			{
 				address

@@ -24,8 +24,7 @@
 		$(document).on('click', '#orderBtn', function () {
 			var order = {};
 			order.AddressFrom = {};
-			order.AddressFrom.Address = $('#locality').val();
-			order.AddressFrom.Building = $('#street-number').val();
+			order.AddressFrom.Address = $('#textField').val();
 			$.ajax({
 				url: '/Client/AddOrder/',
 				contentType: "application/json",
