@@ -46,7 +46,10 @@ namespace BAL.Interfaces
 		}
 
 		public OrderExDTO GetById(int id) {
-			var order = uOW.OrderExRepo.All.Include(o => o.AddressFrom).Include(o=>o.AddressesTo).Where(o => o.Id == id).FirstOrDefault();
+			var order = uOW.OrderExRepo.All.Include(o => o.AddressFrom).
+				Include(o=>o.AddressesTo).
+				Include(o=>o.AdditionallyRequirements).
+				Where(o => o.Id == id).FirstOrDefault();
 
 			return Mapper.Map<OrderExDTO>(order);
 		}

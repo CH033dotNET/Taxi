@@ -73,6 +73,11 @@ namespace MainSaite.Hubs
 		{
 			Clients.OthersInGroup("Operator").denyOrder(id);
 		}
+		[HubMethodName("updateOrder")]
+		public void UpdateOrder(int id)
+		{
+			Clients.Group("Operator").orderUpdated(id);
+		}
 
 		[HubMethodName("MessageFromAdministrator")]
 		public void MessageFromAdministrator(String message)
