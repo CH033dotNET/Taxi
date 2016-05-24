@@ -27,7 +27,7 @@
 					@using (Ajax.BeginForm("EditOrder", new { controller = "OrderEx", action = "EditOrder" }, new AjaxOptions
 	                {
 		                HttpMethod = "POST",
-		                OnSuccess = "updateOrderInfo()",
+		                OnSuccess = "updateOrderInfo()",//call update order method in operatororder.js
 						}, new { @id = "ChangeForm" }))
 					{
 		                

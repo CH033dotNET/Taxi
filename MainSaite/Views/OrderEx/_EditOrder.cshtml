@@ -1,7 +1,7 @@
 ﻿@model Model.DTO.OrderExDTO
 
 <table class="table" id="EditOrderTable">
-	<caption>[ORDER INFO]</caption>
+	<caption>[Order Info]</caption>
 	<tr>
 		<td></td>
 		<td>
@@ -10,30 +10,30 @@
 	</tr>
 	<tr>
 		<td>
-			@Html.Label("[OrderTime]")
+			@Html.Label(Resources.Resource.OrderTime)
 		</td>
 		<td>
 			@Html.TextBoxFor(x => Model.OrderTime, new { @required = true, @minlength = "4" })
 			@Html.ValidationMessageFor(x => x.OrderTime)
 		</td>
 	</tr>
-	@if (Model.Address != null)
+	@*@if (Model.FullAddressFrom != null)
+		{
+			<tr>
+				<td>
+					@Html.Label("[Address]")
+				</td>
+				<td>
+					@Html.TextBoxFor(x => Model.FullAddressFrom, new { @required = true, @minlength = "4" })
+					@Html.ValidationMessageFor(x => x.FullAddressFrom)
+				</td>
+			</tr>
+		}*@
+	@if (Model.AddressFrom != null)
 	{
 		<tr>
 			<td>
-				@Html.Label("[Address]")
-			</td>
-			<td>
-				@Html.TextBoxFor(x => Model.Address, new { @required = true, @minlength = "4" })
-				@Html.ValidationMessageFor(x => x.Address)
-			</td>
-		</tr>
-	}
-	else if (Model.AddressFrom != null)
-	{
-		<tr>
-			<td>
-				@Html.Label("[AddressFrom]")
+				@Html.Label(Resources.Resource.Address)
 			</td>
 			<td>
 				@Html.TextBoxFor(x => Model.AddressFrom.Address, new { @required = true, @minlength = "4" })
@@ -42,7 +42,7 @@
 		</tr>
 		<tr>
 			<td>
-				@Html.Label("[Building]")
+				@Html.Label(Resources.Resource.Building)
 			</td>
 			<td>
 				@Html.TextBoxFor(x => Model.AddressFrom.Building, new { @required = true, @minlength = "1" })
@@ -51,7 +51,7 @@
 		</tr>
 		<tr>
 			<td>
-				@Html.Label("[Entrance]")
+				@Html.Label(Resources.Resource.Entrance)
 			</td>
 			<td>
 				@Html.TextBoxFor(x => Model.AddressFrom.Entrance, new { @required = true, @minlength = "1" })
@@ -60,7 +60,7 @@
 		</tr>
 		<tr>
 			<td>
-				@Html.Label("[Note]")
+				@Html.Label(Resources.Resource.Note)
 			</td>
 			<td>
 				@Html.DisplayFor(x => Model.AddressFrom.Note, new { @required = true, @minlength = "2" })
@@ -68,46 +68,97 @@
 		</tr>
 	}
 </table>
-@if (Model.AddressesTo.Count > 0) {
+@if (Model.AddressesTo.Count > 0)
+{
 	<div>
-		<p class="paragraph">Deliver Addresses <span class="glyphicon glyphicon-chevron-up" style="float:right;"></span></p>
+		<p class="paragraph">Deliver Addresses <span class="glyphicon glyphicon-chevron-down" style="float:right;"></span></p>
 	</div>
-	<div id="AddressesTable">
+	<div id="AddressesTable" style="display:none">
 		<table class="table" id="EditOrderTable">
 			@{
-				for(int i=0; i<Model.AddressesTo.Count; i++) {
-				<tr>
-					<td>
-						@Html.Label("Address: " + (i+1))
-					</td>
-					<td>
-						@Html.TextBoxFor(x => Model.AddressesTo.ToList()[i].Address, new { @required = true, @minlength = "0" })
-						@Html.TextBoxFor(x => Model.AddressesTo.ToList()[i].Building, new { @required = true, @minlength = "0" })
-					</td>
-				</tr>
-	     		}
+	for (int i = 0; i < Model.AddressesTo.Count; i++)
+	{
+		<tr>
+			<td>
+				@Html.Label(Resources.Resource.Address + (i + 1))
+			</td>
+			<td>
+				@Html.TextBoxFor(x => Model.AddressesTo[i].Address, new { @required = true, @minlength = "3" })
+				@Html.TextBoxFor(x => Model.AddressesTo[i].Building, new { @required = true, @minlength = "1" })
+			</td>
+		</tr>
+	}
 			}
 		</table>
 	</div>
 }
-@if (Model.AdditionallyRequirements!=null)
+@if (Model.AdditionallyRequirements != null)
 {
-    <div>
-	   <p class="paragraph">Additional Requirements<span class="glyphicon glyphicon-chevron-up" style="float:right;"></span></p>
+	<div>
+		<p class="paragraph">@Resources.Resource.Additionally<span class="glyphicon glyphicon-chevron-down" style="float:right;"></span></p>
 	</div>
-	<div id="RequirementsTable">
-	<table class="table" id="EditOrderTable">
-		<tr>
-			<td>
-				@Html.Label("[Passengers]")
-			</td>
-			<td>
-				@Html.TextBoxFor(x => Model.AdditionallyRequirements.Passengers, new { @required = true, @minlength = "0" })
-				@Html.ValidationMessageFor(x => Model.AdditionallyRequirements.Passengers)
-			</td>
-		</tr>
-	</table>
-</div>
+	<div id="RequirementsTable" style="display:none">
+		<table class="table" id="EditOrderTable">
+			<tr>
+				<td>
+					@Html.Label(Resources.Resource.Passengers)
+				</td>
+				<td>
+					@Html.TextBoxFor(x => Model.AdditionallyRequirements.Passengers, new { @required = true, @minlength = "0" })
+					@Html.ValidationMessageFor(x => Model.AdditionallyRequirements.Passengers)
+				</td>
+			</tr>
+			<tr>
+				<td>@Html.Label(Resources.Resource.ClassOfCar)</td>
+				<td>
+					@Html.DropDownListFor(x => Model.AdditionallyRequirements.Car,
+				new SelectList(Enum.GetValues(typeof(Common.Enum.CarEnums.CarClassEnum))))
+				</td>
+			</tr>
+			<tr>
+				<td>@Html.Label(Resources.Resource.Additionally)</td>
+				<td>
+					<div id="requirements">
+						<ul>
+							<li>
+								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.Bag)
+								@Html.Label(Resources.Resource.WithBaggage)
+							</li>
+							<li>
+								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.Conditioner)
+								@Html.Label(Resources.Resource.Conditioner)
+							</li>
+							<li>
+								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.Courier)
+								@Html.Label(Resources.Resource.Courier)
+							</li>
+							<li>
+								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.MyCar)
+								@Html.Label(Resources.Resource.MyCar)
+							</li>
+							<li>
+								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.NoSmoking)
+								@Html.Label(Resources.Resource.NoSmoking)
+							</li>
+							<li>
+								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.Pets)
+								@Html.Label(Resources.Resource.WithPets)
+							</li>
+							<li>
+								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.Smoking)
+								@Html.Label(Resources.Resource.Smoking)
+							</li>
+							<li>
+								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.Urgently)
+								@Html.Label(Resources.Resource.Urgently)
+							</li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+
+		</table>
+	</div>
 }
 @if (!string.IsNullOrEmpty(Model.Name))
 {
@@ -115,7 +166,7 @@
 		<caption>[Client Info]</caption>
 		<tr>
 			<td>
-				@Html.Label("[UserName]")
+				@Html.Label(Resources.Resource.YourName)
 			</td>
 			<td>
 				@Html.TextBoxFor(x => Model.Name, new { @required = true, @minlength = "2" })
@@ -124,7 +175,7 @@
 		</tr>
 		<tr>
 			<td>
-				@Html.Label("[Phone]")
+				@Html.Label(Resources.Resource.PhoneNumber)
 			</td>
 			<td>
 				@Html.TextBoxFor(x => Model.Phone, new { @required = true, @minlength = "10" })
@@ -139,7 +190,7 @@
 		<caption>[DRIVER INFO]</caption>
 		<tr>
 			<td>
-				@Html.Label("[Driver]")
+				@Html.Label(Resources.Resource.Driver)
 			</td>
 			<td>
 				@Html.TextBoxFor(x => Model.DriverId, new { @required = true, @minlength = "1" })
@@ -164,7 +215,7 @@
 	<caption>[TRIP INFO]</caption>
 	<tr>
 		<td>
-			@Html.Label("[Waiting Time]")
+			@Html.Label(Resources.Resource.WaitingTime)
 		</td>
 		<td>
 			@Html.TextBoxFor(x => Model.WaitingTime, new { @required = true, @minlength = "1" })
@@ -173,7 +224,7 @@
 	</tr>
 	<tr>
 		<td>
-			@Html.Label("[Price]")
+			@Html.Label(Resources.Resource.Price)
 		</td>
 		<td>
 			@Html.TextBoxFor(x => Model.Price, new { @required = true, @minlength = "2" })
@@ -182,7 +233,7 @@
 	</tr>
 	<tr>
 		<td>
-			@Html.Label("[Perquisite]")
+			@Html.Label(Resources.Resource.Perquisite)
 		</td>
 		<td>
 			@Html.TextBoxFor(x => Model.Perquisite, new { @required = true, @minlength = "1" })

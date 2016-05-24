@@ -35,13 +35,44 @@ namespace BAL.Interfaces
 
 		public void UpdateOrder(OrderExDTO order)
 		{
-			var result = uOW.OrderExRepo.All.Include(o => o.AddressFrom).SingleOrDefault(o=>o.Id == order.Id);
+			var dbOrder = uOW.OrderExRepo.All.Include(o => o.AddressFrom).
+				Include(o => o.AddressesTo).
+				Include(o => o.AdditionallyRequirements).
+				Where(o => o.Id == order.Id).FirstOrDefault();
 
-			if (result != null)
+			if (dbOrder != null)
 			{
-				result.AddressFrom.Address = order.AddressFrom.Address;
-				result.Status = order.Status;
-
+				if (order.AddressFrom != null)
+				{
+					dbOrder.AddressFrom.Address = order.AddressFrom.Address;
+					dbOrder.AddressFrom.Building = order.AddressFrom.Building;
+					dbOrder.AddressFrom.Entrance = order.AddressFrom.Entrance;
+				}
+				if (dbOrder.AdditionallyRequirements != null)
+				{
+					dbOrder.AdditionallyRequirements.Passengers = order.AdditionallyRequirements.Passengers;
+					dbOrder.AdditionallyRequirements.Car = order.AdditionallyRequirements.Car;
+					dbOrder.AdditionallyRequirements.Conditioner = order.AdditionallyRequirements.Conditioner;
+					dbOrder.AdditionallyRequirements.Bag = order.AdditionallyRequirements.Bag;
+					dbOrder.AdditionallyRequirements.Courier = order.AdditionallyRequirements.Courier;
+					dbOrder.AdditionallyRequirements.MyCar = order.AdditionallyRequirements.MyCar;
+					dbOrder.AdditionallyRequirements.NoSmoking = order.AdditionallyRequirements.NoSmoking;
+					dbOrder.AdditionallyRequirements.Pets = order.AdditionallyRequirements.Pets;
+					dbOrder.AdditionallyRequirements.Smoking = order.AdditionallyRequirements.Smoking;
+					dbOrder.AdditionallyRequirements.Urgently = order.AdditionallyRequirements.Urgently;
+				}
+				if(dbOrder.AddressesTo!=null && dbOrder.AddressesTo.Count>0)
+				{
+					int count = dbOrder.AddressesTo.Count;
+					for (int i = 0; i < count; i++)
+					{
+						dbOrder.AddressesTo[i].Address = order.AddressesTo[i].Address;
+						dbOrder.AddressesTo[i].Building = order.AddressesTo[i].Building;
+					}
+				}
+				dbOrder.Price = order.Price;
+				dbOrder.WaitingTime = order.WaitingTime;
+				dbOrder.Perquisite = order.Perquisite;
 				uOW.Save();
 			}
 		}
