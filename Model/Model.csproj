@@ -54,6 +54,7 @@
     <Compile Include="DB\Coordinate.cs" />
     <Compile Include="DB\Feedback.cs" />
     <Compile Include="DB\Location.cs" />
+    <Compile Include="DB\News.cs" />
     <Compile Include="DB\Order.cs" />
     <Compile Include="DB\OrderEx.cs" />
     <Compile Include="DB\Person.cs" />

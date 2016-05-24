@@ -45,6 +45,7 @@ namespace DAL
 		private IGenericRepository<AddressFrom> addressFromRepo;
 		private IGenericRepository<AddressTo> addressToRepo;
 		private IGenericRepository<Feedback> feedbackRepo;
+		private IGenericRepository<News> newsRepo;
 		#endregion
 
 		public UnitOfWork()
@@ -82,6 +83,7 @@ namespace DAL
 			addressFromRepo = new GenericRepository<AddressFrom>(context);
 			addressToRepo = new GenericRepository<AddressTo>(context);
 			feedbackRepo = new GenericRepository<Feedback>(context);
+			newsRepo = new GenericRepository<News>(context);
 		}
 
 		public void Save()
@@ -307,6 +309,18 @@ namespace DAL
 					feedbackRepo = new GenericRepository<Feedback>(context);
 				}
 				return feedbackRepo;
+			}
+		}
+
+		public IGenericRepository<News> NewsRepo
+		{
+			get
+			{
+				if (newsRepo == null)
+				{
+					newsRepo = new GenericRepository<News>(context);
+				}
+				return newsRepo;
 			}
 		}
 		#endregion
