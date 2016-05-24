@@ -18,7 +18,7 @@ namespace Model.DTO
 
 		public int? CarId { get; set; }
 
-		public Car Car { get; set; }
+		public CarDTO Car { get; set; }
 
 		public int WaitingTime { get; set; }
 

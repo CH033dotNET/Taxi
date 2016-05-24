@@ -1,0 +1,25 @@
+﻿.heading {
+	font-size: 120%;
+	text-align: center;
+}
+
+.panel span {
+	padding-right: 5px;
+}
+
+#modal-message img {
+	width: 20%;
+	height: 20%;
+}
+
+.modal-body {
+	text-align: center;
+}
+
+#pleasantTrip {
+	font-size: 160%;
+}
+
+h4 span {
+	font-size: 130%;
+}

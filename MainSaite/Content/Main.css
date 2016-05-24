@@ -221,9 +221,10 @@
 	padding-right: 5px;
 	background-color: #4CAF50;
 	font-weight: bold;
+	width: 100%;
 }
 
-	#orderBtn:hover {
+.activeBtn #orderBtn:hover {
 		color: #4CAF50;
 		font-family: Roboto, Arial, sans-serif;
 		font-size: 20px;

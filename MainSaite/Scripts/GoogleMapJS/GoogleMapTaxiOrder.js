@@ -185,22 +185,6 @@ function geocodeLatLng(LatLong, geocoder, map, infowindow) {
 
 				document.getElementById('textField').value = results[0].formatted_address;
 
-				for (var i = 0; i < results[0].address_components.length; i++) {
-					var addr = results[0].address_components[i];
-					switch (addr.types[0]) {
-						case 'locality':
-							document.getElementById('locality').value = addr.long_name;
-							break;
-						case 'street_number':
-							document.getElementById('street-number').value = addr.long_name;
-							break;
-						case 'route':
-							document.getElementById('route').value = addr.long_name;
-							break;
-					}
-						
-				}
-
 			} else {
 				window.alert('No results found');
 			}
