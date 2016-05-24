@@ -96,7 +96,14 @@ margin: 0 auto;
     text-align: center;
 }
 
-
+/*registration*/
+#Role_Name{
+	width:100%;
+}
+#regForm{
+	display: table;
+    margin: 0 auto;
+}
 .qwert img{
 width:100%;
 
@@ -415,7 +422,7 @@ margin:0px;
 }
 
 .login-btn{
-    padding-right: 5px;
+    padding-top:10px;
 }
 #reg-btn{
     width: 250px;
