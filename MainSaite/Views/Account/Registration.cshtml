@@ -3,10 +3,9 @@
 <!--script type="text/ng-template" src="~/Content/UserMenu/ClientDriveService.css"></script-->
 
 <div class="btform" style="/*background-image: url('../../Content/Picture/DriverIcons/Registr1.jpg'); */">
-	@using (Html.BeginForm("Registration"))
-	{
+	@using (Html.BeginForm("Registration", "Account", null, FormMethod.Post, new { @id = "regForm" }))
+ {
 		<h2 class="regHead">@Resources.Resource.Registration</h2>
-		@*@Html.ValidationSummary();*@
 		<table class="regTable">
 			<tr>
 				<td id="name">
@@ -46,17 +45,17 @@
 				<td id="name">@Resources.Resource.Role</td>
 				<td>
 
-					@Html.DropDownListFor(x => x.Role.Name, new SelectList(Enum.GetValues(typeof(Common.Enum.AvailableRolesViaRegistration))).Reverse(), new { style = "width:98%" })
+					@Html.DropDownListFor(x => x.Role.Name, new SelectList(Enum.GetValues(typeof(Common.Enum.AvailableRolesViaRegistration))).Reverse(), new { style = "width:100%" })
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" class="login-btn" style="text-align:right">
-					<button type="submit" value="Register" id="reg-btn" style="display:inline">@Resources.Resource.Registration</button>
+				<td colspan="2" class="login-btn" style="text-align:center">
+					<button type="submit" value="Register" class= "btn btn-success" style="display:inline">@Resources.Resource.Registration</button>
 				</td>
 			</tr>
 
 		</table>
-	}
+ }
 
 </div>
 
