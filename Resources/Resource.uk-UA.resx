@@ -898,7 +898,7 @@
     <value>Улюблені адреси</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Відміна</value>
+    <value>Скасувати</value>
   </data>
   <data name="CountRoma" xml:space="preserve">
     <value>Кількість замовленнь</value>
@@ -1145,5 +1145,17 @@
   </data>
   <data name="ErrorHeader" xml:space="preserve">
     <value>Помилка</value>
+  </data>
+  <data name="PreOrderMessage" xml:space="preserve">
+    <value>Ви повинні увійти для того, щоб зробити попереднє замовлення</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>Скасовано</value>
+  </data>
+  <data name="Finished" xml:space="preserve">
+    <value>Виконано</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Статус</value>
   </data>
 </root>

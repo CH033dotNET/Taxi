@@ -26,6 +26,8 @@
 			var order = {};
 			order.AddressFrom = {};
 			order.AddressFrom.Address = $('#textField').val();
+			if ($('#userId').length)
+				order.UserId = $('#userId').val();
 			$.ajax({
 				url: '/Client/AddOrder/',
 				contentType: "application/json",

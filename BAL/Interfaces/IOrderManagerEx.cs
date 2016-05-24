@@ -19,6 +19,8 @@ namespace BAL.Interfaces
 
 		bool TakeOrder(int id, int DriverId);
 
+		bool CancelOrder(int id);
+
 		bool SetWaitingTime(int id, int WaitingTime);
 
 		IEnumerable<OrderExDTO> GetNotApprovedOrders();

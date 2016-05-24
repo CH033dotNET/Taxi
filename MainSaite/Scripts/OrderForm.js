@@ -5,6 +5,7 @@ $(function () {
 	$('#load').hide();
 	$('#time-group').hide();
 	$('[data-toggle="tooltip"]').tooltip();
+	$('#pre-order').prop('disabled', true);
 
 	if ($('#userId').length) {
 		var userId = {
@@ -18,6 +19,8 @@ $(function () {
 				$('#name').val(data.FirstName);
 				$('#phone').val(data.Phone);
 				$('#remember').prop('checked', true);
+				$('#pre-order').prop('disabled', false);
+				$('#pre-order').parent().removeAttr('data-original-title');
 			}
 		});
 	}

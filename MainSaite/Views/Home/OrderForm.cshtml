@@ -91,8 +91,12 @@
 				<div class="row">
 					<label class="col-sm-3 form-control-label">@Resources.Resource.WhenToGo</label>
 					<div class="col-sm-9 radio-box form-inline">
-						<label class="radio-inline"><input type="radio" id="urgently" name="urgency" checked><span></span>@Resources.Resource.Urgently</label>
-						<label class="radio-inline"><input type="radio" id="pre-order" name="urgency"><span></span>@Resources.Resource.PreOrder</label>
+						<label class="radio-inline">
+							<input type="radio" id="urgently" name="urgency" checked><span></span>@Resources.Resource.Urgently
+						</label>
+						<label class="radio-inline" data-toggle="tooltip" title="@Resources.Resource.PreOrderMessage">
+							<input type="radio" id="pre-order" name="urgency"><span></span>@Resources.Resource.PreOrder
+						</label>
 						<div class="input-group bootstrap-datetimepicker datetimepicker" id="time-group">
 							<input type="text" id="time" class="form-control" />
 							<span class="input-group-addon">

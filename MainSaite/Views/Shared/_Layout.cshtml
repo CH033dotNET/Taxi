@@ -145,7 +145,7 @@
 
 						if (ViewBag.UserRoleId == (int)AvailableRoles.Client)
 						{
-
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.ClientDriveHistory, "DriveHistory", "Client")</li>
 						}
 
 						if (ViewBag.UserRoleId == (int)AvailableRoles.Support)

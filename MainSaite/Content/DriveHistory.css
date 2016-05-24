@@ -7,8 +7,12 @@
 	vertical-align: middle;
 }
 
+.order .dateTime, #dateTime {
+	padding-left: 20px;
+}
+
 #dateTime {
-	width: 120px;
+	width: 130px;
 }
 
 #feedback {
@@ -23,8 +27,20 @@
 	width: 150px;
 }
 
+#status {
+	width: 120px;
+}
+
 #rating span {
  	font-size: 30px;
  	color: #FFED00;
  	margin: -2px;
  }
+
+.order td {
+	color: #333;
+}
+
+.cancel {
+	width: 80px;
+}

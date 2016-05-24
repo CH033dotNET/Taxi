@@ -82,5 +82,11 @@ namespace MainSaite.Controllers
 		{
 			orderManager.SetClientFeedback(orderId, feedbackId);
 		}
+
+		[HttpPost]
+		public void CancelOrder(int id)
+		{
+			orderManager.CancelOrder(id);
+		}
 	}
 }

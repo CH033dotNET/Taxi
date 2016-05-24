@@ -132,6 +132,19 @@ namespace BAL.Interfaces
 			return false;
 		}
 
+		public bool CancelOrder(int id)
+		{
+			var order = uOW.OrderExRepo.All.Where(o => o.Id == id).FirstOrDefault();
+			if (order != null)
+			{
+				order.Status = OrderStatusEnum.Canceled;
+				uOW.OrderExRepo.Update(order);
+				uOW.Save();
+				return true;
+			}
+			return false;
+		}
+
 		public bool SetWaitingTime(int id, int WaitingTime)
 		{
 			var order = uOW.OrderExRepo.All.Where(o => o.Id == id).FirstOrDefault();
@@ -172,8 +185,15 @@ namespace BAL.Interfaces
 
 		public IEnumerable<OrderExDTO> GetOrdersByUserId(int id)
 		{
-			var orders = uOW.OrderExRepo.All.Include(o => o.AddressFrom)
-				.Where(o => o.UserId == id && o.Status == OrderStatusEnum.Confirmed)
+			var orders = uOW.OrderExRepo.All
+				.Include(o => o.AddressFrom)
+				.Include(o => o.AddressesTo)
+				.Include(o => o.AdditionallyRequirements)
+				.Include(o => o.Car)
+				.Where(o => o.UserId == id && (
+				o.Status == OrderStatusEnum.Confirmed ||
+				o.Status == OrderStatusEnum.Canceled ||
+				o.Status == OrderStatusEnum.Finished))
 				.ToList();
 			return Mapper.Map<List<OrderExDTO>>(orders);
 		}

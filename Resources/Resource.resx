@@ -1144,4 +1144,16 @@
   <data name="ErrorHeader" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="PreOrderMessage" xml:space="preserve">
+    <value>You must log in to make a pre-order</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="Finished" xml:space="preserve">
+    <value>Finished</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
 </root>

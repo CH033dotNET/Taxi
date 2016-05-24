@@ -399,6 +399,7 @@
     <Content Include="Scripts\DistrictPartButtonScripts.js" />
     <Content Include="Scripts\DistrictsCustomScripts\DistrictScriptLogic.js" />
     <Content Include="Scripts\DistrictsCustomScripts\PreValidation.js" />
+    <Content Include="Scripts\DriveHistory.js" />
     <Content Include="Scripts\DriverEx\DistrictViewer.js" />
     <Content Include="Scripts\DriverEx\DriverCoordinates.js" />
     <Content Include="Scripts\DriverEx\DriverFeedback.js" />
