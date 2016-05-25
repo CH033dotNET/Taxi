@@ -7,6 +7,7 @@ namespace BAL.Manager
 {
 	public interface IUserManager
 	{
+	    void SetClientBonus(int userId, decimal bonus);
 		void ChangeUserParameters(UserDTO user);
 		void DeleteUser(int userId);
 		void deleteVIPById(int id);

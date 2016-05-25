@@ -3,7 +3,11 @@
 	Layout = null;
 }
 
+@if(Model!=null) {
 <form role="form" id="form">
+	@if (Model.UserId != null) {  
+	<input type="hidden" id="userId" value=@Model.UserId>	
+	}														  
 	@if (Model.AdditionallyRequirements != null) { 
 	<div class="form-group">
 		<div class="form-group-header">
@@ -47,19 +51,21 @@
 					<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithPets"><input type="checkbox" id="pets" checked="@(Model.AdditionallyRequirements.Pets)"><span></span></label>
 					<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithBaggage"><input type="checkbox" id="bag" checked="@(Model.AdditionallyRequirements.Bag)"><span></span></label>
 					<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Conditioner"><input type="checkbox" id="conditioner" checked="@(Model.AdditionallyRequirements.Conditioner)"><span></span></label>
-					<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithEnglish"><input type="checkbox" id="english" checked="@(Model.AdditionallyRequirements.Bag)"><span></span></label>
+					<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithEnglish"><input type="checkbox" id="english" checked="@(Model.AdditionallyRequirements.English)"><span></span></label>
 					<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.NoSmoking"><input type="checkbox" id="nosmoking" checked="@(Model.AdditionallyRequirements.NoSmoking)"><span></span></label>
 					<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Smoking"><input type="checkbox" id="smoking" checked="@(Model.AdditionallyRequirements.Smoking)"><span></span></label>
 					<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithCheck"><input type="checkbox" id="check" checked="@(Model.AdditionallyRequirements.Check)"><span></span></label>
 				</div>
 			</div>
 		</div>
-	</div>}
+	</div>
+	}
 	<div id="cost-group">
 		<label>@Resources.Resource.Price: </label>
 		<div id="cost">@Model.Price</div>
 	</div>
 </form>
+
 <table id="startRideDiv">
 	<tr>
 		<td>
@@ -72,19 +78,27 @@
 	</tr>
 	<tr>
 		<td colspan="2" style="text-align: center;">
+			
 			<div class="checkbox">
-				<label><input type="checkbox" id="clientBonus" value="">[USER WANT TO USE BONUSES]</label>
+             @if (Model.UserId != null) {
+				<label><input type="checkbox" id="clientBonus" value="">[USER WANT TO USE BONUSES]</label>}
+			 else
+			 {
+				<label>[THIS CLIENT IS UNREGISTERED]</label>
+			 }																				  
 			</div>
+
 		</td>
 	</tr>
 </table>
-
+}
 <script>
 	var tariffs;
 	var calculatorIntervalId;
 	var prevLatitude = null;
 	var prevLongitude = null;
 	var distancePrice = 0;
+	var finalPrice = 0;
 	var PERIOD = 5000;
 
 	$(document).ready(function () {
@@ -111,14 +125,36 @@
 	}
 
 	function StopOrder() {
+
 		$('#btnStart').show();
 		$('#btnStop').hide();
 		clearInterval(calculatorIntervalId);
-
+		distancePrice = 0;
 		//logic for bonuses
-		if ($('#clientBonus').is(":checked")) {
-			
+
+		userId = $('#userId').val();
+
+		if (userId !== undefined) {
+			$.ajax({
+				type: "POST",
+				url: "/Client/SetClientBonus",
+				dataType: "json",
+				data: {userID :userId, Bonus: finalPrice*0.05},
+				success: function (data) {
+					//add ability to use bonuses
+					//and eneble partial view
+				},
+				error: function (error) {
+					alert(error.statusText);
+				}
+			});
 		}
+		if ($('#clientBonus').is(":checked") && userId===undefined) {
+			
+
+
+		}
+		finalPrice = 0;
 	}
 
 	function CalculatePrice() {
@@ -171,8 +207,8 @@
 			prevLatitude = position.coords.latitude;
 			prevLongitude = position.coords.longitude;
 		});
-
-		$('#cost').html((startPrice + distancePrice).toFixed(2));
+		finalPrice = (startPrice + distancePrice).toFixed(2);
+		$('#cost').html(finalPrice);
 	}
 </script>
 <script src="~/Scripts/moment.js"></script>
