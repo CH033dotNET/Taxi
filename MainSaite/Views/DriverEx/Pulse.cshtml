@@ -1,6 +1,4 @@
-﻿@model List<List<Model.DTO.DriverWithOrdersDTO>>
-
-@{
+﻿@{
 	ViewBag.Title = Resources.Resource.Pulse;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -12,49 +10,37 @@
 	<h1>@Resources.Resource.Pulse</h1>
 </div>
 
+<input type="hidden" id="currentDriverId" value="@(((Model.DTO.UserDTO)Session["User"]).Id)" />
+
 <div id="container">
-	<table class="list" border>
+	<table class="list" id="lastMonth">
 		<tr>
-			<th colspan="3">
-				@Resources.Resource.LastMonth
+			<th colspan="4">
+				<h4 class="listTitle">@Resources.Resource.LastMonth</h4>
 			</th>
 		</tr>
-		@foreach (var item in Model[0])
-		{
-			<tr>
-				<td>
-					@(Model[0].IndexOf(item) + 1)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Driver.UserName)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.OrdersCount)
-				</td>
-			</tr>
-		}
+		<tr>
+			<td colspan="3"></td>
+			<td class="orders">
+				<h5>@Resources.Resource.Orders</h5>
+			</td>
+		</tr>
 	</table>
-	<table class="list" border>
+	<table class="list" id="allTheTime">
 		<tr>
-			<th colspan="3">
-				@Resources.Resource.AllTheTime
+			<th colspan="4">
+				<h4 class="listTitle">@Resources.Resource.AllTheTime</h4>
 			</th>
 		</tr>
-		@foreach (var item in Model[1])
-		{
-			<tr>
-				<td>
-					@(Model[1].IndexOf(item) + 1)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Driver.UserName)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.OrdersCount)
-				</td>
-			</tr>
-		}
+		<tr>
+			<td colspan="3"></td>
+			<td class="orders">
+				<h5>@Resources.Resource.Orders</h5>
+			</td>
+		</tr>
 	</table>
 </div>
+
+<script src="~/Scripts/Pulse.js"></script>
 
 

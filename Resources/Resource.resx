@@ -1168,4 +1168,7 @@
   <data name="CancelOrder" xml:space="preserve">
     <value>Cancel order</value>
   </data>
+  <data name="Orders" xml:space="preserve">
+    <value>orders:</value>
+  </data>
 </root>

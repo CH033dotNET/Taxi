@@ -72,12 +72,19 @@ namespace MainSaite.Controllers
 
 		public ActionResult Pulse()
 		{
-			var driversWithOrders = userManager.GetDriversWithOrders();
-			var driversWithOrdersLastMonth = userManager.GetDriversWithOrdersLastMonth();
-			var drivers = new List<List<DriverWithOrdersDTO>>();
-			drivers.Add(driversWithOrdersLastMonth.ToList());
-			drivers.Add(driversWithOrders.ToList());
-			return View(drivers);
+			return View();
+		}
+
+		[HttpPost]
+		public JsonResult GetDriversWithsOrders(int id)
+		{
+			return Json(userManager.GetCurrentDrivers(id));
+		}
+
+		[HttpPost]
+		public JsonResult GetDriversWithsOrdersLastMonth(int id)
+		{
+			return Json(userManager.GetCurrentDriversLastMonth(id));
 		}
 
 		[HttpPost]

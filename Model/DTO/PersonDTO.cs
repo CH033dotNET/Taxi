@@ -25,6 +25,8 @@ namespace Model.DTO
 		[MinLength(3, ErrorMessage = "Минимальная длинна - 3 символов")]
 		public string LastName { get; set; }
 
+		public string FullName { get; set; }
+
 		public string Phone { get; set; }
 
 		public string ImageName { get; set; }

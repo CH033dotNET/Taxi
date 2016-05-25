@@ -376,6 +376,15 @@ namespace BAL.Manager
 				var driverWithOrders = new DriverWithOrdersDTO();
 				driverWithOrders.Driver = driver;
 				driverWithOrders.OrdersCount = uOW.OrderExRepo.All.Where(o => o.DriverId == driver.Id).Count();
+				var person = Mapper.Map<PersonDTO>(uOW.PersonRepo.All.Where(p => p.UserId == driver.Id).FirstOrDefault());
+				if (person != null)
+				{
+					if (person.ImageName != null)
+						driverWithOrders.Image = person.ImageName;
+					else
+						driverWithOrders.Image = "item_0_profile.jpg";
+					driverWithOrders.Name = person.FullName;
+				}
 				driversWithOrders.Add(driverWithOrders);
 			}
 			driversWithOrders.Sort(delegate(DriverWithOrdersDTO x, DriverWithOrdersDTO y)
@@ -396,6 +405,15 @@ namespace BAL.Manager
 				driverWithOrders.OrdersCount = uOW.OrderExRepo.All.Where(o => o.DriverId == driver.Id
 					&& o.OrderTime.Year == DateTime.Now.Year
 					&& o.OrderTime.Month == DateTime.Now.Month).Count();
+				var person = Mapper.Map<PersonDTO>(uOW.PersonRepo.All.Where(p => p.UserId == driver.Id).FirstOrDefault());
+				if (person != null)
+				{
+					if (person.ImageName != null)
+						driverWithOrders.Image = person.ImageName;
+					else
+						driverWithOrders.Image = "item_0_profile.jpg";
+					driverWithOrders.Name = person.FullName;
+				}
 				driversWithOrders.Add(driverWithOrders);
 			}
 			driversWithOrders.Sort(delegate (DriverWithOrdersDTO x, DriverWithOrdersDTO y)
@@ -403,6 +421,56 @@ namespace BAL.Manager
 				return y.OrdersCount.CompareTo(x.OrdersCount);
 			});
 			return driversWithOrders;
+		}
+
+		public List<DriverWithOrdersDTO> GetCurrentDrivers(int id)
+		{
+			var allDrivers = this.GetDriversWithOrders().ToList();
+			var i = 0;
+			for (; i < allDrivers.Count; i++)
+				if (allDrivers[i].Driver.Id == id)
+					break;
+			var currentDriverIndex = i;
+			var firstDriverIndex = i;
+			var lastDriverIndex = i;
+			firstDriverIndex -= 3;
+			if (firstDriverIndex < 0)
+			{
+				lastDriverIndex -= firstDriverIndex;
+				firstDriverIndex = 0;
+			}
+			lastDriverIndex += 3;
+			if (lastDriverIndex >= allDrivers.Count)
+				lastDriverIndex = allDrivers.Count - 1;
+			var currentDrivers = new List<DriverWithOrdersDTO>();
+			for (i = firstDriverIndex; i <= lastDriverIndex; i++)
+				currentDrivers.Add(allDrivers[i]);
+			return currentDrivers;
+		}
+
+		public List<DriverWithOrdersDTO> GetCurrentDriversLastMonth(int id)
+		{
+			var allDrivers = this.GetDriversWithOrdersLastMonth().ToList();
+			var i = 0;
+			for (; i < allDrivers.Count; i++)
+				if (allDrivers[i].Driver.Id == id)
+					break;
+			var currentDriverIndex = i;
+			var firstDriverIndex = i;
+			var lastDriverIndex = i;
+			firstDriverIndex -= 3;
+			if (firstDriverIndex < 0)
+			{
+				lastDriverIndex -= firstDriverIndex;
+				firstDriverIndex = 0;
+			}
+			lastDriverIndex += 3;
+			if (lastDriverIndex >= allDrivers.Count)
+				lastDriverIndex = allDrivers.Count - 1;
+			var currentDrivers = new List<DriverWithOrdersDTO>();
+			for (i = firstDriverIndex; i <= lastDriverIndex; i++)
+				currentDrivers.Add(allDrivers[i]);
+			return currentDrivers;
 		}
 
 		// TODO:

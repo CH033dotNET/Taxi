@@ -497,6 +497,7 @@
     <Content Include="Scripts\OrderExLogic\DriverOrder.js" />
     <Content Include="Scripts\OrderExLogic\OperatorOrder.js" />
     <Content Include="Scripts\OrderForm.js" />
+    <Content Include="Scripts\Pulse.js" />
     <Content Include="Scripts\tabCorrector.js" />
     <Content Include="Scripts\Tarif\Tarif.js" />
     <Content Include="Scripts\Tools\AddBlockChecker.js" />

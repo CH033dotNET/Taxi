@@ -33,5 +33,7 @@ namespace BAL.Manager
 		bool UserValidation(UserDTO user, List<string> msgs);
 		IEnumerable<DriverWithOrdersDTO> GetDriversWithOrders();
 		IEnumerable<DriverWithOrdersDTO> GetDriversWithOrdersLastMonth();
-    }
+		List<DriverWithOrdersDTO> GetCurrentDrivers(int id);
+		List<DriverWithOrdersDTO> GetCurrentDriversLastMonth(int id);
+	}
 }
