@@ -76,13 +76,12 @@ margin: 0 auto;
     font-weight:bold;
 	background-color:#ffd101;
 	border-radius:50%;
-	width: 105%;
+	width: 50px;
+    height: 50px;
     text-align: center;
 }
 .ActivLang i{
 	padding:0px;
-	width: 25px;
-    height: 25px;
 }
 .ActivLang i::before{
 	margin:0px;
@@ -92,7 +91,8 @@ margin: 0 auto;
     font-weight:bold;
 	background-color:#0d0e10;
 	border-radius:50%;
-	width: 105%;
+	width: 50px;
+    height: 50px;
     text-align: center;
 }
 
