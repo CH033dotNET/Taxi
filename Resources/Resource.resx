@@ -1165,4 +1165,7 @@
   <data name="Pulse" xml:space="preserve">
     <value>Pulse</value>
   </data>
+  <data name="CancelOrder" xml:space="preserve">
+    <value>Cancel order</value>
+  </data>
 </root>

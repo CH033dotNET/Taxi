@@ -1167,4 +1167,7 @@
   <data name="Pulse" xml:space="preserve">
     <value>Пульс</value>
   </data>
+  <data name="CancelOrder" xml:space="preserve">
+    <value>Відмінити замовлення</value>
+  </data>
 </root>

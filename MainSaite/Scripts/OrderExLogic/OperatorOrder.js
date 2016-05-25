@@ -296,8 +296,7 @@
 			}
 		}
 
-		var orderElement = $('[data-id = "' + id + '"]');
-		$(orderElement.parent()).remove(orderElement);;
+		$('[data-id = "' + id + '"]').remove();
 		
 	}
 

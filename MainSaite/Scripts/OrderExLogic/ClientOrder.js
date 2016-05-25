@@ -88,6 +88,7 @@
 					$('#waiting-message').slideUp(200);
 					$("#orderBtn").fadeIn();
 					$("#cancelOrder").fadeOut();
+					removeTaxiMarker();
 				}
 			});
 		})
