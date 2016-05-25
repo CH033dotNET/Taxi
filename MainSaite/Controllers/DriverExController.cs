@@ -23,7 +23,6 @@ namespace MainSaite.Controllers
 		private IFeedbackManager feedbackManager;
 		private ICarManager carManager;
 		private IWorkerStatusManager workerStatusManager;
-		private IUserManager userManager;
 
 		public DriverExController(IFeedbackManager feedbackManager, IOrderManagerEx orderManager, IDriverExManager driverManager, IDistrictManager districtManager, ICarManager carManager, IWorkerStatusManager workerStatusManager)
 		{
@@ -40,7 +39,8 @@ namespace MainSaite.Controllers
 			return View();
 		}
 
-		public ActionResult NewOrders() {
+		public ActionResult NewOrders()
+		{
 			return PartialView(orderManager.GetApprovedOrders());
 		}
 
@@ -49,7 +49,8 @@ namespace MainSaite.Controllers
 			return PartialView(districtManager.GetFilesDistricts());
 		}
 
-		public ActionResult OrdersHistory() {
+		public ActionResult OrdersHistory()
+		{
 			var driver = (Session["User"] as UserDTO);
 			return PartialView(orderManager.GetOrdersByDriver(driver));
 		}
@@ -57,6 +58,11 @@ namespace MainSaite.Controllers
 		public ActionResult MyOrder()
 		{
 			return PartialView();
+		}
+
+		public ActionResult Pulse()
+		{
+			return View();
 		}
 
 		[HttpPost]

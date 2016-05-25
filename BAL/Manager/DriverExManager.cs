@@ -15,17 +15,13 @@ namespace BAL.Manager
 	{
 
 		public DriverExManager(IUnitOfWork uOW) : base(uOW)
-		{
-
-		}
+		{ }
 
 		public void AddDriverLocation(CoordinatesExDTO coordinate)
 		{
 			var location = Mapper.Map<CoordinatesEx>(coordinate);
 			if (location.OrderId == 0)
-			{
 				location.OrderId = null;
-			}
 			uOW.CoordinatesExRepo.Insert(location);
 			uOW.Save();
 		}

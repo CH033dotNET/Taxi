@@ -2447,6 +2447,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pulse.
+        /// </summary>
+        public static string Pulse {
+            get {
+                return ResourceManager.GetString("Pulse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rating.
         /// </summary>
         public static string Rating {

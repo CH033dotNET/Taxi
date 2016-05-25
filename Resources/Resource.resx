@@ -1156,4 +1156,7 @@
   <data name="Status" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="Pulse" xml:space="preserve">
+    <value>Pulse</value>
+  </data>
 </root>
