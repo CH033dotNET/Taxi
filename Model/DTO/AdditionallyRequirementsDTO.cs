@@ -32,6 +32,8 @@ namespace Model.DTO
 
 		public bool Smoking { get; set; }
 
+		public bool English { get; set; }
+
 		public bool Check { get; set; }
 	}
 }

@@ -307,6 +307,10 @@
     <Compile Include="Migrations\201605250632353_BonusesAdded.Designer.cs">
       <DependentUpon>201605250632353_BonusesAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605251353275_Englesh-field-added-to-OrderEx-model.cs" />
+    <Compile Include="Migrations\201605251353275_Englesh-field-added-to-OrderEx-model.Designer.cs">
+      <DependentUpon>201605251353275_Englesh-field-added-to-OrderEx-model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -517,6 +521,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605250632353_BonusesAdded.resx">
       <DependentUpon>201605250632353_BonusesAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605251353275_Englesh-field-added-to-OrderEx-model.resx">
+      <DependentUpon>201605251353275_Englesh-field-added-to-OrderEx-model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
