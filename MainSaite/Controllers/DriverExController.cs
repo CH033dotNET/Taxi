@@ -56,7 +56,7 @@ namespace MainSaite.Controllers
 
 		public ActionResult MyOrder()
 		{
-			return PartialView();
+			return PartialView(orderManager.GetById(3));
 		}
 
 		[HttpPost]
