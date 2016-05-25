@@ -22,6 +22,18 @@ namespace BAL.Manager
 			
 		}
 
+		public void SetClientBonus(int userId, decimal bonus)
+		{
+			var user = uOW.UserRepo.All.Where(u => u.Id == userId).FirstOrDefault();
+			if (user != null)
+			{
+				user.Bonus += (double)bonus;
+
+				uOW.Save();
+			}
+
+		}
+
 		public PagerDTO<UserDTO> GetUserPage(string searchString, int page, int pageSize, int roleId)
 		{
 			List<User> users = new List<User>();

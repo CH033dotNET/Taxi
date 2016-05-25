@@ -322,7 +322,8 @@
 	}
 
 	.warning{
-		background: linear-gradient(#71E04A, #507B17);
+		background: linear-gradient(#E0724A, #7B2A17);
+		color:white;
 	}
 
 	input[type=checkbox] ~ label {

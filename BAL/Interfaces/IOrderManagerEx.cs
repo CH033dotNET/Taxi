@@ -41,5 +41,7 @@ namespace BAL.Interfaces
 
 		void SetDriverFeedback(int orderId, int feedbackId);
 		void SetClientFeedback(int orderId, int feedbackId);
+
+		OrderExDTO GetCurrentDriverOrder(int driverId);
 	}
 }

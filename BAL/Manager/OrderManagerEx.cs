@@ -57,6 +57,7 @@ namespace BAL.Interfaces
 					dbOrder.AdditionallyRequirements.Courier = order.AdditionallyRequirements.Courier;
 					dbOrder.AdditionallyRequirements.MyCar = order.AdditionallyRequirements.MyCar;
 					dbOrder.AdditionallyRequirements.NoSmoking = order.AdditionallyRequirements.NoSmoking;
+					dbOrder.AdditionallyRequirements.English = order.AdditionallyRequirements.English;
 					dbOrder.AdditionallyRequirements.Pets = order.AdditionallyRequirements.Pets;
 					dbOrder.AdditionallyRequirements.Smoking = order.AdditionallyRequirements.Smoking;
 					dbOrder.AdditionallyRequirements.Urgently = order.AdditionallyRequirements.Urgently;
@@ -240,6 +241,16 @@ namespace BAL.Interfaces
 				.Where(o => o.Status == OrderStatusEnum.Confirmed)
 				.ToList();
 			return Mapper.Map<List<OrderExDTO>>(orders);
+		}
+		public OrderExDTO GetCurrentDriverOrder(int driverId)
+		{
+			var order = uOW.OrderExRepo.All
+				.Include(o => o.AddressFrom)
+				.Include(o => o.AddressesTo)
+				.Include(o => o.AdditionallyRequirements)
+				.Where(o => o.DriverId == driverId && o.Status == OrderStatusEnum.Confirmed).FirstOrDefault();
+
+			return Mapper.Map<OrderExDTO>(order);
 		}
 	}
 }

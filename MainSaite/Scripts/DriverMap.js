@@ -50,7 +50,7 @@ function mainInit() {
 	mapInit();
 	$.ajax({
 		type: "GET",
-		url: '/Administration/GetLoc/',
+		url: '/DriverEx/GetLoc/',
 		dataType: "json",
 		success: function (data) {
 

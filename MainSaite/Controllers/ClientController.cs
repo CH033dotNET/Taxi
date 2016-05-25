@@ -1,4 +1,5 @@
 ﻿using BAL.Interfaces;
+using BAL.Manager;
 using MainSaite.Hubs;
 using Microsoft.AspNet.SignalR;
 using Model.DTO;
@@ -15,14 +16,16 @@ namespace MainSaite.Controllers
 		private IOrderManagerEx orderManager;
 		private IPersonManager personManager;
 		private IFeedbackManager feedbackManager;
+		private IUserManager userManager;
 
 		private static IHubContext Context = GlobalHost.ConnectionManager.GetHubContext<MainHub>();
 
-		public ClientController(IOrderManagerEx orderManager, IPersonManager personManager, IFeedbackManager feedbackManager)
+		public ClientController(IOrderManagerEx orderManager, IPersonManager personManager, IFeedbackManager feedbackManager, IUserManager userManager)
 		{
 			this.orderManager = orderManager;
 			this.personManager = personManager;
 			this.feedbackManager = feedbackManager;
+			this.userManager = userManager;
 		}
 
 		public ActionResult Index()
@@ -54,7 +57,13 @@ namespace MainSaite.Controllers
 		}
 		public ActionResult ClientBonuses()
 		{
-			return View(personManager.GetPersonByUserId(SessionUser.Id));
+			return View(userManager.GetById((Session["User"] as UserDTO).Id).Bonus);
+		}
+		[HttpPost]
+		public JsonResult SetClientBonus(int userId, decimal bonus)
+		{
+			
+			return Json(true);
 		}
 		public JsonResult UpdateOrder(OrderExDTO order)
 		{

@@ -66,7 +66,8 @@ namespace MainSaite.Controllers
 
 		public ActionResult MyOrder()
 		{
-			return PartialView(orderManager.GetById(3));
+			var driverOrder = orderManager.GetCurrentDriverOrder((Session["User"] as UserDTO).Id);
+			return PartialView(driverOrder);
 		}
 
 		public ActionResult Pulse()
@@ -260,6 +261,12 @@ namespace MainSaite.Controllers
 		public void UpdateCoords(CoordinatesExDTO coordinate)
 		{
 			DriverLocationHelper.addedLocation(coordinate);
+		}
+	    [HttpGet]
+		public JsonResult GetLoc()
+		{			
+			var array = driverManager.GetFullLocations();
+			return Json(array, JsonRequestBehavior.AllowGet);
 		}
 	}
 }

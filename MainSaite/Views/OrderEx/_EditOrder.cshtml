@@ -141,6 +141,10 @@
 								@Html.Label(Resources.Resource.NoSmoking)
 							</li>
 							<li>
+								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.English)
+								@Html.Label(Resources.Resource.WithEnglish)
+							</li>
+							<li>
 								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.Pets)
 								@Html.Label(Resources.Resource.WithPets)
 							</li>
