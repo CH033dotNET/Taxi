@@ -30,10 +30,11 @@ namespace MainSaite.Hubs
 		public void CancelOrder(int id)
 		{
 			Clients.Group("Operator").cancelOrder(id);
-			var driver = orderHubUsers.FirstOrDefault(u => u.OrderId == id);
+			var driver = orderHubUsers.FirstOrDefault(u => u.OrderId == id && u.Group=="Driver");
 			if (driver !=null)
 			{
 				Clients.Client(driver.ConnectionId).cancelOrder(id);
+				Clients.Client(driver.ConnectionId).MessageFromAdministrator("[Order canceled]");
 			}
 		}
 
@@ -41,6 +42,8 @@ namespace MainSaite.Hubs
 		public void OrderConfirmed(int OrderId, int WaitingTime)
 		{
 			var client = orderHubUsers.FirstOrDefault(u => u.OrderId == OrderId);
+			var driver = orderHubUsers.FirstOrDefault(u => u.ConnectionId == Context.ConnectionId);
+			driver.OrderId = OrderId;
 			if (client != null)
 				Clients.Client(client.ConnectionId).OrderConfirmed(OrderId, WaitingTime);
 			Clients.Group("Operator").confirmOrder(OrderId);
@@ -115,6 +118,19 @@ namespace MainSaite.Hubs
 			string connectionId = Context.ConnectionId;
 
 			var currentUser = new SignalRUserEx() { ConnectionId = connectionId, Group = group };
+			if (!orderHubUsers.Any(x => x.ConnectionId == connectionId))
+			{
+				Groups.Add(Context.ConnectionId, group);
+				orderHubUsers.Add(currentUser);
+			}
+		}
+
+		[HubMethodName("connect")]
+		public void Connect(string group, int orderId)
+		{
+			string connectionId = Context.ConnectionId;
+
+			var currentUser = new SignalRUserEx() { ConnectionId = connectionId, Group = group, OrderId = orderId };
 			if (!orderHubUsers.Any(x => x.ConnectionId == connectionId))
 			{
 				Groups.Add(Context.ConnectionId, group);

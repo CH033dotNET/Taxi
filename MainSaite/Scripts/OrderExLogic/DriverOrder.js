@@ -82,7 +82,7 @@
 				var orderblock="";
 				orderblock += "<tr>";
 				orderblock += "    <td>";
-				orderblock += order.success.Address;
+				orderblock += order.success.FullAddressFrom;
 				orderblock += "    <\/td>";
 				orderblock += "    <td>";
 				orderblock += "        <div class=\"input-group\">";
@@ -111,7 +111,7 @@
 				var orderblock = "";
 				orderblock += "<tr>";
 				orderblock += "    <td>";
-				orderblock += order.success.Address;
+				orderblock += order.success.FullAddressFrom;
 				orderblock += "    <\/td>";
 				orderblock += "    <td>";
 				orderblock += moment(order.success.OrderTime).format('DD/MM/YY HH:mm');
@@ -130,6 +130,11 @@
 
 	mainHub.client.MessageFromAdministrator = function (message) {
 		Notify(Resources.AdminMessageHeader, message);
+	}
+
+	mainHub.client.cancelOrder = function (id) {
+		currentOrderId = null;
+
 	}
 
 	$.connection.hub.start().done(function () {
@@ -152,11 +157,11 @@
 			else {
 				$('.joinButton').addClass('disabled');
 				districtChecker = setTimeout(function checkDistrict() {
-					if (currentPosition.Latitude && currentPosition.Longitude) {
+					if (prevCoord.Latitude && prevCoord.Longitude) {
 						var newDistrict = districts.find(function (item) {
 							return google.maps.geometry.poly.containsLocation({
-								lat: function () { return currentPosition.Latitude },
-								lng: function () { return currentPosition.Longitude }
+								lat: function () { return prevCoord.Latitude },
+								lng: function () { return prevCoord.Longitude }
 							}, item.Polygon)
 						});
 						if (!newDistrict && currentDistrict) {
@@ -244,8 +249,8 @@
 
 		setTimeout(function run() {
 			navigator.geolocation.getCurrentPosition(sentCoord);
-			setTimeout(run, 2000);
-		}, 2000);
+			setTimeout(run, 5000);
+		}, 5000);
 
 		function sentCoord(position) {
 			var data = {};
