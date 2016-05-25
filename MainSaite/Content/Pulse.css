@@ -1,0 +1,19 @@
+﻿#title, #container, .list th {
+	text-align: center;
+}
+
+#title h1 {
+	margin-top: 0px;
+	display: inline-block;
+	margin-bottom: 30px;
+}
+
+#title img {
+	width: 40px;
+	height: 40px;
+	margin-top: -15px;
+}
+
+.list {
+	display: inline-block;
+}

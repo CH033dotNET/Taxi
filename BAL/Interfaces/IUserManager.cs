@@ -30,5 +30,7 @@ namespace BAL.Manager
 		void UpdatePassword(string login, string password);
 		UserDTO UpdateUser(UserDTO user);
 		bool UserValidation(UserDTO user, List<string> msgs);
-	}
+		IEnumerable<DriverWithOrdersDTO> GetDriversWithOrders();
+		IEnumerable<DriverWithOrdersDTO> GetDriversWithOrdersLastMonth();
+    }
 }

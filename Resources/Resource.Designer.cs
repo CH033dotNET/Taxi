@@ -241,6 +241,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All the time.
+        /// </summary>
+        public static string AllTheTime {
+            get {
+                return ResourceManager.GetString("AllTheTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount of Orders.
         /// </summary>
         public static string AmountOfOrdersMax {
@@ -1831,6 +1840,15 @@ namespace Resources {
         public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last month.
+        /// </summary>
+        public static string LastMonth {
+            get {
+                return ResourceManager.GetString("LastMonth", resourceCulture);
             }
         }
         

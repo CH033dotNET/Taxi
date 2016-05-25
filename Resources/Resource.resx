@@ -1156,6 +1156,12 @@
   <data name="Status" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="AllTheTime" xml:space="preserve">
+    <value>All the time</value>
+  </data>
+  <data name="LastMonth" xml:space="preserve">
+    <value>Last month</value>
+  </data>
   <data name="Pulse" xml:space="preserve">
     <value>Pulse</value>
   </data>

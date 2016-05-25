@@ -351,9 +351,46 @@ namespace BAL.Manager
 
 		public List<UserDTO> GetDriversExceptCurrent(int id)
 		{
-			//List<User> drivers = uOW.UserRepo.All.Where(x => x.RoleId == (int)AvailableRoles.Driver).ToList();
 			List<UserDTO> driversList = uOW.UserRepo.Get(x => x.RoleId == (int)AvailableRoles.Driver & x.Id != id).Select(s => Mapper.Map<UserDTO>(s)).ToList();
 			return driversList;
+		}
+
+		public IEnumerable<DriverWithOrdersDTO> GetDriversWithOrders()
+		{
+			var drivers = Mapper.Map<List<UserDTO>>(uOW.UserRepo.All.Where(u => u.RoleId == (int)AvailableRoles.Driver));
+			var driversWithOrders = new List<DriverWithOrdersDTO>();
+			foreach (var driver in drivers)
+			{
+				var driverWithOrders = new DriverWithOrdersDTO();
+				driverWithOrders.Driver = driver;
+				driverWithOrders.OrdersCount = uOW.OrderExRepo.All.Where(o => o.DriverId == driver.Id).Count();
+				driversWithOrders.Add(driverWithOrders);
+			}
+			driversWithOrders.Sort(delegate(DriverWithOrdersDTO x, DriverWithOrdersDTO y)
+			{
+				return y.OrdersCount.CompareTo(x.OrdersCount);
+			});
+			return driversWithOrders;
+		}
+
+		public IEnumerable<DriverWithOrdersDTO> GetDriversWithOrdersLastMonth()
+		{
+			var drivers = Mapper.Map<List<UserDTO>>(uOW.UserRepo.All.Where(u => u.RoleId == (int)AvailableRoles.Driver));
+			var driversWithOrders = new List<DriverWithOrdersDTO>();
+			foreach (var driver in drivers)
+			{
+				var driverWithOrders = new DriverWithOrdersDTO();
+				driverWithOrders.Driver = driver;
+				driverWithOrders.OrdersCount = uOW.OrderExRepo.All.Where(o => o.DriverId == driver.Id
+					&& o.OrderTime.Year == DateTime.Now.Year
+					&& o.OrderTime.Month == DateTime.Now.Month).Count();
+				driversWithOrders.Add(driverWithOrders);
+			}
+			driversWithOrders.Sort(delegate (DriverWithOrdersDTO x, DriverWithOrdersDTO y)
+			{
+				return y.OrdersCount.CompareTo(x.OrdersCount);
+			});
+			return driversWithOrders;
 		}
 
 		// TODO:
@@ -387,7 +424,7 @@ namespace BAL.Manager
 		}
 		*/
 
-		
+
 		// TODO:
 		public bool IsAdministratorById(int id)
 		{
