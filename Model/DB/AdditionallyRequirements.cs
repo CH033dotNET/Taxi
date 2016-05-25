@@ -33,6 +33,8 @@ namespace Model.DB
 
 		public bool Smoking { get; set; }
 
+		public bool English { get; set; }
+
 		public bool Check { get; set; }
 
 		public virtual OrderEx OrderEx { get; set; }

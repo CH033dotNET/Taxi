@@ -25,7 +25,14 @@ namespace MainSaite.Controllers
 		private IWorkerStatusManager workerStatusManager;
 		private IUserManager userManager;
 
-		public DriverExController(IFeedbackManager feedbackManager, IOrderManagerEx orderManager, IDriverExManager driverManager, IDistrictManager districtManager, ICarManager carManager, IWorkerStatusManager workerStatusManager)
+		public DriverExController(
+			IFeedbackManager feedbackManager,
+			IOrderManagerEx orderManager,
+			IDriverExManager driverManager,
+			IDistrictManager districtManager,
+			ICarManager carManager,
+			IWorkerStatusManager workerStatusManager,
+			IUserManager userManager)
 		{
 			this.orderManager = orderManager;
 			this.driverManager = driverManager;
@@ -33,6 +40,7 @@ namespace MainSaite.Controllers
 			this.feedbackManager = feedbackManager;
 			this.carManager = carManager;
 			this.workerStatusManager = workerStatusManager;
+			this.userManager = userManager;
 		}
 
 		public ActionResult Index()
@@ -40,7 +48,8 @@ namespace MainSaite.Controllers
 			return View();
 		}
 
-		public ActionResult NewOrders() {
+		public ActionResult NewOrders()
+		{
 			return PartialView(orderManager.GetApprovedOrders());
 		}
 
@@ -49,14 +58,26 @@ namespace MainSaite.Controllers
 			return PartialView(districtManager.GetFilesDistricts());
 		}
 
-		public ActionResult OrdersHistory() {
+		public ActionResult OrdersHistory()
+		{
 			var driver = (Session["User"] as UserDTO);
 			return PartialView(orderManager.GetOrdersByDriver(driver));
 		}
 
 		public ActionResult MyOrder()
 		{
-			return PartialView();
+			var driverOrder = orderManager.GetCurrentDriverOrder((Session["User"] as UserDTO).Id);
+			return PartialView(driverOrder);
+		}
+
+		public ActionResult Pulse()
+		{
+			var driversWithOrders = userManager.GetDriversWithOrders();
+			var driversWithOrdersLastMonth = userManager.GetDriversWithOrdersLastMonth();
+			var drivers = new List<List<DriverWithOrdersDTO>>();
+			drivers.Add(driversWithOrdersLastMonth.ToList());
+			drivers.Add(driversWithOrders.ToList());
+			return View(drivers);
 		}
 
 		[HttpPost]
@@ -235,11 +256,17 @@ namespace MainSaite.Controllers
 			}
 			return Json(false);
 		}
+
 		[HttpPost]
 		public void UpdateCoords(CoordinatesExDTO coordinate)
 		{
 			DriverLocationHelper.addedLocation(coordinate);
 		}
-
+	    [HttpGet]
+		public JsonResult GetLoc()
+		{			
+			var array = driverManager.GetFullLocations();
+			return Json(array, JsonRequestBehavior.AllowGet);
+		}
 	}
 }

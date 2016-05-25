@@ -235,6 +235,8 @@
 							$(row).fadeOut();
 							mainHub.server.OrderConfirmed(currentOrderId, waiting_time);
 							mainHub.client.OrderTaken(currentOrderId)
+
+
 						}
 						else {
 							alert("something wrong");

@@ -1,4 +1,4 @@
-﻿@model Model.DTO.PersonDTO
+﻿@model double
 @{
     ViewBag.Title = "Client Bonuses";
 	Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,7 +9,7 @@
 	<div id="BonusDiv">
 		<label>[Your current bonus]</label>
 		<div id="BonusField">
-            <span id="BonusUAH">250.5</span>
+            <span id="BonusUAH">@Model</span>
 			<span id="UAHIndicator">UAH</span>
 		</div>
 		<button type="submit" value="Register" class="btn btn-success" style="display:inline">[SHOW HISTORY]</button>

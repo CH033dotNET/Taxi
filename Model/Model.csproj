@@ -65,6 +65,7 @@
     <Compile Include="DTO\CoordinatesExDTO.cs" />
     <Compile Include="DTO\DriverLocationDTO.cs" />
     <Compile Include="DTO\DriverRequestDTO.cs" />
+    <Compile Include="DTO\DriverWithOrdersDTO.cs" />
     <Compile Include="DTO\FeedbackDTO.cs" />
     <Compile Include="DTO\RegistrationModelDTO.cs" />
     <Compile Include="DB\SupportMessage.cs" />

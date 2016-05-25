@@ -141,10 +141,11 @@
 						if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.FreeDriver)
 						{
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.PersonalCabinet, "Index", "DriverEx")</li>
-						}
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.Pulse, "Pulse", "DriverEx")</li>
+					}
 
-						if (ViewBag.UserRoleId == (int)AvailableRoles.Client)
-						{
+					if (ViewBag.UserRoleId == (int)AvailableRoles.Client)
+					{
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.ClientDriveHistory, "DriveHistory", "Client")</li>
 	                        <li class="list-group-item" id="sideMenu">@Html.ActionLink("[Bonuses]", "ClientBonuses", "Client")</li>
 						}
