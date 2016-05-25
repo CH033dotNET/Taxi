@@ -578,6 +578,7 @@
     <Content Include="Views\OrderEx\EditOrderPartial.cshtml" />
     <Content Include="Views\OrderEx\_EditOrder.cshtml" />
     <Content Include="Views\DriverEx\WorkShift.cshtml" />
+    <Content Include="Views\Client\ClientBonuses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

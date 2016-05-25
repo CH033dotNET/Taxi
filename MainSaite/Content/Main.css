@@ -238,6 +238,43 @@
 	#authTable td span{
 		display:table;
 	}
+#BonusField{
+	width: 160px;
+    height: 38px;
+    background-color: #eaeaea;
+    margin-left: 10px;
+    border-style: none;
+    border-radius: 20px;
+    text-align:center;
+	    font-size: large;
+    font-weight: bolder;
+	margin-bottom: 10px;
+	color: black;
+}
+#BonusDiv{
+	display: table;
+    margin: 0 auto;
+}
+#BonusDiv label{
+	width: 100%;
+    text-align: center;
+	    font-weight: 600;
+		font-size:initial;
+}
+#BonusUAH{
+	display: inline-table;
+    padding-top: 6px;
+}
+#UAHIndicator{
+	background: linear-gradient(gold, #ffc030);
+    float: right;
+    height: 38px;
+    width: 50px;
+    padding-top: 5px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+	    box-shadow: -1px 0px 0px black;
+}
 @media (min-width: 768px) {
 	#modalBody, #modalFooter{
 		background: rgba(0, 0, 0, 0.96);

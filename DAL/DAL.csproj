@@ -303,6 +303,10 @@
     <Compile Include="Migrations\201605241933093_AddedNews.Designer.cs">
       <DependentUpon>201605241933093_AddedNews.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605250632353_BonusesAdded.cs" />
+    <Compile Include="Migrations\201605250632353_BonusesAdded.Designer.cs">
+      <DependentUpon>201605250632353_BonusesAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -510,6 +514,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605241933093_AddedNews.resx">
       <DependentUpon>201605241933093_AddedNews.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605250632353_BonusesAdded.resx">
+      <DependentUpon>201605250632353_BonusesAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

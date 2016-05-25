@@ -52,7 +52,10 @@ namespace MainSaite.Controllers
 		{
 			return View(orderManager.GetOrdersByUserId(SessionUser.Id));
 		}
-
+		public ActionResult ClientBonuses()
+		{
+			return View(personManager.GetPersonByUserId(SessionUser.Id));
+		}
 		public JsonResult UpdateOrder(OrderExDTO order)
 		{
 			orderManager.UpdateOrder(order);

@@ -35,6 +35,8 @@ namespace Model.DTO
 
 		public string Lang { get; set; }
 
+		public double Bonus { get; set; }
+
         public DateTime RegistrationDate { get; set; }
 
     }
