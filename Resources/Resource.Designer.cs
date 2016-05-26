@@ -2141,6 +2141,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My order.
+        /// </summary>
+        public static string MyOrder {
+            get {
+                return ResourceManager.GetString("MyOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
