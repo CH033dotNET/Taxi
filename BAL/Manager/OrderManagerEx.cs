@@ -145,7 +145,18 @@ namespace BAL.Interfaces
 			}
 			return false;
 		}
-
+		public bool FinishOrder(int id)
+		{
+			var order = uOW.OrderExRepo.All.Where(o => o.Id == id).FirstOrDefault();
+			if (order != null)
+			{
+				order.Status = OrderStatusEnum.Finished;
+				uOW.OrderExRepo.Update(order);
+				uOW.Save();
+				return true;
+			}
+			return false;
+		}
 		public bool SetWaitingTime(int id, int WaitingTime)
 		{
 			var order = uOW.OrderExRepo.All.Where(o => o.Id == id).FirstOrDefault();

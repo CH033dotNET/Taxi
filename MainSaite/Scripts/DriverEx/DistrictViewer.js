@@ -8,17 +8,17 @@ function ChangeBtnProperties(status) {
 		setEndlocation();
 		//setDriverStatus(0);
 		changeStatusDisplay(0);
-		$("worker-status-group").css('display', 'none');
+		$("#inputDriverStatus").css('display', 'none');
 	}
 	else {
 		$("#workshift-button").attr("change-btn-id", "work_end"); // changing custom attribute value
-		$("#workshift-button").attr('class', 'btn btn-warning'); // changing buttons class
+		$("#workshift-button").attr('class', 'btn btn-success warning'); // changing buttons class
 		$("#workshift-button").prop('value', 'End workshift'); // changing buttons text
 		document.getElementById('workshift-button').onclick = function () { ChangeBtnProperties(0); }; // changing onclick property value
 		setBeginlocation();
 		//setDriverStatus(3);
 		changeStatusDisplay(1);
-		$("worker-status-group").css('display', 'inline');
+		$("#inputDriverStatus").css('display', 'block');
 	}
 
 }
@@ -92,7 +92,7 @@ function changeStatusDisplay(e) {
 		//$('#worker-status-group').hide();
 	}
 	else if (e == 1) {
-		document.getElementById('worker-status-group').style.display = 'inline';
+		document.getElementById('worker-status-group').style.display = 'block';
 		//$('#worker-status-group').show();
 	}
 }

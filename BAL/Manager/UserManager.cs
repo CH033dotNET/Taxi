@@ -22,13 +22,13 @@ namespace BAL.Manager
 			
 		}
 
-		public void SetClientBonus(int userId, decimal bonus)
+		public void SetClientBonus(int userId, double bonus, double paidByBonus)
 		{
 			var user = uOW.UserRepo.All.Where(u => u.Id == userId).FirstOrDefault();
 			if (user != null)
 			{
-				user.Bonus += (double)bonus;
-
+				user.Bonus -= paidByBonus;
+				user.Bonus += bonus;
 				uOW.Save();
 			}
 

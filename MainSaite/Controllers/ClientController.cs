@@ -63,9 +63,9 @@ namespace MainSaite.Controllers
 			return View(userManager.GetById((Session["User"] as UserDTO).Id).Bonus);
 		}
 		[HttpPost]
-		public JsonResult SetClientBonus(int userId, decimal bonus)
+		public JsonResult SetClientBonus(int userId, double bonus, double paidByBonus)
 		{
-			userManager.SetClientBonus(userId, bonus);
+			userManager.SetClientBonus(userId, bonus, paidByBonus);
 			return Json(true);
 		}
 		[HttpPost]
@@ -74,6 +74,7 @@ namespace MainSaite.Controllers
 			var userBonus = userManager.GetById(userId).Bonus;
 
 			double newPrice = 0.0f;
+
 			if (userBonus>=price) {
 				newPrice = 0.0f;
 			}
@@ -81,9 +82,6 @@ namespace MainSaite.Controllers
 
 			return Json(newPrice, JsonRequestBehavior.AllowGet);
 		}
-
-
-
 
 		public JsonResult UpdateOrder(OrderExDTO order)
 		{
