@@ -15,7 +15,7 @@
 }
 
 .list {
-	display: inline-block;
+	display: inline-table;
 	margin-left: 80px;
 	margin-right: 80px;
 	margin-bottom: 40px;
@@ -71,7 +71,12 @@
 }
 
 .active {
-	background-color: black;
+	background: linear-gradient(gold, #ffc030);
+}
+
+.active h3, .active div {
+	color: black;
+	font-weight: 600;
 }
 
 .underline {

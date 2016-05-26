@@ -435,17 +435,20 @@ namespace BAL.Manager
 				if (allDrivers[i].Driver.Id == id)
 					break;
 			var currentDriverIndex = i;
-			var firstDriverIndex = i;
-			var lastDriverIndex = i;
-			firstDriverIndex -= 3;
-			if (firstDriverIndex < 0)
+			var firstDriverIndex = i - 3;
+			var lastDriverIndex = i + 3;
+			while (firstDriverIndex < 0)
 			{
-				lastDriverIndex -= firstDriverIndex;
-				firstDriverIndex = 0;
+				firstDriverIndex++;
+				lastDriverIndex++;
 			}
-			lastDriverIndex += 3;
-			if (lastDriverIndex >= allDrivers.Count)
-				lastDriverIndex = allDrivers.Count - 1;
+			while (lastDriverIndex >= allDrivers.Count)
+			{
+				firstDriverIndex--;
+				lastDriverIndex--;
+			}
+			while (firstDriverIndex < 0)
+				firstDriverIndex++;
 			var currentDrivers = new List<DriverWithOrdersDTO>();
 			for (i = firstDriverIndex; i <= lastDriverIndex; i++)
 			{
@@ -464,17 +467,20 @@ namespace BAL.Manager
 				if (allDrivers[i].Driver.Id == id)
 					break;
 			var currentDriverIndex = i;
-			var firstDriverIndex = i;
-			var lastDriverIndex = i;
-			firstDriverIndex -= 3;
-			if (firstDriverIndex < 0)
+			var firstDriverIndex = i - 3;
+			var lastDriverIndex = i + 3;
+			while (firstDriverIndex < 0)
 			{
-				lastDriverIndex -= firstDriverIndex;
-				firstDriverIndex = 0;
+				firstDriverIndex++;
+				lastDriverIndex++;
 			}
-			lastDriverIndex += 3;
-			if (lastDriverIndex >= allDrivers.Count)
-				lastDriverIndex = allDrivers.Count - 1;
+			while (lastDriverIndex >= allDrivers.Count)
+			{
+				firstDriverIndex--;
+				lastDriverIndex--;
+			}
+			while (firstDriverIndex < 0)
+				firstDriverIndex++;
 			var currentDrivers = new List<DriverWithOrdersDTO>();
 			for (i = firstDriverIndex; i <= lastDriverIndex; i++)
 			{
