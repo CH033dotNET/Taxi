@@ -385,6 +385,8 @@ namespace BAL.Manager
 						driverWithOrders.Image = "item_0_profile.jpg";
 					driverWithOrders.Name = person.FullName;
 				}
+				else
+					driverWithOrders.Image = "item_0_profile.jpg";
 				driversWithOrders.Add(driverWithOrders);
 			}
 			driversWithOrders.Sort(delegate(DriverWithOrdersDTO x, DriverWithOrdersDTO y)
@@ -414,6 +416,8 @@ namespace BAL.Manager
 						driverWithOrders.Image = "item_0_profile.jpg";
 					driverWithOrders.Name = person.FullName;
 				}
+				else
+					driverWithOrders.Image = "item_0_profile.jpg";
 				driversWithOrders.Add(driverWithOrders);
 			}
 			driversWithOrders.Sort(delegate (DriverWithOrdersDTO x, DriverWithOrdersDTO y)
@@ -444,7 +448,11 @@ namespace BAL.Manager
 				lastDriverIndex = allDrivers.Count - 1;
 			var currentDrivers = new List<DriverWithOrdersDTO>();
 			for (i = firstDriverIndex; i <= lastDriverIndex; i++)
-				currentDrivers.Add(allDrivers[i]);
+			{
+				var newDriver = allDrivers[i];
+				newDriver.Index = i + 1;
+				currentDrivers.Add(newDriver);
+			}
 			return currentDrivers;
 		}
 
@@ -469,7 +477,11 @@ namespace BAL.Manager
 				lastDriverIndex = allDrivers.Count - 1;
 			var currentDrivers = new List<DriverWithOrdersDTO>();
 			for (i = firstDriverIndex; i <= lastDriverIndex; i++)
-				currentDrivers.Add(allDrivers[i]);
+			{
+				var newDriver = allDrivers[i];
+				newDriver.Index = i + 1;
+				currentDrivers.Add(newDriver);
+			}
 			return currentDrivers;
 		}
 
