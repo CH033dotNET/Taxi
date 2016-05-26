@@ -15,7 +15,7 @@ using Common.Enum;
 
 namespace MainSaite.Controllers
 {
-	public class DriverExController : Controller
+	public class DriverExController : BaseController
 	{
 		private IOrderManagerEx orderManager;
 		private IDriverExManager driverManager;

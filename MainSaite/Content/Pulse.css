@@ -45,6 +45,11 @@
 	padding-right: 20px;
 }
 
+.avatar img {
+	width: 100px;
+	height: 100px;
+}
+
 .ordersCount {
 	padding-left: 20px;
 	vertical-align: top;
