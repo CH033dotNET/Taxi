@@ -60,6 +60,8 @@ namespace Common
 			Mapper.CreateMap<Tarif, TarifDTO>();
 			Mapper.CreateMap<TarifDTO, Tarif>();
 			Mapper.CreateMap<RegistrationModelDTO, UserDTO>();
+			Mapper.CreateMap<NewsDTO, News>();
+			Mapper.CreateMap<News, NewsDTO>();
 		}
 	}
 
