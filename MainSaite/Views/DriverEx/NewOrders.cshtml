@@ -16,16 +16,18 @@
 
 	@foreach (var item in Model) {
 		<tr>
-			<td class="col-md-9">
+			<td class="col-md-7">
 				@Html.DisplayFor(modelItem => item.FullAddressFrom);
 			</td>
-			<td class="col-md-3">
+			<td class="col-md-2">
 				<div class="input-group">
 					<input type="number" class="waiting-time form-control" placeholder="@Resources.Resource.WaitingTime">
-					<span class="input-group-btn">
-						<input itemid="@item.Id" type="button" value="@Resources.Resource.TakeOrder" class="take btn btn-success" />
-					</span>
 				</div>
+			</td>
+			<td class="col-md-3">
+				<span class="input-group-btn">
+					<input itemid="@item.Id" type="button" value="@Resources.Resource.TakeOrder" class="take btn btn-success" />
+				</span>
 			</td>
 		</tr>
 	}

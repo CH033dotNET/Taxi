@@ -33,7 +33,7 @@
 	<div id="driver-bootstrap-menu" class="navbar navbar-default navbar-static-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Logo</a>
+				<a class="navbar-brand" href="#">LOGO</a>
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder">
 					<span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
@@ -41,28 +41,26 @@
 					<span class="icon-bar"></span>
 				</button>
 			</div>
-			<div class="collapse navbar-collapse navbar-menubuilder">
+			<div class="collapse navbar-collapse navbar-menubuilder" id="driverTabletMenu">
 				<ul class="nav navbar-nav navbar-left">
-					<li>
+					<li id="navBarBtn">
 						@Html.ActionLink(Resources.Resource.MainLink, "Index", "Home")
 					</li>
-					<li>
-						<a data-toggle="tab" href="#Home">@Resources.Resource.Home</a>
-					</li>
-					<li>
+					<li id="navBarBtn">
 						<a data-toggle="tab" href="#District">@Resources.Resource.WorkShift</a>
 					</li>
-					<li>
+					<li id="navBarBtn">
 						<a data-toggle="tab" href="#DistrictChooser">@Resources.Resource.District</a>
 					</li>
-					<li>
+					<li id="navBarBtn">
 						<a data-toggle="tab" href="#NewOrders">@Resources.Resource.NewOrders</a>
 					</li>
-					<li>
+					<li id="navBarBtn">
 						<a data-toggle="tab" href="#OrdersHistory">@Resources.Resource.OrdersHistory</a>
 					</li>
-					<li>
+					<li id="navBarBtn">
 						<a data-toggle="tab" href="#MyOrder">My Order</a>
+						@*@Ajax.ActionLink("[Current Order]", "MyOrder", new AjaxOptions { UpdateTargetId = "MyOrder", InsertionMode = InsertionMode.InsertAfter })*@
 					</li>
 				</ul>
 			</div>

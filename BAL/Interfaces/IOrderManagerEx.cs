@@ -21,6 +21,8 @@ namespace BAL.Interfaces
 
 		bool CancelOrder(int id);
 
+		bool FinishOrder(int id);
+
 		bool SetWaitingTime(int id, int WaitingTime);
 
 		IEnumerable<OrderExDTO> GetNotApprovedOrders();

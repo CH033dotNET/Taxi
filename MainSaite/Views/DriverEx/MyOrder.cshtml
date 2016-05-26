@@ -161,10 +161,10 @@ else
 	var prevLatitude = null;
 	var prevLongitude = null;
 	var distancePrice = 0;
-	var finalPrice = 100;
+	var finalPrice = 0;
 	var PERIOD = 5000;
-	var finalTempPrice = 0;
-
+	var priceWithBonus = 0;
+	var paidByBonus = 0;
 	$(document).ready(function () {
 		$.ajax({
 			type: "POST",
@@ -188,11 +188,13 @@ else
 					url: "./Client/UseClientBonus",
 					dataType: "json",
 					data: { userID: userId, Price: finalPrice},
-					success: function (data) {				
+					success: function (data) {
+						data = data.toFixed(1);
 						$('#loading').hide();
 						$('#BonusPrice').show();
 						$('#BonusPrice').text(data + ' UAH');
-						finalTempPrice = data;
+						priceWithBonus = data;
+						paidByBonus = (data == 0) ? finalPrice : (finalPrice - data);
 					},
 					error: function (error) {
 						alert(error.statusText);
@@ -201,7 +203,8 @@ else
 
 			}
 			else {
-				finalTempPrice = 0;
+				priceWithBonus = 0;
+				paidByBonus = 0;
 				$('#BonusPrice').show();
 				$('#BonusPrice').text(finalPrice + ' UAH');
 				$('#loading').hide();
@@ -210,30 +213,44 @@ else
 
 		$(document).on('click', '#mdal-submit', function () {
 
-			if (finalTempPrice != 0) finalPrice = finalTempPrice;
+			if (priceWithBonus != 0) finalPrice = priceWithBonus;
+			else finalPrice = 0;
 
 			var userId = $('#userId').val();
-			if (userId !== undefined) {
-				$.ajax({
-					type: "POST",
-					url: "/Client/SetClientBonus",
-					dataType: "json",
-					data: { userID: userId, Bonus: finalPrice * 0.05 },
-					success: function (data) {
-						//add ability to use bonuses
-						//and enable partial view
-						//finish Order
 
-						finalPrice = 0;
-						finalTempPrice = 0;
+			var orderId = $('#orderId').val();
 
-						$('#myModal').modal('hide');
-					},
-					error: function (error) {
-						alert(error.statusText);
+			$.ajax({
+				type: "POST",
+				url: "./OrderEx/FinishOrder",
+				dataType: "json",
+				data: { orderId: orderId },
+				success: function (data) {
+					//add ability to use bonuses
+					//and enable partial view
+					//finish Order
+					if (userId !== undefined) {
+						$.ajax({
+							type: "POST",
+							url: "./Client/SetClientBonus",
+							dataType: "json",
+							data: { userID: userId, Bonus: (finalPrice * 0.05), PaidByBonus: paidByBonus },
+							success: function (data) {
+								finalPrice = 0;
+								priceWithBonus = 0;
+							},
+							error: function (error) {
+								alert(error.statusText);
+							}
+						});
 					}
-				});
-			}
+
+					$('#myModal').modal('hide');
+				},
+				error: function (error) {
+					alert(error.statusText);
+				}
+			});
 
 		});
 	});
