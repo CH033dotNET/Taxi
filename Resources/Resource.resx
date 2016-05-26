@@ -1171,4 +1171,43 @@
   <data name="Orders" xml:space="preserve">
     <value>orders:</value>
   </data>
+  <data name="ClientCarOption" xml:space="preserve">
+    <value>Client car option</value>
+  </data>
+  <data name="CourierOption" xml:space="preserve">
+    <value>Courier option</value>
+  </data>
+  <data name="CreateNewTariff" xml:space="preserve">
+    <value>Create new tariff</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="InCity" xml:space="preserve">
+    <value>In city</value>
+  </data>
+  <data name="LuxCar" xml:space="preserve">
+    <value>Lux сar</value>
+  </data>
+  <data name="OutCity" xml:space="preserve">
+    <value>Out сity</value>
+  </data>
+  <data name="PassengerSmokerOption" xml:space="preserve">
+    <value>Passenger smoker option</value>
+  </data>
+  <data name="PlateOption" xml:space="preserve">
+    <value>Plate option</value>
+  </data>
+  <data name="RegularCar" xml:space="preserve">
+    <value>Regular сar</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SpeakEnglishOption" xml:space="preserve">
+    <value>Speak English option</value>
+  </data>
 </root>

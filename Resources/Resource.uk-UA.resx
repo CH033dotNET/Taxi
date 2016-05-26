@@ -1173,4 +1173,43 @@
   <data name="Orders" xml:space="preserve">
     <value>замовлень:</value>
   </data>
+  <data name="ClientCarOption" xml:space="preserve">
+    <value>Опція "На машині клієнта"</value>
+  </data>
+  <data name="CourierOption" xml:space="preserve">
+    <value>Опція "Кур'єр"</value>
+  </data>
+  <data name="CreateNewTariff" xml:space="preserve">
+    <value>Створити новий тариф</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Видалити</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редагувати</value>
+  </data>
+  <data name="InCity" xml:space="preserve">
+    <value>По місту</value>
+  </data>
+  <data name="LuxCar" xml:space="preserve">
+    <value>Машина класу люкс</value>
+  </data>
+  <data name="OutCity" xml:space="preserve">
+    <value>Поза містом</value>
+  </data>
+  <data name="PassengerSmokerOption" xml:space="preserve">
+    <value>Опція "Пасажир-курець"</value>
+  </data>
+  <data name="PlateOption" xml:space="preserve">
+    <value>Опція "Зустріти з табличкою"</value>
+  </data>
+  <data name="RegularCar" xml:space="preserve">
+    <value>Звичайна машина</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Зберегти</value>
+  </data>
+  <data name="SpeakEnglishOption" xml:space="preserve">
+    <value>Опція "Водій розмовляє англійською"</value>
+  </data>
 </root>
