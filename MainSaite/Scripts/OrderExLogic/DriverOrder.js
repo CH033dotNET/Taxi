@@ -262,8 +262,11 @@
 			data.AddedTime = moment().format('YYYY/MM/DD HH:mm:ss');
 			data.OrderId = currentOrderId;
 
-			if (prevCoord.Latitude != data.Latitude && prevCoord.Longitude != data.Longitude) {
-				prevCoord = data;
+			if (prevCoord.Latitude != position.coords.latitude && prevCoord.Longitude != position.coords.longitude) {
+
+				prevCoord.Latitude = position.coords.latitude;
+				prevCoord.Longitude = position.coords.longitude;
+
 				$.ajax({
 					url: '/DriverEx/SetCoordinate',
 					method: 'POST',

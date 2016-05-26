@@ -261,6 +261,20 @@
 #sTariff{
 	    font-size: xx-large;
 }
+#finalBill{
+	text-align:center;
+}
+#finalBill #loading{
+	margin:0px;
+}
+#BonusPrice{
+	font-size: -webkit-xxx-large;
+    color: #000000;
+	min-width: 250px;
+    border-radius: 29px;
+    background: #FFFFFF;
+    font-weight: bold;
+}
 @media (min-width: 768px) {
 	#modalBody, #modalFooter{
 		background: rgba(0, 0, 0, 0.96);

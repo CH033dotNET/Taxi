@@ -55,6 +55,9 @@ namespace MainSaite.Controllers
 		{
 			return View(orderManager.GetOrdersByUserId(SessionUser.Id));
 		}
+
+
+		//logic for bonuses
 		public ActionResult ClientBonuses()
 		{
 			return View(userManager.GetById((Session["User"] as UserDTO).Id).Bonus);
@@ -62,15 +65,31 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public JsonResult SetClientBonus(int userId, decimal bonus)
 		{
-			
+			userManager.SetClientBonus(userId, bonus);
 			return Json(true);
 		}
+		[HttpPost]
+		public JsonResult UseClientBonus(int userId, double price)
+		{
+			var userBonus = userManager.GetById(userId).Bonus;
+
+			double newPrice = 0.0f;
+			if (userBonus>=price) {
+				newPrice = 0.0f;
+			}
+			else newPrice = price - userBonus;
+
+			return Json(newPrice, JsonRequestBehavior.AllowGet);
+		}
+
+
+
+
 		public JsonResult UpdateOrder(OrderExDTO order)
 		{
 			orderManager.UpdateOrder(order);
 			return Json(orderManager.GetById(order.Id));
 		}
-
 		[HttpPost]
 		public JsonResult GetFeedback(int id)
 		{

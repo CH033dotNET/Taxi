@@ -130,6 +130,7 @@ namespace MainSaite.Controllers
 			{
 				coordinate.DriverId = (Session["User"] as UserDTO).Id;
 				driverManager.AddDriverLocation(coordinate);
+				DriverLocationHelper.addedLocation(coordinate);
 			}
 		}
 
@@ -262,12 +263,6 @@ namespace MainSaite.Controllers
 				ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
 			}
 			return Json(false);
-		}
-
-		[HttpPost]
-		public void UpdateCoords(CoordinatesExDTO coordinate)
-		{
-			DriverLocationHelper.addedLocation(coordinate);
 		}
 	    [HttpGet]
 		public JsonResult GetLoc()
