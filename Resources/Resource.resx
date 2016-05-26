@@ -1210,4 +1210,7 @@
   <data name="SpeakEnglishOption" xml:space="preserve">
     <value>Speak English option</value>
   </data>
+  <data name="MyOrder" xml:space="preserve">
+    <value>My order</value>
+  </data>
 </root>

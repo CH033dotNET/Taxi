@@ -1212,4 +1212,7 @@
   <data name="SpeakEnglishOption" xml:space="preserve">
     <value>Опція "Водій розмовляє англійською"</value>
   </data>
+  <data name="MyOrder" xml:space="preserve">
+    <value>Моє замовлення</value>
+  </data>
 </root>
