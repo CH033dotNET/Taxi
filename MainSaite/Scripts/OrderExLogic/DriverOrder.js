@@ -236,6 +236,13 @@
 							mainHub.server.OrderConfirmed(currentOrderId, waiting_time);
 							mainHub.client.OrderTaken(currentOrderId)
 
+							$.ajax({
+								type: 'POST',
+								url: '@Url.Content("~/DriverEx/MyOrder")',
+								success: function (data) {
+									$('#MyOrder').html(data);
+								}
+							});
 
 						}
 						else {

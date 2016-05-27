@@ -67,12 +67,15 @@ namespace MainSaite.Controllers
 		public ActionResult MyOrder()
 		{
 			var driverOrder = orderManager.GetCurrentDriverOrder((Session["User"] as UserDTO).Id);
-			if (driverOrder.AdditionallyRequirements == null)
+			if (driverOrder != null)
 			{
-				// We should show additional requirements always!
-				// If user didn't choose them than we should use default settings and driver can change them.
-				driverOrder.AdditionallyRequirements = new AdditionallyRequirementsDTO();
-				driverOrder.AdditionallyRequirements.Urgently = true;
+				if (driverOrder.AdditionallyRequirements == null)
+				{
+					// We should show additional requirements always!
+					// If user didn't choose them than we should use default settings and driver can change them.
+					driverOrder.AdditionallyRequirements = new AdditionallyRequirementsDTO();
+					driverOrder.AdditionallyRequirements.Urgently = true;
+				}
 			}
 			return PartialView(driverOrder);
 		}

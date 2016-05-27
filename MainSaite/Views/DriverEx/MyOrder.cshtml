@@ -13,7 +13,16 @@
 		{
 			<input type="hidden" id="userId" value=@Model.UserId>
 		}
-
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8" style="text-align:center">
+				<h2 style="font-size: 18px;margin: 0px;">
+					@Resources.Resource.Address
+			</h2>
+				<h2>@Model.FullAddressFrom</h2>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
 		<div class="form-group">
 			<div class="form-group-header">
 				<div class="label-underline underline-gray">
@@ -222,11 +231,8 @@ else
 				type: "POST",
 				url: "./OrderEx/FinishOrder",
 				dataType: "json",
-				data: { orderId: orderId },
+				data: { Id: orderId },
 				success: function (data) {
-					//add ability to use bonuses
-					//and enable partial view
-					//finish Order
 					if (userId !== undefined) {
 						$.ajax({
 							type: "POST",
@@ -244,12 +250,17 @@ else
 					}
 
 					$('#myModal').modal('hide');
+
 				},
 				error: function (error) {
 					alert(error.statusText);
 				}
 			});
 
+		});
+
+		$("#myModal").on('hidden.bs.modal', function () {
+			$('#MyOrder').empty();
 		});
 	});
 

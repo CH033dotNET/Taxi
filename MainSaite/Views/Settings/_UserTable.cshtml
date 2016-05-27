@@ -1,7 +1,7 @@
 ﻿@model IList<Model.DTO.UserDTO>
 
 
-<table class="table table-hover" id="CarParkTable">
+<table class="table newTableStyle">
 	<tr>
 		<th>@Resources.Resource.UserId </th>
 		<th>@Resources.Resource.UserName </th>
@@ -23,7 +23,7 @@
 			 UpdateTargetId = "ModalContent",
 			 InsertionMode = InsertionMode.Replace,
 			 LoadingElementId = "loading"
-		 }, new { @class = "Edit" }
+		 }, new { @class = "Edit btn-success" }
 		)
 			</td>
 		</tr>

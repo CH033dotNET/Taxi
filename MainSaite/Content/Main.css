@@ -131,9 +131,20 @@
 
 /*Order button and order  window style*/
 #order-dropdown {
-	padding: 7px;
+	background: linear-gradient(rgb(231, 231, 231), #DCDCDC);
+    padding: 14px;
 }
-
+#order-dropdown:hover {
+	background: linear-gradient(gold, #ffc030);
+    padding: 14px;
+}
+#order-dropdown a{
+	background:transparent;
+	font-size:medium;
+}
+.dropdown-menu{
+	padding: 0px;
+}
 #textField {
 	z-index: 0;
 	left: 125px;
@@ -210,12 +221,15 @@
 	display:none;
 }
 
+#BonusDiv{
+	text-align:center;
+}
 
 #BonusField{
 	width: 160px;
     height: 38px;
     background-color: #eaeaea;
-    margin-left: 10px;
+	margin: 10px auto;
     border-style: none;
     border-radius: 20px;
     text-align:center;
@@ -223,10 +237,6 @@
     font-weight: bolder;
 	margin-bottom: 10px;
 	color: black;
-}
-#BonusDiv{
-	display: table;
-    margin: 0 auto;
 }
 #BonusDiv label{
 	width: 100%;
@@ -274,41 +284,38 @@
     background: #FFFFFF;
     font-weight: bold;
 }
-#CarParkTable{
+
+.newTableStyle{
 	margin-bottom:0px;
 }
-#CarParkTable tr, #orders tr{
+.newTableStyle tr{
 	background: rgb(68, 69, 72);
     border: none;
     border-bottom: 2px solid #FFCA1C;
 }
-#CarParkTable td, #orders td{
+.newTableStyle td{
 	vertical-align: middle;
 	    text-align: center;
 }
-#CarParkTable th, #CarParkTable th a , #orders th{
+.newTableStyle th, .newTableStyle th a{
 	    text-align: center;
     color: black;
 	    background: #FFCF0F;
 }
+.newTableStyle tr:hover{
+	    background: rgb(148, 148, 148);
+
+}
 .btForm input{
 	font-size:larger;
 }
-@media (min-width: 768px) {
-   #authTable{
-	 width:215px;
+
+    
+
+	h1,h2,h3,label,td, legend{
+		color:white;
 	}
-	#modalBody, #modalFooter{
-		background: rgba(0, 0, 0, 0.96);
-	}
-	#modalHeader{
-		background:linear-gradient(gold, #ffc030);
-				  text-shadow: 0 1px 0 #292929;
-				  border:none;
-	}
-	.panel-footer{
-		    background: #2F2F2F;
-	}
+
 	input{
 	background: rgba(255, 255, 255, 0.18);
     border: none;
@@ -317,6 +324,10 @@
 	color:white;
 	    text-indent: 5px;
 	}
+	.panel-footer{
+		    background: #2F2F2F;
+	}
+
 	.btn-success{
 	border-radius: 0px;
     border: none;
@@ -348,6 +359,25 @@
      color: #ffd101;
      font-style: normal;
     } 
+
+	#footerContainer {
+		background-color: #0d0e10;
+		    padding-top: 5px;
+            padding-bottom: 5px;
+	}
+	   #authTable{
+	 width:215px;
+	}
+
+@media (min-width: 768px) {
+	#modalBody, #modalFooter{
+		background: rgba(0, 0, 0, 0.96);
+	}
+	#modalHeader{
+		background:linear-gradient(gold, #ffc030);
+				  text-shadow: 0 1px 0 #292929;
+				  border:none;
+	}
 
 
 	#EditOrderTable tr td{
@@ -421,11 +451,6 @@
 	}
 	#mainMenu{
 		padding-left:0px;
-	}
-	#footerContainer {
-		background-color: #0d0e10;
-		    padding-top: 5px;
-            padding-bottom: 5px;
 	}
 
 	#droppedDownList, #desktopNavBar {
@@ -517,26 +542,29 @@
 }
 
 @media (max-width: 768px) {
+
 	body {
-		background-color: #6f6f6f;
+		background-color:  #444444;
 		margin: 0px 15px;
 	}
 	#desktopNavBar {
 		display: none;
 	}
-
+	#footerContainer{
+		height:71px;
+	}
 	#dropdownMenuBtn {
 		width: 100%;
 		margin: 0 auto;
 		padding-bottom: 11px;
-		background-color: #22a86d;
+		background-color: gold;
 		border-radius: 0px;
 		padding: 0px 0px 0px 0px;
 		display:none;
 	}
 
 	#sideMenu.active {
-		background: gold;
+		background:#C5C5C5;
 	}
 
 	#mainBtns.active {
@@ -562,7 +590,7 @@
 		}
 
 	#dashBtnIcon {
-		background-color: white;
+		background-color: black;
 	}
 
 	#dashes {
@@ -571,7 +599,6 @@
 	}
 
 	#textField {
-		background-color: rgba(255, 255, 255, 0.92);
 		font-size: 15px;
 	}
 
@@ -621,6 +648,8 @@
 	}
 	#mainContainer{
 		padding-top:30px;
+		min-height:100vh;
+		display:block;
 	}
 	#menuImage {
 		height: 33%;
