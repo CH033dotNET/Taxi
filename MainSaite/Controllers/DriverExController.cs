@@ -153,19 +153,24 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public JsonResult AddFeedback(FeedbackDTO feedback)
 		{
-			return Json(feedbackManager.AddFeedback(feedback));
+            return Json(feedbackManager.AddFeedback(feedback));
 		}
 
 		[HttpPost]
 		public JsonResult UpdateFeedback(FeedbackDTO feedback)
 		{
-			return Json(feedbackManager.UpdateFeedback(feedback));
+			var newFeedback = feedbackManager.UpdateFeedback(feedback);
+			userManager.CalculateUserRating(newFeedback.Id);
+			return Json(newFeedback);
 		}
 
 		[HttpPost]
 		public void SetDriverFeedback(int orderId, int feedbackId)
 		{
 			orderManager.SetDriverFeedback(orderId, feedbackId);
+			var order = orderManager.GetById(orderId);
+			feedbackManager.SetUserId(feedbackId, order.DriverId);
+			userManager.CalculateUserRating(feedbackId);
 		}
 		public ActionResult WorkShift()
 		{

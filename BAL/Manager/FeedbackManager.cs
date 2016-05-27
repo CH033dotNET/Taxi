@@ -3,6 +3,7 @@ using Model.DTO;
 using DAL.Interface;
 using AutoMapper;
 using Model.DB;
+using System.Linq;
 
 namespace BAL.Manager
 {
@@ -38,6 +39,14 @@ namespace BAL.Manager
 			uOW.FeedbackRepo.Update(update);
 			uOW.Save();
 			return Mapper.Map<FeedbackDTO>(update);
+		}
+
+		public void SetUserId(int feedbackId, int? UserId)
+		{
+			var feedback = uOW.FeedbackRepo.GetByID(feedbackId);
+			feedback.UserId = (int)UserId;
+			uOW.FeedbackRepo.Update(feedback);
+			uOW.Save();
 		}
 	}
 }
