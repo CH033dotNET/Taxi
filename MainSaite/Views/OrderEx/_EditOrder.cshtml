@@ -17,18 +17,6 @@
 			@Html.ValidationMessageFor(x => x.OrderTime)
 		</td>
 	</tr>
-	@*@if (Model.FullAddressFrom != null)
-		{
-			<tr>
-				<td>
-					@Html.Label("[Address]")
-				</td>
-				<td>
-					@Html.TextBoxFor(x => Model.FullAddressFrom, new { @required = true, @minlength = "4" })
-					@Html.ValidationMessageFor(x => x.FullAddressFrom)
-				</td>
-			</tr>
-		}*@
 	@if (Model.AddressFrom != null)
 	{
 		<tr>
@@ -245,3 +233,5 @@
 		</td>
 	</tr>
 </table>
+@if (Model.Status == Common.Enum.OrderStatusEnum.NotApproved) { 
+<input type="submit" id="mdal-submit" class="btn btn-success" name="Ok" value=@Resources.Resource.editString />}

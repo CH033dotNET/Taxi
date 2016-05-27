@@ -66,6 +66,16 @@ namespace MainSaite.Controllers
 
 		public ActionResult MyOrder()
 		{
+		    return View();
+		}
+		public ActionResult MyOrderMap()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public JsonResult GetCurrentOrder()
+		{
 			var driverOrder = orderManager.GetCurrentDriverOrder((Session["User"] as UserDTO).Id);
 			if (driverOrder != null)
 			{
@@ -75,19 +85,13 @@ namespace MainSaite.Controllers
 					// If user didn't choose them than we should use default settings and driver can change them.
 					driverOrder.AdditionallyRequirements = new AdditionallyRequirementsDTO();
 					driverOrder.AdditionallyRequirements.Urgently = true;
+					driverOrder.AdditionallyRequirements.Passengers = 1;
 				}
 			}
-			return PartialView(driverOrder);
-		}
-		public ActionResult MyOrderMap()
-		{
-			return View();
-		}
+			if(driverOrder==null)
+				return Json("NoOrder");
 
-		[HttpPost]
-		public JsonResult GetCurrentOrder()
-		{		
-		    return Json(orderManager.GetCurrentDriverOrder((Session["User"] as UserDTO).Id));
+		    return Json(driverOrder);
 		}
 		public ActionResult Pulse()
 		{

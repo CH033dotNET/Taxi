@@ -242,19 +242,7 @@
 							mainHub.server.OrderConfirmed(currentOrderId, waiting_time);
 							mainHub.client.OrderTaken(currentOrderId)
 
-
-
-							//load partial view
-
-
-							$.ajax({
-								type: 'POST',
-								url: '@Url.Content("~/DriverEx/MyOrder")',
-								success: function (data) {
-									$('#MyOrder').html(data);
-								}
-							});
-
+							GetCurrentOrder();
 						}
 						else {
 							alert("something wrong");
@@ -323,14 +311,17 @@
 
 				driverMarker.setAnimation(google.maps.Animation.BOUNCE);
 
-				map.setCenter(driverMarker.getPosition());
 			}
 			else {
 				driverMarker.setPosition(new google.maps.LatLng(prevCoord.Latitude, prevCoord.Longitude));
 			}
+
+			map.setCenter(driverMarker.getPosition());
 		}
 
 		function GetCurrentOrder() {
+
+			destinationMarkers = [];
 
 			$.ajax({
 				type: "POST",
@@ -338,10 +329,49 @@
 				
 				success: function (order) {
 					var k = 0;
-					GetLocationByAddress(order.FullAddressFrom);
+
+					if (order != null && order != "NoOrder")
+					{
+						$('#currentOrder').show();
+						$('#noCurrentOrder').hide();
+						$('#orderId').val(order.Id);
+						$('#userId').val(order.UserId);
+						$('#fullAddressFrom').text(order.FullAddressFrom);
+						$('#cost').text(order.Price);
+						GetLocationByAddress(order.FullAddressFrom);
+						if(order.UserId!=null)
+						{
+							$('.bonusTable').show();
+						}
+						else $('.bonusTable').hide();
+
+						setChecked('#urgently', order.AdditionallyRequirements.Urgently);
+
+						setChecked('#normal', order.AdditionallyRequirements.Car);
+						setChecked('#universal', order.AdditionallyRequirements.Car);
+						setChecked('#minivan', order.AdditionallyRequirements.Car);
+						setChecked('#lux', order.AdditionallyRequirements.Car);
+
+
+						$('#passengers').val(order.AdditionallyRequirements.Passengers);
+
+						setChecked('#courier', order.AdditionallyRequirements.Courier);
+						setChecked('#with-plate', order.AdditionallyRequirements.WithPlate);
+						setChecked('#my-car', order.AdditionallyRequirements.MyCar);
+						setChecked('#pets', order.AdditionallyRequirements.Pets);
+						setChecked('#bag', order.AdditionallyRequirements.Bag);
+						setChecked('#conditioner', order.AdditionallyRequirements.Conditioner);
+						setChecked('#english', order.AdditionallyRequirements.NoSmoking);
+						setChecked('#nosmoking', order.AdditionallyRequirements.Smoking);
+						setChecked('#smoking', order.AdditionallyRequirements.English);
+						setChecked('#check', order.AdditionallyRequirements.Check);
+					}
+					else {
+						$('#currentOrder').hide();
+						$('#noCurrentOrder').show();
+					}
 
 					//add other addresses
-
 
 
 
@@ -349,6 +379,13 @@
 			});
 			
 		}
+
+		function setChecked(selector, value)
+		{
+			$(selector).attr('checked', value);
+
+		}
+
 		function GetLocationByAddress(address)
 		{
 			var addressLabel = address;
