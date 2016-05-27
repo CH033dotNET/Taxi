@@ -15,91 +15,91 @@
             <div class="panel-footer"><a class="btn btn-success" role="button" onclick="carController.addNewCar()"><span class="glyphicon glyphicon-th-list" aria-hidden="true">&nbsp;</span>@Resources.Resource.AddNewCar</a></div>
             <div class="table-list">
                 <div id="carTableResponsive" class="table-responsive">
-                    <table class="table" id="CarParkTable">
-                        <thead>
-                            <tr class="info">
-                                <th>@Resources.Resource.ActionsColumn</th>
-                                <th><a id="carlink" href="#" class="btn-link" onclick="carController.sortBy('name')">@Resources.Resource.CarName</a></th>
-                                <th><a id="carlink" href="#" class="btn-link" onclick="carController.sortBy('nickname')">@Resources.Resource.CarNickName</a></th>
-                                <th><a id="carlink" href="#" class="btn-link" onclick="carController.sortBy('number')">@Resources.Resource.CarNumber</a></th>
-                                <th>@Resources.Resource.CarState</th>
-                                <th>@Resources.Resource.CarStatus</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <script id="carListRow" type="text/x-handlebars-template">
-                                {{#each cars}}
-                                <tr>
-                                    <td>
-                                        <!-- Single button -->
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                @Resources.Resource.ActionsColumn <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                {{#ifCond OwnerId UserId}}
-                                                <li>
-                                                    <a href="#"
-                                                       data-cars-id="{{Id}}"
-                                                       role="button" onclick="carController.getCarEdit(this)">
-                                                        <span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString
-                                                    </a>
-                                                </li>
-                                                <li role="separator" class="divider"></li>
-                                                {{/ifCond}}
-                                                {{#ifCond OwnerId UserId}}
-                                                <li>
-                                                    <a href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" role="button" onclick="carController.deleteCar(this)">
-                                                        <span class="glyphicon glyphicon-trash" aria-hidden="true">&nbsp;</span>@Resources.Resource.deleteString
-                                                    </a>
-                                                </li>
-                                                <li role="separator" class="divider"></li>
-                                                {{/ifCond}}
-                                                <li>
-                                                    <a href="#"
-                                                       data-cars-id="{{Id}}"
-                                                       role="button" onclick="carController.getCarDetails(this)">
-                                                        <span class="glyphicon glyphicon-file" aria-hidden="true">&nbsp;</span>@Resources.Resource.CarsDetails
-                                                    </a>
-                                                </li>
-                                                <li role="separator" class="divider"></li>
-                                                {{#ifCond OwnerId UserId}}
-                                                <li>
-                                                    <a href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" role="button" onclick="carController.giveCar(this)">
-                                                        <span class="glyphicon glyphicon-user" aria-hidden="true">&nbsp;</span>@Resources.Resource.ChangeDriver
-                                                    </a>
-                                                </li>
-                                                {{else}}
-                                                <li>
-                                                    <a href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" data-cars-owner="{{OwnerId}}" role="button" onclick="carController.returnCar(this)">
-                                                        <span class="glyphicon glyphicon-user" aria-hidden="true">&nbsp;</span>@Resources.Resource.Return
-                                                    </a>
-                                                </li>
-                                                {{/ifCond}}
-                                            </ul>
-                                        </div>
-                                    </td>
-                                    <td>{{CarName}}</td>
-                                    <td>{{CarNickName}}</td>
-                                    <td>{{CarNumber}}</td>
-                                    <td>{{CarStateDescription}}</td>
-                                    <td>
-                                        <input type="radio" name="carStatus" role="button"
-                                               onclick="carController.getThisCarMain(this)"
-                                               data-cars-id="{{Id}}"
-                                               data-cars-name="{{CarName}}"
-                                               {{#if isMain}}
-                                               checked="checked"
-                                               value="main"
-                                               {{else}}
-                                               value="spare"
-                                               {{/if}}>
-                                        </td>
-                                    </tr>
-                                    {{/each}}
-                                </script>
-                            </tbody>
-                        </table>
+					<table class="table newTableStyle" id="CarParkTable">
+						<thead>
+							<tr class="info">
+								<th>@Resources.Resource.ActionsColumn</th>
+								<th><a id="carlink" href="#" class="btn-link" onclick="carController.sortBy('name')">@Resources.Resource.CarName</a></th>
+								<th><a id="carlink" href="#" class="btn-link" onclick="carController.sortBy('nickname')">@Resources.Resource.CarNickName</a></th>
+								<th><a id="carlink" href="#" class="btn-link" onclick="carController.sortBy('number')">@Resources.Resource.CarNumber</a></th>
+								<th>@Resources.Resource.CarState</th>
+								<th>@Resources.Resource.CarStatus</th>
+							</tr>
+						</thead>
+						<tbody>
+							<script id="carListRow" type="text/x-handlebars-template">
+								{{#each cars}}
+								<tr>
+									<td>
+										<!-- Single button -->
+										<div class="btn-group">
+											<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												@Resources.Resource.ActionsColumn <span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu">
+												{{#ifCond OwnerId UserId}}
+												<li>
+													<a href="#"
+													   data-cars-id="{{Id}}"
+													   role="button" onclick="carController.getCarEdit(this)">
+														<span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString
+													</a>
+												</li>
+												<li role="separator" class="divider"></li>
+												{{/ifCond}}
+												{{#ifCond OwnerId UserId}}
+												<li>
+													<a href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" role="button" onclick="carController.deleteCar(this)">
+														<span class="glyphicon glyphicon-trash" aria-hidden="true">&nbsp;</span>@Resources.Resource.deleteString
+													</a>
+												</li>
+												<li role="separator" class="divider"></li>
+												{{/ifCond}}
+												<li>
+													<a href="#"
+													   data-cars-id="{{Id}}"
+													   role="button" onclick="carController.getCarDetails(this)">
+														<span class="glyphicon glyphicon-file" aria-hidden="true">&nbsp;</span>@Resources.Resource.CarsDetails
+													</a>
+												</li>
+												<li role="separator" class="divider"></li>
+												{{#ifCond OwnerId UserId}}
+												<li>
+													<a href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" role="button" onclick="carController.giveCar(this)">
+														<span class="glyphicon glyphicon-user" aria-hidden="true">&nbsp;</span>@Resources.Resource.ChangeDriver
+													</a>
+												</li>
+												{{else}}
+												<li>
+													<a href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" data-cars-owner="{{OwnerId}}" role="button" onclick="carController.returnCar(this)">
+														<span class="glyphicon glyphicon-user" aria-hidden="true">&nbsp;</span>@Resources.Resource.Return
+													</a>
+												</li>
+												{{/ifCond}}
+											</ul>
+										</div>
+									</td>
+									<td>{{CarName}}</td>
+									<td>{{CarNickName}}</td>
+									<td>{{CarNumber}}</td>
+									<td>{{CarStateDescription}}</td>
+									<td>
+										<input type="radio" name="carStatus" role="button"
+											   onclick="carController.getThisCarMain(this)"
+											   data-cars-id="{{Id}}"
+											   data-cars-name="{{CarName}}"
+											   {{#if isMain}}
+											   checked="checked"
+											   value="main"
+											   {{else}}
+											   value="spare"
+											   {{/if}}>
+									</td>
+								</tr>
+								{{/each}}
+							</script>
+						</tbody>
+					</table>
                         @Html.Partial("_DeleteCarPartial", Model.Cars)
                         @Html.Partial("_EditCarPartial", Model.Cars)
                         @Html.Partial("_AddCarPartial", Model.Cars)

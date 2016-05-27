@@ -1,10 +1,14 @@
 ﻿@{
-    ViewBag.Title = "SendMessagesToDrivers";
+	ViewBag.Title = "SendMessagesToDrivers";
 }
 
-<h2>SendMessagesToDrivers</h2>
-
-<input id="message" type="text" class="form-control" placeholder="message...">
-<input id="message-btn" type="button" class="form-control" value="Send">
-
+<h2>Send message to drivers</h2>
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		<input id="message" type="text" placeholder="message...">
+		<input id="message-btn" type="button" class="btn btn-success" value="Send">
+	</div>
+	<div class="col-md-3"></div>
+</div>
 <script src="~/Scripts/AdminSendMessage.js"></script>
