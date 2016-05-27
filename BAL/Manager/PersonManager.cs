@@ -8,6 +8,7 @@ using DAL.Interface;
 using Model.DB;
 using Model.DTO;
 using BAL.Interfaces;
+using Common.Enum;
 
 namespace BAL.Manager
 {
@@ -111,6 +112,7 @@ namespace BAL.Manager
 			 }
 			 return null;
 		 }
+
 		 public PersonDTO GetPersonByPersonID(int? id)
 		 {
 			 if (id == 0)
@@ -124,5 +126,17 @@ namespace BAL.Manager
 			 }
 			 return null;
 		 }
+
+		public IEnumerable<PersonDTO> GetBestPersons(AvailableRoles role)
+		{
+			var persons = Mapper.Map<List<PersonDTO>>(uOW.PersonRepo.All.Where(p => p.User.RoleId == (int)role)).ToList();
+			persons.Sort(delegate (PersonDTO x, PersonDTO y)
+			{
+				var yRating = (double)(y.User.Rating);
+				var xRating = (double)(x.User.Rating);
+				return yRating.CompareTo(xRating);
+			});
+			return persons.Take(5);
+		}
 	}
 }

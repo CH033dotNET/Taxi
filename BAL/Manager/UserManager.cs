@@ -491,6 +491,15 @@ namespace BAL.Manager
 			return currentDrivers;
 		}
 
+		public void CalculateUserRating(int id)
+		{
+			var feedback = uOW.FeedbackRepo.GetByID(id);
+			var user = uOW.UserRepo.GetByID(feedback.UserId);
+			user.Rating = uOW.FeedbackRepo.All.Where(f => f.UserId == user.Id).Average(f => f.Rating);
+			uOW.UserRepo.Update(user);
+			uOW.Save();
+		}
+
 		// TODO:
 		/*
 		public UserInfoDTO GetInfoById(int id) {

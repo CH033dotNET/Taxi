@@ -37,7 +37,8 @@ namespace Model.DTO
 
 		public double Bonus { get; set; }
 
-        public DateTime RegistrationDate { get; set; }
+		public double? Rating { get; set; }
 
+		public DateTime RegistrationDate { get; set; }
     }
 }
