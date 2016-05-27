@@ -11,6 +11,12 @@
 	var districtChecker = null;
 	var counts = [];
 
+	var map;
+	var driverMarker;
+	var destinationMarkers = [];
+	var geocoder = new google.maps.Geocoder();
+
+
 	Notify = function (header, message) {
 		if (window.Notification && Notification.permission !== "denied") {
 			Notification.requestPermission(function (status) {  // status is "granted", if accepted by user
@@ -236,6 +242,11 @@
 							mainHub.server.OrderConfirmed(currentOrderId, waiting_time);
 							mainHub.client.OrderTaken(currentOrderId)
 
+
+
+							//load partial view
+
+
 							$.ajax({
 								type: 'POST',
 								url: '@Url.Content("~/DriverEx/MyOrder")',
@@ -261,6 +272,10 @@
 			setTimeout(run, 5000);
 		}, 5000);
 
+		mapInit();
+
+		GetCurrentOrder();
+
 		function sentCoord(position) {
 			var data = {};
 			data.Latitude = position.coords.latitude;
@@ -279,13 +294,83 @@
 					method: 'POST',
 					data: data
 				});
+
+				UpdateDriverPosition();
+
 			}
 			if (currentOrderId) {
 				mainHub.server.notifyDriverCoordinate(data);
 			}
 		}
 
-	});
+		function mapInit() {
+			map = new google.maps.Map(document.getElementById("map"), {
+				zoom: 13
+			})
+		}
 
-	
+		function UpdateDriverPosition()
+		{
+			if (driverMarker === undefined) {
+				driverMarker = new google.maps.Marker({
+					position: { lat: prevCoord.Latitude, lng: prevCoord.Longitude },
+					map: map,
+					title: 'Driver: ' + name,
+					icon: {
+						url: imagePath + '/cab.png'
+					}
+				});
+
+				driverMarker.setAnimation(google.maps.Animation.BOUNCE);
+
+				map.setCenter(driverMarker.getPosition());
+			}
+			else {
+				driverMarker.setPosition(new google.maps.LatLng(prevCoord.Latitude, prevCoord.Longitude));
+			}
+		}
+
+		function GetCurrentOrder() {
+
+			$.ajax({
+				type: "POST",
+				url: "/DriverEX/GetCurrentOrder/",
+				
+				success: function (order) {
+					var k = 0;
+					GetLocationByAddress(order.FullAddressFrom);
+
+					//add other addresses
+
+
+
+
+				},
+			});
+			
+		}
+		function GetLocationByAddress(address)
+		{
+			var addressLabel = address;
+
+			if (addressLabel != "") {
+				geocoder.geocode({ 'address': addressLabel }, function (results, status) {
+					if (status == google.maps.GeocoderStatus.OK) {
+						
+						if (destinationMarkers[address] === undefined)
+						{
+							destinationMarkers[address] = new google.maps.Marker({
+								map: map,
+								position: results[0].geometry.location,
+								icon: picturePath + 'logo_client.png',
+							});
+						}
+					}
+					else {
+						alert("Geocode was not successful for the following reason: " + status);
+					}
+				});
+			}
+		}
+	});	
 });
