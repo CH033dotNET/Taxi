@@ -1,4 +1,5 @@
 ﻿var map;
+
 var markers = [];
 
 var Redcar;

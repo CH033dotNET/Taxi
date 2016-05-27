@@ -79,6 +79,10 @@ namespace MainSaite.Controllers
 			}
 			return PartialView(driverOrder);
 		}
+		public ActionResult MyOrderMap()
+		{
+			return View();
+		}
 
 		public ActionResult Pulse()
 		{

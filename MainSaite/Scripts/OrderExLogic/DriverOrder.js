@@ -11,6 +11,11 @@
 	var districtChecker = null;
 	var counts = [];
 
+	var map;
+	var driverMarker;
+	var destinationMarkers = [];
+
+
 	Notify = function (header, message) {
 		if (window.Notification && Notification.permission !== "denied") {
 			Notification.requestPermission(function (status) {  // status is "granted", if accepted by user
@@ -236,6 +241,7 @@
 							mainHub.server.OrderConfirmed(currentOrderId, waiting_time);
 							mainHub.client.OrderTaken(currentOrderId)
 
+							//load partial view
 							$.ajax({
 								type: 'POST',
 								url: '@Url.Content("~/DriverEx/MyOrder")',
@@ -261,6 +267,8 @@
 			setTimeout(run, 5000);
 		}, 5000);
 
+		mapInit();
+
 		function sentCoord(position) {
 			var data = {};
 			data.Latitude = position.coords.latitude;
@@ -279,13 +287,37 @@
 					method: 'POST',
 					data: data
 				});
+
+				UpdateDriverPosition();
+
 			}
 			if (currentOrderId) {
 				mainHub.server.notifyDriverCoordinate(data);
 			}
 		}
 
-	});
+		function mapInit() {
+			map = new google.maps.Map(document.getElementById("map"), {
+				center: { lat: 48.3214409, lng: 25.8638791 },
+				zoom: 8
+			})
+		}
 
-	
+		function UpdateDriverPosition()
+		{
+			if (driverMarker === undefined) {
+				driverMarker = new google.maps.Marker({
+					position: { lat: prevCoord.Latitude, lng: prevCoord.Longitude },
+					map: map,
+					title: 'Driver: ' + name,
+					icon: {
+						url: imagePath + '/cab.png'
+					}
+				});
+			}
+			else {
+				driverMarker.setPosition(new google.maps.LatLng(prevCoord.Latitude, prevCoord.Longitude));
+			}
+		}
+	});	
 });

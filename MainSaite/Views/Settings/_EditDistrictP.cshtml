@@ -3,26 +3,26 @@
 <div class="modal fade" id="edit-item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header modal-header-warning">
+			<div class="modal-header modal-header-warning" id="modalHeader">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 				</button>
 				<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString</h4>
 			</div>
 
-			<div class="modal-body">
+			<div class="modal-body" id="modalBody">
 				<form data-toggle="validator" id="edit-district-form" role="form" autocomplete="off" method="post">
 					<div class="form-group">
 						<p>@Resources.Resource.enterNewDstName</p>
 						<input id="editInputDistrictId" value="" hidden>
-						<h4><input type="text" class="form-control input-lg" id="newName" data-delay="150" minlength="4" pattern="^((([A-Z]){0,1}([a-z]){1,10}([ ]){0,1}[^0-9]){1,4}|(([А-Я]){0,1}([а-я]){1,10}([ ]){0,1}[^0-9]){1,4})" maxlength="30" data-error="@Resources.Resource.DistrictNameError" required /></h4>
+						<h4><input type="text" class="input-lg" id="newName" data-delay="150" minlength="4" pattern="^((([A-Z]){0,1}([a-z]){1,10}([ ]){0,1}[^0-9]){1,4}|(([А-Я]){0,1}([а-я]){1,10}([ ]){0,1}[^0-9]){1,4})" maxlength="30" data-error="@Resources.Resource.DistrictNameError" required /></h4>
 						<span class="help-block with-errors"></span>
 					</div>
 				</form>
 			</div>
 
-			<div class="modal-footer">
-				<button type="button" class="btn btn-info" data-dismiss="modal">
+			<div class="modal-footer" id="modalFooter">
+				<button type="button" class="btn btn-success warning" data-dismiss="modal">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true">&nbsp;</span>@Resources.Resource.cancelButton
 				</button>
 				<button id="edit-district" class="btn btn-success" form="edit-district-form" role="button" type="button">
