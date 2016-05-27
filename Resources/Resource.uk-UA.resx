@@ -265,7 +265,7 @@
     <value>Район</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>Домашня</value>
+    <value>Дім</value>
   </data>
   <data name="MainLink" xml:space="preserve">
     <value>На головну сторінку</value>
@@ -1214,5 +1214,35 @@
   </data>
   <data name="MyOrder" xml:space="preserve">
     <value>Моє замовлення</value>
+  </data>
+  <data name="AboutUs" xml:space="preserve">
+    <value>Про нас</value>
+  </data>
+  <data name="BillIsPaid" xml:space="preserve">
+    <value>Рахунок сплачено</value>
+  </data>
+  <data name="Bonuses" xml:space="preserve">
+    <value>Бонуси</value>
+  </data>
+  <data name="CallUs" xml:space="preserve">
+    <value>Телефонуйте: (800) 123-3542</value>
+  </data>
+  <data name="ClientBonus" xml:space="preserve">
+    <value>Використати бонуси клієнта</value>
+  </data>
+  <data name="FinalPrice" xml:space="preserve">
+    <value>Фінальний рахунок</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>Історія</value>
+  </data>
+  <data name="NoCurrentOrder" xml:space="preserve">
+    <value>Немає поточного замовлення</value>
+  </data>
+  <data name="OrderPayment" xml:space="preserve">
+    <value>Оплата доставки</value>
+  </data>
+  <data name="TripInfo" xml:space="preserve">
+    <value>Інформація про поїздку</value>
   </data>
 </root>

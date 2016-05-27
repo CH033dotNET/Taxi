@@ -96,13 +96,13 @@
 			<div class="modal-content">
 				<div class="modal-header modal-header-info" id="modalHeader">
 					@*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
-					<h4 class="modal-title">[ORDER PAYMENT]</h4>
+					<h4 class="modal-title">@Resources.Resource.OrderPayment</h4>
 				</div>
 				<div class="modal-body" id="modalBody">
 					<div class="btform">
 						<div id="ModalContent">
 							<table class="table" id="EditOrderTable">
-								<caption>[TRIP INFO]</caption>
+								<caption>@Resources.Resource.TripInfo</caption>
 								<tr>
 									<td>
 										@Html.Label(Resources.Resource.Price)
@@ -112,31 +112,26 @@
 									</td>
 								</tr>
 							</table>
+                           @if (Model.UserId != null) { 
 							<table class="table" id="EditOrderTable">
-								<caption>[BONUSES]</caption>
+								<caption>@Resources.Resource.Bonuses</caption>
 								<tr>
 									<td>
-										@Html.Label("[Bonus]")
+										@Html.Label(@Resources.Resource.Bonuses)
 									</td>
 									<td>
-										@if (Model.UserId != null)
-											{
 										<div class="checkbox">
-											<label><input type="checkbox" id="clientBonus" value="">[USE CLIENT BONUSES]</label>
+											<label><input type="checkbox" id="clientBonus" value="">@Resources.Resource.ClientBonus</label>
 										</div>
-										}
-										else
-										{
-												<label>[THIS CLIENT IS UNREGISTERED]</label>
-										}
 									</td>
 								</tr>
 							</table>
+						   }
 							<table class="table" id="EditOrderTable">
-								<caption>[FINAL BILL]</caption>
+								<caption>@Resources.Resource.FinalPrice</caption>
 								<tr>
 									<td colspan="2" id="finalBill">
-										@Html.Label("[FINAL PRICE:]")
+										@Html.Label(@Resources.Resource.Price)
 										<div id="loading">
 											<i class="fa fa-refresh fa-spin fa-5x"></i>
 										</div>
@@ -148,19 +143,16 @@
 							</table>
 
 						</div>
-						<input type="submit" id="mdal-submit" class="btn btn-success" name="Ok" value="[Bill is paid]" />
+						<input type="submit" id="mdal-submit" class="btn btn-success" name="Ok" value=@Resources.Resource.BillIsPaid />
 					</div>
 				</div>
-				@*<div class="modal-footer" id="modalFooter">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>*@
 			</div>
 		</div>
 	</div>
 }
 else
 {
-	<p>[NO CURRENT ORDER]</p>
+	<h2>@Resources.Resource.NoCurrentOrder</h2>
 }
 <script>
 	var tariffs;

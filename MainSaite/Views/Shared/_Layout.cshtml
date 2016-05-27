@@ -42,7 +42,7 @@
 	<div class="row">
 		<div class="col-md-1 col-lg-1 col-sm-1"></div>
 		<div class="col-md-10 col-lg-10 col-sm-10 col-xs-12" id="navBar">
-			<p id="navPhone">Call us: (800) 123-3542</p>
+			<p id="navPhone">@Resources.Resource.CallUs</p>
 			<div class="left-menu">
 				<div class="navbar navbar-default" id="desktopNavBar">
 					<div id="mainLogoContainer">
@@ -65,9 +65,9 @@
 			if (Session["User"] == null)
 			{ 
 
-									<li id="navBarBtn">@Html.ActionLink("[HOME]", "Index", "Home")</li>
+									<li id="navBarBtn">@Html.ActionLink(@Resources.Resource.Home.ToUpper(), "Index", "Home")</li>
 									
-									<li id="navBarBtn">@Html.ActionLink("[ABOUT US]", "Index", "Home")</li>
+									<li id="navBarBtn">@Html.ActionLink(@Resources.Resource.AboutUs.ToUpper(), "Index", "Home")</li>
 									<li id="navBarBtn">@Html.ActionLink(Resources.Resource.SingUp.ToUpper(), "Registration", "Account")</li>
 	                                <li id="navBarBtn">@Html.ActionLink(Resources.Resource.Login.ToUpper(), "Authentification", "Account")</li>
 			}
@@ -146,7 +146,7 @@
 					if (ViewBag.UserRoleId == (int)AvailableRoles.Client)
 					{
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.ClientDriveHistory, "DriveHistory", "Client")</li>
-	                        <li class="list-group-item" id="sideMenu">@Html.ActionLink("[Bonuses]", "ClientBonuses", "Client")</li>
+	                        <li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.Bonuses, "ClientBonuses", "Client")</li>
 						}
 
 						if (ViewBag.UserRoleId == (int)AvailableRoles.Support)

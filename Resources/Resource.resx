@@ -1213,4 +1213,34 @@
   <data name="MyOrder" xml:space="preserve">
     <value>My order</value>
   </data>
+  <data name="AboutUs" xml:space="preserve">
+    <value>About Us</value>
+  </data>
+  <data name="BillIsPaid" xml:space="preserve">
+    <value>Bill is paid</value>
+  </data>
+  <data name="Bonuses" xml:space="preserve">
+    <value>Bonuses</value>
+  </data>
+  <data name="CallUs" xml:space="preserve">
+    <value>Call us: (800) 123-3542</value>
+  </data>
+  <data name="ClientBonus" xml:space="preserve">
+    <value>Use client bonus</value>
+  </data>
+  <data name="FinalPrice" xml:space="preserve">
+    <value>Final bill</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="NoCurrentOrder" xml:space="preserve">
+    <value>No current order</value>
+  </data>
+  <data name="OrderPayment" xml:space="preserve">
+    <value>OrderPayment</value>
+  </data>
+  <data name="TripInfo" xml:space="preserve">
+    <value>Trip info</value>
+  </data>
 </root>
