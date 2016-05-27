@@ -1,4 +1,5 @@
-﻿using Common.Enum;
+﻿using BAL.Interfaces;
+using Common.Enum;
 using DAL;
 using Model;
 using System;
@@ -13,12 +14,20 @@ using System.Web.Mvc;
 namespace MainSaite.Controllers
 {
 	public class HomeController : BaseController
-	{		
+	{
+		private INewsManager NewsManager;
+
+		public HomeController(INewsManager newsManager)
+		{
+			NewsManager = newsManager;
+		}
+
 		public ActionResult Index()
 		{
 			if(Session["Culture"]==null)
 			   Session["Culture"] = "en-us";
 
+			ViewBag.News = NewsManager.GetLatestNews(4);
 			return View();
 		}
 

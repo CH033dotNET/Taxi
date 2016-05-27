@@ -175,6 +175,39 @@ namespace DAL.Migrations
 				context.TariffsEx.Add(tariff);
 				context.SaveChanges();
 			}
+			//News
+			if (!context.News.Any())
+			{
+				News article1 = new News()
+				{
+					Title = "Lorem ipsum",
+					Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+					CreatedTime = DateTime .UtcNow
+				};
+				News article2 = new News()
+				{
+					Title = "Lorem ipsum",
+					Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+					CreatedTime = DateTime.UtcNow
+				};
+				News article3 = new News()
+				{
+					Title = "Lorem ipsum",
+					Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+					CreatedTime = DateTime.UtcNow
+				};
+				News article4 = new News()
+				{
+					Title = "Lorem ipsum",
+					Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+					CreatedTime = DateTime.UtcNow
+				};
+				context.News.Add(article1);
+				context.News.Add(article2);
+				context.News.Add(article3);
+				context.News.Add(article4);
+				context.SaveChanges();
+			}
 			// Cars
 			if (!context.Cars.Any())
 			{
