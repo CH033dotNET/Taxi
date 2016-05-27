@@ -14,6 +14,7 @@
 	var map;
 	var driverMarker;
 	var destinationMarkers = [];
+	var geocoder = new google.maps.Geocoder();
 
 
 	Notify = function (header, message) {
@@ -241,7 +242,11 @@
 							mainHub.server.OrderConfirmed(currentOrderId, waiting_time);
 							mainHub.client.OrderTaken(currentOrderId)
 
+
+
 							//load partial view
+
+
 							$.ajax({
 								type: 'POST',
 								url: '@Url.Content("~/DriverEx/MyOrder")',
@@ -268,6 +273,8 @@
 		}, 5000);
 
 		mapInit();
+
+		GetCurrentOrder();
 
 		function sentCoord(position) {
 			var data = {};
@@ -298,8 +305,7 @@
 
 		function mapInit() {
 			map = new google.maps.Map(document.getElementById("map"), {
-				center: { lat: 48.3214409, lng: 25.8638791 },
-				zoom: 8
+				zoom: 13
 			})
 		}
 
@@ -314,9 +320,56 @@
 						url: imagePath + '/cab.png'
 					}
 				});
+
+				driverMarker.setAnimation(google.maps.Animation.BOUNCE);
+
+				map.setCenter(driverMarker.getPosition());
 			}
 			else {
 				driverMarker.setPosition(new google.maps.LatLng(prevCoord.Latitude, prevCoord.Longitude));
+			}
+		}
+
+		function GetCurrentOrder() {
+
+			$.ajax({
+				type: "POST",
+				url: "/DriverEX/GetCurrentOrder/",
+				
+				success: function (order) {
+					var k = 0;
+					GetLocationByAddress(order.FullAddressFrom);
+
+					//add other addresses
+
+
+
+
+				},
+			});
+			
+		}
+		function GetLocationByAddress(address)
+		{
+			var addressLabel = address;
+
+			if (addressLabel != "") {
+				geocoder.geocode({ 'address': addressLabel }, function (results, status) {
+					if (status == google.maps.GeocoderStatus.OK) {
+						
+						if (destinationMarkers[address] === undefined)
+						{
+							destinationMarkers[address] = new google.maps.Marker({
+								map: map,
+								position: results[0].geometry.location,
+								icon: picturePath + 'logo_client.png',
+							});
+						}
+					}
+					else {
+						alert("Geocode was not successful for the following reason: " + status);
+					}
+				});
 			}
 		}
 	});	

@@ -84,6 +84,11 @@ namespace MainSaite.Controllers
 			return View();
 		}
 
+		[HttpPost]
+		public JsonResult GetCurrentOrder()
+		{		
+		    return Json(orderManager.GetCurrentDriverOrder((Session["User"] as UserDTO).Id));
+		}
 		public ActionResult Pulse()
 		{
 			return View();
