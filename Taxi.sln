@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{B8DB1FA7-DFED-42C7-87E2-23525C7674AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApiApplication", "WindowsFormsApiApplication\WindowsFormsApiApplication.csproj", "{EBC84C11-1D67-4A41-B4B1-3056A725D635}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxiApi", "TaxiApi\TaxiApi.csproj", "{C1C03F14-2E97-4614-9482-A89FB73FA782}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{B8DB1FA7-DFED-42C7-87E2-23525C7674AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8DB1FA7-DFED-42C7-87E2-23525C7674AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8DB1FA7-DFED-42C7-87E2-23525C7674AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBC84C11-1D67-4A41-B4B1-3056A725D635}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBC84C11-1D67-4A41-B4B1-3056A725D635}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBC84C11-1D67-4A41-B4B1-3056A725D635}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBC84C11-1D67-4A41-B4B1-3056A725D635}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1C03F14-2E97-4614-9482-A89FB73FA782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1C03F14-2E97-4614-9482-A89FB73FA782}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1C03F14-2E97-4614-9482-A89FB73FA782}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1C03F14-2E97-4614-9482-A89FB73FA782}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
