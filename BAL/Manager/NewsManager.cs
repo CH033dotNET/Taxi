@@ -2,6 +2,7 @@
 using BAL.Interfaces;
 using Common.Enum;
 using DAL.Interface;
+using Model.DB;
 using Model.DTO;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,31 @@ namespace BAL.Manager
 			return Mapper.Map<NewsDTO>(article);
 		}
 
+		public bool SaveArticle(NewsDTO article)
+		{
+			try
+			{
+				if (article.Id == -1)
+				{
+					var newArticle = Mapper.Map<News>(article);
+					newArticle.CreatedTime = DateTime.UtcNow;
+					uOW.NewsRepo.Insert(newArticle);
+				}
+				else
+				{
+					var articleDb = uOW.NewsRepo.GetByID(article.Id);
+					articleDb.Title = article.Title;
+					articleDb.Article = article.Article;
+				}
+
+				uOW.Save();
+				return true;
+			}
+			catch (Exception ex)
+			{
+				return false;
+			}
+		}
 		public bool DeleteArticle(int id)
 		{
 			try

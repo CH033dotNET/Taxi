@@ -186,6 +186,7 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\DriverExController.cs" />
     <Compile Include="Controllers\DriverLocationHubController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\OperatorHubController.cs" />
     <Compile Include="Controllers\OperatorMessagesHubController.cs" />
     <Compile Include="Controllers\OrderExController.cs" />
@@ -583,6 +584,7 @@
     <Content Include="Views\Client\ClientBonuses.cshtml" />
     <Content Include="Views\DriverEx\Pulse.cshtml" />
     <Content Include="Views\DriverEx\MyOrderMap.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
