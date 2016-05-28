@@ -41,14 +41,14 @@
 			this.PasswordTextBox.Location = new System.Drawing.Point(107, 53);
 			this.PasswordTextBox.Name = "PasswordTextBox";
 			this.PasswordTextBox.Size = new System.Drawing.Size(100, 20);
-			this.PasswordTextBox.TabIndex = 0;
+			this.PasswordTextBox.TabIndex = 1;
 			// 
 			// loginTextBox
 			// 
 			this.loginTextBox.Location = new System.Drawing.Point(107, 27);
 			this.loginTextBox.Name = "loginTextBox";
 			this.loginTextBox.Size = new System.Drawing.Size(100, 20);
-			this.loginTextBox.TabIndex = 1;
+			this.loginTextBox.TabIndex = 0;
 			// 
 			// label1
 			// 

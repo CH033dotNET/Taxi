@@ -7,13 +7,13 @@ namespace DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class RatingfieldaddedtoUsermodel : IMigrationMetadata
+    public sealed partial class RatingChangesFix : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RatingfieldaddedtoUsermodel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(RatingChangesFix));
         
         string IMigrationMetadata.Id
         {
-            get { return "201605271238000_Rating-field-added-to-User-model"; }
+            get { return "201605281742124_RatingChangesFix"; }
         }
         
         string IMigrationMetadata.Source
