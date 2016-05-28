@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -14,7 +15,7 @@ namespace WindowsFormsApiApplication.Tools
 		{
 			using (var client = new HttpClient())
 			{
-				client.BaseAddress = new Uri("http://localhost:40490/");
+				client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ApiUrl"]);
 				HttpResponseMessage response = await client.GetAsync(url);
 				if (response.IsSuccessStatusCode)
 				{
@@ -30,7 +31,7 @@ namespace WindowsFormsApiApplication.Tools
 		{
 			using (var client = new HttpClient())
 			{
-				client.BaseAddress = new Uri("http://localhost:40490/");
+				client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ApiUrl"]);
 				HttpResponseMessage response = await client.PostAsync(url, new StringContent(data));
 				if (response.IsSuccessStatusCode)
 				{
