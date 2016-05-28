@@ -11,5 +11,7 @@ namespace BAL.Interfaces
 	{
 		IEnumerable<NewsDTO> GetAllNews();
 		IEnumerable<NewsDTO> GetLatestNews(int i);
+		NewsDTO GetOneArticle(int id);
+		bool DeleteArticle(int id);
 	}
 }
