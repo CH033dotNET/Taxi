@@ -3,23 +3,23 @@
 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header modal-header-danger">
+			<div class="modal-header modal-header-danger" id="modalHeader">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 				</button>
 				<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-trash" aria-hidden="true">&nbsp;</span>@Resources.Resource.deleteConfirm</h4>
 			</div>
 
-			<div class="modal-body">
+			<div class="modal-body" id="modalBody">
 				<p>@Resources.Resource.deleteDstEntryQuestion</p>
 				<h4><p id="p-enchenced-central" class="item-name"></p></h4>
 			</div>
 
-			<div class="modal-footer">
-				<button type="button" class="btn btn-info" data-dismiss="modal">
+			<div class="modal-footer" id="modalFooter">
+				<button type="button" class="btn btn-success" data-dismiss="modal">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true">&nbsp;</span>@Resources.Resource.cancelButton
 				</button>
-				<a id="deleteConfirmButton" class="btn btn-danger btn-ok">
+				<a id="deleteConfirmButton" class="btn btn-success warning btn-ok">
 					<span class="glyphicon glyphicon-ok" aria-hidden="true">&nbsp;</span>@Resources.Resource.deleteString
 				</a>
 			</div>

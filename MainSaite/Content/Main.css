@@ -302,6 +302,7 @@
     color: black;
 	    background: #FFCF0F;
 }
+
 .newTableStyle tr:hover{
 	    background: rgb(148, 148, 148);
 
@@ -312,7 +313,7 @@
 
     
 
-	h1,h2,h3,label,td, legend{
+	h1,h2,h3,label,td, legend, p{
 		color:white;
 	}
 

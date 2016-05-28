@@ -311,6 +311,10 @@
     <Compile Include="Migrations\201605251353275_Englesh-field-added-to-OrderEx-model.Designer.cs">
       <DependentUpon>201605251353275_Englesh-field-added-to-OrderEx-model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605271238000_Rating-field-added-to-User-model.cs" />
+    <Compile Include="Migrations\201605271238000_Rating-field-added-to-User-model.Designer.cs">
+      <DependentUpon>201605271238000_Rating-field-added-to-User-model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201605280945096_AddedNewsStatus.cs" />
     <Compile Include="Migrations\201605280945096_AddedNewsStatus.Designer.cs">
       <DependentUpon>201605280945096_AddedNewsStatus.cs</DependentUpon>
@@ -528,9 +532,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605251353275_Englesh-field-added-to-OrderEx-model.resx">
       <DependentUpon>201605251353275_Englesh-field-added-to-OrderEx-model.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605280945096_AddedNewsStatus.resx">
-      <DependentUpon>201605280945096_AddedNewsStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

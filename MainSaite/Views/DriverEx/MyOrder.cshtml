@@ -1,25 +1,19 @@
-﻿@model Model.DTO.OrderExDTO
+﻿
 @{
 	Layout = null;
 }
+<div id="currentOrder">
+    <form role="form" id="form">
 
-@if (Model != null)
-{
-	<form role="form" id="form">
-
-		<input type="hidden" id="orderId" value=@Model.Id>
-
-		@if (Model.UserId != null)
-		{
-			<input type="hidden" id="userId" value=@Model.UserId>
-		}
+		<input type="hidden" id="orderId">	
+		<input type="hidden" id="userId" > @*value=@Model.UserId*@
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8" style="text-align:center">
 				<h2 style="font-size: 18px;margin: 0px;">
 					@Resources.Resource.Address
 			</h2>
-				<h2>@Model.FullAddressFrom</h2>
+				<h2 id="fullAddressFrom"></h2>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
@@ -37,8 +31,8 @@
 				<div class="row">
 					<label class="col-sm-3 form-control-label">@Resources.Resource.WhenToGo</label>
 					<div class="col-sm-9 radio-box form-inline">
-						<label class="radio-inline"><input type="radio" id="urgently" name="urgency" checked="@Model.AdditionallyRequirements.Urgently"><span></span>@Resources.Resource.Urgently</label>
-						<label class="radio-inline"><input type="radio" id="pre-order" name="urgency" checked="@(!Model.AdditionallyRequirements.Urgently)"><span></span>@Resources.Resource.PreOrder</label>
+						<label class="radio-inline"><input type="radio" id="urgently" name="urgency"><span></span>@Resources.Resource.Urgently</label>
+						<label class="radio-inline"><input type="radio" id="pre-order" name="urgency"><span></span>@Resources.Resource.PreOrder</label>
 						<div class="input-group bootstrap-datetimepicker datetimepicker" id="time-group">
 							<input type="text" id="time" class="form-control" />
 							<span class="input-group-addon">
@@ -48,34 +42,50 @@
 					</div>
 				</div>
 				<div class="row">
+					<label class="col-sm-3 col-xs-12 form-control-label">@Resources.Resource.Passengers</label>
+					<div class="col-sm-2 col-xs-8">
+						<select class="form-control" id="passengers">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
 					<label class="col-sm-3 form-control-label">@Resources.Resource.ClassOfCar</label>
 					<div class="col-sm-9 button-box">
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Normal"><input type="radio" id="normal" name="car-class" checked="@(Model.AdditionallyRequirements.Car == Common.Enum.CarEnums.CarClassEnum.Normal)"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Universal"><input type="radio" id="universal" name="car-class" checked="@(Model.AdditionallyRequirements.Car == Common.Enum.CarEnums.CarClassEnum.Universal)"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Minivan"><input type="radio" id="minivan" name="car-class" checked="@(Model.AdditionallyRequirements.Car == Common.Enum.CarEnums.CarClassEnum.Minivan)"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Lux"><input type="radio" id="lux" name="car-class" checked="@(Model.AdditionallyRequirements.Car == Common.Enum.CarEnums.CarClassEnum.Lux)"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Normal"><input type="radio" id="normal" name="car-class"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Universal"><input type="radio" id="universal" name="car-class"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Minivan"><input type="radio" id="minivan" name="car-class"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Lux"><input type="radio" id="lux" name="car-class"><span></span></label>
 					</div>
 				</div>
 				<div class="row">
 					<label class="col-sm-3 form-control-label">@Resources.Resource.Additionally</label>
 					<div class="col-sm-8 button-box">
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Courier"><input type="checkbox" id="courier" checked="@(Model.AdditionallyRequirements.Courier)"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithPlate"><input type="checkbox" id="with-plate" checked="@(Model.AdditionallyRequirements.WithPlate)"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.MyCar"><input type="checkbox" id="my-car" checked="@(Model.AdditionallyRequirements.MyCar)"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithPets"><input type="checkbox" id="pets" checked="@(Model.AdditionallyRequirements.Pets)"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithBaggage"><input type="checkbox" id="bag" checked="@(Model.AdditionallyRequirements.Bag)"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Conditioner"><input type="checkbox" id="conditioner" checked="@(Model.AdditionallyRequirements.Conditioner)"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithEnglish"><input type="checkbox" id="english" checked="@(Model.AdditionallyRequirements.English)"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.NoSmoking"><input type="checkbox" id="nosmoking" checked="@(Model.AdditionallyRequirements.NoSmoking)"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Smoking"><input type="checkbox" id="smoking" checked="@(Model.AdditionallyRequirements.Smoking)"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithCheck"><input type="checkbox" id="check" checked="@(Model.AdditionallyRequirements.Check)"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Courier"><input type="checkbox" id="courier"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithPlate"><input type="checkbox" id="with-plate"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.MyCar"><input type="checkbox" id="my-car"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithPets"><input type="checkbox" id="pets"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithBaggage"><input type="checkbox" id="bag"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Conditioner"><input type="checkbox" id="conditioner"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithEnglish"><input type="checkbox" id="english"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.NoSmoking"><input type="checkbox" id="nosmoking"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Smoking"><input type="checkbox" id="smoking"><span></span></label>
+						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithCheck"><input type="checkbox" id="check"><span></span></label>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div id="cost-group">
 			<label>@Resources.Resource.Price: </label>
-			<div id="cost">@Model.Price</div>
+			<div id="cost"></div>
 		</div>
 	</form>
 
@@ -96,13 +106,13 @@
 			<div class="modal-content">
 				<div class="modal-header modal-header-info" id="modalHeader">
 					@*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
-					<h4 class="modal-title">[ORDER PAYMENT]</h4>
+					<h4 class="modal-title">@Resources.Resource.OrderPayment</h4>
 				</div>
 				<div class="modal-body" id="modalBody">
 					<div class="btform">
 						<div id="ModalContent">
 							<table class="table" id="EditOrderTable">
-								<caption>[TRIP INFO]</caption>
+								<caption>@Resources.Resource.TripInfo</caption>
 								<tr>
 									<td>
 										@Html.Label(Resources.Resource.Price)
@@ -112,31 +122,28 @@
 									</td>
 								</tr>
 							</table>
-							<table class="table" id="EditOrderTable">
-								<caption>[BONUSES]</caption>
+
+							@*//if client unregistered*@
+
+							<table class="table bonusTable" id="EditOrderTable">
+								<caption>@Resources.Resource.Bonuses</caption>
 								<tr>
 									<td>
-										@Html.Label("[Bonus]")
+										@Html.Label(@Resources.Resource.Bonuses)
 									</td>
 									<td>
-										@if (Model.UserId != null)
-											{
 										<div class="checkbox">
-											<label><input type="checkbox" id="clientBonus" value="">[USE CLIENT BONUSES]</label>
+											<label><input type="checkbox" id="clientBonus" value="">@Resources.Resource.ClientBonus</label>
 										</div>
-										}
-										else
-										{
-												<label>[THIS CLIENT IS UNREGISTERED]</label>
-										}
 									</td>
 								</tr>
 							</table>
+
 							<table class="table" id="EditOrderTable">
-								<caption>[FINAL BILL]</caption>
+								<caption>@Resources.Resource.FinalPrice</caption>
 								<tr>
 									<td colspan="2" id="finalBill">
-										@Html.Label("[FINAL PRICE:]")
+										@Html.Label(@Resources.Resource.Price)
 										<div id="loading">
 											<i class="fa fa-refresh fa-spin fa-5x"></i>
 										</div>
@@ -146,22 +153,17 @@
 									</td>
 								</tr>
 							</table>
-
 						</div>
-						<input type="submit" id="mdal-submit" class="btn btn-success" name="Ok" value="[Bill is paid]" />
+						<input type="submit" id="mdal-submit" class="btn btn-success" name="Ok" value=@Resources.Resource.BillIsPaid />
 					</div>
 				</div>
-				@*<div class="modal-footer" id="modalFooter">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>*@
 			</div>
 		</div>
 	</div>
-}
-else
-{
-	<p>[NO CURRENT ORDER]</p>
-}
+</div>
+
+	<h2 id="noCurrentOrder">@Resources.Resource.NoCurrentOrder</h2>
+
 <script>
 	var tariffs;
 	var calculatorIntervalId;
@@ -233,7 +235,7 @@ else
 				dataType: "json",
 				data: { Id: orderId },
 				success: function (data) {
-					if (userId !== undefined) {
+					if (userId !="") {
 						$.ajax({
 							type: "POST",
 							url: "./Client/SetClientBonus",
@@ -260,7 +262,11 @@ else
 		});
 
 		$("#myModal").on('hidden.bs.modal', function () {
-			$('#MyOrder').empty();
+			
+			$('#currentOrder').hide();
+			$('#noCurrentOrder').show();
+			setDriverStatus(0);
+
 		});
 	});
 

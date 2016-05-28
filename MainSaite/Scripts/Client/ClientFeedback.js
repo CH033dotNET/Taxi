@@ -15,7 +15,7 @@
 		if (feedback.Id) {
 			$.ajax({
 				url: "GetFeedback",
-				method: 'post',
+				method: 'POST',
 				data: {
 					id: feedback.Id
 				},
@@ -41,7 +41,7 @@
 			if (feedback.Id) {
 				$.ajax({
 					url: "UpdateFeedback",
-					method: 'post',
+					method: 'POST',
 					data: feedback,
 					success: function (result) { }
 				});
@@ -55,7 +55,7 @@
 						feedback = result;
 						$.ajax({
 							url: "SetClientFeedback",
-							method: 'post',
+							method: 'POST',
 							data: {
 								orderId: orderId,
 								feedbackId: result.Id

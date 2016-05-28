@@ -3,13 +3,13 @@
 <div class="modal fade" id="deletedList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header modal-header-info">
+			<div class="modal-header modal-header-info" id="modalHeader">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 				</button>
 				<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-th-list" aria-hidden="true">&nbsp;</span>@Resources.Resource.DeletedDistricts</h4>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body" id="modalBody">
 				<form id="deleted-form" class="form-inline">
 					<div class="form-group">
 						<input type="text" class="form-control input-sm" placeholder="@Resources.Resource.Search" id="searchDeletedDistrictName" value="" />
@@ -18,7 +18,7 @@
 				<hr>
 				<div class="table-list">
 					<div class="table-responsive">
-						<table class="table table-striped" id="districtDeletedTable">
+						<table class="table table-striped newTableStyle" id="districtDeletedTable">
 							<thead>
 								<tr class="info">
 									<th>
@@ -49,8 +49,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-warning" data-dismiss="modal">
+			<div class="modal-footer" id="modalFooter">
+				<button type="button" class="btn btn-success warning" data-dismiss="modal">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true">&nbsp;</span>@Resources.Resource.cancelButton
 				</button>
 			</div>

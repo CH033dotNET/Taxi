@@ -13,5 +13,6 @@ namespace BAL.Interfaces
 		void DeleteFeedback(int feedbackId);
 		FeedbackDTO GetById(int id);
 		FeedbackDTO UpdateFeedback(FeedbackDTO feedback);
-	}
+		void SetUserId(int feedbackId, int? UserId);
+    }
 }

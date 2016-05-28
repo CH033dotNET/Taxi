@@ -66,6 +66,16 @@ namespace MainSaite.Controllers
 
 		public ActionResult MyOrder()
 		{
+		    return View();
+		}
+		public ActionResult MyOrderMap()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public JsonResult GetCurrentOrder()
+		{
 			var driverOrder = orderManager.GetCurrentDriverOrder((Session["User"] as UserDTO).Id);
 			if (driverOrder != null)
 			{
@@ -75,11 +85,14 @@ namespace MainSaite.Controllers
 					// If user didn't choose them than we should use default settings and driver can change them.
 					driverOrder.AdditionallyRequirements = new AdditionallyRequirementsDTO();
 					driverOrder.AdditionallyRequirements.Urgently = true;
+					driverOrder.AdditionallyRequirements.Passengers = 1;
 				}
 			}
-			return PartialView(driverOrder);
-		}
+			if(driverOrder==null)
+				return Json("NoOrder");
 
+		    return Json(driverOrder);
+		}
 		public ActionResult Pulse()
 		{
 			return View();
@@ -153,19 +166,24 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public JsonResult AddFeedback(FeedbackDTO feedback)
 		{
-			return Json(feedbackManager.AddFeedback(feedback));
+            return Json(feedbackManager.AddFeedback(feedback));
 		}
 
 		[HttpPost]
 		public JsonResult UpdateFeedback(FeedbackDTO feedback)
 		{
-			return Json(feedbackManager.UpdateFeedback(feedback));
+			var newFeedback = feedbackManager.UpdateFeedback(feedback);
+			userManager.CalculateUserRating(newFeedback.Id);
+			return Json(newFeedback);
 		}
 
 		[HttpPost]
 		public void SetDriverFeedback(int orderId, int feedbackId)
 		{
 			orderManager.SetDriverFeedback(orderId, feedbackId);
+			var order = orderManager.GetById(orderId);
+			feedbackManager.SetUserId(feedbackId, order.DriverId);
+			userManager.CalculateUserRating(feedbackId);
 		}
 		public ActionResult WorkShift()
 		{

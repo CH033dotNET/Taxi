@@ -97,7 +97,9 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public JsonResult UpdateFeedback(FeedbackDTO feedback)
 		{
-			return Json(feedbackManager.UpdateFeedback(feedback));
+			var newFeedback = feedbackManager.UpdateFeedback(feedback);
+            userManager.CalculateUserRating(newFeedback.Id);
+			return Json(newFeedback);
 		}
 
 		[HttpPost]
@@ -110,6 +112,9 @@ namespace MainSaite.Controllers
 		public void SetClientFeedback(int orderId, int feedbackId)
 		{
 			orderManager.SetClientFeedback(orderId, feedbackId);
+			var order = orderManager.GetById(orderId);
+			feedbackManager.SetUserId(feedbackId, order.DriverId);
+			userManager.CalculateUserRating(feedbackId);
 		}
 
 		[HttpPost]
