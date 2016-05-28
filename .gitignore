@@ -46,7 +46,6 @@ Temporary Items
 */bin/*
 */obj/*
 Backup/*
-*.config
 TaxiAPI/Web.config
 MainSaite/Web.config
 DriverSite/Web.config
