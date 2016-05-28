@@ -582,6 +582,7 @@
     <Content Include="Views\DriverEx\WorkShift.cshtml" />
     <Content Include="Views\Client\ClientBonuses.cshtml" />
     <Content Include="Views\DriverEx\Pulse.cshtml" />
+    <Content Include="Views\DriverEx\MyOrderMap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

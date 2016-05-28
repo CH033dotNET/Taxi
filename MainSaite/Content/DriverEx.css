@@ -75,7 +75,9 @@ input:checked + .slider:before {
 .tableJoin{
 	width:15%;
 }
-
+#rating{
+	margin-top: 7px;
+}
 #rating span {
 	font-size: 30px;
 	color: #FFED00;

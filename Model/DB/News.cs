@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,6 @@ namespace Model.DB
 		public string Title { get; set; }
 		public string Article { get; set; }
 		public DateTime CreatedTime { get; set; }
+		public ArticleStatus Status { get; set; }
 	}
 }

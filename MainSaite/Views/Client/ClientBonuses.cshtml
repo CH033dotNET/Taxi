@@ -4,16 +4,17 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div>
-
-	<div id="BonusDiv">
-		<label>[Your current bonus]</label>
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-6" id="BonusDiv">
+		<label>@Resources.Resource.Bonuses</label>
 		<div id="BonusField">
             <span id="BonusUAH">@Model</span>
 			<span id="UAHIndicator">UAH</span>
 		</div>
-		<button type="submit" value="Register" class="btn btn-success" style="display:inline">[SHOW HISTORY]</button>
+		@*<button type="submit" value="Register" class="btn btn-success">@Resources.Resource.History</button>*@
 	</div>
+	<div class="col-md-3"></div>
 
 </div>
 

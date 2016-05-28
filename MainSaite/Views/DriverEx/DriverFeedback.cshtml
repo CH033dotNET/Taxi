@@ -1,13 +1,12 @@
-﻿
-<div id="driverFeedbackModal" class="modal fade" role="dialog">
+﻿<div id="driverFeedbackModal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header" id="modalHeader">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h4 class="modal-title">@Resources.Resource.AddFeedback</h4>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body" id="modalBody">
 				
 					<label for="comment">@Resources.Resource.FeedbackComment:</label>
 					<textarea class="form-control" rows="5" id="comment"></textarea>
@@ -20,9 +19,9 @@
 					<span class="glyphicon glyphicon-star-empty"></span>
 				</div>
 			</div>
-			<div class="modal-footer">
+			<div class="modal-footer" id="modalFooter">
 				<button id="feedbackConfirm" type="button" class="btn btn-success">@Resources.Resource.SaveFeedback</button>
-				<button type="button" class="btn btn-danger" data-dismiss="modal">@Resources.Resource.Close</button>
+				<button type="button" class="btn btn-success warning" data-dismiss="modal">@Resources.Resource.Close</button>
 			</div>
 		</div>
 

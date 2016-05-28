@@ -253,6 +253,7 @@ namespace BAL.Interfaces
 				.ToList();
 			return Mapper.Map<List<OrderExDTO>>(orders);
 		}
+
 		public OrderExDTO GetCurrentDriverOrder(int driverId)
 		{
 			var order = uOW.OrderExRepo.All
@@ -260,7 +261,6 @@ namespace BAL.Interfaces
 				.Include(o => o.AddressesTo)
 				.Include(o => o.AdditionallyRequirements)
 				.Where(o => o.DriverId == driverId && o.Status == OrderStatusEnum.Confirmed).FirstOrDefault();
-
 			return Mapper.Map<OrderExDTO>(order);
 		}
 	}

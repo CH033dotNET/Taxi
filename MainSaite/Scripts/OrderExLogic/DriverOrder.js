@@ -11,6 +11,12 @@
 	var districtChecker = null;
 	var counts = [];
 
+	var map;
+	var driverMarker;
+	var destinationMarkers = [];
+	var geocoder = new google.maps.Geocoder();
+
+
 	Notify = function (header, message) {
 		if (window.Notification && Notification.permission !== "denied") {
 			Notification.requestPermission(function (status) {  // status is "granted", if accepted by user
@@ -236,7 +242,7 @@
 							mainHub.server.OrderConfirmed(currentOrderId, waiting_time);
 							mainHub.client.OrderTaken(currentOrderId)
 
-
+							GetCurrentOrder();
 						}
 						else {
 							alert("something wrong");
@@ -253,6 +259,10 @@
 			navigator.geolocation.getCurrentPosition(sentCoord);
 			setTimeout(run, 5000);
 		}, 5000);
+
+		mapInit();
+
+		GetCurrentOrder();
 
 		function sentCoord(position) {
 			var data = {};
@@ -272,13 +282,132 @@
 					method: 'POST',
 					data: data
 				});
+
+				UpdateDriverPosition();
+
 			}
 			if (currentOrderId) {
 				mainHub.server.notifyDriverCoordinate(data);
 			}
 		}
 
-	});
+		function mapInit() {
+			map = new google.maps.Map(document.getElementById("map"), {
+				zoom: 13
+			})
+		}
 
-	
+		function UpdateDriverPosition()
+		{
+			if (driverMarker === undefined) {
+				driverMarker = new google.maps.Marker({
+					position: { lat: prevCoord.Latitude, lng: prevCoord.Longitude },
+					map: map,
+					title: 'Driver: ' + name,
+					icon: {
+						url: imagePath + '/cab.png'
+					}
+				});
+
+				driverMarker.setAnimation(google.maps.Animation.BOUNCE);
+
+			}
+			else {
+				driverMarker.setPosition(new google.maps.LatLng(prevCoord.Latitude, prevCoord.Longitude));
+			}
+
+			map.setCenter(driverMarker.getPosition());
+		}
+
+		function GetCurrentOrder() {
+
+			destinationMarkers = [];
+
+			$.ajax({
+				type: "POST",
+				url: "/DriverEX/GetCurrentOrder/",
+				
+				success: function (order) {
+					var k = 0;
+
+					if (order != null && order != "NoOrder")
+					{
+						$('#currentOrder').show();
+						$('#noCurrentOrder').hide();
+						$('#orderId').val(order.Id);
+						$('#userId').val(order.UserId);
+						$('#fullAddressFrom').text(order.FullAddressFrom);
+						$('#cost').text(order.Price);
+						GetLocationByAddress(order.FullAddressFrom);
+						if(order.UserId!=null)
+						{
+							$('.bonusTable').show();
+						}
+						else $('.bonusTable').hide();
+
+						setChecked('#urgently', order.AdditionallyRequirements.Urgently);
+
+						setChecked('#normal', order.AdditionallyRequirements.Car);
+						setChecked('#universal', order.AdditionallyRequirements.Car);
+						setChecked('#minivan', order.AdditionallyRequirements.Car);
+						setChecked('#lux', order.AdditionallyRequirements.Car);
+
+
+						$('#passengers').val(order.AdditionallyRequirements.Passengers);
+
+						setChecked('#courier', order.AdditionallyRequirements.Courier);
+						setChecked('#with-plate', order.AdditionallyRequirements.WithPlate);
+						setChecked('#my-car', order.AdditionallyRequirements.MyCar);
+						setChecked('#pets', order.AdditionallyRequirements.Pets);
+						setChecked('#bag', order.AdditionallyRequirements.Bag);
+						setChecked('#conditioner', order.AdditionallyRequirements.Conditioner);
+						setChecked('#english', order.AdditionallyRequirements.NoSmoking);
+						setChecked('#nosmoking', order.AdditionallyRequirements.Smoking);
+						setChecked('#smoking', order.AdditionallyRequirements.English);
+						setChecked('#check', order.AdditionallyRequirements.Check);
+					}
+					else {
+						$('#currentOrder').hide();
+						$('#noCurrentOrder').show();
+					}
+
+					//add other addresses
+
+
+
+				},
+			});
+			
+		}
+
+		function setChecked(selector, value)
+		{
+			$(selector).attr('checked', value);
+
+		}
+
+		function GetLocationByAddress(address)
+		{
+			var addressLabel = address;
+
+			if (addressLabel != "") {
+				geocoder.geocode({ 'address': addressLabel }, function (results, status) {
+					if (status == google.maps.GeocoderStatus.OK) {
+						
+						if (destinationMarkers[address] === undefined)
+						{
+							destinationMarkers[address] = new google.maps.Marker({
+								map: map,
+								position: results[0].geometry.location,
+								icon: picturePath + 'logo_client.png',
+							});
+						}
+					}
+					else {
+						alert("Geocode was not successful for the following reason: " + status);
+					}
+				});
+			}
+		}
+	});	
 });
