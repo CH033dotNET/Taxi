@@ -124,7 +124,7 @@
 				orderblock += "    <\/td>";
 				orderblock += "    <td>";
 				orderblock += "        <div class=\"input-group\">";
-				orderblock += "                <button data-feedbackId=\"" + order.success.Id + "\" data-orderId=\"" + order.success.Id + "\" type=\"button\" class=\"btn btn-warning addFeedbackButton\" data-toggle=\"modal\">" + Resources.AddFeedback + "</button>";
+				orderblock += "                <button data-feedbackId=\"" + order.success.Id + "\" data-orderId=\"" + order.success.Id + "\" type=\"button\" class=\"btn btn-success addFeedbackButton\" data-toggle=\"modal\">" + Resources.AddFeedback + "</button>";
 				orderblock += "        <\/div>";
 				orderblock += "    <\/td>";
 				orderblock += "<\/tr>";
@@ -142,6 +142,14 @@
 		currentOrderId = null;
 
 	}
+
+	//MAP FUNCTIONS
+	mapInit();
+	GetCurrentOrder();
+	navigator.geolocation.getCurrentPosition(function (position) {
+
+		UpdateDriverPosition(position.coords.latitude, position.coords.longitude);
+	});
 
 	$.connection.hub.start().done(function () {
 
@@ -260,10 +268,6 @@
 			setTimeout(run, 5000);
 		}, 5000);
 
-		mapInit();
-
-		GetCurrentOrder();
-
 		function sentCoord(position) {
 			var data = {};
 			data.Latitude = position.coords.latitude;
@@ -271,6 +275,7 @@
 			data.Accuracy = position.coords.accuracy;
 			data.AddedTime = moment().format('YYYY/MM/DD HH:mm:ss');
 			data.OrderId = currentOrderId;
+
 
 			if (prevCoord.Latitude != position.coords.latitude && prevCoord.Longitude != position.coords.longitude) {
 
@@ -283,131 +288,148 @@
 					data: data
 				});
 
-				UpdateDriverPosition();
-
+				UpdateDriverPosition(position.coords.latitude, position.coords.longitude);
 			}
 			if (currentOrderId) {
 				mainHub.server.notifyDriverCoordinate(data);
 			}
 		}
+	});
 
-		function mapInit() {
-			map = new google.maps.Map(document.getElementById("map"), {
-				zoom: 13
-			})
-		}
+	//MAP FUNCTIONALITY
+	function mapInit() {
+		map = new google.maps.Map(document.getElementById("map"), {
+			zoom: 13
+		})
+	}
 
-		function UpdateDriverPosition()
-		{
-			if (driverMarker === undefined) {
-				driverMarker = new google.maps.Marker({
-					position: { lat: prevCoord.Latitude, lng: prevCoord.Longitude },
-					map: map,
-					title: 'Driver: ' + name,
-					icon: {
-						url: imagePath + '/cab.png'
-					}
-				});
-
-				driverMarker.setAnimation(google.maps.Animation.BOUNCE);
-
-			}
-			else {
-				driverMarker.setPosition(new google.maps.LatLng(prevCoord.Latitude, prevCoord.Longitude));
-			}
-
-			map.setCenter(driverMarker.getPosition());
-		}
-
-		function GetCurrentOrder() {
-
-			destinationMarkers = [];
-
-			$.ajax({
-				type: "POST",
-				url: "/DriverEX/GetCurrentOrder/",
-				
-				success: function (order) {
-					var k = 0;
-
-					if (order != null && order != "NoOrder")
-					{
-						$('#currentOrder').show();
-						$('#noCurrentOrder').hide();
-						$('#orderId').val(order.Id);
-						$('#userId').val(order.UserId);
-						$('#fullAddressFrom').text(order.FullAddressFrom);
-						$('#cost').text(order.Price);
-						GetLocationByAddress(order.FullAddressFrom);
-						if(order.UserId!=null)
-						{
-							$('.bonusTable').show();
-						}
-						else $('.bonusTable').hide();
-
-						setChecked('#urgently', order.AdditionallyRequirements.Urgently);
-
-						setChecked('#normal', order.AdditionallyRequirements.Car);
-						setChecked('#universal', order.AdditionallyRequirements.Car);
-						setChecked('#minivan', order.AdditionallyRequirements.Car);
-						setChecked('#lux', order.AdditionallyRequirements.Car);
-
-
-						$('#passengers').val(order.AdditionallyRequirements.Passengers);
-
-						setChecked('#courier', order.AdditionallyRequirements.Courier);
-						setChecked('#with-plate', order.AdditionallyRequirements.WithPlate);
-						setChecked('#my-car', order.AdditionallyRequirements.MyCar);
-						setChecked('#pets', order.AdditionallyRequirements.Pets);
-						setChecked('#bag', order.AdditionallyRequirements.Bag);
-						setChecked('#conditioner', order.AdditionallyRequirements.Conditioner);
-						setChecked('#english', order.AdditionallyRequirements.NoSmoking);
-						setChecked('#nosmoking', order.AdditionallyRequirements.Smoking);
-						setChecked('#smoking', order.AdditionallyRequirements.English);
-						setChecked('#check', order.AdditionallyRequirements.Check);
-					}
-					else {
-						$('#currentOrder').hide();
-						$('#noCurrentOrder').show();
-					}
-
-					//add other addresses
-
-
-
-				},
+	function UpdateDriverPosition(Latitude, Longitude) {
+		if (driverMarker === undefined) {
+			driverMarker = new google.maps.Marker({
+				position: { lat: Latitude, lng: Longitude },
+				map: map,
+				title: 'Driver: ' + name,
+				icon: {
+					url: imagePath + '/cab.png'
+				}
 			});
-			
+
+			driverMarker.setAnimation(google.maps.Animation.BOUNCE);
+
+		}
+		else {
+			driverMarker.setPosition(new google.maps.LatLng(prevCoord.Latitude, prevCoord.Longitude));
 		}
 
-		function setChecked(selector, value)
+		map.setCenter(driverMarker.getPosition());
+	}
+
+	window.updateOrderInfo = function () {
+		GetCurrentOrder();
+	}
+
+	function GetCurrentOrder() {
+
+
+		for (var key in destinationMarkers)
 		{
-			$(selector).attr('checked', value);
-
+			destinationMarkers[key].setMap(null);
 		}
 
-		function GetLocationByAddress(address)
-		{
-			var addressLabel = address;
+		destinationMarkers = [];
 
-			if (addressLabel != "") {
-				geocoder.geocode({ 'address': addressLabel }, function (results, status) {
-					if (status == google.maps.GeocoderStatus.OK) {
-						
-						if (destinationMarkers[address] === undefined)
-						{
-							destinationMarkers[address] = new google.maps.Marker({
-								map: map,
-								position: results[0].geometry.location,
-								icon: picturePath + 'logo_client.png',
-							});
-						}
+		$.ajax({
+			type: "POST",
+			url: "/DriverEX/GetCurrentOrder/",
+
+			success: function (order) {
+				var k = 0;
+
+				if (order != null && order != "NoOrder") {
+					$('#currentOrder').show();
+					$('#noCurrentOrder').hide();
+					$('#orderId').val(order.Id);
+					$('#userId').val(order.UserId);
+					$('#fullAddressFrom').text(order.FullAddressFrom);
+					$('#cost').text(order.Price);
+					GetLocationByAddress(order.FullAddressFrom, 'logo_client.png');
+					if (order.UserId != null) {
+						$('.bonusTable').show();
 					}
-					else {
-						alert("Geocode was not successful for the following reason: " + status);
+					else $('.bonusTable').hide();
+
+					setChecked('#urgently', order.AdditionallyRequirements.Urgently);
+
+
+					switch (order.AdditionallyRequirements.Car) {
+						case 1: setChecked('#normal', true); break;
+						case 2: setChecked('#universal', true); break;
+						case 3: setChecked('#minivan', true); break;
+						case 4: setChecked('#lux', true); break;
 					}
-				});
-			}
+
+
+					$('#passengers').val(order.AdditionallyRequirements.Passengers);
+
+					setChecked('#courier', order.AdditionallyRequirements.Courier);
+					setChecked('#with-plate', order.AdditionallyRequirements.WithPlate);
+					setChecked('#my-car', order.AdditionallyRequirements.MyCar);
+					setChecked('#pets', order.AdditionallyRequirements.Pets);
+					setChecked('#bag', order.AdditionallyRequirements.Bag);
+					setChecked('#conditioner', order.AdditionallyRequirements.Conditioner);
+					setChecked('#english', order.AdditionallyRequirements.NoSmoking);
+					setChecked('#nosmoking', order.AdditionallyRequirements.Smoking);
+					setChecked('#smoking', order.AdditionallyRequirements.English);
+					setChecked('#check', order.AdditionallyRequirements.Check);
+
+					//if (order.AddressesTo.length > 0) {
+					//	for (var i = 0; i < order.AddressesTo.length; i++) {
+					//		GetLocationByAddress(order.AddressesTo[i], 'logo_destination.png');
+					//	}
+					//}
+						GetLocationByAddress('вулиця Південно-Кільцева 7, Черновцы, Черновицкая область, Украина', 'logo_destination.png');
+					
+
+				}
+				else {
+					$('#currentOrder').hide();
+					$('#noCurrentOrder').show();
+				}
+
+				//add other addresses
+
+
+
+			},
+		});
+
+	}
+
+	function setChecked(selector, value) {
+		$(selector).attr('checked', value);
+
+	}
+
+	function GetLocationByAddress(address, path) {
+		var addressLabel = address;
+
+		if (addressLabel != "") {
+			geocoder.geocode({ 'address': addressLabel }, function (results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+
+					if (destinationMarkers[address] === undefined) {
+						destinationMarkers[address] = new google.maps.Marker({
+							map: map,
+							position: results[0].geometry.location,
+							icon: picturePath + path,
+						});
+					}
+				}
+				else {
+					alert("Geocode was not successful for the following reason: " + status);
+				}
+			});
 		}
-	});	
+	}
+
 });

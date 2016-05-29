@@ -269,6 +269,7 @@
 }
 #sTariff{
 	    font-size: xx-large;
+		    height: inherit;
 }
 #finalBill{
 	text-align:center;
@@ -312,7 +313,9 @@
 }
 
     
-
+    .checkbox{
+		margin:0px;
+    }
 	h1,h2,h3,label,td, legend, p{
 		color:white;
 	}
@@ -539,6 +542,7 @@
 	#navBarBtn a:hover{
 		  color:white;
 		  text-shadow: 0 1px 0 #292929;
+
 	}
 }
 

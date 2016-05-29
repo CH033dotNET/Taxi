@@ -2,17 +2,17 @@
 @{
 	Layout = null;
 }
-<div id="currentOrder">
-    <form role="form" id="form">
+<div id="currentOrder" style="display:none">
+	<form role="form" id="form">
 
-		<input type="hidden" id="orderId">	
-		<input type="hidden" id="userId" > @*value=@Model.UserId*@
+		<input type="hidden" id="orderId">
+		<input type="hidden" id="userId"> @*value=@Model.UserId*@
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8" style="text-align:center">
 				<h2 style="font-size: 18px;margin: 0px;">
 					@Resources.Resource.Address
-			</h2>
+				</h2>
 				<h2 id="fullAddressFrom"></h2>
 			</div>
 			<div class="col-md-2"></div>
@@ -41,10 +41,10 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row btform">
 					<label class="col-sm-3 col-xs-12 form-control-label">@Resources.Resource.Passengers</label>
 					<div class="col-sm-2 col-xs-8">
-						<select class="form-control" id="passengers">
+						<select id="passengers">
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
@@ -91,8 +91,8 @@
 
 	<table id="startRideDiv">
 		<tr>
-			<td>
-				<select id="sTariff"></select>
+			<td class="btform">
+				<select class="input-xlarge" id="sTariff"></select>
 			</td>
 			<td>
 				<button type="button" id="btnStart" class="btn btn-success btn-lg" onclick="StartOrder()">@Resources.Resource.Start</button>
@@ -154,15 +154,17 @@
 								</tr>
 							</table>
 						</div>
-						<input type="submit" id="mdal-submit" class="btn btn-success" name="Ok" value=@Resources.Resource.BillIsPaid />
+						<input type="submit" id="mdal-submit" class="btn btn-success" name="Ok" value="@Resources.Resource.BillIsPaid" />
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-	<h2 id="noCurrentOrder">@Resources.Resource.NoCurrentOrder</h2>
+   <div id="noCurrentOrder" style="display:none; text-align:center">
+	<h2>@Resources.Resource.NoCurrentOrder.ToUpper()</h2>
+   	<input type="submit" id="newOrdersBtn" class="btn btn-success" name="Ok" style="width:25%" value="@Resources.Resource.TakeOrder" />
+</div>
 
 <script>
 	var tariffs;
@@ -184,6 +186,14 @@
 				$('#sTariff').append('<option value="' + i + '">' + data[i].Name + '</option>');
 			}
 		});
+	 
+
+		$(document).on('click', '#newOrdersBtn', function () {
+
+			var a = $("a[href='#NewOrders']");
+			a.trigger("click");
+		});
+
 
 		$("#clientBonus").change(function () {
 			if (this.checked) {             
@@ -252,20 +262,20 @@
 					}
 
 					$('#myModal').modal('hide');
+					$('#currentOrder').hide();
+					$('#noCurrentOrder').show();
+
+					setDriverStatus(0);
+
+					//delete markers
+
+					updateOrderInfo();
 
 				},
 				error: function (error) {
 					alert(error.statusText);
 				}
 			});
-
-		});
-
-		$("#myModal").on('hidden.bs.modal', function () {
-			
-			$('#currentOrder').hide();
-			$('#noCurrentOrder').show();
-			setDriverStatus(0);
 
 		});
 	});
