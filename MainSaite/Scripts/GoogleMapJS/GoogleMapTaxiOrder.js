@@ -58,6 +58,10 @@ function setTaxiMarker(lt, lg) {
 	mapInfo.markerTaxi.setMap(mapInfo.map);
 }
 
+function removeTaxiMarker() {
+	mapInfo.markerTaxi.setMap(null);
+}
+
 
 function handleLocationError(browserHasGeolocation, infowindow, pos) {
 	infowindow.setPosition(pos);

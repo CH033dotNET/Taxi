@@ -2,25 +2,22 @@
 	margin-bottom: 0px;
 }
 
+#orders th {
+	font-size: 20px;
+}
+
 #orders th, #orders td {
 	text-align: center;
 	vertical-align: middle;
 }
 
-#dateTime {
-	width: 120px;
+.table-title h2 {
+	margin-bottom: 20px;
+	margin-top: 0px;
 }
 
-#feedback {
-	width: 140px;
-}
-
-#price {
-	width: 100px;
-}
-
-#carNumber {
-	width: 150px;
+.order .dateTime, #dateTime {
+	padding-left: 20px;
 }
 
 #rating span {
@@ -28,3 +25,16 @@
  	color: #FFED00;
  	margin: -2px;
  }
+
+.order td {
+	color: white;
+	font-size: 16px;
+}
+
+.cancel {
+	width: 80px;
+}
+
+.feedback button, .status button {
+	font-size: 0.8vw;
+}

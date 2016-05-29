@@ -20,7 +20,7 @@
 	#chat .head {
 		width: 100%;
 		height: 60px;
-		background-color: #FBCA90;
+		background-color:  #FFCF0F;
 		border-radius: 4px 4px 0px 0px;
 	}
 
@@ -39,7 +39,7 @@
 		display: inline-block;
 		margin-top: 11px;
 		margin-left: 6px;
-		color: beige;
+		color: black;
 		text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.23);
 	}
 
@@ -66,6 +66,7 @@
 	#chat .body {
 		height: 255px;
 		overflow: overlay;
+		    background: rgba(22, 23, 26, 0.8);
 	}
 
 		#chat .body .message {
@@ -93,19 +94,17 @@
 	#chat .bottom {
 		width: 100%;
 		height: 85px;
-		background-color: #FBCA90;
+		background-color:  #FFCF0F;
 		border-radius: 0px 0px 4px 4px;
 	}
 
 		#chat .bottom .message {
-			background: #F4F5DC;
+			background: white;
 			color: #000000;
-			border: 1px solid #D7AD7B;
-			border-radius: 4px;
 			font-size: 13px;
-			box-shadow: 0px 0px 8px #FFC782;
-			-webkit-box-shadow: 0px 0px 8px #E7A878;
-			-moz-box-shadow: 0px 0px 8px #FFC782;
+			box-shadow: 0px 0px 3px black;
+			-webkit-box-shadow: 0px 0px 3px #black;
+			-moz-box-shadow: 0px 0px 3px #black;
 			margin-top: 7px;
 			margin-left: 7px;
 			margin-bottom: 7px;
@@ -132,9 +131,20 @@
 
 /*Order button and order  window style*/
 #order-dropdown {
-	padding: 7px;
+	background: linear-gradient(rgb(231, 231, 231), #DCDCDC);
+    padding: 14px;
 }
-
+#order-dropdown:hover {
+	background: linear-gradient(gold, #ffc030);
+    padding: 14px;
+}
+#order-dropdown a{
+	background:transparent;
+	font-size:medium;
+}
+.dropdown-menu{
+	padding: 0px;
+}
 #textField {
 	z-index: 0;
 	left: 125px;
@@ -180,6 +190,7 @@
     background-color: hsl(48, 100%, 53%);
 	border-radius: 0px;
 	text-shadow: 0 1px 0 #292929;
+	border:none;
 }
 
 #geoOff {
@@ -202,38 +213,164 @@
 	text-shadow: 1px 0px 3px #1D1D1D;
 	font-size: large;
 }
-
-#controlOrder {
-	border: 1px solid rgb(76, 175, 80);
-	border-radius: 1px;
-	box-shadow: rgba(0, 0, 0, 0.73) 0px 2px 6px;
-	cursor: pointer;
-	text-align: center;
-	background-color: hsl(120, 38%, 53%);
+.orderButton{
+	width:100%;
+	display:block;
+}
+#cancelOrder{
+	display:none;
 }
 
-#orderBtn {
-	color: white;
-	font-family: Roboto, Arial, sans-serif;
-	font-size: 20px;
-	line-height: 38px;
-	padding-left: 5px;
-	padding-right: 5px;
-	background-color: #4CAF50;
-	font-weight: bold;
+#BonusDiv{
+	text-align:center;
+}
+
+#BonusField{
+	width: 160px;
+    height: 38px;
+    background-color: #eaeaea;
+	margin: 10px auto;
+    border-style: none;
+    border-radius: 20px;
+    text-align:center;
+	font-size: large;
+    font-weight: bolder;
+	margin-bottom: 10px;
+	color: black;
+}
+#BonusDiv label{
 	width: 100%;
+    text-align: center;
+	    font-weight: 600;
+		font-size:initial;
+}
+#BonusUAH{
+	display: inline-table;
+    padding-top: 6px;
+}
+#UAHIndicator{
+	background: linear-gradient(gold, #ffc030);
+    float: right;
+    height: 38px;
+    width: 50px;
+    padding-top: 6px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+	    box-shadow: -1px 0px 0px black;
+}
+#startRideDiv{
+	display:table;
+	margin:0 auto;
+	    border-spacing: 10px;
+		border-collapse:initial;
+}
+#startRideDiv td{
+	color:black;
+}
+#sTariff{
+	    font-size: xx-large;
+		    height: inherit;
+}
+#finalBill{
+	text-align:center;
+}
+#finalBill #loading{
+	margin:0px;
+}
+#BonusPrice{
+	font-size: -webkit-xxx-large;
+    color: #000000;
+	min-width: 250px;
+    border-radius: 29px;
+    background: #FFFFFF;
+    font-weight: bold;
 }
 
-.activeBtn #orderBtn:hover {
-		color: #4CAF50;
-		font-family: Roboto, Arial, sans-serif;
-		font-size: 20px;
-		line-height: 38px;
-		padding-left: 5px;
-		padding-right: 5px;
-		background-color: white;
-		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-		transition-duration: 0.3s;
+.newTableStyle{
+	margin-bottom:0px;
+}
+.newTableStyle tr{
+	background: rgb(68, 69, 72);
+    border: none;
+    border-bottom: 2px solid #FFCA1C;
+}
+.newTableStyle td{
+	vertical-align: middle;
+	    text-align: center;
+}
+.newTableStyle th, .newTableStyle th a{
+	    text-align: center;
+    color: black;
+	    background: #FFCF0F;
+}
+
+.newTableStyle tr:hover{
+	    background: rgb(148, 148, 148);
+
+}
+.btForm input{
+	font-size:larger;
+}
+
+    
+    .checkbox{
+		margin:0px;
+    }
+	h1,h2,h3,label,td, legend, p{
+		color:white;
+	}
+
+	input{
+	background: rgba(255, 255, 255, 0.18);
+    border: none;
+    border-bottom: 2px solid #FFCA1C;
+    width: 100%;
+	color:white;
+	    text-indent: 5px;
+	}
+	.panel-footer{
+		    background: #2F2F2F;
+	}
+
+	.btn-success{
+	border-radius: 0px;
+    border: none;
+    color: black;
+    background: linear-gradient(gold, #ffc030);
+    text-shadow: rgb(134, 134, 134) 0px 1px 0px;
+	font-weight: bolder;
+	font-size: 1.5vw;
+    text-transform: uppercase; 
+	min-width: 100px;
+    text-align: center;
+	}
+	.btn-success:hover{
+		background:linear-gradient(rgb(204, 204, 204), #8C8C8C);
+		box-shadow: 0px 0px 6px #8C8C8C;
+	}
+
+	.warning{
+		background: linear-gradient(#E0724A, #7B2A17);
+		color:white;
+	}
+
+	input[type=checkbox] ~ label {
+      color: white;
+      font-style: normal;
+     }
+
+	input[type=checkbox]:checked ~ label {
+     color: #ffd101;
+     font-style: normal;
+    } 
+
+	#footerContainer {
+		background-color: #0d0e10;
+		    padding-top: 5px;
+            padding-bottom: 5px;
+	}
+	   #authTable{
+	 width:215px;
 	}
 
 @media (min-width: 768px) {
@@ -245,42 +382,6 @@
 				  text-shadow: 0 1px 0 #292929;
 				  border:none;
 	}
-	input{
-	background: rgba(255, 255, 255, 0.18);
-    border: none;
-    border-bottom: 2px solid #FFCA1C;
-    width: 100%;
-	color:white;
-	    text-indent: 5px;
-	}
-	.btn-success{
-	border-radius: 0px;
-    border: none;
-    color: black;
-    background: linear-gradient(gold, #ffc030);
-    text-shadow: rgb(134, 134, 134) 0px 1px 0px;
-	font-weight: bolder;
-    box-shadow: 0px 0px 6px #FFD308;
-	font-size: 1.5vw;
-    text-transform: uppercase; 
-	min-width: 100px;
-    text-align: center;
-	}
-	.btn-success:hover{
-		background:linear-gradient(rgb(204, 204, 204), #8C8C8C);
-		box-shadow: 0px 0px 6px #8C8C8C;
-	}
-
-
-	input[type=checkbox] ~ label {
-      color: white;
-      font-style: normal;
-     }
-
-	input[type=checkbox]:checked ~ label {
-     color: #ffd101;
-     font-style: normal;
-    } 
 
 
 	#EditOrderTable tr td{
@@ -354,10 +455,6 @@
 	}
 	#mainMenu{
 		padding-left:0px;
-		margin-left:10px;
-	}
-	#footerContainer {
-		background-color: #0d0e10;
 	}
 
 	#droppedDownList, #desktopNavBar {
@@ -392,6 +489,8 @@
 		font-family: 'Droid Sans', sans-serif;
 		color:black;
 		padding:12px;
+		    padding-left: 0px;
+    padding-right: 0px;
 	}
 	#sideMenu:hover{
 		min-height:60px;
@@ -443,30 +542,34 @@
 	#navBarBtn a:hover{
 		  color:white;
 		  text-shadow: 0 1px 0 #292929;
+
 	}
 }
 
 @media (max-width: 768px) {
+
 	body {
-		background-color: #6f6f6f;
+		background-color:  #444444;
 		margin: 0px 15px;
 	}
 	#desktopNavBar {
 		display: none;
 	}
-
+	#footerContainer{
+		height:71px;
+	}
 	#dropdownMenuBtn {
 		width: 100%;
 		margin: 0 auto;
 		padding-bottom: 11px;
-		background-color: #22a86d;
+		background-color: gold;
 		border-radius: 0px;
 		padding: 0px 0px 0px 0px;
 		display:none;
 	}
 
 	#sideMenu.active {
-		background: gold;
+		background:#C5C5C5;
 	}
 
 	#mainBtns.active {
@@ -492,7 +595,7 @@
 		}
 
 	#dashBtnIcon {
-		background-color: white;
+		background-color: black;
 	}
 
 	#dashes {
@@ -501,7 +604,6 @@
 	}
 
 	#textField {
-		background-color: rgba(255, 255, 255, 0.92);
 		font-size: 15px;
 	}
 
@@ -551,6 +653,8 @@
 	}
 	#mainContainer{
 		padding-top:30px;
+		min-height:100vh;
+		display:block;
 	}
 	#menuImage {
 		height: 33%;
@@ -559,7 +663,6 @@
 	#authTable {
 		margin: 0 auto;
 	}
-
 	#mapContainer {
 		padding: 10px;
 	}
@@ -568,6 +671,9 @@
 		border: 10px solid rgb(76, 175, 80);
 	}
 	#navPhone{
+		display:none;
+	}
+	.socials{
 		display:none;
 	}
 }

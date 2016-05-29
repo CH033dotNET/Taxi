@@ -1,7 +1,7 @@
 ﻿@model Model.DTO.OrderExDTO
 
 <table class="table" id="EditOrderTable">
-	<caption>[Order Info]</caption>
+	<caption>@Resources.Resource.Order</caption>
 	<tr>
 		<td></td>
 		<td>
@@ -17,18 +17,6 @@
 			@Html.ValidationMessageFor(x => x.OrderTime)
 		</td>
 	</tr>
-	@*@if (Model.FullAddressFrom != null)
-		{
-			<tr>
-				<td>
-					@Html.Label("[Address]")
-				</td>
-				<td>
-					@Html.TextBoxFor(x => Model.FullAddressFrom, new { @required = true, @minlength = "4" })
-					@Html.ValidationMessageFor(x => x.FullAddressFrom)
-				</td>
-			</tr>
-		}*@
 	@if (Model.AddressFrom != null)
 	{
 		<tr>
@@ -71,7 +59,7 @@
 @if (Model.AddressesTo.Count > 0)
 {
 	<div>
-		<p class="paragraph">Deliver Addresses <span class="glyphicon glyphicon-chevron-down" style="float:right;"></span></p>
+		<p class="paragraph">@Resources.Resource.PlaceDelivery <span class="glyphicon glyphicon-chevron-down" style="float:right;"></span></p>
 	</div>
 	<div id="AddressesTable" style="display:none">
 		<table class="table" id="EditOrderTable">
@@ -141,6 +129,10 @@
 								@Html.Label(Resources.Resource.NoSmoking)
 							</li>
 							<li>
+								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.English)
+								@Html.Label(Resources.Resource.WithEnglish)
+							</li>
+							<li>
 								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.Pets)
 								@Html.Label(Resources.Resource.WithPets)
 							</li>
@@ -163,7 +155,7 @@
 @if (!string.IsNullOrEmpty(Model.Name))
 {
 	<table class="table" id="EditOrderTable">
-		<caption>[Client Info]</caption>
+		<caption>@Resources.Resource.Client</caption>
 		<tr>
 			<td>
 				@Html.Label(Resources.Resource.YourName)
@@ -187,7 +179,7 @@
 @if (Model.DriverId != null)
 {
 	<table class="table" id="EditOrderTable">
-		<caption>[DRIVER INFO]</caption>
+		<caption>@Resources.Resource.Driver</caption>
 		<tr>
 			<td>
 				@Html.Label(Resources.Resource.Driver)
@@ -201,7 +193,7 @@
 		{
 			<tr>
 				<td>
-					@Html.Label("[CarID]")
+					@Html.Label(@Resources.Resource.Car_Number)
 				</td>
 				<td>
 					@Html.TextBoxFor(x => Model.CarId, new { @required = true, @minlength = "1" })
@@ -212,7 +204,7 @@
 	</table>
 }
 <table class="table" id="EditOrderTable">
-	<caption>[TRIP INFO]</caption>
+	<caption>@Resources.Resource.TripInfo</caption>
 	<tr>
 		<td>
 			@Html.Label(Resources.Resource.WaitingTime)
@@ -241,35 +233,5 @@
 		</td>
 	</tr>
 </table>
-
-@*<tr>
-		<td>@Html.Label("[Order status]")</td>
-		<td>
-			@Html.DropDownListFor(x => Model.Status,
-				new SelectList(Enum.GetValues(typeof(Common.Enum.OrderStatusEnum))))
-		</td>
-	</tr>*@
-@*<tr>
-		<td>@Html.Label(Resources.Resource.UserName)</td>
-
-		<td>
-			@Html.TextBoxFor(x => Model.UserName, new { @required = true, @minlength = "4" })
-			@Html.ValidationMessageFor(x => x.UserName)
-		</td>
-	</tr>
-
-	<tr>
-		<td>@Html.Label(Resources.Resource.Password)</td>
-		<td>
-			@Html.PasswordFor(x => x.Password, new { @minlength = "6", @value = Model.Password, @required = true })
-			@Html.ValidationMessageFor(x => x.Password)
-		</td>
-	</tr>
-
-	<tr>
-		<td>@Html.Label(Resources.Resource.Email)</td>
-		<td>
-			@Html.TextBoxFor(x => Model.Email, new { @type = "email", required = true })
-			@Html.ValidationMessageFor(x => x.Email)
-		</td>
-	</tr>*@
+@if (Model.Status == Common.Enum.OrderStatusEnum.NotApproved) { 
+<input type="submit" id="mdal-submit" class="btn btn-success" name="Ok" value=@Resources.Resource.editString />}

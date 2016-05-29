@@ -33,7 +33,7 @@
 	<div id="driver-bootstrap-menu" class="navbar navbar-default navbar-static-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Logo</a>
+				<a class="navbar-brand" href="#" style="margin: 0px; padding: 0px;"><img src="@Url.Content("~/Content/Picture/SmartPhonePictures/SiteLogo.png")" style="width: 100px; margin-top: -4px;" /></a>
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder">
 					<span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
@@ -41,28 +41,29 @@
 					<span class="icon-bar"></span>
 				</button>
 			</div>
-			<div class="collapse navbar-collapse navbar-menubuilder">
+			<div class="collapse navbar-collapse navbar-menubuilder" id="driverTabletMenu">
 				<ul class="nav navbar-nav navbar-left">
-					<li>
+					<li id="navBarBtn">
 						@Html.ActionLink(Resources.Resource.MainLink, "Index", "Home")
 					</li>
-					<li>
-						<a data-toggle="tab" href="#Home">@Resources.Resource.Home</a>
-					</li>
-					<li>
+					<li id="navBarBtn">
 						<a data-toggle="tab" href="#District">@Resources.Resource.WorkShift</a>
 					</li>
-					<li>
+					<li id="navBarBtn">
 						<a data-toggle="tab" href="#DistrictChooser">@Resources.Resource.District</a>
 					</li>
-					<li>
+					<li id="navBarBtn">
 						<a data-toggle="tab" href="#NewOrders">@Resources.Resource.NewOrders</a>
 					</li>
-					<li>
+					<li id="navBarBtn">
 						<a data-toggle="tab" href="#OrdersHistory">@Resources.Resource.OrdersHistory</a>
 					</li>
-					<li>
-						<a data-toggle="tab" href="#MyOrder">My Order</a>
+					<li id="navBarBtn">
+						<a data-toggle="tab" href="#MyOrder">@Resources.Resource.MyOrder</a>
+						@*@Ajax.ActionLink("[Current Order]", "MyOrder", new AjaxOptions { UpdateTargetId = "MyOrder", InsertionMode = InsertionMode.InsertAfter })*@
+					</li>
+					<li id="navBarBtn">
+						<a data-toggle="tab" href="#MyOrderMap">@Resources.Resource.Map</a>
 					</li>
 				</ul>
 			</div>
@@ -95,6 +96,11 @@
 					Html.RenderAction("MyOrder", "DriverEx");
 				}
 			</div>
+			<div id="MyOrderMap" class="tab-pane fade">
+				@{
+					Html.RenderAction("MyOrderMap", "DriverEx");
+				}
+			</div>
 		</div>
 	</div>
 	@Html.Partial("DriverFeedback")
@@ -102,7 +108,6 @@
 	<script src="~/signalr/hubs"></script>
 	<script src="~/Scripts/OrderExLogic/DriverOrder.js" ></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-	@Scripts.Render("~/Scripts/DriverEx/DriverLocation.js")
 
 	<script>
 		var Resources = {

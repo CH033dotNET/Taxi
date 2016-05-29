@@ -7,6 +7,7 @@ namespace BAL.Manager
 {
 	public interface IUserManager
 	{
+	    void SetClientBonus(int userId, double bonus, double paidByBonus);
 		void ChangeUserParameters(UserDTO user);
 		void DeleteUser(int userId);
 		void deleteVIPById(int id);
@@ -30,5 +31,10 @@ namespace BAL.Manager
 		void UpdatePassword(string login, string password);
 		UserDTO UpdateUser(UserDTO user);
 		bool UserValidation(UserDTO user, List<string> msgs);
-	}
+		IEnumerable<DriverWithOrdersDTO> GetDriversWithOrders();
+		IEnumerable<DriverWithOrdersDTO> GetDriversWithOrdersLastMonth();
+		List<DriverWithOrdersDTO> GetCurrentDrivers(int id);
+		List<DriverWithOrdersDTO> GetCurrentDriversLastMonth(int id);
+		void CalculateUserRating(int id);
+    }
 }

@@ -71,6 +71,12 @@ namespace MainSaite.Controllers
 			return Json(true);
 		}
 		[HttpPost]
+		public JsonResult FinishOrder(int id = 0)
+		{
+			bool success = orderManager.FinishOrder(id);
+			return Json(true);
+		}
+		[HttpPost]
 		public JsonResult GetOrderAddressByID(int id = 0)
 		{
 			string address = orderManager.GetById(id).FullAddressFrom;

@@ -28,15 +28,19 @@ namespace BAL.Manager
 		public bool ChangeStatus(UserDTO Driver, DriverWorkingStatusEnum newStatus) {
 			var driver = Mapper.Map<User>(Driver);
 			var driverStatus = uOW.WorkerStatusRepo.All.Where(o => o.WorkerId == Driver.Id).FirstOrDefault();
-
+			
 			if (driverStatus != null) {
 				driverStatus.WorkingStatus = newStatus;
 				uOW.WorkerStatusRepo.Update(driverStatus);
-				uOW.Save();
-				return true;
+			} else {
+				driverStatus = new WorkerStatus();
+				driverStatus.WorkerId = Driver.Id;
+				driverStatus.WorkingStatus = newStatus;
+				uOW.WorkerStatusRepo.Insert(driverStatus);
 			}
-
-			return false;
+			
+			uOW.Save();
+			return true;
 		}
 	}
 }

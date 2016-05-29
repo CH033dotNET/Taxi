@@ -272,32 +272,31 @@
 		$('#inProgressOrder').append(orderElement);
 	};
 
-	mainHub.client.cencelOrder = function(id){
+	mainHub.client.cancelOrder = function(id){
 		var order = newOrders.find(function (item) {
 			return item.Id == id;
 		});
-		if (!order) {
+		if (order) {
 			newOrders.splice(newOrders.indexOf(order), 1);
 		}
 		else {
 			var order = approvedOrders.find(function (item) {
 				return item.Id == id;
 			});
-			if (!order) {
-				approvedOrders.splice(newOrders.indexOf(order), 1);
+			if (order) {
+				approvedOrders.splice(approvedOrders.indexOf(order), 1);
 			}
 			else {
 				var order = inProgressOrders.find(function (item) {
 					return item.Id == id;
 				});
-				if (!order) {
-					inProgressOrders.splice(newOrders.indexOf(order), 1);
+				if (order) {
+					inProgressOrders.splice(inProgressOrders.indexOf(order), 1);
 				}
 			}
 		}
 
-		var orderElement = $('[data-id = "' + id + '"]');
-		orderElement.parent().remove(orderElement);
+		$('[data-id = "' + id + '"]').remove();
 		
 	}
 

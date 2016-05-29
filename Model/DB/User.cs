@@ -34,6 +34,10 @@ namespace Model
 
 		public string Lang { get; set; }
 
+		public double Bonus { get; set; }
+
+		public double? Rating { get; set; }
+
         public DateTime RegistrationDate { get; set; }
 
         public List<Car> CarsUser { get; set; }

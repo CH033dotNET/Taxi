@@ -1,13 +1,13 @@
 ﻿@model IList<Model.DTO.UserDTO>
 
 
-<table class="table table-hover" id="users-table">
+<table class="table newTableStyle">
 	<tr>
-		<th>@Html.Label(Resources.Resource.UserId) </th>
-		<th>@Html.Label(Resources.Resource.UserName) </th>
-		<th>@Html.Label(Resources.Resource.Email) </th>
-		<th>@Html.Label(Resources.Resource.Role) </th>
-		<th>@Html.Label(Resources.Resource.Description) </th>
+		<th>@Resources.Resource.UserId </th>
+		<th>@Resources.Resource.UserName </th>
+		<th>@Resources.Resource.Email </th>
+		<th>@Resources.Resource.Role</th>
+		<th>@Resources.Resource.Description </th>
 		<th>@Resources.Resource.Action</th>
 	</tr>
 
@@ -23,7 +23,7 @@
 			 UpdateTargetId = "ModalContent",
 			 InsertionMode = InsertionMode.Replace,
 			 LoadingElementId = "loading"
-		 }, new { @class = "Edit" }
+		 }, new { @class = "Edit btn-success" }
 		)
 			</td>
 		</tr>

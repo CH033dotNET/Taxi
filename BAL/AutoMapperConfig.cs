@@ -20,7 +20,8 @@ namespace Common
 			Mapper.CreateMap<CarDTO, Car>();
 			Mapper.CreateMap<AddressDTO, UserAddress>();
 			Mapper.CreateMap<UserAddress, AddressDTO>();
-			Mapper.CreateMap<Person, PersonDTO>();
+			Mapper.CreateMap<Person, PersonDTO>()
+				.ForMember(p => p.FullName, m => m.MapFrom(t => t.FirstName + ' '+ t.MiddleName + ' ' + t.LastName));
 			Mapper.CreateMap<PersonDTO, Person>();
 			Mapper.CreateMap<Location, LocationDTO>();
 			Mapper.CreateMap<LocationDTO, Location>();
@@ -59,6 +60,8 @@ namespace Common
 			Mapper.CreateMap<Tarif, TarifDTO>();
 			Mapper.CreateMap<TarifDTO, Tarif>();
 			Mapper.CreateMap<RegistrationModelDTO, UserDTO>();
+			Mapper.CreateMap<NewsDTO, News>();
+			Mapper.CreateMap<News, NewsDTO>();
 		}
 	}
 

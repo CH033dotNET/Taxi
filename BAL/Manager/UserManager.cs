@@ -22,6 +22,18 @@ namespace BAL.Manager
 			
 		}
 
+		public void SetClientBonus(int userId, double bonus, double paidByBonus)
+		{
+			var user = uOW.UserRepo.All.Where(u => u.Id == userId).FirstOrDefault();
+			if (user != null)
+			{
+				user.Bonus -= paidByBonus;
+				user.Bonus += bonus;
+				uOW.Save();
+			}
+
+		}
+
 		public PagerDTO<UserDTO> GetUserPage(string searchString, int page, int pageSize, int roleId)
 		{
 			List<User> users = new List<User>();
@@ -351,9 +363,141 @@ namespace BAL.Manager
 
 		public List<UserDTO> GetDriversExceptCurrent(int id)
 		{
-			//List<User> drivers = uOW.UserRepo.All.Where(x => x.RoleId == (int)AvailableRoles.Driver).ToList();
 			List<UserDTO> driversList = uOW.UserRepo.Get(x => x.RoleId == (int)AvailableRoles.Driver & x.Id != id).Select(s => Mapper.Map<UserDTO>(s)).ToList();
 			return driversList;
+		}
+
+		public IEnumerable<DriverWithOrdersDTO> GetDriversWithOrders()
+		{
+			var drivers = Mapper.Map<List<UserDTO>>(uOW.UserRepo.All.Where(u => u.RoleId == (int)AvailableRoles.Driver));
+			var driversWithOrders = new List<DriverWithOrdersDTO>();
+			foreach (var driver in drivers)
+			{
+				var driverWithOrders = new DriverWithOrdersDTO();
+				driverWithOrders.Driver = driver;
+				driverWithOrders.OrdersCount = uOW.OrderExRepo.All.Where(o => o.DriverId == driver.Id).Count();
+				var person = Mapper.Map<PersonDTO>(uOW.PersonRepo.All.Where(p => p.UserId == driver.Id).FirstOrDefault());
+				if (person != null)
+				{
+					if (person.ImageName != null)
+						driverWithOrders.Image = person.ImageName;
+					else
+						driverWithOrders.Image = "item_0_profile.jpg";
+					driverWithOrders.Name = person.FullName;
+				}
+				else
+					driverWithOrders.Image = "item_0_profile.jpg";
+				driversWithOrders.Add(driverWithOrders);
+			}
+			driversWithOrders.Sort(delegate(DriverWithOrdersDTO x, DriverWithOrdersDTO y)
+			{
+				return y.OrdersCount.CompareTo(x.OrdersCount);
+			});
+			return driversWithOrders;
+		}
+
+		public IEnumerable<DriverWithOrdersDTO> GetDriversWithOrdersLastMonth()
+		{
+			var drivers = Mapper.Map<List<UserDTO>>(uOW.UserRepo.All.Where(u => u.RoleId == (int)AvailableRoles.Driver));
+			var driversWithOrders = new List<DriverWithOrdersDTO>();
+			foreach (var driver in drivers)
+			{
+				var driverWithOrders = new DriverWithOrdersDTO();
+				driverWithOrders.Driver = driver;
+				driverWithOrders.OrdersCount = uOW.OrderExRepo.All.Where(o => o.DriverId == driver.Id
+					&& o.OrderTime.Year == DateTime.Now.Year
+					&& o.OrderTime.Month == DateTime.Now.Month).Count();
+				var person = Mapper.Map<PersonDTO>(uOW.PersonRepo.All.Where(p => p.UserId == driver.Id).FirstOrDefault());
+				if (person != null)
+				{
+					if (person.ImageName != null)
+						driverWithOrders.Image = person.ImageName;
+					else
+						driverWithOrders.Image = "item_0_profile.jpg";
+					driverWithOrders.Name = person.FullName;
+				}
+				else
+					driverWithOrders.Image = "item_0_profile.jpg";
+				driversWithOrders.Add(driverWithOrders);
+			}
+			driversWithOrders.Sort(delegate (DriverWithOrdersDTO x, DriverWithOrdersDTO y)
+			{
+				return y.OrdersCount.CompareTo(x.OrdersCount);
+			});
+			return driversWithOrders;
+		}
+
+		public List<DriverWithOrdersDTO> GetCurrentDrivers(int id)
+		{
+			var allDrivers = this.GetDriversWithOrders().ToList();
+			var i = 0;
+			for (; i < allDrivers.Count; i++)
+				if (allDrivers[i].Driver.Id == id)
+					break;
+			var currentDriverIndex = i;
+			var firstDriverIndex = i - 3;
+			var lastDriverIndex = i + 3;
+			while (firstDriverIndex < 0)
+			{
+				firstDriverIndex++;
+				lastDriverIndex++;
+			}
+			while (lastDriverIndex >= allDrivers.Count)
+			{
+				firstDriverIndex--;
+				lastDriverIndex--;
+			}
+			while (firstDriverIndex < 0)
+				firstDriverIndex++;
+			var currentDrivers = new List<DriverWithOrdersDTO>();
+			for (i = firstDriverIndex; i <= lastDriverIndex; i++)
+			{
+				var newDriver = allDrivers[i];
+				newDriver.Index = i + 1;
+				currentDrivers.Add(newDriver);
+			}
+			return currentDrivers;
+		}
+
+		public List<DriverWithOrdersDTO> GetCurrentDriversLastMonth(int id)
+		{
+			var allDrivers = this.GetDriversWithOrdersLastMonth().ToList();
+			var i = 0;
+			for (; i < allDrivers.Count; i++)
+				if (allDrivers[i].Driver.Id == id)
+					break;
+			var currentDriverIndex = i;
+			var firstDriverIndex = i - 3;
+			var lastDriverIndex = i + 3;
+			while (firstDriverIndex < 0)
+			{
+				firstDriverIndex++;
+				lastDriverIndex++;
+			}
+			while (lastDriverIndex >= allDrivers.Count)
+			{
+				firstDriverIndex--;
+				lastDriverIndex--;
+			}
+			while (firstDriverIndex < 0)
+				firstDriverIndex++;
+			var currentDrivers = new List<DriverWithOrdersDTO>();
+			for (i = firstDriverIndex; i <= lastDriverIndex; i++)
+			{
+				var newDriver = allDrivers[i];
+				newDriver.Index = i + 1;
+				currentDrivers.Add(newDriver);
+			}
+			return currentDrivers;
+		}
+
+		public void CalculateUserRating(int id)
+		{
+			var feedback = uOW.FeedbackRepo.GetByID(id);
+			var user = uOW.UserRepo.GetByID(feedback.UserId);
+			user.Rating = uOW.FeedbackRepo.All.Where(f => f.UserId == user.Id).Average(f => f.Rating);
+			uOW.UserRepo.Update(user);
+			uOW.Save();
 		}
 
 		// TODO:
@@ -387,7 +531,7 @@ namespace BAL.Manager
 		}
 		*/
 
-		
+
 		// TODO:
 		public bool IsAdministratorById(int id)
 		{

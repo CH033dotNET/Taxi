@@ -40,6 +40,7 @@ namespace DAL.Interface
 		//IGenericRepository<AddressFrom> addressFromRepo { get; }
 		//IGenericRepository<AddressTo> addressToRepo { get; }
 		IGenericRepository<Feedback> FeedbackRepo { get; }
+		IGenericRepository<News> NewsRepo { get; }
 
 		void Dispose();
 		void Save();

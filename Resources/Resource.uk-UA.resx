@@ -265,7 +265,7 @@
     <value>Район</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>Домашня</value>
+    <value>Дім</value>
   </data>
   <data name="MainLink" xml:space="preserve">
     <value>На головну сторінку</value>
@@ -898,7 +898,7 @@
     <value>Улюблені адреси</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Відміна</value>
+    <value>Скасувати</value>
   </data>
   <data name="CountRoma" xml:space="preserve">
     <value>Кількість замовленнь</value>
@@ -1145,5 +1145,104 @@
   </data>
   <data name="ErrorHeader" xml:space="preserve">
     <value>Помилка</value>
+  </data>
+  <data name="PreOrderMessage" xml:space="preserve">
+    <value>Ви повинні увійти для того, щоб зробити попереднє замовлення</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>Скасовано</value>
+  </data>
+  <data name="Finished" xml:space="preserve">
+    <value>Виконано</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="AllTheTime" xml:space="preserve">
+    <value>За весь час</value>
+  </data>
+  <data name="LastMonth" xml:space="preserve">
+    <value>За останній місяць</value>
+  </data>
+  <data name="Pulse" xml:space="preserve">
+    <value>Пульс</value>
+  </data>
+  <data name="CancelOrder" xml:space="preserve">
+    <value>Відмінити замовлення</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>замовлень:</value>
+  </data>
+  <data name="ClientCarOption" xml:space="preserve">
+    <value>Опція "На машині клієнта"</value>
+  </data>
+  <data name="CourierOption" xml:space="preserve">
+    <value>Опція "Кур'єр"</value>
+  </data>
+  <data name="CreateNewTariff" xml:space="preserve">
+    <value>Створити новий тариф</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Видалити</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редагувати</value>
+  </data>
+  <data name="InCity" xml:space="preserve">
+    <value>По місту</value>
+  </data>
+  <data name="LuxCar" xml:space="preserve">
+    <value>Машина класу люкс</value>
+  </data>
+  <data name="OutCity" xml:space="preserve">
+    <value>Поза містом</value>
+  </data>
+  <data name="PassengerSmokerOption" xml:space="preserve">
+    <value>Опція "Пасажир-курець"</value>
+  </data>
+  <data name="PlateOption" xml:space="preserve">
+    <value>Опція "Зустріти з табличкою"</value>
+  </data>
+  <data name="RegularCar" xml:space="preserve">
+    <value>Звичайна машина</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Зберегти</value>
+  </data>
+  <data name="SpeakEnglishOption" xml:space="preserve">
+    <value>Опція "Водій розмовляє англійською"</value>
+  </data>
+  <data name="MyOrder" xml:space="preserve">
+    <value>Моє замовлення</value>
+  </data>
+  <data name="AboutUs" xml:space="preserve">
+    <value>Про нас</value>
+  </data>
+  <data name="BillIsPaid" xml:space="preserve">
+    <value>Рахунок сплачено</value>
+  </data>
+  <data name="Bonuses" xml:space="preserve">
+    <value>Бонуси</value>
+  </data>
+  <data name="CallUs" xml:space="preserve">
+    <value>Телефонуйте: (800) 123-3542</value>
+  </data>
+  <data name="ClientBonus" xml:space="preserve">
+    <value>Використати бонуси клієнта</value>
+  </data>
+  <data name="FinalPrice" xml:space="preserve">
+    <value>Фінальний рахунок</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>Історія</value>
+  </data>
+  <data name="NoCurrentOrder" xml:space="preserve">
+    <value>Немає поточного замовлення</value>
+  </data>
+  <data name="OrderPayment" xml:space="preserve">
+    <value>Оплата доставки</value>
+  </data>
+  <data name="TripInfo" xml:space="preserve">
+    <value>Інформація про поїздку</value>
   </data>
 </root>

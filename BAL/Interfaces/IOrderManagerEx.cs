@@ -19,6 +19,10 @@ namespace BAL.Interfaces
 
 		bool TakeOrder(int id, int DriverId);
 
+		bool CancelOrder(int id);
+
+		bool FinishOrder(int id);
+
 		bool SetWaitingTime(int id, int WaitingTime);
 
 		IEnumerable<OrderExDTO> GetNotApprovedOrders();
@@ -39,5 +43,7 @@ namespace BAL.Interfaces
 
 		void SetDriverFeedback(int orderId, int feedbackId);
 		void SetClientFeedback(int orderId, int feedbackId);
+
+		OrderExDTO GetCurrentDriverOrder(int driverId);
 	}
 }

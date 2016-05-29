@@ -1,0 +1,46 @@
+﻿@{
+	ViewBag.Title = Resources.Resource.Pulse;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/Pulse.css" />
+
+<div id="title">
+	<img src="~/Content/Picture/Pulse-icon.png" />
+	<h1>@Resources.Resource.Pulse</h1>
+</div>
+
+<input type="hidden" id="currentDriverId" value="@(((Model.DTO.UserDTO)Session["User"]).Id)" />
+
+<div id="container">
+	<table class="list" id="lastMonth">
+		<tr>
+			<th colspan="4">
+				<h4 class="listTitle">@Resources.Resource.LastMonth</h4>
+			</th>
+		</tr>
+		<tr>
+			<td colspan="3"></td>
+			<td class="orders">
+				<h5>@Resources.Resource.Orders</h5>
+			</td>
+		</tr>
+	</table>
+	<table class="list" id="allTheTime">
+		<tr>
+			<th colspan="4">
+				<h4 class="listTitle">@Resources.Resource.AllTheTime</h4>
+			</th>
+		</tr>
+		<tr>
+			<td colspan="3"></td>
+			<td class="orders">
+				<h5>@Resources.Resource.Orders</h5>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<script src="~/Scripts/Pulse.js"></script>
+
+

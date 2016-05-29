@@ -6,7 +6,7 @@
 
 <h2>@Resources.Resource.OrdersHistory</h2>
 
-<table class="table" id="orders_history">
+<table class="table newTableStyle" id="orders_history">
 	<tr>
 		<th>
 			@Resources.Resource.OrderAddress
@@ -28,7 +28,7 @@
 				@Html.DisplayFor(modelItem => item.OrderTime)
 			</td>
 			<td class="col-md-2">
-				<button data-feedbackId="@item.DriverFeedbackId" data-orderId="@item.Id" type="button" class="btn btn-warning addFeedbackButton" data-toggle="modal">@Resources.Resource.AddFeedback</button>
+				<button data-feedbackId="@item.DriverFeedbackId" data-orderId="@item.Id" type="button" class="btn btn-success addFeedbackButton" data-toggle="modal">@Resources.Resource.AddFeedback</button>
 			</td>
 		</tr>
 	}

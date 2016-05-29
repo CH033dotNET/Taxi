@@ -12,6 +12,7 @@ namespace Common.Enum
 		Approved = 1,
 		Denied = 2,
 		Confirmed = 3,
-
+		Canceled = 4,
+		Finished = 5
 	}
 }

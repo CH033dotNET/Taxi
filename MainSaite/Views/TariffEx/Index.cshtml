@@ -1,21 +1,21 @@
 ﻿@model IEnumerable<Model.DTO.TariffExDTO>
 
 @{
-	ViewBag.Title = "Index";
+	ViewBag.Title = Resources.Resource.Tariffs;
 }
 
-<h2>Index</h2>
+<h2>@Resources.Resource.Tariffs</h2>
 
 <p>
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tariffDetailsModal" onclick="CreateNewTariff()">Create new tariff</button>
+	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#tariffDetailsModal" onclick="CreateNewTariff()">@Resources.Resource.CreateNewTariff</button>
 </p>
-<table>
+<table class="table table-hover newTableStyle">
 	<tr>
 		<th>
-			@Html.DisplayNameFor(model => model.Name)
+			@Resources.Resource.Name
 		</th>
 		<th>
-			@Html.DisplayNameFor(model => model.Description)
+			@Resources.Resource.Description
 		</th>
 		<th></th>
 	</tr>
@@ -33,8 +33,8 @@
 				</td>
 
 				<td>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tariffDetailsModal" onclick="GetTariffData(@item.Id)">Edit</button>
-					<button type="button" class="btn btn-primary" onclick="DeleteTariff(@item.Id)">Delete</button>
+					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#tariffDetailsModal" onclick="GetTariffData(@item.Id)">@Resources.Resource.Edit</button>
+					<button type="button" class="btn btn-success warning" onclick="DeleteTariff(@item.Id)">@Resources.Resource.Delete</button>
 				</td>
 			</tr>
 		}
@@ -45,72 +45,72 @@
 <div class="modal fade" id="tariffDetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header" id="modalHeader">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="exampleModalLabel"></h4>
 			</div>
-			<div class="modal-body">
-				
+			<div class="modal-body" id="modalBody">
+
 				<input type="hidden" id="Id">
-				
+
 				<table>
 					<tr>
-						<td><label for="Name" class="control-label">Name</label></td>
-						<td><input type="text" class="form-control" id="Name" placeholder="Name"></td>
+						<td><label for="Name" class="control-label">@Resources.Resource.Name</label></td>
+						<td><input type="text" id="Name" placeholder="@Resources.Resource.Name"></td>
 					</tr>
 					<tr>
-						<td><label for="Description" class="control-label">Description</label></td>
-						<td><input type="text" class="form-control" id="Description" placeholder="Description"></td>
+						<td><label for="Description" class="control-label">@Resources.Resource.Description</label></td>
+						<td><input type="text" id="Description" placeholder="@Resources.Resource.Description"></td>
 					</tr>
 					<tr>
-						<td><label for="PriceInCity" class="control-label">In city</label></td>
-						<td><input type="number" class="form-control" id="PriceInCity" placeholder="In city"></td>
+						<td><label for="PriceInCity" class="control-label">@Resources.Resource.InCity</label></td>
+						<td><input type="number" id="PriceInCity" placeholder="@Resources.Resource.InCity"></td>
 					</tr>
 					<tr>
-						<td><label for="PriceOutCity" class="control-label">Out city</label></td>
-						<td><input type="number" class="form-control" id="PriceOutCity" placeholder="Out city"></td>
+						<td><label for="PriceOutCity" class="control-label">@Resources.Resource.OutCity</label></td>
+						<td><input type="number" id="PriceOutCity" placeholder="@Resources.Resource.OutCity"></td>
 					</tr>
 					<tr>
-						<td><label for="PricePreOrder" class="control-label">Pre Order</label></td>
-						<td><input type="number" class="form-control" id="PricePreOrder" placeholder="Pre Order"></td>
+						<td><label for="PricePreOrder" class="control-label">@Resources.Resource.PreOrder</label></td>
+						<td><input type="number" id="PricePreOrder" placeholder="@Resources.Resource.PreOrder"></td>
 					</tr>
 					<tr>
-						<td><label for="PriceRegularCar" class="control-label">Regular Car</label></td>
-						<td><input type="number" class="form-control" id="PriceRegularCar" placeholder="Regular Car"></td>
+						<td><label for="PriceRegularCar" class="control-label">@Resources.Resource.RegularCar</label></td>
+						<td><input type="number" id="PriceRegularCar" placeholder="@Resources.Resource.RegularCar"></td>
 					</tr>
 					<tr>
-						<td><label for="PriceMinivanCar" class="control-label">Minivan Car</label></td>
-						<td><input type="number" class="form-control" id="PriceMinivanCar" placeholder="Minivan Car"></td>
+						<td><label for="PriceMinivanCar" class="control-label">@Resources.Resource.Minivan</label></td>
+						<td><input type="number" id="PriceMinivanCar" placeholder="@Resources.Resource.Minivan"></td>
 					</tr>
 					<tr>
-						<td><label for="PriceLuxCar" class="control-label">Lux Car</label></td>
-						<td><input type="number" class="form-control" id="PriceLuxCar" placeholder="Lux Car"></td>
+						<td><label for="PriceLuxCar" class="control-label">@Resources.Resource.LuxCar</label></td>
+						<td><input type="number" id="PriceLuxCar" placeholder="@Resources.Resource.LuxCar"></td>
 					</tr>
 					<tr>
-						<td><label for="PriceCourierOption" class="control-label">Courier Option</label></td>
-						<td><input type="number" class="form-control" id="PriceCourierOption" placeholder="Courier Option"></td>
+						<td><label for="PriceCourierOption" class="control-label">@Resources.Resource.CourierOption</label></td>
+						<td><input type="number" id="PriceCourierOption" placeholder="@Resources.Resource.CourierOption"></td>
 					</tr>
 					<tr>
-						<td><label for="PricePlateOption" class="control-label">Plate Option</label></td>
-						<td><input type="number" class="form-control" id="PricePlateOption" placeholder="Plate Option"></td>
+						<td><label for="PricePlateOption" class="control-label">@Resources.Resource.PlateOption</label></td>
+						<td><input type="number" id="PricePlateOption" placeholder="@Resources.Resource.PlateOption"></td>
 					</tr>
 					<tr>
-						<td><label for="PriceClientCarOption" class="control-label">Client Car Option</label></td>
-						<td><input type="number" class="form-control" id="PriceClientCarOption" placeholder="Client Car Option"></td>
+						<td><label for="PriceClientCarOption" class="control-label">@Resources.Resource.ClientCarOption</label></td>
+						<td><input type="number" id="PriceClientCarOption" placeholder="@Resources.Resource.ClientCarOption"></td>
 					</tr>
 					<tr>
-						<td><label for="PriceSpeakEnglishOption" class="control-label">Speak English Option</label></td>
-						<td><input type="number" class="form-control" id="PriceSpeakEnglishOption" placeholder="Speak English Option"></td>
+						<td><label for="PriceSpeakEnglishOption" class="control-label">@Resources.Resource.SpeakEnglishOption</label></td>
+						<td><input type="number" id="PriceSpeakEnglishOption" placeholder="@Resources.Resource.SpeakEnglishOption"></td>
 					</tr>
 					<tr>
-						<td><label for="PricePassengerSmokerOption" class="control-label">Passenger Smoker Option</label></td>
-						<td><input type="number" class="form-control" id="PricePassengerSmokerOption" placeholder="Passenger Smoker Option"></td>
+						<td><label for="PricePassengerSmokerOption" class="control-label">@Resources.Resource.PassengerSmokerOption</label></td>
+						<td><input type="number" id="PricePassengerSmokerOption" placeholder="@Resources.Resource.PassengerSmokerOption"></td>
 					</tr>
 				</table>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" onclick="SaveTariff()">Save</button>
+			<div class="modal-footer" id="modalFooter">
+				<button type="button" class="btn btn-success" data-dismiss="modal">@Resources.Resource.Close</button>
+				<button type="button" class="btn btn-success warning" onclick="SaveTariff()">@Resources.Resource.Save</button>
 			</div>
 		</div>
 	</div>

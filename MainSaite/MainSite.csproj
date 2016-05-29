@@ -186,6 +186,7 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\DriverExController.cs" />
     <Compile Include="Controllers\DriverLocationHubController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\OperatorHubController.cs" />
     <Compile Include="Controllers\OperatorMessagesHubController.cs" />
     <Compile Include="Controllers\OrderExController.cs" />
@@ -288,6 +289,7 @@
     <Content Include="Content\Picture\OrderForm\van-active.png" />
     <Content Include="Content\Picture\OrderForm\van-passive.png" />
     <Content Include="Content\Picture\OrderForm\waiting-animation.gif" />
+    <Content Include="Content\Picture\Pulse-icon.png" />
     <Content Include="Content\Picture\Redesign\background.jpg" />
     <Content Include="Content\Picture\roteiro.jpg" />
     <Content Include="Content\Picture\SandWatch.jpg" />
@@ -307,6 +309,7 @@
     <Content Include="Content\Picture\UserMapIcons\logo_destination.png" />
     <Content Include="Content\Picture\UserMapIcons\logo_taxi_green.png" />
     <Content Include="Content\Picture\UserMapIcons\logo_taxi_yellow.png" />
+    <Content Include="Content\Pulse.css" />
     <Content Include="Content\shop-item.css" />
     <Content Include="Content\sweetalert2.css" />
     <Content Include="Content\themesOfflineJS\offline-language-dutch-indicator.css" />
@@ -399,10 +402,10 @@
     <Content Include="Scripts\DistrictPartButtonScripts.js" />
     <Content Include="Scripts\DistrictsCustomScripts\DistrictScriptLogic.js" />
     <Content Include="Scripts\DistrictsCustomScripts\PreValidation.js" />
+    <Content Include="Scripts\DriveHistory.js" />
     <Content Include="Scripts\DriverEx\DistrictViewer.js" />
     <Content Include="Scripts\DriverEx\DriverCoordinates.js" />
     <Content Include="Scripts\DriverEx\DriverFeedback.js" />
-    <Content Include="Scripts\DriverEx\DriverLocation.js" />
     <Content Include="Scripts\DriverMap.js" />
     <Content Include="Scripts\AdminSendMessage.js" />
     <Content Include="Scripts\DriveTimer.js" />
@@ -494,6 +497,7 @@
     <Content Include="Scripts\OrderExLogic\DriverOrder.js" />
     <Content Include="Scripts\OrderExLogic\OperatorOrder.js" />
     <Content Include="Scripts\OrderForm.js" />
+    <Content Include="Scripts\Pulse.js" />
     <Content Include="Scripts\tabCorrector.js" />
     <Content Include="Scripts\Tarif\Tarif.js" />
     <Content Include="Scripts\Tools\AddBlockChecker.js" />
@@ -577,6 +581,10 @@
     <Content Include="Views\OrderEx\EditOrderPartial.cshtml" />
     <Content Include="Views\OrderEx\_EditOrder.cshtml" />
     <Content Include="Views\DriverEx\WorkShift.cshtml" />
+    <Content Include="Views\Client\ClientBonuses.cshtml" />
+    <Content Include="Views\DriverEx\Pulse.cshtml" />
+    <Content Include="Views\DriverEx\MyOrderMap.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

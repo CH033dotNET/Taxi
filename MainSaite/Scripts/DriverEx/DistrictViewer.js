@@ -1,24 +1,36 @@
-﻿
+﻿$(document).ready(function () {
+	checkstatus();
+	$('#workshift-button-end').hide();
+	$('#workshift-button-start').hide();
+
+	$(document).on('click', '#workshift-button-start', function () {
+		checkMainCars();
+	});
+
+	$(document).on('click', '#workshift-button-end', function () {
+		ChangeBtnProperties(0);
+	});
+
+});
 function ChangeBtnProperties(status) {
-	if (status == 0) {
-		$("#workshift-button").attr("change-btn-id", "work_start"); // changing custom attribute value
-		$("#workshift-button").attr('class', 'btn btn-success'); // changing custom attribute value
-		$("#workshift-button").prop('value', 'Start workshift'); // changing buttons text
-		document.getElementById('workshift-button').onclick = function () { checkMainCars(); }; // changing onclick property value
+	if (status == 0) //end workshift
+	{
+		$('#workshift-button-end').hide();
+		$('#workshift-button-start').show();
 		setEndlocation();
 		//setDriverStatus(0);
 		changeStatusDisplay(0);
-		$("worker-status-group").css('display', 'none');
+		$("#inputDriverStatus").css('display', 'none');
 	}
-	else {
-		$("#workshift-button").attr("change-btn-id", "work_end"); // changing custom attribute value
-		$("#workshift-button").attr('class', 'btn btn-warning'); // changing buttons class
-		$("#workshift-button").prop('value', 'End workshift'); // changing buttons text
-		document.getElementById('workshift-button').onclick = function () { ChangeBtnProperties(0); }; // changing onclick property value
+	else //start workShift
+	{
+		$('#workshift-button-start').hide();
+		$('#workshift-button-end').show();
+
 		setBeginlocation();
-		//setDriverStatus(3);
+		//setDriverStatus(1);
 		changeStatusDisplay(1);
-		$("worker-status-group").css('display', 'inline');
+		$("#inputDriverStatus").css('display', 'block');
 	}
 
 }
@@ -66,7 +78,7 @@ function workerStatusChange() {
 		dataType: "JSON"
 	}).done(function (response) {
 		if (response.success && response != null) {
-			return false;
+			return true;
 		}
 		return false;
 	});
@@ -92,11 +104,7 @@ function changeStatusDisplay(e) {
 		//$('#worker-status-group').hide();
 	}
 	else if (e == 1) {
-		document.getElementById('worker-status-group').style.display = 'inline';
+		document.getElementById('worker-status-group').style.display = 'block';
 		//$('#worker-status-group').show();
 	}
 }
-
-$(document).ready(function () {
-	checkstatus();
-});

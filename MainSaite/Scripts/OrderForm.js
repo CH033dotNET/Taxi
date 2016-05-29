@@ -5,21 +5,26 @@ $(function () {
 	$('#load').hide();
 	$('#time-group').hide();
 	$('[data-toggle="tooltip"]').tooltip();
+	$('#pre-order').prop('disabled', true);
 
 	if ($('#userId').length) {
 		var userId = {
 			id: $('#userId').val()
 		}
-		$.ajax({
-			url: '/Client/GetPerson',
-			type: "post",
-			data: userId,
-			success: function (data) {
-				$('#name').val(data.FirstName);
-				$('#phone').val(data.Phone);
-				$('#remember').prop('checked', true);
-			}
-		});
+		if (userId.id != "") {
+			$.ajax({
+				url: './Client/GetPerson',
+				type: "post",
+				data: userId,
+				success: function (data) {
+					$('#name').val(data.FirstName);
+					$('#phone').val(data.Phone);
+					$('#remember').prop('checked', true);
+					$('#pre-order').prop('disabled', false);
+					$('#pre-order').parent().removeAttr('data-original-title');
+				}
+			});
+		}
 	}
 
 	$('#add-address').click(function () {

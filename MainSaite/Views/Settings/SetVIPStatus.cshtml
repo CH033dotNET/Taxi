@@ -28,14 +28,14 @@
             <h3 style="text-align:center;">@Resources.Resource.SetVIPStatusPage</h3>
         </div>
 
-        <table class="table table-hover">
-            <tr>
-                <th>@Resources.Resource.UserName </th>
-                <th> @Resources.Resource.Setdate</th>
-                <th style="width:150px"> @Resources.Resource.Action</th>
-            </tr>
-            <tbody id="vip"></tbody>
-        </table>
+		<table class="table table-hover newTableStyle">
+			<tr>
+				<th>@Resources.Resource.UserName </th>
+				<th> @Resources.Resource.Setdate</th>
+				<th style="width:150px"> @Resources.Resource.Action</th>
+			</tr>
+			<tbody id="vip"></tbody>
+		</table>
 
         <script id="vip-template" type="text/x-handlebars-template">
             {{#each clients}}
@@ -49,7 +49,7 @@
 
                 {{else}}
                 <td></td>
-                <td><button class="btn btn-primary btn-block glyphicon glyphicon-ok set" data-idclient="{{UserId}}" style="width: 120px">
+                <td><button class="btn btn-success btn-block glyphicon glyphicon-ok set" data-idclient="{{UserId}}" style="width: 120px">
                         <span >@Resources.Resource.Set</span></button> </td>
                 {{/if}}
             </tr>

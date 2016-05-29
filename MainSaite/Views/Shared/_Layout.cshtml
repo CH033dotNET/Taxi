@@ -42,7 +42,7 @@
 	<div class="row">
 		<div class="col-md-1 col-lg-1 col-sm-1"></div>
 		<div class="col-md-10 col-lg-10 col-sm-10 col-xs-12" id="navBar">
-			<p id="navPhone">Call us: (800) 123-3542</p>
+			<p id="navPhone">@Resources.Resource.CallUs</p>
 			<div class="left-menu">
 				<div class="navbar navbar-default" id="desktopNavBar">
 					<div id="mainLogoContainer">
@@ -59,16 +59,15 @@
 
 										<ul class="dropdown-menu">
 											<li id="order-dropdown">@Html.ActionLink(Resources.Resource.StandartOrder, "OrderTaxi", "Home")</li>
-											<li class="divider"></li>
 											<li id="order-dropdown">@Html.ActionLink(Resources.Resource.AdvancedOrder, "OrderForm", "Home")</li>
 										</ul>
 									</li>
 			if (Session["User"] == null)
 			{ 
 
-									<li id="navBarBtn">@Html.ActionLink("[HOME]", "Index", "Home")</li>
+									<li id="navBarBtn">@Html.ActionLink(@Resources.Resource.Home.ToUpper(), "Index", "Home")</li>
 									
-									<li id="navBarBtn">@Html.ActionLink("[ABOUT US]", "Index", "Home")</li>
+									<li id="navBarBtn">@Html.ActionLink(@Resources.Resource.AboutUs.ToUpper(), "Index", "Home")</li>
 									<li id="navBarBtn">@Html.ActionLink(Resources.Resource.SingUp.ToUpper(), "Registration", "Account")</li>
 	                                <li id="navBarBtn">@Html.ActionLink(Resources.Resource.Login.ToUpper(), "Authentification", "Account")</li>
 			}
@@ -141,11 +140,13 @@
 						if (ViewBag.UserRoleId == (int)AvailableRoles.Driver || ViewBag.UserRoleId == (int)AvailableRoles.FreeDriver)
 						{
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.PersonalCabinet, "Index", "DriverEx")</li>
-						}
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.Pulse, "Pulse", "DriverEx")</li>
+					}
 
-						if (ViewBag.UserRoleId == (int)AvailableRoles.Client)
-						{
-
+					if (ViewBag.UserRoleId == (int)AvailableRoles.Client)
+					{
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.ClientDriveHistory, "DriveHistory", "Client")</li>
+	                        <li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.Bonuses, "ClientBonuses", "Client")</li>
 						}
 
 						if (ViewBag.UserRoleId == (int)AvailableRoles.Support)
@@ -189,6 +190,40 @@
 					<div class="lang">
 						<ul class="nav navbar-nav">
 							@Html.Partial("_Language")
+						</ul>
+					</div>
+					<div class="socials">
+						<ul class="nav navbar-nav">
+							<li>
+								<a class="ActivLang" href="https://www.facebook.com/groups/508754115968466/">
+									<i class="largeIcon fa fa-facebook"></i>
+								</a>
+							</li>
+							<li>
+								<a class="ActivLang" href="">
+									<i class="largeIcon fa fa-twitter"></i>
+								</a>
+							</li>
+							<li>
+								<a class="ActivLang" href="">
+									<i class="largeIcon fa fa-google"></i>
+								</a></li>
+							<li>
+								<a class="ActivLang" href="">
+									<i class="largeIcon fa fa-youtube"></i>
+								</a></li>
+							<li>
+								<a class="ActivLang" href="https://github.com/CH033dotNET/Taxi">
+									<i class="largeIcon fa fa-lg fa-github"></i>
+								</a></li>
+							<li>
+								<a class="ActivLang" href="">
+									<i class="largeIcon fa fa-lg fa-linkedin"></i>
+								</a></li>
+							<li>
+								<a class="ActivLang" href="#">
+									<i class="largeIcon fa fa-lg fa-vimeo-square"></i>
+								</a></li>
 						</ul>
 					</div>
 				</div>

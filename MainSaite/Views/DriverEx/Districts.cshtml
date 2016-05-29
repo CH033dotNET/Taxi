@@ -4,7 +4,7 @@
 	ViewBag.Title = "Choose district";
 }
 <div class="row">
-	<div class="col-xs-12">
+	<div class="col-xs-12" id="autoDistrictSelection">
 		
 		<label class="switch">
 			<input type="checkbox">
@@ -14,7 +14,7 @@
 	</div>
 	
 </div>
-<table class="table">
+<table class="table newTableStyle">
 	<tr>
 		<th>
 			@Resources.Resource.DriversCount
@@ -35,7 +35,7 @@
 				@Html.DisplayFor(modelItem => item.Name)
 			</td>
 			<td>
-				<span class="joinButton btn btn-warning" data-id="@item.Id"><span class="">@Resources.Resource.Join</span><span class="hidenText">@Resources.Resource.DriverIsHere</span></span>
+				<span class="joinButton btn btn-success" data-id="@item.Id"><span class="">@Resources.Resource.Join</span><span class="hidenText">@Resources.Resource.DriverIsHere</span></span>
 			</td>
 		</tr>
 	}

@@ -10,5 +10,6 @@ namespace BAL.Interfaces
 	public interface IDriverExManager
 	{
 		void AddDriverLocation(CoordinatesExDTO coordinate);
+	    DriverLocationDTO[] GetFullLocations();
 	}
 }

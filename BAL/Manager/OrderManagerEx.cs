@@ -57,6 +57,7 @@ namespace BAL.Interfaces
 					dbOrder.AdditionallyRequirements.Courier = order.AdditionallyRequirements.Courier;
 					dbOrder.AdditionallyRequirements.MyCar = order.AdditionallyRequirements.MyCar;
 					dbOrder.AdditionallyRequirements.NoSmoking = order.AdditionallyRequirements.NoSmoking;
+					dbOrder.AdditionallyRequirements.English = order.AdditionallyRequirements.English;
 					dbOrder.AdditionallyRequirements.Pets = order.AdditionallyRequirements.Pets;
 					dbOrder.AdditionallyRequirements.Smoking = order.AdditionallyRequirements.Smoking;
 					dbOrder.AdditionallyRequirements.Urgently = order.AdditionallyRequirements.Urgently;
@@ -132,6 +133,30 @@ namespace BAL.Interfaces
 			return false;
 		}
 
+		public bool CancelOrder(int id)
+		{
+			var order = uOW.OrderExRepo.All.Where(o => o.Id == id).FirstOrDefault();
+			if (order != null)
+			{
+				order.Status = OrderStatusEnum.Canceled;
+				uOW.OrderExRepo.Update(order);
+				uOW.Save();
+				return true;
+			}
+			return false;
+		}
+		public bool FinishOrder(int id)
+		{
+			var order = uOW.OrderExRepo.All.Where(o => o.Id == id).FirstOrDefault();
+			if (order != null)
+			{
+				order.Status = OrderStatusEnum.Finished;
+				uOW.OrderExRepo.Update(order);
+				uOW.Save();
+				return true;
+			}
+			return false;
+		}
 		public bool SetWaitingTime(int id, int WaitingTime)
 		{
 			var order = uOW.OrderExRepo.All.Where(o => o.Id == id).FirstOrDefault();
@@ -172,8 +197,15 @@ namespace BAL.Interfaces
 
 		public IEnumerable<OrderExDTO> GetOrdersByUserId(int id)
 		{
-			var orders = uOW.OrderExRepo.All.Include(o => o.AddressFrom)
-				.Where(o => o.UserId == id && o.Status == OrderStatusEnum.Confirmed)
+			var orders = uOW.OrderExRepo.All
+				.Include(o => o.AddressFrom)
+				.Include(o => o.AddressesTo)
+				.Include(o => o.AdditionallyRequirements)
+				.Include(o => o.Car)
+				.Where(o => o.UserId == id && (
+				o.Status == OrderStatusEnum.Confirmed ||
+				o.Status == OrderStatusEnum.Canceled ||
+				o.Status == OrderStatusEnum.Finished))
 				.ToList();
 			return Mapper.Map<List<OrderExDTO>>(orders);
 		}
@@ -220,6 +252,16 @@ namespace BAL.Interfaces
 				.Where(o => o.Status == OrderStatusEnum.Confirmed)
 				.ToList();
 			return Mapper.Map<List<OrderExDTO>>(orders);
+		}
+
+		public OrderExDTO GetCurrentDriverOrder(int driverId)
+		{
+			var order = uOW.OrderExRepo.All
+				.Include(o => o.AddressFrom)
+				.Include(o => o.AddressesTo)
+				.Include(o => o.AdditionallyRequirements)
+				.Where(o => o.DriverId == driverId && o.Status == OrderStatusEnum.Confirmed).FirstOrDefault();
+			return Mapper.Map<OrderExDTO>(order);
 		}
 	}
 }

@@ -1,7 +1,5 @@
 ﻿@model IEnumerable<Model.DTO.OrderExDTO>
 
-@using Model.DTO;
-
 @{
 	ViewBag.Title = Resources.Resource.ClientDriveHistory;
 	Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,12 +7,12 @@
 
 <link href="~/Content/DriveHistory.css" type="text/css" rel="stylesheet" />
 
-<div class="panel panel-primary">
-	<div class="panel-heading">
+<div class="content-container">
+	<div class="table-title">
 		<center><h2>@Resources.Resource.ClientDriveHistory</h2></center>
 	</div>
 	<div class="panel-body">
-		<table class="table" id="orders">
+		<table class="table newTableStyle" id="orders">
 		<tr>
 			<th id="dateTime">
 				@Resources.Resource.DateTime
@@ -31,30 +29,34 @@
 			<th id="price">
 				@Resources.Resource.Price
 			</th>
+			<th id="status">
+				@Resources.Resource.Status
+			</th>
 			<th id="feedback">
 				@Resources.Resource.Feedback
 			</th>
 		</tr>
 		@foreach (var item in Model)
 		{
-			<tr class="order">
-				<td>
+			<tr class="order" id="@item.Id">
+				<td class="dateTime">
 					@Html.DisplayFor(modelItem => item.OrderTime)
 				</td>
-				<td>
+				<td class="pickPlace">
 					@Html.DisplayFor(modelItem => item.FullAddressFrom);
                 </td>
-                <td>
+                <td class="dropPlace">
 					@Html.DisplayFor(modelItem => item.FullAddressTo)
 				</td>
-                <td>
+                <td class="carNumber">
 					@Html.DisplayFor(modelItem => item.Car.CarNumber)
 				</td>
-                <td>
+                <td class="price">
 					@Html.DisplayFor(modelItem => item.Price)
 				</td>
-                <td>
-					<button data-orderId="@item.Id" data-feedbackId="@item.ClientFeedbackId" type="button" class="btn btn-primary addFeedback" data-toggle="modal">@Resources.Resource.AddFeedback</button>
+				<td class="status" status="@item.Status"></td>
+                <td class="feedback">
+					<button data-orderId="@item.Id" data-feedbackId="@item.ClientFeedbackId" type="button" class="btn btn-success addFeedback" data-toggle="modal">@Resources.Resource.AddFeedback</button>
 				</td>
             </tr>
         }
@@ -62,6 +64,13 @@
 	</div>
 </div>
 
+<div style="display:none;">
+	<span class="canceled">@Resources.Resource.Canceled</span>
+	<span class="finished">@Resources.Resource.Finished</span>
+	<button type="button" class="btn btn-success warning cancel">@Resources.Resource.Cancel</button>
+</div>
+
 @Html.Partial("ClientFeedback")
 
+<script src="~/Scripts/DriveHistory.js"></script>
 <script src="~/Scripts/Client/ClientFeedback.js"></script>

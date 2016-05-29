@@ -15,7 +15,7 @@ using Common.Enum;
 
 namespace MainSaite.Controllers
 {
-	public class DriverExController : Controller
+	public class DriverExController : BaseController
 	{
 		private IOrderManagerEx orderManager;
 		private IDriverExManager driverManager;
@@ -25,7 +25,14 @@ namespace MainSaite.Controllers
 		private IWorkerStatusManager workerStatusManager;
 		private IUserManager userManager;
 
-		public DriverExController(IFeedbackManager feedbackManager, IOrderManagerEx orderManager, IDriverExManager driverManager, IDistrictManager districtManager, ICarManager carManager, IWorkerStatusManager workerStatusManager)
+		public DriverExController(
+			IFeedbackManager feedbackManager,
+			IOrderManagerEx orderManager,
+			IDriverExManager driverManager,
+			IDistrictManager districtManager,
+			ICarManager carManager,
+			IWorkerStatusManager workerStatusManager,
+			IUserManager userManager)
 		{
 			this.orderManager = orderManager;
 			this.driverManager = driverManager;
@@ -33,6 +40,7 @@ namespace MainSaite.Controllers
 			this.feedbackManager = feedbackManager;
 			this.carManager = carManager;
 			this.workerStatusManager = workerStatusManager;
+			this.userManager = userManager;
 		}
 
 		public ActionResult Index()
@@ -40,7 +48,8 @@ namespace MainSaite.Controllers
 			return View();
 		}
 
-		public ActionResult NewOrders() {
+		public ActionResult NewOrders()
+		{
 			return PartialView(orderManager.GetApprovedOrders());
 		}
 
@@ -49,14 +58,56 @@ namespace MainSaite.Controllers
 			return PartialView(districtManager.GetFilesDistricts());
 		}
 
-		public ActionResult OrdersHistory() {
+		public ActionResult OrdersHistory()
+		{
 			var driver = (Session["User"] as UserDTO);
 			return PartialView(orderManager.GetOrdersByDriver(driver));
 		}
 
 		public ActionResult MyOrder()
 		{
-			return PartialView();
+		    return View();
+		}
+		public ActionResult MyOrderMap()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public JsonResult GetCurrentOrder()
+		{
+			var driverOrder = orderManager.GetCurrentDriverOrder((Session["User"] as UserDTO).Id);
+			if (driverOrder != null)
+			{
+				if (driverOrder.AdditionallyRequirements == null)
+				{
+					// We should show additional requirements always!
+					// If user didn't choose them than we should use default settings and driver can change them.
+					driverOrder.AdditionallyRequirements = new AdditionallyRequirementsDTO();
+					driverOrder.AdditionallyRequirements.Urgently = true;
+					driverOrder.AdditionallyRequirements.Passengers = 1;
+				}
+			}
+			if(driverOrder==null)
+				return Json("NoOrder");
+
+		    return Json(driverOrder);
+		}
+		public ActionResult Pulse()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public JsonResult GetDriversWithsOrders(int id)
+		{
+			return Json(userManager.GetCurrentDrivers(id));
+		}
+
+		[HttpPost]
+		public JsonResult GetDriversWithsOrdersLastMonth(int id)
+		{
+			return Json(userManager.GetCurrentDriversLastMonth(id));
 		}
 
 		[HttpPost]
@@ -102,6 +153,7 @@ namespace MainSaite.Controllers
 			{
 				coordinate.DriverId = (Session["User"] as UserDTO).Id;
 				driverManager.AddDriverLocation(coordinate);
+				DriverLocationHelper.addedLocation(coordinate);
 			}
 		}
 
@@ -114,19 +166,24 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public JsonResult AddFeedback(FeedbackDTO feedback)
 		{
-			return Json(feedbackManager.AddFeedback(feedback));
+            return Json(feedbackManager.AddFeedback(feedback));
 		}
 
 		[HttpPost]
 		public JsonResult UpdateFeedback(FeedbackDTO feedback)
 		{
-			return Json(feedbackManager.UpdateFeedback(feedback));
+			var newFeedback = feedbackManager.UpdateFeedback(feedback);
+			userManager.CalculateUserRating(newFeedback.Id);
+			return Json(newFeedback);
 		}
 
 		[HttpPost]
 		public void SetDriverFeedback(int orderId, int feedbackId)
 		{
 			orderManager.SetDriverFeedback(orderId, feedbackId);
+			var order = orderManager.GetById(orderId);
+			feedbackManager.SetUserId(feedbackId, order.DriverId);
+			userManager.CalculateUserRating(feedbackId);
 		}
 		public ActionResult WorkShift()
 		{
@@ -153,14 +210,11 @@ namespace MainSaite.Controllers
 		}
 		public JsonResult ChangeCurrentDriverStatus(int status)
 		{
-			try
-			{
+			//try {
 				workerStatusManager.ChangeStatus((Session["User"] as UserDTO), (DriverWorkingStatusEnum)status);
-			}
-			catch (Exception)
-			{
+			//} catch (Exception) {
 				return Json(false, JsonRequestBehavior.AllowGet);
-			}
+			//}
 
 			return Json(true, JsonRequestBehavior.AllowGet);
 		}
@@ -235,11 +289,11 @@ namespace MainSaite.Controllers
 			}
 			return Json(false);
 		}
-		[HttpPost]
-		public void UpdateCoords(CoordinatesExDTO coordinate)
-		{
-			DriverLocationHelper.addedLocation(coordinate);
+	    [HttpGet]
+		public JsonResult GetLoc()
+		{			
+			var array = driverManager.GetFullLocations();
+			return Json(array, JsonRequestBehavior.AllowGet);
 		}
-
 	}
 }

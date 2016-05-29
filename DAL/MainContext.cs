@@ -12,7 +12,7 @@ namespace DAL
 	public class MainContext : DbContext
 	{
 		public MainContext()
-			: base("dbTaxi")
+			: base("Taxi")
 		{
 			this.Configuration.LazyLoadingEnabled = true;
 
@@ -46,5 +46,6 @@ namespace DAL
 		public DbSet<AddressFrom> AddressesFrom { get; set; }
 		public DbSet<AddressTo> AddressesTo { get; set; }
 		public DbSet<Feedback> FeedBacks { get; set; }
+		public DbSet<News> News { get; set; }
 	}
 }

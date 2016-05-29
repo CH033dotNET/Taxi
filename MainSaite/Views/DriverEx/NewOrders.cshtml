@@ -6,26 +6,35 @@
 
 <h2>@Resources.Resource.NewOrders</h2>
 
-<table class="table" id="orders">
+<table class="table newTableStyle" id="orders">
 	<tr>
 		<th>
 			@Resources.Resource.OrderAddress
 		</th>
+		<th>@Resources.Resource.Perquisite</th>
+		<th>@Resources.Resource.WaitingTime</th>
+		<th>@Resources.Resource.TakeOrder</th>
 		<th></th>
 	</tr>
 
-	@foreach (var item in Model) {
+	@foreach (var item in Model)
+	{
 		<tr>
-			<td class="col-md-9">
-				@Html.DisplayFor(modelItem => item.FullAddressFrom);
+			<td class="col-md-7">
+				@Html.DisplayFor(modelItem => item.FullAddressFrom)
 			</td>
-			<td class="col-md-3">
+			<td class="col-md-2">
+				@Html.DisplayFor(modelItem => item.Perquisite)
+			</td>
+			<td class="col-md-2">
 				<div class="input-group">
 					<input type="number" class="waiting-time form-control" placeholder="@Resources.Resource.WaitingTime">
+				</div>
+			</td>
+			<td class="col-md-3">
 					<span class="input-group-btn">
 						<input itemid="@item.Id" type="button" value="@Resources.Resource.TakeOrder" class="take btn btn-success" />
 					</span>
-				</div>
 			</td>
 		</tr>
 	}
