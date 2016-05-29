@@ -21,7 +21,7 @@ namespace BAL.Manager
 
 		public IEnumerable<NewsDTO> GetAllNews()
 		{
-			var news = uOW.NewsRepo.All.Where(e => e.Status == ArticleStatus.Active).ToList();
+			var news = uOW.NewsRepo.All.Where(e => e.Status == ArticleStatus.Active).OrderByDescending(e => e.CreatedTime).ToList();
 			return news.Select(x => Mapper.Map<NewsDTO>(x));
 		}
 
@@ -30,7 +30,7 @@ namespace BAL.Manager
 			var news = uOW.NewsRepo
 								.All
 								.Where(e => e.Status == ArticleStatus.Active)
-								.OrderBy(e => e.CreatedTime).Take(i).ToList();
+								.OrderByDescending(e => e.CreatedTime).Take(i).ToList();
 
 			return news.Select(x => Mapper.Map<NewsDTO>(x));
 		}

@@ -177,3 +177,38 @@ function DeleteTariff(id) {
 //////////////////////////////
 /// Tariffs page - END
 //////////////////////////////
+
+
+//////////////////////////////
+/// News page - START
+//////////////////////////////
+
+function DeleteArticle(id) {
+	$.ajax({
+		type: "POST",
+		url: "/News/DeleteArticle",
+		data: {
+			id: id
+		}
+	}).done(function () {
+		location.reload();
+	});
+}
+
+function SaveArticle(id) {
+	$.ajax({
+		type: "POST",
+		url: "/News/SaveArticle",
+		data: {
+			id: id,
+			title: $('#Title').val(),
+			article: $('#Article').val()
+		}
+	}).done(function () {
+		location.href = "/News/Index/";
+	});
+}
+
+//////////////////////////////
+/// News page - END
+//////////////////////////////

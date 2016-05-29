@@ -216,7 +216,6 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
-    <Compile Include="Controllers\TarifController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -500,7 +499,6 @@
     <Content Include="Scripts\OrderForm.js" />
     <Content Include="Scripts\Pulse.js" />
     <Content Include="Scripts\tabCorrector.js" />
-    <Content Include="Scripts\Tarif\Tarif.js" />
     <Content Include="Scripts\Tools\AddBlockChecker.js" />
     <Content Include="Scripts\UserMenuScripts\ModalJs.js" />
     <Content Include="Scripts\UserScript.js" />
@@ -535,12 +533,8 @@
     <Content Include="Views\Administration\AddUser.cshtml" />
     <Content Include="Views\Shared\_Language.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\Tarif\Index.cshtml" />
-    <Content Include="Views\Tarif\Create.cshtml" />
-    <Content Include="Views\Tarif\Edit.cshtml" />
     <Content Include="Views\Administration\ViewWorkShifts.cshtml" />
     <Content Include="Views\Settings\_UserTable.cshtml" />
-    <Content Include="Views\Tarif\_ShowTarifTable.cshtml" />
     <Content Include="Views\Account\IEDisable.cshtml" />
     <Content Include="Views\Settings\_DeleteDistrictP.cshtml" />
     <Content Include="Views\Settings\_EditDistrictP.cshtml" />
@@ -586,6 +580,7 @@
     <Content Include="Views\DriverEx\Pulse.cshtml" />
     <Content Include="Views\DriverEx\MyOrderMap.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

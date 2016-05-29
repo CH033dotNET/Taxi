@@ -1,15 +1,16 @@
 ﻿@model IEnumerable<Model.DTO.NewsDTO>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "[News]";
 }
 
-<h2>Index</h2>
+
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+	<a href="/News/Edit/?id=-1" class="btn btn-success">[Create new article]</a>
 </p>
-<table>
+
+<table class="table table-hover newTableStyle">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Title)
@@ -29,8 +30,8 @@
             @Html.DisplayFor(modelItem => item.CreatedTime)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+			<a href="/News/Edit/?id=@item.Id" class="btn btn-success">@Resources.Resource.Edit</a>
+            <button type="button" class="btn btn-success warning" onclick="DeleteArticle(@item.Id)">@Resources.Resource.Delete</button>
         </td>
     </tr>
 }
