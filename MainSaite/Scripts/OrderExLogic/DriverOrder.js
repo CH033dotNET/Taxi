@@ -393,6 +393,99 @@
 						GetLocationByAddress('вулиця Південно-Кільцева 7, Черновцы, Черновицкая область, Украина', 'logo_destination.png');
 					
 
+		}
+				else {
+					$('#currentOrder').hide();
+					$('#noCurrentOrder').show();
+				}
+
+	function UpdateDriverPosition(Latitude, Longitude) {
+		if (driverMarker === undefined) {
+			driverMarker = new google.maps.Marker({
+				position: { lat: Latitude, lng: Longitude },
+				map: map,
+				title: 'Driver: ' + name,
+				icon: {
+					url: imagePath + '/cab.png'
+				}
+	});
+
+			driverMarker.setAnimation(google.maps.Animation.BOUNCE);
+
+		}
+		else {
+			driverMarker.setPosition(new google.maps.LatLng(prevCoord.Latitude, prevCoord.Longitude));
+		}
+
+		map.setCenter(driverMarker.getPosition());
+	}
+
+	window.updateOrderInfo = function () {
+		GetCurrentOrder();
+	}
+
+	function GetCurrentOrder() {
+
+
+		for (var key in destinationMarkers)
+		{
+			destinationMarkers[key].setMap(null);
+		}
+
+		destinationMarkers = [];
+
+		$.ajax({
+			type: "POST",
+			url: "/DriverEX/GetCurrentOrder/",
+
+			success: function (order) {
+				var k = 0;
+
+				if (order != null && order != "NoOrder") {
+					$('#currentOrder').show();
+					$('#noCurrentOrder').hide();
+					$('#orderId').val(order.Id);
+					$('#userId').val(order.UserId);
+					$('#fullAddressFrom').text(order.FullAddressFrom);
+					$('#cost').text(order.Price);
+					GetLocationByAddress(order.FullAddressFrom, 'logo_client.png');
+					if (order.UserId != null) {
+						$('.bonusTable').show();
+					}
+					else $('.bonusTable').hide();
+
+					setChecked('#urgently', order.AdditionallyRequirements.Urgently);
+
+
+					switch (order.AdditionallyRequirements.Car) {
+						case 1: setChecked('#normal', true); break;
+						case 2: setChecked('#universal', true); break;
+						case 3: setChecked('#minivan', true); break;
+						case 4: setChecked('#lux', true); break;
+					}
+
+
+					$('#passengers').val(order.AdditionallyRequirements.Passengers);
+
+					setChecked('#courier', order.AdditionallyRequirements.Courier);
+					setChecked('#with-plate', order.AdditionallyRequirements.WithPlate);
+					setChecked('#my-car', order.AdditionallyRequirements.MyCar);
+					setChecked('#pets', order.AdditionallyRequirements.Pets);
+					setChecked('#bag', order.AdditionallyRequirements.Bag);
+					setChecked('#conditioner', order.AdditionallyRequirements.Conditioner);
+					setChecked('#english', order.AdditionallyRequirements.NoSmoking);
+					setChecked('#nosmoking', order.AdditionallyRequirements.Smoking);
+					setChecked('#smoking', order.AdditionallyRequirements.English);
+					setChecked('#check', order.AdditionallyRequirements.Check);
+
+					//if (order.AddressesTo.length > 0) {
+					//	for (var i = 0; i < order.AddressesTo.length; i++) {
+					//		GetLocationByAddress(order.AddressesTo[i], 'logo_destination.png');
+					//	}
+					//}
+						GetLocationByAddress('вулиця Південно-Кільцева 7, Черновцы, Черновицкая область, Украина', 'logo_destination.png');
+					
+
 				}
 				else {
 					$('#currentOrder').hide();
