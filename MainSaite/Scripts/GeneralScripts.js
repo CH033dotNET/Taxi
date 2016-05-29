@@ -202,7 +202,7 @@ function SaveArticle(id) {
 		data: {
 			id: id,
 			title: $('#Title').val(),
-			article: $('#Article').val()
+			article: editor.getHTML()
 		}
 	}).done(function () {
 		location.href = "/News/Index/";

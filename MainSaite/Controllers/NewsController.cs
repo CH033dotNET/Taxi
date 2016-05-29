@@ -28,7 +28,7 @@ namespace MainSaite.Controllers
 		{
 			return NewsManager.DeleteArticle(id);
 		}
-
+		
 		public ActionResult Edit(int id)
 		{
 			if (id == -1)
@@ -42,6 +42,7 @@ namespace MainSaite.Controllers
 			}
 		}
 
+		[ValidateInput(false)]
 		public bool SaveArticle(int id, string title, string article)
 		{
 			var newArticle = new NewsDTO();
