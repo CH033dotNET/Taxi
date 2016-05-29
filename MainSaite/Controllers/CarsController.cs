@@ -13,6 +13,8 @@ using FluentValidation;
 using BAL.Manager;
 using RestSharp;
 using BAL.Interfaces;
+using System.Web.Security;
+using MainSaite.Helpers;
 
 namespace MainSaite.Controllers
 {
@@ -34,6 +36,7 @@ namespace MainSaite.Controllers
 		/// Action method, returns main view and populates it with list of objects
 		/// </summary>
 		/// <returns></returns>
+		[AuthFilter(Roles = "Driver")]
 		public ActionResult CarPark()
 		{
 			AutoParkViewModel CarsViewModel = new AutoParkViewModel();

@@ -80,6 +80,10 @@ namespace MainSaite.Controllers
 			return View();			
         }
 
+		public ActionResult Login() {
+			return RedirectToAction("Authentification", "Account");
+		}
+
 		public ActionResult LogOut()
 		{
 			Session["User"] = null;

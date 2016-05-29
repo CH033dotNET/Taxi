@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MainSaite.Models;
+using MainSaite.Helpers;
 
 namespace MainSaite.Controllers
 {
@@ -26,6 +27,7 @@ namespace MainSaite.Controllers
 			return View(user);
 		}
 
+		[AuthFilter(Roles = "Administrator")]
 		[HttpPost]
 		public ActionResult AddUser(UserDTO user)
 		{
@@ -56,11 +58,13 @@ namespace MainSaite.Controllers
 			}
 		}
 
+		[AuthFilter(Roles = "Administrator")]
 		public ActionResult ViewWorkShifts()
 		{
 			return View();
 		}
 
+		[AuthFilter(Roles = "Administrator")]
 		public ActionResult SendMessagesToDrivers() {
 			return View();
 		}

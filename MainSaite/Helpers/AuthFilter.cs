@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace MainSaite.Helpers
 {
     public class AuthFilterAttribute : AuthorizeAttribute {
 
 		private string[] allowedUsers = new string[] { };
-		//private string[] allowedRoles = new string[] { };
-		//private string[] allowedRoles = (string[])Enum.GetValues(typeof(Common.Enum.AvailableRoles));
 
 		// this ugly long string is just converting enum data to string[]
 		private string[] allowedRoles = Enum.GetValues(typeof(Common.Enum.AvailableRoles)).OfType<object>().Select(o => o.ToString()).ToArray();
@@ -46,15 +45,20 @@ namespace MainSaite.Helpers
 
 		private bool Role(HttpContextBase httpContext) {
 			if (allowedRoles.Length > 0) {
-				var usr = httpContext.Session["User"] as UserDTO;
-
-				for (int i = 0; i < allowedRoles.Length; i++) {
-					if (usr.Role.Name == allowedRoles[i])
-						return true;
+				try {
+					var usr = httpContext.Session["User"] as UserDTO;
+					for (int i = 0; i < allowedRoles.Length; i++) {
+						if (usr.Role.Name == allowedRoles[i])
+							return true;
+					}
+				} catch {
+					return false;
 				}
-				return false;
+				
 			}
 			return true;
 		}
+
+		
 	}
 }

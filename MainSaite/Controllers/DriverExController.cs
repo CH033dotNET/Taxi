@@ -49,32 +49,38 @@ namespace MainSaite.Controllers
 			return View();
 		}
 
-		[AuthFilter(Roles = "Driver")]
+		[AuthFilter(Roles = "Driver, FreeDriver")]
 		public ActionResult NewOrders()
 		{
 			return PartialView(orderManager.GetApprovedOrders());
 		}
 
+		[AuthFilter(Roles = "Driver, FreeDriver")]
 		public ActionResult Districts()
 		{
 			return PartialView(districtManager.GetFilesDistricts());
 		}
 
+		[AuthFilter(Roles = "Driver, FreeDriver")]
 		public ActionResult OrdersHistory()
 		{
 			var driver = (Session["User"] as UserDTO);
 			return PartialView(orderManager.GetOrdersByDriver(driver));
 		}
 
+		[AuthFilter(Roles = "Driver, FreeDriver")]
 		public ActionResult MyOrder()
 		{
 		    return View();
 		}
+
+		[AuthFilter(Roles = "Driver, FreeDriver")]
 		public ActionResult MyOrderMap()
 		{
 			return View();
 		}
 
+		[AuthFilter(Roles = "Driver, FreeDriver")]
 		[HttpPost]
 		public JsonResult GetCurrentOrder()
 		{
@@ -95,6 +101,8 @@ namespace MainSaite.Controllers
 
 		    return Json(driverOrder);
 		}
+
+		[AuthFilter(Roles = "Driver, FreeDriver")]
 		public ActionResult Pulse()
 		{
 			return View();
@@ -112,6 +120,7 @@ namespace MainSaite.Controllers
 			return Json(userManager.GetCurrentDriversLastMonth(id));
 		}
 
+		[AuthFilter(Roles = "Driver, FreeDriver")]
 		[HttpPost]
 		public JsonResult TakeOrder(int id, int WaitingTime)
 		{
