@@ -1,5 +1,5 @@
 ﻿/* CHAT START */
-*{
+* {
 	font-family: 'Droid Sans', sans-serif;
 }
 #chat {
@@ -700,4 +700,19 @@
 	.adblockWraper {
 		padding: 0px 18px;
 	}
+}
+
+/* News Editor */
+.newsEditor #toolbar {
+	border: 1px solid #e5e5e5;
+	margin: 20px auto;
+	box-shadow: 2px 1px 5px rgba(0,0,0,0.2);
+	background-color: #e5e5e5;
+}
+.newsEditor #editor {
+	margin: 20px auto;
+	box-shadow: 2px 1px 5px rgba(0,0,0,0.2);
+	border: 1px solid #e5e5e5;
+	height: 400px;
+	background-color: #e5e5e5;
 }
