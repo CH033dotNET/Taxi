@@ -195,6 +195,20 @@ function DeleteArticle(id) {
 	});
 }
 
+function SaveArticle(id) {
+	$.ajax({
+		type: "POST",
+		url: "/News/SaveArticle",
+		data: {
+			id: id,
+			title: $('#Title').val(),
+			article: $('#Article').val()
+		}
+	}).done(function () {
+		location.href = "/News/Index/";
+	});
+}
+
 //////////////////////////////
 /// News page - END
 //////////////////////////////

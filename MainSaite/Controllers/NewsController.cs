@@ -1,4 +1,5 @@
 ﻿using BAL.Interfaces;
+using Model.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,24 @@ namespace MainSaite.Controllers
 
 		public ActionResult Edit(int id)
 		{
-			return View(NewsManager.GetOneArticle(id));
+			if (id == -1)
+			{
+				var emptyArticle = new NewsDTO();
+				emptyArticle.Id = -1;
+				return View(emptyArticle);
+			} else
+			{
+				return View(NewsManager.GetOneArticle(id));
+			}
+		}
+
+		public bool SaveArticle(int id, string title, string article)
+		{
+			var newArticle = new NewsDTO();
+			newArticle.Id = id;
+			newArticle.Title = title;
+			newArticle.Article = article;
+			return NewsManager.SaveArticle(newArticle);
 		}
 	}
 }

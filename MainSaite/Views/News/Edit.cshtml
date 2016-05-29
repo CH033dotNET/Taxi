@@ -4,19 +4,16 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>NewsDTO</legend>
 
         @Html.HiddenFor(model => model.Id)
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Title)
+			<h2>[Title]</h2>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Title)
@@ -24,15 +21,15 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Article)
+			<h2>[Article]</h2>
         </div>
         <div class="editor-field">
-            <textarea rows="50" cols="100">@Model.Article</textarea>
+            <textarea id="Article" rows="25" cols="100">@Model.Article</textarea>
             @Html.ValidationMessageFor(model => model.Article)
         </div>
 
         <p>
-            <input type="submit" value="Save" />
+			<button type="button" class="btn btn-success" onclick="SaveArticle(@Model.Id)">@Resources.Resource.Save</button>
         </p>
     </fieldset>
 }
