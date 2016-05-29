@@ -3,7 +3,7 @@ namespace DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class RatingfieldaddedtoUsermodel : DbMigration
+    public partial class RatingChangesFix : DbMigration
     {
         public override void Up()
         {
