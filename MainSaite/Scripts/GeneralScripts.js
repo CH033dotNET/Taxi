@@ -177,3 +177,24 @@ function DeleteTariff(id) {
 //////////////////////////////
 /// Tariffs page - END
 //////////////////////////////
+
+
+//////////////////////////////
+/// News page - START
+//////////////////////////////
+
+function DeleteArticle(id) {
+	$.ajax({
+		type: "POST",
+		url: "/News/DeleteArticle",
+		data: {
+			id: id
+		}
+	}).done(function () {
+		location.reload();
+	});
+}
+
+//////////////////////////////
+/// News page - END
+//////////////////////////////

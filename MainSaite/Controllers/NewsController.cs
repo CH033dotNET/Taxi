@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace MainSaite.Controllers
 {
-    public class NewsController : Controller
+    public class NewsController : BaseController
     {
 		//
 		// GET: /News/
@@ -23,5 +23,14 @@ namespace MainSaite.Controllers
             return View(NewsManager.GetAllNews());
         }
 
-    }
+		public bool DeleteArticle(int id)
+		{
+			return NewsManager.DeleteArticle(id);
+		}
+
+		public ActionResult Edit(int id)
+		{
+			return View(NewsManager.GetOneArticle(id));
+		}
+	}
 }

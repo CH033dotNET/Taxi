@@ -110,16 +110,16 @@
 					{
 						<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.MyAccount, "Index", "User")</li>
 
+						if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
+						{
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.Districts, "DistrictEditor", "Settings")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.Tariffs, "Index", "TariffEx")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink("[News]", "Index", "News")</li>
+						}
+
 						if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)
 						{
-
-							if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator)
-							{
-								<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.Districts, "DistrictEditor", "Settings")</li>
-							}
-
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.UserMenu, "UsersMenu", "Settings")</li>
-							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.Tariffs, "Index", "TariffEx")</li>
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.Order, "Index", "OrderEx")</li>
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.SetVIPStatusPage, "SetVIPStatus", "Settings")</li>
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.WorkShift, "ViewWorkShifts", "Administration")</li>
