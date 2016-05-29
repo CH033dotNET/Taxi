@@ -36,5 +36,5 @@ namespace BAL.Manager
 		List<DriverWithOrdersDTO> GetCurrentDrivers(int id);
 		List<DriverWithOrdersDTO> GetCurrentDriversLastMonth(int id);
 		void CalculateUserRating(int id);
-    }
+	}
 }

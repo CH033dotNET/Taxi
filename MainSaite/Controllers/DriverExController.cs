@@ -12,6 +12,7 @@ using System.Web;
 using System.Web.Mvc;
 using Common.Enum.DriverEnum;
 using Common.Enum;
+using System.Web.Mvc;
 
 namespace MainSaite.Controllers
 {
@@ -48,6 +49,7 @@ namespace MainSaite.Controllers
 			return View();
 		}
 
+		[AuthFilter(Roles = "Driver")]
 		public ActionResult NewOrders()
 		{
 			return PartialView(orderManager.GetApprovedOrders());
@@ -129,6 +131,7 @@ namespace MainSaite.Controllers
 					errorHeader = Resources.Resource.ErrorHeader,
 					errorMessage = Resources.Resource.FreeDriverOverlimitError });
 
+			// check if driver already have an order
 			} else if (driverStatus == DriverWorkingStatusEnum.DoingOrder) {
 
 				Response.StatusCode = (int)HttpStatusCode.Forbidden;
@@ -210,11 +213,11 @@ namespace MainSaite.Controllers
 		}
 		public JsonResult ChangeCurrentDriverStatus(int status)
 		{
-			//try {
+			try {
 				workerStatusManager.ChangeStatus((Session["User"] as UserDTO), (DriverWorkingStatusEnum)status);
-			//} catch (Exception) {
+			} catch (Exception) {
 				return Json(false, JsonRequestBehavior.AllowGet);
-			//}
+			}
 
 			return Json(true, JsonRequestBehavior.AllowGet);
 		}
