@@ -26,12 +26,12 @@
 				<div class="form-group">
 					<input type="hidden" id="Id" value="@User.Id" />
 
-					<input type="button" class="btn btn-success" id="workshift-button" change-btn-id="work_start" value=@Resources.Resource.WorkShiftStart />	
-						
+					<input type="button" class="btn btn-success" id="workshift-button-start" change-btn-id="work_start" value=@Resources.Resource.WorkShiftStart />	
+					<input type="button" class="btn btn-success warning" id="workshift-button-end" change-btn-id="work_end" value=@Resources.Resource.WorkShiftEnd />	
 				</div>
-					<div id="worker-status-group">
+					<div id="worker-status-group" class="btform">
 						<div class="form-group">
-							<select class="form-control input-sm" name="driverStatus" id="inputDriverStatus" onchange="workerStatusChange()">
+							<select class="input-xlarge" name="driverStatus" id="inputDriverStatus" onchange="workerStatusChange()">
 									@foreach (var status in Common.Helpers.EnumHelper.GetWorkerStatus())
 									{
 										<option value="@status.Key">@status.Value</option>
