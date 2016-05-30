@@ -253,6 +253,9 @@
 							mainHub.server.OrderConfirmed(currentOrderId, waiting_time);
 							mainHub.client.OrderTaken(currentOrderId)
 
+							// "1" is "DoingOrder" status
+							setDriverStatus(1);
+
 							GetCurrentOrder();
 						}
 						else {
@@ -518,12 +521,10 @@
 							icon: picturePath + path,
 						});
 					}
-				}
-				else {
+				} else {
 					alert("Geocode was not successful for the following reason: " + status);
 				}
 			});
 		}
 	}
-
 });

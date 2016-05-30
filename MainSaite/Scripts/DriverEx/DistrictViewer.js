@@ -91,7 +91,10 @@ function setDriverStatus(status) {
 		data: { status: status },
 		dataType: "JSON"
 	}).done(function (response) {
-		if (response.success && response != null) {
+		console.log(response.success);
+		console.log(response);
+		console.log(status);
+		if (response == true) {
 			$('#inputDriverStatus').val(status);
 		}
 		return false;
