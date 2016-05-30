@@ -1245,4 +1245,7 @@
   <data name="TripInfo" xml:space="preserve">
     <value>Інформація про поїздку</value>
   </data>
+  <data name="SendMessagesToDrivers" xml:space="preserve">
+    <value>Відправити повідомлення водіям</value>
+  </data>
 </root>
