@@ -397,7 +397,7 @@
 				}
 			}
 		});
-	}s
+	}
 	function UpdateDriverPosition(Latitude, Longitude) {
 		if (driverMarker === undefined) {
 			driverMarker = new google.maps.Marker({
