@@ -624,8 +624,8 @@
 	}
 
 	//if don`t press add button
-	$('#cencelAddDistrict').click(function () {
-		deleteselectedDistrict();
+	$('#cancelAddDistrict').click(function () {
+		selectedDistrict.setMap(null);
 	});
 
 	//map coordinates according to DB

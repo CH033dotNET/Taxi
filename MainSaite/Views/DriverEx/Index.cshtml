@@ -47,9 +47,6 @@
 						@Html.ActionLink(Resources.Resource.MainLink, "Index", "Home")
 					</li>
 					<li id="navBarBtn">
-						<a data-toggle="tab" href="#District">@Resources.Resource.WorkShift</a>
-					</li>
-					<li id="navBarBtn">
 						<a data-toggle="tab" href="#DistrictChooser">@Resources.Resource.District</a>
 					</li>
 					<li id="navBarBtn">
@@ -71,11 +68,6 @@
 	</div>
 	<div>
 		<div id="driver-content" class="tab-content">
-			<div id="District" class="tab-pane fade">
-				@{
-					Html.RenderAction("WorkShift", "DriverEx");
-				}
-			</div>
 			<div id="DistrictChooser" class="tab-pane fade">
 				@{
 					Html.RenderAction("Districts", "DriverEx");
@@ -106,7 +98,7 @@
 	@Html.Partial("DriverFeedback")
 	<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
 	<script src="~/signalr/hubs"></script>
-	<script src="~/Scripts/OrderExLogic/DriverOrder.js" ></script>
+	<script src="~/Scripts/OrderExLogic/DriverOrder.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
 
 	<script>

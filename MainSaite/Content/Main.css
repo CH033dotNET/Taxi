@@ -373,6 +373,23 @@
 	 width:215px;
 	}
 
+	   #arrowBtnL, #arrowBtnR{
+		   background: dimgrey;
+           padding: 15px;
+	   }
+	   #arrowBtn span{
+		   zoom:1.5;
+	   }
+
+	#addressLabel{
+        padding: 12px;
+		color: black;
+	}
+	#addressLabel h3{
+	   font-weight: 500;
+	       font-size: 18px;
+	}
+
 @media (min-width: 768px) {
 	#modalBody, #modalFooter{
 		background: rgba(0, 0, 0, 0.96);

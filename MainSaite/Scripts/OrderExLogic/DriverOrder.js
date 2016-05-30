@@ -15,7 +15,7 @@
 	var driverMarker;
 	var destinationMarkers = [];
 	var geocoder = new google.maps.Geocoder();
-
+	var currentAddress = 0;
 
 	Notify = function (header, message) {
 		if (window.Notification && Notification.permission !== "denied") {
@@ -80,22 +80,24 @@
 		$.ajax({
 			url: '/OrderEx/GetOrder/',
 			data: {
-				id:id,
+				id: id,
 			},
 			type: "POST",
 			success: function (order) {
 
-				var orderblock="";
+				var orderblock = "";
 				orderblock += "<tr>";
-				orderblock += "    <td>";
+				orderblock += "    <td class=\"col-md-7\">";
 				orderblock += order.success.FullAddressFrom;
 				orderblock += "    <\/td>";
-				orderblock += "    <td>";
+				orderblock += "    <td class=\"col-md-2\">";
 				orderblock += order.success.Perquisite;
 				orderblock += "    <\/td>";
-				orderblock += "    <td>";
+				orderblock += "    <td class=\"col-md-2\">";
+				orderblock += "<input type=\"number\" class=\"waiting-time form-control\" placeholder=\"" + Resources.WaitingTime + "\">";
+				orderblock += "    <\/td>";
+				orderblock += "    <td class=\"col-md-3\">";
 				orderblock += "        <div class=\"input-group\">";
-				orderblock += "            <input type=\"number\" class=\"waiting-time form-control\" placeholder=\"" + Resources.WaitingTime + "\">";
 				orderblock += "            <span class=\"input-group-btn\">";
 				orderblock += "                <input itemid=\"" + order.success.Id + "\" type=\"button\" value=\"" + Resources.TakeOrder + "\" class=\"take btn btn-success\" \/>";
 				orderblock += "            <\/span>";
@@ -119,16 +121,14 @@
 
 				var orderblock = "";
 				orderblock += "<tr>";
-				orderblock += "    <td>";
+				orderblock += "    <td  class=\"col-md-8\">";
 				orderblock += order.success.FullAddressFrom;
 				orderblock += "    <\/td>";
-				orderblock += "    <td>";
+				orderblock += "    <td class=\"col-md-2\">";
 				orderblock += moment(order.success.OrderTime).format('DD/MM/YY HH:mm');
 				orderblock += "    <\/td>";
-				orderblock += "    <td>";
-				orderblock += "        <div class=\"input-group\">";
+				orderblock += "    <td class=\"col-md-2\">";
 				orderblock += "                <button data-feedbackId=\"" + order.success.Id + "\" data-orderId=\"" + order.success.Id + "\" type=\"button\" class=\"btn btn-success addFeedbackButton\" data-toggle=\"modal\">" + Resources.AddFeedback + "</button>";
-				orderblock += "        <\/div>";
 				orderblock += "    <\/td>";
 				orderblock += "<\/tr>";
 
@@ -149,6 +149,47 @@
 	//MAP FUNCTIONS
 	mapInit();
 	GetCurrentOrder();
+
+	//arrow buttons
+	$(document).on('click', '#arrowBtnL', function () {
+		changeAddressLabel(currentAddress - 1);
+
+	});
+	$(document).on('click', '#arrowBtnR', function () {
+		changeAddressLabel(currentAddress + 1);
+	});
+
+	function changeAddressLabel(index)
+	{
+		driverMarker.setAnimation(null);
+		var marker;
+		var i = 0;
+		var maxLength = Object.keys(destinationMarkers).length + 1;
+
+		if (index >=maxLength) index = 0;
+
+		if (index < 0) index = maxLength - 1;
+
+		for (var key in destinationMarkers) {
+			if (i == index) {
+				marker = destinationMarkers[key]; break;
+			}
+			i++;
+			destinationMarkers[key].setAnimation(null);
+		}
+		if (i == maxLength-1) {
+			marker = driverMarker;
+			i = maxLength;
+		}
+
+		currentAddress = i;
+
+		marker.setAnimation(google.maps.Animation.BOUNCE);
+
+		$('#addressLabel h3').text(marker.getTitle());
+	}
+
+
 	navigator.geolocation.getCurrentPosition(function (position) {
 
 		UpdateDriverPosition(position.coords.latitude, position.coords.longitude);
@@ -234,7 +275,7 @@
 		}
 
 		//take order
-		$(document).on('click','.take', function (e) {
+		$(document).on('click', '.take', function (e) {
 			var row = $(this).closest('tr');
 			currentOrderId = +$(this).attr('itemId');
 			var waiting_time = row.find('.waiting-time').first().val();
@@ -252,6 +293,9 @@
 							$(row).fadeOut();
 							mainHub.server.OrderConfirmed(currentOrderId, waiting_time);
 							mainHub.client.OrderTaken(currentOrderId)
+
+							// "1" is "DoingOrder" status
+							setDriverStatus(1);
 
 							GetCurrentOrder();
 						}
@@ -303,8 +347,8 @@
 	function mapInit() {
 		map = new google.maps.Map(document.getElementById("map"), {
 			zoom: 13
-		})
-		}
+		});
+	}
 
 	function UpdateDriverPosition(Latitude, Longitude) {
 		if (driverMarker === undefined) {
@@ -315,7 +359,7 @@
 				icon: {
 					url: imagePath + '/cab.png'
 				}
-	});
+			});
 
 			driverMarker.setAnimation(google.maps.Animation.BOUNCE);
 
@@ -332,10 +376,7 @@
 	}
 
 	function GetCurrentOrder() {
-
-
-		for (var key in destinationMarkers)
-		{
+		for (var key in destinationMarkers) {
 			destinationMarkers[key].setMap(null);
 		}
 
@@ -390,36 +431,56 @@
 					//		GetLocationByAddress(order.AddressesTo[i], 'logo_destination.png');
 					//	}
 					//}
-						GetLocationByAddress('вулиця Південно-Кільцева 7, Черновцы, Черновицкая область, Украина', 'logo_destination.png');
-					
+					GetLocationByAddress('вулиця Південно-Кільцева 7, Черновцы, Черновицкая область, Украина', 'logo_destination.png');
 
-		}
+
+				}
 				else {
 					$('#currentOrder').hide();
 					$('#noCurrentOrder').show();
 				}
-
+			}
+		});
+	}
 	function UpdateDriverPosition(Latitude, Longitude) {
+
+		var address = getAddressByLocation(Latitude, Longitude);
+
 		if (driverMarker === undefined) {
 			driverMarker = new google.maps.Marker({
 				position: { lat: Latitude, lng: Longitude },
 				map: map,
+				title: address,
 				title: 'Driver: ' + name,
 				icon: {
 					url: imagePath + '/cab.png'
 				}
-	});
-
-			driverMarker.setAnimation(google.maps.Animation.BOUNCE);
+			});
 
 		}
 		else {
 			driverMarker.setPosition(new google.maps.LatLng(prevCoord.Latitude, prevCoord.Longitude));
+			driverMarker.setTitle(address);
 		}
 
 		map.setCenter(driverMarker.getPosition());
 	}
+	function getAddressByLocation(Latitude, Longitude) {
 
+		$.ajax({
+			method: 'GET',
+			url: "http://maps.googleapis.com/maps/api/geocode/json?latlng="+Latitude+", "+Longitude +"&sensor=true",
+			success: function (data) {
+
+				driverMarker.setTitle(data.results[0].formatted_address);
+
+
+			}
+		});
+
+
+
+	}
 	window.updateOrderInfo = function () {
 		GetCurrentOrder();
 	}
@@ -427,8 +488,7 @@
 	function GetCurrentOrder() {
 
 
-		for (var key in destinationMarkers)
-		{
+		for (var key in destinationMarkers) {
 			destinationMarkers[key].setMap(null);
 		}
 
@@ -456,6 +516,7 @@
 
 					setChecked('#urgently', order.AdditionallyRequirements.Urgently);
 
+					$('#addressLabel h3').text(order.FullAddressFrom);
 
 					switch (order.AdditionallyRequirements.Car) {
 						case 1: setChecked('#normal', true); break;
@@ -483,8 +544,8 @@
 					//		GetLocationByAddress(order.AddressesTo[i], 'logo_destination.png');
 					//	}
 					//}
-						GetLocationByAddress('вулиця Південно-Кільцева 7, Черновцы, Черновицкая область, Украина', 'logo_destination.png');
-					
+					GetLocationByAddress('вулиця Південно-Кільцева 7, Черновцы, Черновицкая область, Украина', 'logo_destination.png');
+
 
 				}
 				else {
@@ -516,16 +577,15 @@
 					if (destinationMarkers[address] === undefined) {
 						destinationMarkers[address] = new google.maps.Marker({
 							map: map,
+							title:address,
 							position: results[0].geometry.location,
 							icon: picturePath + path,
 						});
 					}
-				}
-				else {
+				} else {
 					alert("Geocode was not successful for the following reason: " + status);
 				}
 			});
 		}
 	}
-	
 });

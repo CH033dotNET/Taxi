@@ -5,7 +5,7 @@
 	width: 60px;
 	height: 34px;
 	float:right;
-	margin:0 auto;
+	margin:10px auto;
 }
 
 	/* Hide default HTML checkbox */
@@ -57,7 +57,7 @@ input:checked + .slider:before {
 .autoSelectText{
 	text-align:center;
 	float:right;
-	margin:auto 10px;
+	margin:10px;
 	font-size:20px;
 	vertical-align:central;
 }

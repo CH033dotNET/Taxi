@@ -265,8 +265,9 @@
 					$('#currentOrder').hide();
 					$('#noCurrentOrder').show();
 
+					// "0" is "awaitingOrder" status
 					setDriverStatus(0);
-
+					$('#addressLabel h3').text('Current position');
 					//delete markers
 
 					updateOrderInfo();

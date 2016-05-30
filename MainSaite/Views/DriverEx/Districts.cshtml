@@ -3,17 +3,65 @@
 @{
 	ViewBag.Title = "Choose district";
 }
-<div class="row">
-	<div class="col-xs-12" id="autoDistrictSelection">
-		
-		<label class="switch">
-			<input type="checkbox">
-			<div class="slider"></div>
-		</label>
-		<span class="autoSelectText">@Resources.Resource.AutoDistrict</span>
-	</div>
-	
+<div>
+	<form method="post" class="form-inline">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">@Resources.Resource.WorkShift</h3>
+			</div>
+
+			<div class="panel-footer">
+				<div class="form-group leftFloat">
+					<input type="hidden" id="Id" value="@User.Id" />
+
+					<input type="button" class="btn btn-success" id="workshift-button-start" change-btn-id="work_start" value=@Resources.Resource.WorkShiftStart />
+					<input type="button" class="btn btn-success warning" id="workshift-button-end" change-btn-id="work_end" value=@Resources.Resource.WorkShiftEnd />
+				</div>
+				<div id="worker-status-group" class="btform">
+					<div class="form-group leftFloat">
+						<select class="input-xlarge" name="driverStatus" id="inputDriverStatus" onchange="workerStatusChange()">
+							@foreach (var status in Common.Helpers.EnumHelper.GetWorkerStatus())
+							{
+								<option value="@status.Key">@status.Value</option>
+							}
+						</select>
+					</div>
+				</div>
+				<div id="autoDistrictSelection">
+					<label class="switch">
+						<input type="checkbox">
+						<div class="slider"></div>
+					</label>
+					<span class="autoSelectText">@Resources.Resource.AutoDistrict</span>
+				</div>
+
+				<div>
+					<div class="modal fade" id="get-driver-error-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header" id="modalHeader">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+									</button>
+									<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-fire" aria-hidden="true">&nbsp;</span>@Resources.Resource.ServerErrorHeader</h4>
+								</div>
+								<div class="modal-body" id="modalBody">
+									<p>@Resources.Resource.CarNotFoundError</p>
+								</div>
+								<div class="modal-footer" id="modalFooter">
+									<a class="btn btn-danger" data-dismiss="modal">
+										<span class="glyphicon glyphicon-ok" aria-hidden="true">&nbsp;</span>@Resources.Resource.okString
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
 </div>
+
 <table class="table newTableStyle">
 	<tr>
 		<th>
@@ -40,7 +88,18 @@
 		</tr>
 	}
 </table>
+
+<link rel="stylesheet" href="~/Content/AutoParkCustomStyles.css" type="text/css" />
+
+@Scripts.Render("~/Scripts/moment.js")
+@Scripts.Render("~/Scripts/offline.min.js")
+@Scripts.Render("~/Scripts/DriverEx/DistrictViewer.js")
+@Scripts.Render("~/Scripts/DriverEx/DriverCoordinates.js")
 <script>
-	var districts = @Html.Raw(Json.Encode(Model.ToList()))
+	var districts = @Html.Raw(Json.Encode(Model.ToList()));
+	var joinToLocation = "@Resources.Resource.Join";
+	var currentLocation = "@Resources.Resource.DriverIsHere";
+	var startWorkShift = "@Resources.Resource.WorkShiftStart";
+	var endWorkShift = "@Resources.Resource.WorkShiftEnd";
 </script>
 <script src="~/Scripts/countUp.min.js"></script>
