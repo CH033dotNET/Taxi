@@ -303,8 +303,8 @@
 	function mapInit() {
 		map = new google.maps.Map(document.getElementById("map"), {
 			zoom: 13
-		})
-		}
+		});
+	}
 
 	function UpdateDriverPosition(Latitude, Longitude) {
 		if (driverMarker === undefined) {
