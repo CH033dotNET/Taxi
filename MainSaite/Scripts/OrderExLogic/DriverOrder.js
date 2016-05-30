@@ -80,12 +80,12 @@
 		$.ajax({
 			url: '/OrderEx/GetOrder/',
 			data: {
-				id:id,
+				id: id,
 			},
 			type: "POST",
 			success: function (order) {
 
-				var orderblock="";
+				var orderblock = "";
 				orderblock += "<tr>";
 				orderblock += "    <td>";
 				orderblock += order.success.FullAddressFrom;
@@ -234,7 +234,7 @@
 		}
 
 		//take order
-		$(document).on('click','.take', function (e) {
+		$(document).on('click', '.take', function (e) {
 			var row = $(this).closest('tr');
 			currentOrderId = +$(this).attr('itemId');
 			var waiting_time = row.find('.waiting-time').first().val();
@@ -315,7 +315,7 @@
 				icon: {
 					url: imagePath + '/cab.png'
 				}
-	});
+			});
 
 			driverMarker.setAnimation(google.maps.Animation.BOUNCE);
 
@@ -332,10 +332,7 @@
 	}
 
 	function GetCurrentOrder() {
-
-
-		for (var key in destinationMarkers)
-		{
+		for (var key in destinationMarkers) {
 			destinationMarkers[key].setMap(null);
 		}
 
@@ -390,15 +387,17 @@
 					//		GetLocationByAddress(order.AddressesTo[i], 'logo_destination.png');
 					//	}
 					//}
-						GetLocationByAddress('вулиця Південно-Кільцева 7, Черновцы, Черновицкая область, Украина', 'logo_destination.png');
-					
+					GetLocationByAddress('вулиця Південно-Кільцева 7, Черновцы, Черновицкая область, Украина', 'logo_destination.png');
 
-		}
+
+				}
 				else {
 					$('#currentOrder').hide();
 					$('#noCurrentOrder').show();
 				}
-
+			}
+		});
+	}s
 	function UpdateDriverPosition(Latitude, Longitude) {
 		if (driverMarker === undefined) {
 			driverMarker = new google.maps.Marker({
@@ -408,7 +407,7 @@
 				icon: {
 					url: imagePath + '/cab.png'
 				}
-	});
+			});
 
 			driverMarker.setAnimation(google.maps.Animation.BOUNCE);
 
@@ -427,8 +426,7 @@
 	function GetCurrentOrder() {
 
 
-		for (var key in destinationMarkers)
-		{
+		for (var key in destinationMarkers) {
 			destinationMarkers[key].setMap(null);
 		}
 
@@ -483,8 +481,8 @@
 					//		GetLocationByAddress(order.AddressesTo[i], 'logo_destination.png');
 					//	}
 					//}
-						GetLocationByAddress('вулиця Південно-Кільцева 7, Черновцы, Черновицкая область, Украина', 'logo_destination.png');
-					
+					GetLocationByAddress('вулиця Південно-Кільцева 7, Черновцы, Черновицкая область, Украина', 'logo_destination.png');
+
 
 				}
 				else {
@@ -527,5 +525,5 @@
 			});
 		}
 	}
-	
+
 });
