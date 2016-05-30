@@ -39,16 +39,16 @@
 					<div class="modal fade" id="get-driver-error-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header modal-header-danger">
+								<div class="modal-header" id="modalHeader">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 									</button>
 									<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-fire" aria-hidden="true">&nbsp;</span>@Resources.Resource.ServerErrorHeader</h4>
 								</div>
-								<div class="modal-body">
+								<div class="modal-body" id="modalBody">
 									<p>@Resources.Resource.CarNotFoundError</p>
 								</div>
-								<div class="modal-footer">
+								<div class="modal-footer" id="modalFooter">
 									<a class="btn btn-danger" data-dismiss="modal">
 										<span class="glyphicon glyphicon-ok" aria-hidden="true">&nbsp;</span>@Resources.Resource.okString
 									</a>
