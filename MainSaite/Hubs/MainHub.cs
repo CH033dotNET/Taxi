@@ -34,7 +34,7 @@ namespace MainSaite.Hubs
 			if (driver !=null)
 			{
 				Clients.Client(driver.ConnectionId).cancelOrder(id);
-				Clients.Client(driver.ConnectionId).MessageFromAdministrator("[Order canceled]");
+				Clients.Client(driver.ConnectionId).MessageFromAdministrator(Resources.Resource.CancelOrder);
 			}
 		}
 
