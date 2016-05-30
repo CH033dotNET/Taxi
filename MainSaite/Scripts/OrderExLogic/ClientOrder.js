@@ -5,18 +5,6 @@
 		setTaxiMarker(coordinate.Latitude, coordinate.Longitude);
 	}
 
-	mainHub.client.OrderConfirmed = function (OrderId, WaitingTime) {
-		if (window.Notification && Notification.permission !== "denied") {
-			Notification.requestPermission(function (status) {  // status is "granted", if accepted by user
-				var n = new Notification('Waiting Time', {
-					body: 'Wait for ' + WaitingTime + ' minutes, please.',
-				});
-			});
-		}
-	}
-
-	
-
 	$.connection.hub.start().done(function () {
 		//connect to hub group
 		var orderId = getCookie("orderId");

@@ -16,7 +16,7 @@
 		}
 		<div class="form-group">
 			<div class="form-group-header">
-				<div class="label-underline underline-blue">
+				<div class="label-underline">
 					<label class="label-title">@Resources.Resource.PlaceCarSupply</label>
 				</div>
 			</div>
@@ -43,11 +43,17 @@
 						<input type="text" class="form-control" id="note-from">
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-sm-2"></div>
+					<div class="col-sm-8">
+						<button type="button" class="btn btn-success btn-select-map" id="btn-map-from">@Resources.Resource.SelectOnMap</button>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="form-group-header">
-				<div class="label-underline underline-yellow">
+				<div class="label-underline">
 					<label class="label-title">@Resources.Resource.PlaceDelivery</label>
 				</div>
 				<div class="checkbox-inline align-right">
@@ -70,6 +76,12 @@
 								<input type="text" class="form-control" id="building-to-1">
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-sm-2"></div>
+							<div class="col-sm-8">
+								<button type="button" class="btn btn-success btn-select-map" id="btn-map-to-1">@Resources.Resource.SelectOnMap</button>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="row">
@@ -79,7 +91,7 @@
 		</div>
 		<div class="form-group">
 			<div class="form-group-header">
-				<div class="label-underline underline-gray">
+				<div class="label-underline">
 					<label class="label-title">@Resources.Resource.Additional</label>
 				</div>
 				<div class="align-right">
@@ -145,11 +157,11 @@
 						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithCheck"><input type="checkbox" id="check"><span></span></label>
 					</div>
 				</div>
+				<div id="cost-group">
+					<label>@Resources.Resource.Cost</label>
+					<div id="cost"></div>
+				</div>
 			</div>
-		</div>
-		<div id="cost-group">
-			<label>@Resources.Resource.Cost</label>
-			<div id="cost"><span id="calculate"></span><span id="load"></span></div>
 		</div>
 		<div class="form-group without-header">
 			<div class="form-group-body">
@@ -175,8 +187,11 @@
 				</div>
 			</div>
 		</div>
-		<div id="submit">
-			<button type="button" class="btn btn-default btn-lg">@Resources.Resource.MakeAnOrder</button>
+		<div id="submit-btn">
+			<button type="button" class="btn btn-success btn-lg">@Resources.Resource.MakeAnOrder</button>
+		</div>
+		<div id="cancel-btn">
+			<button type="button" class="btn btn-success warning btn-lg">@Resources.Resource.Cancel</button>
 		</div>
 		<div class="panel panel-warning" id="waiting-message">
 			<div class="panel-heading heading">@Resources.Resource.WaitingMessage<p><img src="~/Content/Picture/OrderForm/waiting-animation.gif" /></p></div>
@@ -190,24 +205,55 @@
 	</form>
 </div>
 
-<div class="modal fade" id="modal-message" role="dialog">
-	<div class="modal-dialog">
+<div class="modal fade" id="modal-map" role="dialog">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header" id="modalHeader">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<img src="~/Content/Picture/SmartPhonePictures/SiteLogo.png" />
+				<h3>@Resources.Resource.SelectDestination</h3>
 			</div>
-			<div class="modal-body">
-				<h4>@Resources.Resource.WaitingTimeMessage<span id="waiting-time"></span>@Resources.Resource.Minutes</h4>
-				<h4>@Resources.Resource.Car_Number<span id="car-number"></span></h4>
-				<h4 id="pleasantTrip">@Resources.Resource.PleasantTrip</h4>
+			<div class="modal-body" id="modalBody">
+				<div class="form-group">
+					<input id="textField" type="text" readonly/>
+				</div>
+				<div id="mapContainer">
+					<div class="panel panel-info">
+						<div class="panel-body">
+							<div id="map"></div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+			<div class="modal-footer" id="modalFooter">
+				<button type="button" class="btn btn-success" id="btn-select">@Resources.Resource.Select</button>
+				<button type="button" class="btn btn-success warning" data-dismiss="modal">@Resources.Resource.Close</button>
 			</div>
 		</div>
 	</div>
 </div>
+
+<div class="modal fade" id="modal-message" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" id="modalHeader">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<img src="~/Content/Picture/SmartPhonePictures/SiteLogo.png" />
+			</div>
+			<div class="modal-body" id="modalBody">
+				<h4>@Resources.Resource.WaitingTimeMessage<span id="waiting-time"></span>@Resources.Resource.Minutes</h4>
+				<h4>@Resources.Resource.Car_Number<span id="car-number"></span></h4>
+				<h4 id="pleasantTrip">@Resources.Resource.PleasantTrip</h4>
+			</div>
+			<div class="modal-footer" id="modalFooter">
+				<button type="button" class="btn btn-success warning" data-dismiss="modal">@Resources.Resource.Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	var picturePath = '@Url.Content("~/Content/Picture/UserMapIcons/")';
+</script>
 
 <script src="~/Scripts/jquery-2.2.3.js"></script>
 <script src="~/Scripts/bootstrap.js"></script>
@@ -215,3 +261,5 @@
 <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
 <script src="~/Scripts/OrderForm.js"></script>
 <script src="~/Scripts/WaitingMessages.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+<script src="~/Scripts/GoogleMapJS/GoogleMapTaxiOrder.js"></script>

@@ -1165,7 +1165,7 @@
     <value>За останній місяць</value>
   </data>
   <data name="Pulse" xml:space="preserve">
-    <value>Пульс</value>
+    <value>Активність</value>
   </data>
   <data name="CancelOrder" xml:space="preserve">
     <value>Відмінити замовлення</value>
@@ -1244,5 +1244,14 @@
   </data>
   <data name="TripInfo" xml:space="preserve">
     <value>Інформація про поїздку</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Вибрати</value>
+  </data>
+  <data name="SelectDestination" xml:space="preserve">
+    <value>Будь ласка, вкажіть місце призначення на карті:</value>
+  </data>
+  <data name="SelectOnMap" xml:space="preserve">
+    <value>Вибрати на карті</value>
   </data>
 </root>

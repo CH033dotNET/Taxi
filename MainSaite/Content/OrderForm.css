@@ -3,6 +3,9 @@
 	font-size: 100%;
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 100px;
 }
 
 * {
@@ -16,7 +19,7 @@
 
 .label-title {
 	font-size: 110%;
-	color: #30a3da;
+	color: white;
 	margin-left: 35px;
 	margin-right: 35px;
 	margin-top: 12px;
@@ -24,24 +27,12 @@
 }
 
 .form-group-header {
-	border-bottom: 1px solid #e0e0e0;
+	border-bottom: 1px solid #ffc030;
 }
 
 .label-underline {
 	display: inline-block;
-	border-bottom: 4px solid;
-}
-
-.underline-blue {
-	border-color: #30a3da;
-}
-
-.underline-yellow {
-	border-color: #fed402;
-}
-
-.underline-gray {
-	border-color: #ddd;
+	border-bottom: 4px solid #ffc030;
 }
 
 .form-group-body {
@@ -78,7 +69,7 @@
 	width: 15px;
 	height: 15px;
 	display: inline-block;
-	border: 2px solid #30a3da;
+	border: 2px solid #ffc030;
 	border-radius: 3px;
 	margin-right: 8px;
 	margin-bottom: 1px;
@@ -87,13 +78,13 @@
 
 .checkbox-inline input:checked + span {
 	border-color: #f0f0f0;
-	background-color: #30a3da;
+	background-color: #ffc030;
 }
 
 #add-address {
 	margin-top: 10px;
 	font-size: 95%;
-	border-bottom: 1px dashed #000;
+	border-bottom: 1px dashed #fff;
 	padding-left: 0px;
 	padding-right: 0px;
 	margin-left: 35px;
@@ -143,7 +134,7 @@
 
 .radio-inline input:checked + span {
 	border-width: 2px;
-	background-color: #30a3da;
+	background-color: #ffc030;
 }
 
 .button-inline input {
@@ -161,8 +152,8 @@
 }
 
 .button-inline input:checked + span {
-	border: 1px solid #30a3da;
-	background-color: #fff;
+	border: 1px solid #ffd101;
+	background-color: #ffd101;
 }
 
 #normal + span {
@@ -279,7 +270,7 @@
 
 #cost-group {
 	text-align: center;
-	margin-bottom: 13px;
+	margin-top: 15px;
 }
 
 #cost-group label {
@@ -288,28 +279,22 @@
 }
 
 #cost {
-	width: 160px;
+	width: auto;
+	min-width: 100px;
 	height: 38px;
 	background-color: #eaeaea;
 	margin-left: 10px;
 	border-style: none;
 	border-radius: 20px;
 	display: inline-block;
-	padding: 10px;
+	padding: 8px;
+	font-size: 120%;
 }
 
 #calculate, #load {
 	float: right;
 	margin-top: -6px;
 	cursor: pointer;
-}
-
-#calculate {
-	content: url(Picture/OrderForm/loader.png);
-}
-
-#load {
-	content: url(Picture/OrderForm/loader.gif);
 }
 
 #add {
@@ -327,14 +312,9 @@
 	margin-top: 7px;
 }
 
-#submit {
+#submit-btn, #cancel-btn {
 	text-align: center;
 	margin-bottom: 15px;
-}
-
-#submit button {
-	background-color: #fed402;
-	border-style: none;
 }
 
 #time-group {
@@ -395,6 +375,17 @@ label {
 
 .panel p {
 	margin-bottom: 0px;
+}
+
+.btn-select-map {
+	font-size: 0.7vw;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	margin-left: 5px;
+}
+
+#textField {
+	font-size: 140%;
 }
 
 @media (max-width: 767px) {

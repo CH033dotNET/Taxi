@@ -1243,4 +1243,13 @@
   <data name="TripInfo" xml:space="preserve">
     <value>Trip info</value>
   </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="SelectDestination" xml:space="preserve">
+    <value>Please, point out the destination on the map:</value>
+  </data>
+  <data name="SelectOnMap" xml:space="preserve">
+    <value>Select on the map</value>
+  </data>
 </root>
