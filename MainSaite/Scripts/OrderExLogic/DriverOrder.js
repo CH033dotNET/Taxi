@@ -87,15 +87,17 @@
 
 				var orderblock = "";
 				orderblock += "<tr>";
-				orderblock += "    <td>";
+				orderblock += "    <td class=\"col-md-7\">";
 				orderblock += order.success.FullAddressFrom;
 				orderblock += "    <\/td>";
-				orderblock += "    <td>";
+				orderblock += "    <td class=\"col-md-2\">";
 				orderblock += order.success.Perquisite;
 				orderblock += "    <\/td>";
-				orderblock += "    <td>";
+				orderblock += "    <td class=\"col-md-2\">";
+				orderblock += "<input type=\"number\" class=\"waiting-time form-control\" placeholder=\"" + Resources.WaitingTime + "\">";
+				orderblock += "    <\/td>";
+				orderblock += "    <td class=\"col-md-3\">";
 				orderblock += "        <div class=\"input-group\">";
-				orderblock += "            <input type=\"number\" class=\"waiting-time form-control\" placeholder=\"" + Resources.WaitingTime + "\">";
 				orderblock += "            <span class=\"input-group-btn\">";
 				orderblock += "                <input itemid=\"" + order.success.Id + "\" type=\"button\" value=\"" + Resources.TakeOrder + "\" class=\"take btn btn-success\" \/>";
 				orderblock += "            <\/span>";
@@ -119,16 +121,14 @@
 
 				var orderblock = "";
 				orderblock += "<tr>";
-				orderblock += "    <td>";
+				orderblock += "    <td  class=\"col-md-8\">";
 				orderblock += order.success.FullAddressFrom;
 				orderblock += "    <\/td>";
-				orderblock += "    <td>";
+				orderblock += "    <td class=\"col-md-2\">";
 				orderblock += moment(order.success.OrderTime).format('DD/MM/YY HH:mm');
 				orderblock += "    <\/td>";
-				orderblock += "    <td>";
-				orderblock += "        <div class=\"input-group\">";
+				orderblock += "    <td class=\"col-md-2\">";
 				orderblock += "                <button data-feedbackId=\"" + order.success.Id + "\" data-orderId=\"" + order.success.Id + "\" type=\"button\" class=\"btn btn-success addFeedbackButton\" data-toggle=\"modal\">" + Resources.AddFeedback + "</button>";
-				orderblock += "        <\/div>";
 				orderblock += "    <\/td>";
 				orderblock += "<\/tr>";
 
@@ -252,6 +252,9 @@
 							$(row).fadeOut();
 							mainHub.server.OrderConfirmed(currentOrderId, waiting_time);
 							mainHub.client.OrderTaken(currentOrderId)
+
+							// "1" is "DoingOrder" status
+							setDriverStatus(1);
 
 							GetCurrentOrder();
 						}
@@ -518,12 +521,10 @@
 							icon: picturePath + path,
 						});
 					}
-				}
-				else {
+				} else {
 					alert("Geocode was not successful for the following reason: " + status);
 				}
 			});
 		}
 	}
-
 });
