@@ -15,11 +15,13 @@ namespace MainSaite.Controllers
 {
 	public class HomeController : BaseController
 	{
-		private INewsManager NewsManager;
+		private INewsManager newsManager;
+		private IPersonManager personManager;
 
-		public HomeController(INewsManager newsManager)
+		public HomeController(INewsManager newsManager, IPersonManager personManager)
 		{
-			NewsManager = newsManager;
+			this.newsManager = newsManager;
+			this.personManager = personManager;
 		}
 
 		public ActionResult Index()
@@ -27,7 +29,7 @@ namespace MainSaite.Controllers
 			if(Session["Culture"]==null)
 			   Session["Culture"] = "en-us";
 
-			ViewBag.News = NewsManager.GetLatestNews(4);
+			ViewBag.News = newsManager.GetLatestNews(4);
 			return View();
 		}
 
@@ -49,6 +51,16 @@ namespace MainSaite.Controllers
 		public ActionResult OrderForm()
 		{
 			return View();
+		}
+
+		public JsonResult GetBestDrivers()
+		{
+			return Json(personManager.GetBestPersons(AvailableRoles.Driver, 6));
+		}
+
+		public JsonResult GetBestClients()
+		{
+			return Json(personManager.GetBestPersons(AvailableRoles.Client, 6));
 		}
 	}
 }

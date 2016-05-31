@@ -1254,4 +1254,10 @@
   <data name="SelectOnMap" xml:space="preserve">
     <value>Вибрати на карті</value>
   </data>
+  <data name="BestClients" xml:space="preserve">
+    <value>Найкращі клієнти:</value>
+  </data>
+  <data name="BestDrivers" xml:space="preserve">
+    <value>Найкращі водії:</value>
+  </data>
 </root>

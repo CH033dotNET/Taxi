@@ -1,5 +1,7 @@
 ﻿using System;
 using Model.DTO;
+using Common.Enum;
+using System.Collections.Generic;
 
 namespace BAL.Interfaces
 {
@@ -13,5 +15,6 @@ namespace BAL.Interfaces
 		System.Collections.Generic.IEnumerable<PersonDTO> GetPersons();
 		PersonDTO InsertPerson(PersonDTO person);
 		void UpdatePhoneFMLnames(PersonDTO person);
+		IEnumerable<PersonDTO> GetBestPersons(AvailableRoles role, int count);
 	}
 }

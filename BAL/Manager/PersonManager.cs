@@ -127,16 +127,16 @@ namespace BAL.Manager
 			 return null;
 		 }
 
-		public IEnumerable<PersonDTO> GetBestPersons(AvailableRoles role)
+		public IEnumerable<PersonDTO> GetBestPersons(AvailableRoles role, int count)
 		{
 			var persons = Mapper.Map<List<PersonDTO>>(uOW.PersonRepo.All.Where(p => p.User.RoleId == (int)role)).ToList();
 			persons.Sort(delegate (PersonDTO x, PersonDTO y)
 			{
-				var yRating = (double)(y.User.Rating);
-				var xRating = (double)(x.User.Rating);
+				var yRating = y.User.Rating != null ? (double)(y.User.Rating) : 0;
+				var xRating = x.User.Rating != null ? (double)(x.User.Rating) : 0;
 				return yRating.CompareTo(xRating);
 			});
-			return persons.Take(5);
+			return persons.Take(count);
 		}
 	}
 }

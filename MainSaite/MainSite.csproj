@@ -399,6 +399,7 @@
     <Content Include="Scripts\AutoParkCustomScripts\AutoParkScripts.js" />
     <Content Include="Scripts\AutoParkCustomScripts\AutoParkPicker.js" />
     <Content Include="Scripts\AutoParkCustomScripts\PreValidation.js" />
+    <Content Include="Scripts\BestUsers.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap-filestyle.js" />

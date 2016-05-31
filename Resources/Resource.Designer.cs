@@ -313,6 +313,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Our best clients:.
+        /// </summary>
+        public static string BestClients {
+            get {
+                return ResourceManager.GetString("BestClients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our best drivers:.
+        /// </summary>
+        public static string BestDrivers {
+            get {
+                return ResourceManager.GetString("BestDrivers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bill is paid.
         /// </summary>
         public static string BillIsPaid {

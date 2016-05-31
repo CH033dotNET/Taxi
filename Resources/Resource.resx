@@ -1252,4 +1252,10 @@
   <data name="SelectOnMap" xml:space="preserve">
     <value>Select on the map</value>
   </data>
+  <data name="BestClients" xml:space="preserve">
+    <value>Our best clients:</value>
+  </data>
+  <data name="BestDrivers" xml:space="preserve">
+    <value>Our best drivers:</value>
+  </data>
 </root>
