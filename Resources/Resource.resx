@@ -1238,7 +1238,7 @@
     <value>No current order</value>
   </data>
   <data name="OrderPayment" xml:space="preserve">
-    <value>OrderPayment</value>
+    <value>Order payment</value>
   </data>
   <data name="TripInfo" xml:space="preserve">
     <value>Trip info</value>

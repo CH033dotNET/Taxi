@@ -16,6 +16,7 @@
 	var destinationMarkers = [];
 	var geocoder = new google.maps.Geocoder();
 	var currentAddress = 0;
+	var selectedMarker;
 
 	Notify = function (header, message) {
 		if (window.Notification && Notification.permission !== "denied") {
@@ -158,15 +159,12 @@
 	$(document).on('click', '#arrowBtnR', function () {
 		changeAddressLabel(currentAddress + 1);
 	});
-	//$(document).on('click', '#mapReloading', function () {
-	//	resetMap(map);
-	//});
-	function resetMap(m) {
-		x = m.getZoom();
-		c = m.getCenter();
-		google.maps.event.trigger(m, 'resize');
-		m.setZoom(x);
-		m.setCenter(c);
+	$(document).on('click', '#mapReloading', function () {
+		resetMap();
+	});
+	function resetMap() {
+		$(window).trigger('resize');
+		$("#map").css("height", "100vh");
 	};
 	function changeAddressLabel(index)
 	{
@@ -174,7 +172,6 @@
 		for (var key in destinationMarkers) {
 			destinationMarkers[key].setAnimation(null);
 		}
-		var marker;
 		var i = 0;
 		var maxLength = Object.keys(destinationMarkers).length + 1;
 
@@ -183,20 +180,20 @@
 		if (index < 0) index = maxLength - 1;
 		for (var key in destinationMarkers) {
 			if (i == index) {
-				marker = destinationMarkers[key]; break;
+				selectedMarker = destinationMarkers[key]; break;
 			}
 			i++;
 		}
 		if (i == maxLength-1) {
-			marker = driverMarker;
+			selectedMarker = driverMarker;
 			i = maxLength;
 		}
 
 		currentAddress = i;
 
-		marker.setAnimation(google.maps.Animation.BOUNCE);
+		selectedMarker.setAnimation(google.maps.Animation.BOUNCE);
 
-		$('#addressLabel h3').text(marker.getTitle());
+		$('#addressLabel h3').text(selectedMarker.getTitle());
 	}
 
 
@@ -361,11 +358,13 @@
 	}
 
 	function UpdateDriverPosition(Latitude, Longitude) {
+
+		var address = getAddressByLocation(Latitude, Longitude);
 		if (driverMarker === undefined) {
 			driverMarker = new google.maps.Marker({
 				position: { lat: Latitude, lng: Longitude },
 				map: map,
-				title: 'Driver: ' + name,
+				title: address,
 				icon: {
 					url: imagePath + '/cab.png'
 				}
@@ -378,32 +377,24 @@
 			driverMarker.setPosition(new google.maps.LatLng(prevCoord.Latitude, prevCoord.Longitude));
 		}
 
-		map.setCenter(driverMarker.getPosition());
-	}
+		var x1 = driverMarker.getPosition().lat();
+		var y1 = driverMarker.getPosition().lng();
 
-	function UpdateDriverPosition(Latitude, Longitude) {
-
-		var address = getAddressByLocation(Latitude, Longitude);
-
-		if (driverMarker === undefined) {
-			driverMarker = new google.maps.Marker({
-				position: { lat: Latitude, lng: Longitude },
-				map: map,
-				title: address,
-				title: 'Driver: ' + name,
-				icon: {
-					url: imagePath + '/cab.png'
-				}
-			});
-
-		}
-		else {
-			driverMarker.setPosition(new google.maps.LatLng(prevCoord.Latitude, prevCoord.Longitude));
-			driverMarker.setTitle(address);
+		if (selectedMarker !== undefined) {
+			var x2 = selectedMarker.getPosition().lat();
+			var y2 = selectedMarker.getPosition().lng();
+            
+			var lat = (x1 + x2) / 2;
+			var lng = (y1 + y2) / 2;
+			map.setCenter({ lat: lat, lng: lng });
 		}
 
-		map.setCenter(driverMarker.getPosition());
+
+
+
+		//map.setCenter(driverMarker.getPosition());
 	}
+
 	function getAddressByLocation(Latitude, Longitude) {
 
 		$.ajax({
@@ -507,12 +498,16 @@
 				if (status == google.maps.GeocoderStatus.OK) {
 
 					if (destinationMarkers[address] === undefined) {
+				
 						destinationMarkers[address] = new google.maps.Marker({
 							map: map,
 							title:address,
 							position: results[0].geometry.location,
 							icon: picturePath + path,
 						});
+						if (path == 'logo_client.png') {
+							selectedMarker = destinationMarkers[address];
+						}
 					}
 				} else {
 					alert("Geocode was not successful for the following reason: " + status);
