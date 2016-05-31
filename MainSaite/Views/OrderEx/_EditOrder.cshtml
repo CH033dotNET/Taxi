@@ -75,7 +75,9 @@
 			</td>
 			<td>
 				@Html.TextBoxFor(x => Model.AddressesTo[i].Address, new { @required = true, @minlength = "3" })
-				@Html.TextBoxFor(x => Model.AddressesTo[i].Building, new { @required = true, @minlength = "1" })
+				@if (!string.IsNullOrEmpty(Model.AddressesTo[i].Building)) { 
+				   @Html.TextBoxFor(x => Model.AddressesTo[i].Building, new { @required = true, @minlength = "1" })
+				}
 			</td>
 		</tr>
 	}

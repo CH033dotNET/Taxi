@@ -377,12 +377,16 @@
 		   background: dimgrey;
            padding: 15px;
 	   }
+	    #arrowBtnL:active, #arrowBtnR:active{
+		   background: black;
+           padding: 15px;
+	   }
 	   #arrowBtn span{
 		   zoom:1.5;
 	   }
 
 	#addressLabel{
-        padding: 12px;
+        padding: 15px;
 		color: black;
 	}
 	#addressLabel h3{

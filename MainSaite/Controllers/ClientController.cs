@@ -60,7 +60,8 @@ namespace MainSaite.Controllers
 		//logic for bonuses
 		public ActionResult ClientBonuses()
 		{
-			return View(userManager.GetById((Session["User"] as UserDTO).Id).Bonus);
+			var bonus = userManager.GetById((Session["User"] as UserDTO).Id).Bonus;
+			return View(Math.Round(bonus,1));
 		}
 		[HttpPost]
 		public JsonResult SetClientBonus(int userId, double bonus, double paidByBonus)
