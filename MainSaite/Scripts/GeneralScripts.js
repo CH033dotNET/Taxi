@@ -24,7 +24,10 @@ function HideSupportChat() {
 function DisplayMessages() {
 	$.ajax({
 		type: "POST",
-		url: "/Support/GetMessages"
+		url: "/Support/GetMessages",
+		data : {
+			id: $('#chat').data('supportId')
+		}
 	}).done(function (messages) {
 		$('#chat .body').html('');
 
