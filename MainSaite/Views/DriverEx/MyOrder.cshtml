@@ -117,7 +117,7 @@
 									<td>
 										@Html.Label(Resources.Resource.Price)
 									</td>
-									<td>
+									<td style="padding-left: 135px">
 										<label id="FinalPrice"></label>
 									</td>
 								</tr>
@@ -133,7 +133,11 @@
 									</td>
 									<td>
 										<div class="checkbox">
-											<label><input type="checkbox" id="clientBonus" value="">@Resources.Resource.ClientBonus</label>
+											@*<label class="label-italic"><input type="checkbox" id="remember"><span></span>@Resources.Resource.ClientBonus</label>*@
+											@*<label><input type="checkbox" id="clientBonus" value="">@Resources.Resource.ClientBonus</label>*@
+											<div class="checkbox-inline">
+												<label class="label-italic"><input type="checkbox" id="remember"><span style="width:23px;height:23px;"></span><label>@Resources.Resource.ClientBonus</label></label>
+											</div>
 										</div>
 									</td>
 								</tr>
@@ -143,7 +147,7 @@
 								<caption>@Resources.Resource.FinalPrice</caption>
 								<tr>
 									<td colspan="2" id="finalBill">
-										@Html.Label(@Resources.Resource.Price)
+										@Html.Label(@Resources.Resource.Price+":")
 										<div id="loading">
 											<i class="fa fa-refresh fa-spin fa-5x"></i>
 										</div>
@@ -195,7 +199,7 @@
 		});
 
 
-		$("#clientBonus").change(function () {
+		$("#remember").change(function () {
 			if (this.checked) {             
 				$('#BonusPrice').hide();
 				$('#loading').show();

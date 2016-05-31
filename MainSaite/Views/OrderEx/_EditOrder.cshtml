@@ -166,8 +166,7 @@
 				@Html.Label(Resources.Resource.YourName)
 			</td>
 			<td>
-				@Html.TextBoxFor(x => Model.Name, new { @required = true, @minlength = "2" })
-				@Html.ValidationMessageFor(x => x.Name)
+				@Html.DisplayFor(x => Model.Name, new { @required = true, @minlength = "2" })
 			</td>
 		</tr>
 		<tr>
@@ -175,8 +174,7 @@
 				@Html.Label(Resources.Resource.PhoneNumber)
 			</td>
 			<td>
-				@Html.TextBoxFor(x => Model.Phone, new { @required = true, @minlength = "10" })
-				@Html.ValidationMessageFor(x => x.Phone)
+				@Html.DisplayFor(x => Model.Phone, new { @required = true, @minlength = "10" })
 			</td>
 		</tr>
 	</table>
