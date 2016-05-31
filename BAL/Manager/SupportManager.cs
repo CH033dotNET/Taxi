@@ -17,16 +17,17 @@ namespace BAL.Manager
 	{
 		public SupportManager(IUnitOfWork uOW) : base(uOW) { }
 
-		public SupporterInfoDTO GetSupporter()
+		public SupporterInfoDTO GetSupporter(int id = -1)
 		{
 			var user = uOW.UserRepo.Get().Where(e => e.RoleId == (int)AvailableRoles.Support).First();
-			var person = uOW.PersonRepo.Get(e => e.UserId == user.Id).First();
+			int userId = id != -1 ? id : user.Id;
+			var person = uOW.PersonRepo.Get(e => e.UserId == userId).First();
 
 			var info = new SupporterInfoDTO()
 			{
-				Id = user.Id,
+				Id = userId,
 				Name = person.FirstName,
-				Photo = person.ImageName
+				Photo = person.ImageName ?? "item_0_profile.jpg"
 			};
 
 			return info;
@@ -57,10 +58,10 @@ namespace BAL.Manager
 			return persons;
 		}
 
-		public IEnumerable<SupportMessageDTO> GetMessages(int userId)
+		public IEnumerable<SupportMessageDTO> GetMessages(int user1Id, int user2Id)
 		{
 			var messages = uOW.SupportRepo
-							.Get(e => e.Receiver.Id == userId || e.Sender.Id == userId)
+							.Get(e => (e.Receiver.Id == user1Id && e.Sender.Id == user2Id) || (e.Receiver.Id == user2Id && e.Sender.Id == user1Id))
 							.Select(s => Mapper.Map<SupportMessageDTO>(s));
 
 			return messages;
