@@ -55,6 +55,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\CreateOrderFrom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateOrderFrom.Designer.cs">
+      <DependentUpon>CreateOrderFrom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GetOrderStatusForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GetOrderStatusForm.Designer.cs">
+      <DependentUpon>GetOrderStatusForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +84,12 @@
     <Compile Include="Tools\FormManager.cs" />
     <Compile Include="Tools\IFormResult.cs" />
     <Compile Include="Tools\RequestHelper.cs" />
+    <EmbeddedResource Include="Forms\CreateOrderFrom.resx">
+      <DependentUpon>CreateOrderFrom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GetOrderStatusForm.resx">
+      <DependentUpon>GetOrderStatusForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>

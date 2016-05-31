@@ -181,6 +181,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -254,6 +255,10 @@
     <ProjectReference Include="..\BAL\BAL.csproj">
       <Project>{013e37b3-2878-4f25-8d1f-8355bd9fc506}</Project>
       <Name>BAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{6D19160D-0229-4693-AAF9-B9083C44A3B4}</Project>
+      <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{9d364a17-1dc1-4f4a-9c9d-48f4ecdcc348}</Project>

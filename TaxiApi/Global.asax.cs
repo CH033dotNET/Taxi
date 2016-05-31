@@ -1,4 +1,5 @@
-﻿using BAL.Manager;
+﻿using BAL.Interfaces;
+using BAL.Manager;
 using Common;
 using DAL;
 using DAL.Interface;
@@ -25,6 +26,7 @@ namespace TaxiApi
 			// Register your types, for instance using the scoped lifestyle:
 			container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);
 			container.Register<IUserManager, UserManager>();
+			container.Register<IOrderManagerEx, OrderManagerEx>();
 
 			// This is an extension method from the integration package.
 			container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
