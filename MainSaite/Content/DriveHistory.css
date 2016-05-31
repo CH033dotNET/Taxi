@@ -29,6 +29,7 @@
 .order td {
 	color: white;
 	font-size: 16px;
+	max-width: 400px;
 }
 
 .cancel {

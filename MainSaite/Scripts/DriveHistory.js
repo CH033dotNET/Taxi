@@ -21,7 +21,7 @@
 	$('.cancel').click(function () {
 		var id = $(this).closest('.order').attr('id');
 		$.ajax({
-			url: 'CancelOrder',
+			url: '/Client/CancelOrder',
 			type: 'POST',
 			data: { id: id },
 			success: function () {

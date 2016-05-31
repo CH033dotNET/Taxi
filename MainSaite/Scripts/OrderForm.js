@@ -47,15 +47,24 @@ $(function () {
 							deleteCookie("ordedId");
 							break;
 						case 0:
-						case 1:
 							mainHub.server.connect("Client", orderId);
 							$('#denied-message').hide();
 							$('#approved-message').hide();
 							$('#waiting-message').slideDown(200);
 							$("#submit-btn").hide();
 							$("#cancel-btn").show();
+							break;
+						case 1:
+							mainHub.server.connect("Client", orderId);
+							$('#denied-message').hide();
+							$('#waiting-message').hide();
+							$('#approved-message').slideDown(200);
+							$("#submit-btn").hide();
+							$("#cancel-btn").show();
+							break;
 						case 3:
 							mainHub.server.connect("Client", orderId);
+							break;
 					}
 				}
 			}).fail(function () {
@@ -198,6 +207,7 @@ $(function () {
 				$('#cancel-btn').hide();
 				$("#submit-btn").show();
 				$('#waiting-message').slideUp(200);
+				$('#approved-message').slideUp(200);
 			}
 		});
 	});

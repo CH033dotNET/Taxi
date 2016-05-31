@@ -21,16 +21,25 @@
 							mainHub.server.connect("Client");
 							deleteCookie("ordedId");
 							break;
-						case 0:
 						case 1:
+							mainHub.server.connect("Client", orderId);
+							$('#denied-message').hide();
+							$('#waiting-message').hide();
+							$('#approved-message').slideDown(200);
+							$("#orderBtn").hide();
+							$("#cancelOrder").show();
+							break;
+						case 0:
 							mainHub.server.connect("Client", orderId);
 							$('#denied-message').hide();
 							$('#approved-message').hide();
 							$('#waiting-message').slideDown(200);
-							$("#orderBtn").fadeOut();
-							$("#cancelOrder").fadeIn();
+							$("#orderBtn").hide();
+							$("#cancelOrder").show();
+							break;
 						case 3:
 							mainHub.server.connect("Client", orderId);
+							break;
 					}
 				}
 			}).fail(function () {
@@ -58,8 +67,8 @@
 					mainHub.server.addOrder(data);
 					setCookie("orderId", data.Id, { expires : 3600});
 					$('#waiting-message').slideDown(200);
-					$("#orderBtn").fadeOut();
-					$("#cancelOrder").fadeIn();
+					$("#orderBtn").hide();
+					$("#cancelOrder").show();
 				}
 			});
 
@@ -74,8 +83,9 @@
 				success: function () {
 					mainHub.server.cancelOrder(orderId);
 					$('#waiting-message').slideUp(200);
-					$("#orderBtn").fadeIn();
-					$("#cancelOrder").fadeOut();
+					$('#approved-message').slideUp(200);
+					$("#cancelOrder").hide();
+					$("#orderBtn").show();
 					removeTaxiMarker();
 				}
 			});

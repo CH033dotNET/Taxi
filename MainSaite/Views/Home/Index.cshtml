@@ -32,7 +32,7 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
     </div>
-<div class="col-lg-6 col-sm-12" id="latestNews">
+<div class="col-md-12" id="latestNews">
 	<p>[Our latest news: ]</p>
 	<div class="row">
 		@foreach (var news in ViewBag.News)
@@ -44,14 +44,12 @@
 		}
 	</div>
 </div>
-<div class="col-lg-6 col-sm-12">
-	<div class="col-lg-6 col-md-6" id="best-drivers">
+<div class="col-md-12">
+	<div class="col-md-6 col-sm-12" id="best-drivers">
 		<h4>@Resources.Resource.BestDrivers.ToUpper()</h4>
-		<table></table>
 	</div>
-	<div class="col-lg-6 col-md-6" id="best-clients">
+	<div class="col-md-6 col-sm-12" id="best-clients">
 		<h4>@Resources.Resource.BestClients.ToUpper()</h4>
-		<table></table>
 	</div>
 </div>
 
