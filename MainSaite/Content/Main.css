@@ -311,7 +311,6 @@
 .btForm input{
 	font-size:larger;
 }
-
     
     .checkbox{
 		margin:0px;
@@ -326,7 +325,10 @@
     border-bottom: 2px solid #FFCA1C;
     width: 100%;
 	color:white;
-	    text-indent: 5px;
+	text-indent: 5px;
+	}
+	#form input{
+		height:34px;
 	}
 	.panel-footer{
 		    background: #2F2F2F;

@@ -92,10 +92,10 @@ $(function () {
         count++;
 		var row = '<div class="address-to-group"><div class="row"><label for="address-to-'
 				+ count + '" class="col-sm-2 form-control-label">'
-				+ address + '</label><div class="col-sm-8"><input type="text" class="form-control" id="address-to-'
+				+ address + '</label><div class="col-sm-8"><input type="text" id="address-to-'
 				+ count + '"></div></div><div class="row"><label for="building-to-'
 				+ count + '" class="col-sm-2 form-control-label">'
-				+ building + '</label><div class="col-sm-4"><input type="text" class="form-control" id="building-to-'
+				+ building + '</label><div class="col-sm-4"><input type="text" id="building-to-'
 				+ count + '"></div></div><div class="row"><div class="col-sm-2"></div><div class="col-sm-8"><button type="button" class="btn btn-success btn-select-map" id="btn-map-to-'
 				+ count + '">'
 				+ select + '</button></div></div></div>';
