@@ -95,7 +95,11 @@ namespace MainSaite.Hubs
 		{
 			Clients.Group("Operator").orderUpdated(id);
 		}
-
+		[HubMethodName("orderFinished")]
+		public void FinishOrder(int id)
+		{
+			Clients.Group("Operator").finishOrder(id);
+		}
 		[HubMethodName("MessageFromAdministrator")]
 		public void MessageFromAdministrator(String message)
 		{

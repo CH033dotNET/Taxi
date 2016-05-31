@@ -233,7 +233,6 @@
 		$(document).on('click', '#mdal-submit', function () {
 
 			if (priceWithBonus != 0) finalPrice = priceWithBonus;
-			else finalPrice = 0;
 
 			var userId = $('#userId').val();
 
@@ -243,7 +242,7 @@
 				type: "POST",
 				url: "./OrderEx/FinishOrder",
 				dataType: "json",
-				data: { Id: orderId },
+				data: { price: finalPrice, Id: orderId},
 				success: function (data) {
 					if (userId !="") {
 						$.ajax({
@@ -268,9 +267,8 @@
 					// "0" is "awaitingOrder" status
 					setDriverStatus(0);
 					$('#addressLabel h3').text('Current position');
-					//delete markers
 
-					updateOrderInfo();
+					updateOrderInfo(orderId);
 
 				},
 				error: function (error) {

@@ -8,6 +8,7 @@
 	var approvedOrders = [];
 	var deniedOrders = [];
 	var inProgressOrders = [];
+	var finishedOrders = [];
 
 	var orderId;
 	//Edit order window
@@ -189,10 +190,12 @@
 				approvedOrders = data.ApprovedOrders;
 				deniedOrders = data.DeniedOrders;
 				inProgressOrders = data.InProgressOrders;
+				finishedOrders = data.FinishedOrders;
 				addOrdersTo(newOrders, $('#newOrder'));
 				addOrdersTo(approvedOrders, $('#approvedOrder'));
 				addOrdersTo(deniedOrders, $('#deniedOrder'));
 				addOrdersTo(inProgressOrders, $('#inProgressOrder'));
+				addOrdersTo(finishedOrders, $('#doneOrder'));
 			}
 		});
 
@@ -230,13 +233,21 @@
 			url: '/OrderEx/GetOrderAddressByID',
 			data: { id: id },
 			success: function (data) {
-
 				$('#newOrder .order').filter('[data-id=' + id + ']').children('span').text(data.address);
-
-
-
 			}
 		});
+	}
+	mainHub.client.finishOrder = function (id) {
+		
+		var order = inProgressOrders.find(function (item) {
+			return item.Id == id;
+		});
+		inProgressOrders.splice(inProgressOrders.indexOf(order), 1);
+		finishedOrders.push(order);
+		var orderElement = $('[data-id = "' + id + '"]');
+		$('#doneOrder').append(orderElement);
+
+
 	}
 	mainHub.client.approveOrder = function (id) {
 		var order = newOrders.find(function (item) {
