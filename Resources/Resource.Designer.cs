@@ -115,6 +115,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There you can add your destination..
+        /// </summary>
+        public static string AddDestination {
+            get {
+                return ResourceManager.GetString("AddDestination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add group.
         /// </summary>
         public static string AddDistrictGroup {
@@ -147,6 +156,15 @@ namespace Resources {
         public static string Additionally {
             get {
                 return ResourceManager.GetString("Additionally", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There you can add your location..
+        /// </summary>
+        public static string AddLocation {
+            get {
+                return ResourceManager.GetString("AddLocation", resourceCulture);
             }
         }
         
@@ -813,6 +831,24 @@ namespace Resources {
         public static string ChangeString {
             get {
                 return ResourceManager.GetString("ChangeString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose your language.
+        /// </summary>
+        public static string ChooseLanguage {
+            get {
+                return ResourceManager.GetString("ChooseLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There you can choose additional options..
+        /// </summary>
+        public static string ChooseOptions {
+            get {
+                return ResourceManager.GetString("ChooseOptions", resourceCulture);
             }
         }
         
@@ -1768,6 +1804,15 @@ namespace Resources {
         public static string FirstName {
             get {
                 return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello, do you want to order a taxi?.
+        /// </summary>
+        public static string FirstQuestion {
+            get {
+                return ResourceManager.GetString("FirstQuestion", resourceCulture);
             }
         }
         
@@ -2753,6 +2798,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click to order a taxi..
+        /// </summary>
+        public static string QuestionOrder {
+            get {
+                return ResourceManager.GetString("QuestionOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rating.
         /// </summary>
         public static string Rating {
@@ -3172,6 +3226,15 @@ namespace Resources {
         public static string Taxi {
             get {
                 return ResourceManager.GetString("Taxi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not forget tell your friends about us!.
+        /// </summary>
+        public static string TellAboutUs {
+            get {
+                return ResourceManager.GetString("TellAboutUs", resourceCulture);
             }
         }
         
