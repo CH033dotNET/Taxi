@@ -18,6 +18,10 @@
 	var currentAddress = 0;
 	var selectedMarker;
 
+	var directionsDisplay;
+	var directionsService = new google.maps.DirectionsService();
+
+
 	//init districts
 	var elements = $('#listDistricts> li');
 	//intial sorting (folders first)
@@ -196,12 +200,11 @@
 		changeAddressLabel(currentAddress + 1);
 	});
 	$(document).on('click', '#mapReloading', function () {
-		resetMap();
+		//var center = map.getCenter();
+		//google.maps.event.trigger(map, 'resize');
+
+		//map.setCenter(center);
 	});
-	function resetMap() {
-		$(window).trigger('resize');
-		$("#map").css("height", "100vh");
-	};
 	function changeAddressLabel(index)
 	{
 		driverMarker.setAnimation(null);
@@ -230,8 +233,41 @@
 		selectedMarker.setAnimation(google.maps.Animation.BOUNCE);
 
 		$('#addressLabel h3').text(selectedMarker.getTitle());
-	}
 
+		setDirection();
+	}
+	function setDirection()
+	{
+		var x1 = driverMarker.getPosition().lat();
+		var y1 = driverMarker.getPosition().lng();
+
+		if (selectedMarker !== undefined) {
+			var x2 = selectedMarker.getPosition().lat();
+			var y2 = selectedMarker.getPosition().lng();
+
+			var lat = (x1 + x2) / 2;
+			var lng = (y1 + y2) / 2;
+
+			map.setCenter(driverMarker.getPosition());
+
+
+			var request = {
+				origin: new google.maps.LatLng(x1, y1),
+				destination: new google.maps.LatLng(x2, y2),
+				travelMode: google.maps.TravelMode.DRIVING
+			};
+			directionsService.route(request, function (result, status) {
+				if (status == google.maps.DirectionsStatus.OK) {
+					directionsDisplay.setDirections(result);
+
+					//$('#addressLabel h3').text($('#addressLabel h3').text()+"("+km.toFixed(2)+" km)");
+
+				} else {
+					//alert("couldn't get directions:" + status);
+				}
+			});
+		}
+	}
 
 	navigator.geolocation.getCurrentPosition(function (position) {
 
@@ -392,6 +428,8 @@
 		map = new google.maps.Map(document.getElementById("map"), {
 			zoom: 13
 		});
+		directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true, preserveViewport:true });
+		directionsDisplay.setMap(map);
 	}
 
 	function UpdateDriverPosition(Latitude, Longitude) {
@@ -414,19 +452,8 @@
 			driverMarker.setPosition(new google.maps.LatLng(prevCoord.Latitude, prevCoord.Longitude));
 		}
 
-		var x1 = driverMarker.getPosition().lat();
-		var y1 = driverMarker.getPosition().lng();
 
-		if (selectedMarker !== undefined) {
-			var x2 = selectedMarker.getPosition().lat();
-			var y2 = selectedMarker.getPosition().lng();
-            
-			var lat = (x1 + x2) / 2;
-			var lng = (y1 + y2) / 2;
-			map.setCenter({ lat: lat, lng: lng });
-		}
-
-
+		setDirection();
 
 
 		//map.setCenter(driverMarker.getPosition());
@@ -458,6 +485,8 @@
 		for (var key in destinationMarkers) {
 			destinationMarkers[key].setMap(null);
 		}
+
+		directionsDisplay.setDirections({ routes: [] });
 
 		destinationMarkers = [];
 
