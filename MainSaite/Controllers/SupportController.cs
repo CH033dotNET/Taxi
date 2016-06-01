@@ -22,9 +22,9 @@ namespace MainSaite.Controllers
 			return View();
 		}
 
-		public JsonResult GetMessages()
+		public JsonResult GetMessages(int id)
 		{
-			return Json(SupportManager.GetMessages(SessionUser.Id), JsonRequestBehavior.AllowGet);
+			return Json(SupportManager.GetMessages(SessionUser.Id, id), JsonRequestBehavior.AllowGet);
 		}
 
 		[HttpPost]
@@ -34,15 +34,15 @@ namespace MainSaite.Controllers
 		}
 
 		[HttpPost]
-		public JsonResult GetSupporter()
+		public JsonResult GetSupporter(int id = -1)
 		{
-			return Json(SupportManager.GetSupporter(), JsonRequestBehavior.AllowGet);
+			return Json(SupportManager.GetSupporter(id), JsonRequestBehavior.AllowGet);
 		}
 
 		[HttpPost]
 		public JsonResult GetChatUsers()
 		{
-			return Json(SupportManager.GetChatUsers(), JsonRequestBehavior.AllowGet);
+			return Json(SupportManager.GetChatUsers().Where(e => e.Id != SessionUser.Id), JsonRequestBehavior.AllowGet);
 		}
 	}
 }

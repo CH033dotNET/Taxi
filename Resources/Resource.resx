@@ -1238,9 +1238,72 @@
     <value>No current order</value>
   </data>
   <data name="OrderPayment" xml:space="preserve">
-    <value>OrderPayment</value>
+    <value>Order payment</value>
   </data>
   <data name="TripInfo" xml:space="preserve">
     <value>Trip info</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="SelectDestination" xml:space="preserve">
+    <value>Please, point out the destination on the map:</value>
+  </data>
+  <data name="SelectOnMap" xml:space="preserve">
+    <value>Select on the map</value>
+  </data>
+  <data name="BestClients" xml:space="preserve">
+    <value>Our best clients:</value>
+  </data>
+  <data name="BestDrivers" xml:space="preserve">
+    <value>Our best drivers:</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="SupportService" xml:space="preserve">
+    <value>Support service</value>
+  </data>
+  <data name="EnterYourMessage" xml:space="preserve">
+    <value>Enter your message</value>
+  </data>
+  <data name="AddDestination" xml:space="preserve">
+    <value>There you can add your destination.</value>
+  </data>
+  <data name="AddLocation" xml:space="preserve">
+    <value>There you can add your location.</value>
+  </data>
+  <data name="Article" xml:space="preserve">
+    <value>Article</value>
+  </data>
+  <data name="ChooseLanguage" xml:space="preserve">
+    <value>Choose your language</value>
+  </data>
+  <data name="ChooseOptions" xml:space="preserve">
+    <value>There you can choose additional options.</value>
+  </data>
+  <data name="CreatedTime" xml:space="preserve">
+    <value>Created time</value>
+  </data>
+  <data name="CreateNewArticle" xml:space="preserve">
+    <value>Create new article</value>
+  </data>
+  <data name="FirstQuestion" xml:space="preserve">
+    <value>Hello, do you want to order a taxi?</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="OurLatestNews" xml:space="preserve">
+    <value>Our latest news</value>
+  </data>
+  <data name="QuestionOrder" xml:space="preserve">
+    <value>Click to order a taxi.</value>
+  </data>
+  <data name="TellAboutUs" xml:space="preserve">
+    <value>Do not forget tell your friends about us!</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
   </data>
 </root>

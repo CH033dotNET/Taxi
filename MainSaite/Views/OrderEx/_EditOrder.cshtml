@@ -28,7 +28,9 @@
 				@Html.ValidationMessageFor(x => x.AddressFrom.Address)
 			</td>
 		</tr>
-		<tr>
+   if (!string.IsNullOrEmpty(Model.AddressFrom.Building) && !string.IsNullOrEmpty(Model.AddressFrom.Entrance) && !string.IsNullOrEmpty(Model.AddressFrom.Note))
+	{  
+	     <tr>
 			<td>
 				@Html.Label(Resources.Resource.Building)
 			</td>
@@ -54,6 +56,7 @@
 				@Html.DisplayFor(x => Model.AddressFrom.Note, new { @required = true, @minlength = "2" })
 			</td>
 		</tr>
+      }
 	}
 </table>
 @if (Model.AddressesTo.Count > 0)
@@ -72,7 +75,9 @@
 			</td>
 			<td>
 				@Html.TextBoxFor(x => Model.AddressesTo[i].Address, new { @required = true, @minlength = "3" })
-				@Html.TextBoxFor(x => Model.AddressesTo[i].Building, new { @required = true, @minlength = "1" })
+				@if (!string.IsNullOrEmpty(Model.AddressesTo[i].Building)) { 
+				   @Html.TextBoxFor(x => Model.AddressesTo[i].Building, new { @required = true, @minlength = "1" })
+				}
 			</td>
 		</tr>
 	}
@@ -161,8 +166,7 @@
 				@Html.Label(Resources.Resource.YourName)
 			</td>
 			<td>
-				@Html.TextBoxFor(x => Model.Name, new { @required = true, @minlength = "2" })
-				@Html.ValidationMessageFor(x => x.Name)
+				@Html.DisplayFor(x => Model.Name, new { @required = true, @minlength = "2" })
 			</td>
 		</tr>
 		<tr>
@@ -170,8 +174,7 @@
 				@Html.Label(Resources.Resource.PhoneNumber)
 			</td>
 			<td>
-				@Html.TextBoxFor(x => Model.Phone, new { @required = true, @minlength = "10" })
-				@Html.ValidationMessageFor(x => x.Phone)
+				@Html.DisplayFor(x => Model.Phone, new { @required = true, @minlength = "10" })
 			</td>
 		</tr>
 	</table>

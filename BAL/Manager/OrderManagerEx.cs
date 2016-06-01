@@ -145,12 +145,13 @@ namespace BAL.Interfaces
 			}
 			return false;
 		}
-		public bool FinishOrder(int id)
+		public bool FinishOrder(int id, decimal price)
 		{
 			var order = uOW.OrderExRepo.All.Where(o => o.Id == id).FirstOrDefault();
 			if (order != null)
 			{
 				order.Status = OrderStatusEnum.Finished;
+				order.Price = price;
 				uOW.OrderExRepo.Update(order);
 				uOW.Save();
 				return true;
@@ -253,7 +254,13 @@ namespace BAL.Interfaces
 				.ToList();
 			return Mapper.Map<List<OrderExDTO>>(orders);
 		}
-
+		public IEnumerable<OrderExDTO> GetFinishedOrders()
+		{
+			var orders = uOW.OrderExRepo.All.Include(o => o.AddressFrom)
+				.Where(o => o.Status == OrderStatusEnum.Finished)
+				.ToList();
+			return Mapper.Map<List<OrderExDTO>>(orders);
+		}
 		public OrderExDTO GetCurrentDriverOrder(int driverId)
 		{
 			var order = uOW.OrderExRepo.All

@@ -60,7 +60,8 @@ namespace MainSaite.Controllers
 				NewOrders = orderManager.GetNotApprovedOrders(),
 				ApprovedOrders = orderManager.GetApprovedOrders(),
 				DeniedOrders = orderManager.GetLastDeniedOrders(),
-				InProgressOrders = orderManager.GetInProgressOrders()
+				InProgressOrders = orderManager.GetInProgressOrders(),
+				FinishedOrders = orderManager.GetFinishedOrders()
 			});
 		}
 
@@ -81,9 +82,9 @@ namespace MainSaite.Controllers
 
 		[AuthFilter(Roles = "Operator, Administrator")]
 		[HttpPost]
-		public JsonResult FinishOrder(int id = 0)
+		public JsonResult FinishOrder(decimal price, int id = 0)
 		{
-			bool success = orderManager.FinishOrder(id);
+			bool success = orderManager.FinishOrder(id, price);
 			return Json(true);
 		}
 

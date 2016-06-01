@@ -65,7 +65,7 @@ function checkstatus() {
 			ChangeBtnProperties(response.WorkingStatus);
 		}
 		else {
-			alert("Error");
+			//alert("Error");
 		}
 	});
 }

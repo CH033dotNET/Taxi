@@ -13,6 +13,8 @@ namespace DAL.Migrations
 
 	internal sealed class Configuration : DbMigrationsConfiguration<DAL.MainContext> 
     {
+		Random random = new Random();
+
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
@@ -32,7 +34,6 @@ namespace DAL.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-			Random random = new Random();
 			var roles = new List<Role> 
 			{
 				new Role() { Name = "Driver", Description = "Driver" },
@@ -83,7 +84,8 @@ namespace DAL.Migrations
 					Email = "client@gmail.com",
 					RoleId = 3,
 					Lang = "en-us",
-					RegistrationDate = DateTime.Now
+					RegistrationDate = DateTime.Now,
+					Bonus = 10.0f
 				},
 				new User()
 				{
@@ -128,7 +130,7 @@ namespace DAL.Migrations
 			if (!context.Users.Any())
 			{
 				var rundomUsers = Angie.Configure<User>().Fill(x => x.UserName).AsTwitterHandle<User>().Fill(x => x.Email).AsEmailAddress<User>()
-				.MakeList<User>(30).Select(x => new User { Password = "123456", RoleId = random.Next(1, 5), Email = x.Email, UserName = x.UserName, Lang = "en-us", RegistrationDate = DateTime.Now });
+				.MakeList<User>(30).Select(x => new User { Password = "123456", RoleId = random.Next(1, 5), Email = x.Email, UserName = x.UserName, Lang = "en-us", RegistrationDate = DateTime.Now, Bonus = random.Next(3,50)});
 				context.Users.AddRange(rundomUsers);
 				context.SaveChanges();
 			}
@@ -283,33 +285,107 @@ namespace DAL.Migrations
 				context.Cars.AddRange(cars);
 				context.SaveChanges();
 			}
-			if (!context.Orders.Any())
+			if (!context.OrderdsEx.Any())
 			{
-				var r = context.Users.Where(x => x.RoleId == 1).Select(x => x.Id).ToArray();
-				var NewOrders = new List<Order>();
-				for (int i = 0; i < 100; i++)
+				var r = context.Users.Where(x => x.RoleId == (int)Common.Enum.AvailableRoles.Driver || x.RoleId == (int)Common.Enum.AvailableRoles.FreeDriver).Select(x => x.Id).ToArray();
+				var NewOrders = new List<OrderEx>();
+				int[] orderStatuses = new[] {0,1,2,4,5};
+
+				for (int i = 0; i < 30; i++)
 				{
-					var date = DateTime.Now.AddMonths(-random.Next(0, 15));
-					NewOrders.Add(new Order()
+					var date = DateTime.Now.AddDays(-random.Next(0, 30));
+					//set userid null
+					bool user = (random.Next(0, 6) > 2) ? true : false;
+					int orderStatus = orderStatuses[random.Next(0, orderStatuses.Length)];
+
+					NewOrders.Add(new OrderEx()
 						{
-							Accuracy = random.Next(1,11),
-							DistrictId = null,
-							DriverId = r[random.Next(0, r.Length)],
-							PeekPlace = string.Format("some place {0}", i),
-							DropPlace = string.Format("some other place {0}", i),
-							EndWork = date,
-							FuelSpent = random.Next(1,100),
+							AdditionallyRequirements = (user==true)? getAdditional(): null,
+							AddressFrom = new AddressFrom{
+								Address = GetRandomAddress(random.Next(1, 5))
+							},
+							AddressesTo = (user==true)?getDestinationAddress(random.Next(1, 6)):null,
+							Status = (Common.Enum.OrderStatusEnum) orderStatus,
+							DriverId = (orderStatus == 0 || orderStatus == 1 ) ? null: (int?) 2,
+							CarId = (orderStatus == 0 || orderStatus == 1) ? null : (int?)3,
+							Route = (user == true) ? true : false,
+							UserId = (user==true)? (int?) 4 : null,
+							Perquisite = (user==true)?random.Next(5,20) : 0,
+							Name = (user==false) ? null : "User"+i,
 							OrderTime = date,
-							StartWork = date.AddHours(-random.Next(1,15)),
-							PersonId = 2,
-							IsConfirm = 4,
-							TotalPrice = random.Next(5,500),
-							WaitingTime = random.Next(2,10).ToString()
+							Price = random.Next(5,70),
+							WaitingTime = random.Next(2,10)
 						});
 				}
-				context.Orders.AddRange(NewOrders);
+				// set 1 in-progress order
+				NewOrders.Add(new OrderEx()
+				{
+					AdditionallyRequirements = getAdditional(),
+					AddressFrom = new AddressFrom
+					{
+						Address = GetRandomAddress(1)
+					},
+					AddressesTo = getDestinationAddress(5),
+					Status = Common.Enum.OrderStatusEnum.Confirmed,
+					DriverId = 2,
+					CarId = 3,
+					Route = (random.Next(0, 2) == 1) ? true : false,
+					UserId = 4,
+					Perquisite = random.Next(5, 20),
+					Name = "User" + 100,
+					OrderTime = DateTime.Now,
+					Price = random.Next(5, 50),
+					WaitingTime = random.Next(2, 10)
+				});
+				context.OrderdsEx.AddRange(NewOrders);
 				context.SaveChanges();
 			}
         }
+		AdditionallyRequirements getAdditional()
+		{
+			Array carEnums = Enum.GetValues(typeof(Common.Enum.CarEnums.CarClassEnum));
+			return new AdditionallyRequirements()
+			{
+				Passengers = random.Next(1, 9),
+				Car = (Common.Enum.CarEnums.CarClassEnum)carEnums.GetValue(random.Next(carEnums.Length)),
+				Urgently = (random.Next(0, 2) == 1) ? true : false,
+				Courier = (random.Next(0, 2) == 1) ? true : false,
+				WithPlate = (random.Next(0, 2) == 1) ? true : false,
+				MyCar = (random.Next(0, 2) == 1) ? true : false,
+				Pets = (random.Next(0, 2) == 1) ? true : false,
+				Bag = (random.Next(0, 2) == 1) ? true : false,
+				Conditioner = (random.Next(0, 2) == 1) ? true : false,
+				NoSmoking = (random.Next(0, 2) == 1) ? true : false,
+				Smoking = (random.Next(0, 2) == 1) ? true : false,
+				English = (random.Next(0, 2) == 1) ? true : false,
+				Check = (random.Next(0, 2) == 1) ? true : false,
+			};
+		}
+		List<AddressTo> getDestinationAddress(int count)
+		{
+			List<AddressTo> addressesTo = new List<AddressTo>(); 
+
+			for (int i = 0; i < count; i++)
+			{
+				addressesTo.Add(new AddressTo{
+					Address = GetRandomAddress(random.Next(1, 5))
+				});
+			}
+			return addressesTo;
+		}
+		string GetRandomAddress(int rand)
+		{
+
+			string newAddress = "";
+			switch (rand)
+			{
+				case 1: newAddress = "Головна вулиця, " + random.Next(3, 250) + ", Чернівці, Чернівецька область, Україна"; break;
+				case 2: newAddress = "вулиця Південнокільцева, " + random.Next(3, 30) + ", Чернівці, Чернівецька область, Украина"; break;
+				case 3: newAddress = "вулиця Винниченка, " + random.Next(1, 115) + ", Черновцы, Черновицкая область, Украина"; break;
+				case 4: newAddress = "вулиця Героїв Майдану " + random.Next(1, 200) + ", Черновцы, Черновицкая область, Украина"; break;
+			}
+
+			return newAddress;
+		}
     }
 }
