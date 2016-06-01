@@ -80,7 +80,10 @@
 										<img src="~/Images/@ViewBag.ImageName" data-toggle="tooltip" title="@q" class="img-rounded" style="max-width: 50px; max-height: 50px; border-radius:0px;" />
 									</li>
 								}
-								<li id="navBarBtn" onclick="javascript: introJs().start();"><a href="#">?</a></li>
+								@if (Session["User"] == null || ViewBag.UserRoleId == (int)AvailableRoles.Client)
+								{
+									<li id="navBarBtn" onclick="javascript: introJs().start();"><a href="#">?</a></li>
+								}
 							</ul>
 						</div>
 					</div>

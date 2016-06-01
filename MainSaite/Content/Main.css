@@ -798,3 +798,7 @@
 .star-empty {
 	color: gold;
 }
+
+.introjs-helperNumberLayer {
+	display: none;
+}
