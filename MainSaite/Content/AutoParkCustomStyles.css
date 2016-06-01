@@ -104,12 +104,12 @@
 	cursor: pointer;
 	margin: 0px;
 	border: 1px solid #FD8E00;
-	color:black;
+	color: black;
 }
 
-.districtItem a{
-	color:inherit;
-}
+	.districtItem a {
+		color: inherit;
+	}
 
 .folder {
 	background: linear-gradient(gold, rgb(255, 192, 48));
@@ -128,8 +128,8 @@
 
 #content {
 	padding-left: 0px;
-	overflow-y:auto;
-	overflow-x:visible;
+	overflow-y: auto;
+	overflow-x: visible;
 }
 
 ol {
@@ -143,23 +143,23 @@ ol {
 	height: 45px;
 }
 
-#searcDhistrictName{
-	margin:0;
-	height:35px;
-	width:100%;
-	border-radius:0;
+#searcDhistrictName {
+	margin: 0;
+	height: 35px;
+	width: 100%;
+	border-radius: 0;
 }
 
-.offPadding{
-	padding:0;
+.offPadding {
+	padding: 0;
 }
 
-#basket{
-	border-right:solid 2px black;
+#basket {
+	border-right: solid 2px black;
 }
 
-#add-group{
-	border-top-right-radius:3px;
+#add-group {
+	border-top-right-radius: 3px;
 }
 
 #bthGroup {
@@ -177,12 +177,13 @@ ol {
 		font-size: 19px;
 		color: black;
 		background: linear-gradient(gold, rgb(255, 192, 48));
-		cursor:pointer;
+		cursor: pointer;
 	}
-	#bthGroup a:hover{
-		background: linear-gradient(rgb(204, 204, 204), #8C8C8C);
-		color: white;
-	}
+
+		#bthGroup a:hover {
+			background: linear-gradient(rgb(204, 204, 204), #8C8C8C);
+			color: white;
+		}
 
 
 #content::-webkit-scrollbar-track, .content::-webkit-scrollbar-track {
@@ -203,13 +204,71 @@ ol {
 	background-color: #FD8E00;
 }
 
-.leftFloat{
-	float:left;
+.leftFloat {
+	float: left;
 }
-#autoDistrictSelection{
-	height:38px;
+
+#autoDistrictSelection {
+	height: 38px;
 }
-#inputDriverStatus, #workshift-button-start, #workshift-button-end{
-	margin:5px;
-	height:41px;
+
+#inputDriverStatus, #workshift-button-start, #workshift-button-end {
+	margin: 5px;
+	height: 41px;
+}
+
+#listDistricts {
+	list-style: none;
+	padding: 0;
+}
+
+.district {
+	background: rgb(68, 69, 72);
+	border-bottom: 1px solid black;
+	width: 100%;
+	display: inline-block;
+	font-size: 25px;
+	height: 43px;
+	color: white;
+}
+
+	.district ul {
+		padding: 0 0 0 20px;
+		display:none;
+	}
+
+		.district ul::after {
+			visibility: hidden;
+			display: block;
+			font-size: 0;
+			content: ".";
+			clear: both;
+			height: 0;
+			zoom:1
+		}
+
+	.district div {
+		display: inline;
+	}
+
+	.district:hover {
+		background-color: #f5f5f5;
+		color: black;
+	}
+
+.joinButton {
+	float: right;
+}
+
+.folder{
+	cursor:pointer;
+}
+
+.count, .district .glyphicon {
+	display: inherit;
+	width: 5%;
+	text-align: center;
+	vertical-align: central;
+	border-right: 1px solid black;
+	height: 100%;
 }

@@ -62,32 +62,31 @@
 	</form>
 </div>
 
-<table class="table newTableStyle">
-	<tr>
-		<th>
-			@Resources.Resource.DriversCount
-		</th>
-		<th class="nameCell">
-			@Resources.Resource.Districts
-		</th>
-		<th class="tableJoin"></th>
-	</tr>
+<ul id="listDistricts">
 
 	@foreach (var item in Model)
 	{
-		<tr>
-			<td>
-				<span class="count" id="@item.Id">0</span>
-			</td>
-			<td>
+		<li class="district @if (item.IsFolder) { @Html.Raw("folder") } " data-id="@item.Id" parent-id="@item.ParentId">
+				@if (item.IsFolder)
+				{
+					<span class="glyphicon glyphicon-folder-open"></span>
+				}
+				else
+				{
+					<span class="count" id="@item.Id">0</span>
+				}
+			<div class="text">
 				@Html.DisplayFor(modelItem => item.Name)
-			</td>
-			<td>
+			</div>
+			<div>
+				@if (!item.IsFolder)
+				{
 				<span class="joinButton btn btn-success" data-id="@item.Id"><span class="">@Resources.Resource.Join</span><span class="hidenText">@Resources.Resource.DriverIsHere</span></span>
-			</td>
-		</tr>
+				}
+			</div>
+		</li>
 	}
-</table>
+</ul>
 
 <link rel="stylesheet" href="~/Content/AutoParkCustomStyles.css" type="text/css" />
 

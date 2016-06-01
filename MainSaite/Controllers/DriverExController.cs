@@ -58,7 +58,7 @@ namespace MainSaite.Controllers
 		[AuthFilter(Roles = "Driver, FreeDriver")]
 		public ActionResult Districts()
 		{
-			return PartialView(districtManager.GetFilesDistricts());
+			return PartialView(districtManager.getDistricts());
 		}
 
 		[AuthFilter(Roles = "Driver, FreeDriver")]

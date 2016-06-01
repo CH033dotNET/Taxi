@@ -17,6 +17,42 @@
 	var geocoder = new google.maps.Geocoder();
 
 
+	//init districts
+	var elements = $('#listDistricts> li');
+	//intial sorting (folders first)
+	elements.sort(function (a, b) {
+		if ($(a).hasClass('folder') ^ $(b).hasClass('folder')) {
+			if ($(a)
+				.children('.districtItem').hasClass('folder')) {
+				return -1;
+			}
+			else {
+				return 1;
+			}
+		}
+		else {
+			var aName = $(a).children('.text').first().text().toLowerCase();
+			var bName = $(b).children('.text').first().text().toLowerCase();
+			return aName.localeCompare(bName);
+		}
+	}).each(function () {
+		$('#listDistricts').append(this);
+	});
+	//set element according to the hierarchy
+	elements.each(function (index, el) {
+		var parentId = $(el).attr('parent-id');
+		if (parentId) {
+			var newElement = document.createElement('ul');
+			$(newElement).append(el);
+			var find = $("li[data-id=" + "'" + parentId + "']");
+			find.append(newElement);
+		}
+	});
+	$(document).on('click', '.folder', function () {
+		$(this).children('ul').first().fadeToggle();
+	});
+
+
 	Notify = function (header, message) {
 		if (window.Notification && Notification.permission !== "denied") {
 			Notification.requestPermission(function (status) {  // status is "granted", if accepted by user
@@ -195,7 +231,7 @@
 		});
 
 		//manual district control
-		$(document).on('click', '.joinButton', function () {
+		$(document).on('click', '.joinButton', function (e) {
 			if ($(this).hasClass('active')) {
 				mainHub.server.leaveDistrict(currentDistrict.Id);
 				currentDistrict = null;
@@ -216,6 +252,7 @@
 				$(this).addClass('active');
 				$(this).children('span').toggleClass('hidenText');
 			}
+			e.stopPropagation();
 		});
 
 		function setCurrentDistrict(district) {
