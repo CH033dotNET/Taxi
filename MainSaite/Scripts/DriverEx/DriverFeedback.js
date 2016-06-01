@@ -33,7 +33,7 @@
 
 	$(document).on('click', '#feedbackConfirm', function () {
 		var comment = $('#comment').val();
-		if (feedback.Rating > 0 && comment.length > 0) {
+		if (feedback.Rating > 0 || comment.length > 0) {
 			feedback.Comment = comment;
 			if (feedback.Id) {
 				$.ajax({

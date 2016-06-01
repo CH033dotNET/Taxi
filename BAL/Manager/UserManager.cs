@@ -495,9 +495,12 @@ namespace BAL.Manager
 		{
 			var feedback = uOW.FeedbackRepo.GetByID(id);
 			var user = uOW.UserRepo.GetByID(feedback.UserId);
-			user.Rating = uOW.FeedbackRepo.All.Where(f => f.UserId == user.Id).Average(f => f.Rating);
-			uOW.UserRepo.Update(user);
-			uOW.Save();
+			if (user != null)
+			{
+				user.Rating = uOW.FeedbackRepo.All.Where(f => f.UserId == user.Id).Average(f => f.Rating);
+				uOW.UserRepo.Update(user);
+				uOW.Save();
+			}
 		}
 
 		// TODO:
