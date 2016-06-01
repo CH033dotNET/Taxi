@@ -15,7 +15,6 @@ var mapInfo = {
 	infowindow : new google.maps.InfoWindow
 };
 
-
 $(document).ready(function () {
 	initialize();
 })

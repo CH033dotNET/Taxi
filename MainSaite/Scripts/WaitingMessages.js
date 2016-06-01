@@ -16,6 +16,8 @@
 		$('#waiting-message').hide();
 		$('#approved-message').hide();
 		$('#denied-message').slideDown(200);
+		$('#cancel-btn').hide();
+		$("#submit-btn").show();
 		$('#submit button').prop('disabled', false);
 		$('#orderBtn').prop('disabled', false);
 		$('#orderBtn').parent().addClass('activeBtn');

@@ -17,8 +17,7 @@
 }
 
 <div class="form-group" id="addressInput">
-	<input id="textField" placeholder=@Resources.Resource.EnterYourAdress
-		   type="text" />
+	<input id="textField" placeholder="@Resources.Resource.EnterYourAdress" type="text" />
 </div>
 
 <div id="mapContainer">
@@ -27,8 +26,8 @@
 		<div class="panel-body">
 			<div id="map">
 			</div>
-				<button type="button" id="orderBtn" class="orderButton btn btn-success">@Resources.Resource.OrderTaxi.ToUpper()</button>
-				<button type="button" id ="cancelOrder"class="orderButton btn btn-success warning">@Resources.Resource.CancelOrder.ToUpper()</button>
+				<button type="button" id="orderBtn" class="orderButton btn btn-success">@Resources.Resource.OrderTaxi</button>
+				<button type="button" id ="cancelOrder"class="orderButton btn btn-success warning">@Resources.Resource.CancelOrder</button>
 		</div>
 	</div>
 	<div class="panel panel-warning" id="waiting-message">
@@ -45,17 +44,17 @@
 <div class="modal fade" id="modal-message" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header" id="modalHeader">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<img src="~/Content/Picture/SmartPhonePictures/SiteLogo.png" />
 			</div>
-			<div class="modal-body">
+			<div class="modal-body" id="modalBody">
 				<h4>@Resources.Resource.WaitingTimeMessage<span id="waiting-time"></span>@Resources.Resource.Minutes</h4>
 				<h4>@Resources.Resource.Car_Number<span id="car-number"></span></h4>
 				<h4 id="pleasantTrip">@Resources.Resource.PleasantTrip</h4>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+			<div class="modal-footer" id="modalFooter">
+				<button type="button" class="btn btn-success warning" data-dismiss="modal">@Resources.Resource.Close</button>
 			</div>
 		</div>
 	</div>

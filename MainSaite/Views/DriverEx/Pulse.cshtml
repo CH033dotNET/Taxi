@@ -12,33 +12,41 @@
 
 <input type="hidden" id="currentDriverId" value="@(((Model.DTO.UserDTO)Session["User"]).Id)" />
 
-<div id="container">
-	<table class="list" id="lastMonth">
-		<tr>
-			<th colspan="4">
-				<h4 class="listTitle">@Resources.Resource.LastMonth</h4>
-			</th>
-		</tr>
-		<tr>
-			<td colspan="3"></td>
-			<td class="orders">
-				<h5>@Resources.Resource.Orders</h5>
-			</td>
-		</tr>
-	</table>
-	<table class="list" id="allTheTime">
-		<tr>
-			<th colspan="4">
-				<h4 class="listTitle">@Resources.Resource.AllTheTime</h4>
-			</th>
-		</tr>
-		<tr>
-			<td colspan="3"></td>
-			<td class="orders">
-				<h5>@Resources.Resource.Orders</h5>
-			</td>
-		</tr>
-	</table>
+<div class="col-md-6">
+	<div class="col-lg-2"></div>
+	<div class="col-lg-10 list">
+		<table id="lastMonth">
+			<tr>
+				<th colspan="4">
+					<h4 class="listTitle">@Resources.Resource.LastMonth</h4>
+				</th>
+			</tr>
+			<tr>
+				<td colspan="3"></td>
+				<td class="orders">
+					<h5>@Resources.Resource.Orders</h5>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div class="col-md-6">
+	<div class="col-lg-10 list">
+		<table id="allTheTime">
+			<tr>
+				<th colspan="4">
+					<h4 class="listTitle">@Resources.Resource.AllTheTime</h4>
+				</th>
+			</tr>
+			<tr>
+				<td colspan="3"></td>
+				<td class="orders">
+					<h5>@Resources.Resource.Orders</h5>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="col-lg-2"></div>
 </div>
 
 <script src="~/Scripts/Pulse.js"></script>

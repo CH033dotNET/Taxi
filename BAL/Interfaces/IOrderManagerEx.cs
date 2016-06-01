@@ -21,7 +21,7 @@ namespace BAL.Interfaces
 
 		bool CancelOrder(int id);
 
-		bool FinishOrder(int id);
+		bool FinishOrder(int id, decimal price);
 
 		bool SetWaitingTime(int id, int WaitingTime);
 
@@ -32,6 +32,8 @@ namespace BAL.Interfaces
 		IEnumerable<OrderExDTO> GetLastDeniedOrders();
 
 		IEnumerable<OrderExDTO> GetInProgressOrders();
+
+		IEnumerable<OrderExDTO> GetFinishedOrders();
 
 		IEnumerable<OrderExDTO> GetOrdersByDriver(UserDTO Driver);
 

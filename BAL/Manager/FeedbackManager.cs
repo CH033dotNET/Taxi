@@ -44,7 +44,7 @@ namespace BAL.Manager
 		public void SetUserId(int feedbackId, int? UserId)
 		{
 			var feedback = uOW.FeedbackRepo.GetByID(feedbackId);
-			feedback.UserId = (int)UserId;
+			feedback.UserId = UserId != null ? (int)UserId : 0;
 			uOW.FeedbackRepo.Update(feedback);
 			uOW.Save();
 		}

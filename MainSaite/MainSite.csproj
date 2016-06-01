@@ -252,6 +252,14 @@
     <Content Include="Content\BootstrapTb\BootstrapTb.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\HighchartsCustomStyles\PageCustomisation.css" />
+    <Content Include="Content\introjs-dark.css" />
+    <Content Include="Content\introjs-nassim.css" />
+    <Content Include="Content\introjs-nazanin.css" />
+    <Content Include="Content\introjs-royal.css" />
+    <Content Include="Content\introjs-rtl.css" />
+    <Content Include="Content\introjs-rtl.min.css" />
+    <Content Include="Content\introjs.css" />
+    <Content Include="Content\introjs.min.css" />
     <Content Include="Content\Main.css" />
     <Content Include="Content\OperatorOrder.css" />
     <Content Include="Content\OrderForm.css" />
@@ -402,6 +410,7 @@
     <Content Include="Scripts\AutoParkCustomScripts\AutoParkScripts.js" />
     <Content Include="Scripts\AutoParkCustomScripts\AutoParkPicker.js" />
     <Content Include="Scripts\AutoParkCustomScripts\PreValidation.js" />
+    <Content Include="Scripts\BestUsers.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap-filestyle.js" />
@@ -466,6 +475,8 @@
     <Content Include="Scripts\Highcharts-4.0.1\js\themes\sand-signika.js" />
     <Content Include="Scripts\Highcharts-4.0.1\js\themes\skies.js" />
     <Content Include="Scripts\IEValidation.js" />
+    <Content Include="Scripts\intro.js" />
+    <Content Include="Scripts\intro.min.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />

@@ -17,11 +17,26 @@
 		}, 2000);
 	});
 
-
+	var sinterval;
 	function showChat(user) {
-		$('#chat').show();
-		$('#chat').data('supportId', user);
-		setInterval(DisplayMessages, 2000);
+		clearInterval(sinterval);
+		$.ajax({
+			type: "POST",
+			url: "/Support/GetSupporter",
+			data: {
+				id : user
+			}
+		}).done(function (users) {
+			$('#chats tbody').html('');
+			$('#chat .name').html(users.Name);
+			$('#chat .avatar').attr('src', '/Images/' + users.Photo);
+			$('#chat').data('supportId', users.Id);
+			$('#chat .description').html('');
+			$('#chat').show();
+			$('#chat').draggable();
+			DisplayMessages();
+			sinterval = setInterval(DisplayMessages, 2000);
+		});
 	}
 </script>
 

@@ -313,6 +313,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Our best clients:.
+        /// </summary>
+        public static string BestClients {
+            get {
+                return ResourceManager.GetString("BestClients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our best drivers:.
+        /// </summary>
+        public static string BestDrivers {
+            get {
+                return ResourceManager.GetString("BestDrivers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bill is paid.
         /// </summary>
         public static string BillIsPaid {
@@ -2429,7 +2447,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OrderPayment.
+        ///   Looks up a localized string similar to Order payment.
         /// </summary>
         public static string OrderPayment {
             get {
@@ -2830,6 +2848,33 @@ namespace Resources {
         public static string Search {
             get {
                 return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select.
+        /// </summary>
+        public static string Select {
+            get {
+                return ResourceManager.GetString("Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please, point out the destination on the map:.
+        /// </summary>
+        public static string SelectDestination {
+            get {
+                return ResourceManager.GetString("SelectDestination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select on the map.
+        /// </summary>
+        public static string SelectOnMap {
+            get {
+                return ResourceManager.GetString("SelectOnMap", resourceCulture);
             }
         }
         

@@ -3,14 +3,11 @@
 @{
     ViewBag.Title = @Resources.Resource.UserMenu;
 }
-
-<h2>@Resources.Resource.UserMenu</h2>
-
+<p>
+	<a href="/Administration/AddUser" class="btn btn-success">@Resources.Resource.AddNewUser</a>
+</p>
 @Html.Partial("_UserTable")
 
-<p>
-    @Html.ActionLink("AddUser", "AddUser", "Administration")
-</p>
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">

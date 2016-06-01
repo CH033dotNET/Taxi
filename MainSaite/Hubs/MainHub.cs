@@ -34,7 +34,7 @@ namespace MainSaite.Hubs
 			if (driver !=null)
 			{
 				Clients.Client(driver.ConnectionId).cancelOrder(id);
-				Clients.Client(driver.ConnectionId).MessageFromAdministrator("[Order canceled]");
+				Clients.Client(driver.ConnectionId).MessageFromAdministrator(Resources.Resource.CancelOrder);
 			}
 		}
 
@@ -95,7 +95,11 @@ namespace MainSaite.Hubs
 		{
 			Clients.Group("Operator").orderUpdated(id);
 		}
-
+		[HubMethodName("orderFinished")]
+		public void FinishOrder(int id)
+		{
+			Clients.Group("Operator").finishOrder(id);
+		}
 		[HubMethodName("MessageFromAdministrator")]
 		public void MessageFromAdministrator(String message)
 		{

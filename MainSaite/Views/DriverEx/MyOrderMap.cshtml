@@ -6,8 +6,16 @@
 
 <div id="mapContainer">
 	<div class="panel panel-info">
-		<div class="panel-heading"><h3 class="panel-title">@Resources.Resource.PlaceDelivery</h3></div>
-		<div class="panel-body" style="height:100%; width:100%;">
+		<div class="panel-heading row" style="padding: 0px;">
+			<div class="col-md-3" id="arrowBtnL">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</div>
+			<div class="col-md-6" id="addressLabel"><h3 class="panel-title" >@Resources.Resource.PlaceDelivery</h3></div>
+			<div class="col-md-3" id="arrowBtnR">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</div>
+		</div>
+		<div class="panel-body">
 			<div id="map">
 			</div>
 		</div>
