@@ -1,7 +1,7 @@
 ﻿@model Model.DTO.NewsDTO
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = Resources.Resource.Edit;
 }
 
 @using (Html.BeginForm()) {
@@ -13,7 +13,7 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="editor-label">
-			<h2>[Title]</h2>
+			<h2>@Resources.Resource.Title</h2>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Title)
@@ -21,7 +21,7 @@
         </div>
 
         <div class="editor-label">
-			<h2>[Article]</h2>
+			<h2>@Resources.Resource.Article</h2>
         </div>
         <div class="editor-field">
 			<div id="toolbar" class="sc-toolbar-container toolbar">

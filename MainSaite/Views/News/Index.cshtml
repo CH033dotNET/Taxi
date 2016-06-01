@@ -1,22 +1,22 @@
 ﻿@model IEnumerable<Model.DTO.NewsDTO>
 
 @{
-    ViewBag.Title = "[News]";
+    ViewBag.Title = Resources.Resource.News;
 }
 
 
 
 <p>
-	<a href="/News/Edit/?id=-1" class="btn btn-success">[Create new article]</a>
+	<a href="/News/Edit/?id=-1" class="btn btn-success">@Resources.Resource.CreateNewArticle</a>
 </p>
 
 <table class="table newTableStyle">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @Resources.Resource.Title
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedTime)
+            @Resources.Resource.CreatedTime
         </th>
         <th></th>
     </tr>

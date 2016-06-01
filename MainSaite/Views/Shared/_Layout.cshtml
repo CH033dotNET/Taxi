@@ -118,7 +118,7 @@
 						{
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.Districts, "DistrictEditor", "Settings")</li>
 							<li class="list-group-item" id="sideMenu">@Html.ActionLink(@Resources.Resource.Tariffs, "Index", "TariffEx")</li>
-							<li class="list-group-item" id="sideMenu">@Html.ActionLink("[News]", "Index", "News")</li>
+							<li class="list-group-item" id="sideMenu">@Html.ActionLink(Resources.Resource.News, "Index", "News")</li>
 						}
 
 						if (ViewBag.UserRoleId == (int)AvailableRoles.Administrator || ViewBag.UserRoleId == (int)AvailableRoles.Operator)

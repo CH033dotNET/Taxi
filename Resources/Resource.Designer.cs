@@ -295,6 +295,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Article.
+        /// </summary>
+        public static string Article {
+            get {
+                return ResourceManager.GetString("Article", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Automatic district selection.
         /// </summary>
         public static string AutoDistrict {
@@ -1051,6 +1060,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Created time.
+        /// </summary>
+        public static string CreatedTime {
+            get {
+                return ResourceManager.GetString("CreatedTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Here is car registration page.
         /// </summary>
         public static string CreateHeader1 {
@@ -1083,6 +1101,15 @@ namespace Resources {
         public static string CreateNewAddressString {
             get {
                 return ResourceManager.GetString("CreateNewAddressString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create new article.
+        /// </summary>
+        public static string CreateNewArticle {
+            get {
+                return ResourceManager.GetString("CreateNewArticle", resourceCulture);
             }
         }
         
@@ -2276,6 +2303,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to News.
+        /// </summary>
+        public static string News {
+            get {
+                return ResourceManager.GetString("News", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         public static string No {
@@ -2533,6 +2569,15 @@ namespace Resources {
         public static string OrderTime {
             get {
                 return ResourceManager.GetString("OrderTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our latest news.
+        /// </summary>
+        public static string OurLatestNews {
+            get {
+                return ResourceManager.GetString("OurLatestNews", resourceCulture);
             }
         }
         
@@ -3136,6 +3181,15 @@ namespace Resources {
         public static string TimeFromOrder {
             get {
                 return ResourceManager.GetString("TimeFromOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
         
