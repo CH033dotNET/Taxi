@@ -165,7 +165,7 @@
 				orderblock += moment(order.success.OrderTime).format('DD/MM/YY HH:mm');
 				orderblock += "    <\/td>";
 				orderblock += "    <td class=\"col-md-2\">";
-				orderblock += "                <button data-feedbackId=\"" + order.success.Id + "\" data-orderId=\"" + order.success.Id + "\" type=\"button\" class=\"btn btn-success addFeedbackButton\" data-toggle=\"modal\">" + Resources.AddFeedback + "</button>";
+				orderblock += "                <button data-feedbackId=\"" + order.success.DriverFeedbackId + "\" data-orderId=\"" + order.success.Id + "\" type=\"button\" class=\"btn btn-success addFeedbackButton\" data-toggle=\"modal\">" + Resources.AddFeedback + "</button>";
 				orderblock += "    <\/td>";
 				orderblock += "<\/tr>";
 
