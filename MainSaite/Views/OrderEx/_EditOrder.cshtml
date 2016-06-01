@@ -74,7 +74,9 @@
 				@Html.Label(Resources.Resource.Address + (i + 1))
 			</td>
 			<td>
+               @if (!string.IsNullOrEmpty(Model.AddressesTo[i].Address)) { 
 				@Html.TextBoxFor(x => Model.AddressesTo[i].Address, new { @required = true, @minlength = "3" })
+			   }
 				@if (!string.IsNullOrEmpty(Model.AddressesTo[i].Building)) { 
 				   @Html.TextBoxFor(x => Model.AddressesTo[i].Building, new { @required = true, @minlength = "1" })
 				}

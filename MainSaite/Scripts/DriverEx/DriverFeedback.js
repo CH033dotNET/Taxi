@@ -20,11 +20,21 @@
 				success: function (result) {
 					if (result) {
 						feedback = result;
+						$('#comment').val(feedback.Comment);
+						fillStars(feedback.Rating - 1);
 					}
-					$('#comment').val(feedback.Comment);
-					fillStars(feedback.Rating - 1);
+					
 				}
 			});
+		}
+		else {
+			$('#comment').val("");
+			fillStars(0);
+			feedback = {
+				Id: null,
+				Comment: "",
+				Rating: 0
+			};
 		}
 		$('#driverFeedbackModal').modal('show');
 		
@@ -33,7 +43,7 @@
 
 	$(document).on('click', '#feedbackConfirm', function () {
 		var comment = $('#comment').val();
-		if (feedback.Rating > 0 && comment.length > 0) {
+		if (feedback.Rating > 0 || comment.length > 0) {
 			feedback.Comment = comment;
 			if (feedback.Id) {
 				$.ajax({
@@ -60,7 +70,8 @@
 								feedbackId: result.Id
 							},
 							success: function () {
-								$('#addFeedbackButton[data-orderId="' + orderId + '"]').attr('data-feedbackId', feedback.Id);
+								var but = $('.addFeedbackButton[data-orderId="' + orderId + '"]');
+								but.attr('data-feedbackId', feedback.Id);
 								$('#driverFeedbackModal').modal('hide');
 							}
 						});

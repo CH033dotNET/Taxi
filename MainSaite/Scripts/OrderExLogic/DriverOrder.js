@@ -18,6 +18,46 @@
 	var currentAddress = 0;
 	var selectedMarker;
 
+	var directionsDisplay;
+	var directionsService = new google.maps.DirectionsService();
+
+
+	//init districts
+	var elements = $('#listDistricts> li');
+	//intial sorting (folders first)
+	elements.sort(function (a, b) {
+		if ($(a).hasClass('folder') ^ $(b).hasClass('folder')) {
+			if ($(a)
+				.children('.districtItem').hasClass('folder')) {
+				return -1;
+			}
+			else {
+				return 1;
+			}
+		}
+		else {
+			var aName = $(a).children('.text').first().text().toLowerCase();
+			var bName = $(b).children('.text').first().text().toLowerCase();
+			return aName.localeCompare(bName);
+		}
+	}).each(function () {
+		$('#listDistricts').append(this);
+	});
+	//set element according to the hierarchy
+	elements.each(function (index, el) {
+		var parentId = $(el).attr('parent-id');
+		if (parentId) {
+			var newElement = document.createElement('ul');
+			$(newElement).append(el);
+			var find = $("li[data-id=" + "'" + parentId + "']");
+			find.append(newElement);
+		}
+	});
+	$(document).on('click', '.folder', function () {
+		$(this).children('ul').first().fadeToggle();
+	});
+
+
 	Notify = function (header, message) {
 		if (window.Notification && Notification.permission !== "denied") {
 			Notification.requestPermission(function (status) {  // status is "granted", if accepted by user
@@ -129,7 +169,7 @@
 				orderblock += moment(order.success.OrderTime).format('DD/MM/YY HH:mm');
 				orderblock += "    <\/td>";
 				orderblock += "    <td class=\"col-md-2\">";
-				orderblock += "                <button data-feedbackId=\"" + order.success.Id + "\" data-orderId=\"" + order.success.Id + "\" type=\"button\" class=\"btn btn-success addFeedbackButton\" data-toggle=\"modal\">" + Resources.AddFeedback + "</button>";
+				orderblock += "                <button data-feedbackId=\"" + order.success.DriverFeedbackId + "\" data-orderId=\"" + order.success.Id + "\" type=\"button\" class=\"btn btn-success addFeedbackButton\" data-toggle=\"modal\">" + Resources.AddFeedback + "</button>";
 				orderblock += "    <\/td>";
 				orderblock += "<\/tr>";
 
@@ -160,12 +200,11 @@
 		changeAddressLabel(currentAddress + 1);
 	});
 	$(document).on('click', '#mapReloading', function () {
-		resetMap();
+		//var center = map.getCenter();
+		//google.maps.event.trigger(map, 'resize');
+
+		//map.setCenter(center);
 	});
-	function resetMap() {
-		$(window).trigger('resize');
-		$("#map").css("height", "100vh");
-	};
 	function changeAddressLabel(index)
 	{
 		driverMarker.setAnimation(null);
@@ -194,8 +233,41 @@
 		selectedMarker.setAnimation(google.maps.Animation.BOUNCE);
 
 		$('#addressLabel h3').text(selectedMarker.getTitle());
-	}
 
+		setDirection();
+	}
+	function setDirection()
+	{
+		var x1 = driverMarker.getPosition().lat();
+		var y1 = driverMarker.getPosition().lng();
+
+		if (selectedMarker !== undefined) {
+			var x2 = selectedMarker.getPosition().lat();
+			var y2 = selectedMarker.getPosition().lng();
+
+			var lat = (x1 + x2) / 2;
+			var lng = (y1 + y2) / 2;
+
+			map.setCenter(driverMarker.getPosition());
+
+
+			var request = {
+				origin: new google.maps.LatLng(x1, y1),
+				destination: new google.maps.LatLng(x2, y2),
+				travelMode: google.maps.TravelMode.DRIVING
+			};
+			directionsService.route(request, function (result, status) {
+				if (status == google.maps.DirectionsStatus.OK) {
+					directionsDisplay.setDirections(result);
+
+					//$('#addressLabel h3').text($('#addressLabel h3').text()+"("+km.toFixed(2)+" km)");
+
+				} else {
+					//alert("couldn't get directions:" + status);
+				}
+			});
+		}
+	}
 
 	navigator.geolocation.getCurrentPosition(function (position) {
 
@@ -243,7 +315,7 @@
 		});
 
 		//manual district control
-		$(document).on('click', '.joinButton', function () {
+		$(document).on('click', '.joinButton', function (e) {
 			if ($(this).hasClass('active')) {
 				mainHub.server.leaveDistrict(currentDistrict.Id);
 				currentDistrict = null;
@@ -264,6 +336,7 @@
 				$(this).addClass('active');
 				$(this).children('span').toggleClass('hidenText');
 			}
+			e.stopPropagation();
 		});
 
 		function setCurrentDistrict(district) {
@@ -355,6 +428,8 @@
 		map = new google.maps.Map(document.getElementById("map"), {
 			zoom: 13
 		});
+		directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true, preserveViewport:true });
+		directionsDisplay.setMap(map);
 	}
 
 	function UpdateDriverPosition(Latitude, Longitude) {
@@ -377,19 +452,8 @@
 			driverMarker.setPosition(new google.maps.LatLng(prevCoord.Latitude, prevCoord.Longitude));
 		}
 
-		var x1 = driverMarker.getPosition().lat();
-		var y1 = driverMarker.getPosition().lng();
 
-		if (selectedMarker !== undefined) {
-			var x2 = selectedMarker.getPosition().lat();
-			var y2 = selectedMarker.getPosition().lng();
-            
-			var lat = (x1 + x2) / 2;
-			var lng = (y1 + y2) / 2;
-			map.setCenter({ lat: lat, lng: lng });
-		}
-
-
+		setDirection();
 
 
 		//map.setCenter(driverMarker.getPosition());
@@ -421,6 +485,8 @@
 		for (var key in destinationMarkers) {
 			destinationMarkers[key].setMap(null);
 		}
+
+		directionsDisplay.setDirections({ routes: [] });
 
 		destinationMarkers = [];
 

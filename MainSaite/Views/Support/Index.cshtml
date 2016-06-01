@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Support";
+    ViewBag.Title = Resources.Resource.SupportService;
 }
 
 <script>
@@ -11,8 +11,9 @@
 			}).done(function (users) {
 				$('#chats tbody').html('');
 				for (var i in users) {
-					$('#chats tbody').append('<tr><td><img src="/Images/' + users[i].Photo + '" /></td><td>' + users[i].Name + '</td><td><a href="#" onclick="showChat(' + users[i].Id + ')">Show Chat</a></td></tr>');
+					$('#chats tbody').append('<tr><td><img src="/Images/' + users[i].Photo + '" /></td><td>' + users[i].Name + '</td><td><a href="#" onclick="showChat(' + users[i].Id + ')"><span style="font-size:20px" class="glyphicon glyphicon-envelope" aria-hidden="true"></span></a></td></tr>');
 				}
+				$('#chats tbody img').width(50).height(50);
 			});
 		}, 2000);
 	});
@@ -40,11 +41,11 @@
 	}
 </script>
 
-<table id="chats" class="table">
+<table id="chats" class="table newTableStyle">
 	<thead>
 		<tr>
-			<td>Image</td>
-			<td>Name</td>
+			<td>@Resources.Resource.Image</td>
+			<td>@Resources.Resource.Name</td>
 			<td></td>
 		<tr>
 	</thead>
