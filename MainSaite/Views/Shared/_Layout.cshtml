@@ -46,7 +46,7 @@
 			<p id="navPhone">@Resources.Resource.CallUs</p>
 			<div class="left-menu">
 				<div class="navbar navbar-default" id="desktopNavBar">
-					<div id="mainLogoContainer" data-step="1" data-intro="[Hello, do you want to order a taxi?]">
+					<div id="mainLogoContainer" data-step="1" data-intro="@Resources.Resource.FirstQuestion">
 						<a href="/Home/Index"> <img src="~/Content/Picture/SmartPhonePictures/SiteLogo.png" class="topLogo" id="mainLogo" /> </a>
 					</div>
 					<div class="container" id="navContainer">
@@ -56,7 +56,7 @@
 								{
 									<li id="navBarBtn" class="dropdown">
 
-										<a class="dropdown-toggle" data-toggle="dropdown" href="#" data-step="5" data-intro="[Push to order a taxi.]">@Resources.Resource.OrderTaxi.ToUpper()<span class="caret"></span></a>
+										<a class="dropdown-toggle" data-toggle="dropdown" href="#" data-step="5" data-intro="@Resources.Resource.QuestionOrder">@Resources.Resource.OrderTaxi.ToUpper()<span class="caret"></span></a>
 
 										<ul class="dropdown-menu">
 											<li id="order-dropdown">@Html.ActionLink(Resources.Resource.StandartOrder, "OrderTaxi", "Home")</li>
@@ -192,12 +192,12 @@
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12" id="footerContainer">
 					<div class="lang">
-						<ul class="nav navbar-nav" data-step="2" data-intro="[Choose your language.]">
+						<ul class="nav navbar-nav" data-step="2" data-intro="@Resources.Resource.ChooseLanguage">
 							@Html.Partial("_Language")
 						</ul>
 					</div>
 					<div class="socials">
-						<ul class="nav navbar-nav" data-step="100" data-intro="[Do not forget tell your friends about us!]">
+						<ul class="nav navbar-nav" data-step="100" data-intro="@Resources.Resource.TellAboutUs">
 							<li>
 								<a class="ActivLang" href="https://www.facebook.com/groups/508754115968466/">
 									<i class="largeIcon fa fa-facebook"></i>
