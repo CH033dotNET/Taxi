@@ -26,13 +26,11 @@
 
 	#chat .avatar {
 		width: 50px;
-		max-height: 50px;
-		border-radius: 25px;
+		height: 50px;
 		padding-top: 0px;
 		margin-top: 5px;
 		margin-left: 5px;
 		float: left;
-		box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.86);
 	}
 
 	#chat .serviceWorker {
@@ -78,14 +76,14 @@
 		}
 
 	#chat .answer {
-		background-color: #FBCA90;
+		background-color: #FFCF0F;
 		width: 200px;
 		float: right;
 		margin-right: 15px;
 	}
 
 	#chat .question {
-		background-color: #FBCA90;
+		background-color: #FFCF0F;
 		width: 200px;
 		float: left;
 		margin-left: 15px;
