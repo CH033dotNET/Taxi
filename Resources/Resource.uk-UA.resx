@@ -1260,4 +1260,13 @@
   <data name="BestDrivers" xml:space="preserve">
     <value>Найкращі водії:</value>
   </data>
+  <data name="Image" xml:space="preserve">
+    <value>Фото</value>
+  </data>
+  <data name="SupportService" xml:space="preserve">
+    <value>Служба підтримки</value>
+  </data>
+  <data name="EnterYourMessage" xml:space="preserve">
+    <value>Введіть повідомлення</value>
+  </data>
 </root>

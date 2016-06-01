@@ -42,7 +42,7 @@ namespace MainSaite.Controllers
 		[HttpPost]
 		public JsonResult GetChatUsers()
 		{
-			return Json(SupportManager.GetChatUsers(), JsonRequestBehavior.AllowGet);
+			return Json(SupportManager.GetChatUsers().Where(e => e.Id != SessionUser.Id), JsonRequestBehavior.AllowGet);
 		}
 	}
 }

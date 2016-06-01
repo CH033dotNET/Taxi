@@ -1258,4 +1258,13 @@
   <data name="BestDrivers" xml:space="preserve">
     <value>Our best drivers:</value>
   </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="SupportService" xml:space="preserve">
+    <value>Support service</value>
+  </data>
+  <data name="EnterYourMessage" xml:space="preserve">
+    <value>Enter your message</value>
+  </data>
 </root>
