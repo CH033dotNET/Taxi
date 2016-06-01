@@ -27,8 +27,7 @@
 	//intial sorting (folders first)
 	elements.sort(function (a, b) {
 		if ($(a).hasClass('folder') ^ $(b).hasClass('folder')) {
-			if ($(a)
-				.children('.districtItem').hasClass('folder')) {
+			if ($(a).hasClass('folder')) {
 				return -1;
 			}
 			else {
@@ -47,14 +46,13 @@
 	elements.each(function (index, el) {
 		var parentId = $(el).attr('parent-id');
 		if (parentId) {
-			var newElement = document.createElement('ul');
-			$(newElement).append(el);
-			var find = $("li[data-id=" + "'" + parentId + "']");
-			find.append(newElement);
+			var find = $("li[data-id=" + "'" + parentId + "'] ul");
+			find.append(el);
 		}
 	});
-	$(document).on('click', '.folder', function () {
+	$(document).on('click', '.folder', function (e) {
 		$(this).children('ul').first().fadeToggle();
+		e.stopPropagation();
 	});
 
 

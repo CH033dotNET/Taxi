@@ -76,7 +76,7 @@
 					<span class="count" id="@item.Id">0</span>
 				}
 			<div class="text">
-				@Html.DisplayFor(modelItem => item.Name)
+				@Html.Raw(item.Name)
 			</div>
 			<div>
 				@if (!item.IsFolder)
@@ -84,6 +84,7 @@
 				<span class="joinButton btn btn-success" data-id="@item.Id"><span class="">@Resources.Resource.Join</span><span class="hidenText">@Resources.Resource.DriverIsHere</span></span>
 				}
 			</div>
+			<ul></ul>
 		</li>
 	}
 </ul>
