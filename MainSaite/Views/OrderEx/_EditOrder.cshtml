@@ -13,8 +13,15 @@
 			@Html.Label(Resources.Resource.OrderTime)
 		</td>
 		<td>
-			@Html.TextBoxFor(x => Model.OrderTime, new { @required = true, @minlength = "4" })
-			@Html.ValidationMessageFor(x => x.OrderTime)
+			@if (Model.Status == Common.Enum.OrderStatusEnum.NotApproved)
+			{
+				@Html.TextBoxFor(x => Model.OrderTime, new { @required = true, @minlength = "3" })
+				@Html.ValidationMessageFor(x => x.OrderTime)
+			}
+			else
+			{
+				@Html.DisplayFor(x => Model.OrderTime)
+			}
 		</td>
 	</tr>
 	@if (Model.AddressFrom != null)
@@ -24,8 +31,15 @@
 				@Html.Label(Resources.Resource.Address)
 			</td>
 			<td>
-				@Html.TextBoxFor(x => Model.AddressFrom.Address, new { @required = true, @minlength = "4" })
-				@Html.ValidationMessageFor(x => x.AddressFrom.Address)
+				@if (Model.Status == Common.Enum.OrderStatusEnum.NotApproved)
+				{
+					@Html.TextBoxFor(x => Model.AddressFrom.Address, new { @required = true, @minlength = "8" })
+					@Html.ValidationMessageFor(x => x.AddressFrom.Address)
+				}
+				else
+				{
+					@Html.DisplayFor(x => Model.AddressFrom.Address)
+				}
 			</td>
 		</tr>
    if (!string.IsNullOrEmpty(Model.AddressFrom.Building) && !string.IsNullOrEmpty(Model.AddressFrom.Entrance) && !string.IsNullOrEmpty(Model.AddressFrom.Note))
@@ -35,8 +49,15 @@
 				@Html.Label(Resources.Resource.Building)
 			</td>
 			<td>
-				@Html.TextBoxFor(x => Model.AddressFrom.Building, new { @required = true, @minlength = "1" })
-				@Html.ValidationMessageFor(x => x.AddressFrom.Building)
+				@if (Model.Status == Common.Enum.OrderStatusEnum.NotApproved)
+				{
+					@Html.TextBoxFor(x => Model.AddressFrom.Building, new { @required = true, @minlength = "1" })
+					@Html.ValidationMessageFor(x => x.AddressFrom.Building)
+				}
+				else
+				{
+					@Html.DisplayFor(x => Model.AddressFrom.Building)
+				}
 			</td>
 		</tr>
 		<tr>
@@ -44,8 +65,15 @@
 				@Html.Label(Resources.Resource.Entrance)
 			</td>
 			<td>
-				@Html.TextBoxFor(x => Model.AddressFrom.Entrance, new { @required = true, @minlength = "1" })
-				@Html.ValidationMessageFor(x => x.AddressFrom.Entrance)
+				@if (Model.Status == Common.Enum.OrderStatusEnum.NotApproved)
+				{
+					@Html.TextBoxFor(x => Model.AddressFrom.Entrance, new { @required = true, @minlength = "1" })
+					@Html.ValidationMessageFor(x => x.AddressFrom.Entrance)
+				}
+				else
+				{
+					@Html.DisplayFor(x => Model.AddressFrom.Entrance)
+				}
 			</td>
 		</tr>
 		<tr>
@@ -71,14 +99,30 @@
 	{
 		<tr>
 			<td>
-				@Html.Label(Resources.Resource.Address + (i + 1))
+				@Html.Label(Resources.Resource.Address+" "+ (i + 1))
 			</td>
 			<td>
                @if (!string.IsNullOrEmpty(Model.AddressesTo[i].Address)) { 
-				@Html.TextBoxFor(x => Model.AddressesTo[i].Address, new { @required = true, @minlength = "3" })
+				   if (Model.Status == Common.Enum.OrderStatusEnum.NotApproved)
+				   {
+					@Html.TextBoxFor(x => Model.AddressesTo[i].Address, new { @required = true, @minlength = "3" })
+					@Html.ValidationMessageFor(x => Model.AddressesTo[i].Address)
+				   }
+				   else
+				   {
+					@Html.DisplayFor(x => Model.AddressesTo[i].Address)
+				   }
 			   }
 				@if (!string.IsNullOrEmpty(Model.AddressesTo[i].Building)) { 
-				   @Html.TextBoxFor(x => Model.AddressesTo[i].Building, new { @required = true, @minlength = "1" })
+		if (Model.Status == Common.Enum.OrderStatusEnum.NotApproved)
+		{
+			@Html.TextBoxFor(x => Model.AddressesTo[i].Building, new { @required = true, @minlength = "3" })
+			@Html.ValidationMessageFor(x => Model.AddressesTo[i].Building)
+		}
+		else
+		{
+			@Html.DisplayFor(x => Model.AddressesTo[i].Building)
+		}
 				}
 			</td>
 		</tr>
@@ -99,15 +143,22 @@
 					@Html.Label(Resources.Resource.Passengers)
 				</td>
 				<td>
-					@Html.TextBoxFor(x => Model.AdditionallyRequirements.Passengers, new { @required = true, @minlength = "0" })
-					@Html.ValidationMessageFor(x => Model.AdditionallyRequirements.Passengers)
+					@if (Model.Status == Common.Enum.OrderStatusEnum.NotApproved)
+					{
+						@Html.TextBoxFor(x => Model.AdditionallyRequirements.Passengers, new { @required = true, @minlength = "1" })
+						@Html.ValidationMessageFor(x => x.AdditionallyRequirements.Passengers)
+					}
+					else
+					{
+						@Html.DisplayFor(x => Model.AdditionallyRequirements.Passengers)
+					}
 				</td>
 			</tr>
 			<tr>
 				<td>@Html.Label(Resources.Resource.ClassOfCar)</td>
 				<td>
 					@Html.DropDownListFor(x => Model.AdditionallyRequirements.Car,
-				new SelectList(Enum.GetValues(typeof(Common.Enum.CarEnums.CarClassEnum))))
+					new SelectList(Enum.GetValues(typeof(Common.Enum.CarEnums.CarClassEnum))), htmlAttributes: (Model.Status == Common.Enum.OrderStatusEnum.NotApproved)? null : new { @disabled = "disabled"})
 				</td>
 			</tr>
 			<tr>
@@ -116,39 +167,39 @@
 					<div id="requirements">
 						<ul>
 							<li>
-								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.Bag)
+								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.Bag, htmlAttributes: (Model.Status == Common.Enum.OrderStatusEnum.NotApproved) ? null : new { @disabled = "disabled" })
 								@Html.Label(Resources.Resource.WithBaggage)
 							</li>
 							<li>
-								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.Conditioner)
+								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.Conditioner, htmlAttributes: (Model.Status == Common.Enum.OrderStatusEnum.NotApproved) ? null : new { @disabled = "disabled" })
 								@Html.Label(Resources.Resource.Conditioner)
 							</li>
 							<li>
-								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.Courier)
+								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.Courier, htmlAttributes: (Model.Status == Common.Enum.OrderStatusEnum.NotApproved) ? null : new { @disabled = "disabled" })
 								@Html.Label(Resources.Resource.Courier)
 							</li>
 							<li>
-								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.MyCar)
+								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.MyCar, htmlAttributes: (Model.Status == Common.Enum.OrderStatusEnum.NotApproved) ? null : new { @disabled = "disabled" })
 								@Html.Label(Resources.Resource.MyCar)
 							</li>
 							<li>
-								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.NoSmoking)
+								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.NoSmoking, htmlAttributes: (Model.Status == Common.Enum.OrderStatusEnum.NotApproved) ? null : new { @disabled = "disabled" })
 								@Html.Label(Resources.Resource.NoSmoking)
 							</li>
 							<li>
-								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.English)
+								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.English, htmlAttributes: (Model.Status == Common.Enum.OrderStatusEnum.NotApproved) ? null : new { @disabled = "disabled" })
 								@Html.Label(Resources.Resource.WithEnglish)
 							</li>
 							<li>
-								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.Pets)
+								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.Pets, htmlAttributes: (Model.Status == Common.Enum.OrderStatusEnum.NotApproved)? null : new { @disabled = "disabled"})
 								@Html.Label(Resources.Resource.WithPets)
 							</li>
 							<li>
-								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.Smoking)
+								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.Smoking, htmlAttributes: (Model.Status == Common.Enum.OrderStatusEnum.NotApproved)? null : new { @disabled = "disabled"})
 								@Html.Label(Resources.Resource.Smoking)
 							</li>
 							<li>
-								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.Urgently)
+								@Html.CheckBoxFor(m => Model.AdditionallyRequirements.Urgently, htmlAttributes: (Model.Status == Common.Enum.OrderStatusEnum.NotApproved)? null : new { @disabled = "disabled"})
 								@Html.Label(Resources.Resource.Urgently)
 							</li>
 						</ul>
@@ -168,7 +219,7 @@
 				@Html.Label(Resources.Resource.YourName)
 			</td>
 			<td>
-				@Html.DisplayFor(x => Model.Name, new { @required = true, @minlength = "2" })
+				@Html.DisplayFor(x => Model.Name, new { @required = true, @minlength = "3" })
 			</td>
 		</tr>
 		<tr>
@@ -190,8 +241,15 @@
 				@Html.Label(Resources.Resource.Driver)
 			</td>
 			<td>
-				@Html.TextBoxFor(x => Model.DriverId, new { @required = true, @minlength = "1" })
-				@Html.ValidationMessageFor(x => x.DriverId)
+				@if (Model.Status == Common.Enum.OrderStatusEnum.NotApproved)
+				{
+					@Html.TextBoxFor(x => Model.DriverId, new { @required = true, @minlength = "4" })
+					@Html.ValidationMessageFor(x => x.DriverId)
+				}
+				else
+				{
+					@Html.DisplayFor(x => Model.DriverId)
+				}
 			</td>
 		</tr>
 		@if (Model.CarId != null)
@@ -201,8 +259,15 @@
 					@Html.Label(@Resources.Resource.Car_Number)
 				</td>
 				<td>
-					@Html.TextBoxFor(x => Model.CarId, new { @required = true, @minlength = "1" })
-					@Html.ValidationMessageFor(x => x.CarId)
+					@if (Model.Status == Common.Enum.OrderStatusEnum.NotApproved)
+					{
+						@Html.TextBoxFor(x => Model.CarId, new { @required = true, @minlength = "3" })
+						@Html.ValidationMessageFor(x => x.CarId)
+					}
+					else
+					{
+						@Html.DisplayFor(x => Model.CarId)
+					}
 				</td>
 			</tr>
 		}
@@ -215,8 +280,14 @@
 			@Html.Label(Resources.Resource.WaitingTime)
 		</td>
 		<td>
-			@Html.TextBoxFor(x => Model.WaitingTime, new { @required = true, @minlength = "1" })
-			@Html.ValidationMessageFor(x => x.WaitingTime)
+			@if (Model.Status == Common.Enum.OrderStatusEnum.NotApproved) { 
+			   @Html.TextBoxFor(x => Model.WaitingTime, new { @required = true, @minlength = "1" })
+			   @Html.ValidationMessageFor(x => x.WaitingTime)
+			}
+            else
+            {
+	           @Html.DisplayFor(x => Model.WaitingTime)
+            }
 		</td>
 	</tr>
 	<tr>
@@ -224,8 +295,14 @@
 			@Html.Label(Resources.Resource.Price)
 		</td>
 		<td>
-			@Html.TextBoxFor(x => Model.Price, new { @required = true, @minlength = "2" })
+			@if (Model.Status == Common.Enum.OrderStatusEnum.NotApproved) {
+			@Html.TextBoxFor(x => Model.Price, new { @required = true, @minlength = "1" })
 			@Html.ValidationMessageFor(x => x.Price)
+			}
+			else
+			{
+			   @Html.DisplayFor(x => Model.Price)
+			}
 		</td>
 	</tr>
 	<tr>
@@ -233,8 +310,14 @@
 			@Html.Label(Resources.Resource.Perquisite)
 		</td>
 		<td>
-			@Html.TextBoxFor(x => Model.Perquisite, new { @required = true, @minlength = "1" })
-			@Html.ValidationMessageFor(x => x.Perquisite)
+			@if (Model.Status == Common.Enum.OrderStatusEnum.NotApproved) {
+			   @Html.TextBoxFor(x => Model.Perquisite, new { @required = true, @minlength = "1" })
+			   @Html.ValidationMessageFor(x => x.Perquisite)
+			}
+			else
+			{
+			   @Html.DisplayFor(x => Model.Perquisite)
+			}
 		</td>
 	</tr>
 </table>

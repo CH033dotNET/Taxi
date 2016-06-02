@@ -38,39 +38,36 @@
 											</button>
 											<ul class="dropdown-menu">
 												{{#ifCond OwnerId UserId}}
-												<li>
+												<li id="order-dropdown">
 													<a href="#"
 													   data-cars-id="{{Id}}"
 													   role="button" onclick="carController.getCarEdit(this)">
 														<span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString
 													</a>
 												</li>
-												<li role="separator" class="divider"></li>
 												{{/ifCond}}
 												{{#ifCond OwnerId UserId}}
-												<li>
+												<li id="order-dropdown">
 													<a href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" role="button" onclick="carController.deleteCar(this)">
 														<span class="glyphicon glyphicon-trash" aria-hidden="true">&nbsp;</span>@Resources.Resource.deleteString
 													</a>
 												</li>
-												<li role="separator" class="divider"></li>
 												{{/ifCond}}
-												<li>
+												<li id="order-dropdown">
 													<a href="#"
 													   data-cars-id="{{Id}}"
 													   role="button" onclick="carController.getCarDetails(this)">
 														<span class="glyphicon glyphicon-file" aria-hidden="true">&nbsp;</span>@Resources.Resource.CarsDetails
 													</a>
 												</li>
-												<li role="separator" class="divider"></li>
 												{{#ifCond OwnerId UserId}}
-												<li>
+												<li id="order-dropdown">
 													<a href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" role="button" onclick="carController.giveCar(this)">
 														<span class="glyphicon glyphicon-user" aria-hidden="true">&nbsp;</span>@Resources.Resource.ChangeDriver
 													</a>
 												</li>
 												{{else}}
-												<li>
+												<li id="order-dropdown">
 													<a href="#" data-cars-id="{{Id}}" data-cars-name="{{CarName}}" data-cars-owner="{{OwnerId}}" role="button" onclick="carController.returnCar(this)">
 														<span class="glyphicon glyphicon-user" aria-hidden="true">&nbsp;</span>@Resources.Resource.Return
 													</a>

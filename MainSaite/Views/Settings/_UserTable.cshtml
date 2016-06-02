@@ -15,7 +15,7 @@
 	{
 		<tr>
 			@Html.Partial("_ShowUser", i)
-			<td>
+			<td id="userListEdit">
 				@Ajax.ActionLink(Resources.Resource.editString, "ChangeMenu", new { id = i.Id },
 		 new AjaxOptions
 		 {

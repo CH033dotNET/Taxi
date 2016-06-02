@@ -4,16 +4,16 @@
 <div class="modal fade" id="details-car-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header modal-header-info">
+			<div class="modal-header modal-header-info" id="modalHeader">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 				</button>
 				<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-file" aria-hidden="true">&nbsp;</span>@Resources.Resource.CarsDetails</h4>
 			</div>
 
-			<div class="modal-body">
+			<div class="modal-body" id="modalBody">
 				@Html.AntiForgeryToken()
-				<table class="table table-hover">
+				<table class="table">
 					<tr>
 						<td class="td-ench"><label class="control-label">@Resources.Resource.CarName</label></td>
 						<td class="td-ench">
@@ -70,8 +70,8 @@
 					</tr>
 				</table>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-info" data-dismiss="modal">
+			<div class="modal-footer" id="modalFooter">
+				<button type="button" class="btn btn-success" data-dismiss="modal">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true">&nbsp;</span>@Resources.Resource.cancelButton
 				</button>
 			</div>

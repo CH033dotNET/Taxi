@@ -26,7 +26,7 @@ namespace MainSaite.Controllers
 
 		public ActionResult Index()
 		{
-			if(Session["Culture"]==null)
+			if(Session["Culture"] == null)
 			   Session["Culture"] = "en-us";
 
 			ViewBag.News = newsManager.GetLatestNews(4);

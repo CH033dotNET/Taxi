@@ -128,6 +128,14 @@
 /* CHAT END */
 
 /*Order button and order  window style*/
+.regTable tr td:nth-child(2){
+	    width: 215px;
+}
+#userListEdit a{
+	padding: 7px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
 #order-dropdown {
 	background: linear-gradient(rgb(231, 231, 231), #DCDCDC);
     padding: 14px;
@@ -317,7 +325,7 @@
 		color:white;
 	}
 
-	input{
+	input, textarea{
 	background: rgba(255, 255, 255, 0.18);
     border: none;
     border-bottom: 2px solid #FFCA1C;
@@ -467,6 +475,7 @@
 	body {
 		background-image: url("/Content/Picture/Redesign/background.jpg");
 		background-size: cover;
+		    background-size: 100%;
 	}
 
 	#mainContainer {
@@ -564,7 +573,23 @@
 	#navBarBtn a:hover{
 		  color:white;
 		  text-shadow: 0 1px 0 #292929;
+	}
+	#navBarBtn.activeMenu{
+		background: linear-gradient(rgb(204, 204, 204), #8C8C8C);
+		border-color: rgb(113, 113, 113);
+	}
+	#navBarBtn.activeMenu a{
+		color: white;
+        text-shadow: 0 1px 0 #292929;
+	}
 
+    #sideMenu.activeMenu {
+		min-height:60px;
+		background: linear-gradient(rgb(204, 204, 204), #8C8C8C);
+	}
+	#sideMenu.activeMenu a {
+		color:white;
+	    text-shadow: 0 1px 0 #292929;
 	}
 }
 
@@ -590,16 +615,16 @@
 		display:none;
 	}
 
-	#sideMenu.active {
+	#sideMenu.activeMenu {
 		background:#C5C5C5;
 	}
 
-	#mainBtns.active {
+	#mainBtns.activeMenu {
 		background-color: grey;
 		box-shadow: 0 2px #666;
 	}
 
-	#sideMenu.active a {
+	#sideMenu.activeMenu a {
 		color: black;
 	}
 
@@ -615,7 +640,9 @@
 			font-size: 20px;
 			font-weight: bold;
 		}
-
+		#sideMenu > a:hover{
+						background-color: #868686;
+		}
 	#dashBtnIcon {
 		background-color: black;
 	}
@@ -726,17 +753,16 @@
 
 /* News Editor */
 .newsEditor #toolbar {
-	border: 1px solid #e5e5e5;
 	margin: 20px auto;
 	box-shadow: 2px 1px 5px rgba(0,0,0,0.2);
-	background-color: #e5e5e5;
 }
 .newsEditor #editor {
 	margin: 20px auto;
 	box-shadow: 2px 1px 5px rgba(0,0,0,0.2);
-	border: 1px solid #e5e5e5;
+	border: 1px solid rgba(255, 202, 28, 0.36);
 	height: 400px;
-	background-color: #e5e5e5;
+	color:white;
+	    background-color: #363636;
 }
 
 /* Best users*/

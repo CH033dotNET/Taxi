@@ -183,7 +183,7 @@ namespace BAL.Manager
 
 			user.Role = role;
 			user.RoleId = role.Id;
-
+			user.RegistrationDate = DateTime.Now;
 			var temp = Mapper.Map<User>(user);
 
 			 uOW.UserRepo.Insert(temp);

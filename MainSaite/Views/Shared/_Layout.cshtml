@@ -67,7 +67,7 @@
 									{ 
 										<li id="navBarBtn">@Html.ActionLink(@Resources.Resource.Home.ToUpper(), "Index", "Home")</li>
 									
-										<li id="navBarBtn">@Html.ActionLink(@Resources.Resource.AboutUs.ToUpper(), "Index", "Home")</li>
+										<li id="navBarBtn">@Html.ActionLink(@Resources.Resource.AboutUs.ToUpper(), "Index", "")</li>
 										<li id="navBarBtn">@Html.ActionLink(Resources.Resource.SingUp.ToUpper(), "Registration", "Account")</li>
 										<li id="navBarBtn">@Html.ActionLink(Resources.Resource.Login.ToUpper(), "Authentification", "Account")</li>
 									}
@@ -97,7 +97,8 @@
 
 			<div class=" btn-group btn-group-justified" id="mobileBtnsList">
 				<a href="/Account/Authentification" class="btn btn-primary" id="mainBtns"><img src="~/Content/Picture/SmartPhonePictures/userLogo.png" id="menuImage" /></a>
-				<a href="/Home/OrderTaxi" class="btn btn-primary" id="mainBtns"><img src="~/Content/Picture/SmartPhonePictures/taxiLogo.png" id="menuImage" /></a>
+				<a href="/Home/OrderTaxi" class="btn btn-primary" id="mainBtns"><img src="~/Content/Picture/SmartPhonePictures/mapOrder.png" id="menuImage" /></a>
+				<a href="/Home/OrderForm" class="btn btn-primary" id="mainBtns"><img src="~/Content/Picture/SmartPhonePictures/taxiLogo.png" id="menuImage" /></a>
 			</div>
 			<button class="navbar-toggle " data-toggle="collapse" data-target=".dropdownMenu" id="dropdownMenuBtn">
 				<a href="/Home/Index"> <img src="@Url.Content("~/Content/Picture/SmartPhonePictures/SiteLogo.png")" id="siteLogoImage" /> </a>

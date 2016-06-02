@@ -82,11 +82,9 @@ $(document).ready(function () {
 
 	$("#passwordInput").val("password");
 
-	if ($(window).width() <= 768) {
-		$('ul.nav a[href="' + url + '"]').parent().addClass('active');
+		$('ul.nav a[href="' + url + '"]').parent().addClass('activeMenu');
 
-		$('#mobileBtnsList a[href="' + url + '"]').addClass('active');
-	}
+		$('#mobileBtnsList a[href="' + url + '"]').addClass('activeMenu');
 
 });
 

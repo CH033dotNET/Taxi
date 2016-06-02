@@ -4,50 +4,50 @@
 <div class="modal fade" id="edit-car-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header modal-header-warning">
+			<div class="modal-header modal-header-warning" id="modalHeader">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 				</button>
 				<h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-cog" aria-hidden="true">&nbsp;</span>@Resources.Resource.editString</h4>
 			</div>
 
-			<div class="modal-body">
+			<div class="modal-body" id="modalBody">
 				@Html.AntiForgeryToken()
 				<form data-toggle="validator" role="form" id="edit-car-form" method="post" autocomplete="off">
-					<table class="table table-hover">
+					<table class="table newTableStyle">
 						<tr class="form-group">
 							<td class="td-ench"><label class="control-label">@Resources.Resource.CarName</label></td>
 							<td>
 								<input id="newInputCarId" value="" hidden>
-								<input type="text" class="form-control input-lg" id="newInputCarName" name="CarName" placeholder="@Resources.Resource.CarName" data-delay="150" minlength="2" maxlength="20" pattern="^[A-Z]{1}[a-z]{1,10}[ ]{0,1}([A-Z]{1}[a-z]{2,10}){0,1}" data-error="@Resources.Resource.CarNameError" value="" required>
+								<input type="text" class="input-lg" id="newInputCarName" name="CarName" placeholder="@Resources.Resource.CarName" data-delay="150" minlength="2" maxlength="20" pattern="^[A-Z]{1}[a-z]{1,10}[ ]{0,1}([A-Z]{1}[a-z]{2,10}){0,1}" data-error="@Resources.Resource.CarNameError" value="" required>
 								<span class="help-block with-errors"></span>
 							</td>
 						</tr>
 						<tr class="form-group">
 							<td class="td-ench"><label class="control-label">@Resources.Resource.CarNickName</label></td>
 							<td>
-								<input type="text" class="form-control input-lg" id="newInputCarNickName" name="CarNickName" placeholder="@Resources.Resource.CarNickName" pattern="^[0-9]*$" minlength="2" maxlength="4" data-error="@Resources.Resource.CarNickNameError" value="" required autocomplete="off" />
+								<input type="text" class="input-lg" id="newInputCarNickName" name="CarNickName" placeholder="@Resources.Resource.CarNickName" pattern="^[0-9]*$" minlength="2" maxlength="4" data-error="@Resources.Resource.CarNickNameError" value="" required autocomplete="off" />
 								<span class="help-block with-errors"></span>
 							</td>
 						</tr>
 						<tr class="form-group">
 							<td class="td-ench"><label class="control-label">@Resources.Resource.CarNumber</label></td>
 							<td>
-								<input type="text" class="form-control input-lg" id="newInputCarNumber" name="CarNumber" placeholder="@Resources.Resource.CarNumber" data-delay="150" minlength="4" maxlength="8" pattern="[A-Z]{2}\d{4}[A-Z]{2}" data-error="@Resources.Resource.CarNumberError" value="" required>
+								<input type="text" class="input-lg" id="newInputCarNumber" name="CarNumber" placeholder="@Resources.Resource.CarNumber" data-delay="150" minlength="4" maxlength="8" pattern="[A-Z]{2}\d{4}[A-Z]{2}" data-error="@Resources.Resource.CarNumberError" value="" required>
 								<span class="help-block with-errors"></span>
 							</td>
 						</tr>
 						<tr class="form-group">
 							<td class="td-ench"><label class="control-label">@Resources.Resource.CarOccupation</label></td>
 							<td>
-								<input type="number" class="form-control input-lg" id="newInputCarOccupation" name="CarOccupation" min="2" max="20" data-delay="150" data-error="@Resources.Resource.CarOccupError" placeholder="@Resources.Resource.CarOccupation" value="" required>
+								<input type="number" class="input-lg" id="newInputCarOccupation" name="CarOccupation" min="2" max="20" data-delay="150" data-error="@Resources.Resource.CarOccupError" placeholder="@Resources.Resource.CarOccupation" value="" required>
 								<span class="help-block with-errors"></span>
 							</td>
 						</tr>
 						<tr>
 							<td class="td-ench"><label class="control-label">@Resources.Resource.CarClass</label></td>
-							<td>
-								<select class="form-control input-lg" name="CarClass" id="newInputCarClass">
+							<td class="btform">
+								<select class=" input-lg" name="CarClass" id="newInputCarClass">
 									@foreach (var carClass in EnumHelper.GetCarClasses())
 									{
 										<option value="@carClass.Key">@carClass.Value</option>
@@ -57,8 +57,8 @@
 						</tr>
 						<tr>
 							<td class="td-ench"><label class="control-label">@Resources.Resource.CarPetrolType</label></td>
-							<td>
-								<select class="form-control input-lg" name="CarPetrolType" id="newInputCarPetrolType">
+							<td class="btform">
+								<select class=" input-lg" name="CarPetrolType" id="newInputCarPetrolType">
 									@foreach (var carPetrol in EnumHelper.GetCarPetrol())
 									{
 										<option value="@carPetrol.Key">@carPetrol.Value</option>
@@ -69,14 +69,14 @@
 						<tr class="form-group">
 							<td class="td-ench"><label class="control-label">@Resources.Resource.CarPetrolConsumption</label></td>
 							<td>
-								<input type="number" class="form-control input-lg" id="newInputCarPetrolConsumption" name="CarPetrolConsumption" min="1" max="100" data-delay="150" data-error="@Resources.Resource.CarPCError" placeholder="@Resources.Resource.CarPetrolConsumption" value="" required>
+								<input type="number" class="input-lg" id="newInputCarPetrolConsumption" name="CarPetrolConsumption" min="1" max="100" data-delay="150" data-error="@Resources.Resource.CarPCError" placeholder="@Resources.Resource.CarPetrolConsumption" value="" required>
 								<span class="help-block with-errors"></span>
 							</td>
 						</tr>
 						<tr class="form-group">
 							<td class="td-ench"><label class="control-label">@Resources.Resource.CarManufactureDate</label></td>
 							<td>
-								<input type='text' class="form-control input-lg bootstrap-datetimepicker-widget" id='datetimepicker1' name="CarManufactureDate" placeholder="@Resources.Resource.CarManufactureDate"
+								<input type='text' class="input-lg bootstrap-datetimepicker-widget" id='datetimepicker1' name="CarManufactureDate" placeholder="@Resources.Resource.CarManufactureDate"
 									   pattern="^((0?[13578]|10|12)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))$"
 									   maxlength="10" data-delay="150" data-error="@Resources.Resource.CarMDError" value="" required>
 								<span class="help-block with-errors"></span>
@@ -84,8 +84,8 @@
 						</tr>
 						<tr>
 							<td class="td-ench"><label class="control-label">@Resources.Resource.CarState</label></td>
-							<td>
-								<select class="form-control input-lg" name="CarState" id="newInputCarState">
+							<td class="btform">
+								<select class="input-lg" name="CarState" id="newInputCarState">
 									@foreach (var carState in EnumHelper.GetCarStates())
 									{
 										<option value="@carState.Key">@carState.Value</option>
@@ -97,8 +97,8 @@
 				</form>
 			</div>
 
-			<div class="modal-footer">
-				<button type="button" class="btn btn-warning" data-dismiss="modal">
+			<div class="modal-footer" id="modalFooter">
+				<button type="button" class="btn btn-success warning" data-dismiss="modal">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true">&nbsp;</span>@Resources.Resource.cancelButton
 				</button>
 				<button form="edit-car-form" role="button" type="button" class="btn btn-success" onclick="editCarFormValidate();">
