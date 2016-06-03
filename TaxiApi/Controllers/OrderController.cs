@@ -12,6 +12,7 @@ namespace TaxiApi.Controllers
 {
     public class OrderController : ApiController
     {
+		readonly log4net.ILog LOGGER = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
 		private readonly IOrderManagerEx orderManager;
 
@@ -26,18 +27,33 @@ namespace TaxiApi.Controllers
 			var adrs = new AddressFromDTO();
 			adrs.Address = address;
 			newOrder.AddressFrom = adrs;
-
-			var result = orderManager.AddOrder(newOrder);
-			return Json(result);
-
+			OrderExDTO result;
+			try
+			{
+				result =  orderManager.AddOrder(newOrder);
+				LOGGER.Info("Order with id :{ " + result.Id + " } was created");
+				return Json(result);
+			}
+			catch
+			{
+				LOGGER.Error("An error ocurred while adding order");
+			}
+			return Json("error");
 		}
 
 		[HttpGet]
 		public IHttpActionResult GetOrderStatus(int order_id) {
 			try {
 				var result = orderManager.GetById(order_id);
+
+				LOGGER.Info("Order with id: { " + result.Id + " } was requested, current status:"+result.Status);
+
 				return Json(result.Status);
+
 			} catch {
+
+				LOGGER.Error("An error ocurred while requesting order with id: { "+order_id+" }");
+
 				return Json("No order with this id");
 			}
 			
