@@ -24,20 +24,9 @@ namespace WindowsFormsApiApplication.Forms
 			InitializeComponent();
 		}
 
-		private async void loginButton_Click(object sender, EventArgs e)
+		private void loginButton_Click(object sender, EventArgs e)
 		{
-			var login = loginTextBox.Text;
-			var password = PasswordTextBox.Text;
-			Result = await RequestHelper.Get<UserDTO>(string.Format("api/User/Login?login={0}&password={1}", login, password));
-			if (Result == null)
-			{
-				MessageBox.Show("Invalid login or password");
-			}
-			else
-			{
-				this.DialogResult = DialogResult.OK;
-			}
-
+			LogIN();
 		}
 
 		private void exitButton_Click(object sender, EventArgs e)
@@ -50,6 +39,39 @@ namespace WindowsFormsApiApplication.Forms
 			if (Result == null)
 				Application.Exit();
 			this.DialogResult = DialogResult.Cancel;
+		}
+
+		private void loginTextBox_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			checkEnterPress(e);
+		}
+		private void PasswordTextBox_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			checkEnterPress(e);
+		}
+		private void checkEnterPress(KeyPressEventArgs e)
+		{
+			if (e.KeyChar == (char)13)
+			{
+				if (!string.IsNullOrEmpty(loginTextBox.Text) && !string.IsNullOrEmpty(PasswordTextBox.Text))
+				{
+					LogIN();
+				}
+			}
+		}
+		private async void LogIN()
+		{
+			var login = loginTextBox.Text;
+			var password = PasswordTextBox.Text;
+			Result = await RequestHelper.Get<UserDTO>(string.Format("api/User/Login?login={0}&password={1}", login, password));
+			if (Result == null)
+			{
+				MessageBox.Show("Invalid login or password");
+			}
+			else
+			{
+				this.DialogResult = DialogResult.OK;
+			}
 		}
 	}
 }

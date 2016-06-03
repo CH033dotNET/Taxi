@@ -35,9 +35,12 @@
 			// 
 			// logOutButton
 			// 
-			this.logOutButton.Location = new System.Drawing.Point(524, 12);
+			this.logOutButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.logOutButton.Font = new System.Drawing.Font("Consolas", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.logOutButton.Location = new System.Drawing.Point(49, 179);
 			this.logOutButton.Name = "logOutButton";
-			this.logOutButton.Size = new System.Drawing.Size(75, 23);
+			this.logOutButton.Size = new System.Drawing.Size(238, 46);
 			this.logOutButton.TabIndex = 0;
 			this.logOutButton.Text = "LogOut";
 			this.logOutButton.UseVisualStyleBackColor = true;
@@ -45,19 +48,25 @@
 			// 
 			// CreateOrderFormBtn
 			// 
-			this.CreateOrderFormBtn.Location = new System.Drawing.Point(13, 13);
+			this.CreateOrderFormBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.CreateOrderFormBtn.Font = new System.Drawing.Font("Consolas", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.CreateOrderFormBtn.Location = new System.Drawing.Point(49, 12);
 			this.CreateOrderFormBtn.Name = "CreateOrderFormBtn";
-			this.CreateOrderFormBtn.Size = new System.Drawing.Size(101, 23);
+			this.CreateOrderFormBtn.Size = new System.Drawing.Size(238, 46);
 			this.CreateOrderFormBtn.TabIndex = 1;
-			this.CreateOrderFormBtn.Text = "Create Order";
+			this.CreateOrderFormBtn.Text = "Order Taxi";
 			this.CreateOrderFormBtn.UseVisualStyleBackColor = true;
 			this.CreateOrderFormBtn.Click += new System.EventHandler(this.CreateOrderFormBtn_Click);
 			// 
 			// GetOrderStatusFormBtn
 			// 
-			this.GetOrderStatusFormBtn.Location = new System.Drawing.Point(13, 43);
+			this.GetOrderStatusFormBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.GetOrderStatusFormBtn.Font = new System.Drawing.Font("Consolas", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.GetOrderStatusFormBtn.Location = new System.Drawing.Point(29, 97);
 			this.GetOrderStatusFormBtn.Name = "GetOrderStatusFormBtn";
-			this.GetOrderStatusFormBtn.Size = new System.Drawing.Size(101, 23);
+			this.GetOrderStatusFormBtn.Size = new System.Drawing.Size(277, 46);
 			this.GetOrderStatusFormBtn.TabIndex = 2;
 			this.GetOrderStatusFormBtn.Text = "Get Order Status";
 			this.GetOrderStatusFormBtn.UseVisualStyleBackColor = true;
@@ -67,12 +76,13 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(620, 295);
+			this.BackColor = System.Drawing.Color.LightGray;
+			this.ClientSize = new System.Drawing.Size(338, 237);
 			this.Controls.Add(this.GetOrderStatusFormBtn);
 			this.Controls.Add(this.CreateOrderFormBtn);
 			this.Controls.Add(this.logOutButton);
 			this.Name = "MainForm";
-			this.Text = "MainForm";
+			this.Text = "EasyTaxi";
 			this.ResumeLayout(false);
 
 		}
