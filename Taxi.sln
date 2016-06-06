@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApiApplication"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxiApi", "TaxiApi\TaxiApi.csproj", "{C1C03F14-2E97-4614-9482-A89FB73FA782}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestTaxiApi", "UnitTestTaxiApi\UnitTestTaxiApi.csproj", "{D9DF1FD6-729B-4A56-8476-F6AD750FCE13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{C1C03F14-2E97-4614-9482-A89FB73FA782}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1C03F14-2E97-4614-9482-A89FB73FA782}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1C03F14-2E97-4614-9482-A89FB73FA782}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9DF1FD6-729B-4A56-8476-F6AD750FCE13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9DF1FD6-729B-4A56-8476-F6AD750FCE13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9DF1FD6-729B-4A56-8476-F6AD750FCE13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9DF1FD6-729B-4A56-8476-F6AD750FCE13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

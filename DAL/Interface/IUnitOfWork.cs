@@ -36,9 +36,9 @@ namespace DAL.Interface
 		IGenericRepository<OrderEx> OrderExRepo { get; }
 		IGenericRepository<CoordinatesEx> CoordinatesExRepo { get; }
 		IGenericRepository<TariffEx> TariffExRepo { get; }
-		//IGenericRepository<AdditionallyRequirements> additionallyRequirementsRepo { get; }
-		//IGenericRepository<AddressFrom> addressFromRepo { get; }
-		//IGenericRepository<AddressTo> addressToRepo { get; }
+		IGenericRepository<AdditionallyRequirements> AdditionallyRequirementsRepo { get; }
+		IGenericRepository<AddressFrom> AddressFromRepo { get; }
+		IGenericRepository<AddressTo> AddressToRepo { get; }
 		IGenericRepository<Feedback> FeedbackRepo { get; }
 		IGenericRepository<News> NewsRepo { get; }
 
