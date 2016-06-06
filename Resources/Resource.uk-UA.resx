@@ -372,7 +372,7 @@
   <data name="OrderTaxi" xml:space="preserve">
     <value>Замовити Таксі</value>
   </data>
-  <data name="SingUp" xml:space="preserve">
+  <data name="SignUp" xml:space="preserve">
     <value>Регістр</value>
   </data>
   <data name="UserId" xml:space="preserve">

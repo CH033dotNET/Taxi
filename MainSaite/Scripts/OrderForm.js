@@ -1,5 +1,8 @@
 $(function () {
 
+	var userId = null;
+	var tariff = null;
+
 	$('#additional').hide();
 	$('#hide').hide();
 	$('#load').hide();
@@ -10,14 +13,12 @@ $(function () {
 	$('#cost').html('+ 0.0');
 
 	if ($('#userId').length) {
-		var userId = {
-			id: $('#userId').val()
-		}
-		if (userId.id != "") {
+		userId = $('#userId').val();
+		if (userId) {
 			$.ajax({
 				url: '/Client/GetPerson',
-				type: "post",
-				data: userId,
+				type: 'POST',
+				data: {id: userId},
 				success: function (data) {
 					$('#name').val(data.FirstName);
 					$('#phone').val(data.Phone);
@@ -36,9 +37,11 @@ $(function () {
 		if (orderId) {
 			$.ajax({
 				url: '/Client/GetOrder/',
-				type: "POST",
+				type: 'POST',
 				data: { Id: orderId },
 				success: function (data) {
+					if (data.UserId != userId)
+						return;
 					switch (data.Status) {
 						case 2:
 						case 4:
@@ -73,6 +76,14 @@ $(function () {
 		}
 		else {
 			mainHub.server.connect("Client");
+		}
+	});
+
+	$.ajax({
+		url: '/Client/GetTariff',
+		type: 'POST',
+		success: function (data) {
+			tariff = data;
 		}
 	});
 
@@ -153,6 +164,22 @@ $(function () {
 			$(this).removeClass('input-error');
 			$(this).attr('placeholder', '');
 		}
+	});
+
+	$('#pre-order').change(function () {
+		calculateCost(tariff);
+	});
+
+	$('#urgently').change(function () {
+		calculateCost(tariff);
+	});
+
+	$('input[name="car-class"]').change(function () {
+		calculateCost(tariff);
+	});
+
+	$('.additional').change(function () {
+		calculateCost(tariff);
 	});
 
 	$('#submit-btn button').click(function () {
@@ -293,4 +320,29 @@ function deleteCookie(name) {
 	setCookie(name, "", {
 		expires: -1
 	})
+}
+
+function calculateCost(tariff) {
+	var cost = 0;
+	if (tariff) {
+		if ($('#pre-order').prop('checked'))
+			cost += tariff.PricePreOrder;
+		if ($('#universal').prop('checked'))
+			cost += tariff.PriceRegularCar;
+		if ($('#minivan').prop('checked'))
+			cost += tariff.PriceMinivanCar;
+		if ($('#lux').prop('checked'))
+			cost += tariff.PriceLuxCar;
+		if ($('#courier').prop('checked'))
+			cost += tariff.PriceCourierOption;
+		if ($('#with-plate').prop('checked'))
+			cost += tariff.PricePlateOption;
+		if ($('#my-car').prop('checked'))
+			cost += tariff.PriceClientCarOption;
+		if ($('#english').prop('checked'))
+			cost += tariff.PriceSpeakEnglishOption;
+		if ($('#smoking').prop('checked'))
+			cost += tariff.PricePassengerSmokerOption;
+	}
+	$('#cost').html('+ ' + cost.toFixed(1));
 }

@@ -17,15 +17,22 @@ namespace MainSaite.Controllers
 		private IPersonManager personManager;
 		private IFeedbackManager feedbackManager;
 		private IUserManager userManager;
+		private ITariffExManager tariffManager;
 
 		private static IHubContext Context = GlobalHost.ConnectionManager.GetHubContext<MainHub>();
 
-		public ClientController(IOrderManagerEx orderManager, IPersonManager personManager, IFeedbackManager feedbackManager, IUserManager userManager)
+		public ClientController(
+			IOrderManagerEx orderManager,
+			IPersonManager personManager,
+			IFeedbackManager feedbackManager,
+			IUserManager userManager,
+			ITariffExManager tariffManager)
 		{
 			this.orderManager = orderManager;
 			this.personManager = personManager;
 			this.feedbackManager = feedbackManager;
 			this.userManager = userManager;
+			this.tariffManager = tariffManager;
 		}
 
 		public ActionResult Index()
@@ -122,6 +129,12 @@ namespace MainSaite.Controllers
 		public void CancelOrder(int id)
 		{
 			orderManager.CancelOrder(id);
+		}
+
+		[HttpPost]
+		public JsonResult GetTariff()
+		{
+			return Json(tariffManager.GetStandardTariff());
 		}
 	}
 }

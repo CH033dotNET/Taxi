@@ -271,6 +271,7 @@
 #cost-group {
 	text-align: center;
 	margin-top: 15px;
+	padding-right: 20px;
 }
 
 #cost-group label {
@@ -284,6 +285,7 @@
 	height: 38px;
 	background-color: #eaeaea;
 	margin-left: 10px;
+	margin-right: 10px;
 	border-style: none;
 	border-radius: 20px;
 	display: inline-block;
