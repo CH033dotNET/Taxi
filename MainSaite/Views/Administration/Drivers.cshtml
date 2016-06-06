@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Model.DTO.PersonDTO>
+
+@{
+	ViewBag.Title = Resources.Resource.Drivers;
+}
+
+<link href="~/Content/Drivers.css" rel="stylesheet" />
+
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		<textarea id="message"></textarea>
+		<input id="message-btn" type="button" class="btn btn-success" value="@Resources.Resource.SendMessagesToDrivers" />
+	</div>
+	<div class="col-md-3"></div>
+</div>
+
+<div class="panel-body content-container">
+	<table class="table newTableStyle" id="drivers">
+		<tr>
+			<th id="driverId">@Resources.Resource.Id</th>
+			<th id="driverImage"></th>
+			<th id="driverName">@Resources.Resource.ShortName</th>
+			<th id="driverFullName">@Resources.Resource.FullName</th>
+		</tr>
+		@foreach (var item in Model)
+		{
+			<tr class="driver" id="@item.Id">
+				<td class="driverId">
+					@Html.DisplayFor(modelItem => item.Id)
+				</td>
+				<td class="driverImage">
+					<img src="~/Images/@(item.ImageName != null ? item.ImageName : "item_0_profile.jpg")" />
+				</td>
+				<td class="driverName">
+					@Html.DisplayFor(modelItem => item.User.UserName)
+				</td>
+				<td class="driverFullName">
+					@Html.DisplayFor(modelItem => item.FullName)
+				</td>
+			</tr>
+		}
+	</table>
+</div>
+
+<script src="~/Scripts/AdminSendMessage.js"></script>
