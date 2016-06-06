@@ -46,7 +46,8 @@
 	elements.each(function (index, el) {
 		var parentId = $(el).attr('parent-id');
 		if (parentId) {
-			var find = $("li[data-id=" + "'" + parentId + "'] ul");
+			$(el).remove();
+			var find = $("li.folder[data-id=" + "'" + parentId + "'] ul").first();
 			find.append(el);
 		}
 	});
@@ -299,7 +300,7 @@
 								lng: function () { return prevCoord.Longitude }
 							}, item.Polygon)
 						});
-						if (!newDistrict && currentDistrict) {
+						if (newDistrict != currentDistrict && currentDistrict) {
 							mainHub.server.leaveDistrict(currentDistrict.Id);
 						}
 						currentDistrict = newDistrict;
