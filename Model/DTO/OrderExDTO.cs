@@ -22,7 +22,6 @@ namespace Model.DTO
 
 		public int WaitingTime { get; set; }
 
-		[DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
 		public decimal Price { get; set; }
 
 		[DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yy HH':'mm}", ApplyFormatInEditMode = true)]

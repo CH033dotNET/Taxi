@@ -30,6 +30,11 @@ namespace BAL.Manager
 			return Mapper.Map<TariffExDTO>(tariff);
 		}
 
+		public TariffExDTO GetStandardTariff()
+		{
+			return Mapper.Map<TariffExDTO>(uOW.TariffExRepo.All.Where(t => t.Name == "Standart").FirstOrDefault());
+		}
+
 		public bool SaveTariff(TariffExDTO tariff)
 		{
 			try

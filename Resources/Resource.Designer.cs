@@ -3104,11 +3104,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sing Up.
+        ///   Looks up a localized string similar to Sign Up.
         /// </summary>
-        public static string SingUp {
+        public static string SignUp {
             get {
-                return ResourceManager.GetString("SingUp", resourceCulture);
+                return ResourceManager.GetString("SignUp", resourceCulture);
             }
         }
         

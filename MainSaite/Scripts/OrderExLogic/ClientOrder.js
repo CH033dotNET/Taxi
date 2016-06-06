@@ -1,5 +1,9 @@
 ﻿$(document).ready(function () {
 	var mainHub = $.connection.MainHub;
+	var userId = null;
+
+	if ($('#userId').length)
+		userId = $('#userId').val();
 
 	mainHub.client.notifyDriverCoordinate = function (coordinate) {
 		setTaxiMarker(coordinate.Latitude, coordinate.Longitude);
@@ -14,6 +18,8 @@
 				type: "POST",
 				data: {Id : orderId},
 				success: function (data) {
+					if (data.UserId != userId)
+						return;
 					switch (data.Status) {
 						case 2:
 						case 4:
@@ -56,8 +62,8 @@
 			var order = {};
 			order.AddressFrom = {};
 			order.AddressFrom.Address = $('#textField').val();
-			if ($('#userId').length)
-				order.UserId = $('#userId').val();
+			if (userId)
+				order.UserId = userId;
 			$.ajax({
 				url: '/Client/AddOrder/',
 				contentType: "application/json",

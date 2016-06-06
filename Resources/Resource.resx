@@ -372,8 +372,8 @@
   <data name="OrderTaxi" xml:space="preserve">
     <value>Order Taxi</value>
   </data>
-  <data name="SingUp" xml:space="preserve">
-    <value>Sing Up</value>
+  <data name="SignUp" xml:space="preserve">
+    <value>Sign Up</value>
   </data>
   <data name="UserId" xml:space="preserve">
     <value>User Id</value>

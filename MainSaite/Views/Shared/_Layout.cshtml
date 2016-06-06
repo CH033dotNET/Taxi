@@ -15,7 +15,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<script src="~/Scripts/jquery-2.2.3.js"></script>
+	<script type="text/javascript" src="~/Scripts/jquery-2.2.3.js"></script>
 	<script type="text/javascript" src="~/Scripts/IEValidation.js"></script>
 	<script type="text/javascript" src="~/Scripts/GeneralScripts.js"></script>
 	<script type="text/javascript" src="~/Scripts/intro.js"></script>
@@ -24,7 +24,6 @@
 	@Scripts.Render("~/bundles/modernizr")
 	@Scripts.Render("~/bundles/handlebars")
 	@Scripts.Render("~/Scripts/Highcharts-4.0.1/js/highcharts.js")
-	@Scripts.Render("~/bundles/bootstrap")
 	@Scripts.Render("~/bundles/jqueryval")
 	@Scripts.Render("~/Content/handlebars.js")
 	@Scripts.Render("~/bundles/jqueryui")
@@ -68,7 +67,7 @@
 										<li id="navBarBtn">@Html.ActionLink(@Resources.Resource.Home.ToUpper(), "Index", "Home")</li>
 									
 										<li id="navBarBtn">@Html.ActionLink(@Resources.Resource.AboutUs.ToUpper(), "Index", "")</li>
-										<li id="navBarBtn">@Html.ActionLink(Resources.Resource.SingUp.ToUpper(), "Registration", "Account")</li>
+										<li id="navBarBtn">@Html.ActionLink(Resources.Resource.SignUp.ToUpper(), "Registration", "Account")</li>
 										<li id="navBarBtn">@Html.ActionLink(Resources.Resource.Login.ToUpper(), "Authentification", "Account")</li>
 									}
 								}
@@ -239,6 +238,7 @@
 	@Scripts.Render("~/bundles/datetime")
 	@RenderSection("scripts", required: false)
 	<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+	<script src="~/Scripts/bootstrap.js"></script>
 	<script src="~/signalr/hubs"></script>
 	<script src="~/Scripts/Tools/AddBlockChecker.js"></script>
 </body>

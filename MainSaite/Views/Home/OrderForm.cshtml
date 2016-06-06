@@ -145,21 +145,22 @@
 				<div class="row">
 					<label class="col-sm-3 form-control-label">@Resources.Resource.Additionally</label>
 					<div class="col-sm-8 button-box">
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Courier"><input type="checkbox" id="courier"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithPlate"><input type="checkbox" id="with-plate"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.MyCar"><input type="checkbox" id="my-car"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithPets"><input type="checkbox" id="pets"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithBaggage"><input type="checkbox" id="bag"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Conditioner"><input type="checkbox" id="conditioner"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithEnglish"><input type="checkbox" id="english"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.NoSmoking"><input type="checkbox" id="nosmoking"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.Smoking"><input type="checkbox" id="smoking"><span></span></label>
-						<label class="button-inline" data-toggle="tooltip" title="@Resources.Resource.WithCheck"><input type="checkbox" id="check"><span></span></label>
+						<label class="button-inline additional" data-toggle="tooltip" title="@Resources.Resource.Courier"><input type="checkbox" id="courier"><span></span></label>
+						<label class="button-inline additional" data-toggle="tooltip" title="@Resources.Resource.WithPlate"><input type="checkbox" id="with-plate"><span></span></label>
+						<label class="button-inline additional" data-toggle="tooltip" title="@Resources.Resource.MyCar"><input type="checkbox" id="my-car"><span></span></label>
+						<label class="button-inline additional" data-toggle="tooltip" title="@Resources.Resource.WithPets"><input type="checkbox" id="pets"><span></span></label>
+						<label class="button-inline additional" data-toggle="tooltip" title="@Resources.Resource.WithBaggage"><input type="checkbox" id="bag"><span></span></label>
+						<label class="button-inline additional" data-toggle="tooltip" title="@Resources.Resource.Conditioner"><input type="checkbox" id="conditioner"><span></span></label>
+						<label class="button-inline additional" data-toggle="tooltip" title="@Resources.Resource.WithEnglish"><input type="checkbox" id="english"><span></span></label>
+						<label class="button-inline additional" data-toggle="tooltip" title="@Resources.Resource.NoSmoking"><input type="checkbox" id="nosmoking"><span></span></label>
+						<label class="button-inline additional" data-toggle="tooltip" title="@Resources.Resource.Smoking"><input type="checkbox" id="smoking"><span></span></label>
+						<label class="button-inline additional" data-toggle="tooltip" title="@Resources.Resource.WithCheck"><input type="checkbox" id="check"><span></span></label>
 					</div>
 				</div>
-				<div id="cost-group">
+				<div class="row" id="cost-group">
 					<label>@Resources.Resource.Cost</label>
 					<div id="cost"></div>
+					<label>@Resources.Resource.UAH</label>
 				</div>
 			</div>
 		</div>
@@ -255,8 +256,6 @@
 	var picturePath = '@Url.Content("~/Content/Picture/UserMapIcons/")';
 </script>
 
-<script src="~/Scripts/jquery-2.2.3.js"></script>
-<script src="~/Scripts/bootstrap.js"></script>
 <script src="~/Scripts/moment-with-locales.js"></script>
 <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
 <script src="~/Scripts/OrderForm.js"></script>
