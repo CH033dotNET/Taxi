@@ -1,4 +1,8 @@
-﻿#orders {
+﻿.content-container {
+	padding-bottom: 30px;
+}
+
+#orders {
 	margin-bottom: 0px;
 }
 

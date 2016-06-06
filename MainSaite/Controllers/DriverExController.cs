@@ -194,7 +194,7 @@ namespace MainSaite.Controllers
 		{
 			orderManager.SetDriverFeedback(orderId, feedbackId);
 			var order = orderManager.GetById(orderId);
-			feedbackManager.SetUserId(feedbackId, order.DriverId);
+			feedbackManager.SetUserId(feedbackId, order.UserId);
 			userManager.CalculateUserRating(feedbackId);
 		}
 		public ActionResult WorkShift()

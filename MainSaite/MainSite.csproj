@@ -248,6 +248,7 @@
     <Content Include="Content\ClientDriveService.css" />
     <Content Include="Content\DriveHistory.css" />
     <Content Include="Content\DriverEx.css" />
+    <Content Include="Content\Drivers.css" />
     <Content Include="Content\DrivingSimulation\iframe.css" />
     <Content Include="Content\BootstrapTb\BootstrapTb.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
@@ -594,7 +595,7 @@
     <Content Include="Views\DriverEx\DriverFeedback.cshtml" />
     <Content Include="Views\DriverEx\MyOrder.cshtml" />
     <Content Include="Views\Client\ClientFeedback.cshtml" />
-    <Content Include="Views\Administration\SendMessagesToDrivers.cshtml" />
+    <Content Include="Views\Administration\Drivers.cshtml" />
     <Content Include="Views\OrderEx\EditOrderPartial.cshtml" />
     <Content Include="Views\OrderEx\_EditOrder.cshtml" />
     <Content Include="Views\DriverEx\WorkShift.cshtml" />

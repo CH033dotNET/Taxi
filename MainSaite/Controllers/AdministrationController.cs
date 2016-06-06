@@ -1,29 +1,26 @@
-﻿using BAL.Manager;
-using DAL;
-using Model.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using MainSaite.Models;
+﻿using BAL.Interfaces;
+using BAL.Manager;
 using MainSaite.Helpers;
+using Model.DTO;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace MainSaite.Controllers
 {
 	public class AdministrationController : BaseController
 	{
 		private IUserManager userManager;
+		private IPersonManager personManager;
 
-		public AdministrationController(IUserManager userManager)
+		public AdministrationController(IUserManager userManager, IPersonManager personManager)
 		{
 			this.userManager = userManager;
+			this.personManager = personManager;
 		}
+
 		public ActionResult AddUser()
 		{
-			//var user = mainContext.Users.;
 			UserDTO user = new UserDTO();
-
 			return View(user);
 		}
 
@@ -65,9 +62,9 @@ namespace MainSaite.Controllers
 		}
 
 		[AuthFilter(Roles = "Administrator")]
-		public ActionResult SendMessagesToDrivers() {
-			return View();
+		public ActionResult Drivers()
+		{
+			return View(personManager.GetDrivers());
 		}
-
 	}
 }

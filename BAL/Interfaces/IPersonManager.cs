@@ -16,5 +16,6 @@ namespace BAL.Interfaces
 		PersonDTO InsertPerson(PersonDTO person);
 		void UpdatePhoneFMLnames(PersonDTO person);
 		IEnumerable<PersonDTO> GetBestPersons(AvailableRoles role, int count);
+		IEnumerable<PersonDTO> GetDrivers();
 	}
 }

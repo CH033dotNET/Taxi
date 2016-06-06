@@ -1,0 +1,33 @@
+﻿.content-container {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+#drivers {
+	font-size: 120%;
+}
+
+#drivers td {
+	vertical-align: middle;
+}
+
+.driverId {
+	width: 50px;
+}
+
+.driverImage {
+	width: 100px;
+}
+
+.driverImage img {
+	width: 70px;
+	height: 70px;
+}
+
+.driverName {
+	font-size: 120%;
+}
+
+.driverFullName {
+	font-style: italic;
+}

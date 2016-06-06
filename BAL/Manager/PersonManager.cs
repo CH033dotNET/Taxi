@@ -138,5 +138,10 @@ namespace BAL.Manager
 			});
 			return persons.Take(count);
 		}
-	}
+
+		public IEnumerable<PersonDTO> GetDrivers()
+		{
+			return Mapper.Map<List<PersonDTO>>(uOW.PersonRepo.All.Where(p => p.User.RoleId == (int)(AvailableRoles.Driver)));
+		}
+    }
 }
