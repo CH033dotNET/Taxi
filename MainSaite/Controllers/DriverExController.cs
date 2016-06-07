@@ -128,7 +128,13 @@ namespace MainSaite.Controllers
 			var FREEDRIVER_ORDER_LIMIT = 5;
 
 			var driver = (Session["User"] as UserDTO);
-			var driverStatus = workerStatusManager.GetStatus(driver).WorkingStatus;
+
+			DriverWorkingStatusEnum driverStatus;
+			try {
+				driverStatus = workerStatusManager.GetStatus(driver).WorkingStatus;
+			} catch (NullReferenceException ex) {
+				driverStatus = workerStatusManager.ChangeStatus((Session["User"] as UserDTO), DriverWorkingStatusEnum.AwaitingOrder).WorkingStatus;
+			}
 
 			// check freedriver trial period and today's order limit
 			if (((Session["User"] as UserDTO).RoleId == (int)AvailableRoles.FreeDriver) &&

@@ -12,6 +12,6 @@ namespace BAL.Interfaces
 	{
 		WorkerStatusDTO GetStatus(UserDTO Driver);
 
-		bool ChangeStatus(UserDTO Driver, DriverWorkingStatusEnum newStatus);
+		WorkerStatusDTO ChangeStatus(UserDTO Driver, DriverWorkingStatusEnum newStatus);
 	}
 }

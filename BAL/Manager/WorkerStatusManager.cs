@@ -22,10 +22,10 @@ namespace BAL.Manager
 			var driver = Mapper.Map<User>(Driver);			
 			var driverStatus = uOW.WorkerStatusRepo.All.Where(o => o.WorkerId == Driver.Id).FirstOrDefault();
 
-			return Mapper.Map<WorkerStatusDTO>(driverStatus); ;
+			return Mapper.Map<WorkerStatusDTO>(driverStatus);
 		}
 
-		public bool ChangeStatus(UserDTO Driver, DriverWorkingStatusEnum newStatus) {
+		public WorkerStatusDTO ChangeStatus(UserDTO Driver, DriverWorkingStatusEnum newStatus) {
 			var driver = Mapper.Map<User>(Driver);
 			var driverStatus = uOW.WorkerStatusRepo.All.Where(o => o.WorkerId == Driver.Id).FirstOrDefault();
 			
@@ -40,7 +40,7 @@ namespace BAL.Manager
 			}
 			
 			uOW.Save();
-			return true;
+			return Mapper.Map<WorkerStatusDTO>(driverStatus);
 		}
 	}
 }
