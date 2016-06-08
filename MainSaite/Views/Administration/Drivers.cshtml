@@ -22,6 +22,7 @@
 			<th id="driverImage"></th>
 			<th id="driverName">@Resources.Resource.ShortName</th>
 			<th id="driverFullName">@Resources.Resource.FullName</th>
+			<th id="driverStatus">@Resources.Resource.Status</th>
 		</tr>
 		@foreach (var item in Model)
 		{
@@ -38,9 +39,18 @@
 				<td class="driverFullName">
 					@Html.DisplayFor(modelItem => item.FullName)
 				</td>
+				<td class="driverStatus"></td>
 			</tr>
 		}
 	</table>
 </div>
 
+<div id="workingStatuses" style="display:none;">
+	<div statusId="0">@Resources.Resource.AwaitingOrder</div>
+	<div statusId="1">@Resources.Resource.DoingOrder</div>
+	<div statusId="2">@Resources.Resource.Blocked</div>
+	<div statusId="3">@Resources.Resource.NotActive</div>
+</div>
+
 <script src="~/Scripts/AdminSendMessage.js"></script>
+<script src="~/Scripts/Drivers.js"></script>

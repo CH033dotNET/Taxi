@@ -11,7 +11,8 @@ namespace BAL.Interfaces
 	public interface IWorkerStatusManager
 	{
 		WorkerStatusDTO GetStatus(UserDTO Driver);
-
 		WorkerStatusDTO ChangeStatus(UserDTO Driver, DriverWorkingStatusEnum newStatus);
-	}
+		List<WorkerStatusDTO> GetAllStatuses();
+		bool DeleteStatus(int driverId);
+    }
 }

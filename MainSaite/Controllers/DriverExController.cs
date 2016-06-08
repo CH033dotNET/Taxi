@@ -280,6 +280,7 @@ namespace MainSaite.Controllers
 
 		public JsonResult WorkShiftEnded(int Id, string Latitude, string Longitude, string Accuracy, string TimeStop)
 		{
+			workerStatusManager.DeleteStatus(Id);
 			try
 			{
 				if (Latitude != null && Longitude != null)

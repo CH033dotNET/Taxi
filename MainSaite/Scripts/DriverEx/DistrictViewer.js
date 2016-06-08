@@ -31,6 +31,7 @@ function ChangeBtnProperties(status) {
 		//setDriverStatus(1);
 		changeStatusDisplay(1);
 		$("#inputDriverStatus").css('display', 'block');
+		setDriverStatus($('#inputDriverStatus').val());
 	}
 
 }

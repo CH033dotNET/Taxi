@@ -31,3 +31,7 @@
 .driverFullName {
 	font-style: italic;
 }
+
+.not-active td {
+	color: gray;
+}

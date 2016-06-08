@@ -32,6 +32,8 @@ namespace Common.Helpers
 					return Resources.Resource.DoingOrder;
 				case DriverWorkingStatusEnum.AwaitingOrder:
 					return Resources.Resource.AwaitingOrder;
+				case DriverWorkingStatusEnum.Blocked:
+					return Resources.Resource.Blocked;
 				default:
 					return "";
 			}

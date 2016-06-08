@@ -10,5 +10,6 @@ namespace Common.Enum.DriverEnum
 	{
 		AwaitingOrder = 0,
 		DoingOrder = 1,
+		Blocked = 2
 	}
 }

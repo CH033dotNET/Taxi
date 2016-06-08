@@ -437,6 +437,7 @@
     <Content Include="Scripts\DriverEx\DriverFeedback.js" />
     <Content Include="Scripts\DriverMap.js" />
     <Content Include="Scripts\AdminSendMessage.js" />
+    <Content Include="Scripts\Drivers.js" />
     <Content Include="Scripts\DriveTimer.js" />
     <Content Include="Scripts\FavoriteAddresses.js" />
     <Content Include="Scripts\GeneralScripts.js" />

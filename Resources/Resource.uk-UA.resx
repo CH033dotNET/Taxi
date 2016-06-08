@@ -646,7 +646,7 @@
     <value>Вихід</value>
   </data>
   <data name="AwaitingOrder" xml:space="preserve">
-    <value>Чекає на замовлення</value>
+    <value>Очікує замовлення</value>
   </data>
   <data name="DoingOrder" xml:space="preserve">
     <value>Виконує замовлення</value>
@@ -1319,5 +1319,11 @@
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
+  </data>
+  <data name="Blocked" xml:space="preserve">
+    <value>Заблокований</value>
+  </data>
+  <data name="NotActive" xml:space="preserve">
+    <value>Не активний</value>
   </data>
 </root>

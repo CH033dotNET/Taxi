@@ -1,5 +1,7 @@
 ﻿using BAL.Interfaces;
 using BAL.Manager;
+using Common.Enum.DriverEnum;
+using Common.Helpers;
 using MainSaite.Helpers;
 using Model.DTO;
 using System.Collections.Generic;
@@ -11,11 +13,16 @@ namespace MainSaite.Controllers
 	{
 		private IUserManager userManager;
 		private IPersonManager personManager;
+		private IWorkerStatusManager workerStatusManager;
 
-		public AdministrationController(IUserManager userManager, IPersonManager personManager)
+		public AdministrationController(
+			IUserManager userManager,
+			IPersonManager personManager,
+			IWorkerStatusManager workerStatusManager)
 		{
 			this.userManager = userManager;
 			this.personManager = personManager;
+			this.workerStatusManager = workerStatusManager;
 		}
 
 		public ActionResult AddUser()
@@ -64,7 +71,12 @@ namespace MainSaite.Controllers
 		[AuthFilter(Roles = "Administrator")]
 		public ActionResult Drivers()
 		{
-			return View(personManager.GetDrivers());
+            return View(personManager.GetDrivers());
+		}
+
+		public JsonResult GetStatuses()
+		{
+			return Json(workerStatusManager.GetAllStatuses());
 		}
 	}
 }

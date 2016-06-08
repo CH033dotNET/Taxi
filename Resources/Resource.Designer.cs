@@ -367,6 +367,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Blocked.
+        /// </summary>
+        public static string Blocked {
+            get {
+                return ResourceManager.GetString("Blocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bonuses.
         /// </summary>
         public static string Bonuses {
@@ -2434,6 +2443,15 @@ namespace Resources {
         public static string NoStatus {
             get {
                 return ResourceManager.GetString("NoStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not active.
+        /// </summary>
+        public static string NotActive {
+            get {
+                return ResourceManager.GetString("NotActive", resourceCulture);
             }
         }
         

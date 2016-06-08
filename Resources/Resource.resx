@@ -1315,4 +1315,10 @@
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
+  <data name="Blocked" xml:space="preserve">
+    <value>Blocked</value>
+  </data>
+  <data name="NotActive" xml:space="preserve">
+    <value>Not active</value>
+  </data>
 </root>
