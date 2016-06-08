@@ -44,11 +44,15 @@ namespace MainSaite.Controllers
 			return Json(new { success = orderManager.DenyOrder(id) });
 		}
 
-		[AuthFilter(Roles = "Operator, Administrator")]
 		[HttpPost]
-		public JsonResult GetOrder(int id)
+		public PartialViewResult GetDriverNewOrder(int id)
 		{
-			return Json(new { success = orderManager.GetById(id) });
+			return PartialView("DriverNewOrderPartial", orderManager.GetById(id));
+		}
+
+		[HttpPost]
+		public PartialViewResult GetDriverHistoryOrder(int id) {
+			return PartialView("DriverHistoryOrderPartial", orderManager.GetById(id));
 		}
 
 		[AuthFilter(Roles = "Operator, Administrator")]

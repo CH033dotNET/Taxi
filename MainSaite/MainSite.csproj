@@ -612,6 +612,8 @@
     <Content Include="Views\DriverEx\MyOrderMap.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\OrderEx\DriverNewOrderPartial.cshtml" />
+    <Content Include="Views\OrderEx\DriverHistoryOrderPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
