@@ -1,0 +1,13 @@
+﻿@model Model.DTO.OrderExDTO
+
+		<tr>
+	<td class="col-md-8">
+		@Html.DisplayFor(modelItem => modelItem.FullAddressFrom);
+	</td>
+	<td class="col-md-2">
+		@Html.DisplayFor(modelItem => modelItem.OrderTime)
+	</td>
+	<td class="col-md-2">
+		<button data-feedbackId="modelItem.DriverFeedbackId" data-orderId="modelItem.Id" type="button" class="btn btn-success addFeedbackButton" data-toggle="modal">@Resources.Resource.AddFeedback</button>
+	</td>
+</tr>

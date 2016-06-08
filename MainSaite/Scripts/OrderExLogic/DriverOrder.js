@@ -118,61 +118,26 @@
 
 	mainHub.client.OrderApproved = function (id) {
 		$.ajax({
-			url: '/OrderEx/GetOrder/',
+			url: '/OrderEx/GetDriverNewOrder/',
 			data: {
 				id: id,
 			},
 			type: "POST",
 			success: function (order) {
-
-				var orderblock = "";
-				orderblock += "<tr>";
-				orderblock += "    <td class=\"col-md-7\">";
-				orderblock += order.success.FullAddressFrom;
-				orderblock += "    <\/td>";
-				orderblock += "    <td class=\"col-md-2\">";
-				orderblock += order.success.Perquisite;
-				orderblock += "    <\/td>";
-				orderblock += "    <td class=\"col-md-2\">";
-				orderblock += "<input type=\"number\" class=\"waiting-time form-control\" placeholder=\"" + Resources.WaitingTime + "\">";
-				orderblock += "    <\/td>";
-				orderblock += "    <td class=\"col-md-3\">";
-				orderblock += "        <div class=\"input-group\">";
-				orderblock += "            <span class=\"input-group-btn\">";
-				orderblock += "                <input itemid=\"" + order.success.Id + "\" type=\"button\" value=\"" + Resources.TakeOrder + "\" class=\"take btn btn-success\" \/>";
-				orderblock += "            <\/span>";
-				orderblock += "        <\/div>";
-				orderblock += "    <\/td>";
-				orderblock += "<\/tr>";
-
-				$('#orders').append(orderblock)
+				$('#orders tbody').append(order)
 			}
 		});
 	};
 
 	mainHub.client.OrderTaken = function (id) {
 		$.ajax({
-			url: '/OrderEx/GetOrder/',
+			url: '/OrderEx/GetDriverHistoryOrder/',
 			data: {
 				id: id,
 			},
 			type: "POST",
 			success: function (order) {
-
-				var orderblock = "";
-				orderblock += "<tr>";
-				orderblock += "    <td  class=\"col-md-8\">";
-				orderblock += order.success.FullAddressFrom;
-				orderblock += "    <\/td>";
-				orderblock += "    <td class=\"col-md-2\">";
-				orderblock += moment(order.success.OrderTime).format('DD/MM/YY HH:mm');
-				orderblock += "    <\/td>";
-				orderblock += "    <td class=\"col-md-2\">";
-				orderblock += "                <button data-feedbackId=\"" + order.success.DriverFeedbackId + "\" data-orderId=\"" + order.success.Id + "\" type=\"button\" class=\"btn btn-success addFeedbackButton\" data-toggle=\"modal\">" + Resources.AddFeedback + "</button>";
-				orderblock += "    <\/td>";
-				orderblock += "<\/tr>";
-
-				$('#orders_history').append(orderblock)
+				$('#orders_history tbody').append(order)
 			}
 		});
 	};
