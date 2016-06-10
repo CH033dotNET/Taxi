@@ -11,10 +11,6 @@
 	vertical-align: middle;
 }
 
-.driverId {
-	width: 50px;
-}
-
 .driverImage {
 	width: 100px;
 }
@@ -34,4 +30,143 @@
 
 .not-active td {
 	color: gray;
+}
+
+.block-btn, unblock-btn {
+	font-size: 16px;
+}
+
+.modal-header h3 {
+	color: black;
+	margin: 0px;
+}
+
+.modal-body {
+	text-align: center;
+}
+
+#block-message {
+	resize: vertical;
+}
+
+.checkbox-inline {
+	margin-top: 15px;
+	margin-bottom: 10px;
+	display: block;
+	cursor: default;
+}
+
+.checkbox-inline label, .radio-inline label {
+	cursor: pointer;
+}
+
+.checkbox-inline input {
+	display: none;
+}
+
+.checkbox-inline span {
+	width: 15px;
+	height: 15px;
+	display: inline-block;
+	border: 2px solid #ffc030;
+	border-radius: 3px;
+	margin-right: 8px;
+	margin-bottom: 2px;
+	vertical-align: bottom;
+}
+
+.checkbox-inline input:checked + span {
+	border-color: #f0f0f0;
+	background-color: #ffc030;
+}
+
+.radio-inline input {
+	display: none;
+}
+
+.radio-inline span {
+	width: 15px;
+	height: 15px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 7px;
+	margin-right: 8px;
+	margin-bottom: 2px;
+	vertical-align: bottom;
+}
+
+.radio-inline input:checked + span {
+	border-width: 2px;
+	background-color: #ffc030;
+}
+
+.inactive {
+	cursor: default;
+}
+
+.inactive label, .inactive input {
+	color: gray;
+	cursor: default;
+}
+
+.timepicker {
+	z-index: 1151 !important;
+}
+
+.datetimepicker span {
+	cursor: pointer;
+}
+
+#time-body {
+	height: 70px;
+}
+
+.timepicker, .datetimepicker {
+	margin-left: 20px;
+	margin-top: 7px;
+}
+
+.input-group-addon {
+	background: linear-gradient(gold, #ffc030);
+	color: black;
+}
+
+.input-group-addon:hover {
+	background:linear-gradient(rgb(204, 204, 204), #8C8C8C);
+	box-shadow: 0px 0px 6px #8C8C8C;
+	color: white;
+}
+
+.inactive .input-group-addon {
+	background: linear-gradient(gold, #ffc030);
+	color: transparent;
+}
+
+.inactive .input-group-addon:hover {
+	background: linear-gradient(gold, #ffc030);
+	box-shadow: none;
+	color: transparent;
+	cursor: default;
+}
+
+#while-time, #until-time {
+	margin: 0px;
+	padding: 5px;
+}
+
+.modal-footer button {
+	font-size: 1vw;
+}
+
+.bootstrap-timepicker-widget input {
+	color: black;
+}
+
+.bootstrap-datetimepicker-widget {
+	text-align: center;
+	color: black;
+}
+
+.empty {
+	border-color: red;
 }

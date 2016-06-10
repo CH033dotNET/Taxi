@@ -1321,4 +1321,25 @@
   <data name="NotActive" xml:space="preserve">
     <value>Not active</value>
   </data>
+  <data name="Block" xml:space="preserve">
+    <value>Block</value>
+  </data>
+  <data name="BlockingDriver" xml:space="preserve">
+    <value>Blocking driver</value>
+  </data>
+  <data name="BlockUntil" xml:space="preserve">
+    <value>block until:</value>
+  </data>
+  <data name="BlockWhile" xml:space="preserve">
+    <value>block while:</value>
+  </data>
+  <data name="EnterMessage" xml:space="preserve">
+    <value>Enter a message</value>
+  </data>
+  <data name="ForATime" xml:space="preserve">
+    <value>for a time</value>
+  </data>
+  <data name="Unblock" xml:space="preserve">
+    <value>Unblock</value>
+  </data>
 </root>

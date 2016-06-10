@@ -367,11 +367,47 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Block.
+        /// </summary>
+        public static string Block {
+            get {
+                return ResourceManager.GetString("Block", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Blocked.
         /// </summary>
         public static string Blocked {
             get {
                 return ResourceManager.GetString("Blocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blocking driver.
+        /// </summary>
+        public static string BlockingDriver {
+            get {
+                return ResourceManager.GetString("BlockingDriver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to block until:.
+        /// </summary>
+        public static string BlockUntil {
+            get {
+                return ResourceManager.GetString("BlockUntil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to block while:.
+        /// </summary>
+        public static string BlockWhile {
+            get {
+                return ResourceManager.GetString("BlockWhile", resourceCulture);
             }
         }
         
@@ -1709,6 +1745,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter a message.
+        /// </summary>
+        public static string EnterMessage {
+            get {
+                return ResourceManager.GetString("EnterMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter new district name.
         /// </summary>
         public static string enterNewDstName {
@@ -1822,6 +1867,15 @@ namespace Resources {
         public static string FirstQuestion {
             get {
                 return ResourceManager.GetString("FirstQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to for a time.
+        /// </summary>
+        public static string ForATime {
+            get {
+                return ResourceManager.GetString("ForATime", resourceCulture);
             }
         }
         
@@ -3406,6 +3460,15 @@ namespace Resources {
         public static string UAH {
             get {
                 return ResourceManager.GetString("UAH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unblock.
+        /// </summary>
+        public static string Unblock {
+            get {
+                return ResourceManager.GetString("Unblock", resourceCulture);
             }
         }
         

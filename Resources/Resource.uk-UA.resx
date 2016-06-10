@@ -1326,4 +1326,25 @@
   <data name="NotActive" xml:space="preserve">
     <value>Не активний</value>
   </data>
+  <data name="Block" xml:space="preserve">
+    <value>Заблокувати</value>
+  </data>
+  <data name="BlockingDriver" xml:space="preserve">
+    <value>Блокування водія</value>
+  </data>
+  <data name="BlockUntil" xml:space="preserve">
+    <value>заблокувати до:</value>
+  </data>
+  <data name="BlockWhile" xml:space="preserve">
+    <value>заблокувати на:</value>
+  </data>
+  <data name="EnterMessage" xml:space="preserve">
+    <value>Введіть повідомлення</value>
+  </data>
+  <data name="ForATime" xml:space="preserve">
+    <value>тимчасово</value>
+  </data>
+  <data name="Unblock" xml:space="preserve">
+    <value>Розблокувати</value>
+  </data>
 </root>

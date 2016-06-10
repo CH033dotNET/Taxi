@@ -5,6 +5,9 @@
 }
 
 <link href="~/Content/Drivers.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-timepicker.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-timepicker.min.js"></script>
 
 <div class="row">
 	<div class="col-md-3"></div>
@@ -23,6 +26,7 @@
 			<th id="driverName">@Resources.Resource.ShortName</th>
 			<th id="driverFullName">@Resources.Resource.FullName</th>
 			<th id="driverStatus">@Resources.Resource.Status</th>
+			<th id="driverAction">@Resources.Resource.Action</th>
 		</tr>
 		@foreach (var item in Model)
 		{
@@ -40,16 +44,62 @@
 					@Html.DisplayFor(modelItem => item.FullName)
 				</td>
 				<td class="driverStatus"></td>
+				<td class="driverAction"></td>
 			</tr>
 		}
 	</table>
 </div>
 
-<div id="workingStatuses" style="display:none;">
+<div class="modal fade" id="blocking-dialog" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" id="modalHeader">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h3>@Resources.Resource.BlockingDriver</h3>
+			</div>
+			<div class="modal-body" id="modalBody">
+				<textarea id="block-message" rows="3" placeholder="@Resources.Resource.EnterMessage"></textarea>
+				<div class="checkbox-inline">
+					<label><input type="checkbox" id="for-a-time" /><span></span>@Resources.Resource.ForATime</label>
+				</div>
+				<div id="time-body">
+					<div class="col-sm-1"></div>
+					<div class="col-sm-5">
+						<div class="radio-inline inactive">
+							<label><input type="radio" id="block-while" name="block-time" disabled /><span></span>@Resources.Resource.BlockWhile</label>
+						</div>
+						<div class="input-group bootstrap-timepicker timepicker inactive">
+							<input type="text" id="while-time" disabled/>
+							<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+						</div>
+					</div>
+					<div class="col-sm-5">
+						<div class="radio-inline inactive">
+							<label><input type="radio" id="block-until" name="block-time" disabled /><span></span>@Resources.Resource.BlockUntil</label>
+						</div>
+						<div class="input-group bootstrap-datetimepicker datetimepicker inactive">
+							<input type="text" id="until-time" disabled/>
+							<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+						</div>
+					</div>
+					<div class="col-sm-1"></div>
+				</div>
+			</div>
+			<div class="modal-footer" id="modalFooter">
+				<button type="button" class="btn btn-success" id="block-btn">@Resources.Resource.Block</button>
+				<button type="button" class="btn btn-success warning" data-dismiss="modal">@Resources.Resource.Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div style="display:none;">
 	<div statusId="0">@Resources.Resource.AwaitingOrder</div>
 	<div statusId="1">@Resources.Resource.DoingOrder</div>
 	<div statusId="2">@Resources.Resource.Blocked</div>
 	<div statusId="3">@Resources.Resource.NotActive</div>
+	<button type="button" class="btn btn-success block-btn">@Resources.Resource.Block</button>
+	<button type="button" class="btn btn-success warning unblock-btn">@Resources.Resource.Unblock</button>
 </div>
 
 <script src="~/Scripts/AdminSendMessage.js"></script>
