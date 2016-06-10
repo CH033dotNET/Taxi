@@ -241,7 +241,7 @@
 	$.connection.hub.start().done(function () {
 
 		//connect to hub group
-		mainHub.server.connect("Driver");
+		mainHub.server.connectDriver("Driver", $('#currentUserId').val());
 
 		//check count of drivers in each district
 		mainHub.server.getDriversCount().done(function (result) {

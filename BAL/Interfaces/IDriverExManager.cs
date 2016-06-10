@@ -11,5 +11,5 @@ namespace BAL.Interfaces
 	{
 		void AddDriverLocation(CoordinatesExDTO coordinate);
 	    DriverLocationDTO[] GetFullLocations();
-	}
+    }
 }

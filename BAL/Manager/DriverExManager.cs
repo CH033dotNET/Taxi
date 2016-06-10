@@ -1,21 +1,17 @@
 ﻿using AutoMapper;
 using BAL.Interfaces;
+using Common.Enum.DriverEnum;
 using DAL.Interface;
 using Model.DB;
 using Model.DTO;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BAL.Manager
 {
 	public class DriverExManager : BaseManager, IDriverExManager
 	{
-
-		public DriverExManager(IUnitOfWork uOW) : base(uOW)
-		{ }
+		public DriverExManager(IUnitOfWork uOW) : base(uOW) { }
 
 		public void AddDriverLocation(CoordinatesExDTO coordinate)
 		{
@@ -25,6 +21,7 @@ namespace BAL.Manager
 			uOW.CoordinatesExRepo.Insert(location);
 			uOW.Save();
 		}
+
 	    public DriverLocationDTO[] GetFullLocations()
         {
            return uOW.CoordinatesExRepo.All //all coordinates

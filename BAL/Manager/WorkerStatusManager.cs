@@ -1,11 +1,7 @@
 ﻿using BAL.Interfaces;
-using Common.Enum;
 using DAL.Interface;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Model.DB;
 using Common.Enum.DriverEnum;
 using Model.DTO;
@@ -14,7 +10,6 @@ using Model;
 
 namespace BAL.Manager
 {
-
 	public class WorkerStatusManager : BaseManager, IWorkerStatusManager
 	{
 		public WorkerStatusManager(IUnitOfWork uOW) : base(uOW) { }

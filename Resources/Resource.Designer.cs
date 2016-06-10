@@ -2060,6 +2060,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to hours.
+        /// </summary>
+        public static string Hours {
+            get {
+                return ResourceManager.GetString("Hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Id.
         /// </summary>
         public static string Id {

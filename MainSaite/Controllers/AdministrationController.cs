@@ -1,9 +1,9 @@
 ﻿using BAL.Interfaces;
 using BAL.Manager;
 using Common.Enum.DriverEnum;
-using Common.Helpers;
 using MainSaite.Helpers;
 using Model.DTO;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -14,16 +14,19 @@ namespace MainSaite.Controllers
 		private IUserManager userManager;
 		private IPersonManager personManager;
 		private IWorkerStatusManager workerStatusManager;
+		private IDriverExManager driverManager;
 
 		public AdministrationController(
 			IUserManager userManager,
 			IPersonManager personManager,
-			IWorkerStatusManager workerStatusManager)
+			IWorkerStatusManager workerStatusManager,
+			IDriverExManager driverManager)
 		{
 			this.userManager = userManager;
 			this.personManager = personManager;
 			this.workerStatusManager = workerStatusManager;
-		}
+			this.driverManager = driverManager;
+        }
 
 		public ActionResult AddUser()
 		{
@@ -74,9 +77,17 @@ namespace MainSaite.Controllers
             return View(personManager.GetDrivers());
 		}
 
+		[HttpPost]
 		public JsonResult GetStatuses()
 		{
 			return Json(workerStatusManager.GetAllStatuses());
+		}
+
+		[HttpPost]
+		public JsonResult BlockDriver(int driverId)
+		{
+			var driver = userManager.GetById(driverId);
+			return Json(workerStatusManager.ChangeStatus(driver, DriverWorkingStatusEnum.Blocked));
 		}
 	}
 }

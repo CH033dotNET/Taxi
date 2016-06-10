@@ -12,10 +12,11 @@
 	});
 
 	$('.datetimepicker').datetimepicker({
-		format: 'DD-MM HH:mm',
-		minDate: moment(),
-		useCurrent: false
+		format: 'DD/MM/YYYY HH:mm',
+		minDate: moment().add(1, 'm')
 	});
+
+	$('#while-time').val('1:00 ' + $('#hours').html());
 
 	$('.block-btn').click(function () {
 		$('#blocking-dialog').attr('driverId', $(this).closest('.driver').attr('id'));
@@ -46,15 +47,40 @@
 		$('#while-time').prop('disabled', true).parent().addClass('inactive');
 	});
 
+	$('#while-time').change(function () {
+		$(this).val($(this).val() + ' ' + $('#hours').html());
+	});
+
 	$('#block-message').change(function () {
 		if ($(this).val().length > 0)
 			$(this).removeClass('empty');
 	})
 
+	var mainHub = $.connection.MainHub;
+
 	$('#block-btn').click(function () {
 		if ($('#block-message').val().length > 0) {
+			var driverId = $('#blocking-dialog').attr('driverId');
 			var message = $('#block-message').val();
-			$('#blocking-dialog').modal('hide');
+			var whileTime = null;
+			var untilTime = null;
+			if ($('#block-while').prop('checked'))
+				whileTime = $('#while-time').val().split(' ')[0];
+			if ($('#until-while').prop('checked'))
+				untilTime = $('#until-time').val();
+			$.connection.hub.start().done(function () {
+				mainHub.server.connect("Admin");
+				$.ajax({
+					url: '/Administration/BlockDriver',
+					type: 'POST',
+					data: { driverId: driverId },
+					success: function (response) {
+						mainHub.server.blockDriver(driverId, message, whileTime, untilTime);
+						$('.driver[id="' + driverId + '"]').children('driverStatus').html($('[statusId="2"]').html());
+						$('#blocking-dialog').modal('hide');
+					}
+				});
+			});
 		}
 		else
 			$('#block-message').addClass('empty');

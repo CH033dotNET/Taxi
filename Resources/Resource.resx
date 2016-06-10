@@ -1342,4 +1342,7 @@
   <data name="Unblock" xml:space="preserve">
     <value>Unblock</value>
   </data>
+  <data name="Hours" xml:space="preserve">
+    <value>hours</value>
+  </data>
 </root>

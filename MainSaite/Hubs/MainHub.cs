@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Threading.Tasks;
+using BAL.Manager;
+using Common.Enum.DriverEnum;
 
 namespace MainSaite.Hubs
 {
@@ -141,6 +143,26 @@ namespace MainSaite.Hubs
 				orderHubUsers.Add(currentUser);
 			}
 		}
+
+		[HubMethodName("connectDriver")]
+		public void ConnectDriver(string group, int userId)
+		{
+			string connectionId = Context.ConnectionId;
+
+			var currentUser = new SignalRUserEx()
+			{
+				ConnectionId = connectionId,
+				Group = group,
+				UserId = userId
+			};
+
+			if (!orderHubUsers.Any(x => x.ConnectionId == connectionId))
+			{
+				Groups.Add(Context.ConnectionId, group);
+				orderHubUsers.Add(currentUser);
+			}
+		}
+
 		// methods for districts 
 
 		[HubMethodName("joinDistrict")]
@@ -171,7 +193,7 @@ namespace MainSaite.Hubs
 			return districtMap.Select(c => new DistrictCount() { Id = c.Key, Count = c.Value.Count }).ToList();
 		}
 
-		public override System.Threading.Tasks.Task OnDisconnected(bool stopCalled)
+		public override Task OnDisconnected(bool stopCalled)
 		{
 			var current = districtMap.Where(c => c.Value.Contains(Context.ConnectionId)).FirstOrDefault().Key;
 			LeaveDistrict(current);
@@ -182,6 +204,35 @@ namespace MainSaite.Hubs
 			}
 
 			return base.OnDisconnected(stopCalled);
+		}
+
+		[HubMethodName("blockDriver")]
+		public void BlockDriver(int driverId, string message, string whileTime, DateTime? untilTime)
+		{
+			TimeSpan? time = null;
+			if (whileTime != null)
+				time = new TimeSpan(Int32.Parse(whileTime.Split(':')[0]), Int32.Parse(whileTime.Split(':')[1]), 0);
+			if (untilTime != null)
+				time = new TimeSpan(untilTime.Value.Ticks - new DateTime().Ticks);
+
+			var client = orderHubUsers.FirstOrDefault(u => u.UserId == driverId);
+			if (client != null)
+				Clients.Client(client.ConnectionId).blockDriver(time);
+
+			if (time != null)
+				this.UnblockDriverDelay(driverId, time.Value);
+		}
+
+		[HubMethodName("unblockDriver")]
+		public void UnblockDriver(int driverId)
+		{
+			//workerStatusManager.DeleteStatus(driverId);
+		}
+
+		private async void UnblockDriverDelay(int driverId, TimeSpan time)
+		{
+			await Task.Delay(time);
+			this.UnblockDriver(driverId);
 		}
 	}
 }
