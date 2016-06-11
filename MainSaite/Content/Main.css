@@ -827,3 +827,11 @@
 .introjs-helperNumberLayer {
 	display: none;
 }
+
+.sc-toolbar-container {
+	background-color: rgb(255, 214, 4);
+}
+
+#editor.sc-container {
+	background-color: rgb(255, 214, 4);
+}
