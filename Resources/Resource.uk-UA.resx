@@ -1350,4 +1350,10 @@
   <data name="Hours" xml:space="preserve">
     <value>год.</value>
   </data>
+  <data name="Disable" xml:space="preserve">
+    <value>Видалити</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>Відновити</value>
+  </data>
 </root>

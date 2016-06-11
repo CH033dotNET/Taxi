@@ -21,22 +21,27 @@
 
 	@foreach (var item in Model)
 	{
-		if (item.Status == Common.Enum.TariffExStatus.Active)
-		{
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Description)
-				</td>
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Name)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Description)
+			</td>
 
-				<td>
-					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#tariffDetailsModal" onclick="GetTariffData(@item.Id)">@Resources.Resource.Edit</button>
-					<button type="button" class="btn btn-success warning" onclick="DeleteTariff(@item.Id)">@Resources.Resource.Delete</button>
-				</td>
-			</tr>
-		}
+			<td>
+				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#tariffDetailsModal" onclick="GetTariffData(@item.Id)">@Resources.Resource.Edit</button>
+				
+				@if (item.Status == Common.Enum.TariffExStatus.Active)
+				{
+					<button type="button" class="btn btn-success warning" onclick="DeleteTariff(@item.Id)">@Resources.Resource.Disable</button>
+				}
+				else
+				{
+					<button type="button" class="btn btn-success" onclick="EnableTariff(@item.Id)">@Resources.Resource.Enable</button>
+				}
+			</td>
+		</tr>
 	}
 
 </table>

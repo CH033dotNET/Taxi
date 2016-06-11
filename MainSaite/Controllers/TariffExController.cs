@@ -46,5 +46,10 @@ namespace MainSaite.Controllers
 			return TariffExManager.DeleteTariff(id);
 		}
 
+		public bool EnableTariff(int id)
+		{
+			return TariffExManager.EnableTariff(id);
+		}
+
 	}
 }

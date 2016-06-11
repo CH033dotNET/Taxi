@@ -14,5 +14,6 @@ namespace BAL.Interfaces
 		TariffExDTO GetStandardTariff();
         bool SaveTariff(TariffExDTO tariff);
 		bool DeleteTariff(int id);
+		bool EnableTariff(int id);
 	}
 }

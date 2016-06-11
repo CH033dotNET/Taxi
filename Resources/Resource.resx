@@ -1345,4 +1345,10 @@
   <data name="Hours" xml:space="preserve">
     <value>hours</value>
   </data>
+  <data name="Disable" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
 </root>

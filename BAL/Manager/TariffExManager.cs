@@ -84,5 +84,20 @@ namespace BAL.Manager
 				return false;
 			}
 		}
+
+		public bool EnableTariff(int id)
+		{
+			try
+			{
+				var tariffDb = uOW.TariffExRepo.GetByID(id);
+				tariffDb.Status = Common.Enum.TariffExStatus.Active;
+				uOW.Save();
+				return true;
+			}
+			catch (Exception ex)
+			{
+				return false;
+			}
+		}
 	}
 }
