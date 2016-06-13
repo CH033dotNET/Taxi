@@ -80,7 +80,11 @@
 		scrollTo(0, $('#map').position().top);
 		result.forEach(function (item) {
 			if (item.Polygon) {
-				item.Polygon.setEditable(true);
+				item.Polygon.setOptions({
+					fillColor: "#2f2f2f",
+					strokeColor: "#2f2f2f"
+				});
+				//item.Polygon.setEditable(true);
 			}
 		});
 		$('#action-buttons').removeClass('open');
@@ -683,6 +687,7 @@
 		data.forEach(function (item) {
 			if (item.Polygon) {
 				item.Polygon.setEditable(false);
+				item.Polygon.setOptions(polygonOptions);
 			}
 		});
 	}
@@ -691,6 +696,10 @@
 		clearSelection();
 		selectedDistrict = shape;
 		shape.setEditable(true);
+		shape.setOptions({
+			fillColor: "#2f2f2f",
+			strokeColor: "#2f2f2f"
+		});
 	}
 
 	function getAllLatLngs(polygon) {
