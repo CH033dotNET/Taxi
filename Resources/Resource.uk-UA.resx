@@ -1356,4 +1356,16 @@
   <data name="Enable" xml:space="preserve">
     <value>Відновити</value>
   </data>
+  <data name="BlockedFor" xml:space="preserve">
+    <value>Заблокований на:</value>
+  </data>
+  <data name="BlockedMessage" xml:space="preserve">
+    <value>Ви були заблоковані адміністратором і не можете приймати замовлення.</value>
+  </data>
+  <data name="UnblockingAfter" xml:space="preserve">
+    <value>Розблокування через</value>
+  </data>
+  <data name="YouAreBlocked" xml:space="preserve">
+    <value>Вас заблоковано</value>
+  </data>
 </root>

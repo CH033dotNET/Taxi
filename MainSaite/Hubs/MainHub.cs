@@ -10,6 +10,10 @@ using System.Web;
 using System.Threading.Tasks;
 using BAL.Manager;
 using Common.Enum.DriverEnum;
+using DAL.Interface;
+using DAL;
+using System.Threading;
+using System.Globalization;
 
 namespace MainSaite.Hubs
 {
@@ -207,32 +211,51 @@ namespace MainSaite.Hubs
 		}
 
 		[HubMethodName("blockDriver")]
-		public void BlockDriver(int driverId, string message, string whileTime, DateTime? untilTime)
+		public void BlockDriver(int driverId, string message, string whileTime, string untilTime)
 		{
-			TimeSpan? time = null;
+			IUnitOfWork uOW = new UnitOfWork();
+			IWorkerStatusManager workerStatusManager = new WorkerStatusManager(uOW);
+			IUserManager userManager = new UserManager(uOW);
+
+			DateTime? blockTime = null;
 			if (whileTime != null)
-				time = new TimeSpan(Int32.Parse(whileTime.Split(':')[0]), Int32.Parse(whileTime.Split(':')[1]), 0);
+				blockTime = DateTime.Now.AddHours(Int32.Parse(whileTime.Split(':')[0])).AddMinutes(Int32.Parse(whileTime.Split(':')[1]));
 			if (untilTime != null)
-				time = new TimeSpan(untilTime.Value.Ticks - new DateTime().Ticks);
+				blockTime = DateTime.Parse(untilTime);
+
+			var driver = userManager.GetById(driverId);
+			workerStatusManager.ChangeStatus(driver, DriverWorkingStatusEnum.Blocked, blockTime, message);
 
 			var client = orderHubUsers.FirstOrDefault(u => u.UserId == driverId);
 			if (client != null)
-				Clients.Client(client.ConnectionId).blockDriver(time);
+				Clients.Client(client.ConnectionId).blockDriver(blockTime.HasValue ? blockTime.Value.ToUniversalTime() : blockTime, message);
 
-			if (time != null)
-				this.UnblockDriverDelay(driverId, time.Value);
+			Clients.Client(Context.ConnectionId).blockDriver(blockTime.HasValue ? blockTime.Value.ToUniversalTime() : blockTime, driverId);
+			Clients.OthersInGroup("Operator").blockDriver(blockTime.HasValue ? blockTime.Value.ToUniversalTime() : blockTime, driverId);
+
+			if (blockTime != null)
+				UnblockDriverDelay(blockTime.Value - DateTime.Now, driverId);
 		}
 
 		[HubMethodName("unblockDriver")]
 		public void UnblockDriver(int driverId)
 		{
-			//workerStatusManager.DeleteStatus(driverId);
+			IUnitOfWork uOW = new UnitOfWork();
+			IWorkerStatusManager workerStatusManager = new WorkerStatusManager(uOW);
+			workerStatusManager.DeleteStatus(driverId);
+
+			var client = orderHubUsers.FirstOrDefault(u => u.UserId == driverId);
+			if (client != null)
+				Clients.Client(client.ConnectionId).unblockDriver();
+
+			Clients.Client(Context.ConnectionId).unblockDriver(driverId);
+			Clients.OthersInGroup("Operator").unblockDriver(driverId);
 		}
 
-		private async void UnblockDriverDelay(int driverId, TimeSpan time)
+		private async Task UnblockDriverDelay(TimeSpan time, int driverId)
 		{
 			await Task.Delay(time);
-			this.UnblockDriver(driverId);
-		}
+			UnblockDriver(driverId);
+		} 
 	}
 }

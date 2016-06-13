@@ -18,6 +18,11 @@ namespace Model.DTO
 
 		[ForeignKey("WorkerId")]
 		public virtual User Worker { get; set; }
+
 		public int WorkerId { get; set; }
+
+		public DateTime? BlockTime { get; set; }
+
+		public string BlockMessage { get; set; }
 	}
 }

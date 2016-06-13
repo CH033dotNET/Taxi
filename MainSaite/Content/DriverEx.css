@@ -83,3 +83,22 @@ input:checked + .slider:before {
 	color: #FFED00;
 	margin: -2px;
 }
+
+.modal-header h3 {
+	margin: 0px;
+}
+
+.modal-body p {
+	font-size: 120%;
+}
+
+.modal-footer button {
+	font-size: 1vw;
+}
+
+#blocked, #blockedFor {
+	color: white;
+	font-size: 25px;
+	margin-left: 30px;
+	margin-top: 10px;
+}

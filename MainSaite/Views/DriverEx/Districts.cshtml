@@ -22,7 +22,10 @@
 						<select class="input-xlarge" name="driverStatus" id="inputDriverStatus" onchange="workerStatusChange()">
 							@foreach (var status in Common.Helpers.EnumHelper.GetWorkerStatus())
 							{
-								<option value="@status.Key">@status.Value</option>
+								if (status.Value != "Blocked")
+								{
+									<option value="@status.Key">@status.Value</option>
+								}
 							}
 						</select>
 					</div>
@@ -93,7 +96,6 @@
 
 @Scripts.Render("~/Scripts/moment.js")
 @Scripts.Render("~/Scripts/offline.min.js")
-@Scripts.Render("~/Scripts/DriverEx/DistrictViewer.js")
 @Scripts.Render("~/Scripts/DriverEx/DriverCoordinates.js")
 <script>
 	var districts = @Html.Raw(Json.Encode(Model.ToList()));

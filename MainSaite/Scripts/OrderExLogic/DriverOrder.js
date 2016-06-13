@@ -1,4 +1,5 @@
 ﻿$(function () {
+
 	var mainHub = $.connection.MainHub;
 	$.connection.hub.logging = true;
 	var prevCoord = {
@@ -21,6 +22,9 @@
 	var directionsDisplay;
 	var directionsService = new google.maps.DirectionsService();
 
+	$('#inputDriverStatus').change(function () {
+		$('#currentStatus').val($(this).val());
+	})
 
 	//init districts
 	var elements = $('#listDistricts> li');
@@ -148,7 +152,6 @@
 
 	mainHub.client.cancelOrder = function (id) {
 		currentOrderId = null;
-
 	}
 
 	//MAP FUNCTIONS
@@ -320,6 +323,10 @@
 
 		//take order
 		$(document).on('click', '.take', function (e) {
+			if ($('#currentStatus').val() == '2') {
+				$('#blocking-dialog').modal('show');
+				return;
+			}
 			var row = $(this).closest('tr');
 			currentOrderId = +$(this).attr('itemId');
 			var waiting_time = row.find('.waiting-time').first().val();

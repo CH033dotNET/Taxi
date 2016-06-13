@@ -28,6 +28,7 @@
 
 	<input id="currentUserId" type="hidden" value="@User.Id" />
 	<input id="currentUserName" type="hidden" value="@User.UserName" />
+	<input id="currentStatus" type="hidden" />
 	<input type="hidden" id="hlat" value="48.309390" />
 	<input type="hidden" id="hlong" value="25.943524" />
 	<div id="driver-bootstrap-menu" class="navbar navbar-default navbar-static-top" role="navigation">
@@ -96,9 +97,37 @@
 		</div>
 	</div>
 	@Html.Partial("DriverFeedback")
+
+	<div class="modal fade" id="blocking-dialog" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" id="modalHeader">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3>@Resources.Resource.YouAreBlocked</h3>
+				</div>
+				<div class="modal-body" id="modalBody">
+					<p>@Resources.Resource.BlockedMessage</p>
+					<p id="adminMessage" style="font-style: italic;color:silver;"></p>
+					<p id="blockTime"></p>
+				</div>
+				<div class="modal-footer" id="modalFooter">
+					<button type="button" class="btn btn-success warning" data-dismiss="modal">@Resources.Resource.Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div style="display:none;">
+		<div id="unblockingAfter">@Resources.Resource.UnblockingAfter</div>
+		<div id="blocked">@Resources.Resource.Blocked</div>
+		<div id="blockedFor">@Resources.Resource.BlockedFor</div>
+		<span class="timer"><span class="hours"></span>:<span class="minutes"></span>:<span class="seconds"></span></span>
+	</div>
+
 	<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
 	<script src="~/signalr/hubs"></script>
 	<script src="~/Scripts/OrderExLogic/DriverOrder.js"></script>
+	@Scripts.Render("~/Scripts/DriverEx/DistrictViewer.js")
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
 
 	<script>

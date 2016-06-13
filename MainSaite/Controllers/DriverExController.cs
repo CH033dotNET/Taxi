@@ -223,7 +223,7 @@ namespace MainSaite.Controllers
 			if (result == null) { return Json(new { success = false }, JsonRequestBehavior.AllowGet); }
 			else
 			{
-				return Json(new { success = true, result.WorkingStatus }, JsonRequestBehavior.AllowGet);
+				return Json(result, JsonRequestBehavior.AllowGet);
 			}
 		}
 		public JsonResult ChangeCurrentDriverStatus(int status)

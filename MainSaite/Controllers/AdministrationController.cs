@@ -82,12 +82,5 @@ namespace MainSaite.Controllers
 		{
 			return Json(workerStatusManager.GetAllStatuses());
 		}
-
-		[HttpPost]
-		public JsonResult BlockDriver(int driverId)
-		{
-			var driver = userManager.GetById(driverId);
-			return Json(workerStatusManager.ChangeStatus(driver, DriverWorkingStatusEnum.Blocked));
-		}
 	}
 }

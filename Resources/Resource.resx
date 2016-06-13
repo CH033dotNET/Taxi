@@ -1351,4 +1351,16 @@
   <data name="Enable" xml:space="preserve">
     <value>Enable</value>
   </data>
+  <data name="BlockedFor" xml:space="preserve">
+    <value>Blocked for:</value>
+  </data>
+  <data name="BlockedMessage" xml:space="preserve">
+    <value>You have been blocked by the administrator and can not take orders.</value>
+  </data>
+  <data name="UnblockingAfter" xml:space="preserve">
+    <value>Unblocking after</value>
+  </data>
+  <data name="YouAreBlocked" xml:space="preserve">
+    <value>You are blocked</value>
+  </data>
 </root>

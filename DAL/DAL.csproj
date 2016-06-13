@@ -319,6 +319,14 @@
     <Compile Include="Migrations\201605281742124_RatingChangesFix.Designer.cs">
       <DependentUpon>201605281742124_RatingChangesFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606121246387_BlockTime-added.cs" />
+    <Compile Include="Migrations\201606121246387_BlockTime-added.Designer.cs">
+      <DependentUpon>201606121246387_BlockTime-added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606130025147_BlockMessage-added.cs" />
+    <Compile Include="Migrations\201606130025147_BlockMessage-added.Designer.cs">
+      <DependentUpon>201606130025147_BlockMessage-added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -538,6 +546,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605281742124_RatingChangesFix.resx">
       <DependentUpon>201605281742124_RatingChangesFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606121246387_BlockTime-added.resx">
+      <DependentUpon>201606121246387_BlockTime-added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606130025147_BlockMessage-added.resx">
+      <DependentUpon>201606130025147_BlockMessage-added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

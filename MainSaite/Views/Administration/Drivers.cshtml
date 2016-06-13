@@ -30,9 +30,9 @@
 		</tr>
 		@foreach (var item in Model)
 		{
-			<tr class="driver" id="@item.Id">
+			<tr class="driver" id="@item.User.Id">
 				<td class="driverId">
-					@Html.DisplayFor(modelItem => item.Id)
+					@Html.DisplayFor(modelItem => item.User.Id)
 				</td>
 				<td class="driverImage">
 					<img src="~/Images/@(item.ImageName != null ? item.ImageName : "item_0_profile.jpg")" />
@@ -101,6 +101,8 @@
 	<button type="button" class="btn btn-success block-btn">@Resources.Resource.Block</button>
 	<button type="button" class="btn btn-success warning unblock-btn">@Resources.Resource.Unblock</button>
 	<div id="hours">@Resources.Resource.Hours</div>
+	<div id="blockedFor">@Resources.Resource.BlockedFor</div>
+	<div class="timer"><span class="hours"></span>:<span class="minutes"></span>:<span class="seconds"></span></div>
 </div>
 
 <script src="~/Scripts/AdminSendMessage.js"></script>

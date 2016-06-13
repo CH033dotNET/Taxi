@@ -385,6 +385,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Blocked for:.
+        /// </summary>
+        public static string BlockedFor {
+            get {
+                return ResourceManager.GetString("BlockedFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have been blocked by the administrator and can not take orders..
+        /// </summary>
+        public static string BlockedMessage {
+            get {
+                return ResourceManager.GetString("BlockedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Blocking driver.
         /// </summary>
         public static string BlockingDriver {
@@ -3500,6 +3518,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unblocking after.
+        /// </summary>
+        public static string UnblockingAfter {
+            get {
+                return ResourceManager.GetString("UnblockingAfter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Universal.
         /// </summary>
         public static string Universal {
@@ -3730,6 +3757,15 @@ namespace Resources {
         public static string Yes {
             get {
                 return ResourceManager.GetString("Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are blocked.
+        /// </summary>
+        public static string YouAreBlocked {
+            get {
+                return ResourceManager.GetString("YouAreBlocked", resourceCulture);
             }
         }
         
