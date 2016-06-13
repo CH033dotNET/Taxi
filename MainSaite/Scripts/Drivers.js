@@ -1,7 +1,6 @@
 ﻿$(function () {
 
 	var mainHub = $.connection.MainHub;
-	$.connection.hub.start();
 
 	$block = $('.block-btn').first();
 	$unblock = $('.unblock-btn').first();
@@ -56,32 +55,34 @@
 			$(this).removeClass('empty');
 	});
 
-	$('#block-btn').click(function () {
-		if ($('#block-message').val().length > 0) {
-			var driverId = $('#blocking-dialog').attr('driverId');
-			var message = $('#block-message').val();
-			var whileTime = null;
-			var untilTime = null;
-			if ($('#block-while').prop('checked'))
-				whileTime = $('#while-time').val().split(' ')[0];
-			if ($('#block-until').prop('checked'))
-				untilTime = $('#until-time').val();
-			mainHub.server.blockDriver(driverId, message, whileTime, untilTime);
-			$('#blocking-dialog').modal('hide');
-		}
-		else
-			$('#block-message').addClass('empty');
-	});
+	$.connection.hub.start().done(function () {
+		$('#block-btn').click(function () {
+			if ($('#block-message').val().length > 0) {
+				var driverId = $('#blocking-dialog').attr('driverId');
+				var message = $('#block-message').val();
+				var whileTime = null;
+				var untilTime = null;
+				if ($('#block-while').prop('checked'))
+					whileTime = $('#while-time').val().split(' ')[0];
+				if ($('#block-until').prop('checked'))
+					untilTime = $('#until-time').val();
+				mainHub.server.blockDriver(driverId, message, whileTime, untilTime);
+				$('#blocking-dialog').modal('hide');
+			}
+			else
+				$('#block-message').addClass('empty');
+		});
 
-	$(document).on('click', '.block-btn', function () {
-		$('#blocking-dialog').attr('driverId', $(this).closest('.driver').attr('id'));
-		$('#block-message').val('');
-		$('#blocking-dialog').modal('show');
-	});
+		$(document).on('click', '.block-btn', function () {
+			$('#blocking-dialog').attr('driverId', $(this).closest('.driver').attr('id'));
+			$('#block-message').val('');
+			$('#blocking-dialog').modal('show');
+		});
 
-	$(document).on('click', '.unblock-btn', function () {
-		var driverId = $(this).closest('.driver').attr('id');
-		mainHub.server.unblockDriver(driverId);
+		$(document).on('click', '.unblock-btn', function () {
+			var driverId = $(this).closest('.driver').attr('id');
+			mainHub.server.unblockDriver(driverId);
+		});
 	});
 
 	mainHub.client.blockDriver = function (time, driverId) {
@@ -177,7 +178,7 @@
 		var id = $timer.closest('.driver').attr('id');
 
 		function tick() {
-			var time = Date.parse(endTime) - Date.parse(new Date());
+			var time = moment(endTime).diff(moment());
 			var seconds = Math.floor((time / 1000) % 60);
 			var minutes = Math.floor((time / 1000 / 60) % 60);
 			var hours = Math.floor(time / (1000 * 60 * 60));

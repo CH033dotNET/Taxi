@@ -217,16 +217,20 @@ namespace MainSaite.Hubs
 			IWorkerStatusManager workerStatusManager = new WorkerStatusManager(uOW);
 			IUserManager userManager = new UserManager(uOW);
 
+			TimeSpan? timeSpan = null;
 			DateTime? blockTime = null;
+
 			if (whileTime != null)
-				blockTime = DateTime.Now
-					.AddHours(Int32.Parse(whileTime.Split(':')[0]))
-					.AddMinutes(Int32.Parse(whileTime.Split(':')[1]))
-					.AddSeconds(DateTime.Now.Second * (-1));
+			{
+				var time = whileTime.Split(':');
+				timeSpan = new TimeSpan(int.Parse(time[0]), int.Parse(time[1]), 0);
+				blockTime = DateTime.Now.Add(timeSpan.Value);
+			}
 			if (untilTime != null)
 			{
-				var s = untilTime.Replace(' ', '-').Replace(':', '-').Split('-');
-				blockTime = new DateTime(int.Parse(s[2]), int.Parse(s[1]), int.Parse(s[0]), int.Parse(s[3]), int.Parse(s[4]), 0);
+				var time = untilTime.Replace(' ', '-').Replace(':', '-').Split('-');
+				blockTime = new DateTime(int.Parse(time[2]), int.Parse(time[1]), int.Parse(time[0]), int.Parse(time[3]), int.Parse(time[4]), 0);
+				timeSpan = (TimeSpan)(blockTime - DateTime.Now);
 			}
 
 			var driver = userManager.GetById(driverId);
@@ -234,16 +238,13 @@ namespace MainSaite.Hubs
 
 			var client = orderHubUsers.FirstOrDefault(u => u.UserId == driverId);
 			if (client != null)
-				Clients.Client(client.ConnectionId).blockDriver(blockTime.HasValue ? blockTime.Value.ToUniversalTime() : blockTime, message);
+				Clients.Client(client.ConnectionId).blockDriver(blockTime, message);
 
-			Clients.Client(Context.ConnectionId).blockDriver(blockTime.HasValue ? blockTime.Value.ToUniversalTime() : blockTime, driverId);
-			Clients.OthersInGroup("Operator").blockDriver(blockTime.HasValue ? blockTime.Value.ToUniversalTime() : blockTime, driverId);
+			Clients.Client(Context.ConnectionId).blockDriver(blockTime, driverId);
+			Clients.OthersInGroup("Operator").blockDriver(blockTime, driverId);
 
-			if (blockTime != null)
-			{
-				var t = blockTime.Value - DateTime.Now;
-				UnblockDriverDelay(blockTime.Value - DateTime.Now, driverId);
-			}
+			if (timeSpan.HasValue)
+				UnblockDriverDelay(timeSpan.Value, driverId);
 		}
 
 		[HubMethodName("unblockDriver")]

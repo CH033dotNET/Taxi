@@ -154,9 +154,9 @@ function initTimer(endTime) {
 	$timer = $('.timer');
 
 	function tick() {
-		var time = Date.parse(endTime) - Date.parse(new Date());
+		var time = moment(endTime).diff(moment());
 		if (isNaN(time))
-			time = Date.parse(new Date(parseInt(endTime.replace('/Date(', '')))) - Date.parse(new Date());
+			time = moment(new Date(parseInt(endTime.replace('/Date(', '')))).diff(moment());
 		var seconds = Math.floor((time / 1000) % 60);
 		var minutes = Math.floor((time / 1000 / 60) % 60);
 		var hours = Math.floor(time / (1000 * 60 * 60));
