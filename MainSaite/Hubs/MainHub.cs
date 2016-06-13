@@ -219,9 +219,15 @@ namespace MainSaite.Hubs
 
 			DateTime? blockTime = null;
 			if (whileTime != null)
-				blockTime = DateTime.Now.AddHours(Int32.Parse(whileTime.Split(':')[0])).AddMinutes(Int32.Parse(whileTime.Split(':')[1]));
+				blockTime = DateTime.Now
+					.AddHours(Int32.Parse(whileTime.Split(':')[0]))
+					.AddMinutes(Int32.Parse(whileTime.Split(':')[1]))
+					.AddSeconds(DateTime.Now.Second * (-1));
 			if (untilTime != null)
-				blockTime = DateTime.Parse(untilTime);
+			{
+				var s = untilTime.Replace(' ', '-').Replace(':', '-').Split('-');
+				blockTime = new DateTime(int.Parse(s[2]), int.Parse(s[1]), int.Parse(s[0]), int.Parse(s[3]), int.Parse(s[4]), 0);
+			}
 
 			var driver = userManager.GetById(driverId);
 			workerStatusManager.ChangeStatus(driver, DriverWorkingStatusEnum.Blocked, blockTime, message);
@@ -234,7 +240,10 @@ namespace MainSaite.Hubs
 			Clients.OthersInGroup("Operator").blockDriver(blockTime.HasValue ? blockTime.Value.ToUniversalTime() : blockTime, driverId);
 
 			if (blockTime != null)
+			{
+				var t = blockTime.Value - DateTime.Now;
 				UnblockDriverDelay(blockTime.Value - DateTime.Now, driverId);
+			}
 		}
 
 		[HubMethodName("unblockDriver")]
@@ -252,10 +261,14 @@ namespace MainSaite.Hubs
 			Clients.OthersInGroup("Operator").unblockDriver(driverId);
 		}
 
-		private async Task UnblockDriverDelay(TimeSpan time, int driverId)
+		private void UnblockDriverDelay(TimeSpan time, int driverId)
 		{
-			await Task.Delay(time);
-			UnblockDriver(driverId);
+			var t = Task.Factory.StartNew(() =>
+			{
+				Task.Delay(time).Wait();
+				UnblockDriver(driverId);
+			});
+			t.Wait();
 		} 
 	}
 }

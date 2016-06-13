@@ -18,7 +18,7 @@
 	});
 
 	$('.datetimepicker').datetimepicker({
-		format: 'DD/MM/YYYY HH:mm',
+		format: 'DD-MM-YYYY HH:mm',
 		minDate: moment().add(1, 'm')
 	});
 
