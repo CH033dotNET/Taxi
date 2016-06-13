@@ -312,7 +312,7 @@
 				if (current.attr('data-id') != district.Id) {
 					mainHub.server.joinDistrict(district.Id);
 					current.removeClass('active').children('span').toggleClass('hidenText');
-					$(".joinButton[data-id='" + district.Id + "']").addClass('active').children('span').toggleClass('hidenText');
+					$(".joinButton[data-id='" + district.Id + "']").addClass('active').children('span').toggleClass('hidenText').parents("ul").fadeIn();;
 				}
 			}
 			else {
