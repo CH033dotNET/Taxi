@@ -347,7 +347,7 @@
     background: linear-gradient(gold, #ffc030);
     text-shadow: rgb(134, 134, 134) 0px 1px 0px;
 	font-weight: bolder;
-	font-size: 1.5vw;
+	font-size: 1.5em;
     text-transform: uppercase; 
 	min-width: 100px;
     text-align: center;

@@ -258,6 +258,8 @@ ol {
 
 .joinButton {
 	float: right;
+	height:42px;
+	font-size:20px;
 }
 
 .folder{
@@ -266,9 +268,16 @@ ol {
 
 .count, .district .glyphicon {
 	display: inherit;
-	width: 5%;
+	width: 69px;
 	text-align: center;
 	vertical-align: central;
 	border-right: 1px solid black;
 	height: 100%;
+}
+
+.take{
+	font-size:18px;
+}
+.addFeedbackButton{
+	font-size:18px;
 }
