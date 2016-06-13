@@ -66,7 +66,7 @@
 					whileTime = $('#while-time').val().split(' ')[0];
 				if ($('#block-until').prop('checked'))
 					untilTime = $('#until-time').val();
-				mainHub.server.blockDriver(driverId, message, whileTime, untilTime);
+				mainHub.server.blockDriver(driverId, message, whileTime, untilTime, moment());
 				$('#blocking-dialog').modal('hide');
 			}
 			else

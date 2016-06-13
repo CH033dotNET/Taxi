@@ -211,7 +211,7 @@ namespace MainSaite.Hubs
 		}
 
 		[HubMethodName("blockDriver")]
-		public void BlockDriver(int driverId, string message, string whileTime, string untilTime)
+		public void BlockDriver(int driverId, string message, string whileTime, string untilTime, string nowTime)
 		{
 			IUnitOfWork uOW = new UnitOfWork();
 			IWorkerStatusManager workerStatusManager = new WorkerStatusManager(uOW);
@@ -219,18 +219,19 @@ namespace MainSaite.Hubs
 
 			TimeSpan? timeSpan = null;
 			DateTime? blockTime = null;
+			var now = DateTime.Parse(nowTime);
 
 			if (whileTime != null)
 			{
 				var time = whileTime.Split(':');
 				timeSpan = new TimeSpan(int.Parse(time[0]), int.Parse(time[1]), 0);
-				blockTime = DateTime.Now.Add(timeSpan.Value);
+				blockTime = now.Add(timeSpan.Value);
 			}
 			if (untilTime != null)
 			{
 				var time = untilTime.Replace(' ', '-').Replace(':', '-').Split('-');
 				blockTime = new DateTime(int.Parse(time[2]), int.Parse(time[1]), int.Parse(time[0]), int.Parse(time[3]), int.Parse(time[4]), 0);
-				timeSpan = (TimeSpan)(blockTime - DateTime.Now);
+				timeSpan = (TimeSpan)(blockTime - now);
 			}
 
 			var driver = userManager.GetById(driverId);
